@@ -3,6 +3,11 @@ import Navbar from './components/Navbar'
 import About from './components/About'
 import Mission from './components/Mission'
 import Hero from './components/Hero'
+import Features from './components/Features'
+import Achievements from './components/Achievements'
+import Testimonials from './components/Testimonials'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function LandingPage() {
     return (
@@ -11,6 +16,11 @@ function LandingPage() {
             <Hero />
             <About />
             <Mission />
+            <Features />
+            <Achievements />
+            <Testimonials />
+            <Contact />
+            <Footer />
         </div>
     )
 }

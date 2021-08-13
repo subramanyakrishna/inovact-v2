@@ -9,3 +9,8 @@
 body {
     font-family: 'Karla', Helvetica, Arial, sans-serif;
 }
+
+::selection {
+    color: $color-white;
+    background: $color-primary-green;
+}
