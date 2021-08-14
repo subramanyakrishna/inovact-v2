@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 *,
 *::after,
 *::before {
@@ -201,3 +202,99 @@ html {
       top: 3rem; }
       .signup__social--links {
         padding: 10px; } }
+
+.signin {
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5% 0; }
+  .signin__flex-container {
+    z-index: 1;
+    padding: 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+  .signin__flex-child {
+    display: flex;
+    align-items: center; }
+  .signin__logo {
+    height: 6rem; }
+  .signin__card {
+    width: 42rem;
+    height: 55rem;
+    border-radius: 8px;
+    padding: 0rem 2rem;
+    background-color: white; }
+    .signin__card hr {
+      position: relative;
+      top: 6.5rem; }
+    .signin__card--or {
+      position: relative;
+      top: 5rem;
+      left: 17.3rem;
+      background-color: white;
+      padding: 5px; }
+    .signin__card--button {
+      color: white;
+      position: relative;
+      bottom: -5rem; }
+    .signin__card--header {
+      position: relative;
+      top: 20px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 60px;
+      text-align: left;
+      padding: 0px 30px;
+      color: #001948; }
+    .signin__card--desc {
+      padding: 20px 30px;
+      font-style: normal;
+      font-family: "Nunito", sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      padding-bottom: 40px; }
+    .signin__card__forgot-pw {
+      position: relative;
+      line-height: 2rem;
+      font-size: 15px;
+      width: 100%;
+      right: -22rem;
+      margin-bottom: 10px;
+      bottom: 4rem; }
+    .signin__card a {
+      color: #02bd63;
+      text-decoration: none;
+      padding: 10px; }
+    .signin__card div label {
+      padding-left: 20px;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 15px;
+      text-align: left; }
+    .signin__card--input-name {
+      display: inline-block;
+      margin-right: 1.5rem; }
+      .signin__card--input-name input.input-component {
+        max-width: 15.5rem !important; }
+  .signin__social {
+    position: relative;
+    top: 6rem;
+    display: flex;
+    justify-content: center; }
+    .signin__social--links {
+      padding: 10px;
+      transition: all 0.2s;
+      height: 50px; }
+
+@media screen and (max-width: 1000px) {
+  .signin {
+    padding: 0; }
+    .signin__flex-container {
+      flex-direction: column; }
+  __card {
+    width: 90%; } }
