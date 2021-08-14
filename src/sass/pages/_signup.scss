@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+
+.signup {
+    height: 100%;
+    background-image: 
+        linear-gradient(
+            0deg,
+            rgba(#001948, 0.84), 
+            rgba(#001948, 0.84)
+        ), 
+        url("./assets/sign-up/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4% 0;
+
+    &__flex-container {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    
+    &__flex-child {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        height: 6rem;
+    }
+
+    &__card {
+        width: 42rem;
+        height: 67rem;
+        border-radius: 8px;
+        padding: 0rem 2rem;
+        background-color: white;
+
+        hr {
+            position: relative;
+            top: 7rem;
+        }
+
+        &--or {
+            position: relative;
+            top: 5rem;
+            left: 17.3rem;
+            background-color: white;
+            padding: 5px;
+        }
+
+        &--button {
+            color: white;
+            position: relative;
+            bottom: -2.5rem;
+        }
+
+        &--header {
+            position: relative;
+            top: 20px;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 60px;
+            text-align: left;
+            padding: 0px 30px;
+            color: #001948;
+        }
+
+        &--desc {
+            padding: 20px 30px;
+            font-style: normal;
+            font-family: "Nunito", sans-serif;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 23px;
+            padding-bottom: 40px;
+
+            a {
+                color: #02bd63;
+                text-decoration: none;
+                padding: 10px;
+            }
+        }
+
+        div label {
+            padding-left: 20px;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 15px;
+            text-align: left;
+        }
+
+        &--input-name {
+            display: inline-block;
+            margin-right: 1.5rem;
+
+            input.input-component {
+                max-width: 15.5rem !important;
+            }
+        }
+
+    }
+
+    &__social {
+        position: relative;
+        top: 5rem;
+
+        display: flex;
+        justify-content: center;
+
+        &--links {
+            padding: 10px;
+            transition: all 0.2s;
+            height: 50px;
+        }
+    }   
+    
+    @media screen and (max-width: 1000px) {
+        &__flex-container {
+            flex-direction: column;
+        }
+
+        &__logo {
+            margin-bottom: 3rem;
+        }
+
+        &__card {
+            width: 40rem;
+            height: 61rem;
+            padding: 0rem 2rem;
+    
+            hr {
+                top: 4.5rem;
+            }
+    
+            &--or {
+                top: 2.5rem;
+                padding: 5px;
+            }
+    
+            &--button {
+                bottom: -1rem;
+                width: 33.5rem;
+                left: 1rem;
+            }
+    
+            &--header {
+                position: relative;
+                font-size: 3rem;
+            }
+    
+            &--desc {
+                padding: 10px 30px;
+                padding-bottom: 2rem;
+            }
+    
+            div label {
+                line-height: 8px;
+            }
+    
+            &--input-name {
+                input.input-component {
+                    max-width: 14.5rem !important;
+                }
+            }
+    
+        }
+    
+        &__social {
+            position: relative;
+            top: 2rem;
+    
+            &--links {
+                padding: 10px;
+            }
+        }       
+    }
+
+    @media screen and (max-width: 450px) {
+        &__card {
+            margin: 0 5%;
+    
+            &--or {
+                left: 47%;
+            }
+    
+            &--button {
+                width: 92%;
+            }
+    
+            &--header {
+                font-size: 250%;
+            }
+    
+            &--desc {
+                font-size: 160%;
+                padding: 10px 30px;
+                padding-bottom: 5%;
+            }
+    
+            &--input-name {
+                margin-right: 0%;
+                width: 50%;
+
+                input.input-component {
+                    max-width: 80% !important;
+                }
+
+                .input-component {
+                    width: 90%;
+                }
+            }
+    
+        }
+    
+        &__social {
+            position: relative;
+            top: 3rem;
+    
+            &--links {
+                padding: 10px;
+            }
+        }       
+    }
+}
