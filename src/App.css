@@ -273,9 +273,6 @@ body {
     max-width: 1076px;
     width: 100%;
     padding: 1rem; }
-    @media only screen and (max-width: 48em) {
-      .landing-page__hero__text-box {
-        top: 40%; } }
     .landing-page__hero__text-box__main {
       text-transform: uppercase;
       color: rgba(2, 189, 99, 0.6);
