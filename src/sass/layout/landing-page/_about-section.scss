@@ -29,5 +29,9 @@
         @include respond(md) {
             height: 100%;
         }
+
+        @include respond(sm) {
+            text-align: center;
+        }
     }
 }

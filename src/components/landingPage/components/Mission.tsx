@@ -8,7 +8,7 @@ function Mission() {
     return (
         <section className="section-mission">
             <div className="section-mission__text">
-                <h1 className="heading-primary">Our mission</h1>
+                <h1 className="heading-primary">Our Mission</h1>
                 <p className="paragraph-primary">
                     We are young and enthusiastic entrepreneurs aspiring to
                     cover the gap between students and the industry.
@@ -58,11 +58,9 @@ function Mission() {
                             <img src={inovate} alt="" />
                             <p>
                                 With the right set of skills and network in
-                                hand, Inovact wants to encourage and provide an
+                                hand, Inovact wants to provide a solid
                                 infrastructure for students and entrepreneurs to
-                                work on various problems & projects and come up
-                                with innovative & disruptive ideas which will
-                                change the world for the better.
+                                put their innovative ideas into action.
                             </p>
                         </div>
                     </MDBCol>

@@ -8,8 +8,8 @@ function Contact() {
                     Contact Us
                 </h1>
                 <p className="paragraph-primary paragraph-primary--white">
-                    We are young and enthusiastic entrepreneurs aspiring to
-                    cover the gap between students and the industry.
+                    Send in your queries about inovact social and inovact live
+                    courses, and we will get back to you soon.
                 </p>
             </div>
             <div className="section-contact__form">

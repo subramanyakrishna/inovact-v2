@@ -12,6 +12,11 @@ function Features() {
         <section className="section-features">
             <div className="section-features__text">
                 <h1 className="heading-primary">Our Key Features</h1>
+                <p className="paragraph-primary">
+                    If you're a student wanting to upskill yourself or an
+                    entrepreneur working on the next big thing, we've got you
+                    covered with our key features.
+                </p>
             </div>
             <div className="section-features__body">
                 <div className="section-features__body__text">
@@ -24,9 +29,9 @@ function Features() {
                         INOVACT SOCIAL
                     </p>
                     <p className="section-features__body__text__sub">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Diam id viverra purus odio leo, tincidunt consequat
-                        elementum purus.
+                        A one stop socialising platform for students,
+                        entrepreneurs and mentors to Learn, Connect and
+                        Innovate.
                     </p>
                 </div>
                 <div className="section-features__body__content">
@@ -55,9 +60,9 @@ function Features() {
                         INOVACT LEARNING
                     </p>
                     <p className="section-features__body__text__sub">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Diam id viverra purus odio leo, tincidunt consequat
-                        elementum purus.
+                        A well organised learning program handled by experienced
+                        instructors encouraging you to acquire latest skills and
+                        tools.
                     </p>
                 </div>
                 <div className="section-features__body__content">

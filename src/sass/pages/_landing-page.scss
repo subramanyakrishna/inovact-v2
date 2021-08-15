@@ -17,6 +17,11 @@
             text-align: center;
             max-width: 1076px;
             width: 100%;
+            padding: 1rem;
+
+            @include respond(sm) {
+                top: 40%;
+            }
 
             &__main {
                 text-transform: uppercase;

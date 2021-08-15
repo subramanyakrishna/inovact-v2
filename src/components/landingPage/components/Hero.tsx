@@ -9,8 +9,8 @@ function Hero() {
                     Welcome to inovact
                 </p>
                 <p className="landing-page__hero__text-box__sub">
-                    Inovact Social is the one-stop networking platform
-                    connecting students, mentors and investors.
+                    <span>Learn.</span> <span>Connect.</span>{' '}
+                    <span>Innovate.</span>
                 </p>
             </div>
             <img

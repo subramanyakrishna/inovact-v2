@@ -7,8 +7,8 @@ function Testimonials() {
             <div className="section-testimonials__text">
                 <h1 className="heading-primary">Testimonials</h1>
                 <p className="paragraph-primary">
-                    We are young and enthusiastic entrepreneurs aspiring to
-                    cover the gap between students and the industry.
+                    Take a look at what people have to say about Inovact Social
+                    and Inovact Learning
                 </p>
             </div>
             <div className="section-testimonials__map">

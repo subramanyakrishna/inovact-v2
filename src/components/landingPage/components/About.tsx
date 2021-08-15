@@ -12,7 +12,7 @@ function About() {
                     </MDBCol>
                     <MDBCol md="6" className="section-about__text">
                         <div className="section-about__text__box">
-                            <h1 className="heading-primary">Our story</h1>
+                            <h1 className="heading-primary">Our Story</h1>
                             <p className="paragraph-primary">
                                 With more than one crore Indian students
                                 graduating every year, less than half are fit

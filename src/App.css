@@ -48,6 +48,9 @@ body {
     @media only screen and (max-width: 62em) {
       .section-about__text {
         height: 100%; } }
+    @media only screen and (max-width: 48em) {
+      .section-about__text {
+        text-align: center; } }
 
 .section-mission {
   padding: 6rem 3rem;
@@ -268,7 +271,11 @@ body {
     transform: translate(-50%, -40%);
     text-align: center;
     max-width: 1076px;
-    width: 100%; }
+    width: 100%;
+    padding: 1rem; }
+    @media only screen and (max-width: 48em) {
+      .landing-page__hero__text-box {
+        top: 40%; } }
     .landing-page__hero__text-box__main {
       text-transform: uppercase;
       color: rgba(2, 189, 99, 0.6);
