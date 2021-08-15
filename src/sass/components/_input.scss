@@ -1,0 +1,17 @@
+.input-component {
+    display: block;
+	padding: 0.625rem;
+	margin: 0.75rem 0.625rem;
+	min-height: 1.875rem;
+	width: 92%;
+	border: 1px solid rgba(0, 0, 0, 0.24);
+	border-radius: 8px;
+    &:focus {
+        outline: none;
+		border: 1px solid rgba(0, 0, 0, 0.24);
+		background-color: rgb(240, 240, 240);
+	}
+	&::placeholder {
+		font-size: 13px;
+	}
+}

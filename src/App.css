@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 *,
 *::after,
 *::before {
@@ -286,3 +288,296 @@ body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%); }
+body,
+html {
+  height: 100%;
+  margin: 0; }
+
+#root,
+.App,
+.Main {
+  height: 100%; }
+
+.button--green:hover {
+  box-shadow: 0 2px 4px #012b16;
+  cursor: pointer; }
+
+.button--green:active {
+  transform: scale(0.99);
+  box-shadow: 0 0.5px 1px #012b16; }
+
+.button--green--round {
+  border-radius: 10px !important;
+  background-color: black;
+  padding: 5px !important;
+  background: #02bd63;
+  position: absolute;
+  width: 23.75rem;
+  height: 3rem;
+  border: 0px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0em; }
+
+.input-component {
+  display: block;
+  padding: 0.625rem;
+  margin: 0.75rem 0.625rem;
+  min-height: 1.875rem;
+  width: 92%;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 8px; }
+  .input-component:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    background-color: #f0f0f0; }
+  .input-component::placeholder {
+    font-size: 13px; }
+
+.signup {
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 4% 0; }
+  .signup__flex-container {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+  .signup__flex-child {
+    display: flex;
+    align-items: center; }
+  .signup__logo {
+    height: 3.75rem; }
+  .signup__card {
+    width: 26.25rem;
+    height: 41.875rem;
+    border-radius: 8px;
+    padding: 0rem 1.25rem;
+    background-color: white; }
+    .signup__card hr {
+      position: relative;
+      top: 3rem; }
+    .signup__card--or {
+      position: relative;
+      top: 1.2rem;
+      font-size: 13px;
+      left: 10.813rem;
+      background-color: white;
+      padding: 5px; }
+    .signup__card--button {
+      color: white;
+      position: relative;
+      bottom: -1.563rem; }
+    .signup__card--header {
+      position: relative;
+      top: 20px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 60px;
+      text-align: left;
+      padding: 0px 30px;
+      color: #001948; }
+    .signup__card--desc {
+      padding: 20px 30px;
+      font-style: normal;
+      font-family: "Nunito", sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      padding-bottom: 20px; }
+      .signup__card--desc a {
+        color: #02bd63;
+        text-decoration: none;
+        padding: 10px; }
+    .signup__card div label {
+      padding-left: 20px;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 10px;
+      text-align: left; }
+    .signup__card div input {
+      margin: 7px 10px; }
+    .signup__card--input-name {
+      display: inline-block;
+      margin-right: 0.938rem; }
+      .signup__card--input-name input.input-component {
+        max-width: 9.688rem !important; }
+  .signup__social {
+    position: relative;
+    top: 1rem;
+    display: flex;
+    justify-content: center; }
+    .signup__social--links {
+      padding: 10px;
+      transition: all 0.2s;
+      height: 50px; }
+  @media screen and (max-width: 1000px) {
+    .signup__flex-container {
+      flex-direction: column; }
+    .signup__logo {
+      margin-top: 1rem;
+      margin-bottom: 1.875rem; }
+    .signup__card {
+      width: 100%;
+      height: 39rem;
+      padding: 0rem 1.25rem; }
+      .signup__card hr {
+        top: 2rem; }
+      .signup__card--or {
+        top: 0.2rem;
+        padding: 0px; }
+      .signup__card--button {
+        bottom: -1rem;
+        width: 20.938rem;
+        left: 0.625rem; }
+      .signup__card--header {
+        position: relative;
+        font-size: 1.875rem; }
+      .signup__card--desc {
+        padding: 10px 30px;
+        padding-bottom: 1.25rem; }
+      .signup__card div label {
+        line-height: 8px; }
+      .signup__card--input-name input.input-component {
+        max-width: 9.063rem !important; }
+    .signup__social {
+      position: relative;
+      top: -0.5rem; }
+      .signup__social--links {
+        padding: 10px; } }
+  @media screen and (max-width: 450px) {
+    .signup__card {
+      margin: 0 5%;
+      padding-left: 6%; }
+      .signup__card--or {
+        left: 47%; }
+      .signup__card--button {
+        width: 92%; }
+      .signup__card--header {
+        font-size: 1.3rem; }
+      .signup__card--desc {
+        font-size: 1rem;
+        padding: 10px;
+        padding-bottom: 5%; }
+      .signup__card--input-name {
+        margin-right: 0%;
+        width: 50%; }
+        .signup__card--input-name input.input-component {
+          max-width: 80% !important; }
+        .signup__card--input-name .input-component {
+          width: 90%; }
+    .signup__social {
+      position: relative; }
+      .signup__social--links {
+        padding: 10px; } }
+
+.signin {
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5% 0; }
+  .signin__flex-container {
+    z-index: 1;
+    padding: 3.125rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+  .signin__flex-child {
+    display: flex;
+    align-items: center; }
+  .signin__logo {
+    height: 3.75rem; }
+  .signin__card {
+    width: 26.25rem;
+    height: 34.375rem;
+    border-radius: 8px;
+    padding: 0rem 1.25rem;
+    background-color: white; }
+    .signin__card hr {
+      position: relative;
+      top: 2.8rem; }
+    .signin__card--or {
+      position: relative;
+      top: 1rem;
+      font-size: 14px;
+      left: 10.813rem;
+      background-color: white;
+      padding: 5px; }
+    .signin__card--button {
+      color: white;
+      position: relative;
+      bottom: -3rem; }
+    .signin__card--header {
+      position: relative;
+      top: 20px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 60px;
+      text-align: left;
+      padding: 0px 30px;
+      color: #001948; }
+    .signin__card--desc {
+      padding: 20px 30px;
+      font-style: normal;
+      font-family: "Nunito", sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      padding-bottom: 20px; }
+    .signin__card__forgot-pw {
+      position: relative;
+      line-height: 1.25rem;
+      font-size: 15px;
+      width: 100%;
+      right: -13.75rem;
+      margin-bottom: 10px;
+      bottom: 2.5rem; }
+    .signin__card a {
+      color: #02bd63;
+      text-decoration: none;
+      padding: 10px; }
+    .signin__card div label {
+      padding-left: 20px;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 15px;
+      text-align: left; }
+    .signin__card--input-name {
+      display: inline-block;
+      margin-right: 0.938rem; }
+      .signin__card--input-name input.input-component {
+        max-width: 9.688rem !important; }
+  .signin__social {
+    position: relative;
+    top: 1rem;
+    display: flex;
+    justify-content: center; }
+    .signin__social--links {
+      padding: 10px;
+      transition: all 0.2s;
+      height: 50px; }
+
+@media screen and (max-width: 1000px) {
+  .signin {
+    padding: 0; }
+    .signin__flex-container {
+      flex-direction: column; }
+    .signin__card {
+      width: 100%; }
+      .signin__card--button {
+        width: 100%; }
+      .signin__card--or {
+        margin-left: -2rem; }
+      .signin__card__forgot-pw {
+        right: -10rem; }
+    .signin__logo {
+      margin-bottom: 2rem; } }
