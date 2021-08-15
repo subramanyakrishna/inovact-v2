@@ -7,7 +7,7 @@ const Signup : React.FC = () => {
         <div className="signin">
             <div className="signin__flex-container">
                 <div className="signin__flex-child">
-                    <img src={name} alt="inovact-logo" className="signup__logo"/>
+                    <img src={name} alt="inovact-logo" className="signin__logo"/>
                 </div>
                 <div className="signin__flex-child">
                     <Card/>

@@ -14,10 +14,6 @@ body {
   color: #ffffff;
   background: #02bd63; }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 10px; }
-
 body,
 html {
   height: 100%;
@@ -42,8 +38,8 @@ html {
   padding: 5px !important;
   background: #02bd63;
   position: absolute;
-  width: 38rem;
-  height: 4.8rem;
+  width: 23.75rem;
+  height: 3rem;
   border: 0px;
   font-size: 18px;
   font-style: normal;
@@ -53,9 +49,9 @@ html {
 
 .input-component {
   display: block;
-  padding: 1rem;
-  margin: 1.2rem 1rem;
-  min-height: 3rem;
+  padding: 0.625rem;
+  margin: 0.75rem 0.625rem;
+  min-height: 1.875rem;
   width: 92%;
   border: 1px solid rgba(0, 0, 0, 0.24);
   border-radius: 8px; }
@@ -82,26 +78,27 @@ html {
     display: flex;
     align-items: center; }
   .signup__logo {
-    height: 6rem; }
+    height: 3.75rem; }
   .signup__card {
-    width: 42rem;
-    height: 67rem;
+    width: 26.25rem;
+    height: 41.875rem;
     border-radius: 8px;
-    padding: 0rem 2rem;
+    padding: 0rem 1.25rem;
     background-color: white; }
     .signup__card hr {
       position: relative;
-      top: 7rem; }
+      top: 3rem; }
     .signup__card--or {
       position: relative;
-      top: 5rem;
-      left: 17.3rem;
+      top: 1.2rem;
+      font-size: 13px;
+      left: 10.813rem;
       background-color: white;
       padding: 5px; }
     .signup__card--button {
       color: white;
       position: relative;
-      bottom: -2.5rem; }
+      bottom: -1.563rem; }
     .signup__card--header {
       position: relative;
       top: 20px;
@@ -119,7 +116,7 @@ html {
       font-weight: normal;
       font-size: 18px;
       line-height: 23px;
-      padding-bottom: 40px; }
+      padding-bottom: 20px; }
       .signup__card--desc a {
         color: #02bd63;
         text-decoration: none;
@@ -128,16 +125,18 @@ html {
       padding-left: 20px;
       font-size: 12px;
       font-weight: 300;
-      line-height: 15px;
+      line-height: 10px;
       text-align: left; }
+    .signup__card div input {
+      margin: 7px 10px; }
     .signup__card--input-name {
       display: inline-block;
-      margin-right: 1.5rem; }
+      margin-right: 0.938rem; }
       .signup__card--input-name input.input-component {
-        max-width: 15.5rem !important; }
+        max-width: 9.688rem !important; }
   .signup__social {
     position: relative;
-    top: 5rem;
+    top: 1rem;
     display: flex;
     justify-content: center; }
     .signup__social--links {
@@ -148,47 +147,49 @@ html {
     .signup__flex-container {
       flex-direction: column; }
     .signup__logo {
-      margin-bottom: 3rem; }
+      margin-top: 1rem;
+      margin-bottom: 1.875rem; }
     .signup__card {
-      width: 40rem;
-      height: 61rem;
-      padding: 0rem 2rem; }
+      width: 100%;
+      height: 39rem;
+      padding: 0rem 1.25rem; }
       .signup__card hr {
-        top: 4.5rem; }
+        top: 2rem; }
       .signup__card--or {
-        top: 2.5rem;
-        padding: 5px; }
+        top: 0.2rem;
+        padding: 0px; }
       .signup__card--button {
         bottom: -1rem;
-        width: 33.5rem;
-        left: 1rem; }
+        width: 20.938rem;
+        left: 0.625rem; }
       .signup__card--header {
         position: relative;
-        font-size: 3rem; }
+        font-size: 1.875rem; }
       .signup__card--desc {
         padding: 10px 30px;
-        padding-bottom: 2rem; }
+        padding-bottom: 1.25rem; }
       .signup__card div label {
         line-height: 8px; }
       .signup__card--input-name input.input-component {
-        max-width: 14.5rem !important; }
+        max-width: 9.063rem !important; }
     .signup__social {
       position: relative;
-      top: 2rem; }
+      top: -0.5rem; }
       .signup__social--links {
         padding: 10px; } }
   @media screen and (max-width: 450px) {
     .signup__card {
-      margin: 0 5%; }
+      margin: 0 5%;
+      padding-left: 6%; }
       .signup__card--or {
         left: 47%; }
       .signup__card--button {
         width: 92%; }
       .signup__card--header {
-        font-size: 250%; }
+        font-size: 1.3rem; }
       .signup__card--desc {
-        font-size: 160%;
-        padding: 10px 30px;
+        font-size: 1rem;
+        padding: 10px;
         padding-bottom: 5%; }
       .signup__card--input-name {
         margin-right: 0%;
@@ -198,8 +199,7 @@ html {
         .signup__card--input-name .input-component {
           width: 90%; }
     .signup__social {
-      position: relative;
-      top: 3rem; }
+      position: relative; }
       .signup__social--links {
         padding: 10px; } }
 
@@ -212,7 +212,7 @@ html {
   padding: 5% 0; }
   .signin__flex-container {
     z-index: 1;
-    padding: 5rem 0;
+    padding: 3.125rem 0;
     display: flex;
     align-items: center;
     justify-content: space-evenly; }
@@ -220,26 +220,27 @@ html {
     display: flex;
     align-items: center; }
   .signin__logo {
-    height: 6rem; }
+    height: 3.75rem; }
   .signin__card {
-    width: 42rem;
-    height: 55rem;
+    width: 26.25rem;
+    height: 34.375rem;
     border-radius: 8px;
-    padding: 0rem 2rem;
+    padding: 0rem 1.25rem;
     background-color: white; }
     .signin__card hr {
       position: relative;
-      top: 6.5rem; }
+      top: 2.8rem; }
     .signin__card--or {
       position: relative;
-      top: 5rem;
-      left: 17.3rem;
+      top: 1rem;
+      font-size: 14px;
+      left: 10.813rem;
       background-color: white;
       padding: 5px; }
     .signin__card--button {
       color: white;
       position: relative;
-      bottom: -5rem; }
+      bottom: -3rem; }
     .signin__card--header {
       position: relative;
       top: 20px;
@@ -257,15 +258,15 @@ html {
       font-weight: normal;
       font-size: 18px;
       line-height: 23px;
-      padding-bottom: 40px; }
+      padding-bottom: 20px; }
     .signin__card__forgot-pw {
       position: relative;
-      line-height: 2rem;
+      line-height: 1.25rem;
       font-size: 15px;
       width: 100%;
-      right: -22rem;
+      right: -13.75rem;
       margin-bottom: 10px;
-      bottom: 4rem; }
+      bottom: 2.5rem; }
     .signin__card a {
       color: #02bd63;
       text-decoration: none;
@@ -278,12 +279,12 @@ html {
       text-align: left; }
     .signin__card--input-name {
       display: inline-block;
-      margin-right: 1.5rem; }
+      margin-right: 0.938rem; }
       .signin__card--input-name input.input-component {
-        max-width: 15.5rem !important; }
+        max-width: 9.688rem !important; }
   .signin__social {
     position: relative;
-    top: 6rem;
+    top: 1rem;
     display: flex;
     justify-content: center; }
     .signin__social--links {
@@ -296,5 +297,13 @@ html {
     padding: 0; }
     .signin__flex-container {
       flex-direction: column; }
-  __card {
-    width: 90%; } }
+    .signin__card {
+      width: 100%; }
+      .signin__card--button {
+        width: 100%; }
+      .signin__card--or {
+        margin-left: -2rem; }
+      .signin__card__forgot-pw {
+        right: -10rem; }
+    .signin__logo {
+      margin-bottom: 2rem; } }

@@ -27,25 +27,26 @@
     }
 
     &__logo {
-        height: 6rem;
+        height: 3.75rem;
     }
 
     &__card {
-        width: 42rem;
-        height: 67rem;
+        width: 26.25rem;
+        height: 41.875rem;
         border-radius: 8px;
-        padding: 0rem 2rem;
+        padding: 0rem 1.25rem;
         background-color: white;
 
         hr {
             position: relative;
-            top: 7rem;
+            top: 3rem;
         }
 
         &--or {
             position: relative;
-            top: 5rem;
-            left: 17.3rem;
+            top: 1.2rem;
+            font-size: 13px;
+            left: 10.813rem;
             background-color: white;
             padding: 5px;
         }
@@ -53,7 +54,7 @@
         &--button {
             color: white;
             position: relative;
-            bottom: -2.5rem;
+            bottom: -1.563rem;
         }
 
         &--header {
@@ -75,7 +76,7 @@
             font-weight: normal;
             font-size: 18px;
             line-height: 23px;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
 
             a {
                 color: #02bd63;
@@ -88,16 +89,20 @@
             padding-left: 20px;
             font-size: 12px;
             font-weight: 300;
-            line-height: 15px;
+            line-height: 10px;
             text-align: left;
+        }
+
+        div input {
+            margin: 7px 10px;
         }
 
         &--input-name {
             display: inline-block;
-            margin-right: 1.5rem;
+            margin-right: 0.938rem;
 
             input.input-component {
-                max-width: 15.5rem !important;
+                max-width: 9.688rem !important;
             }
         }
 
@@ -105,7 +110,7 @@
 
     &__social {
         position: relative;
-        top: 5rem;
+        top: 1rem;
 
         display: flex;
         justify-content: center;
@@ -123,37 +128,38 @@
         }
 
         &__logo {
-            margin-bottom: 3rem;
+            margin-top: 1rem;
+            margin-bottom: 1.875rem;
         }
 
         &__card {
-            width: 40rem;
-            height: 61rem;
-            padding: 0rem 2rem;
+            width: 100%;
+            height: 39rem;
+            padding: 0rem 1.25rem;
     
             hr {
-                top: 4.5rem;
+                top: 2rem;
             }
     
             &--or {
-                top: 2.5rem;
-                padding: 5px;
+                top: 0.2rem;
+                padding: 0px;
             }
     
             &--button {
                 bottom: -1rem;
-                width: 33.5rem;
-                left: 1rem;
+                width: 20.938rem;
+                left: 0.625rem;
             }
     
             &--header {
                 position: relative;
-                font-size: 3rem;
+                font-size: 1.875rem;
             }
     
             &--desc {
                 padding: 10px 30px;
-                padding-bottom: 2rem;
+                padding-bottom: 1.25rem;
             }
     
             div label {
@@ -162,7 +168,7 @@
     
             &--input-name {
                 input.input-component {
-                    max-width: 14.5rem !important;
+                    max-width: 9.063rem !important;
                 }
             }
     
@@ -170,7 +176,7 @@
     
         &__social {
             position: relative;
-            top: 2rem;
+            top: -0.5rem;
     
             &--links {
                 padding: 10px;
@@ -181,6 +187,7 @@
     @media screen and (max-width: 450px) {
         &__card {
             margin: 0 5%;
+            padding-left: 6%;
     
             &--or {
                 left: 47%;
@@ -191,12 +198,12 @@
             }
     
             &--header {
-                font-size: 250%;
+                font-size: 1.3rem;
             }
-    
+            
             &--desc {
-                font-size: 160%;
-                padding: 10px 30px;
+                font-size: 1rem;
+                padding: 10px;
                 padding-bottom: 5%;
             }
     
@@ -217,7 +224,6 @@
     
         &__social {
             position: relative;
-            top: 3rem;
     
             &--links {
                 padding: 10px;

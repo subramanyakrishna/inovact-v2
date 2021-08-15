@@ -16,7 +16,7 @@
 
     &__flex-container {
         z-index: 1;
-        padding: 5rem 0;
+        padding: 3.125rem 0;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
@@ -28,25 +28,26 @@
     }
 
     &__logo {
-        height: 6rem;
+        height: 3.75rem;
     }
 
     &__card {
-        width: 42rem;
-        height: 55rem;
+        width: 26.25rem;
+        height: 34.375rem;
         border-radius: 8px;
-        padding: 0rem 2rem;
+        padding: 0rem 1.25rem;
         background-color: white;
 
         hr {
             position: relative;
-            top: 6.5rem;
+            top: 2.8rem;
         }
 
         &--or {
             position: relative;
-            top: 5rem;
-            left: 17.3rem;
+            top: 1rem;
+            font-size: 14px;
+            left: 10.813rem;
             background-color: white;
             padding: 5px;
         }
@@ -54,7 +55,7 @@
         &--button {
             color: white;
             position: relative;
-            bottom: -5rem;
+            bottom: -3rem;
         }
 
         &--header {
@@ -76,17 +77,17 @@
             font-weight: normal;
             font-size: 18px;
             line-height: 23px;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
 
         &__forgot-pw {
             position: relative;
-            line-height: 2rem;
+            line-height: 1.25rem;
             font-size: 15px;
             width: 100%;
-            right: -22rem;
+            right: -13.75rem;
             margin-bottom: 10px;
-            bottom: 4rem;
+            bottom: 2.5rem;
         }
 
         a {
@@ -105,10 +106,10 @@
 
         &--input-name {
             display: inline-block;
-            margin-right: 1.5rem;
+            margin-right: 0.938rem;
 
             input.input-component {
-                max-width: 15.5rem !important;
+                max-width: 9.688rem !important;
             }
         }
 
@@ -116,7 +117,7 @@
 
     &__social {
         position: relative;
-        top: 6rem;
+        top: 1rem;
 
         display: flex;
         justify-content: center;
@@ -136,9 +137,25 @@
         &__flex-container {
             flex-direction: column;
         }
-    }
 
-    &__card {
-        width: 90%;
+        &__card {
+            width: 100%;
+
+            &--button {
+                width: 100%;
+            }
+
+            &--or {
+                margin-left: -2rem;
+            }
+
+            &__forgot-pw {
+                right: -10rem;
+            }
+        }
+    
+        &__logo {
+            margin-bottom: 2rem;
+        }
     }
 }
