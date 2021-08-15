@@ -3,7 +3,9 @@
 
     &__text {
         text-align: center;
-        margin-bottom: 4rem;
+        max-width: 764px;
+        margin: 0 auto 4rem;
+        width: 100%;
     }
 
     &__body {
