@@ -19,11 +19,22 @@ body {
   .heading-primary--white {
     color: #ffffff; }
 
+.heading-secondary {
+  color: #000000;
+  font-size: 2rem;
+  margin-bottom: 0.5rem; }
+  .heading-secondary--green {
+    color: #02bd63; }
+
 .paragraph-primary {
   color: rgba(0, 0, 0, 0.6);
   font-size: 1.5rem; }
   .paragraph-primary--white {
     color: rgba(255, 255, 255, 0.6); }
+  .paragraph-primary--green {
+    color: #02bd63; }
+  .paragraph-primary--red {
+    color: red; }
 
 .section-about {
   height: 100vh;
@@ -259,6 +270,161 @@ body {
     color: #001948;
     margin: 0; }
 
+.role-selection {
+  padding: 2rem 10rem; }
+  @media only screen and (max-width: 48em) {
+    .role-selection {
+      padding: 1rem; } }
+  .role-selection__text .heading-primary {
+    font-size: 34px;
+    text-align: left; }
+    @media only screen and (max-width: 48em) {
+      .role-selection__text .heading-primary {
+        font-size: 24px; } }
+  .role-selection__cards {
+    margin-top: 2rem; }
+    @media only screen and (max-width: 36em) {
+      .role-selection__cards {
+        margin: 1rem; } }
+    .role-selection__cards__col {
+      margin-bottom: 2rem; }
+      @media only screen and (max-width: 48em) {
+        .role-selection__cards__col {
+          margin-left: 2rem; } }
+    .role-selection__cards__item {
+      margin: 0;
+      border: 2px solid rgba(0, 25, 72, 0.09);
+      border-radius: 8px;
+      padding: 2rem 2rem 1rem;
+      text-align: center;
+      float: left;
+      height: 100%; }
+      .role-selection__cards__item--active {
+        border: 2px solid #02bd63; }
+      @media only screen and (max-width: 36em) {
+        .role-selection__cards__item {
+          padding: 1rem; } }
+      .role-selection__cards__item img {
+        margin-bottom: 0.5rem;
+        width: 5.25rem; }
+
+.area-of-interest {
+  padding: 2rem 10rem; }
+  @media only screen and (max-width: 36em) {
+    .area-of-interest {
+      margin: 1rem;
+      padding: 1rem 0.2rem; } }
+  .area-of-interest__text {
+    text-align: center; }
+  .area-of-interest__form__list {
+    max-width: 600px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap; }
+  .area-of-interest__item img {
+    width: 30px; }
+  @media only screen and (max-width: 36em) {
+    .area-of-interest__item {
+      width: 20px; } }
+  .area-of-interest ul, .area-of-interest li {
+    list-style: none; }
+  .area-of-interest li {
+    margin: 0.5rem; }
+  .area-of-interest input[type=checkbox] + .checkbox-label {
+    border: 2px solid #02bd63;
+    border-radius: 38.8172px;
+    padding: 0.5rem 1rem;
+    color: #001948; }
+    @media only screen and (max-width: 36em) {
+      .area-of-interest input[type=checkbox] + .checkbox-label {
+        padding: 0.1rem 0.5rem;
+        font-size: 14px; } }
+  .area-of-interest input[type=checkbox]:checked + .checkbox-label {
+    background-color: #02bd63;
+    color: black;
+    font-style: bold; }
+  .area-of-interest input[type=checkbox]:checked + .checkbox-label:before {
+    content: "";
+    border: 1px solid #a3adb3; }
+
+.upload {
+  padding: 2rem 4rem; }
+  .upload__text {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center; }
+    .upload__text h6 {
+      font-size: 24px; }
+    .upload__text p {
+      font-size: 14px; }
+      @media only screen and (max-width: 48em) {
+        .upload__text p {
+          display: none; } }
+  .upload__form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
+    .upload__form__bio {
+      padding: 0 4rem;
+      padding-top: 12px; }
+      @media only screen and (max-width: 48em) {
+        .upload__form__bio {
+          padding: 1rem; } }
+      .upload__form__bio__text h6 {
+        font-size: 24px; }
+      .upload__form__bio__text p {
+        font-size: 14px; }
+        @media only screen and (max-width: 48em) {
+          .upload__form__bio__text p {
+            display: none; } }
+    .upload__form img {
+      width: 5.25rem;
+      margin: 0 20rem; }
+      @media only screen and (max-width: 48em) {
+        .upload__form img {
+          margin: 0 3rem; } }
+  .upload .skip {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center; }
+
+.buttons {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .buttons__center {
+    justify-content: center; }
+
+.button {
+  display: block;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.8rem;
+  width: 250px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s; }
+  @media only screen and (max-width: 36em) {
+    .button {
+      width: 100px;
+      font-size: 1rem; } }
+  .button:hover {
+    box-shadow: 0 2px 4px #000000; }
+  .button--green {
+    background-color: #02bd63;
+    color: #ffffff;
+    border: none; }
+  .button--white {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid black; }
+    .button--white:hover {
+      box-shadow: 0 2px 4px #02bd63; }
+
 .landing-page__hero {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 25, 72, 0.72), rgba(0, 25, 72, 0.72)), url("images/landing-section-1/hero-bg.png");
@@ -286,3 +452,46 @@ body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%); }
+
+.user-info {
+  height: 100vh;
+  background-color: #001948; }
+  @media only screen and (max-width: 48em) {
+    .user-info {
+      height: 100%;
+      padding: 2rem; } }
+  .user-info__card {
+    max-width: 900px;
+    background-color: #ffffff;
+    border-radius: 2%;
+    width: 90%;
+    height: 450px;
+    position: relative;
+    top: 15%;
+    left: 15%; }
+    @media only screen and (max-width: 48em) {
+      .user-info__card {
+        justify-content: center;
+        top: 0;
+        left: 0%;
+        height: auto; } }
+    .user-info__card .student-info {
+      padding: 2rem 10rem; }
+      @media only screen and (max-width: 36em) {
+        .user-info__card .student-info {
+          padding: 1rem; } }
+      .user-info__card .student-info__text .heading-primary {
+        font-size: 34px;
+        text-align: left; }
+        @media only screen and (max-width: 36em) {
+          .user-info__card .student-info__text .heading-primary {
+            font-size: 20px; } }
+  .user-info .input {
+    margin-bottom: 1rem; }
+  .user-info select {
+    border: 1px solid #bdbdbd;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    color: #4f4f4f;
+    padding: 0.5rem 1rem; }

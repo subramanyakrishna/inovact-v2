@@ -1,0 +1,43 @@
+.buttons{
+    margin:1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    &__center{
+      justify-content: center;
+    }
+}
+.button {
+      display: block;
+      font-size: 1.5rem;
+      padding: 0.2rem 0.8rem;
+      width: 250px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+
+      @include respond(xs) {
+        width: 100px;
+        font-size: 1rem;
+       }
+      &:hover {
+        box-shadow: 0 2px 4px $color-black;
+      }
+      &--green {
+        background-color: $color-primary-green;
+        color:$color-white;
+        border: none;
+      }
+      &--white {
+        background-color: $color-white;
+        color:$color-black;
+        border: 1px solid black;
+        &:hover {
+            box-shadow: 0 2px 4px $color-primary-green;
+        }
+      }
+}

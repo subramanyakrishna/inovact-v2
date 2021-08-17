@@ -1,0 +1,56 @@
+.area-of-interest{
+    padding: 2rem 10rem;
+    @include respond(xs) {
+        margin: 1rem;
+        padding: 1rem 0.2rem;
+    }
+    &__text{
+        
+        text-align: center;
+    }
+    &__form{
+       &__list{
+           max-width: 600px;
+           height: auto;
+           display: flex;
+           flex-wrap: wrap;
+        }
+    }
+       &__item{
+           & img{
+               width: 30px;
+           }
+           @include respond(xs){
+            width: 20px;
+           }
+       }
+   
+    ul ,li{
+        list-style: none;
+    }
+    li{
+        margin: 0.5rem;
+    }
+
+    input[type=checkbox]+.checkbox-label {
+        border: 2px solid $color-primary-green;
+        border-radius: 38.8172px;
+        padding: 0.5rem 1rem;
+        color: $color-primary-blue;
+        @include respond(xs){
+            padding: 0.1rem 0.5rem;
+            font-size: 14px;
+        }
+      }
+      
+      input[type=checkbox]:checked+.checkbox-label {
+        background-color: $color-primary-green;
+        color: black;
+        font-style: bold;
+      }
+      
+      input[type=checkbox]:checked+.checkbox-label:before {
+        content: "";
+        border: 1px solid #a3adb3;
+      }
+}

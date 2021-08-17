@@ -14,6 +14,12 @@
 @import 'layout/landing-page/contact-section';
 @import 'layout/landing-page/footer-section';
 
+@import 'layout/user-info/role-selection';
+@import 'layout/user-info/area-of-interest';
+@import 'layout/user-info/upload_pictures';
+
 @import 'components/navigation-bar.scss';
+@import 'components/buttons';
 
 @import 'pages/landing-page.scss';
+@import 'pages/userInfo.scss';

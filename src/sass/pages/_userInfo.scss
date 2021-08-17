@@ -1,0 +1,52 @@
+.user-info{
+   height:100vh;
+    background-color: $color-primary-blue;
+
+    @include respond(sm) {
+        height: 100%;
+        padding: 2rem;
+    }
+    &__card{
+        max-width: 900px;
+        background-color: $color-white;
+        border-radius: 2%;
+        width: 90%;
+        height: 450px;
+        position: relative;
+        top:15%;
+        left: 15%;
+        @include respond(sm) {
+            justify-content: center;
+            top: 0;
+            left: 0%;
+            height: auto;
+        }
+        
+    .student-info{
+        padding: 2rem 10rem;
+        @include respond(xs) {
+            padding: 1rem;
+        }
+        &__text{
+            .heading-primary{
+                font-size:34px;
+                text-align: left;
+                @include respond(xs) {
+                    font-size:20px;
+                }
+            }
+        }
+    }
+    }
+   .input{
+       margin-bottom: 1rem;
+   }
+  select {
+    border: 1px solid #bdbdbd;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    color: #4f4f4f;
+    padding: 0.5rem 1rem; 
+  }
+}
