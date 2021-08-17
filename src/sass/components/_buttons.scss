@@ -7,6 +7,10 @@
     &__center{
       justify-content: center;
     }
+
+    @include respond(sm){
+margin-top: 40px;
+    }
 }
 .button {
       display: block;

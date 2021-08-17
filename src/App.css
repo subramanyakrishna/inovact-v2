@@ -306,7 +306,8 @@ body {
           padding: 1rem; } }
       .role-selection__cards__item img {
         margin-bottom: 0.5rem;
-        width: 80px; }
+        width: 80px;
+        height: 80px; }
 
 .area-of-interest {
   padding: 2rem 10rem; }
@@ -361,6 +362,11 @@ body {
       @media only screen and (max-width: 48em) {
         .upload__text p {
           display: none; } }
+  .upload .buttons {
+    padding: 0 4rem; }
+    @media only screen and (max-width: 48em) {
+      .upload .buttons {
+        padding: 0 0; } }
   .upload__form {
     display: flex;
     justify-content: center;
@@ -397,6 +403,9 @@ body {
   justify-content: space-between; }
   .buttons__center {
     justify-content: center; }
+  @media only screen and (max-width: 48em) {
+    .buttons {
+      margin-top: 40px; } }
 
 .button {
   display: block;
@@ -464,7 +473,7 @@ body {
       padding: 2rem; } }
   .user-info__card {
     max-width: 900px;
-    min-height: 600px;
+    min-height: 450px;
     background-color: #ffffff;
     border-radius: 2%;
     width: 90%;
@@ -474,6 +483,7 @@ body {
     left: 15%; }
     @media only screen and (max-width: 48em) {
       .user-info__card {
+        min-height: 600px;
         justify-content: center;
         top: 0;
         left: 0%;

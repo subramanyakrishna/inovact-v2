@@ -16,7 +16,8 @@ export default class Signup extends Component {
     university: '',
     degree: '', 
     year: '',
-
+    bio:'',
+    image:'',
     //mentor
     McurrDesignation:'',
     McurrOrganization:'',
@@ -49,8 +50,8 @@ export default class Signup extends Component {
 
   render() {
     const { step } = this.state;
-    const {  role,  university,degree,year,McurrDesignation,McurrOrganization,profExperience,EcurrOrganization,EcurrRole,EstartOfJourney } = this.state;
-    const values = {role, university,degree,year,McurrDesignation,McurrOrganization,profExperience,EcurrOrganization,EcurrRole,EstartOfJourney }
+    const {  role, bio,image, university,degree,year,McurrDesignation,McurrOrganization,profExperience,EcurrOrganization,EcurrRole,EstartOfJourney } = this.state;
+    const values = {role,bio,image, university,degree,year,McurrDesignation,McurrOrganization,profExperience,EcurrOrganization,EcurrRole,EstartOfJourney }
     
     switch(step) {
       case 1: 

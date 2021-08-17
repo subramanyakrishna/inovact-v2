@@ -35,7 +35,7 @@ const Enterprenuer = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                       <div className="form-group">
                       <label htmlFor="university">Current Organization <span className="paragraph-primary--red">*</span></label>
-                      <MDBInput className="input" label="Enter you Current Organization" outline  />
+                    <MDBInput className="input" label="Enter you Current Organization" outline onChange={handleChange('EcurrOrganization')} defaultValue={values.EcurrOrganization} />
                       </div>
                 </MDBCol>
               </MDBRow>
@@ -43,7 +43,7 @@ const Enterprenuer = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="degree">Current  Role <span className="paragraph-primary--red">*</span></label>
-                        <MDBInput className="input" label="Enter your Current Role" outline  />
+                        <MDBInput className="input" label="Enter your Current Role" outline onChange={handleChange('EcurrRole')} defaultValue={values.EcurrRole} />
                   </div>
                 </MDBCol>
               </MDBRow>
@@ -52,17 +52,17 @@ const Enterprenuer = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="year">When did you start your Enterprenuer Journey? <span className="paragraph-primary--red">*</span></label>
-                        <MDBInput className="input" label="Enter your year you started your journey as an enterprenuer" outline  />
+                        <MDBInput className="input" label="Enter your year you started your journey as an enterprenuer" outline  onChange={handleChange('EstartOfJourney')} defaultValue={values.EstartOfJourney}/>
                   </div>
                 </MDBCol>
               </MDBRow>
               </form>
            
               <div className="buttons">
-              <MDBBtn color='default' className="button"
-                                onClick={ Previous } class="button button-white">Back</MDBBtn>
-                <MDBBtn color='success' className="button"
-                                onClick={ Continue }  class="button button--green">Next</MDBBtn>
+              <MDBBtn color='default' 
+                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                <MDBBtn color='success' 
+                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
               </div>
             </div>
           </section>

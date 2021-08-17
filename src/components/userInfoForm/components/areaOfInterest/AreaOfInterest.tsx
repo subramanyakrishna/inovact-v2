@@ -96,9 +96,9 @@ const AreaOfInterest = ({ prevStep,nextStep, handleChange, values }:AppProps) =>
             </form>
             <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } class="button button-white">Back</MDBBtn>
-                <MDBBtn color='success' className="button--green"
-                                onClick={ Continue }  class="button button--green">Next</MDBBtn>
+                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                <MDBBtn color='success' 
+                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
               </div>
           </div>
         </section>

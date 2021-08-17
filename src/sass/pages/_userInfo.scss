@@ -1,6 +1,6 @@
 .user-info{
     min-height:100vh;
-    height: 100vh;
+    height:100vh;
     background-color: $color-primary-blue;
 
     @include respond(sm) {
@@ -9,7 +9,7 @@
     }
     &__card{
         max-width: 900px;
-        min-height: 600px;
+        min-height: 450px;
         background-color: $color-white;
         border-radius: 2%;
         width: 90%;
@@ -18,6 +18,8 @@
         top:15%;
         left: 15%;
         @include respond(sm) {
+            
+            min-height:600px;
             justify-content: center;
             top: 0;
             left: 0%;
@@ -40,15 +42,15 @@
         }
     }
     }
-   .input{
-       margin-bottom: 1rem;
-   }
-  select {
+    .input{
+    margin-bottom: 1rem;
+    }
+    select {
     border: 1px solid #bdbdbd;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
     width: 100%;
     color: #4f4f4f;
     padding: 0.5rem 1rem; 
-  }
+    }
 }

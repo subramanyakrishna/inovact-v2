@@ -16,7 +16,12 @@
             }
         }
     }
-
+        .buttons{
+            padding: 0 4rem;
+            @include respond(sm){
+                padding: 0 0;
+            }
+        }
     &__form {
         display: flex;
         justify-content: center;

@@ -73,9 +73,9 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
            
               <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } class="button button-white">Back</MDBBtn>
+                                onClick={ Previous } className="button button-white">Back</MDBBtn>
                 <MDBBtn color='success' 
-                                onClick={ Continue }  class="button button--green">Next</MDBBtn>
+                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
               </div>
             </div>
         </section>
