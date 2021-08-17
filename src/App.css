@@ -306,7 +306,7 @@ body {
           padding: 1rem; } }
       .role-selection__cards__item img {
         margin-bottom: 0.5rem;
-        width: 5.25rem; }
+        width: 80px; }
 
 .area-of-interest {
   padding: 2rem 10rem; }
@@ -406,6 +406,7 @@ body {
   text-transform: uppercase;
   border-radius: 10px;
   text-align: center;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.2s; }
   @media only screen and (max-width: 36em) {
@@ -454,6 +455,7 @@ body {
     transform: translateX(-50%); }
 
 .user-info {
+  min-height: 100vh;
   height: 100vh;
   background-color: #001948; }
   @media only screen and (max-width: 48em) {
@@ -462,6 +464,7 @@ body {
       padding: 2rem; } }
   .user-info__card {
     max-width: 900px;
+    min-height: 600px;
     background-color: #ffffff;
     border-radius: 2%;
     width: 90%;

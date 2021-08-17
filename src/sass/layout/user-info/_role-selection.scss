@@ -1,6 +1,5 @@
 .role-selection{
     padding: 2rem 10rem;
-
     @include respond(sm) {
         padding:1rem;
     }
@@ -41,8 +40,8 @@
             }
             & img {
                 margin-bottom: 0.5rem;
-                width: 5.25rem;
-               
+                width: 80px;
+     
             }
 
           

@@ -1,5 +1,6 @@
 .user-info{
-   height:100vh;
+    min-height:100vh;
+    height: 100vh;
     background-color: $color-primary-blue;
 
     @include respond(sm) {
@@ -8,6 +9,7 @@
     }
     &__card{
         max-width: 900px;
+        min-height: 600px;
         background-color: $color-white;
         border-radius: 2%;
         width: 90%;

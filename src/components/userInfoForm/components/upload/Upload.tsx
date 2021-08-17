@@ -48,7 +48,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                   </div>
               </form>
            
-              <div className="buttons" style={{padding:' 0 4rem'}}>
+              <div className="buttons">
                 <MDBBtn color='default' 
                                   onClick={ Previous } class="button button-white">Back</MDBBtn>
                   <MDBBtn color='success' 
