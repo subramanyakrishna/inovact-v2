@@ -75,7 +75,7 @@ return (
                 </MDBRow>
 
                 <div className="buttons buttons__center">
-                <MDBBtn color='success' className="button"
+                <MDBBtn color='success' className="button button__green"
                             onClick={ Continue } size='lg'>Next</MDBBtn>
                 </div>
             </div>

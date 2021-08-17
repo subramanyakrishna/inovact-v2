@@ -52,7 +52,7 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="year">Professional Experience <span className="paragraph-primary--red">*</span></label>
-                        <MDBInput className="input" label="Enter your Professional Experience" outline onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
+                        <MDBInput className="input" label="Enter your Professional Experience in years" outline onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
                   </div>
                 </MDBCol>
               </MDBRow>
@@ -60,9 +60,9 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
            
               <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                                onClick={ Previous } className="button button__white">Back</MDBBtn>
                 <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
+                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
               </div>
                   
 

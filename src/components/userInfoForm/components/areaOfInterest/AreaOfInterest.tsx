@@ -11,39 +11,68 @@ type AppProps = {
 };
 const aoi=[
   { 
-    name:'React',
+    name:'Data Science',
     image:a1,
   },
   { 
-    name:'HTML',
+    name:'Project Managenment',
+    image:a2,
+  },
+  { 
+    name:'Web Dev',
+    image:a3,
+  },
+  { 
+    name:'ML and AI',
     image:a2,
   },
   { 
     name:'Cloud Computing',
+    image:a1,
+  },
+ 
+  { 
+    name:'Robotocis',
     image:a3,
   },
   { 
-    name:'Machine Learning',
+    name:'Competetive Coding',
     image:a1,
   },
   { 
-    name:'React',
+    name:'Business Analysis',
     image:a2,
   },
   { 
-    name:'React',
-    image:a3,
-  },
-  { 
-    name:'React',
-    image:a1,
-  },
-  { 
-    name:'React',
+    name:'Gaming',
     image:a2,
   },
   { 
-    name:'React',
+    name:'Electrical',
+    image:a2,
+  },
+  { 
+    name:'UI/UX',
+    image:a2,
+  },
+  { 
+    name:'FinTech',
+    image:a2,
+  },
+  { 
+    name:'Economics',
+    image:a2,
+  },
+  { 
+    name:'Mech',
+    image:a2,
+  },
+  { 
+    name:'HR',
+    image:a2,
+  },
+  { 
+    name:'Marketing',
     image:a2,
   },
   { 
@@ -69,7 +98,7 @@ const AreaOfInterest = ({ prevStep,nextStep, handleChange, values }:AppProps) =>
         
          <section className="area-of-interest">
             <div className="area-of-interest__text">
-                <h6 className="heading-secondary">Tell us What you are interested in</h6>
+                <h6 className="heading-secondary">Tell Us What You Are Interested In</h6>
                 <p className="paragraph-primary--green">Make sure you select atleast three topics</p>
             </div>
             <div className="area-of-interest__form">
@@ -78,7 +107,7 @@ const AreaOfInterest = ({ prevStep,nextStep, handleChange, values }:AppProps) =>
               {aoi.map(({name,image}, index) => {
                     return (
                       <li key={index}>
-                        <div className="area-of-interest__form__item">
+                        <div className="area-of-interest__form__list__item">
                             <input
                               type="checkbox"
                               id={`aoi-${index}`}
@@ -94,13 +123,14 @@ const AreaOfInterest = ({ prevStep,nextStep, handleChange, values }:AppProps) =>
                 })}
               </ul>
             </form>
+            </div>
             <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                                onClick={ Previous } className="button button__white">Back</MDBBtn>
                 <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
+                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
               </div>
-          </div>
+       
         </section>
     </div>
 </div>

@@ -21,20 +21,30 @@ body {
 
 .heading-secondary {
   color: #000000;
-  font-size: 2rem;
-  margin-bottom: 0.5rem; }
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center; }
   .heading-secondary--green {
     color: #02bd63; }
 
 .paragraph-primary {
   color: rgba(0, 0, 0, 0.6);
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center; }
   .paragraph-primary--white {
     color: rgba(255, 255, 255, 0.6); }
   .paragraph-primary--green {
     color: #02bd63; }
   .paragraph-primary--red {
-    color: red; }
+    color: red;
+    font-size: 14px; }
 
 .section-about {
   height: 100vh;
@@ -274,13 +284,10 @@ body {
   padding: 2rem 10rem; }
   @media only screen and (max-width: 48em) {
     .role-selection {
-      padding: 1rem; } }
-  .role-selection__text .heading-primary {
-    font-size: 34px;
-    text-align: left; }
-    @media only screen and (max-width: 48em) {
-      .role-selection__text .heading-primary {
-        font-size: 24px; } }
+      padding: 0; } }
+  @media only screen and (max-width: 48em) {
+    .role-selection__text .heading-primary {
+      font-size: 20px; } }
   .role-selection__cards {
     margin-top: 2rem; }
     @media only screen and (max-width: 36em) {
@@ -290,24 +297,29 @@ body {
       margin-bottom: 2rem; }
       @media only screen and (max-width: 48em) {
         .role-selection__cards__col {
-          margin-left: 2rem; } }
+          margin-left: 4rem; } }
     .role-selection__cards__item {
       margin: 0;
-      border: 2px solid rgba(0, 25, 72, 0.09);
-      border-radius: 8px;
-      padding: 2rem 2rem 1rem;
+      padding: 2rem 2rem 0.5rem;
       text-align: center;
       float: left;
-      height: 100%; }
+      border: 2.61728px solid #001948;
+      box-sizing: border-box;
+      border-radius: 8.72428px; }
       .role-selection__cards__item--active {
         border: 2px solid #02bd63; }
       @media only screen and (max-width: 36em) {
         .role-selection__cards__item {
-          padding: 1rem; } }
+          padding: 1rem;
+          width: 133px; } }
       .role-selection__cards__item img {
-        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
         width: 80px;
         height: 80px; }
+        @media only screen and (max-width: 36em) {
+          .role-selection__cards__item img {
+            width: 50px;
+            height: 50px; } }
 
 .area-of-interest {
   padding: 2rem 10rem; }
@@ -318,28 +330,34 @@ body {
   .area-of-interest__text {
     text-align: center; }
   .area-of-interest__form__list {
-    max-width: 600px;
+    margin: 0;
+    padding: 0;
     height: auto;
     display: flex;
     flex-wrap: wrap; }
-  .area-of-interest__item img {
-    width: 30px; }
-  @media only screen and (max-width: 36em) {
-    .area-of-interest__item {
-      width: 20px; } }
+    .area-of-interest__form__list__item img {
+      width: 20px; }
+      @media only screen and (max-width: 36em) {
+        .area-of-interest__form__list__item img {
+          width: 10px; } }
   .area-of-interest ul, .area-of-interest li {
     list-style: none; }
   .area-of-interest li {
-    margin: 0.5rem; }
+    margin: 0; }
   .area-of-interest input[type=checkbox] + .checkbox-label {
+    margin: 0.25rem;
     border: 2px solid #02bd63;
+    line-height: 16px;
+    text-align: center;
     border-radius: 38.8172px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
+    font-size: 14px;
+    text-transform: uppercase;
     color: #001948; }
     @media only screen and (max-width: 36em) {
       .area-of-interest input[type=checkbox] + .checkbox-label {
         padding: 0.1rem 0.5rem;
-        font-size: 14px; } }
+        font-size: 13.97px; } }
   .area-of-interest input[type=checkbox]:checked + .checkbox-label {
     background-color: #02bd63;
     color: black;
@@ -350,23 +368,27 @@ body {
 
 .upload {
   padding: 2rem 4rem; }
+  @media only screen and (max-width: 48em) {
+    .upload {
+      padding: 1rem; } }
   .upload__text {
     display: block;
     justify-content: center;
-    align-items: center;
-    text-align: center; }
+    text-align: center;
+    color: #000000; }
     .upload__text h6 {
-      font-size: 24px; }
+      font-style: normal;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 36px;
+      text-align: center; }
     .upload__text p {
       font-size: 14px; }
-      @media only screen and (max-width: 48em) {
-        .upload__text p {
-          display: none; } }
   .upload .buttons {
     padding: 0 4rem; }
     @media only screen and (max-width: 48em) {
       .upload .buttons {
-        padding: 0 0; } }
+        padding: 0; } }
   .upload__form {
     display: flex;
     justify-content: center;
@@ -377,19 +399,12 @@ body {
       @media only screen and (max-width: 48em) {
         .upload__form__bio {
           padding: 1rem; } }
-      .upload__form__bio__text h6 {
-        font-size: 24px; }
-      .upload__form__bio__text p {
-        font-size: 14px; }
-        @media only screen and (max-width: 48em) {
-          .upload__form__bio__text p {
-            display: none; } }
     .upload__form img {
       width: 5.25rem;
       margin: 0 20rem; }
       @media only screen and (max-width: 48em) {
         .upload__form img {
-          margin: 0 3rem; } }
+          margin: 0 6rem; } }
   .upload .skip {
     display: flex;
     justify-content: center;
@@ -402,7 +417,8 @@ body {
   flex-direction: row;
   justify-content: space-between; }
   .buttons__center {
-    justify-content: center; }
+    justify-content: center;
+    margin: 0px; }
   @media only screen and (max-width: 48em) {
     .buttons {
       margin-top: 40px; } }
@@ -411,29 +427,30 @@ body {
   display: block;
   font-size: 1.5rem;
   padding: 0.2rem 0.8rem;
-  width: 250px;
-  text-transform: uppercase;
+  width: 299px;
+  height: 48px;
+  text-transform: capitalize;
   border-radius: 10px;
   text-align: center;
-  font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s; }
+  box-shadow: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  margin-left: 10px; }
   @media only screen and (max-width: 36em) {
     .button {
       width: 100px;
       font-size: 1rem; } }
-  .button:hover {
-    box-shadow: 0 2px 4px #000000; }
-  .button--green {
+  .button__green {
     background-color: #02bd63;
     color: #ffffff;
     border: none; }
-  .button--white {
+  .button__white {
     background-color: #ffffff;
     color: #000000;
     border: 1px solid black; }
-    .button--white:hover {
-      box-shadow: 0 2px 4px #02bd63; }
 
 .landing-page__hero {
   height: 100vh;
@@ -466,28 +483,24 @@ body {
 .user-info {
   min-height: 100vh;
   height: 100vh;
-  background-color: #001948; }
+  background-color: #001948;
+  padding: 4.5rem 15rem; }
   @media only screen and (max-width: 48em) {
     .user-info {
-      height: 100%;
+      height: 100vh;
       padding: 2rem; } }
   .user-info__card {
-    max-width: 900px;
-    min-height: 450px;
+    max-width: 1100px;
     background-color: #ffffff;
     border-radius: 2%;
-    width: 90%;
-    height: 450px;
-    position: relative;
-    top: 15%;
-    left: 15%; }
+    width: 900px;
+    height: 500px;
+    padding: 1rem; }
     @media only screen and (max-width: 48em) {
       .user-info__card {
-        min-height: 600px;
-        justify-content: center;
-        top: 0;
-        left: 0%;
-        height: auto; } }
+        width: auto;
+        height: calc(100vh - 4rem);
+        justify-content: center; } }
     .user-info__card .student-info {
       padding: 2rem 10rem; }
       @media only screen and (max-width: 36em) {

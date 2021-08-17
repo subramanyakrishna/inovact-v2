@@ -7,6 +7,26 @@ type AppProps = {
     values:any,
     prevStep:any
 };
+const year=[
+  { 
+    year:'2011'
+  },
+  { 
+    year:'2012'
+  },
+  { 
+    year:'2013'
+  },
+  { 
+    year:'2014'
+  },
+];
+const degree=[
+  {degree:'BE'},
+  {degree:'B Sc'},
+  {degree:'B Com'}
+];
+
 const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
   const Continue = (e: any) => {
@@ -46,10 +66,13 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                         <label htmlFor="degree">Degree <span className="paragraph-primary--red">*</span></label>
                         <br />
                           <select className="Enter your degree">
-                            <option>Choose your option</option>
-                            <option value="1">BE</option>
-                            <option value="2">BCOM</option>
-                            <option value="3">BSC</option>
+                            <option>Enter your degree of Graduation</option>
+                           
+                            {degree.map(({degree}, index) => {
+                                  return (
+                                    <option value={degree} onChange={handleChange('degree')}>{degree} </option>
+                                  );
+                              })}
                           </select>
                   </div>
                 </MDBCol>
@@ -61,10 +84,12 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                         <label htmlFor="year">Year Of Graduation<span className="paragraph-primary--red">*</span></label>
                         <br />
                         <select className="Enter your year of Graduation" >
-                          <option>Choose your option</option>
-                          <option value="1">BE</option>
-                          <option value="2">BCOM</option>
-                          <option value="3">BSC</option>
+                          <option>Enter your year of Graduation</option>
+                          {year.map(({year}, index) => {
+                                  return (
+                                    <option value={year} onChange={handleChange('year')}>{year} </option>
+                                  );
+                              })}
                         </select>
                   </div>
                 </MDBCol>
@@ -73,9 +98,9 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
            
               <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                                onClick={ Previous } className="button button__white">Back</MDBBtn>
                 <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
+                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
               </div>
             </div>
         </section>

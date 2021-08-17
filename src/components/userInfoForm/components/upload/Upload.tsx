@@ -26,7 +26,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
          <section className="upload">
           
             <div className="upload__text">
-                <h6 className="heading-secondary">Upload your Profile Picture</h6>
+                <h6 className="">Upload your Profile Picture</h6>
                 <p className="paragraph-primary--green">Your Profile Picture always assists in showcasing you in a better wayto your connection</p>
             </div>
             <div className="upload__form">
@@ -39,20 +39,18 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                   </div>
                   <div className="upload__form__bio">
                     <div className="upload__text">
-                    <h6 className="heading-secondary">Add Bio To your Profile</h6>
+                    <h6 className="">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                       <MDBInput label='Add your Bio'  id='typeText' type='text'onChange={handleChange('bio')} />
                     </div>
-
-                     
                   </div>
               </form>
            
               <div className="buttons">
                 <MDBBtn color='default' 
-                                  onClick={ Previous } className="button button-white">Back</MDBBtn>
+                                  onClick={ Previous } className="button button__white">Back</MDBBtn>
                   <MDBBtn color='success' 
-                                  onClick={ Continue }  className="button button--green">Next</MDBBtn>
+                                  onClick={ Continue }  className="button button__green">Next</MDBBtn>
               </div>
              
              <div className="skip">

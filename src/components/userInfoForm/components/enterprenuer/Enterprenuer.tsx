@@ -60,9 +60,9 @@ const Enterprenuer = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
            
               <div className="buttons">
               <MDBBtn color='default' 
-                                onClick={ Previous } className="button button-white">Back</MDBBtn>
+                                onClick={ Previous } className="button button__white">Back</MDBBtn>
                 <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button--green">Next</MDBBtn>
+                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
               </div>
             </div>
           </section>
@@ -73,3 +73,4 @@ const Enterprenuer = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 }
 
 export default Enterprenuer;
+export {};

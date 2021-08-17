@@ -1,14 +1,12 @@
 .role-selection{
     padding: 2rem 10rem;
     @include respond(sm) {
-        padding:1rem;
+        padding:0;
     }
     &__text{
         .heading-primary{
-            font-size:34px;
-            text-align: left;
             @include respond(sm) {
-                font-size:24px;
+                font-size:20px;
             }
         }
     }
@@ -16,33 +14,38 @@
         margin-top: 2rem;
         @include respond(xs) {
             margin: 1rem;
+          
         }
         &__col {
             margin-bottom: 2rem;
             @include respond(sm) {
-                margin-left: 2rem;
+                margin-left: 4rem;
             }
         }
        
         &__item {
             margin: 0 ;
-            border: 2px solid rgba($color-primary-blue, 0.09);
-            border-radius: 8px;
-            padding: 2rem 2rem 1rem;
+            padding: 2rem 2rem 0.5rem;
             text-align: center;
             float: left;
-            height: 100%;
+            border: 2.61728px solid $color-primary-blue;
+            box-sizing: border-box;
+            border-radius: 8.72428px;
             &--active{
                 border: 2px solid $color-primary-green;
             }
             @include respond(xs) {
                 padding: 1rem;
+                width: 133px;
             }
             & img {
-                margin-bottom: 0.5rem;
+                margin-left: 0.5rem;
                 width: 80px;
                 height:80px;
-     
+                @include respond(xs) {
+                    width: 50px;
+                   height:50px;
+                }
             }
 
           
