@@ -11,6 +11,7 @@ import {
     MDBCollapse,
 } from 'mdb-react-ui-kit'
 import logo from '../../../images/logo/inovact-logo.png'
+import { useEffect } from 'react'
 
 function Navbar() {
     const [showNavText, setShowNavText] = useState(false)
@@ -19,25 +20,28 @@ function Navbar() {
         setShowNavText(false)
     }
 
-    const sections = document.querySelectorAll('section')
-    const navLi = document.querySelectorAll('.nav-item')
-    window.addEventListener('scroll', () => {
-        let current: string | null = ''
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop
-            const sectionHeight = section.clientHeight
-            if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
-                current = section?.getAttribute('id')
-            }
-        })
+    useEffect(() => {
+        const sections = document.querySelectorAll('section')
+        const navLi = document.querySelectorAll('.nav-item')
+        window.addEventListener('scroll', () => {
+            let current: string | null = ''
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop
+                const sectionHeight = section.clientHeight
+                if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section?.getAttribute('id')
+                }
+            })
 
-        navLi.forEach((li) => {
-            li.classList.remove('active')
-            if (current && li.classList.contains(current)) {
-                li.classList.add('active')
-            }
+            navLi.forEach((li) => {
+                li.classList.remove('active')
+                if (current && li.classList.contains(current)) {
+                    li.classList.add('active')
+                }
+            })
         })
     })
+
     return (
         <div className="navigation-bar">
             <MDBNavbar expand="lg" light bgColor="light">
