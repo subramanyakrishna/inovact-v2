@@ -1,7 +1,23 @@
-@import "abstracts/mixins";
-@import "abstracts/variables";
+@import 'abstracts/mixins';
+@import 'abstracts/variables';
 
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
+@import 'base/animations';
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';
+
+@import 'layout/landing-page/about-section';
+@import 'layout/landing-page/mission-section';
+@import 'layout/landing-page/features-section';
+@import 'layout/landing-page/achievements-section';
+@import 'layout/landing-page/testimonial-section';
+@import 'layout/landing-page/contact-section';
+@import 'layout/landing-page/footer-section';
+
+@import 'components/navigation-bar.scss';
+@import "components/button";
+@import "components/input";
+
+@import 'pages/landing-page.scss';
+@import "pages/signup";
+@import "pages/signin";
