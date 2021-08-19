@@ -3,7 +3,7 @@ import DownArrow from '../../../images/landing-section-1/down-arrows.png'
 
 function Hero() {
     return (
-        <section className="landing-page__hero">
+        <section id="hero" className="landing-page__hero">
             <div className="landing-page__hero__text-box">
                 <p className="landing-page__hero__text-box__main">
                     Welcome to inovact
@@ -12,6 +12,20 @@ function Hero() {
                     <span>Learn.</span> <span>Connect.</span>{' '}
                     <span>Innovate.</span>
                 </p>
+                <div className="landing-page__hero__text-box__button">
+                    <a
+                        className="landing-page__hero__text-box__button__item landing-page__hero__text-box__button__item--login"
+                        href="/login"
+                    >
+                        Log In
+                    </a>
+                    <a
+                        className="landing-page__hero__text-box__button__item"
+                        href="/signup"
+                    >
+                        Sign Up
+                    </a>
+                </div>
             </div>
             <img
                 className="landing-page__hero__down-arrows"

@@ -3,6 +3,10 @@
     font-size: 3rem;
     margin-bottom: 1.5rem;
 
+    @include respond(xs) {
+        font-size: 2.4rem;
+    }
+
     &--white {
         color: $color-white;
     }
@@ -11,6 +15,10 @@
 .paragraph-primary {
     color: rgba($color-black, 0.6);
     font-size: 1.5rem;
+
+    @include respond(xs) {
+        font-size: 1.25rem;
+    }
 
     &--white {
         color: rgba($color-white, 0.6);

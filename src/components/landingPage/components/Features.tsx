@@ -9,7 +9,7 @@ import instructors from '../../../images/landing-section-4/instructors.png'
 
 function Features() {
     return (
-        <section className="section-features">
+        <section id="features" className="section-features">
             <div className="section-features__text">
                 <h1 className="heading-primary">Our Key Features</h1>
                 <p className="paragraph-primary">

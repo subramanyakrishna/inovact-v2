@@ -3,7 +3,7 @@
     padding: 6rem 3rem;
 
     @include respond(sm) {
-        padding: 6rem 1rem;
+        padding: 3rem 1rem;
     }
 
     &__text {
@@ -14,7 +14,7 @@
     }
 
     &__form {
-        border: 1px inset rgba($color-white, 0.08);
+        border: 2px solid rgba($color-white, 0.8);
         border-radius: 8px;
         padding: 4rem;
         max-width: 568px;
@@ -33,7 +33,7 @@
             width: 100%;
             margin-bottom: 2rem;
             background-color: $color-primary-blue;
-            border: 1px solid rgba($color-white, 0.08);
+            border: 1px solid rgba($color-white, 0.6);
             border-radius: 5px;
             padding: 0.5rem;
             outline: none;
@@ -45,7 +45,7 @@
             width: 100%;
             margin-bottom: 3rem;
             background-color: $color-primary-blue;
-            border: 1px solid rgba($color-white, 0.08);
+            border: 1px solid rgba($color-white, 0.6);
             border-radius: 5px;
             color: $color-white;
             outline: none;

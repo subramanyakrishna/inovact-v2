@@ -2,7 +2,7 @@ import React from 'react'
 
 function Achievements() {
     return (
-        <section className="section-achievements">
+        <section id="achievements" className="section-achievements">
             <div className="section-achievements__text">
                 <h1 className="heading-primary heading-primary--white">
                     Our Achievements
