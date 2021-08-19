@@ -229,7 +229,7 @@ html {
     margin: auto;
     margin-bottom: 3rem; }
   .section-contact__form {
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border: 1px inset rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 4rem;
     max-width: 568px;
@@ -244,7 +244,7 @@ html {
       width: 100%;
       margin-bottom: 2rem;
       background-color: #001948;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 5px;
       padding: 0.5rem;
       outline: none;
@@ -254,19 +254,22 @@ html {
       width: 100%;
       margin-bottom: 3rem;
       background-color: #001948;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 5px;
       color: #ffffff;
       outline: none;
       padding: 0.5rem;
       height: 6rem; }
     .section-contact__form__button {
-      text-align: center; }
+      text-align: center;
+      width: 100%;
+      height: 100%; }
       .section-contact__form__button__item {
         background-color: #02bd63;
         color: #ffffff;
         padding: 1rem 2rem;
-        border-radius: 2px; }
+        border-radius: 2px;
+        width: 10rem; }
         .section-contact__form__button__item:hover {
           color: white; }
         .section-contact__form__button__item:active {
@@ -290,6 +293,11 @@ html {
 
 .navbar {
   background-color: #ffffff !important; }
+
+.nav-item.active {
+  border-bottom: 2px solid rgba(2, 189, 99, 0.6); }
+  .nav-item.active .nav-link {
+    color: #000000; }
 
 .nav-item:not(:last-child) {
   margin-right: 1rem; }
@@ -324,11 +332,14 @@ html {
       .landing-page__hero__text-box__button__item {
         text-align: center;
         border: 1px solid #02bd63;
-        background-color: transparent;
+        background-color: rgba(2, 189, 99, 0.6);
         color: #ffffff;
         padding: 0.5rem 2rem;
         border-radius: 8px;
-        font-size: 1.2rem; }
+        font-size: 1.2rem;
+        width: 10rem; }
+        .landing-page__hero__text-box__button__item--login {
+          padding: 0.5rem 2.5rem; }
         .landing-page__hero__text-box__button__item:hover {
           background-color: #02bd63;
           color: #ffffff;

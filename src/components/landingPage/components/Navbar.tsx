@@ -15,6 +15,29 @@ import logo from '../../../images/logo/inovact-logo.png'
 function Navbar() {
     const [showNavText, setShowNavText] = useState(false)
 
+    const handleLinkClick = () => {
+        setShowNavText(false)
+    }
+
+    const sections = document.querySelectorAll('section')
+    const navLi = document.querySelectorAll('.nav-item')
+    window.addEventListener('scroll', () => {
+        let current: string | null = ''
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop
+            const sectionHeight = section.clientHeight
+            if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section?.getAttribute('id')
+            }
+        })
+
+        navLi.forEach((li) => {
+            li.classList.remove('active')
+            if (current && li.classList.contains(current)) {
+                li.classList.add('active')
+            }
+        })
+    })
     return (
         <div className="navigation-bar">
             <MDBNavbar expand="lg" light bgColor="light">
@@ -39,33 +62,51 @@ function Navbar() {
                             fullWidth={false}
                             className="mb-2 mb-lg-0"
                         >
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#about">
+                            <MDBNavbarItem className="about">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#about"
+                                >
                                     About
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#mission">
+                            <MDBNavbarItem className="mission">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#mission"
+                                >
                                     Mission
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#features">
+                            <MDBNavbarItem className="features">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#features"
+                                >
                                     Features
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#achievements">
+                            <MDBNavbarItem className="achievements">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#achievements"
+                                >
                                     Achievements
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#testimonials">
+                            <MDBNavbarItem className="testimonials">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#testimonials"
+                                >
                                     Testimonials
                                 </MDBNavbarLink>
                             </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href="#contact">
+                            <MDBNavbarItem className="contact">
+                                <MDBNavbarLink
+                                    onClick={handleLinkClick}
+                                    href="#contact"
+                                >
                                     Contact
                                 </MDBNavbarLink>
                             </MDBNavbarItem>

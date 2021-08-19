@@ -14,6 +14,13 @@
 }
 
 .nav-item {
+    &.active {
+        border-bottom: 2px solid rgba($color-primary-green, 0.6);
+
+        & .nav-link {
+            color: $color-black;
+        }
+    }
     &:not(:last-child) {
         margin-right: 1rem;
     }
