@@ -7,22 +7,5 @@
 }
 
 body {
-    font-family: 'Karla', Helvetica, Arial, sans-serif;
-}
-
-::selection {
-    color: $color-white;
-    background: $color-primary-green;
-}
-
-body,
-html {
-    height: 100%;
-    margin: 0;
-}
-
-#root,
-.App,
-.Main {
-    height: 100%;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
