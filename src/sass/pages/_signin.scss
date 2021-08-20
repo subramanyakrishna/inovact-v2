@@ -128,7 +128,7 @@
 
     @include respond(md) {
         &__card {
-            width: calc(100vh - 50vh);
+            width: 22rem;
             height: initial;
 
             &--header {
@@ -161,4 +161,14 @@
             height: initial;
         }
     }   
+
+    @media only screen and (max-width: 400px) {
+        &__logo {
+            height: 3rem;
+        }
+
+        &__card {
+            width: 100%;
+        }
+    }
 }

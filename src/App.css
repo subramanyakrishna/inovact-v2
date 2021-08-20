@@ -613,7 +613,7 @@ body {
       height: calc(100vh - 95vh); }
   @media only screen and (max-width: 62em) {
     .signin__card {
-      width: calc(100vh - 50vh);
+      width: 22rem;
       height: initial; }
       .signin__card--header {
         top: 0.5rem;
@@ -631,3 +631,8 @@ body {
       margin-bottom: 1rem; }
     .signin__card {
       height: initial; } }
+  @media only screen and (max-width: 400px) {
+    .signin__logo {
+      height: 3rem; }
+    .signin__card {
+      width: 100%; } }
