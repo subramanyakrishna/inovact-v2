@@ -18,7 +18,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 2rem 0;
 
     &__flex-container {
         z-index: 1;
@@ -150,6 +149,7 @@
 
     @include respond(sm) {
         &__flex-container {
+            justify-content: center;
             flex-direction: column;
         }
 
@@ -162,6 +162,7 @@
             height: initial;
             width: 100%;
             margin: 0 5%;
+            padding-bottom: 0;
         }
     }
 

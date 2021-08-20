@@ -26,7 +26,7 @@ const Card : React.FC<Props> = (props) => {
                         </MDBCol>
                         <MDBCol sm='6'>
                             <div className="form-group"> 
-                                <label htmlFor="email">Email Id</label>
+                                <label htmlFor="email">Last name</label>
                                 <input type="text" name="last-name" className="input-component" placeholder="Enter Last Name"/>
                             </div>
                         </MDBCol>
