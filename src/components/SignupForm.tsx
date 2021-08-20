@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-function SignupForm() {
-    return <div></div>
+interface Props {
+    
+}
+
+function SignupForm({}: Props): ReactElement {
+    return (
+        <div>
+            
+        </div>
+    )
 }
 
 export default SignupForm

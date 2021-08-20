@@ -1,0 +1,22 @@
+.button--green {
+    &:hover {
+        box-shadow: 0 2px 4px #012b16;
+        cursor: pointer;
+    }
+    &:active {
+        transform: scale(0.99);
+        box-shadow: 0 0.5px 1px #012b16;
+    }
+    &--round {
+        border-radius: 10px !important;
+        background-color: black;
+        padding: 2.5% !important;
+        width: 100%;
+        background: $color-primary-green;
+        position: absolute;
+		border: 0px;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 500;
+    }
+}

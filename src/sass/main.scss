@@ -15,4 +15,9 @@
 @import 'layout/landing-page/footer-section';
 @import 'layout/landing-page/navigation-bar';
 
+@import "components/button";
+@import "components/input";
+
 @import 'pages/landing-page.scss';
+@import "pages/signup";
+@import "pages/signin";
