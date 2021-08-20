@@ -3,7 +3,7 @@ import testimonials from '../../../images/landing-section-6/testimonials-map.png
 
 function Testimonials() {
     return (
-        <section className="section-testimonials">
+        <section id="testimonials" className="section-testimonials">
             <div className="section-testimonials__text">
                 <h1 className="heading-primary">Testimonials</h1>
                 <p className="paragraph-primary">
