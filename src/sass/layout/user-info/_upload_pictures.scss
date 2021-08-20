@@ -16,11 +16,8 @@
         display: block;
         justify-content: center;        
         text-align: center;
-        &h6 {
-            font-size: 26px;
-            line-height: 36px;
-            text-align:center;
-        }
+
+      
         
     }
         .buttons{
@@ -36,9 +33,9 @@
         flex-direction: column;
         &__bio{
             padding: 0 4rem;
-            padding-top: 0.2rem;
+            padding-top: 0.4rem;
             @include respond(sm) {
-                padding: 1rem;
+                padding: 1.5rem 1rem 1rem;
             }
           
         }

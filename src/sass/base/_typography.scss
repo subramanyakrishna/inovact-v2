@@ -14,17 +14,17 @@
 .heading-secondary {
     color: $color-black;
     font-size: 2rem;
-    margin-bottom: 0.8rem;
-
-    @include respond(xs) {
-        font-size: 2.4rem;
-    }
+    margin-bottom: 0.2rem;
     &--small{
-    font-size: 1.5rem;
+        font-size: 1.7rem;
+        @include respond(xs) {
+            font-size: 1rem;
+        }
+    }
     @include respond(xs) {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
-    }
+    
 }
 
 .paragraph-primary {

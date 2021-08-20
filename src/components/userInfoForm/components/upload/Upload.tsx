@@ -38,7 +38,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
                   <div className="upload__form__bio">
                     <div className="upload__text">
-                     <h6 className="heading-secondary--small">Add Bio To your Profile</h6>
+                     <h6 className="heading-secondary">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                         
                         <textarea

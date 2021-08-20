@@ -39,15 +39,15 @@ body {
 .heading-secondary {
   color: #000000;
   font-size: 2rem;
-  margin-bottom: 0.8rem; }
-  @media only screen and (max-width: 36em) {
-    .heading-secondary {
-      font-size: 2.4rem; } }
+  margin-bottom: 0.2rem; }
   .heading-secondary--small {
-    font-size: 1.5rem; }
+    font-size: 1.7rem; }
     @media only screen and (max-width: 36em) {
       .heading-secondary--small {
-        font-size: 1.4rem; } }
+        font-size: 1rem; } }
+  @media only screen and (max-width: 36em) {
+    .heading-secondary {
+      font-size: 1.8rem; } }
 
 .paragraph-primary {
   color: rgba(0, 0, 0, 0.6);
@@ -440,10 +440,6 @@ body {
     display: block;
     justify-content: center;
     text-align: center; }
-    .upload__texth6 {
-      font-size: 26px;
-      line-height: 36px;
-      text-align: center; }
   .upload .buttons {
     padding: 0 4rem; }
     @media only screen and (max-width: 48em) {
@@ -456,10 +452,10 @@ body {
     flex-direction: column; }
     .upload__form__bio {
       padding: 0 4rem;
-      padding-top: 0.2rem; }
+      padding-top: 0.4rem; }
       @media only screen and (max-width: 48em) {
         .upload__form__bio {
-          padding: 1rem; } }
+          padding: 1.5rem 1rem 1rem; } }
     .upload__form img {
       width: 5.25rem; }
       @media only screen and (max-width: 48em) {
@@ -883,9 +879,9 @@ body {
     padding: 1rem; }
     @media only screen and (max-width: 48em) {
       .user-info__card {
-        width: 90%;
+        width: 100%;
         height: auto;
-        padding: 1em 0;
+        margin: 3rem 0.5rem;
         justify-content: center; } }
   .user-info .input {
     margin-bottom: 1rem;
