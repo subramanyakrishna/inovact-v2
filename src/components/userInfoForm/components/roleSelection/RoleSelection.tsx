@@ -19,19 +19,21 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
     const toggleClick = (index: number) => {
         setActiveIndex(index)
         console.log(index)
-        // handleChange('role')
     }
 
     return (
         <div className="user-info">
             <div className="user-info__card">
+
                 <section className="role-selection">
+
                     <div className="role-selection__text">
                         <h6 className="heading-secondary">Select Profile</h6>
                         <p className="paragraph-primary--red">
                             *Mandatory fields
                         </p>
                     </div>
+
                     <div className="role-selection__cards">
                         <MDBRow>
                             <MDBCol
@@ -106,17 +108,10 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                 </div>
                             </MDBCol>
                         </MDBRow>
-
-                        <div className="buttons buttons__center">
-                            <MDBBtn
-                                color="success"
-                                className="button button__green"
-                                onClick={Continue}
-                                size="lg"
-                            >
-                                Next
-                            </MDBBtn>
-                        </div>
+                    </div>
+                    <div className="buttons ">
+                    <MDBBtn color='success' 
+                                  onClick={ Continue }  className="button button__green">Next</MDBBtn>
                     </div>
                 </section>
             </div>

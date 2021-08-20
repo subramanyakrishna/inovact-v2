@@ -7,17 +7,12 @@
         display: block;
         justify-content: center;        
         text-align: center;
-        color: $color-black;
         & h6 {
             font-style: normal;
             font-weight: 500;
             font-size: 28px;
             line-height: 36px;
             text-align:center;
-        }
-        & p {
-            font-size: 14px;
-          
         }
     }
         .buttons{
@@ -29,6 +24,7 @@
     &__form {
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
         &__bio{
             padding: 0 4rem;
@@ -36,11 +32,10 @@
             @include respond(sm) {
                 padding: 1rem;
             }
-         
         }
         & img{
             width: 5.25rem;
-            margin: 0 20rem;
+          
             @include respond(sm) {
                margin: 0 6rem ;
             }

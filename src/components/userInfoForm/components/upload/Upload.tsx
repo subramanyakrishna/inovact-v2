@@ -22,31 +22,32 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
     <div className="user-info">
       <div className="user-info__card">
-        
          <section className="upload">
           
             <div className="upload__text">
                 <h6 className="">Upload your Profile Picture</h6>
                 <p className="paragraph-primary--green">Your Profile Picture always assists in showcasing you in a better wayto your connection</p>
             </div>
-            <div className="upload__form">
-              <form>
+
+            <form className="upload__form">
                   <div className="upload__form__image">
                     <label htmlFor="image">
                     <img src={avatar} alt="" className="user-detail__form__img"  onClick={handleChange('image')} ></img>                    </label>
-                     
-                      <input  type="file" id="image" hidden/>
+                    <input  type="file" id="image" hidden/>
                   </div>
+
+
                   <div className="upload__form__bio">
                     <div className="upload__text">
-                    <h6 className="">Add Bio To your Profile</h6>
+                     <h6 className="">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
-                      <MDBInput label='Add your Bio'  id='typeText' type='text'onChange={handleChange('bio')} />
+        
+                      <MDBInput label='Add your Bio'  id='typeText' type='text' onChange={handleChange('bio')} />
                     </div>
                   </div>
-              </form>
-           
-              <div className="buttons">
+            </form>
+
+            <div className="buttons">
                 <MDBBtn color='default' 
                                   onClick={ Previous } className="button button__white">Back</MDBBtn>
                   <MDBBtn color='success' 
@@ -55,8 +56,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
              
              <div className="skip">
                     <a href="/feed" >Skip for now</a>
-             </div>      
-            </div>
+             </div> 
           </section>
     </div>
 </div>

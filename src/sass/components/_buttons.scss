@@ -13,6 +13,31 @@
     margin-top: 40px;
     }
 }
+.button--green {
+    &:hover {
+        box-shadow: 0 2px 4px #012b16;
+        cursor: pointer;
+    }
+    &:active {
+        transform: scale(0.99);
+        box-shadow: 0 0.5px 1px #012b16;
+    }
+    &--round {
+        border-radius: 10px !important;
+        background-color: black;
+        padding: 5px !important;
+        background: #02bd63;
+        position: absolute;
+        width: 38rem;
+        height: 4.8rem;
+        border: 0px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+    }
+}
 .button {
       display: block;
       font-size: 1.5rem;
