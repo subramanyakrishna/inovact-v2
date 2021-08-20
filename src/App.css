@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 *,
 *::after,
 *::before {
@@ -9,11 +11,20 @@ body {
   font-family: 'Karla', Helvetica, Arial, sans-serif; }
 
 html {
-  scroll-behavior: smooth; }
+  scroll-behavior: smooth;
+  min-height: 100%; }
 
 ::selection {
   color: #ffffff;
   background: #02bd63; }
+
+body {
+  height: 100vh; }
+
+#root,
+.App,
+.Main {
+  height: 100%; }
 
 .heading-primary {
   color: #000000;
@@ -305,6 +316,40 @@ html {
 .navbar-brand img {
   margin-right: 1rem; }
 
+.button--green:hover {
+  box-shadow: 0 2px 4px #012b16;
+  cursor: pointer; }
+
+.button--green:active {
+  transform: scale(0.99);
+  box-shadow: 0 0.5px 1px #012b16; }
+
+.button--green--round {
+  border-radius: 10px !important;
+  background-color: black;
+  padding: 2.5% !important;
+  width: 100%;
+  background: #02bd63;
+  position: absolute;
+  border: 0px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500; }
+
+.input-component {
+  display: block;
+  padding: 0.35rem;
+  padding-left: 5%;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 8px; }
+  .input-component:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    background-color: #f0f0f0; }
+  .input-component::placeholder {
+    font-size: 13px; }
+
 .landing-page__hero {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 25, 72, 0.72), rgba(0, 25, 72, 0.72)), url("images/landing-section-1/hero-bg.png");
@@ -351,3 +396,244 @@ html {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%); }
+
+.signup {
+  display: grid;
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  .signup__flex-container {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+  .signup__flex-child {
+    display: flex;
+    align-items: center; }
+  .signup__logo {
+    height: 3.75rem; }
+  .signup__card {
+    width: calc(100vh - 45vh);
+    height: initial;
+    border-radius: 8px;
+    padding: 2vh 2%;
+    background-color: #ffffff;
+    overflow: hidden; }
+    .signup__card--header {
+      position: relative;
+      font-size: calc(100vh - 95.5vh);
+      top: 3%;
+      font-style: normal;
+      font-weight: 600;
+      text-align: left;
+      padding: 0 30px;
+      color: #001948; }
+    .signup__card--desc {
+      position: relative;
+      font-size: calc(100vh - 97.2vh);
+      top: 2%;
+      padding: 0 30px;
+      font-style: normal;
+      font-family: "Nunito", sans-serif;
+      font-weight: normal; }
+      .signup__card--desc a {
+        color: #02bd63;
+        text-decoration: none;
+        padding: 0 10px; }
+      @media only screen and (max-height: 640px) {
+        .signup__card--desc {
+          font-size: 90%; } }
+    .signup__card--form {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5% calc(100vh - 180%);
+      padding-bottom: 0; }
+    .signup__card div label {
+      padding: 1vh 5%;
+      font-size: 12px;
+      font-weight: 300; }
+    .signup__card--button {
+      margin-top: 5%;
+      color: #ffffff;
+      position: relative; }
+    .signup__card form hr {
+      position: relative;
+      top: 0.5rem; }
+    .signup__card--or {
+      margin: auto;
+      width: fit-content;
+      position: relative;
+      bottom: 1.5rem;
+      text-align: center;
+      font-size: 13px;
+      background-color: #ffffff;
+      padding: 5px; }
+  .signup__social {
+    position: relative;
+    top: -1.5rem;
+    display: flex;
+    justify-content: center; }
+    .signup__social--links {
+      padding: 0 10px;
+      transition: all 0.2s;
+      height: calc(100vh - 95vh); }
+  @media only screen and (max-width: 62em) {
+    .signup__card {
+      width: calc(100vh - 45vh);
+      height: initial;
+      margin-bottom: 0; }
+      .signup__card--header {
+        top: 0.5rem;
+        font-size: 190%; }
+      .signup__card--desc {
+        top: 0.2rem;
+        font-size: 110%; }
+      .signup__card--form {
+        padding: 0 8%; } }
+  @media only screen and (max-width: 48em) {
+    .signup__flex-container {
+      justify-content: center;
+      flex-direction: column; }
+    .signup__logo {
+      margin-top: 1rem;
+      margin-bottom: 1rem; }
+    .signup__card {
+      height: initial;
+      width: 100%;
+      margin: 0 5%;
+      padding-bottom: 0; } }
+  @media only screen and (max-width: 36em) {
+    .signup__logo {
+      height: 50px;
+      margin: 5%; }
+    .signup__card {
+      margin-top: 5%; }
+      .signup__card--header {
+        font-size: 150%; }
+      .signup__card--desc {
+        font-size: 95%; }
+      .signup__card--form {
+        padding: 0 5%;
+        padding-top: 3%; }
+        .signup__card--form input {
+          padding: 1% 1rem; }
+      .signup__card--button {
+        padding: 1.5% !important; }
+    .signup__social--links {
+      height: calc(100vh - 96vh); } }
+
+.signin {
+  display: grid;
+  height: 100%;
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+  .signin__flex-container {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; }
+  .signin__flex-child {
+    display: flex;
+    align-items: center; }
+  .signin__logo {
+    height: 3.75rem; }
+  .signin__card {
+    width: calc(100vh - 50vh);
+    height: initial;
+    border-radius: 8px;
+    padding: 5%;
+    background-color: #ffffff;
+    overflow: hidden; }
+    .signin__card--header {
+      position: relative;
+      font-size: calc(100vh - 95vh);
+      top: 3%;
+      font-style: normal;
+      font-weight: 600;
+      text-align: left;
+      padding: 0 30px;
+      color: #001948; }
+    .signin__card--desc {
+      position: relative;
+      font-size: calc(100vh - 97.5vh);
+      top: 2%;
+      padding: 0 30px;
+      font-style: normal;
+      font-family: "Nunito", sans-serif;
+      font-weight: normal; }
+    .signin__card a {
+      color: #02bd63;
+      text-decoration: none;
+      padding: 0 10px; }
+    .signin__card--form {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5% calc(100vh - 215%);
+      padding-bottom: 0; }
+    .signin__card div label {
+      padding: 1vh 5%;
+      font-size: 12px;
+      font-weight: 300; }
+    .signin__card--button {
+      margin-top: 5%;
+      color: #ffffff;
+      position: relative; }
+    .signin__card form hr {
+      position: relative;
+      top: 0.5rem; }
+    .signin__card__forgot-pw-div {
+      margin-top: 3%;
+      text-align: end; }
+    .signin__card--or {
+      margin: auto;
+      width: fit-content;
+      position: relative;
+      bottom: 1.5rem;
+      text-align: center;
+      font-size: 13px;
+      background-color: #ffffff;
+      padding: 5px; }
+  .signin__social {
+    margin-top: 5%;
+    position: relative;
+    top: -1.5rem;
+    display: flex;
+    justify-content: center; }
+    .signin__social--links {
+      padding: 0 10px;
+      transition: all 0.2s;
+      height: calc(100vh - 95vh); }
+  @media only screen and (max-width: 62em) {
+    .signin__card {
+      width: 22rem;
+      height: initial; }
+      .signin__card--header {
+        top: 0.5rem;
+        font-size: 190%; }
+      .signin__card--desc {
+        top: 0.2rem;
+        font-size: 110%; }
+      .signin__card--form {
+        padding: 0 8%; } }
+  @media only screen and (max-width: 48em) {
+    .signin__flex-container {
+      flex-direction: column;
+      justify-content: center; }
+    .signin__logo {
+      margin-top: 0rem;
+      margin-bottom: 1rem; }
+    .signin__card {
+      height: initial; } }
+  @media only screen and (max-width: 400px) {
+    .signin__logo {
+      height: 3rem; }
+    .signin__card {
+      width: 100%; } }
