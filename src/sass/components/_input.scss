@@ -1,21 +1,10 @@
 .input-component {
     display: block;
-	padding: 1rem;
-	margin: 1.2rem 1rem;
-	min-height: 3rem;
-	width: 92%;
+	padding: 0.35rem;
+	padding-left: 5%;
+	width: 100%;
 	border: 1px solid rgba(0, 0, 0, 0.24);
 	border-radius: 8px;
-	&__form{
-		border: 1px solid #bdbdbd;
-		margin-bottom: 1rem;
-		border-radius: 0.25rem;
-		width: 100%;
-		color: #4f4f4f;
-		padding: 0.5rem 1rem;
-		min-height: none;
-		height: auto;
-	}
     &:focus {
         outline: none;
 		border: 1px solid rgba(0, 0, 0, 0.24);
@@ -25,4 +14,3 @@
 		font-size: 13px;
 	}
 }
-

@@ -33,8 +33,8 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                             *Mandatory fields
                         </p>
                     </div>
-<form className="role-selection__form">
-<div className="role-selection__form__cards">
+            <form className="role-selection__form">
+            <div className="role-selection__form__cards">
                         <MDBRow>
                             <MDBCol
                                 sm="12"

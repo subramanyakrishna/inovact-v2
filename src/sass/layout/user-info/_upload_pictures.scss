@@ -54,6 +54,9 @@
         justify-content: center;
         align-self: center;
         align-items: center;
+        &:hover{
+            color: blue;
+        }
     }
     textarea{
         width: 100%;

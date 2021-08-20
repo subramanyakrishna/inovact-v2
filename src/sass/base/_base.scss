@@ -10,7 +10,22 @@ body {
     font-family: 'Karla', Helvetica, Arial, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+
 ::selection {
     color: $color-white;
     background: $color-primary-green;
+}
+
+body {
+    height: 100vh;
+}
+
+#root,
+.App,
+.Main {
+    height: 100%;
 }

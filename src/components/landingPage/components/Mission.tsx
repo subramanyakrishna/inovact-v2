@@ -6,7 +6,7 @@ import inovate from '../../../images/landing-section-3/inovate.png'
 
 function Mission() {
     return (
-        <section className="section-mission">
+        <section id="mission" className="section-mission">
             <div className="section-mission__text">
                 <h1 className="heading-primary">Our Mission</h1>
                 <p className="paragraph-primary">

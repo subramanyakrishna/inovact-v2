@@ -1,0 +1,31 @@
+.navigation-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+
+    &__logo {
+        margin-right: 5rem;
+    }
+}
+
+// MDB classes
+.navbar {
+    background-color: $color-white !important;
+}
+
+.nav-item {
+    &.active {
+        border-bottom: 2px solid rgba($color-primary-green, 0.6);
+
+        & .nav-link {
+            color: $color-black;
+        }
+    }
+    &:not(:last-child) {
+        margin-right: 1rem;
+    }
+}
+
+.navbar-brand img {
+    margin-right: 1rem;
+}

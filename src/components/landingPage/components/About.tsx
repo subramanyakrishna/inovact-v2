@@ -4,7 +4,7 @@ import sideImage from '../../../images/landing-section-2/side-image.png'
 
 function About() {
     return (
-        <section className="section-about">
+        <section id="about" className="section-about">
             <MDBContainer fluid>
                 <MDBRow>
                     <MDBCol md="6" className="section-about__image">

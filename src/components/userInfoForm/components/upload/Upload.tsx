@@ -1,6 +1,8 @@
 import React from 'react';
 import avatar from '../../../../images/user-info/avatar.png';
 import { MDBBtn } from 'mdb-react-ui-kit';
+import {Link} from 'react-router-dom';
+
 type AppProps = {
     nextStep: any,
     handleChange: any,
@@ -22,7 +24,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
          <section className="upload">
           
             <div className="upload__text">
-                <h6 className="">Upload your Profile Picture</h6>
+                <h6 className="heading-secondary">Upload your Profile Picture</h6>
                 <p className="paragraph-primary--green">Your Profile Picture always assists in showcasing you in a better wayto your connection</p>
             </div>
 
@@ -36,7 +38,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
                   <div className="upload__form__bio">
                     <div className="upload__text">
-                     <h6 className="">Add Bio To your Profile</h6>
+                     <h6 className="heading-secondary--small">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                         
                         <textarea
@@ -56,9 +58,8 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                                     className="button button__green">Next</a>
               </div>
              
-             <div className="skip">
-                    <a href="/feed" >Skip for now</a>
-             </div> 
+                    <Link to="feed" className="skip">Skip for now</Link>
+            
           </section>
     </div>
 </div>

@@ -42,3 +42,18 @@
     min-height: none;
     height: auto;
 }
+.buttons{
+    margin:1.5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    &__center{
+      justify-content: center;
+      margin: 0px;
+    }
+
+    @include respond(sm){
+    margin-top: 40px;
+    }
+}
