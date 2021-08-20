@@ -1,6 +1,6 @@
 import React from 'react';
 import avatar from '../../../../images/user-info/avatar.png';
-import { MDBBtn ,MDBInput} from 'mdb-react-ui-kit';
+import { MDBBtn } from 'mdb-react-ui-kit';
 type AppProps = {
     nextStep: any,
     handleChange: any,
@@ -9,10 +9,7 @@ type AppProps = {
 };
 const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
-  const Continue = (e: any) => {
-    e.preventDefault();
-    nextStep();
-  }
+ 
   const Previous = (e:any) => {
     e.preventDefault();
     prevStep(4);
@@ -41,8 +38,13 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                     <div className="upload__text">
                      <h6 className="">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
-        
-                      <MDBInput label='Add your Bio'  id='typeText' type='text' onChange={handleChange('bio')} />
+                        
+                        <textarea
+         placeholder='Write down a short summary about you and your interest' 
+         onChange={handleChange('bio')}
+          rows={3}
+
+        />
                     </div>
                   </div>
             </form>
@@ -50,8 +52,8 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
             <div className="buttons">
                 <MDBBtn color='default' 
                                   onClick={ Previous } className="button button__white">Back</MDBBtn>
-                  <MDBBtn color='success' 
-                                  onClick={ Continue }  className="button button__green">Next</MDBBtn>
+                  <a href="/feed"
+                                    className="button button__green">Next</a>
               </div>
              
              <div className="skip">

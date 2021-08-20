@@ -1,12 +1,25 @@
 .role-selection{
     padding: 2rem 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+ text-align: left;
+ 
     @include respond(sm) {
         padding:0;
+        text-align: center;
     }
+    &__text{
+         .heading-secondary{
+             display: block;
+        @include respond(xs){
+            text-align: center;
+        }
+    }
+    }
+    &__form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
     &__cards {
         margin-top: 2rem;
       
@@ -49,4 +62,5 @@
           
         }
     }
+}
 }

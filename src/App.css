@@ -294,51 +294,60 @@ body {
 
 .role-selection {
   padding: 2rem 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; }
+  text-align: left; }
   @media only screen and (max-width: 48em) {
     .role-selection {
-      padding: 0; } }
-  .role-selection__cards {
-    margin-top: 2rem; }
+      padding: 0;
+      text-align: center; } }
+  .role-selection__text .heading-secondary {
+    display: block; }
     @media only screen and (max-width: 36em) {
-      .role-selection__cards {
-        margin: 1rem; } }
-    .role-selection__cards__col {
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-    .role-selection__cards__item {
-      margin: 0;
-      padding: 2rem 2rem 0.5rem;
-      text-align: center;
-      float: left;
-      border: 2.61728px solid #001948;
-      box-sizing: border-box;
-      border-radius: 8.72428px; }
-      .role-selection__cards__item--active {
-        border: 2px solid #02bd63; }
+      .role-selection__text .heading-secondary {
+        text-align: center; } }
+  .role-selection__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; }
+    .role-selection__form__cards {
+      margin-top: 2rem; }
       @media only screen and (max-width: 36em) {
-        .role-selection__cards__item {
-          padding: 1rem;
-          width: 133px; } }
-      .role-selection__cards__item img {
-        margin-left: 0.5rem;
-        width: 80px;
-        height: 80px; }
+        .role-selection__form__cards {
+          margin: 1rem; } }
+      .role-selection__form__cards__col {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .role-selection__form__cards__item {
+        margin: 0;
+        padding: 2rem 2rem 0.5rem;
+        text-align: center;
+        float: left;
+        border: 2.61728px solid #001948;
+        box-sizing: border-box;
+        border-radius: 8.72428px; }
+        .role-selection__form__cards__item--active {
+          border: 2px solid #02bd63; }
         @media only screen and (max-width: 36em) {
-          .role-selection__cards__item img {
-            width: 50px;
-            height: 50px; } }
+          .role-selection__form__cards__item {
+            padding: 1rem;
+            width: 133px; } }
+        .role-selection__form__cards__item img {
+          margin-left: 0.5rem;
+          width: 80px;
+          height: 80px; }
+          @media only screen and (max-width: 36em) {
+            .role-selection__form__cards__item img {
+              width: 50px;
+              height: 50px; } }
 
 .area-of-interest {
   padding: 2rem 10rem; }
   @media only screen and (max-width: 36em) {
     .area-of-interest {
-      padding: 1rem 0.2rem; } }
+      padding: 1rem 0.2rem;
+      margin: 1em; } }
   .area-of-interest__text {
     text-align: center;
     font-size: 1rem; }
@@ -360,7 +369,7 @@ body {
     line-height: 16px;
     text-align: center;
     border-radius: 38.8172px;
-    padding: 0.3rem;
+    padding: 0.4rem;
     font-size: 13px;
     text-transform: uppercase;
     color: #001948; }
@@ -374,18 +383,23 @@ body {
     border: 1px solid #a3adb3; }
 
 .upload {
-  padding: 2rem 4rem; }
+  padding: 1rem 4rem; }
   @media only screen and (max-width: 48em) {
     .upload {
       padding: 1rem; } }
+  .upload a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; }
+    .upload a:hover {
+      color: white; }
   .upload__text {
     display: block;
     justify-content: center;
     text-align: center; }
-    .upload__text h6 {
-      font-style: normal;
-      font-weight: 500;
-      font-size: 28px;
+    .upload__texth6 {
+      font-size: 26px;
       line-height: 36px;
       text-align: center; }
   .upload .buttons {
@@ -400,7 +414,7 @@ body {
     flex-direction: column; }
     .upload__form__bio {
       padding: 0 4rem;
-      padding-top: 12px; }
+      padding-top: 0.2rem; }
       @media only screen and (max-width: 48em) {
         .upload__form__bio {
           padding: 1rem; } }
@@ -414,6 +428,12 @@ body {
     justify-content: center;
     align-self: center;
     align-items: center; }
+  .upload textarea {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 8px; }
+  .upload textarea::placeholder {
+    padding: 0.5rem; }
 
 .student-info {
   padding: 2rem 10rem; }
@@ -426,6 +446,15 @@ body {
     @media only screen and (max-width: 36em) {
       .student-info__text .heading-primary {
         font-size: 20px; } }
+  .student-info .input-formComponent {
+    border: 1px solid #bdbdbd;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    color: #4f4f4f;
+    padding: 0.5rem 1rem;
+    min-height: none;
+    height: auto; }
 
 .buttons {
   margin: 1.5rem 0;
@@ -491,6 +520,30 @@ body {
     color: #000000;
     border: 1px solid black; }
 
+.input-component {
+  display: block;
+  padding: 1rem;
+  margin: 1.2rem 1rem;
+  min-height: 3rem;
+  width: 92%;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 8px; }
+  .input-component__form {
+    border: 1px solid #bdbdbd;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    color: #4f4f4f;
+    padding: 0.5rem 1rem;
+    min-height: none;
+    height: auto; }
+  .input-component:focus {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    background-color: #f0f0f0; }
+  .input-component::placeholder {
+    font-size: 13px; }
+
 .landing-page__hero {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 25, 72, 0.72), rgba(0, 25, 72, 0.72)), url("images/landing-section-1/hero-bg.png");
@@ -548,3 +601,13 @@ body {
     width: 100%;
     color: #4f4f4f;
     padding: 0.5rem 1rem; }
+
+.input-formComponent {
+  border: 1px solid #bdbdbd;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  color: #4f4f4f;
+  padding: 0.5rem 1rem;
+  min-height: none;
+  height: auto; }

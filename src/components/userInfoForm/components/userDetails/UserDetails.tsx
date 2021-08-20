@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBRow, MDBCol,MDBBtn ,MDBInput} from 'mdb-react-ui-kit'
+import { MDBRow, MDBCol,MDBBtn } from 'mdb-react-ui-kit'
 
 type AppProps = {
     nextStep: any,
@@ -56,7 +56,7 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                       <div className="form-group">
                       <label htmlFor="university">University/College <span className="paragraph-primary--red">*</span></label>
-                      <MDBInput className="input" label="Enter you university/college" outline onChange={handleChange('university')} defaultValue={values.university}/>
+                    <input className="input-formComponent" type="text" placeholder="Enter Your University or College"  onChange={handleChange('university')} defaultValue={values.university}/>
                       </div>
                 </MDBCol>
               </MDBRow>

@@ -1,19 +1,27 @@
 .upload{
-    padding: 2rem 4rem ;
+    padding: 1rem 4rem ;
     @include respond(sm){
         padding: 1rem;
+    }
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+     &:hover{
+         color: white;
+     }
     }
     &__text{
         display: block;
         justify-content: center;        
         text-align: center;
-        & h6 {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 28px;
+        &h6 {
+            font-size: 26px;
             line-height: 36px;
             text-align:center;
         }
+        
     }
         .buttons{
             padding: 0 4rem;
@@ -28,18 +36,17 @@
         flex-direction: column;
         &__bio{
             padding: 0 4rem;
-            padding-top: 12px;
+            padding-top: 0.2rem;
             @include respond(sm) {
                 padding: 1rem;
             }
+          
         }
         & img{
             width: 5.25rem;
-          
             @include respond(sm) {
                margin: 0 6rem ;
             }
-           
         }
     }
     .skip{
@@ -47,5 +54,14 @@
         justify-content: center;
         align-self: center;
         align-items: center;
+    }
+    textarea{
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.24);
+        border-radius: 8px;
+        
+    }
+    textarea::placeholder{
+        padding: 0.5rem;
     }
 }

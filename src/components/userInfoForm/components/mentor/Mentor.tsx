@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBRow, MDBCol,MDBBtn ,MDBInput} from 'mdb-react-ui-kit'
+import { MDBRow, MDBCol,MDBBtn } from 'mdb-react-ui-kit'
 type AppProps = {
     nextStep: any,
     handleChange: any,
@@ -35,7 +35,7 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                       <div className="form-group">
                       <label htmlFor="university">Current Designation <span className="paragraph-primary--red">*</span></label>
-                      <MDBInput className="input" label="Enter you Current Designation" outline onChange={handleChange('McurrDesignation')} defaultValue={values.McurrDesignation} />
+                      <input type="text"  className="input-formComponent" placeholder="Enter you Current Designation"  onChange={handleChange('McurrDesignation')} defaultValue={values.McurrDesignation} />
                       </div>
                 </MDBCol>
               </MDBRow>
@@ -43,7 +43,7 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="degree">Current Organization <span className="paragraph-primary--red">*</span></label>
-                        <MDBInput className="input" label="Enter your Current Organization" outline  onChange={handleChange('McurrOrganization')} defaultValue={values.McurrOrganization}/>
+                        <input type="text"  className="input-formComponent" placeholder="Enter your Current Organization"  onChange={handleChange('McurrOrganization')} defaultValue={values.McurrOrganization}/>
                   </div>
                 </MDBCol>
               </MDBRow>
@@ -52,7 +52,7 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="year">Professional Experience <span className="paragraph-primary--red">*</span></label>
-                        <MDBInput className="input" label="Enter your Professional Experience in years" outline onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
+                        <input type="text" className="input-formComponent" placeholder="Enter your Professional Experience in years" onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
                   </div>
                 </MDBCol>
               </MDBRow>

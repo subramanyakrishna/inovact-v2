@@ -33,21 +33,21 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                             *Mandatory fields
                         </p>
                     </div>
-
-                    <div className="role-selection__cards">
+<form className="role-selection__form">
+<div className="role-selection__form__cards">
                         <MDBRow>
                             <MDBCol
                                 sm="12"
                                 md="6"
                                 lg="4"
-                                className="role-selection__cards__col"
+                                className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(0)}
                             >
                                 <div
                                     className={
                                         activeIndex === 0
-                                            ? 'role-selection__cards__item role-selection__cards__item--active'
-                                            : 'role-selection__cards__item'
+                                            ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
+                                            : 'role-selection__form__cards__item'
                                     }
                                 >
                                     <img
@@ -64,14 +64,14 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                 sm="12"
                                 md="6"
                                 lg="4"
-                                className="role-selection__cards__col"
+                                className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(1)}
                             >
                                 <div
                                     className={
                                         activeIndex === 1
-                                            ? 'role-selection__cards__item role-selection__cards__item--active'
-                                            : 'role-selection__cards__item'
+                                            ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
+                                            : 'role-selection__form__cards__item'
                                     }
                                 >
                                     <img
@@ -88,14 +88,14 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                 sm="12"
                                 md="6"
                                 lg="4"
-                                className="role-selection__cards__col"
+                                className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(2)}
                             >
                                 <div
                                     className={
                                         activeIndex === 2
-                                            ? 'role-selection__cards__item role-selection__cards__item--active'
-                                            : 'role-selection__cards__item'
+                                            ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
+                                            : 'role-selection__form__cards__item'
                                     }
                                 >
                                     <img
@@ -113,6 +113,8 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                     <MDBBtn color='success' 
                                   onClick={ Continue }  className="button button__green">Next</MDBBtn>
                     </div>
+</form>
+                    
                 </section>
             </div>
         </div>
