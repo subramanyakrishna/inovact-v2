@@ -353,6 +353,9 @@ body {
       @media only screen and (max-width: 36em) {
         .role-selection__text .heading-secondary {
           text-align: center; } }
+    @media only screen and (max-width: 36em) {
+      .role-selection__text {
+        align-self: center; } }
   .role-selection__form {
     display: flex;
     align-items: center;
@@ -402,6 +405,10 @@ body {
   .area-of-interest__text {
     text-align: center;
     font-size: 1rem; }
+    @media only screen and (max-width: 36em) {
+      .area-of-interest__text {
+        margin-bottom: 2rem;
+        text-align: center; } }
   .area-of-interest__form__list {
     margin: 0;
     padding: 0;
@@ -481,18 +488,16 @@ body {
     .upload .skip:hover {
       color: blue; }
 
-.student-info {
+.user-details {
   padding: 2rem 10rem; }
   @media only screen and (max-width: 36em) {
-    .student-info {
+    .user-details {
       padding: 1rem; } }
-  .student-info__text .heading-primary {
-    font-size: 34px;
-    text-align: left; }
-    @media only screen and (max-width: 36em) {
-      .student-info__text .heading-primary {
-        font-size: 20px; } }
-  .student-info .input-formComponent {
+  @media only screen and (max-width: 36em) {
+    .user-details__text {
+      margin-bottom: 2rem;
+      text-align: center; } }
+  .user-details .input-formComponent {
     border: 1px solid #bdbdbd;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
@@ -898,6 +903,9 @@ body {
         justify-content: flex-start; } }
   .user-info form {
     min-height: 250px; }
+    @media only screen and (max-width: 48em) {
+      .user-info form {
+        min-height: 300px; } }
 
 .input-formComponent {
   border: 1px solid #bdbdbd;

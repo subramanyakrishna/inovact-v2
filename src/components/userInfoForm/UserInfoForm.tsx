@@ -8,7 +8,6 @@ import UploadPicture from './components/upload/Upload'
 
 interface UserInfo {
 	role:string,
-   
     university: string,
     degree: string,
     year: string,
@@ -27,7 +26,7 @@ interface UserInfo {
 }
 const UserInfoForm= () => {
     let [step, setStep] = useState(1);
-  const [user, setUser] =useState<UserInfo>({
+    const [user, setUser] =useState<UserInfo>({
     role: 'student',
 
     university: '',
@@ -44,7 +43,7 @@ const UserInfoForm= () => {
     EcurrOrganization: '',
     EcurrRole: '',
     EstartOfJourney: '',
-});
+    });
     const setFormStep=(stepNum:number)  => {
         setStep(step => stepNum)
     }
@@ -61,7 +60,7 @@ const UserInfoForm= () => {
                 role: e.target.id
                
             }));
-            console.log("Hi" +user.role);
+            console.log(user.role);
         } else {
             setUser(prevState => ({
                 ...prevState,

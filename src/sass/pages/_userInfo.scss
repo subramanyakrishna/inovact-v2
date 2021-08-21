@@ -25,6 +25,10 @@
     }
     form{
         min-height: 250px;
+          
+        @include respond(sm) {
+            min-height: 300px;
+        }
     }
 }
 .input-formComponent{

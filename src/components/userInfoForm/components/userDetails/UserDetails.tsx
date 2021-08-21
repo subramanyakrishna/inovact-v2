@@ -22,12 +22,12 @@ const UserDetails = ({ setFormStep, handleChange, values }:AppProps) => {
 
     <div className="user-info">
       <div className="user-info__card">
-         <section className="student-info">
-            <div className="student-info__text">
+         <section className="user-details">
+            <div className="user-details__text">
                 <h6 className="heading-secondary">Let Us Know More About You</h6>
                 <p className="paragraph-primary--red">*Mandatory fields</p>
             </div>
-            <div className="student-info__form">
+            <div className="user-details__form">
               <Form prevStep={1} nextStep={3} handleChange={handleChange} values={values} />
             </div>
             <div className="buttons">

@@ -1,15 +1,12 @@
-.student-info{
+.user-details{
         padding: 2rem 10rem;
         @include respond(xs) {
             padding: 1rem;
         }
         &__text{
-            .heading-primary{
-                font-size:34px;
-                text-align: left;
-                @include respond(xs) {
-                    font-size:20px;
-                }
+            @include respond(xs) {
+              margin-bottom: 2rem;
+              text-align: center;
             }
         }
         .input-formComponent{

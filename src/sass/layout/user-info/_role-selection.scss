@@ -16,8 +16,13 @@
              display: block;
              text-align: left;
         @include respond(xs){
+           
             text-align: center;
         }
+    }
+    @include respond(xs){
+           
+        align-self: center;
     }
     }
     &__form{
