@@ -5,13 +5,13 @@ import mentor from '../../../../images/user-info/mentor.png'
 import { MDBRow, MDBCol, MDBBtn } from 'mdb-react-ui-kit'
 
 type AppProps = {
-    nextStep: any
+    setFormStep: any
     handleChange: any
     values: any
 }
-const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
+const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
     const Continue = (e: any) => {
-        nextStep(2)
+        setFormStep(2)
     }
     const [activeIndex, setActiveIndex] = React.useState(0)
 

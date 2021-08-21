@@ -4,10 +4,10 @@ import a2 from '../../../../images/user-info/list2.png'
 import a3 from '../../../../images/user-info/list3.png'
 
 type AppProps = {
-    nextStep: any
+    setFormStep: any
     handleChange: any
     values: any
-    prevStep: any
+   
 }
 const aoi = [
     {
@@ -78,18 +78,17 @@ const aoi = [
     },
 ]
 const AreaOfInterest = ({
-    prevStep,
-    nextStep,
+    setFormStep,
     handleChange,
     values,
 }: AppProps) => {
     const Continue = (e: any) => {
         e.preventDefault()
-        nextStep(5)
+        setFormStep(5)
     }
     const Previous = (e: any) => {
         e.preventDefault()
-        prevStep(2)
+        setFormStep(2)
     }
 
     return (

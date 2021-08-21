@@ -7,7 +7,6 @@ import AreaOfInterest from './components/areaOfInterest/AreaOfInterest'
 import UploadPicture from './components/upload/Upload'
 
 interface UserInfo {
-    step: number,
 	role:string,
    
     university: string,
@@ -27,56 +26,44 @@ interface UserInfo {
     EstartOfJourney: string,
 }
 const UserInfoForm= () => {
-    const [formstep, setFormStep] = useState<UserInfo>({
-        step: 1,
+    let [step, setStep] = useState(1);
+  const [user, setUser] =useState<UserInfo>({
+    role: 'student',
 
-        role: 'student',
+    university: '',
+    degree: '',
+    year: '',
+    bio: '',
+    image: '',
+    //mentor
+    McurrDesignation: '',
+    McurrOrganization: '',
+    profExperience: '',
 
-        university: '',
-        degree: '',
-        year: '',
-        bio: '',
-        image: '',
-        //mentor
-        McurrDesignation: '',
-        McurrOrganization: '',
-        profExperience: '',
-
-        //enterprenuer
-        EcurrOrganization: '',
-        EcurrRole: '',
-        EstartOfJourney: '',
-    })
-   
-    const prevStep = (stepNum: number) => {
-        setFormStep(prevState => ({
-            ...prevState,
-            step: stepNum
-        }));
-    }
-
-    const nextStep = (stepNum: number) => {
-        setFormStep(prevState => ({
-            ...prevState,
-            step: stepNum
-        }));
+    //enterprenuer
+    EcurrOrganization: '',
+    EcurrRole: '',
+    EstartOfJourney: '',
+});
+    const setFormStep=(stepNum:number)  => {
+        setStep(step => stepNum)
     }
 
     const handleChange = (input: any) => (e: any) => {
         if(e.target.tagName === 'IMG') {
-            setFormStep(prevState => ({
+            setUser(prevState => ({
                 ...prevState,
                 [input]: e.target.id
                 
             }));
-            setFormStep(prevState => ({
+            setUser(prevState => ({
                 ...prevState,
                 role: e.target.id
                
             }));
-            console.log("Hi" +formstep.role);
+            console.log("Hi" +user.role);
         } else {
-            setFormStep(prevState => ({
+            setUser(prevState => ({
                 ...prevState,
                 [input]: e.target.value
             }));
@@ -84,23 +71,22 @@ const UserInfoForm= () => {
     }
 
     const FormStep =() =>{
-        switch (formstep.step) {
+        switch (step) {
             case 1:
                 return (
                     <RoleSelection
-                        nextStep={nextStep}
+                        setFormStep={setFormStep}
                         handleChange={handleChange}
-                        values={formstep}
+                        values={user}
                     />
                 )
             case 2:
                 return (
                     <div>
                         <UserDetails
-                            prevStep={prevStep}
-                            nextStep={nextStep}
+                            setFormStep={setFormStep}
                             handleChange={handleChange}
-                            values={formstep}
+                            values={user}
                         />
                     </div>
                 )
@@ -108,28 +94,25 @@ const UserInfoForm= () => {
             case 3:
                 return (
                     <div>
-                        {formstep.role === 'mentor' && (
+                        {user.role === 'mentor' && (
                             <Mentor
-                                prevStep={prevStep}
-                                nextStep={nextStep}
-                                handleChange={handleChange}
-                                values={formstep}
+                            setFormStep={setFormStep}
+                            handleChange={handleChange}
+                            values={user}
                             />
                         )}
-                        {formstep.role === 'enterprenuer' && (
+                        {user.role === 'enterprenuer' && (
                             <Enterprenuer
-                                prevStep={prevStep}
-                                nextStep={nextStep}
+                                setFormStep={setFormStep}
                                 handleChange={handleChange}
-                               values={formstep}
+                                values={user}
                             />
                         )}
-                        {formstep.role === 'student' && (
+                        {user.role === 'student' && (
                             <AreaOfInterest
-                                prevStep={prevStep}
-                                nextStep={nextStep}
+                                setFormStep={setFormStep}
                                 handleChange={handleChange}
-                                values={formstep}
+                                values={user}
                             />
                         )}
                     </div>
@@ -137,19 +120,17 @@ const UserInfoForm= () => {
             case 4:
                 return (
                     <AreaOfInterest
-                        prevStep={prevStep}
-                        nextStep={nextStep}
-                        handleChange={handleChange}
-                        values={formstep}
+                    setFormStep={setFormStep}
+                    handleChange={handleChange}
+                    values={user}
                     />
                 )
             case 5:
                 return (
                     <UploadPicture
-                        prevStep={prevStep}
-                        nextStep={nextStep}
-                        values={formstep}
-                        handleChange={handleChange}
+                    setFormStep={setFormStep}
+                    handleChange={handleChange}
+                    values={user}
                     />
                 )
 

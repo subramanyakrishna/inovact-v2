@@ -2,21 +2,20 @@ import React from 'react';
 import Form from './Form';
 
 type AppProps = {
-    nextStep: any,
-    handleChange: any,
+   setFormStep:any,
     values:any,
-    prevStep:any
+   handleChange:any,
 };
 
-const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
+const UserDetails = ({ setFormStep, handleChange, values }:AppProps) => {
 
   const Continue = (e: any) => {
     e.preventDefault();
-    nextStep(3);
+    setFormStep(3);
   }
   const Previous = (e:any) => {
     e.preventDefault();
-    prevStep(1);
+    setFormStep(1);
   }
 
   return (

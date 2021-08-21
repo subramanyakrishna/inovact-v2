@@ -4,17 +4,16 @@ import { MDBBtn } from 'mdb-react-ui-kit';
 import {Link} from 'react-router-dom';
 
 type AppProps = {
-    nextStep: any,
+  setFormStep: any,
     handleChange: any,
     values:any,
-    prevStep:any
+    
 };
-const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
+const Upload = ({ setFormStep, handleChange, values }:AppProps) => {
 
- 
   const Previous = (e:any) => {
     e.preventDefault();
-    prevStep(4);
+    setFormStep(4);
   }
 
   return (

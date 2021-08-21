@@ -1,24 +1,23 @@
 import React from 'react';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 type AppProps = {
-    nextStep: any,
+   setFormStep:any,
     handleChange: any,
     values:any,
-    prevStep:any
+  
 };
 const Mentor = ({ 
-  prevStep,
-  nextStep,
+  setFormStep,
    handleChange, 
    values }:AppProps) => {
 
   const Continue = (e: any) => {
     e.preventDefault();
-    nextStep(4);
+    setFormStep(4);
   }
   const Previous = (e:any) => {
     e.preventDefault();
-    prevStep(2);
+    setFormStep(2);
   }
 
   return (
