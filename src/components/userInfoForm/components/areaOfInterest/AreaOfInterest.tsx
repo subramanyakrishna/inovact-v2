@@ -6,16 +6,24 @@ import a3 from '../../../../images/user-info/list3.png'
 type AppProps = {
     setFormStep: any
     handleChange: any
-    values: any
-   
+    values: any 
 }
+
 const aoi = [
     {
         name: 'Data Science',
         image: a1,
     },
     {
-        name: 'Web Dev',
+        name: 'Project Management',
+        image: a3,
+    },
+    {
+        name: 'Web dev',
+        image: a2,
+    },
+    {
+        name: 'Cloud Computing',
         image: a3,
     },
     {
@@ -23,23 +31,15 @@ const aoi = [
         image: a2,
     },
     {
-        name: 'Robotocis',
-        image: a3,
-    },
-    {
-        name: 'Gaming',
+        name: 'Robotics',
         image: a2,
     },
     {
-        name: 'Electrical',
+        name: 'Competetive coding',
         image: a2,
     },
     {
-        name: 'Project Managenment',
-        image: a2,
-    },
-    {
-        name: 'Economics',
+        name: 'Business Analytic',
         image: a2,
     },
     {

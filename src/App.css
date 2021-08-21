@@ -390,14 +390,15 @@ body {
         .role-selection__form__cards__item img {
           margin-left: 0.5rem;
           width: 80px;
-          height: 80px; }
+          height: 80px;
+          padding: 0.1rem; }
           @media only screen and (max-width: 36em) {
             .role-selection__form__cards__item img {
               width: 50px;
               height: 50px; } }
 
 .area-of-interest {
-  padding: 2rem 10rem; }
+  padding: 2rem 7.5rem; }
   @media only screen and (max-width: 36em) {
     .area-of-interest {
       padding: 1rem 0.2rem;
@@ -417,10 +418,13 @@ body {
     flex-wrap: wrap;
     list-style: none; }
     .area-of-interest__form__list__item img {
-      width: 1.5rem; }
+      width: 25.5px;
+      height: 29.5px;
+      margin-right: 0.4rem; }
       @media only screen and (max-width: 36em) {
         .area-of-interest__form__list__item img {
-          width: 1rem; } }
+          width: 1rem;
+          height: auto; } }
   .area-of-interest input[type=checkbox] + .checkbox-label {
     margin: 0.25rem;
     border: 2px solid #02bd63;
@@ -568,6 +572,9 @@ body {
     background-color: #02bd63;
     color: #ffffff;
     border: none; }
+    @media only screen and (max-width: 36em) {
+      .button--green {
+        margin: 0; } }
   .button--white {
     background-color: #ffffff;
     color: #000000;

@@ -116,7 +116,7 @@ const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
                     
 </form>
                     <div className="buttons buttons--center ">
-                      <button color='success' 
+                      <button 
                                   onClick={ Continue }  className="button button--green ">Next</button>
                     </div>
                     

@@ -50,6 +50,9 @@
       background-color: $color-primary-green;
       color:$color-white;
       border: none;
+      @include respond (xs){
+          margin: 0;
+      }
     }
     &--white {
       background-color: $color-white;
