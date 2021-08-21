@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import RoleSelection from './components/roleSelection/RoleSelection'
 import UserDetails from './components/userDetails/UserDetails'
 import Mentor from './components/mentor/Mentor'
@@ -6,8 +6,28 @@ import Enterprenuer from './components/enterprenuer/Enterprenuer'
 import AreaOfInterest from './components/areaOfInterest/AreaOfInterest'
 import UploadPicture from './components/upload/Upload'
 
-export default class Signup extends Component {
-    state = {
+interface UserInfo {
+    step: number,
+	role:string,
+   
+    university: string,
+    degree: string,
+    year: string,
+    bio: string,
+    image: string,
+    
+    //mentor
+    McurrDesignation: string,
+    McurrOrganization: string,
+    profExperience: string,
+
+    //enterprenuer
+    EcurrOrganization: string,
+    EcurrRole: string,
+    EstartOfJourney: string,
+}
+const UserInfoForm= () => {
+    const [formstep, setFormStep] = useState<UserInfo>({
         step: 1,
 
         role: 'student',
@@ -26,73 +46,61 @@ export default class Signup extends Component {
         EcurrOrganization: '',
         EcurrRole: '',
         EstartOfJourney: '',
+    })
+   
+    const prevStep = (stepNum: number) => {
+        setFormStep(prevState => ({
+            ...prevState,
+            step: stepNum
+        }));
     }
 
-    prevStep = (stepNum: number) => {
-        this.setState({ step: stepNum })
+    const nextStep = (stepNum: number) => {
+        setFormStep(prevState => ({
+            ...prevState,
+            step: stepNum
+        }));
     }
 
-    nextStep = (stepNum: number) => {
-        this.setState({ step: stepNum })
-    }
-
-    handleChange = (input: any) => (e: any) => {
-        if (e.target.tagName === 'IMG') {
-            this.setState({ [input]: e.target.id })
-            console.log(this.state.role)
+    const handleChange = (input: any) => (e: any) => {
+        if(e.target.tagName === 'IMG') {
+            setFormStep(prevState => ({
+                ...prevState,
+                [input]: e.target.id
+                
+            }));
+            setFormStep(prevState => ({
+                ...prevState,
+                role: e.target.id
+               
+            }));
+            console.log("Hi" +formstep.role);
         } else {
-            this.setState({ [input]: e.target.value })
+            setFormStep(prevState => ({
+                ...prevState,
+                [input]: e.target.value
+            }));
         }
     }
 
-    render() {
-        const { step } = this.state
-        const {
-            role,
-            bio,
-            image,
-            university,
-            degree,
-            year,
-            McurrDesignation,
-            McurrOrganization,
-            profExperience,
-            EcurrOrganization,
-            EcurrRole,
-            EstartOfJourney,
-        } = this.state
-        const values = {
-            role,
-            bio,
-            image,
-            university,
-            degree,
-            year,
-            McurrDesignation,
-            McurrOrganization,
-            profExperience,
-            EcurrOrganization,
-            EcurrRole,
-            EstartOfJourney,
-        }
-
-        switch (step) {
+    const FormStep =() =>{
+        switch (formstep.step) {
             case 1:
                 return (
                     <RoleSelection
-                        nextStep={this.nextStep}
-                        handleChange={this.handleChange}
-                        values={values}
+                        nextStep={nextStep}
+                        handleChange={handleChange}
+                        values={formstep}
                     />
                 )
             case 2:
                 return (
                     <div>
                         <UserDetails
-                            prevStep={this.prevStep}
-                            nextStep={this.nextStep}
-                            handleChange={this.handleChange}
-                            values={values}
+                            prevStep={prevStep}
+                            nextStep={nextStep}
+                            handleChange={handleChange}
+                            values={formstep}
                         />
                     </div>
                 )
@@ -100,28 +108,28 @@ export default class Signup extends Component {
             case 3:
                 return (
                     <div>
-                        {this.state.role === 'mentor' && (
+                        {formstep.role === 'mentor' && (
                             <Mentor
-                                prevStep={this.prevStep}
-                                nextStep={this.nextStep}
-                                handleChange={this.handleChange}
-                                values={values}
+                                prevStep={prevStep}
+                                nextStep={nextStep}
+                                handleChange={handleChange}
+                                values={formstep}
                             />
                         )}
-                        {this.state.role === 'enterprenuer' && (
+                        {formstep.role === 'enterprenuer' && (
                             <Enterprenuer
-                                prevStep={this.prevStep}
-                                nextStep={this.nextStep}
-                                handleChange={this.handleChange}
-                                values={values}
+                                prevStep={prevStep}
+                                nextStep={nextStep}
+                                handleChange={handleChange}
+                               values={formstep}
                             />
                         )}
-                        {this.state.role === 'student' && (
+                        {formstep.role === 'student' && (
                             <AreaOfInterest
-                                prevStep={this.prevStep}
-                                nextStep={this.nextStep}
-                                handleChange={this.handleChange}
-                                values={values}
+                                prevStep={prevStep}
+                                nextStep={nextStep}
+                                handleChange={handleChange}
+                                values={formstep}
                             />
                         )}
                     </div>
@@ -129,19 +137,19 @@ export default class Signup extends Component {
             case 4:
                 return (
                     <AreaOfInterest
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        handleChange={this.handleChange}
-                        values={values}
+                        prevStep={prevStep}
+                        nextStep={nextStep}
+                        handleChange={handleChange}
+                        values={formstep}
                     />
                 )
             case 5:
                 return (
                     <UploadPicture
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        values={values}
-                        handleChange={this.handleChange}
+                        prevStep={prevStep}
+                        nextStep={nextStep}
+                        values={formstep}
+                        handleChange={handleChange}
                     />
                 )
 
@@ -149,4 +157,10 @@ export default class Signup extends Component {
             // do nothing
         }
     }
+ 
+    return(
+        <div> {FormStep()}</div>
+    )
 }
+
+export default UserInfoForm;

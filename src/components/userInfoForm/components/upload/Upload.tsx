@@ -29,6 +29,7 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
             </div>
 
             <form className="upload__form">
+
                   <div className="upload__form__image">
                     <label htmlFor="image">
                     <img src={avatar} alt="" className="user-detail__form__img"  onClick={handleChange('image')} ></img>                    </label>
@@ -41,24 +42,23 @@ const Upload = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                      <h6 className="heading-secondary">Add Bio To your Profile</h6>
                       <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                         
-                        <textarea
-         placeholder='Write down a short summary about you and your interest' 
-         onChange={handleChange('bio')}
-          rows={3}
-
-        />
+                        <textarea className="input-formComponent"
+                            placeholder='Write down a short summary about you and your interest' 
+                            onChange={handleChange('bio')}
+                            rows={3}
+                          />
                     </div>
                   </div>
             </form>
 
             <div className="buttons">
                 <MDBBtn color='default' 
-                                  onClick={ Previous } className="button button__white">Back</MDBBtn>
-                  <a href="/feed"
-                                    className="button button__green">Next</a>
+                                  onClick={ Previous } className="button button--white">Back</MDBBtn>
+                  <Link to="/feed"
+                                    className="button button--green">Next</Link>
               </div>
              
-                    <Link to="feed" className="skip">Skip for now</Link>
+              <Link to="feed" className="skip">Skip for now</Link>
             
           </section>
     </div>

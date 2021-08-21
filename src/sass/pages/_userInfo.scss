@@ -10,30 +10,22 @@
         background-color: $color-white;
         border-radius: 2%;
         width: 900px;
-        height: 500px;
+        min-height: 300px;
         padding:1rem;
+        
         @include respond(sm) { 
             width:100%;
-            height:  auto;
-            margin: 3rem 0.5rem;
-            justify-content: center;
+            height:  100vh;
+            border-radius: 0;
+            display: flex;
+            align-items:center;
+            justify-content: flex-start;
         }
-    }
-    .input{
-    margin-bottom: 1rem;
-    background-color: white;
-    }
-    select {
-    border: 1px solid #bdbdbd;
-    margin-bottom: 1rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    color: #4f4f4f;
-    padding: 0.5rem 1rem; 
     }
 }
 .input-formComponent{
     border: 1px solid #bdbdbd;
+    background-color: white;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
     width: 100%;
@@ -53,7 +45,4 @@
       margin: 0px;
     }
 
-    @include respond(sm){
-    margin-top: 40px;
-    }
 }

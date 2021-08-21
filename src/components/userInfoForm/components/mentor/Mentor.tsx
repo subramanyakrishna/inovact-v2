@@ -1,12 +1,16 @@
 import React from 'react';
-import { MDBRow, MDBCol,MDBBtn } from 'mdb-react-ui-kit'
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 type AppProps = {
     nextStep: any,
     handleChange: any,
     values:any,
     prevStep:any
 };
-const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
+const Mentor = ({ 
+  prevStep,
+  nextStep,
+   handleChange, 
+   values }:AppProps) => {
 
   const Continue = (e: any) => {
     e.preventDefault();
@@ -21,7 +25,6 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
     <div className="user-info">
       <div className="user-info__card">
-        
          <section className="student-info">
 
             <div className="student-info__text">
@@ -34,16 +37,16 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
               <MDBRow>
                 <MDBCol md='12'>
                       <div className="form-group">
-                      <label htmlFor="university">Current Designation <span className="paragraph-primary--red">*</span></label>
-                      <input type="text"  className="input-formComponent" placeholder="Enter you Current Designation"  onChange={handleChange('McurrDesignation')} defaultValue={values.McurrDesignation} />
+                      <label htmlFor="McurrDesignation">Current Designation <span className="paragraph-primary--red">*</span></label>
+                      <input type="text" name="McurrDesignation" id="McurrDesignation"  className="input-formComponent" placeholder="Enter you Current Designation"  onChange={handleChange('McurrDesignation')} defaultValue={values.McurrDesignation} />
                       </div>
                 </MDBCol>
               </MDBRow>
               <MDBRow>
                 <MDBCol md='12'>
                   <div className="form-group">
-                        <label htmlFor="degree">Current Organization <span className="paragraph-primary--red">*</span></label>
-                        <input type="text"  className="input-formComponent" placeholder="Enter your Current Organization"  onChange={handleChange('McurrOrganization')} defaultValue={values.McurrOrganization}/>
+                        <label htmlFor="McurrOrganization">Current Organization <span className="paragraph-primary--red">*</span></label>
+                        <input type="text" name="McurrOrganization" id="McurrOrganization"  className="input-formComponent" placeholder="Enter your Current Organization"  onChange={handleChange('McurrOrganization')} defaultValue={values.McurrOrganization}/>
                   </div>
                 </MDBCol>
               </MDBRow>
@@ -52,21 +55,20 @@ const Mentor = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
                 <MDBCol md='12'>
                   <div className="form-group">
                         <label htmlFor="year">Professional Experience <span className="paragraph-primary--red">*</span></label>
-                        <input type="text" className="input-formComponent" placeholder="Enter your Professional Experience in years" onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
+                        <input type="text" name="profExperience" id="profExperience" className="input-formComponent" placeholder="Enter your Professional Experience in years" onChange={handleChange('profExperience')} defaultValue={values.profExperience} />
                   </div>
                 </MDBCol>
               </MDBRow>
               </form>
-           
-              <div className="buttons">
-              <MDBBtn color='default' 
-                                onClick={ Previous } className="button button__white">Back</MDBBtn>
-                <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
-              </div>
-                  
-
             </div>
+            <div className="buttons">
+                  <button
+                      onClick={ Previous } 
+                      className="button button--white">Back</button>
+                  <button 
+                      onClick={ Continue }  
+                      className="button button--green">Next</button>
+                </div>
           </section>
     </div>
 </div>

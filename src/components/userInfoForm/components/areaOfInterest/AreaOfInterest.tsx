@@ -2,7 +2,7 @@ import React from 'react'
 import a1 from '../../../../images/user-info/list1.png'
 import a2 from '../../../../images/user-info/list2.png'
 import a3 from '../../../../images/user-info/list3.png'
-import { MDBBtn } from 'mdb-react-ui-kit'
+
 type AppProps = {
     nextStep: any
     handleChange: any
@@ -134,20 +134,10 @@ const AreaOfInterest = ({
                         </form>
                     </div>
                     <div className="buttons">
-                        <MDBBtn
-                            color="default"
-                            onClick={Previous}
-                            className="button button__white"
-                        >
-                            Back
-                        </MDBBtn>
-                        <MDBBtn
-                            color="success"
-                            onClick={Continue}
-                            className="button button__green"
-                        >
-                            Next
-                        </MDBBtn>
+                        <button
+                                            onClick={ Previous } className="button button--white">Back</button>
+                            <button 
+                                            onClick={ Continue }  className="button button--green">Next</button>
                     </div>
                 </section>
             </div>

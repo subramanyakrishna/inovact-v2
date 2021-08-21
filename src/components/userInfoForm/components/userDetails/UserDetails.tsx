@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBRow, MDBCol,MDBBtn } from 'mdb-react-ui-kit'
+import Form from './Form';
 
 type AppProps = {
     nextStep: any,
@@ -7,25 +7,6 @@ type AppProps = {
     values:any,
     prevStep:any
 };
-const year=[
-  { 
-    year:'2011'
-  },
-  { 
-    year:'2012'
-  },
-  { 
-    year:'2013'
-  },
-  { 
-    year:'2014'
-  },
-];
-const degree=[
-  {degree:'BE'},
-  {degree:'B Sc'},
-  {degree:'B Com'}
-];
 
 const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
@@ -42,67 +23,22 @@ const UserDetails = ({ prevStep,nextStep, handleChange, values }:AppProps) => {
 
     <div className="user-info">
       <div className="user-info__card">
-        
          <section className="student-info">
-
             <div className="student-info__text">
                 <h6 className="heading-secondary">Let Us Know More About You</h6>
                 <p className="paragraph-primary--red">*Mandatory fields</p>
             </div>
-
             <div className="student-info__form">
-              <form>
-              <MDBRow>
-                <MDBCol md='12'>
-                      <div className="form-group">
-                      <label htmlFor="university">University/College <span className="paragraph-primary--red">*</span></label>
-                    <input className="input-formComponent" type="text" placeholder="Enter Your University or College"  onChange={handleChange('university')} defaultValue={values.university}/>
-                      </div>
-                </MDBCol>
-              </MDBRow>
-              <MDBRow>
-                <MDBCol md='12'>
-                  <div className="form-group">
-                        <label htmlFor="degree">Degree <span className="paragraph-primary--red">*</span></label>
-                        <br />
-                          <select className="Enter your degree">
-                            <option>Enter your degree of Graduation</option>
-                           
-                            {degree.map(({degree}, index) => {
-                                  return (
-                                    <option value={degree} onChange={handleChange('degree')}>{degree} </option>
-                                  );
-                              })}
-                          </select>
-                  </div>
-                </MDBCol>
-              </MDBRow>
-
-              <MDBRow>
-                <MDBCol md='12'>
-                  <div className="form-group">
-                        <label htmlFor="year">Year Of Graduation<span className="paragraph-primary--red">*</span></label>
-                        <br />
-                        <select className="Enter your year of Graduation" >
-                          <option>Enter your year of Graduation</option>
-                          {year.map(({year}, index) => {
-                                  return (
-                                    <option value={year} onChange={handleChange('year')}>{year} </option>
-                                  );
-                              })}
-                        </select>
-                  </div>
-                </MDBCol>
-              </MDBRow>
-              </form>
-           
-              <div className="buttons">
-              <MDBBtn color='default' 
-                                onClick={ Previous } className="button button__white">Back</MDBBtn>
-                <MDBBtn color='success' 
-                                onClick={ Continue }  className="button button__green">Next</MDBBtn>
-              </div>
+              <Form prevStep={1} nextStep={3} handleChange={handleChange} values={values} />
             </div>
+            <div className="buttons">
+                  <button
+                    onClick={ Previous } 
+                    className="button button--white">Back</button>
+                    <button 
+                        onClick={ Continue } 
+                        className="button button--green">Next</button>
+                </div>
         </section>
     </div>
 </div>)}

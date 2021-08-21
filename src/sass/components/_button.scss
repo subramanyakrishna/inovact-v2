@@ -46,15 +46,19 @@
       
      }
     
-    &__green {
+    &--green {
       background-color: $color-primary-green;
       color:$color-white;
       border: none;
     }
-    &__white {
+    &--white {
       background-color: $color-white;
       color:$color-black;
       border: 1px solid black;
-     
+     &:hover{
+        box-shadow: 0 2px 4px #999999;
+        cursor: pointer;
+        background-color: none !important;
+     }
     }
 }

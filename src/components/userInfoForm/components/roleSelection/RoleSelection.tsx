@@ -11,14 +11,12 @@ type AppProps = {
 }
 const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
     const Continue = (e: any) => {
-        e.preventDefault()
         nextStep(2)
     }
     const [activeIndex, setActiveIndex] = React.useState(0)
 
     const toggleClick = (index: number) => {
         setActiveIndex(index)
-        console.log(index)
     }
 
     return (
@@ -34,7 +32,7 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                         </p>
                     </div>
             <form className="role-selection__form">
-            <div className="role-selection__form__cards">
+                 <div className="role-selection__form__cards">
                         <MDBRow>
                             <MDBCol
                                 sm="12"
@@ -49,12 +47,13 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                             ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
                                             : 'role-selection__form__cards__item'
                                     }
+                                  
                                 >
                                     <img
                                         src={student}
                                         id="student"
-                                        alt="student"
                                         onClick={handleChange('role')}
+                                        alt="student"
                                     />
                                     <h6>Student</h6>
                                 </div>
@@ -73,12 +72,14 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                             ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
                                             : 'role-selection__form__cards__item'
                                     }
+                                   
                                 >
                                     <img
                                         src={mentor}
-                                        id="mentor"
-                                        alt="mentor"
-                                        onClick={handleChange('role')}
+                                           alt="mentor"
+                                           id="mentor"
+                                     
+                                           onClick={handleChange('role')}
                                     />
                                     <h6>Mentor</h6>
                                 </div>
@@ -97,18 +98,21 @@ const RoleSelection = ({ nextStep, handleChange, values }: AppProps) => {
                                             ? 'role-selection__form__cards__item role-selection__form__cards__item--active'
                                             : 'role-selection__form__cards__item'
                                     }
+                                   
                                 >
                                     <img
                                         src={enterprenuer}
                                         id="enterprenuer"
-                                        alt="enterprenuer"
                                         onClick={handleChange('role')}
+                                        alt="enterprenuer"
+                                       
                                     />
                                     <h6>Enterprenuer</h6>
                                 </div>
                             </MDBCol>
                         </MDBRow>
-                    </div>
+                      </div>
+                      
                     <div className="buttons ">
                     <MDBBtn color='success' 
                                   onClick={ Continue }  className="button button__green">Next</MDBBtn>

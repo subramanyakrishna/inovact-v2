@@ -1,5 +1,5 @@
 .upload{
-    padding: 1rem 4rem ;
+    padding: 0.1rem 4rem ;
     @include respond(sm){
         padding: 1rem;
     }
@@ -16,9 +16,6 @@
         display: block;
         justify-content: center;        
         text-align: center;
-
-      
-        
     }
         .buttons{
             padding: 0 4rem;
@@ -33,7 +30,7 @@
         flex-direction: column;
         &__bio{
             padding: 0 4rem;
-            padding-top: 0.4rem;
+            margin: 0.1rem 0 0;
             @include respond(sm) {
                 padding: 1.5rem 1rem 1rem;
             }
@@ -51,17 +48,10 @@
         justify-content: center;
         align-self: center;
         align-items: center;
+        position: relative;
+        bottom: 10px;
         &:hover{
             color: blue;
         }
-    }
-    textarea{
-        width: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.24);
-        border-radius: 8px;
-        
-    }
-    textarea::placeholder{
-        padding: 0.5rem;
     }
 }
