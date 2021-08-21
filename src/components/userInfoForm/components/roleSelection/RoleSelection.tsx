@@ -2,7 +2,7 @@ import React from 'react'
 import student from '../../../../images/user-info/student.png'
 import enterprenuer from '../../../../images/user-info/analytics.png'
 import mentor from '../../../../images/user-info/mentor.png'
-import { MDBRow, MDBCol, MDBBtn } from 'mdb-react-ui-kit'
+import { MDBRow, MDBCol} from 'mdb-react-ui-kit'
 
 type AppProps = {
     setFormStep: any
@@ -113,11 +113,12 @@ const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
                         </MDBRow>
                       </div>
                       
-                    <div className="buttons ">
-                    <MDBBtn color='success' 
-                                  onClick={ Continue }  className="button button__green">Next</MDBBtn>
-                    </div>
+                    
 </form>
+                    <div className="buttons buttons--center ">
+                      <button color='success' 
+                                  onClick={ Continue }  className="button button--green ">Next</button>
+                    </div>
                     
                 </section>
             </div>

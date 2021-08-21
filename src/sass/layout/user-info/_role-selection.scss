@@ -1,14 +1,20 @@
 .role-selection{
     padding: 2rem 10rem;
- text-align: left;
- 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    
     @include respond(sm) {
         padding:0;
         text-align: center;
     }
     &__text{
+        align-self: flex-start;
          .heading-secondary{
              display: block;
+             text-align: left;
         @include respond(xs){
             text-align: center;
         }

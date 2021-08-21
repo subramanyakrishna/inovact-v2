@@ -336,16 +336,23 @@ body {
 
 .role-selection {
   padding: 2rem 10rem;
-  text-align: left; }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  align-items: center; }
   @media only screen and (max-width: 48em) {
     .role-selection {
       padding: 0;
       text-align: center; } }
-  .role-selection__text .heading-secondary {
-    display: block; }
-    @media only screen and (max-width: 36em) {
-      .role-selection__text .heading-secondary {
-        text-align: center; } }
+  .role-selection__text {
+    align-self: flex-start; }
+    .role-selection__text .heading-secondary {
+      display: block;
+      text-align: left; }
+      @media only screen and (max-width: 36em) {
+        .role-selection__text .heading-secondary {
+          text-align: center; } }
   .role-selection__form {
     display: flex;
     align-items: center;
@@ -427,7 +434,7 @@ body {
     border: 1px solid #a3adb3; }
 
 .upload {
-  padding: 0.1rem 4rem; }
+  padding: 0.4rem 4rem; }
   @media only screen and (max-width: 48em) {
     .upload {
       padding: 1rem; } }
@@ -443,7 +450,8 @@ body {
     justify-content: center;
     text-align: center; }
   .upload .buttons {
-    padding: 0 4rem; }
+    padding: 0 4rem;
+    margin-top: 0; }
     @media only screen and (max-width: 48em) {
       .upload .buttons {
         padding: 0; } }
@@ -453,8 +461,8 @@ body {
     align-items: center;
     flex-direction: column; }
     .upload__form__bio {
-      padding: 0 4rem;
-      margin: 0.1rem 0 0; }
+      padding: 1rem 4rem 0rem;
+      margin: 0 0; }
       @media only screen and (max-width: 48em) {
         .upload__form__bio {
           padding: 1.5rem 1rem 1rem; } }
@@ -878,6 +886,7 @@ body {
     border-radius: 2%;
     width: 900px;
     min-height: 300px;
+    height: 500px;
     padding: 1rem; }
     @media only screen and (max-width: 48em) {
       .user-info__card {
@@ -887,6 +896,8 @@ body {
         display: flex;
         align-items: center;
         justify-content: flex-start; } }
+  .user-info form {
+    min-height: 250px; }
 
 .input-formComponent {
   border: 1px solid #bdbdbd;
