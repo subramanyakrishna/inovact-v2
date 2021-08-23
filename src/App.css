@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@keyframes scaleUpAndDown {
+  0% {
+    transform: scale(1); }
+  25% {
+    transform: scale(1.2); }
+  50% {
+    transform: scale(1); }
+  75% {
+    transform: scale(0.8); }
+  100% {
+    transform: scale(1); } }
+
 *,
 *::after,
 *::before {
@@ -93,7 +105,11 @@ body {
     padding: 2rem 1.5rem;
     text-align: center;
     float: left;
-    height: 100%; }
+    height: 100%;
+    transition: all 0.3s; }
+    .section-mission__cards__item:hover {
+      transform: translateY(-10px);
+      box-shadow: 4px 4px 0 1px #02bd63; }
     @media only screen and (max-width: 48em) {
       .section-mission__cards__item {
         margin: 0 0.5rem; } }
@@ -131,7 +147,8 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      z-index: -1; }
+      z-index: -1;
+      animation: scaleUpAndDown 2.5s linear infinite; }
       .section-features__body__text__image--learning {
         right: 0;
         left: initial; }
@@ -158,7 +175,10 @@ body {
       width: 200px;
       margin: auto; }
       .section-features__body__content__item img {
-        margin-bottom: 1rem; }
+        margin-bottom: 1rem;
+        transition: all 0.5s; }
+        .section-features__body__content__item img:hover {
+          transform: scale(1.15); }
       .section-features__body__content__item p {
         color: #000000; }
       @media only screen and (max-width: 48em) {
@@ -199,7 +219,10 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      transition: all 0.5s; }
+      .section-achievements__content__item:hover {
+        transform: scale(1.15); }
       @media only screen and (max-width: 48em) {
         .section-achievements__content__item {
           margin-bottom: 1.5rem; } }
