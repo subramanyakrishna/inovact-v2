@@ -1,0 +1,58 @@
+.upload{
+    padding: 0.4rem 4rem ;
+    @include respond(sm){
+        padding: 1rem;
+    }
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+     &:hover{
+         color: white;
+     }
+    }
+    &__text{
+        display: block;
+        justify-content: center;        
+        text-align: center;
+    }
+    .buttons{
+            padding: 0 4rem;
+            margin-top: 0;
+            @include respond(sm){
+                padding: 0;
+            }
+        }
+    &__form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &__bio{
+            padding: 1rem 4rem 0rem;
+            margin: 0 0;
+            @include respond(sm) {
+                padding: 1.5rem 1rem 1rem;
+            }
+          
+        }
+        & img{
+            width: 5.25rem;
+            @include respond(sm) {
+               margin: 0 6rem ;
+            }
+        }
+    }
+    .skip{
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        align-items: center;
+        position: relative;
+        bottom: 10px;
+        &:hover{
+            color: blue;
+        }
+    }
+}

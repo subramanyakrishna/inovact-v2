@@ -6,10 +6,25 @@
     @include respond(xs) {
         font-size: 2.4rem;
     }
-
+    
     &--white {
         color: $color-white;
     }
+}
+.heading-secondary {
+    color: $color-black;
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+    &--small{
+        font-size: 1.7rem;
+        @include respond(xs) {
+            font-size: 1rem;
+        }
+    }
+    @include respond(xs) {
+        font-size: 1.8rem;
+    }
+    
 }
 
 .paragraph-primary {
@@ -19,8 +34,14 @@
     @include respond(xs) {
         font-size: 1.25rem;
     }
-
     &--white {
         color: rgba($color-white, 0.6);
+    }
+    &--green {
+        color: $color-primary-green;
+    }
+    &--red {
+        color: $color-red;
+        font-size: 14px;
     }
 }

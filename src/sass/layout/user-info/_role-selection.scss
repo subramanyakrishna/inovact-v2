@@ -1,0 +1,79 @@
+.role-selection{
+    padding: 2rem 10rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align:left;
+    align-items: center;
+    
+    @include respond(sm) {
+        padding:0;
+        text-align: center;
+    }
+    &__text{
+        align-self: flex-start;
+         .heading-secondary{
+             display: block;
+             text-align: left;
+        @include respond(xs){
+            text-align: center;
+        }
+    }
+    @include respond(xs){
+           
+        align-self: center;
+    }
+    }
+    &__form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+    &__cards {
+        margin-top: 2rem;
+      
+        @include respond(xs) {
+            margin: 1rem;
+            display: flex;
+            align-items: center;
+        }
+       
+        &__col {
+            margin-bottom: 2rem;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+        }
+       
+        &__item {
+            margin: 0 ;
+            padding: 2rem 2rem 0.5rem;
+            text-align: center;
+            float: left;
+            border: 2.61728px solid #bdbdbd;
+            box-sizing: border-box;
+            border-radius: 8.72428px;
+            &--active{
+                border: 2px solid $color-primary-green;
+            }
+            @include respond(xs) {
+                padding: 1rem;
+                width: 133px;
+            }
+            & img {
+                margin-left: 0.5rem;
+                width: 80px;
+                height:80px;
+                padding:0.1rem;
+                @include respond(xs) {
+                    width: 50px;
+                   height:50px;
+                }
+            }
+
+          
+        }
+    }
+}
+}
