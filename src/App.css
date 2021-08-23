@@ -421,7 +421,7 @@ body {
               height: 50px; } }
 
 .area-of-interest {
-  padding: 2rem 7.5rem; }
+  padding: 2rem 6rem; }
   @media only screen and (max-width: 36em) {
     .area-of-interest {
       padding: 1rem 0.2rem;
@@ -433,6 +433,10 @@ body {
       .area-of-interest__text {
         margin-bottom: 2rem;
         text-align: center; } }
+  .area-of-interest__form form ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; }
   .area-of-interest__form__list {
     margin: 0;
     padding: 0;
@@ -448,7 +452,7 @@ body {
         .area-of-interest__form__list__item img {
           width: 1rem;
           height: auto; } }
-  .area-of-interest input[type=checkbox] + .checkbox-label {
+  .area-of-interest input[type='checkbox'] + .checkbox-label {
     margin: 0.25rem;
     border: 2px solid #02bd63;
     line-height: 16px;
@@ -458,13 +462,13 @@ body {
     font-size: 13px;
     text-transform: uppercase;
     color: #001948; }
-  .area-of-interest input[type=checkbox]:checked + .checkbox-label {
+  .area-of-interest input[type='checkbox']:checked + .checkbox-label {
     background-color: #02bd63;
     box-shadow: 0 0 2px #000000;
     color: black;
     font-style: bold; }
-  .area-of-interest input[type=checkbox]:checked + .checkbox-label:before {
-    content: "";
+  .area-of-interest input[type='checkbox']:checked + .checkbox-label:before {
+    content: '';
     border: 1px solid #a3adb3; }
 
 .upload {
@@ -956,3 +960,39 @@ body {
   .buttons__center {
     justify-content: center;
     margin: 0px; }
+
+.feed__nav {
+  width: 100%;
+  height: 5rem;
+  background-color: red; }
+
+.feed__content {
+  display: flex;
+  width: 100%; }
+  .feed__content__left {
+    height: 100vh;
+    width: 25%;
+    background-color: #001948; }
+    @media only screen and (max-width: 62em) {
+      .feed__content__left {
+        width: 30%; } }
+    @media only screen and (max-width: 48em) {
+      .feed__content__left {
+        display: none; } }
+  .feed__content__center {
+    height: 100vh;
+    width: 50%;
+    background-color: #02bd63; }
+    @media only screen and (max-width: 62em) {
+      .feed__content__center {
+        width: 70%; } }
+    @media only screen and (max-width: 48em) {
+      .feed__content__center {
+        width: 100%; } }
+  .feed__content__right {
+    height: 100vh;
+    width: 25%;
+    background-color: #f9f5f5; }
+    @media only screen and (max-width: 62em) {
+      .feed__content__right {
+        display: none; } }
