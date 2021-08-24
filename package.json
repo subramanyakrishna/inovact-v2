@@ -47,9 +47,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "rxjs": "^7.3.0",
-        "rxjs-hooks": "^0.7.0"
     }
 }

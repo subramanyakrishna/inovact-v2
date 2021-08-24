@@ -1,34 +1,26 @@
 .role-selection{
-    padding: 2rem 8rem;
+    padding: 2rem 10rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align:left;
     align-items: center;
-    @include respond(md) {
-        padding: 2rem 4rem;
-        text-align: center;
-    }
+    
     @include respond(sm) {
-        padding:4rem 0rem;
-    }
-    @include respond(xs) {
-     padding: 1rem;
+        padding:0;
+        text-align: center;
     }
     &__text{
         align-self: flex-start;
          .heading-secondary{
              display: block;
              text-align: left;
-        @include respond(lg){
+        @include respond(xs){
             text-align: center;
         }
-        
     }
-    & p{
-        margin-bottom:0;
-    }
-    @include respond(lg){
+    @include respond(xs){
+           
         align-self: center;
     }
     }
@@ -39,24 +31,21 @@
         flex-direction: column;
 
     &__cards {
-        margin: 2rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        @include respond(md) {
-            margin: 2rem 1rem;
-           
+        margin-top: 2rem;
+      
+        @include respond(xs) {
+            margin: 1rem;
+            display: flex;
+            align-items: center;
         }
        
         &__col {
-           
+            margin-bottom: 2rem;
             display:flex;
             justify-content:center;
             align-items: center;
-            @include respond(md) {
-                margin-bottom: 1rem;
-            }
         }
+       
         &__item {
             margin: 0 ;
             padding: 2rem 2rem 0.5rem;
@@ -68,25 +57,19 @@
             &--active{
                 border: 2px solid $color-primary-green;
             }
-            @include respond(md) {
-                padding: 1rem;
-                width: 9rem;
-            }
             @include respond(xs) {
-                padding: 0.5rem;
-                width: 8rem;
+                padding: 1rem;
+                width: 133px;
             }
             & img {
                 margin-left: 0.5rem;
                 width: 80px;
                 height:80px;
                 padding:0.1rem;
-              
                 @include respond(xs) {
-                  
-                    width: 40px;
-                    height:40px;
-                 }
+                    width: 50px;
+                   height:50px;
+                }
             }
 
           
