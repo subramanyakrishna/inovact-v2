@@ -35,9 +35,8 @@ const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
                  <div className="role-selection__form__cards">
                         <MDBRow>
                             <MDBCol
-                                sm="12"
-                                md="6"
-                                lg="4"
+                               xs="12"
+                               sm="4"
                                 className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(0)}
                             >
@@ -60,9 +59,10 @@ const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
                             </MDBCol>
 
                             <MDBCol
-                                sm="12"
-                                md="6"
-                                lg="4"
+                                xs="12"
+                                sm="4"
+                              
+                                
                                 className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(1)}
                             >
@@ -86,9 +86,9 @@ const RoleSelection = ({ setFormStep, handleChange, values }: AppProps) => {
                             </MDBCol>
 
                             <MDBCol
-                                sm="12"
-                                md="6"
-                                lg="4"
+                                xs="12"
+                                
+                                sm="4"
                                 className="role-selection__form__cards__col"
                                 onClick={() => toggleClick(2)}
                             >

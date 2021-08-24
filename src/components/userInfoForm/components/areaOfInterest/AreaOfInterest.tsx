@@ -1,7 +1,21 @@
 import React from 'react'
-import a1 from '../../../../images/user-info/list1.png'
-import a2 from '../../../../images/user-info/list2.png'
-import a3 from '../../../../images/user-info/list3.png'
+import datascience from '../../../../images/user-info/aoi/datascience.svg'
+import project from '../../../../images/user-info/aoi/projectmanagement.svg'
+import webdev from '../../../../images/user-info/aoi/webdev.svg'
+import cloud from '../../../../images/user-info/aoi/cloud.svg'
+import ml from '../../../../images/user-info/aoi/ml.svg'
+import robotics from '../../../../images/user-info/aoi/robotics.svg'
+import coding from '../../../../images/user-info/aoi/coding.svg'
+import business from '../../../../images/user-info/aoi/businessanalysis.svg'
+import gaming from '../../../../images/user-info/aoi/gaming.svg'
+import electrical from '../../../../images/user-info/aoi/electrical.svg'
+import uiux from '../../../../images/user-info/aoi/uiux.svg'
+import fintech from '../../../../images/user-info/aoi/fintech.svg'
+import economics from '../../../../images/user-info/aoi/economics.svg'
+import mechanical from '../../../../images/user-info/aoi/mechanical.svg'
+import hr from '../../../../images/user-info/aoi/HR.svg'
+import marketing from '../../../../images/user-info/aoi/marketing.svg'
+import stock from '../../../../images/user-info/aoi/stock.svg'
 
 type AppProps = {
     setFormStep: any
@@ -12,69 +26,72 @@ type AppProps = {
 const aoi = [
     {
         name: 'Data Science',
-        image: a1,
+        image: datascience,
     },
     {
         name: 'Project Management',
-        image: a3,
+        image: project,
     },
     {
         name: 'Web dev',
-        image: a2,
+        image: webdev,
     },
     {
         name: 'Cloud Computing',
-        image: a3,
+        image: cloud,
     },
     {
         name: 'ML and AI',
-        image: a2,
+        image: ml,
     },
     {
         name: 'Robotics',
-        image: a2,
+        image: robotics,
     },
     {
         name: 'Competetive coding',
-        image: a2,
+        image: coding,
     },
     {
         name: 'Business Analytic',
-        image: a2,
+        image: business,
     },
     {
-        name: 'Mech',
-        image: a2,
+        name: 'Gaming',
+        image: gaming,
     },
     {
-        name: 'Competetive Coding',
-        image: a1,
+        name: 'Electrical',
+        image: electrical,
     },
     {
         name: 'UI/UX',
-        image: a2,
+        image: uiux,
     },
     {
         name: 'FinTech',
-        image: a2,
+        image: fintech,
     },
     {
-        name: 'Business Analysis',
-        image: a2,
+        name: 'Economics',
+        image: economics,
     },
 
+    {
+        name: 'Mechanical',
+        image: mechanical,
+    },
+    {
+        name: 'Human Resources',
+        image: hr,
+    },
     {
         name: 'Marketing',
-        image: a2,
-    },
-
-    {
-        name: 'Cloud Computing',
-        image: a1,
+        image: marketing,
     },
     {
-        name: '...',
-        image: a3,
+        name: 'Stock Trading',
+        image: stock,
     },
 ]
 const AreaOfInterest = ({
@@ -129,6 +146,25 @@ const AreaOfInterest = ({
                                         </li>
                                     )
                                 })}
+                                   <li >
+                                            <div className="area-of-interest__form__list__item">
+                                                <input
+                                                    type="checkbox"
+                                                    id="more"
+                                                    name="more"
+                                                    value="more"
+                                                    hidden
+                                                    onChange={handleChange}
+                                                />
+                                                <label
+                                                    className="checkbox-label"
+                                                    htmlFor="more"
+                                                    style={{padding:' 0.5rem 0.75rem',fontStyle:'600',fontSize:'1.5rem',textAlign:'center',display:'flex',alignSelf:'center'}}
+                                                >
+                                                   ....
+                                                </label>
+                                            </div>
+                                        </li>
                             </ul>
                         </form>
                     </div>
