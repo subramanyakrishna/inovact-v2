@@ -2,7 +2,7 @@
     padding: 2rem 6rem;
 
     @include respond(xs) {
-        padding: 1rem 0.2rem;
+        padding: 0.5rem;
         margin: 0;
     }
     &__text {
@@ -11,30 +11,32 @@
         @include respond(xs) {
             margin-bottom: 2rem;
             text-align: center;
-        }
+      }
     }
-    &__form {
-        & form ul {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        &__list {
-            margin: 0;
-            padding: 0;
-            height: auto;
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            &__item {
-                & img {
-                    width: 25.5px;
-                    height: 29.5px;
-                    margin-right: 0.4rem;
-                    @include respond(xs) {
-                        width: 1rem;
-                        height: auto;
-                    }
+    &__form{
+      & form ul {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        @include respond(md) {
+          margin-top: 1rem;
+    }
+      }
+       &__list{
+           margin: 0;
+           padding: 0;
+           height: auto;
+           display: flex;
+           flex-wrap: wrap;
+           list-style: none;
+           &__item{
+             & img{
+                width: 1.5rem;
+                height:1.5rem;
+                margin-right: 0.4rem;
+                @include respond(xs){
+                    width:1rem;
+                    height: auto;
                 }
             }
         }
@@ -57,10 +59,7 @@
         box-shadow: 0 0 2px $color-black;
         color: black;
         font-style: bold;
-    }
-
-    input[type='checkbox']:checked + .checkbox-label:before {
-        content: '';
-        border: 1px solid #a3adb3;
-    }
+      }
+      
+}
 }

@@ -17,12 +17,12 @@
     margin-bottom: 0.2rem;
     &--small{
         font-size: 1.7rem;
-        @include respond(xs) {
+        @include respond(sm) {
             font-size: 1rem;
         }
     }
-    @include respond(xs) {
-        font-size: 1.8rem;
+    @include respond(sm) {
+        font-size: 1.7rem;
     }
     
 }
