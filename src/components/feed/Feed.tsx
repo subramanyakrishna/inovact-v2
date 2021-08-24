@@ -1,7 +1,8 @@
 import React from 'react'
-import Navbar from './components/NavBar';
-import RightNavBar from './components/rightnav/RightNavBar';
-import LeftNavBar from './components/leftnav/LeftNavBar';
+import Navbar from './components/NavBar'
+import RightNavBar from './components/rightnav/RightNavBar'
+import LeftNavBar from './components/leftnav/LeftNavBar'
+import CreatePost from './components/center/CreatePost'
 
 function Feed() {
     return (
@@ -13,7 +14,9 @@ function Feed() {
                 <div className="feed__content__left">
                     <LeftNavBar />
                 </div>
-                <div className="feed__content__center"></div>
+                <div className="feed__content__center">
+                    <CreatePost />
+                </div>
                 <div className="feed__content__right">
                     <RightNavBar />
                 </div>

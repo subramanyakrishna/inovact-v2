@@ -8,11 +8,11 @@
         display: flex;
         width: 100%;
         padding: 5rem 1rem 0;
-        
-        background-color:$color-light-bg;
+
+        background-color: $color-light-bg;
         &__left {
             width: 25%;
-            
+
             @include respond(md) {
                 width: 30%;
             }
@@ -24,7 +24,7 @@
         &__center {
             height: 100vh;
             width: 50%;
-            background-color: $color-primary-green;
+            padding: 1rem;
             @include respond(md) {
                 width: 70%;
             }
@@ -37,7 +37,7 @@
         &__right {
             height: 100vh;
             width: 25%;
-           
+
             @include respond(md) {
                 display: none;
             }
