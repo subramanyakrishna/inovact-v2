@@ -968,11 +968,13 @@ body {
 
 .feed__content {
   display: flex;
-  width: 100%; }
+  width: 100%;
+  padding: 1rem; }
   .feed__content__left {
     height: 100vh;
     width: 25%;
-    background-color: #001948; }
+    background-color: #001948;
+    padding: 1rem; }
     @media only screen and (max-width: 62em) {
       .feed__content__left {
         width: 30%; } }
@@ -982,7 +984,8 @@ body {
   .feed__content__center {
     height: 100vh;
     width: 50%;
-    background-color: #02bd63; }
+    background-color: #02bd63;
+    padding: 1rem; }
     @media only screen and (max-width: 62em) {
       .feed__content__center {
         width: 70%; } }
@@ -992,7 +995,8 @@ body {
   .feed__content__right {
     height: 100vh;
     width: 25%;
-    background-color: #f9f5f5; }
+    background-color: #f9f5f5;
+    padding: 1rem; }
     @media only screen and (max-width: 62em) {
       .feed__content__right {
         display: none; } }
