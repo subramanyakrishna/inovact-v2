@@ -159,7 +159,7 @@ const AreaOfInterest = ({
                                                 <label
                                                     className="checkbox-label"
                                                     htmlFor="more"
-                                                    style={{padding:' 0.5rem',fontStyle:'600',fontSize:'1.5rem',textAlign:'center',display:'flex',alignSelf:'center'}}
+                                                    style={{padding:' 0.5rem 0.75rem',fontStyle:'600',fontSize:'1.5rem',textAlign:'center',display:'flex',alignSelf:'center'}}
                                                 >
                                                    ....
                                                 </label>
