@@ -1,5 +1,5 @@
 .upload{
-    padding: 2rem 4rem 1rem;
+    padding: 0.4rem 4rem ;
     @include respond(sm){
         padding: 1rem;
     }
@@ -38,7 +38,7 @@
           
         }
         & img{
-            width: 5rem;
+            width: 5.25rem;
             @include respond(sm) {
                margin: 0 6rem ;
             }
