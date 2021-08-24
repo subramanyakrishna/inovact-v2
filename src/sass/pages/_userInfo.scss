@@ -6,16 +6,22 @@
     align-items: center;
 
     &__card{
-        max-width: 1100px;
+        max-width: 70%;
+        width: 60%;
         background-color: $color-white;
         border-radius: 2%;
-        width: 900px;
-        min-height: 300px;
-        height:500px;
-        padding:1rem;
-        
-        @include respond(sm) { 
+        min-height: 40%;
+        max-height: 100%;
+        @include respond(lg) {
+            max-width: 85%;
+            max-height: 95%;
+            width: 85%;
+           justify-self: center;
+        }
+        @include respond(xs) { 
+            max-width: 100%;
             width:100%;
+            min-height: 100%;
             height:  100vh;
             border-radius: 0;
             display: flex;
@@ -25,15 +31,14 @@
     }
     form{
         min-height: 250px;
-          
         @include respond(sm) {
-            min-height: 300px;
+            min-height: auto;
         }
     }
 }
 .input-formComponent{
     border: 1px solid #bdbdbd;
-    background-color: white;
+    background-color: $color-white;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
     width: 100%;
@@ -52,5 +57,4 @@
       justify-content: center;
       margin: 0px;
     }
-
 }

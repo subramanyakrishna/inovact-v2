@@ -1,11 +1,20 @@
 .user-details{
-        padding: 2rem 10rem;
+        padding: 2rem 8rem;
+        @include respond(md) {
+            padding: 2rem 4rem;
+           
+        }
+        @include respond(sm) {
+            padding:2rem 1rem;
+        }
         @include respond(xs) {
             padding: 1rem;
-        }
+           }
         &__text{
-            @include respond(xs) {
-              margin-bottom: 2rem;
+            @include respond(sm) {
+              
+                font-size:1rem;
+              margin-bottom: 0rem;
               text-align: center;
             }
         }

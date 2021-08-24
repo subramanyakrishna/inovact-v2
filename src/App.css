@@ -42,12 +42,12 @@ body {
   margin-bottom: 0.2rem; }
   .heading-secondary--small {
     font-size: 1.7rem; }
-    @media only screen and (max-width: 36em) {
+    @media only screen and (max-width: 48em) {
       .heading-secondary--small {
         font-size: 1rem; } }
-  @media only screen and (max-width: 36em) {
+  @media only screen and (max-width: 48em) {
     .heading-secondary {
-      font-size: 1.8rem; } }
+      font-size: 1.7rem; } }
 
 .paragraph-primary {
   color: rgba(0, 0, 0, 0.6);
@@ -335,25 +335,33 @@ body {
   margin-right: 1rem; }
 
 .role-selection {
-  padding: 2rem 10rem;
+  padding: 2rem 8rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: left;
   align-items: center; }
+  @media only screen and (max-width: 62em) {
+    .role-selection {
+      padding: 2rem 4rem;
+      text-align: center; } }
   @media only screen and (max-width: 48em) {
     .role-selection {
-      padding: 0;
-      text-align: center; } }
+      padding: 4rem 0rem; } }
+  @media only screen and (max-width: 36em) {
+    .role-selection {
+      padding: 1rem; } }
   .role-selection__text {
     align-self: flex-start; }
     .role-selection__text .heading-secondary {
       display: block;
       text-align: left; }
-      @media only screen and (max-width: 36em) {
+      @media only screen and (max-width: 75em) {
         .role-selection__text .heading-secondary {
           text-align: center; } }
-    @media only screen and (max-width: 36em) {
+    .role-selection__text p {
+      margin-bottom: 0; }
+    @media only screen and (max-width: 75em) {
       .role-selection__text {
         align-self: center; } }
   .role-selection__form {
@@ -362,17 +370,21 @@ body {
     justify-content: center;
     flex-direction: column; }
     .role-selection__form__cards {
-      margin-top: 2rem; }
-      @media only screen and (max-width: 36em) {
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      @media only screen and (max-width: 62em) {
         .role-selection__form__cards {
-          margin: 1rem;
-          display: flex;
-          align-items: center; } }
+          margin: 2rem 1rem; } }
       .role-selection__form__cards__col {
         margin-bottom: 2rem;
         display: flex;
         justify-content: center;
         align-items: center; }
+        @media only screen and (max-width: 62em) {
+          .role-selection__form__cards__col {
+            margin-bottom: 1rem; } }
       .role-selection__form__cards__item {
         margin: 0;
         padding: 2rem 2rem 0.5rem;
@@ -383,10 +395,14 @@ body {
         border-radius: 8.72428px; }
         .role-selection__form__cards__item--active {
           border: 2px solid #02bd63; }
-        @media only screen and (max-width: 36em) {
+        @media only screen and (max-width: 62em) {
           .role-selection__form__cards__item {
             padding: 1rem;
-            width: 133px; } }
+            width: 9rem; } }
+        @media only screen and (max-width: 36em) {
+          .role-selection__form__cards__item {
+            padding: 0.5rem;
+            width: 8rem; } }
         .role-selection__form__cards__item img {
           margin-left: 0.5rem;
           width: 80px;
@@ -394,11 +410,15 @@ body {
           padding: 0.1rem; }
           @media only screen and (max-width: 36em) {
             .role-selection__form__cards__item img {
-              width: 50px;
-              height: 50px; } }
+              width: 40px;
+              height: 40px; } }
 
 .area-of-interest {
-  padding: 2rem 7.5rem; }
+  padding: 2rem 6rem; }
+  @media only screen and (max-width: 48em) {
+    .area-of-interest {
+      padding: 1rem;
+      margin: 0; } }
   @media only screen and (max-width: 36em) {
     .area-of-interest {
       padding: 1rem 0.2rem;
@@ -410,6 +430,13 @@ body {
       .area-of-interest__text {
         margin-bottom: 2rem;
         text-align: center; } }
+  .area-of-interest__form form ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; }
+    @media only screen and (max-width: 62em) {
+      .area-of-interest__form form ul {
+        margin-top: 1rem; } }
   .area-of-interest__form__list {
     margin: 0;
     padding: 0;
@@ -418,8 +445,8 @@ body {
     flex-wrap: wrap;
     list-style: none; }
     .area-of-interest__form__list__item img {
-      width: 25.5px;
-      height: 29.5px;
+      width: 1.5rem;
+      height: 1.5rem;
       margin-right: 0.4rem; }
       @media only screen and (max-width: 36em) {
         .area-of-interest__form__list__item img {
@@ -440,15 +467,12 @@ body {
     box-shadow: 0 0 2px #000000;
     color: black;
     font-style: bold; }
-  .area-of-interest input[type=checkbox]:checked + .checkbox-label:before {
-    content: "";
-    border: 1px solid #a3adb3; }
 
 .upload {
-  padding: 0.4rem 4rem; }
+  padding: 1rem 4rem; }
   @media only screen and (max-width: 48em) {
     .upload {
-      padding: 1rem; } }
+      padding: 0; } }
   .upload a {
     display: flex;
     align-items: center;
@@ -478,7 +502,7 @@ body {
         .upload__form__bio {
           padding: 1.5rem 1rem 1rem; } }
     .upload__form img {
-      width: 5.25rem; }
+      width: 5rem; }
       @media only screen and (max-width: 48em) {
         .upload__form img {
           margin: 0 6rem; } }
@@ -493,13 +517,20 @@ body {
       color: blue; }
 
 .user-details {
-  padding: 2rem 10rem; }
+  padding: 2rem 8rem; }
+  @media only screen and (max-width: 62em) {
+    .user-details {
+      padding: 2rem 4rem; } }
+  @media only screen and (max-width: 48em) {
+    .user-details {
+      padding: 2rem 1rem; } }
   @media only screen and (max-width: 36em) {
     .user-details {
       padding: 1rem; } }
-  @media only screen and (max-width: 36em) {
+  @media only screen and (max-width: 48em) {
     .user-details__text {
-      margin-bottom: 2rem;
+      font-size: 1rem;
+      margin-bottom: 0rem;
       text-align: center; } }
   .user-details .input-formComponent {
     border: 1px solid #bdbdbd;
@@ -893,16 +924,23 @@ body {
   justify-content: center;
   align-items: center; }
   .user-info__card {
-    max-width: 1100px;
+    max-width: 70%;
+    width: 60%;
     background-color: #ffffff;
     border-radius: 2%;
-    width: 900px;
-    min-height: 300px;
-    height: 500px;
-    padding: 1rem; }
-    @media only screen and (max-width: 48em) {
+    min-height: 40%;
+    max-height: 100%; }
+    @media only screen and (max-width: 75em) {
       .user-info__card {
+        max-width: 85%;
+        max-height: 95%;
+        width: 85%;
+        justify-self: center; } }
+    @media only screen and (max-width: 36em) {
+      .user-info__card {
+        max-width: 100%;
         width: 100%;
+        min-height: 100%;
         height: 100vh;
         border-radius: 0;
         display: flex;
@@ -912,11 +950,11 @@ body {
     min-height: 250px; }
     @media only screen and (max-width: 48em) {
       .user-info form {
-        min-height: 300px; } }
+        min-height: auto; } }
 
 .input-formComponent {
   border: 1px solid #bdbdbd;
-  background-color: white;
+  background-color: #ffffff;
   margin-bottom: 1rem;
   border-radius: 0.25rem;
   width: 100%;

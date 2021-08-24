@@ -1,7 +1,7 @@
 .upload{
-    padding: 0.4rem 4rem ;
+    padding: 1rem 4rem ;
     @include respond(sm){
-        padding: 1rem;
+        padding: 0;
     }
     a{
         display: flex;
@@ -38,7 +38,7 @@
           
         }
         & img{
-            width: 5.25rem;
+            width: 5rem;
             @include respond(sm) {
                margin: 0 6rem ;
             }
