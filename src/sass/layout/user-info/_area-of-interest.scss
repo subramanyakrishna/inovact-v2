@@ -1,18 +1,14 @@
-.area-of-interest{
+.area-of-interest {
     padding: 2rem 6rem;
-   
-    @include respond(sm) {
-      padding: 1rem ;
-      margin: 0;
-  }
+
     @include respond(xs) {
         padding: 0.5rem;
         margin: 0;
     }
-    &__text{
+    &__text {
         text-align: center;
         font-size: 1rem;
-          @include respond(xs) {
+        @include respond(xs) {
             margin-bottom: 2rem;
             text-align: center;
       }
@@ -43,12 +39,10 @@
                     height: auto;
                 }
             }
-          }
         }
     }
-      
 
-    input[type=checkbox]+.checkbox-label {
+    input[type='checkbox'] + .checkbox-label {
         margin: 0.25rem;
         border: 2px solid $color-primary-green;
         line-height: 16px;
@@ -58,14 +52,14 @@
         font-size: 13px;
         text-transform: uppercase;
         color: $color-primary-blue;
-       
-      }
-      
-      input[type=checkbox]:checked+.checkbox-label {
+    }
+
+    input[type='checkbox']:checked + .checkbox-label {
         background-color: $color-primary-green;
         box-shadow: 0 0 2px $color-black;
         color: black;
         font-style: bold;
       }
       
+}
 }

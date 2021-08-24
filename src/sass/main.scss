@@ -15,21 +15,21 @@
 @import 'layout/landing-page/footer-section';
 @import 'layout/landing-page/navigation-bar';
 
-
 @import 'layout/user-info/role-selection';
 @import 'layout/user-info/area-of-interest';
 @import 'layout/user-info/upload_pictures';
 @import 'layout/user-info/user-details.scss';
 
+@import 'layout/feed/left-right-nav.scss';
+
 
 @import 'components/input.scss';
-@import "components/button";
-@import "components/input";
-
-
+@import 'components/button';
+@import 'components/input';
+@import 'components/navigation-bar.scss'; 
 
 @import 'pages/landing-page.scss';
-@import "pages/signup";
-@import "pages/signin";
+@import 'pages/signup';
+@import 'pages/signin';
 @import 'pages/userInfo.scss';
-
+@import 'pages/feed';

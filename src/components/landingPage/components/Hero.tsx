@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import DownArrow from '../../../images/landing-section-1/down-arrows.png'
 
 function Hero() {
@@ -13,18 +14,18 @@ function Hero() {
                     <span>Innovate.</span>
                 </p>
                 <div className="landing-page__hero__text-box__button">
-                    <a
+                    <Link
+                        to="/login"
                         className="landing-page__hero__text-box__button__item landing-page__hero__text-box__button__item--login"
-                        href="/login"
                     >
                         Log In
-                    </a>
-                    <a
+                    </Link>
+                    <Link
+                        to="/signup"
                         className="landing-page__hero__text-box__button__item"
-                        href="/signup"
                     >
                         Sign Up
-                    </a>
+                    </Link>
                 </div>
             </div>
             <img

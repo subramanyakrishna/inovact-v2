@@ -1,0 +1,46 @@
+//  REMOVE BACKGROUND COLORS AND HEIGHTS ONLY WHEN YOU PUT IN THE COMPONENTS
+.feed {
+    &__nav {
+        width: 100%;
+    }
+
+    &__content {
+        display: flex;
+        width: 100%;
+        padding: 5rem 1rem 0;
+        
+        background-color:$color-light-bg;
+        &__left {
+            width: 25%;
+            
+            @include respond(md) {
+                width: 30%;
+            }
+            @include respond(sm) {
+                display: none;
+            }
+        }
+
+        &__center {
+            height: 100vh;
+            width: 50%;
+            background-color: $color-primary-green;
+            @include respond(md) {
+                width: 70%;
+            }
+
+            @include respond(sm) {
+                width: 100%;
+            }
+        }
+
+        &__right {
+            height: 100vh;
+            width: 25%;
+           
+            @include respond(md) {
+                display: none;
+            }
+        }
+    }
+}
