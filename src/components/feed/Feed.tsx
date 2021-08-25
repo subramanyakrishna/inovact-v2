@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from './components/NavBar'
-import RightNavBar from './components/rightnav/RightNavBar'
-import LeftNavBar from './components/leftnav/LeftNavBar'
-import CreatePost from './components/center/CreatePost'
+import Navbar from 'components/feed/components/NavBar'
+import RightNavBar from 'components/feed/components/rightnav/RightNavBar'
+import LeftNavBar from 'components/feed/components/leftnav/LeftNavBar'
+import CreatePost from 'components/feed/components/center/CreatePost'
 
 function Feed() {
     return (

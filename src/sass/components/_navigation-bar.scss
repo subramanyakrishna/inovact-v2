@@ -18,11 +18,17 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      @include respond(lg) {
+        width: 25%;
+       }
+       @include respond(md) {
+        width: 20%;
+       }
       &__brandname{
         font-weight: 600;
         margin: 1rem 0 1rem 1rem; 
 
-        @include respond(sm) {
+        @include respond(lg) {
          display:none;
         }      
       }
@@ -86,7 +92,11 @@
   .bottom-nav-component{
     display: none;
     background-color: $color-white;
-   
+    transform: translate3d(0, 0, 0);
+    transition: all 250ms;
+    &--scrolled{
+      transform: translate3d(0, 100%, 0);
+    }
       &__items{
         width: 100%;
         margin: 0 auto;

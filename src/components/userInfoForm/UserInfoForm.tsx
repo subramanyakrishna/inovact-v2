@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import RoleSelection from './components/roleSelection/RoleSelection'
-import UserDetails from './components/userDetails/UserDetails'
-import Mentor from './components/mentor/Mentor'
-import Enterprenuer from './components/enterprenuer/Enterprenuer'
-import AreaOfInterest from './components/areaOfInterest/AreaOfInterest'
-import UploadPicture from './components/upload/Upload'
+import RoleSelection from 'components/userInfoForm/components/roleSelection/RoleSelection'
+import UserDetails from 'components/userInfoForm/components/userDetails/UserDetails'
+import Mentor from 'components/userInfoForm/components/mentor/Mentor'
+import Enterprenuer from 'components/userInfoForm/components/enterprenuer/Enterprenuer'
+import AreaOfInterest from 'components/userInfoForm/components/areaOfInterest/AreaOfInterest'
+import UploadPicture from 'components/userInfoForm/components/upload/Upload'
 
 interface UserInfo {
 	role:string,

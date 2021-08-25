@@ -1,6 +1,6 @@
 import React from 'react'
-import avatar from '../../../../images/feed/user-avatar.png'
-import add from '../../../../images/feed/add.svg'
+import avatar from 'images/feed/user-avatar.png'
+import add from 'images/feed/add.svg'
 
 function CreatePost() {
     return (

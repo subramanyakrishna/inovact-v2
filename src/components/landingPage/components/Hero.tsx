@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import DownArrow from '../../../images/landing-section-1/down-arrows.png'
+import DownArrow from 'images/landing-section-1/down-arrows.png'
 
 function Hero() {
     return (

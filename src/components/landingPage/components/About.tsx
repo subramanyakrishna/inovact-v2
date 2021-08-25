@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit'
-import sideImage from '../../../images/landing-section-2/side-image.png'
+import sideImage from 'images/landing-section-2/side-image.png'
 
 function About() {
     return (

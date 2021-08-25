@@ -6,13 +6,13 @@ import {
     MDBListGroup,
     MDBListGroupItem
   } from "mdb-react-ui-kit";
-  interface Connection {
-    name: string;
-    image: string;
-    designation: string;
-    duration: string;
-  }
-  export const connection: Connection[] = [
+interface Connection {
+  name: string;
+  image: string;
+  designation: string;
+  duration: string;
+}
+export const connection: Connection[] = [
     {
       name: "Jane Doe",
       image:

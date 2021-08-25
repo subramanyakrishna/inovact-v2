@@ -1,50 +1,6 @@
-.heading{
-    font-style: normal;
-    font-weight: 550;
-    font-size: 1.2rem;
-    color: $color-black;
-    text-align: center;
-  }
-  
-  .title
-  {
-    margin: 0.1rem;
-    font-weight: 500;
-    font-size: 1.2rem;
-    &--bold{
-      font-weight: 550;
-      text-align: center;
-    }
-    &--space{
-      letter-spacing: 1.5px;
-    }
-  }
-  .sub-title{
-      margin: 0.1rem;
-      font-size: 1rem;
-      &--green{
-        color: $color-primary-green;
-        font-style: italic;
-        text-align: center;
-        font-size: 0.9rem;
-      }
-    }
-  .muted {
-      &--italic{
-        font-style: italic;
-        color: gray;
-        font-size: 0.8rem;
-      }
-      &--bold{
-        font-style: bold;
-        color: gray;
-        font-size: 0.8rem;
-      }
-    }
-  
-  .left-right-nav{
+ .left-right-nav{
     padding: 1rem;
-    &  img{
+    & img{
         width:3.5rem;
         height: 3.5rem;
         object-fit: cover;
@@ -56,19 +12,21 @@
      background-color:$color-white;
      border-radius:1rem;
     &__header{
-          padding: 1rem 0.1rem;
+        padding: 1rem 0.1rem;
     }
     & p{
         margin: 0;
         padding: 0;
-    }
-     &__body{
+        @include respond(lg){
+          display: none;
+        }
+   }
+   &__body{
         margin:0 !important;
         padding:0 !important;
         display: flex;
         justify-content: center;   
-     }
-
+    }
    &__list{
         width: 100%;
         margin:0 !important;
@@ -82,11 +40,30 @@
         justify-content:left;
         align-items:center;
         align-self: flex-end;
-        position: relative;
-        &--create{
-          width: 100%;
+        @include respond(lg){
+          padding: 0.7rem;
+          
+        }
+          &--right{
+            width: 100%;
             margin:0 !important;
             padding: 0 auto;
+            display:flex;
+            flex-direction:row;
+            justify-content:left;
+            align-items:center;
+            align-self: flex-end;
+            @include respond(lg){
+              padding: 0.5rem;
+              flex-direction:column;
+              justify-content:left;
+              
+            }
+          }
+       
+        &--create{
+            width: 100%;
+            margin:0 !important;
             display:flex;
             flex-direction:row;
             justify-content:left;
@@ -95,11 +72,11 @@
             position: relative;
           
           align-self: center;
-            &img{
+         
             @include respond(lg){
-            width: 0.8rem;
+             padding: 0.5rem;
             }
-            }
+    
         }
       &__info{
         display:flex;
@@ -111,6 +88,11 @@
         align-items:left;
         text-align:left;
         margin-top: 0.1rem;
+        @include respond(lg){
+          & p {
+            display: none;
+          }
+        }
         & a{
           color: black;
           @include respond(lg){
@@ -118,53 +100,49 @@
           }
         }
 
-        &--newteams{
-        
-            &h2{
-                margin-right: 0.1rem;
-            }
-            margin-top: 0.1rem;
-            margin-left: 0;
-           
-        }
         @include respond(lg){
           align-self: center;
           justify-content:left;
         }
       }
-      &--conn{
+      &__rightTop{
         width: 100%;
         margin:0 !important;
-        padding: 0 auto;
+        padding: 0 0.5rem;
         display:flex;
         flex-direction:row;
         justify-content:left;
         align-items:center;
-        align-self: flex-end;
-        position: relative;
-        @include respond(lg){
-          padding: 0 0.5rem;
-          & img{
-            display: none;
-          }
         
-          
-      }
+        &--row{
+        padding: 0.4rem;
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-start;
+        align-items:left;
+        @include respond(lg){
+        margin-left: -1.7rem;
+          }
+        }
+      
+        @include respond(lg){
+          padding: 0.7rem;
+            flex-direction:column;
+        }
       }
         &__button{
         background-color:$color-secondary-blue;
-        align-self: flex-start;
+        align-self: center;
         border: 1px solid $color-secondary-blue;
         box-shadow: 0 0 0.2rem $color-secondary-blue;
         border-radius:2rem;
         min-width: 5rem;
         padding: 0.3rem ;
         color:white;
-        position: absolute;
-        right: 0.5rem;
+      
         @include respond(lg){
-           position: unset;
-           align-self: center;
+        padding: 0.1rem ;
+        align-self: flex-start;
         }
         }
      }

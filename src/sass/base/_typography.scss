@@ -45,3 +45,46 @@
         font-size: 14px;
     }
 }
+
+.title
+  {
+    margin: 0.1rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    &--bold{
+      font-weight: 550;
+      text-align: center;
+    }
+    &--space{
+      letter-spacing: 1.5px;
+    }
+}
+  .sub-title{
+      margin: 0.1rem;
+      font-size: 1rem;
+      &--green{
+        color: $color-primary-green;
+        font-style: italic;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    }
+.muted {
+      &--italic{
+        font-style: italic;
+        color: gray;
+        font-size: 0.8rem;
+      }
+      &--bold{
+        font-style: bold;
+        color: gray;
+        font-size: 0.8rem;
+      }
+ }
+ .heading{
+    font-style: normal;
+    font-weight: 550;
+    font-size: 1.2rem;
+    color: $color-black;
+    text-align: center;
+} 
