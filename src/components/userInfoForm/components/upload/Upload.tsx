@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from '../../../../images/user-info/avatar.png';
+import avatar from 'images/user-info/avatar.png';
 import { MDBBtn } from 'mdb-react-ui-kit';
 import {Link} from 'react-router-dom';
 

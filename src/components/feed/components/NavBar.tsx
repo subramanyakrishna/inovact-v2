@@ -1,13 +1,13 @@
-import React,{useState,useEffect} from "react";
-import search from "../../../images/feed/search.svg";
-import notifications from "../../../images/feed/notifications.svg";
-import user from "../../../images/feed/user.png";
-import messages from "../../../images/feed/messages.svg";
-import settings from "../../../images/feed/settings.svg";
-import home from "../../../images/feed/home.svg";
-import connection from "../../../images/feed/connections.svg";
-import teams from "../../../images/feed/teams.svg";
-import logo from "../../../images/logo/inovact-logo.png";
+import React from "react";
+import search from "images/feed/search.svg";
+import notifications from "images/feed/notifications.svg";
+import user from "images/feed/user.png";
+import messages from "images/feed/messages.svg";
+import settings from "images/feed/settings.svg";
+import home from "images/feed/home.svg";
+import connection from "images/feed/connections.svg";
+import teams from "images/feed/teams.svg";
+import logo from "images/logo/inovact-logo.png";
 import { of, fromEvent, animationFrameScheduler } from 'rxjs'
 import {
   distinctUntilChanged,
@@ -20,8 +20,6 @@ import {
 
 import { useObservable } from 'rxjs-hooks'
    
-var bool:boolean;
-var previous;
 const watchScroll = () =>
   of(typeof window === 'undefined').pipe(
     filter(bool  => !bool),
@@ -80,7 +78,7 @@ const NavBar = () => {
   
         {/* Bottom NavBar*/}
   
-        <div className="bottom-nav-component">
+        <div className={`bottom-nav-component ${scrollDirection === 'Down' && 'bottom-nav-component--scrolled'}`}>
           <div className="bottom-nav-component__items">
             <img
               className="bottom-nav-component__items--active"

@@ -1,7 +1,7 @@
 import React from 'react'
-import student from '../../../../images/user-info/student.png'
-import enterprenuer from '../../../../images/user-info/analytics.png'
-import mentor from '../../../../images/user-info/mentor.png'
+import student from 'images/user-info/student.png'
+import enterprenuer from 'images/user-info/analytics.png'
+import mentor from 'images/user-info/mentor.png'
 import { MDBRow, MDBCol} from 'mdb-react-ui-kit'
 
 type AppProps = {

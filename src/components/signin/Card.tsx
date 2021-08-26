@@ -1,6 +1,6 @@
 import React from 'react'
-import facebook from '../../assets/sign-up/facebook.png'
-import google from '../../assets/sign-up/google.png'
+import facebook from 'assets/sign-up/facebook.png'
+import google from 'assets/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 
 interface Props {

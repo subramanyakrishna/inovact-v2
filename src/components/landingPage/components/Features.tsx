@@ -1,11 +1,11 @@
 import React from 'react'
-import cornerCircle from '../../../images/landing-section-4/corner-circle.png'
-import upload from '../../../images/landing-section-4/upload.png'
-import team from '../../../images/landing-section-4/find-team.png'
-import mentor from '../../../images/landing-section-4/meet-mentor.png'
-import courses from '../../../images/landing-section-4/live-courses.png'
-import certification from '../../../images/landing-section-4/certification.png'
-import instructors from '../../../images/landing-section-4/instructors.png'
+import cornerCircle from 'images/landing-section-4/corner-circle.png'
+import upload from 'images/landing-section-4/upload.png'
+import team from 'images/landing-section-4/find-team.png'
+import mentor from 'images/landing-section-4/meet-mentor.png'
+import courses from 'images/landing-section-4/live-courses.png'
+import certification from 'images/landing-section-4/certification.png'
+import instructors from 'images/landing-section-4/instructors.png'
 
 function Features() {
     return (

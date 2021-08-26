@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './Form';
+import Form from 'components/userInfoForm/components/userDetails/Form';
 
 type AppProps = {
    setFormStep:any,

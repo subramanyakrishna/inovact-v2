@@ -21,6 +21,12 @@
 		min-width: 24rem;
 		align-self: flex-start;
 		height: 2rem;
+		@include respond(md) {
+			min-width: 15rem;
+			width: 5%;
+			margin-left: 0.2rem;
+			height: 1.75em;
+		  }
 		@include respond(sm) {
 		  min-width: 12rem;
 		  margin-left: 0;

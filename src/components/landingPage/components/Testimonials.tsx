@@ -1,5 +1,5 @@
 import React from 'react'
-import testimonials from '../../../images/landing-section-6/testimonials-map.png'
+import testimonials from 'images/landing-section-6/testimonials-map.png'
 
 function Testimonials() {
     return (

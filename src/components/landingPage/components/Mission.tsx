@@ -1,8 +1,8 @@
 import React from 'react'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
-import learn from '../../../images/landing-section-3/learn.png'
-import connect from '../../../images/landing-section-3/connect.png'
-import inovate from '../../../images/landing-section-3/inovate.png'
+import learn from 'images/landing-section-3/learn.png'
+import connect from 'images/landing-section-3/connect.png'
+import inovate from 'images/landing-section-3/inovate.png'
 
 function Mission() {
     return (

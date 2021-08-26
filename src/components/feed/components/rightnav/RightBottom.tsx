@@ -18,7 +18,7 @@ import {
       name: "Data Mining "
     },
     {
-      name: "Design Thinkers"
+      name: "Design Thinkers UI/UX"
     }
   ];
   
@@ -39,12 +39,11 @@ import {
             <MDBListGroup flush className="left-right-nav__card__list">
               {teams.map(({ name }, index) => {
                 return (
-                  <MDBListGroupItem className="left-right-nav__card__list__item">
-                    <div className="left-right-nav__card__list__item__info--newteams">
+                  <MDBListGroupItem className="left-right-nav__card__list__item--right">
+                    <div className="left-right-nav__card__list__item__info">
                       <h2 className="title">{name} </h2>
                       <p className="muted--italic">Javascript,REACT, +3more</p>
                     </div>
-
                     <button className="left-right-nav__card__list__item__button">
                       Join
                     </button>

@@ -7,7 +7,7 @@ import {
     MDBListGroupItem,
     MDBCardFooter
   } from "mdb-react-ui-kit";
-  import create from "../../../../images/feed/create.svg";
+  import create from "images/feed/create.svg";
   
   interface MyTeams {
     name: string;

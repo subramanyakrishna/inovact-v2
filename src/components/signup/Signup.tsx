@@ -1,6 +1,6 @@
 import React from 'react'
-import name from '../../assets/sign-up/name.png'
-import Card from './Card'
+import name from 'assets/sign-up/name.png'
+import Card from 'components/signup/Card'
 
 const Signup : React.FC = () => {
     return (
