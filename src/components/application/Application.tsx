@@ -1,7 +1,7 @@
 import React from 'react'
 import Feed from 'components/application/components/feed/Feed'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import NavBar from 'components/application/components/NavBar'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 function Application() {
     return (
