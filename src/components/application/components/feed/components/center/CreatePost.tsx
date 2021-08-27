@@ -19,7 +19,7 @@ function CreatePost() {
                             New Idea
                         </div>
                         <div className="create-post__content__options__button">
-                            New Thoughts
+                            Thoughts
                         </div>
                     </div>
                 </div>
