@@ -1,10 +1,11 @@
 .feed {
     &__content {
         display: flex;
+        max-width: 1800px;
+        margin: auto;
         width: 100%;
-        padding: 5rem 1rem 0;
+        padding: 4rem 1rem 0;
 
-        background-color: $color-light-bg;
         &__left {
             width: 25%;
 
