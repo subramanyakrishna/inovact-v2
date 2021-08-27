@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Signup from 'components/signup/Signup'
-import Signin from 'components/signin/Signin'
-import LandingPage from 'components/landingPage/LandingPage'
-import UserInfo from 'components/userInfoForm/UserInfoForm'
-import Feed from 'components/feed/Feed'
+import Signup from 'components/authentication/signup/Signup'
+import Signin from 'components/authentication/signin/Signin'
+import LandingPage from 'components/authentication/landingPage/LandingPage'
+import UserInfo from 'components/authentication/userInfoForm/UserInfoForm'
+import Application from 'components/application/Application'
 
 function MainComponent() {
     return (
@@ -15,7 +15,7 @@ function MainComponent() {
                     <Route path="/userinfo" exact component={UserInfo} />
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/login" exact component={Signin} />
-                    <Route path="/feed" exact component={Feed} />
+                    <Route path="/feed" exact component={Application} />
                 </Switch>
             </Router>
         </div>

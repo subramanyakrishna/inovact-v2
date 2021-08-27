@@ -1078,7 +1078,7 @@ body {
 .signup {
   display: grid;
   height: 100%;
-  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./images/sign-up/bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; }
@@ -1114,7 +1114,7 @@ body {
       top: 2%;
       padding: 0 30px;
       font-style: normal;
-      font-family: "Nunito", sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: normal; }
       .signup__card--desc a {
         color: #02bd63;
@@ -1207,7 +1207,7 @@ body {
 .signin {
   display: grid;
   height: 100%;
-  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./assets/sign-up/bg.png");
+  background-image: linear-gradient(0deg, rgba(0, 25, 72, 0.84), rgba(0, 25, 72, 0.84)), url("./images/sign-up/bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; }
@@ -1243,7 +1243,7 @@ body {
       top: 2%;
       padding: 0 30px;
       font-style: normal;
-      font-family: "Nunito", sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: normal; }
     .signin__card a {
       color: #02bd63;
@@ -1370,9 +1370,6 @@ body {
   .buttons__center {
     justify-content: center;
     margin: 0px; }
-
-.feed__nav {
-  width: 100%; }
 
 .feed__content {
   display: flex;
