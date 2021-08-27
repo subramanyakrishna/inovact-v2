@@ -1371,9 +1371,6 @@ body {
     justify-content: center;
     margin: 0px; }
 
-.feed__nav {
-  width: 100%; }
-
 .feed__content {
   display: flex;
   width: 100%;
