@@ -1411,3 +1411,47 @@ body {
 
 .application {
   background-color: #f2f7ff; }
+
+.teams {
+  height: 100%;
+  background-color: red; }
+  .teams__content {
+    display: flex;
+    max-width: 1800px;
+    margin: auto;
+    width: 100%;
+    padding: 4rem 1rem 0; }
+    .teams__content__user-teams {
+      width: 25%;
+      background-color: #001948;
+      margin: 1rem;
+      padding: 1rem; }
+      @media only screen and (max-width: 62em) {
+        .teams__content__user-teams {
+          width: 30%; } }
+      @media only screen and (max-width: 48em) {
+        .teams__content__user-teams {
+          display: none; } }
+    .teams__content__info {
+      width: 70%;
+      display: flex;
+      height: 100%;
+      padding: 1rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; }
+      @media only screen and (max-width: 48em) {
+        .teams__content__info {
+          width: 100%; } }
+    .teams__content__team-description {
+      width: 100%;
+      padding: 1rem;
+      background-color: #02bd63; }
+    .teams__content__team-info {
+      background: orangered;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem; }
+      @media only screen and (max-width: 62em) {
+        .teams__content__team-info {
+          display: none; } }
