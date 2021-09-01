@@ -1,5 +1,4 @@
 .teams-info{
-    
     &__details{
         display: flex;
         flex-direction: row;
@@ -16,9 +15,7 @@
         @include respond(sm){
             margin-top: 1rem;
             padding: 0;
-        
-        
-            }
+        }
     }
     &__suggestion{
         display: none;
@@ -43,7 +40,7 @@
     color: black;
     @include respond(sm){
     border-width: 0 0 2px 0;
-background-color: transparent;
+    background-color: transparent;
     }
 }
 .nav-tabs{

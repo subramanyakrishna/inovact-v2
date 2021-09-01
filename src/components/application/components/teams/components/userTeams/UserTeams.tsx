@@ -19,8 +19,7 @@ interface UserTeams {
     description:string;
     progress:number;
     members: Connection[],
-  }
-
+}
 interface AppProps {
     userTeams:UserTeams[],
     handleVerticalClick :any,
@@ -32,7 +31,7 @@ const UserTeams =({userTeams,handleVerticalClick,idx}:AppProps)=>{
             <div className="user-title">
             <h6 className="title" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
             </div>
-         { userTeams.map(({id,name,image}:UserTeams,key)=>{
+          { userTeams.map(({id,name,image}:UserTeams,key)=>{
              return(
                 <MDBTabs className='flex-column text-center'>
                 <MDBTabsItem>
@@ -48,8 +47,6 @@ const UserTeams =({userTeams,handleVerticalClick,idx}:AppProps)=>{
               </MDBTabs>
              )
          } )}
-
-       
     </div>
     )
 }

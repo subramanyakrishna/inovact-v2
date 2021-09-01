@@ -54,24 +54,21 @@ function Teams() {
             </div>
 
             <MDBTabsContent style={{width:'100%'}}>
-            { userTeams.map(({id,name,description,image,progress}:UserTeams,key)=>{
-             return(
-                <MDBTabsPane show={verticalActive === id}>
-                <div className="teams__content__info">
-                <div className="teams__content__team-description">
-                    <TeamDescription name={name} description={description} image={image} progress={progress}/>
-                </div>
-                <div className="teams__content__team-info">
-                    <TeamInfo />
-                </div>
-                </div>
-            </MDBTabsPane>
+                { userTeams.map(({id,name,description,image,progress}:UserTeams,key)=>{
+                return(
+                    <MDBTabsPane show={verticalActive === id}>
+                        <div className="teams__content__info">
+                            <div className="teams__content__team-description">
+                                <TeamDescription name={name} description={description} image={image} progress={progress}/>
+                            </div>
+                            <div className="teams__content__team-info">
+                                <TeamInfo />
+                            </div>
+                           </div>
+                  </MDBTabsPane>
              )})}
           </MDBTabsContent>
-           
         </div>
-        
-        
     </div>
     );
 }

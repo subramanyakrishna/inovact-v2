@@ -1,25 +1,9 @@
-import React, { useState } from 'react';
-import {
-  MDBTabs,
-  MDBTabsItem,
-  MDBTabsLink,
-  MDBTabsContent,
-  MDBTabsPane
-} from 'mdb-react-ui-kit';
-import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo';
+import React from 'react';
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
-import SuggestionInvitation from './SuggestionInvitation';
+import SuggestionInvitation from 'components/application/components/teams/components/teamInfo/SuggestionInvitation';
+import TeamInfoTabs from 'components/application/components/teams/components/teamInfo/TeamInfoTabs';
+
 const TeamInfo =()=>{
-  const [basicActive, setBasicActive] = useState('members');
-
-  const handleBasicClick = (value: string) => {
-    if (value === basicActive) {
-      return;
-    }
-
-    setBasicActive(value);
-  };
-
   return (
     <>
     <div className="teams-info">
@@ -34,33 +18,13 @@ const TeamInfo =()=>{
         </MDBDropdownMenu>
       </MDBDropdown>
       </div>
+
       <div className="team-info__suggestion">
         <SuggestionInvitation />
       </div>
-      <div className="teams-info__tabs">
-      <MDBTabs className='mb-3'>
-        <MDBTabsItem>
-          <MDBTabsLink  onClick={() => handleBasicClick('members')} active={basicActive === 'members'}>
-Members
-          </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-          <MDBTabsLink  onClick={() => handleBasicClick('groupchat')} active={basicActive === 'groupchat'}>
-            Group Chats
-          </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-          <MDBTabsLink  onClick={() => handleBasicClick('documents')} active={basicActive === 'documents'}>
-            Documents
-          </MDBTabsLink>
-        </MDBTabsItem>
-      </MDBTabs>
 
-      <MDBTabsContent>
-        <MDBTabsPane show={basicActive === 'members'}><MemberInfo /></MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'groupchat'}>Group Chats</MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'documents'}>Documents</MDBTabsPane>
-      </MDBTabsContent>
+      <div className="teams-info__tabs">
+       <TeamInfoTabs />
       </div>
     </div>
       

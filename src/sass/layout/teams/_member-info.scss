@@ -32,7 +32,7 @@
                 height: 1rem;
                 margin: 0 0.5rem;
             }
-            @include respond(sm){
+            @include respond(md){
                 display: none;
               } 
         }
