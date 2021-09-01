@@ -6,45 +6,65 @@ import {
   MDBTabsContent,
   MDBTabsPane
 } from 'mdb-react-ui-kit';
-
+import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo';
+import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
+import SuggestionInvitation from './SuggestionInvitation';
 const TeamInfo =()=>{
-    const [justifyActive, setJustifyActive] = useState('members');
+  const [basicActive, setBasicActive] = useState('members');
 
-    const handleJustifyClick = (value: string) => {
-      if (value === justifyActive) {
-        return;
-      }
-  
-      setJustifyActive(value);
-    };
-    return(
-        <div className="teams-info">
-           <div className="team-info__tabs">
-           <MDBTabs justify className='mb-3'>
+  const handleBasicClick = (value: string) => {
+    if (value === basicActive) {
+      return;
+    }
+
+    setBasicActive(value);
+  };
+
+  return (
+    <>
+    <div className="teams-info">
+      <div className="teams-info__details">
+        <p>5 out of 15 members</p>
+        <MDBDropdown group className='teams-info__details--dropdown shadow-0'>
+        <MDBDropdownToggle color='link' style={{color:'black'}}>Invite Team members</MDBDropdownToggle>
+        <MDBDropdownMenu>
+          <MDBDropdownItem>
+            <MDBDropdownLink href="#">Something</MDBDropdownLink>
+          </MDBDropdownItem>
+        </MDBDropdownMenu>
+      </MDBDropdown>
+      </div>
+      <div className="team-info__suggestion">
+        <SuggestionInvitation />
+      </div>
+      <div className="teams-info__tabs">
+      <MDBTabs className='mb-3'>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('members')} active={justifyActive === 'members'}>
-           Members
+          <MDBTabsLink  onClick={() => handleBasicClick('members')} active={basicActive === 'members'}>
+Members
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('groupchats')} active={justifyActive === 'groupchats'}>
-           Group Chats
+          <MDBTabsLink  onClick={() => handleBasicClick('groupchat')} active={basicActive === 'groupchat'}>
+            Group Chats
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('documents')} active={justifyActive === 'documents'}>
+          <MDBTabsLink  onClick={() => handleBasicClick('documents')} active={basicActive === 'documents'}>
             Documents
           </MDBTabsLink>
         </MDBTabsItem>
       </MDBTabs>
 
       <MDBTabsContent>
-        <MDBTabsPane show={justifyActive === 'members'}>Members</MDBTabsPane>
-        <MDBTabsPane show={justifyActive === 'groupchats'}>Group Chats</MDBTabsPane>
-        <MDBTabsPane show={justifyActive === 'documents'}>Documents</MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'members'}><MemberInfo /></MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'groupchat'}>Group Chats</MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'documents'}>Documents</MDBTabsPane>
       </MDBTabsContent>
-           </div>
-        </div>
+      </div>
+    </div>
+      
+    </>
     )
 }
 export default TeamInfo;

@@ -11,9 +11,8 @@ function Application() {
                 <NavBar />
                 <Switch>
                     <Route path="/feed" exact component={Feed} />
-                    
+                    <Route path="/teams"  component={Teams} />
                 </Switch>
-                <Route path="/teams" exact component={Teams} />
             </Router>
         </div>
     )

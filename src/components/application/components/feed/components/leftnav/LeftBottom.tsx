@@ -7,14 +7,16 @@ import {
     MDBListGroupItem,
     MDBCardFooter
   } from "mdb-react-ui-kit";
-  import create from "images/feed/create.svg";
   
-  interface MyTeams {
+import create from "images/feed/create.svg";
+  
+interface MyTeams {
     name: string;
     image: string;
     members: number;
   }
-  const myteams: MyTeams[] = [
+
+const myteams: MyTeams[] = [
     {
       name: "Team Name",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",

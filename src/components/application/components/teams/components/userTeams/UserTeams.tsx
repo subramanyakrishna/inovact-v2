@@ -1,18 +1,56 @@
 import React from 'react'
-const teamInfo =
-    {
-        image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-        description:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        progress:75
-    }
+import {userTeams} from 'data/data'
+import {
+    MDBTabs,
+    MDBTabsItem,
+    MDBTabsLink,
+  
+  } from 'mdb-react-ui-kit';
+interface Connection {
+    name: string;
+    image: string;
+    designation: string;
+    duration: string;
+  }
+interface UserTeams {
+    id:number;
+    name: string;
+    image: string;
+    description:string;
+    progress:number;
+    members: Connection[],
+  }
 
-const UserTeams =()=>{
+interface AppProps {
+    userTeams:UserTeams[],
+    handleVerticalClick :any,
+    idx:number
+}
+const UserTeams =({userTeams,handleVerticalClick,idx}:AppProps)=>{
     return(
-        <div className="user-teams">
-           <div className="user-team__info">
-               
-           </div>
-        </div>
+        <div className="user-team">
+            <div className="user-title">
+            <h6 className="title" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
+            </div>
+         { userTeams.map(({id,name,image}:UserTeams,key)=>{
+             return(
+                <MDBTabs className='flex-column text-center'>
+                <MDBTabsItem>
+                  <MDBTabsLink onClick={() => handleVerticalClick(id)} active={idx === id} >
+                  <div className="user-team__tab">
+                       <div className="user-team__tab__tabInfo">
+                            <img src={image} alt=""/>
+                            <h5 className="title">{name}</h5>
+                       </div>
+                   </div>
+                  </MDBTabsLink>
+                </MDBTabsItem>
+              </MDBTabs>
+             )
+         } )}
+
+       
+    </div>
     )
 }
 export default UserTeams;

@@ -1,7 +1,8 @@
 import React from 'react'
+import NavBar from 'components/application/components/NavBar'
 
 function Connections() {
-    return <div>Connections</div>
+    return <div><NavBar /></div>
 }
 
 export default Connections
