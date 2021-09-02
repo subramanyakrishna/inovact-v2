@@ -10,6 +10,7 @@ import teams from 'images/feed/teams.svg'
 import logo from 'images/logo/inovact-logo.png'
 import { of, fromEvent, animationFrameScheduler } from 'rxjs'
 import { useObservable } from 'rxjs-hooks'
+import { Link } from 'react-router-dom'
 import {
     distinctUntilChanged,
     filter,
@@ -57,31 +58,41 @@ const NavBar = () => {
                             />
                         </div>
 
-                        <img
-                            className="nav-component__icons--hidden"
-                            src={connection}
-                            alt="Connection"
-                        />
-                        <img
-                            className="nav-component__icons"
-                            src={notifications}
-                            alt="Notifications"
-                        />
-                        <img
-                            className="nav-component__icons"
-                            src={messages}
-                            alt="messages"
-                        />
-                        <img
-                            className="nav-component__icons--hidden"
-                            src={settings}
-                            alt="settings"
-                        />
-                        <img
-                            className="nav-component__icons--user"
-                            src={user}
-                            alt="User"
-                        />
+                        <Link to="/connections">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={connection}
+                                alt="Connection"
+                            />
+                        </Link>
+                        <Link to="/notifications">
+                            <img
+                                className="nav-component__icons"
+                                src={notifications}
+                                alt="Notifications"
+                            />
+                        </Link>
+                        <Link to="/messages">
+                            <img
+                                className="nav-component__icons"
+                                src={messages}
+                                alt="messages"
+                            />
+                        </Link>
+                        <Link to="/settings">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={settings}
+                                alt="settings"
+                            />
+                        </Link>
+                        <Link to="/profile">
+                            <img
+                                className="nav-component__icons--user"
+                                src={user}
+                                alt="User"
+                            />
+                        </Link>
                     </div>
                 </div>
 
