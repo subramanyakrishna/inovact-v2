@@ -41,6 +41,7 @@ function Photos(props: photoProps) {
                                 ...x,
                                 srcset: x.srcSet,
                                 caption: x.title,
+                                source: '',
                             }))}
                         />
                     </Modal>
