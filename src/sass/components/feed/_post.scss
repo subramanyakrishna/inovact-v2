@@ -1,0 +1,177 @@
+.post {
+    background-color: $color-white;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    margin: 0.5rem auto 5rem;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 10px 15px -3px rgba($color-black, 0.07),
+        0 4px 6px -2px rgba($color-black, 0.05);
+    position: relative;
+
+    &__author {
+        display: flex;
+
+        &__avatar {
+            margin-right: 1rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        &__text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &__name {
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin-bottom: 0;
+                color: $color-black;
+            }
+
+            &__time {
+                margin: 0;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__text {
+        margin: 1rem auto;
+
+        &__title {
+            color: $color-black;
+            font-size: 1.5rem;
+        }
+
+        &__desc {
+            margin: 0;
+            line-height: 1.2;
+        }
+    }
+
+    &__tags {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        &__item {
+            text-align: center;
+            min-width: 70px;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+            background-color: $color-feed-tags;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1000px;
+
+            &:last-child {
+                color: #4f4f4f;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        position: absolute;
+        height: 4rem;
+        bottom: -4rem;
+        left: 0;
+        width: 100%;
+        background-color: $color-feed-component-blue;
+        border-radius: 0 0 8px 8px;
+        align-items: center;
+        justify-content: space-between;
+
+        &__likes {
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            @include respond(xs) {
+                margin-left: 1rem;
+            }
+
+            &__num {
+                margin-bottom: 0;
+                color: $color-white;
+            }
+
+            & img {
+                height: 20px;
+                margin-right: 0.5rem;
+            }
+        }
+
+        &__comments {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__num {
+                margin-bottom: 0;
+                color: $color-white;
+            }
+
+            & img {
+                height: 20px;
+                margin-right: 0.5rem;
+            }
+        }
+
+        &__share {
+            cursor: pointer;
+            & img {
+                height: 20px;
+
+                @include respond(sm) {
+                    margin-right: 2rem;
+                }
+
+                @include respond(xs) {
+                    margin-right: 1rem;
+                }
+            }
+        }
+
+        &__team {
+            &__text {
+                margin: auto 0;
+                display: flex;
+                align-items: center;
+                color: $color-white;
+                cursor: pointer;
+                @include respond(xs) {
+                    display: none;
+                }
+            }
+
+            &__request {
+                margin: auto 0;
+                margin-right: 2rem;
+                display: flex;
+                align-items: center;
+                background-color: $color-white;
+                color: $color-feed-component-blue;
+                padding: 0.25rem 1rem;
+                border-radius: 1000px;
+                cursor: pointer;
+
+                @include respond(xs) {
+                    margin-right: 1rem;
+                }
+            }
+
+            &__empty {
+                width: 50%;
+
+                @include respond(xs) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

@@ -18,7 +18,6 @@
         }
 
         &__center {
-            height: 100vh;
             width: 50%;
             padding: 1rem;
             @include respond(md) {
@@ -27,11 +26,11 @@
 
             @include respond(sm) {
                 width: 100%;
+                padding: 0;
             }
         }
 
         &__right {
-            height: 100vh;
             width: 25%;
 
             @include respond(md) {

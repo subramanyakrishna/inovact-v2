@@ -972,9 +972,10 @@ body {
   background-color: #ffffff;
   width: 100%;
   border-radius: 10px;
-  border: 1px inset rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   display: flex;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin-bottom: 1rem; }
   @media only screen and (max-width: 48em) {
     .create-post {
       display: none; } }
@@ -1034,6 +1035,130 @@ body {
       display: flex;
       justify-content: center;
       align-items: center; } }
+
+.post {
+  background-color: #ffffff;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  margin: 0.5rem auto 5rem;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  position: relative; }
+  .post__author {
+    display: flex; }
+    .post__author__avatar {
+      margin-right: 1rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      object-fit: cover;
+      border-radius: 50%; }
+    .post__author__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+      .post__author__text__name {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 0;
+        color: #000000; }
+      .post__author__text__time {
+        margin: 0;
+        font-weight: 500; }
+  .post__text {
+    margin: 1rem auto; }
+    .post__text__title {
+      color: #000000;
+      font-size: 1.5rem; }
+    .post__text__desc {
+      margin: 0;
+      line-height: 1.2; }
+  .post__tags {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap; }
+    .post__tags__item {
+      text-align: center;
+      min-width: 70px;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+      background-color: #d5e4fe;
+      padding: 0.25rem 0.5rem;
+      border-radius: 1000px; }
+      .post__tags__item:last-child {
+        color: #4f4f4f; }
+  .post__footer {
+    display: flex;
+    position: absolute;
+    height: 4rem;
+    bottom: -4rem;
+    left: 0;
+    width: 100%;
+    background-color: #4b72bc;
+    border-radius: 0 0 8px 8px;
+    align-items: center;
+    justify-content: space-between; }
+    .post__footer__likes {
+      margin-left: 2rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer; }
+      @media only screen and (max-width: 36em) {
+        .post__footer__likes {
+          margin-left: 1rem; } }
+      .post__footer__likes__num {
+        margin-bottom: 0;
+        color: #ffffff; }
+      .post__footer__likes img {
+        height: 20px;
+        margin-right: 0.5rem; }
+    .post__footer__comments {
+      display: flex;
+      align-items: center;
+      cursor: pointer; }
+      .post__footer__comments__num {
+        margin-bottom: 0;
+        color: #ffffff; }
+      .post__footer__comments img {
+        height: 20px;
+        margin-right: 0.5rem; }
+    .post__footer__share {
+      cursor: pointer; }
+      .post__footer__share img {
+        height: 20px; }
+        @media only screen and (max-width: 48em) {
+          .post__footer__share img {
+            margin-right: 2rem; } }
+        @media only screen and (max-width: 36em) {
+          .post__footer__share img {
+            margin-right: 1rem; } }
+    .post__footer__team__text {
+      margin: auto 0;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      cursor: pointer; }
+      @media only screen and (max-width: 36em) {
+        .post__footer__team__text {
+          display: none; } }
+    .post__footer__team__request {
+      margin: auto 0;
+      margin-right: 2rem;
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      color: #4b72bc;
+      padding: 0.25rem 1rem;
+      border-radius: 1000px;
+      cursor: pointer; }
+      @media only screen and (max-width: 36em) {
+        .post__footer__team__request {
+          margin-right: 1rem; } }
+    .post__footer__team__empty {
+      width: 50%; }
+      @media only screen and (max-width: 36em) {
+        .post__footer__team__empty {
+          display: none; } }
 
 .landing-page__hero {
   height: 100vh;
@@ -1393,7 +1518,6 @@ body {
       .feed__content__left {
         display: none; } }
   .feed__content__center {
-    height: 100vh;
     width: 50%;
     padding: 1rem; }
     @media only screen and (max-width: 62em) {
@@ -1401,9 +1525,9 @@ body {
         width: 70%; } }
     @media only screen and (max-width: 48em) {
       .feed__content__center {
-        width: 100%; } }
+        width: 100%;
+        padding: 0; } }
   .feed__content__right {
-    height: 100vh;
     width: 25%; }
     @media only screen and (max-width: 62em) {
       .feed__content__right {
