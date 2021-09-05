@@ -1,5 +1,5 @@
 import React from 'react'
-import {userTeams} from 'data/data'
+
 import {
     MDBTabs,
     MDBTabsItem,

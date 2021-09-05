@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Project() {
+function Messages() {
     return <div></div>
 }
 
-export default Project
+export default Messages

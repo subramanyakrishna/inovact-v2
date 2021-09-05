@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
+import {
+  MDBTabsContent,
+  MDBTabsPane,
+} from 'mdb-react-ui-kit';
+
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
 
-import NavBar from 'components/application/components/NavBar'
 import UserTeam from 'components/application/components/teams/components/userTeams/UserTeams'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/teamDescription/TeamDescription'
 
-
-import {
- 
-  MDBTabsContent,
-  MDBTabsPane,
- 
-} from 'mdb-react-ui-kit';
-
 import {userTeams} from 'data/data'
+
+import Navbar from 'components/application/components/NavBar'
 interface Connection {
     name: string;
     image: string;
@@ -29,7 +27,8 @@ interface UserTeams {
     description:string;
     progress:number;
     members: Connection[],
-  }
+}
+
 function Teams() {
     const [verticalActive, setVerticalActive] = useState(1);
     const handleVerticalClick = (value: number) => {
@@ -41,7 +40,7 @@ function Teams() {
 
     return (
     <div className="teams">
-        <NavBar />
+        <Navbar />
         <div className="teams__content">
             <div className="teams__content__header">
                 <img src={back} alt="" />

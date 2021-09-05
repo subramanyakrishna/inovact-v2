@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Thought() {
+function Settings() {
     return <div></div>
 }
 
-export default Thought
+export default Settings
