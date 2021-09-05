@@ -47,6 +47,7 @@ const MemberInfo =()=>{
                             <h5 className="members-info__details__title">Role</h5>
                             <img src={menu} alt="menu"/>
                     </div>
+                    
                 </div>
                 );
             })}
