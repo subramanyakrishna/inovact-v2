@@ -48,7 +48,17 @@ interface Comments {
     members: number;
   }
 
-  
+    
+  interface UserTeams {
+    id:number,
+    name: string;
+    image: string;
+    description:string;
+    progress:number;
+    members: Connection[],
+  }
+
+
   export const connection: Connection[] = [
     {
       name: "Jane Doe",
@@ -79,6 +89,45 @@ interface Comments {
       duration: "10 min"
     }
   ];
+  export const userTeams: UserTeams[] = [
+    {
+      id:1,
+      name: "TeamName",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      description:'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      progress:75,
+      members:connection
+    },
+    {
+      id:2,
+      name: "TeamName2",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      description:'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      progress:56,
+      members:connection
+    },
+    {
+      id:3,
+      name: "TeamName",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      description:'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      progress:75,
+      members:connection
+    },
+    {
+      id:4,
+      name: "TeamName",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+      description:'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      progress:75,
+      members:connection
+    },
+  ];
+
   const myteams: Teams[] = [
     {
       name: "Web Development-Frontend",

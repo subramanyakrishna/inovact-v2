@@ -1,0 +1,51 @@
+.teams-info{
+    &__details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 0.5rem 0;
+        @include respond(xs){
+            display: none;
+        } 
+    }
+    &__tabs{
+        padding: 0 1rem;
+        background-color: $color-white;
+        border-radius: 0.5rem;
+        @include respond(sm){
+            margin-top: 1rem;
+            padding: 0;
+        }
+    }
+    &__suggestion{
+        display: none;
+        @include respond(sm)
+        {
+            display: block;
+            padding: 1rem 0.5rem 0;
+        }
+    }
+}
+.nav-tabs .nav-link{
+   font-size: 14px;
+   color: #8C8C8C;
+  
+   border-width: 4px 0 0 0;
+   @include respond(sm){
+    font-size: 12px;
+    padding: 0.3rem;
+} 
+}
+.nav-tabs .nav-link.active{
+    color: black;
+    @include respond(sm){
+    border-width: 0 0 2px 0;
+    background-color: transparent;
+    }
+}
+.nav-tabs{
+    @include respond(sm){
+        padding: 0;
+        background-color: $color-light-bg;
+    }
+}

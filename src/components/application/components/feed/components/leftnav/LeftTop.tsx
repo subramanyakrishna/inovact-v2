@@ -42,7 +42,8 @@ export const connection: Connection[] = [
       duration: "10 min"
     }
   ];
-  const LeftTop = () => {
+  
+const LeftTop = () => {
     return (
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">

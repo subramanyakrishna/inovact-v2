@@ -1,0 +1,32 @@
+.user-team{
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    &__tab{
+        &__tabInfo{
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,.125);
+            & img {
+                width:3.5rem;
+                height: 3.5rem;
+                object-fit: cover;
+                border-radius:50%;
+                background-color: gray;
+            }
+            & h5 {
+                   margin-left: 1rem; 
+            }
+        }
+    }
+    .nav-link{
+        padding: 0;
+        margin: -4px 0 0;
+    }
+    .nav-link.active{
+        border-width: 0 0 0 4px;
+    }   
+}

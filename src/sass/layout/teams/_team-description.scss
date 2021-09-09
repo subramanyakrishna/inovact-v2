@@ -1,0 +1,53 @@
+.teams-description{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        padding: 0.5rem;
+        background-color: $color-white;
+        border-radius: 1rem;
+    &__info{
+        padding: 1.5rem ;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        @include respond(sm){
+            padding:0.5rem;
+        } 
+        & img {
+            width:7rem;
+            height:7rem;
+            object-fit: cover;
+            border-radius:50%;
+            background-color: gray;
+            @include respond(xs){
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+        &__text{
+         
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            margin-left: 1rem;
+            & p{
+                margin-top: 0.5rem;
+                @include respond(sm){
+                    font-size: 14px;
+                } 
+            }
+        }   
+        &__progress{
+           width: 15rem;
+            padding: 1rem;
+            @include respond(sm){
+                display: none;
+            } 
+        }
+    }
+}
+.read-or-hide{
+    color:blue;
+}
