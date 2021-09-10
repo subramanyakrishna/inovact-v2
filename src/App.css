@@ -1791,3 +1791,185 @@ body {
       width: 100%; }
     .teams__content__team-info {
       width: 100%; }
+
+.right-network-stats {
+  padding: 2rem;
+  background-color: #ffffff;
+  width: 22rem;
+  border-radius: 10px; }
+  .right-network-stats--img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .right-network-stats--img {
+    width: 6rem; }
+  .right-network-stats--content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px; }
+    .right-network-stats--content-title {
+      width: 50%; }
+    .right-network-stats--content-data {
+      text-align: center; }
+
+.requests-connections {
+  width: auto;
+  height: auto;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  background-color: #ffffff; }
+  .requests-connections-profiles {
+    overflow-y: scroll;
+    height: 400px; }
+  .requests-connections-btn button {
+    background-color: #ffffff;
+    border: none;
+    text-align: center;
+    width: 50%;
+    padding: 10px; }
+
+.my-requests-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #C4C4C4;
+  margin: 0 3rem; }
+  .my-requests-profile-img {
+    width: 100px;
+    padding: 20px;
+    border-radius: 50px; }
+  .my-requests-profile-data {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column; }
+    .my-requests-profile-data span {
+      padding: 1px;
+      line-height: 0.9; }
+  .my-requests-profile-name {
+    font-weight: bold;
+    font-size: large; }
+  .my-requests-profile-time {
+    font-size: smaller;
+    font-style: italic;
+    color: grey; }
+  .my-requests-profile-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .my-requests-profile-btn-container button {
+      width: 6rem;
+      height: 2rem;
+      border-radius: 2.5rem;
+      margin: 20px;
+      border: none; }
+  .my-requests-profile-accept-btn {
+    background-color: #02BD63; }
+
+.my-connection-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #C4C4C4;
+  margin: 0 3rem; }
+  .my-connection-profile-img {
+    width: 100px;
+    padding: 20px;
+    border-radius: 50px; }
+  .my-connection-profile-data {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column; }
+    .my-connection-profile-data span {
+      padding: 1px;
+      line-height: 0.9; }
+  .my-connection-profile-name {
+    font-weight: bold;
+    font-size: large; }
+  .my-connection-profile-time {
+    font-size: smaller;
+    color: grey; }
+  .my-connection-profile-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .my-connection-profile-btn-container button {
+      min-width: 6rem;
+      height: 2rem;
+      border-radius: 2.5rem;
+      margin: 20px;
+      border: none; }
+  .my-connection-profile-msg-btn {
+    background-color: #ffffff;
+    width: fit-content; }
+
+body {
+  background-color: #f2f7ff; }
+
+.people-you-may-know {
+  width: 100%;
+  height: auto;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  background-color: #ffffff; }
+  .people-you-may-know-title {
+    font-size: large;
+    font-weight: 500;
+    padding: 20px; }
+  .people-you-may-know-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    overflow-y: scroll; }
+
+.people-profile-card {
+  width: 20%;
+  margin: 10px;
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 1rem; }
+  .people-profile-card-img-container {
+    margin: 0 auto; }
+    .people-profile-card-img-container img {
+      width: 60px;
+      border-radius: 50%; }
+  .people-profile-card-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .people-profile-card-name {
+    font-size: 15px;
+    font-weight: 400; }
+  .people-profile-card-designation {
+    font-size: 12px; }
+  .people-profile-card-mutual-connections {
+    font-size: 10px;
+    color: grey;
+    font-style: italic; }
+  .people-profile-card button {
+    width: 6rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #5579BD;
+    color: #ffffff; }
+
+.connections-center-component {
+  margin: 0;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px; }
+
+.connections-page {
+  margin: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 20px; }

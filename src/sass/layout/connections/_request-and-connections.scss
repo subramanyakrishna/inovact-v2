@@ -1,0 +1,155 @@
+$primary-background:  #ffffff;
+$accept-btn: #02BD63;
+
+
+.right-network-stats{
+    // margin: 2rem 2rem;
+    // margin-top: 6rem;
+    padding: 2rem;
+    background-color: $primary-background;
+    width: 22rem;
+    border-radius: 10px;
+    &--img-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &--img{
+        width: 6rem;
+    }
+    &--content{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px;
+        &-title{
+            width: 50%;
+        }
+        &-data{
+            text-align: center;
+        }
+    }
+
+}
+
+.requests-connections{
+    width: auto;
+    height: auto;
+    padding: 1rem 2rem;
+    // margin: 2rem 2rem;
+    border-radius: 20px;
+    background-color: $primary-background;
+    &-profiles{
+        overflow-y: scroll;
+        height: 400px;
+    }
+    &-btn {
+        button{
+            background-color: $primary-background;
+            border: none;
+            text-align: center;
+            width: 50%;
+            padding: 10px;
+        }
+    }
+
+}
+
+.my-requests-profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #C4C4C4;
+    margin: 0 3rem;
+    &-img{
+        width: 100px;
+        padding: 20px;
+        border-radius: 50px;
+    }
+    &-data{
+        padding: 5px 20px;
+        display: flex;
+        flex-direction: column;
+        span{
+            padding: 1px;
+            line-height:0.9;
+        }
+    }
+    &-name{
+        font-weight: bold;
+        font-size: large;
+    } 
+    &-time{
+        font-size: smaller;
+        font-style: italic;
+        color: grey;
+    }
+    &-btn-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        button{
+            width: 6rem;
+            height: 2rem;
+            border-radius: 2.5rem;
+            margin: 20px;
+            border: none;
+        }
+    }
+    &-accept-btn{
+        background-color: $accept-btn;
+    }
+}
+
+.my-connection-profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #C4C4C4;
+    margin: 0 3rem;
+    &-img{
+        width: 100px;
+        padding: 20px;
+        border-radius: 50px;
+    }
+    &-data{
+        padding: 5px 20px;
+        display: flex;
+        flex-direction: column;
+        span{
+            padding: 1px;
+            line-height:0.9;
+        }
+    }
+    &-name{
+        font-weight: bold;
+        font-size: large;
+    } 
+    &-time{
+        font-size: smaller;
+        color: grey;
+    }
+    &-btn-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        button{
+            min-width: 6rem;
+            height: 2rem;
+            border-radius: 2.5rem;
+            margin: 20px;
+            border: none;
+        }
+    }
+    &-msg-btn{
+        background-color: $primary-background;
+        width: fit-content;
+    }
+}
+
+
+body{
+    background-color: $color-light-bg;
+}
