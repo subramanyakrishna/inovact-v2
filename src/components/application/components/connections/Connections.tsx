@@ -11,7 +11,7 @@ function Connections() {
             <CenterRequests/>
             <RightNetworkStats/>  
         </div>
-        <div className="">
+        <div className="connections-bottom-components">
             <PeopleYouMayKnow/>
             <RightFilterDropdown/>
         </div>

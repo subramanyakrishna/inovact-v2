@@ -83,6 +83,7 @@ $connect-btn-color: #5579BD;
 
 .line-separation{
     display: flex;
+    width: 90%;
     justify-content: space-between;
     &-filter-parameters{
         background-color: $primary-background;
