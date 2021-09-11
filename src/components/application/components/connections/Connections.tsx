@@ -7,12 +7,12 @@ import RightFilterDropdown from './components/RightFilterDropdown';
 function Connections() {
     return (
     <div className="connections-page">
-        <div className="connections-center-component">
+        <div className="connections-top-components">
             <CenterRequests/>
-            <PeopleYouMayKnow/>
+            <RightNetworkStats/>  
         </div>
-        <div>
-            <RightNetworkStats/>
+        <div className="">
+            <PeopleYouMayKnow/>
             <RightFilterDropdown/>
         </div>
     </div>

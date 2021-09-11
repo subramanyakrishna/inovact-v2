@@ -3,42 +3,66 @@ $accept-btn: #02BD63;
 
 
 .right-network-stats{
-    // margin: 2rem 2rem;
-    // margin-top: 6rem;
     padding: 2rem;
     background-color: $primary-background;
-    width: 22rem;
+    width: 40%;
     border-radius: 10px;
+    @include respond(md){
+        width: 100%;
+    }
     &--img-container{
         display: flex;
         flex-direction: column;
         align-items: center;
+        span{
+            @include respond(xs){
+                display: none;
+            }
+        }
     }
     &--img{
         width: 6rem;
+        @include respond(xs){
+            display: none;
+        }
     }
     &--content{
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        padding: 10px;
+        // display: flex;
+        // flex-direction: row;
+        // gap: 10px;
+        // padding: 10px;
+
         &-title{
             width: 50%;
         }
-        &-data{
-            text-align: center;
+        p {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            @include respond(sm){
+                line-height: 0.8;
+            }
         }
     }
 
 }
 
 .requests-connections{
-    width: auto;
-    height: auto;
+    // width: auto;
+    // height: auto;
     padding: 1rem 2rem;
     // margin: 2rem 2rem;
     border-radius: 20px;
     background-color: $primary-background;
+    width: 100%;
+    @include respond(sm){
+        margin: 0;
+        width: 100%;
+        border-radius: 0px;
+    }
+    @include respond(xs){
+        padding: 0;
+    }
     &-profiles{
         overflow-y: scroll;
         height: 400px;
@@ -64,7 +88,7 @@ $accept-btn: #02BD63;
     margin: 0 3rem;
     &-img{
         width: 100px;
-        padding: 20px;
+        padding: 10px;
         border-radius: 50px;
     }
     &-data{
@@ -96,9 +120,19 @@ $accept-btn: #02BD63;
             margin: 20px;
             border: none;
         }
+        @include respond(xxs){
+            flex-direction: column;
+            justify-content: space-evenly;
+            button{
+                height: 1.5rem;
+            }
+        }
     }
     &-accept-btn{
         background-color: $accept-btn;
+    }
+    @include respond(sm){
+        margin: 0;
     }
 }
 
@@ -111,7 +145,7 @@ $accept-btn: #02BD63;
     margin: 0 3rem;
     &-img{
         width: 100px;
-        padding: 20px;
+        padding: 10px;
         border-radius: 50px;
     }
     &-data{
@@ -146,6 +180,9 @@ $accept-btn: #02BD63;
     &-msg-btn{
         background-color: $primary-background;
         width: fit-content;
+    }
+    @include respond(sm){
+        margin: 0;
     }
 }
 

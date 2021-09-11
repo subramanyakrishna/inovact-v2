@@ -11,6 +11,9 @@ $connect-btn-color: #5579BD;
         font-size: large;
         font-weight: 500;
         padding: 20px;
+        @include respond(sm){
+            padding: 0px;
+        }
     }
     &-profiles{
         display: flex;
@@ -18,6 +21,12 @@ $connect-btn-color: #5579BD;
         height: 400px;
         overflow-y: scroll;
     }   
+    @include respond(sm){
+        border-radius: 0;
+    }
+    @include respond(xs){
+
+    }
 }
 
 .people-profile-card{
@@ -35,7 +44,7 @@ $connect-btn-color: #5579BD;
         margin: 0 auto;
         img{
             width: 60px;
-            border-radius: 50%;
+            border-radius: 30px;
         }
     }
     &-data{
@@ -61,5 +70,47 @@ $connect-btn-color: #5579BD;
         border-radius: 1rem;
         background-color: $connect-btn-color;
         color: $primary-background;
+        @include respond(xs){
+            width: 120%;
+            font-size: small;
+        }
+    }
+    @include respond(sm){
+        width: 30%;
+        margin: 5px;
+    }
+}
+
+.line-separation{
+    display: flex;
+    justify-content: space-between;
+    &-filter-parameters{
+        background-color: $primary-background;
+        text-align: left;
+        display: flex;
+        padding: 10px;
+        flex-direction: column;
+        z-index: 10;
+        position: absolute;
+        border: 1px solid gray;
+        border-radius: 5px;
+        label{
+            border-bottom: 0.5px solid rgb(218, 218, 218);
+            padding: 5px;
+            @include respond(sm){
+                font-size: 10px;
+            }
+        }
+    }
+    &-line{
+        width: 80%;
+        text-align: "left";
+        margin-left: "0px";
+        @include respond(md){
+            width: 70%;
+        }
+        @include respond(sm){
+            width: 60%;
+        }
     }
 }

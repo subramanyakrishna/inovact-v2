@@ -1,0 +1,32 @@
+$primary-background: #ffffff;
+
+.filter-dropdown{
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    &-title{
+        margin: 0 auto;
+    }
+    &-content{
+        background-color: $primary-background;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    &-parameter{
+        border-bottom: 1px solid gray;
+        padding: 10px 0;
+    }
+    &-roles{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        label{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+    @include respond(sm){
+        display: none;
+    }
+}

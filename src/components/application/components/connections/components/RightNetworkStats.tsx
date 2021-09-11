@@ -12,19 +12,19 @@ function RightNetworkStats () {
             </div>
             <div className="right-network-stats--content">
                 <div className="right-network-stats--content-titles">
-                    <p>Total connections</p>
-                    <p>Last week's connections</p>
-                    <p>Your mentors</p>
-                    <p>Appearances in People you may know</p>
-                    <p>Percentage Growth</p>
+                    <p><span>Total connections</span><span>473</span></p>
+                    <p><span>Last week's connections</span><span>18</span></p>
+                    <p><span>Your mentors</span><span>4</span></p>
+                    <p><span>Appearances in People you may know</span><span>26</span></p>
+                    <p><span>Percentage Growth</span><span style={{color: '#07d400'}}>+3.95%</span></p>
                 </div>
-                <div className="right-network-stats--content-data">
+                {/* <div className="right-network-stats--content-data">
                     <p>473</p>
                     <p>18</p>
                     <p>4</p>
                     <p>26</p>
                     <p style={{color: '#07d400'}}>+3.95%</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )
