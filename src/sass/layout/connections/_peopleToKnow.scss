@@ -78,12 +78,13 @@ $connect-btn-color: #5579BD;
     @include respond(sm){
         width: 30%;
         margin: 5px;
+        text-align: center;
     }
 }
 
 .line-separation{
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
     &-filter-parameters{
         background-color: $primary-background;

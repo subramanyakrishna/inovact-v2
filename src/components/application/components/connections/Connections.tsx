@@ -13,7 +13,6 @@ function Connections() {
         </div>
         <div className="connections-bottom-components">
             <PeopleYouMayKnow/>
-            <RightFilterDropdown/>
         </div>
     </div>
     )
