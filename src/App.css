@@ -1791,3 +1791,346 @@ body {
       width: 100%; }
     .teams__content__team-info {
       width: 100%; }
+
+.right-network-stats {
+  padding: 2rem;
+  background-color: #ffffff;
+  width: 33%;
+  border-radius: 10px; }
+  @media only screen and (max-width: 62em) {
+    .right-network-stats {
+      width: 100%; } }
+  .right-network-stats--img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    @media only screen and (max-width: 36em) {
+      .right-network-stats--img-container span {
+        display: none; } }
+  .right-network-stats--img {
+    width: 6rem; }
+    @media only screen and (max-width: 36em) {
+      .right-network-stats--img {
+        display: none; } }
+  .right-network-stats--content-title {
+    width: 50%; }
+  .right-network-stats--content p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    @media only screen and (max-width: 48em) {
+      .right-network-stats--content p {
+        line-height: 0.8; } }
+
+.requests-connections {
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  background-color: #ffffff;
+  width: 100%; }
+  @media only screen and (max-width: 48em) {
+    .requests-connections {
+      margin: 0;
+      width: 100%;
+      border-radius: 0px; } }
+  @media only screen and (max-width: 36em) {
+    .requests-connections {
+      padding: 0; } }
+  .requests-connections-profiles {
+    overflow-y: scroll;
+    height: 400px; }
+  .requests-connections-btn button {
+    background-color: #ffffff;
+    border: none;
+    text-align: center;
+    width: 50%;
+    padding: 10px; }
+
+.my-requests-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #C4C4C4;
+  margin: 1rem 3rem; }
+  .my-requests-profile-img {
+    border-radius: 50%;
+    overflow: hidden; }
+    .my-requests-profile-img img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover; }
+  .my-requests-profile-data {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column; }
+    .my-requests-profile-data span {
+      padding: 1px;
+      line-height: 0.9; }
+  .my-requests-profile-name {
+    font-weight: bold;
+    font-size: large; }
+  .my-requests-profile-time {
+    font-size: smaller;
+    font-style: italic;
+    color: grey; }
+  .my-requests-profile-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .my-requests-profile-btn-container button {
+      width: 6rem;
+      height: 2rem;
+      border-radius: 2.5rem;
+      margin: 20px;
+      border: none; }
+    @media screen and (max-width: 26rem) {
+      .my-requests-profile-btn-container {
+        flex-direction: column;
+        justify-content: space-evenly; }
+        .my-requests-profile-btn-container button {
+          height: 1.5rem; } }
+  .my-requests-profile-accept-btn {
+    background-color: #02BD63; }
+  @media only screen and (max-width: 48em) {
+    .my-requests-profile {
+      margin: 0; } }
+
+.my-connection-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #C4C4C4;
+  margin: 0 3rem; }
+  .my-connection-profile-img {
+    width: 100px;
+    padding: 10px;
+    border-radius: 50px; }
+  .my-connection-profile-data {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column; }
+    .my-connection-profile-data span {
+      padding: 1px;
+      line-height: 0.9; }
+  .my-connection-profile-name {
+    font-weight: bold;
+    font-size: large; }
+  .my-connection-profile-time {
+    font-size: smaller;
+    color: grey; }
+  .my-connection-profile-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .my-connection-profile-btn-container button {
+      min-width: 6rem;
+      height: 2rem;
+      border-radius: 2.5rem;
+      margin: 20px;
+      border: none; }
+  .my-connection-profile-msg-btn {
+    background-color: #ffffff;
+    width: fit-content; }
+  @media only screen and (max-width: 48em) {
+    .my-connection-profile {
+      margin: 0; } }
+
+body {
+  background-color: #f2f7ff; }
+
+.people-you-may-know {
+  width: 100%;
+  height: auto;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  background-color: #ffffff; }
+  .people-you-may-know-title {
+    font-size: large;
+    font-weight: 500;
+    padding: 20px; }
+    @media only screen and (max-width: 48em) {
+      .people-you-may-know-title {
+        padding: 0px; } }
+  .people-you-may-know-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    overflow-y: scroll; }
+  @media only screen and (max-width: 48em) {
+    .people-you-may-know {
+      border-radius: 0; } }
+
+.people-profile-card {
+  width: 20%;
+  margin: 10px;
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 1rem; }
+  .people-profile-card-img-container {
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden; }
+    .people-profile-card-img-container img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover; }
+  .people-profile-card-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .people-profile-card-name {
+    font-size: 15px;
+    font-weight: 400; }
+  .people-profile-card-designation {
+    font-size: 12px; }
+  .people-profile-card-mutual-connections {
+    font-size: 10px;
+    color: grey;
+    font-style: italic; }
+  .people-profile-card button {
+    width: 6rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: #5579BD;
+    color: #ffffff; }
+    @media only screen and (max-width: 36em) {
+      .people-profile-card button {
+        width: 120%;
+        font-size: small; } }
+  @media only screen and (max-width: 48em) {
+    .people-profile-card {
+      width: 30%;
+      margin: 5px;
+      text-align: center; } }
+
+.line-separation {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; }
+  .line-separation-filter-parameters {
+    background-color: #ffffff;
+    text-align: left;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    z-index: 10;
+    position: absolute;
+    border: 1px solid gray;
+    border-radius: 5px; }
+    .line-separation-filter-parameters label {
+      border-bottom: 0.5px solid #dadada;
+      padding: 5px; }
+      @media only screen and (max-width: 48em) {
+        .line-separation-filter-parameters label {
+          font-size: 10px; } }
+  .line-separation-line {
+    width: 80%;
+    text-align: "left";
+    margin-left: "0px"; }
+    @media only screen and (max-width: 62em) {
+      .line-separation-line {
+        width: 70%; } }
+    @media only screen and (max-width: 48em) {
+      .line-separation-line {
+        width: 60%; } }
+
+*::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 1.5px; }
+
+*::-webkit-scrollbar-track {
+  background-color: #f1f1f1; }
+
+*::-webkit-scrollbar-thumb {
+  background-color: #adadad; }
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #747474; }
+
+.connections-top-components {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem; }
+  @media only screen and (max-width: 62em) {
+    .connections-top-components {
+      flex-direction: column; } }
+
+.connections-bottom-components {
+  margin: 0;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 2rem; }
+  @media only screen and (max-width: 62em) {
+    .connections-bottom-components {
+      flex-direction: column;
+      width: 100%; } }
+
+.connections-page {
+  margin: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px; }
+  @media only screen and (max-width: 36em) {
+    .connections-page {
+      padding: 0; } }
+  @media only screen and (max-width: 48em) {
+    .connections-page {
+      margin: 0;
+      margin-top: 3rem; } }
+  @media only screen and (max-width: 62em) {
+    .connections-page {
+      flex-direction: column; } }
+
+.filter-dropdown {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 10px;
+  border: 1px solid #b3b3b3;
+  transform: translateX(-20%);
+  overflow: hidden; }
+  .filter-dropdown-title {
+    margin: 0 auto; }
+  .filter-dropdown-content {
+    background-color: #ffffff;
+    padding: 1rem; }
+    @media only screen and (max-width: 48em) {
+      .filter-dropdown-content {
+        padding: 5px;
+        border-radius: 0;
+        border: 0; } }
+  .filter-dropdown-parameter {
+    border-bottom: 1px solid gray;
+    padding: 10px 0; }
+  .filter-dropdown-roles {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; }
+    .filter-dropdown-roles label {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+  @media only screen and (max-width: 62em) {
+    .filter-dropdown {
+      font-size: small; } }
+  @media only screen and (max-width: 48em) {
+    .filter-dropdown {
+      padding: 0;
+      transform: translateX(-20%); } }
+  @media only screen and (max-width: 36em) {
+    .filter-dropdown {
+      font-size: smaller;
+      width: 150px; } }
