@@ -1851,11 +1851,14 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #C4C4C4;
-  margin: 0 3rem; }
+  margin: 1rem 3rem; }
   .my-requests-profile-img {
-    width: 100px;
-    padding: 10px;
-    border-radius: 50px; }
+    border-radius: 50%;
+    overflow: hidden; }
+    .my-requests-profile-img img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover; }
   .my-requests-profile-data {
     padding: 5px 20px;
     display: flex;
@@ -1970,10 +1973,13 @@ body {
   border-radius: 10px;
   padding: 1rem; }
   .people-profile-card-img-container {
-    margin: 0 auto; }
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden; }
     .people-profile-card-img-container img {
       width: 60px;
-      border-radius: 30px; }
+      height: 60px;
+      object-fit: cover; }
   .people-profile-card-data {
     display: flex;
     flex-direction: column;
@@ -2092,15 +2098,20 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  border: 1px solid #b3b3b3;
   border-radius: 10px;
-  transform: translateX(-20%); }
+  border: 1px solid #b3b3b3;
+  transform: translateX(-20%);
+  overflow: hidden; }
   .filter-dropdown-title {
     margin: 0 auto; }
   .filter-dropdown-content {
     background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 10px; }
+    padding: 1rem; }
+    @media only screen and (max-width: 48em) {
+      .filter-dropdown-content {
+        padding: 5px;
+        border-radius: 0;
+        border: 0; } }
   .filter-dropdown-parameter {
     border-bottom: 1px solid gray;
     padding: 10px 0; }
@@ -2114,4 +2125,12 @@ body {
       justify-content: space-between; }
   @media only screen and (max-width: 62em) {
     .filter-dropdown {
-      display: none; } }
+      font-size: small; } }
+  @media only screen and (max-width: 48em) {
+    .filter-dropdown {
+      padding: 0;
+      transform: translateX(-20%); } }
+  @media only screen and (max-width: 36em) {
+    .filter-dropdown {
+      font-size: smaller;
+      width: 150px; } }

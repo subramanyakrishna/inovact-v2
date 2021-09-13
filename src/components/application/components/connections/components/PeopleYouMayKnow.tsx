@@ -32,7 +32,9 @@ function PeopleYouMayKnow() {
             <div className="line-separation">   
                 <hr  className="line-separation-line" style={{}}/>
                 <div onMouseLeave={()=>{
-                    setShowFilter(false);
+                    setTimeout(()=>{
+                        setShowFilter(false);
+                    }, 300);
                 }}>
                     <span>Filter:  <label onClick={handleFilterShow}>{`(${currentFilter})`}<span>{showFilter ? <ChevronRightIcon/>: <ExpandMoreIcon/>}</span></label></span>
                     {

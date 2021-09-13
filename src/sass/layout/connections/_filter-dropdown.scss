@@ -5,16 +5,21 @@ $primary-background: #ffffff;
     display: flex;
     flex-direction: column;
     position: absolute;
-    border: 1px solid rgb(179, 179, 179);
     border-radius: 10px;
+    border: 1px solid rgb(179, 179, 179);
     transform: translateX(-20%);
+    overflow: hidden;
     &-title{
         margin: 0 auto;
     }
     &-content{
         background-color: $primary-background;
         padding: 1rem;
-        border-radius: 10px;
+        @include respond(sm){
+            padding: 5px;
+            border-radius: 0;
+            border: 0;
+        }
     }
     &-parameter{
         border-bottom: 1px solid gray;
@@ -31,6 +36,15 @@ $primary-background: #ffffff;
         }
     }
     @include respond(md){
-        display: none;
+        font-size: small;
+    }
+    @include respond(sm){
+        padding: 0;
+        transform: translateX(-20%);
+    }
+    @include respond(xs){
+        font-size: smaller;
+        width: 150px;
+
     }
 }

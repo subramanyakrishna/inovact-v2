@@ -42,9 +42,12 @@ $connect-btn-color: #5579BD;
     padding: 1rem;
     &-img-container{
         margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
         img{
             width: 60px;
-            border-radius: 30px;
+            height: 60px;
+            object-fit: cover;
         }
     }
     &-data{

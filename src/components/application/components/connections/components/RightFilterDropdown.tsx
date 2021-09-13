@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function RightFilterDropdown(props: any) {
 
-    const [showRoles, setShowRoles] = useState(true);
+    const [showRoles, setShowRoles] = useState(false);
     const [showOrganizations, setShowOrganizations] = useState(false);
     const [showSkills, setShowSkills] = useState(false);
 

@@ -6,7 +6,7 @@ function RequestProfile() {
     return (
         <div className="my-requests-profile">
             <div className='my-requests-profile-img'>
-                <img src={image} className="my-requests-profile-img"/>
+                <img src={image} />
             </div>
             <div className="my-requests-profile-data">
                 <span className="my-requests-profile-name">Jane Doe</span>
