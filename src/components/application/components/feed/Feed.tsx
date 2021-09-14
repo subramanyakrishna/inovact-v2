@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LeftNavBar from './components/leftnav/LeftNavBar'
 import CreatePost from './components/center/CreatePost'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
 import Post from './components/center/Post'
 import { postData } from './components/center/postData'
 import UploadProject from './components/modals/UploadProject/UploadProject';
+import UploadIdea from './components/modals/UploadIdea/UploadIdea'
+import UploadThought from './components/modals/UploadThought/UploadThought'
 
 function Feed() {
     const [posts, setPosts] = useState<postData[]>([
@@ -82,21 +84,56 @@ function Feed() {
     ])
 
     const [showOverlay, setShowOverlay] = useState(false);
-
+    const [showUploadProject, setShowUploadProject] = useState(false);
+    const [showUploadIdea, setShowUploadIdea] = useState(false);
+    const [showUploadThought, setShowUploadThought] = useState(false);
     const openModal = ()=>{
         setShowOverlay(true);
     }
     const closeModal = ()=>{
         setShowOverlay(false);
+        setShowUploadProject(false);
+        setShowUploadIdea(false);
+        setShowUploadThought(false);
     }
     
+    const uploadProject = ()=>{
+        openModal();
+        setShowUploadProject(true);
+    }
+    const uploadIdea = ()=>{
+        openModal();
+        setShowUploadIdea(true);
+    }
+    const uploadThought = ()=>{
+        openModal();
+        setShowUploadThought(true);
+    }
     return (
         <div>
             {
                 showOverlay &&
+                <div className="modal_overlay" onClick={closeModal}></div>
+            }
+
+            {
+                showUploadProject &&
                 <div>
-                    <div className="modal_overlay"></div>
                     <UploadProject closeModal={closeModal}/>
+                </div>
+            }
+
+            {
+                showUploadIdea &&
+                <div>
+                    <UploadIdea closeModal={closeModal}/>
+                </div>
+            }
+
+            {
+                showUploadThought && 
+                <div>
+                    <UploadThought closeModal={closeModal}/>
                 </div>
             }
             
@@ -105,7 +142,7 @@ function Feed() {
                     <LeftNavBar />
                 </div>
                 <div className="feed__content__center">
-                    <CreatePost openModal={openModal}/>
+                    <CreatePost openProject={uploadProject} openIdea={uploadIdea} openThought={uploadThought}/>
                     {posts.map((post, idx) => {
                         return <Post key={idx} post={post} />
                     })}

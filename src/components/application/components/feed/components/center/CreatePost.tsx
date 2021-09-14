@@ -12,13 +12,13 @@ function CreatePost(props:any) {
                 <div className="create-post__content">
                     <h1>What's on your mind, Matt?</h1>
                     <div className="create-post__content__options">
-                        <div className="create-post__content__options__button" onClick={props.openModal}>
+                        <div className="create-post__content__options__button" onClick={props.openProject}>
                             New Project
                         </div>
-                        <div className="create-post__content__options__button">
+                        <div className="create-post__content__options__button" onClick={props.openIdea}>
                             New Idea
                         </div>
-                        <div className="create-post__content__options__button">
+                        <div className="create-post__content__options__button" onClick={props.openThought}>
                             Thoughts
                         </div>
                     </div>

@@ -2189,7 +2189,6 @@ body {
 .modal_part_one div {
   display: flex; }
   .modal_part_one div label {
-    font-size: medium;
     font-weight: 300; }
   .modal_part_one div input {
     font-size: small;
