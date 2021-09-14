@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import avatar from 'images/feed/user-avatar.png'
 import add from 'images/feed/add.svg'
 
 function CreatePost(props:any) {
+
+    const [showPopUp, setShowPopUp] = useState(false);
+
+    const togglePopUp = ()=>{
+        setShowPopUp(!showPopUp);
+    }
+
+    const closePopUp = ()=>{
+        setShowPopUp(false);
+    }
     return (
         <>
             <div className="create-post">
@@ -25,7 +35,27 @@ function CreatePost(props:any) {
                 </div>
             </div>
             <div className="floating-button">
-                <img src={add} alt="" />
+                {
+                    showPopUp &&
+                    <div className="floating-button-popup">
+                        <button onClick={()=>{
+                            props.openProject();
+                            setTimeout(closePopUp,500);
+                            }} >New Project</button>
+                        <button onClick={()=>{
+                            props.openIdea();
+                            setTimeout(closePopUp,500);
+                            }}>New Idea</button>
+                        <button onClick={()=>{
+                            props.openThought();
+                            setTimeout(closePopUp,500);
+                            }}>New Thought</button>
+                    </div>
+                }
+                <div className="floating-button-img-container" onClick={togglePopUp}>
+                    <img src={add} alt="" onClick={togglePopUp} />
+                </div>
+                
             </div>
         </>
     )

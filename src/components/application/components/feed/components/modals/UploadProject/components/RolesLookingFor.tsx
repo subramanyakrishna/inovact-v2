@@ -113,7 +113,7 @@ function RolesLookingFor() {
             setSearchSkills([]);
             return;
         }
-        const searchedSkills = allSkills.filter((skill)=>skill.toLowerCase().includes(value.toLowerCase())).slice(0,3);
+        const searchedSkills = allSkills.filter((skill)=>skill.toLowerCase().includes(value.toLowerCase())).slice(0,5);
         setSearchSkills(searchedSkills);
     }
 
