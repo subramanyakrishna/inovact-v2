@@ -4,6 +4,7 @@ import CreatePost from './components/center/CreatePost'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
 import Post from './components/center/Post'
 import { postData } from './components/center/postData'
+import UploadProject from './components/modals/UploadProject/UploadProject';
 
 function Feed() {
     const [posts, setPosts] = useState<postData[]>([
@@ -79,22 +80,44 @@ function Feed() {
             numComments: 250,
         },
     ])
+
+    const [showOverlay, setShowOverlay] = useState(false);
+
+    const openModal = ()=>{
+        setShowOverlay(true);
+    }
+    const closeModal = ()=>{
+        setShowOverlay(false);
+    }
+    
     return (
-        <div className="feed__content">
-            <div className="feed__content__left">
-                <LeftNavBar />
+        <div>
+            {
+                showOverlay &&
+                <div>
+                    <div className="modal_overlay"></div>
+                    <UploadProject closeModal={closeModal}/>
+                </div>
+            }
+            
+            <div className="feed__content">
+                <div className="feed__content__left">
+                    <LeftNavBar />
+                </div>
+                <div className="feed__content__center">
+                    <CreatePost openModal={openModal}/>
+                    {posts.map((post, idx) => {
+                        return <Post key={idx} post={post} />
+                    })}
+                </div>
+                <div className="feed__content__right">
+                    <RightNavBar />
+                </div>
             </div>
-            <div className="feed__content__center">
-                <CreatePost />
-                {posts.map((post, idx) => {
-                    return <Post key={idx} post={post} />
-                })}
-            </div>
-            <div className="feed__content__right">
-                <RightNavBar />
-            </div>
+
         </div>
+        
     )
 }
 
-export default Feed
+export default Feed;

@@ -1,0 +1,256 @@
+$primary-background: #ffffff;
+$grey-border: rgb(180, 180, 180);
+
+
+
+.modal_main {
+    display: flex;
+    justify-content:center;
+}
+.modal_cover{
+    background-color: $primary-background;
+    z-index: 105;
+    position: absolute;
+    margin-top: 10%;
+    width: 50%;
+    height: 70%;
+    overflow-y: scroll;
+    border-radius: 30px;
+    padding: 2rem 4rem;
+    &-title{
+        padding: 10px 0px;
+        font-size: 2rem;
+        font-weight: 600;
+        color: black;
+    }
+    &-post-btn{
+        display: flex;
+        justify-content: right;
+        button{
+            width: 5rem;
+            border-radius: 10px;
+            background: none;
+            border: 1px solid $grey-border;
+            color: #02BD63;
+        }
+    }
+    @include respond(md){
+        width: 60%;
+        height: 80%;
+    }
+    @include respond(sm){
+        margin-top: 1rem;
+        width: 80%;
+        height: 90%;
+    }
+    @include respond(xs){
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+    }
+}
+.modal_overlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 101;
+    background-color: black;
+    opacity: 0.6;
+}
+
+.modal_part_one{
+    div{
+        display: flex;
+        
+        label{
+            // margin-left: 10px;
+            font-size: medium;
+            font-weight: 300;
+        }
+        input{
+            font-size: small;
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+    }
+    &-title{
+        
+        flex-direction: column;
+    }
+    &-tags{
+        
+        flex-direction: column;
+    }
+    &-description{
+        
+        flex-direction: column;
+        input{
+            height: 5rem;
+        }
+        div{
+            display: flex;
+            justify-content: right;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            font-size: small;
+            border: 1px solid $grey-border;
+            background-color: $primary-background;
+            box-shadow: $grey-border;
+            color: #02BD63;
+            margin-bottom: 20px;
+            float: right;
+        }
+    }
+    &-completed{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        label{
+            padding-right: 20px;
+        }
+    }
+}
+
+
+.skills-tag{
+    color: black;
+    width: auto;
+    padding: 0px 5px;
+    font-size: 12px;
+    background-color: #84e6b7;
+    margin: 0px 5px;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    button{
+        font-size: medium;
+        padding-left: 5px;
+        border: none;
+        background-color: #84e6b7;
+    }
+}
+
+.modal_part_two{
+    padding-top: 2.5rem;
+    
+    input{
+        padding: 5px;
+        font-size: small;
+    }
+    &-team-worked{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        input{
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
+    &-mentions{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        input{
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+    }
+    &-member-mentor{
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin-bottom: 2rem;
+        input{
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+        div{
+            width: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &-project-status{
+        margin-bottom: 2rem;
+        input{
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+        div{
+            font-size: small;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    &-roles-looking-for{
+        margin-top: 1rem;
+    }
+}
+
+.roles_looking_for{
+    display: flex;
+    flex-direction: column;
+    div{
+        margin: 10px 0px;
+    }
+    &-add-role{
+        display: flex;
+        justify-content: space-between;
+        input{
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+        button{
+            color: rgb(0, 132, 255);
+            width: 140px;
+            margin: 0px 10px;
+            border: 1px solid lightblue;
+            border-radius: 10px;
+            background-color: $primary-background;
+        }
+    }
+    &-add-skills{
+        input{
+            width: 70%;
+            border: none;
+            border-radius: none;
+            border-bottom: 1px solid #02BD63;
+        }
+        div{
+            display: flex;
+            gap: 5px;
+        }
+    }
+    
+}
+.close-modal{
+    background: none;
+    color:#02BD63;
+    float: right;
+    border: none;
+    // width: 20px;
+    // height: 20px;
+    border-radius: 50%;
+    font-size: 2rem;
+    padding: 0;
+}
+
+input:focus{
+    outline: none;
+}
