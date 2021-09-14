@@ -7,6 +7,12 @@ $grey-border: rgb(180, 180, 180);
     display: flex;
     justify-content:center;
 }
+.modal_content{
+    padding: 2rem;
+    overflow-y: scroll;
+    width: 100%;
+    height: 80%;
+}
 .modal_cover{
     background-color: $primary-background;
     z-index: 105;
@@ -14,7 +20,7 @@ $grey-border: rgb(180, 180, 180);
     margin-top: 10%;
     width: 50%;
     height: 70%;
-    overflow-y: scroll;
+    
     border-radius: 30px;
     padding: 2rem 4rem;
     &-title{
@@ -262,6 +268,7 @@ $grey-border: rgb(180, 180, 180);
         font-size: small;
         width: 100%;
         border-bottom: 1px solid $grey-border;
+        cursor: pointer;
         // border-left: 1px solid $grey-border;
         // border-right: 1px solid $grey-border;
         margin: 0;

@@ -12,11 +12,11 @@ function UploadProject(props: any) {
     }
 
     return (
-        <div>
-            <div className="modal_main">
-                <div className="modal_cover">
-                    <button className="close-modal" onClick={props.closeModal}>&times;</button>
-                    <label className="modal_cover-title">Upload Project</label>
+        <div className="modal_main">
+            <div className="modal_cover">
+                <button className="close-modal" onClick={props.closeModal}>&times;</button>
+                <label className="modal_cover-title">Upload Project</label>
+                <div className="modal_content">
                     <ModalPart1 projectCompletion={toggleProjectCompletion}/>
                     <ModalPart2 projectCompleted={projectCompleted}/>
                     <div className="modal_cover-post-btn">

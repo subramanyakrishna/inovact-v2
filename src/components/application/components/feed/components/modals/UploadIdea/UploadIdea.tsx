@@ -7,10 +7,13 @@ function UploadIdea(props:any) {
             <div className="modal_cover">
                 <button className="close-modal" onClick={props.closeModal}>&times;</button>
                 <label className="modal_cover-title">Upload Idea</label>
-                <ModalContent/>
-                <div className="modal_cover-post-btn">
-                    <button>Post</button>
+                <div className="modal_content">
+                    <ModalContent/>
+                    <div className="modal_cover-post-btn">
+                        <button>Post</button>
+                    </div>
                 </div>
+                
             </div>
         </div>
     )
