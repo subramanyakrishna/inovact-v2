@@ -1,11 +1,32 @@
-import { Switch } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SkillTags from './SkillTags';
 import Switch_slider from './Switch_slider';
 
 function ModalPart1(props: any) {
     
+    const [skillsNeeded, setSkillsNeeded] = useState<string[]>([]);
+    const [currentSkill, setCurrentSkill] = useState("");
+    const removeSkill = (skill:any)=>{
+        setSkillsNeeded(skillsNeeded.filter((ele)=>ele!==skill));
+    }
+    /* //Need to work on this
+    const addSkill = (e:any)=>{
+        if(e.key=="Enter"){
+            if(!skillsNeeded.includes(currentSkill)){
+                setSkillsNeeded([...skillsNeeded, currentSkill]);
+                setCurrentSkill("");
+            }
+        }
+    }
+    const handleChangeInput = (e:any)=>{
+        const value = e.target.value;
+        setCurrentSkill(value);
+    }
+    useEffect(()=>{
+        document.querySelector(".modal_part_one-tags input")?.addEventListener("keydown",addSkill);
+    });
+
+    */
     return (
         <div className="modal_part_one">
             <div className="modal_part_one-title">
@@ -21,12 +42,13 @@ function ModalPart1(props: any) {
             </div>
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <input type="text" placeholder="Type out the skills used"/>
+                <input type="text" placeholder="Type out the skills used" value={currentSkill}/>
                 <div>
-                    <SkillTags skill="OOP"/>
-                    <SkillTags skill="C"/>
-                    <SkillTags skill="Python"/>
-                    <SkillTags skill="Algorithms"/>
+                    {
+                        skillsNeeded.map((skill)=>{
+                            return (<SkillTags skill={skill} removeSkill={removeSkill}/>);
+                        })
+                    }
                 </div>
             </div>
             <div className="modal_part_one-completed">

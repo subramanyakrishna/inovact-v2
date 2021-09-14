@@ -4,7 +4,7 @@ function SkillTags(props: any) {
     return (
         <div className="skills-tag">
             <label>{props.skill}</label>
-            <button>&times;</button>
+            <button onClick={props.removeSkill?.bind(null, props.skill)} >&times;</button>
         </div>
     )
 }

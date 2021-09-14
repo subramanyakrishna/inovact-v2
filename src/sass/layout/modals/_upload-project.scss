@@ -251,6 +251,25 @@ $grey-border: rgb(180, 180, 180);
     padding: 0;
 }
 
+.search_skills{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: $primary-background;
+    width: 50%;
+    border: 1px solid $grey-border;
+    span{
+        font-size: small;
+        width: 100%;
+        border-bottom: 1px solid $grey-border;
+        // border-left: 1px solid $grey-border;
+        // border-right: 1px solid $grey-border;
+        margin: 0;
+        padding: 2px;
+    }
+}
+
 input:focus{
     outline: none;
 }
+
