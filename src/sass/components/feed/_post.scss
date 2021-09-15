@@ -182,10 +182,8 @@
 .preview-image{
     width: 100%;
     cursor: pointer;
-    z-index: 100;
 }
 .extra-images-btn{
-    
     width: 60px;
     height: 60px;
     top: 85%;
@@ -194,12 +192,10 @@
     -ms-transform: translate(-50%, -50%);
     border-radius: 50%;
     border: none;
-    z-index: 999;
     margin: 10px;
     background-color: black;
     position: absolute;
     color: white;
-    // transform: translate(-120%,500%);
     opacity: 0.8;
     font-size: 2rem;
     @include respond(md){

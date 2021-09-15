@@ -1400,8 +1400,7 @@ body {
 
 .preview-image {
   width: 100%;
-  cursor: pointer;
-  z-index: 100; }
+  cursor: pointer; }
 
 .extra-images-btn {
   width: 60px;
@@ -1412,7 +1411,6 @@ body {
   -ms-transform: translate(-50%, -50%);
   border-radius: 50%;
   border: none;
-  z-index: 999;
   margin: 10px;
   background-color: black;
   position: absolute;
@@ -1769,7 +1767,7 @@ body {
 
 .feed__content {
   display: flex;
-  max-width: 1800px;
+  max-width: 1200px;
   margin: auto;
   width: 100%;
   padding: 4rem 1rem 0; }
