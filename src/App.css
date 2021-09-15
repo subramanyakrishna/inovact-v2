@@ -1394,6 +1394,36 @@ body {
         .post__footer__team__empty {
           display: none; } }
 
+.preview-image-container {
+  position: relative;
+  width: 100%; }
+
+.preview-image {
+  width: 100%;
+  cursor: pointer;
+  z-index: 100; }
+
+.extra-images-btn {
+  width: 60px;
+  height: 60px;
+  top: 85%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: none;
+  z-index: 999;
+  margin: 10px;
+  background-color: black;
+  position: absolute;
+  color: white;
+  opacity: 0.8;
+  font-size: 2rem; }
+  @media only screen and (max-width: 62em) {
+    .extra-images-btn {
+      width: 50px;
+      height: 50px; } }
+
 .landing-page__hero {
   height: 100vh;
   background-image: linear-gradient(rgba(0, 25, 72, 0.72), rgba(0, 25, 72, 0.72)), url("images/landing-section-1/hero-bg.png");
