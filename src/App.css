@@ -2333,7 +2333,8 @@ body {
     margin: 10px 0px; }
   .roles_looking_for-add-role {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    position: relative; }
     .roles_looking_for-add-role input {
       width: 100%;
       border-radius: 10px;
@@ -2368,6 +2369,7 @@ body {
   flex-direction: column;
   position: absolute;
   background-color: #ffffff;
+  z-index: 999;
   width: 50%;
   border: 1px solid #b4b4b4; }
   .search_skills span {

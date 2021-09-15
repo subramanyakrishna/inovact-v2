@@ -18,15 +18,15 @@ function ModalPart1(props: any) {
             }
         }
     }
+    useEffect(()=>{
+        document.querySelector(".modal_part_one-tags input")?.addEventListener("keydown",addSkill);
+    });
+    */
     const handleChangeInput = (e:any)=>{
         const value = e.target.value;
         setCurrentSkill(value);
     }
-    useEffect(()=>{
-        document.querySelector(".modal_part_one-tags input")?.addEventListener("keydown",addSkill);
-    });
-
-    */
+    
     return (
         <div className="modal_part_one">
             <div className="modal_part_one-title">
@@ -42,7 +42,7 @@ function ModalPart1(props: any) {
             </div>
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <input type="text" placeholder="Type out the skills used" value={currentSkill}/>
+                <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
                 <div>
                     {
                         skillsNeeded.map((skill)=>{

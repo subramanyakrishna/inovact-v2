@@ -217,6 +217,7 @@ $grey-border: rgb(180, 180, 180);
     &-add-role{
         display: flex;
         justify-content: space-between;
+        position: relative;
         input{
             width: 100%;
             border-radius: 10px;
@@ -260,8 +261,9 @@ $grey-border: rgb(180, 180, 180);
 .search_skills{
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position:absolute;
     background-color: $primary-background;
+    z-index: 999;
     width: 50%;
     border: 1px solid $grey-border;
     span{

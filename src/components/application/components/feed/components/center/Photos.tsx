@@ -20,6 +20,7 @@ function Photos(props: photoProps) {
     }
 
     var photos = props.images.map((img) => {
+        console.log(img);
         return {
             src: img,
             width: 1,
@@ -29,26 +30,33 @@ function Photos(props: photoProps) {
         }
     })
 
+
     return (
         <div>
             <Gallery photos={photos} onClick={openLightbox} />
             <ModalGateway>
-                {viewerIsOpen ? (
+                {viewerIsOpen && 
                     <Modal onClose={closeLightbox}>
                         <Carousel
                             currentIndex={currentImage}
-                            views={photos.map((x) => ({
-                                ...x,
-                                srcset: x.srcSet,
-                                caption: x.title,
-                                source: '',
-                            }))}
+                            views={photos.map((img)=>{
+                                return {source: img.src}
+                            })}
                         />
                     </Modal>
-                ) : null}
+                }
             </ModalGateway>
         </div>
     )
 }
 
 export default Photos
+
+
+/*
+views={photos.map((x) => ({
+                                ...x,
+                                srcset: x.srcSet,
+                                caption: x.title,
+                                source: '',
+                            }))}*/

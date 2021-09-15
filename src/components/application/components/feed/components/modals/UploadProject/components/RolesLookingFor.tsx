@@ -102,6 +102,7 @@ function RolesLookingFor() {
     'Research',
     'Subject Matter Experts (SMEs)',
     'Technical Documentation'];
+
     const [skillSelected, setSkillSelected] = useState<string[]>([]);
     const [currentSkill, setCurrentSkill] = useState("");
     const [searchSkills, setSearchSkills] = useState<string[]>([]);
@@ -113,7 +114,9 @@ function RolesLookingFor() {
             setSearchSkills([]);
             return;
         }
+        console.log("change");
         const searchedSkills = allSkills.filter((skill)=>skill.toLowerCase().includes(value.toLowerCase())).slice(0,5);
+        console.log(searchedSkills);
         setSearchSkills(searchedSkills);
     }
 
