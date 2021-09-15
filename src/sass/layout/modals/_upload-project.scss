@@ -145,7 +145,7 @@ $grey-border: rgb(180, 180, 180);
 
 .modal_part_two{
     padding-top: 2.5rem;
-    
+    position: relative;
     input{
         padding: 5px;
         font-size: small;
@@ -211,10 +211,8 @@ $grey-border: rgb(180, 180, 180);
 .roles_looking_for{
     display: flex;
     flex-direction: column;
-    div{
-        margin: 10px 0px;
-    }
     &-add-role{
+        margin: 10px 0px;
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -233,6 +231,7 @@ $grey-border: rgb(180, 180, 180);
         }
     }
     &-add-skills{
+        margin: 10px 0px;
         input{
             width: 70%;
             border: none;
@@ -266,6 +265,7 @@ $grey-border: rgb(180, 180, 180);
     z-index: 999;
     width: 50%;
     border: 1px solid $grey-border;
+    margin: 0px;
     span{
         font-size: small;
         width: 100%;

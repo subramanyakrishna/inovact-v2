@@ -2277,7 +2277,8 @@ body {
     background-color: #84e6b7; }
 
 .modal_part_two {
-  padding-top: 2.5rem; }
+  padding-top: 2.5rem;
+  position: relative; }
   .modal_part_two input {
     padding: 5px;
     font-size: small; }
@@ -2329,9 +2330,8 @@ body {
 .roles_looking_for {
   display: flex;
   flex-direction: column; }
-  .roles_looking_for div {
-    margin: 10px 0px; }
   .roles_looking_for-add-role {
+    margin: 10px 0px;
     display: flex;
     justify-content: space-between;
     position: relative; }
@@ -2346,14 +2346,16 @@ body {
       border: 1px solid lightblue;
       border-radius: 10px;
       background-color: #ffffff; }
-  .roles_looking_for-add-skills input {
-    width: 70%;
-    border: none;
-    border-radius: none;
-    border-bottom: 1px solid #02BD63; }
-  .roles_looking_for-add-skills div {
-    display: flex;
-    gap: 5px; }
+  .roles_looking_for-add-skills {
+    margin: 10px 0px; }
+    .roles_looking_for-add-skills input {
+      width: 70%;
+      border: none;
+      border-radius: none;
+      border-bottom: 1px solid #02BD63; }
+    .roles_looking_for-add-skills div {
+      display: flex;
+      gap: 5px; }
 
 .close-modal {
   background: none;
@@ -2371,7 +2373,8 @@ body {
   background-color: #ffffff;
   z-index: 999;
   width: 50%;
-  border: 1px solid #b4b4b4; }
+  border: 1px solid #b4b4b4;
+  margin: 0px; }
   .search_skills span {
     font-size: small;
     width: 100%;

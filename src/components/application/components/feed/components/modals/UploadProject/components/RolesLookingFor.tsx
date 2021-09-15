@@ -142,12 +142,14 @@ function RolesLookingFor() {
                 <input type="text" placeholder="Type out the skills required for the above mentioned role" value={currentSkill} onChange={handleInputChange}/>
                 {
                     (searchSkills.length!==0) &&
-                    <div className="search_skills">
-                        {
-                            searchSkills.map((skill)=>{
-                                return (<span onClick={addTheSkill} data-value={skill}>{skill}</span>)
-                            })
-                        }
+                    <div style={{position: "relative"}}>
+                        <div className="search_skills">
+                            {
+                                searchSkills.map((skill)=>{
+                                    return (<span onClick={addTheSkill} data-value={skill}>{skill}</span>)
+                                })
+                            }
+                        </div>
                     </div>
                 }
                 <div>
