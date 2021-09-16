@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
 import Switch_slider from './Switch_slider';
 
 function ModalPart2(props: any) {
+    const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
+
+    const addAnotherRole = (role:any, tags:any)=>{
+        console.log(role, tags);
+        setAllRolesNeeded([...allRolesNeeded, {role: role, skillNeeded: tags}]);
+    }
+
     return (
         <div className="modal_part_two">
             <div className="modal_part_two-team-worked">
@@ -13,17 +21,25 @@ function ModalPart2(props: any) {
                         <input type="checkbox"/>
                         <label>Individual Project</label>
                     </div>
+                    <div>
+                        <input type="checkbox"/>
+                        <span>Team not on Inovact</span>
+                    </div>
                     
-                    <span>Team not on Inovact</span>
                 </div>
             </div>
-            {
-                !props.projectCompleted &&
-                    <div>           
+        
                     <div className="modal_part_two-mentions">
                         <label>Mentions</label>
                         <input type="text" placeholder="Type the usernames of the people you would like to mention"/>
                     </div>
+                    <div className="modal_part_one-completed">
+                        <label>Completed Project</label>
+                        <Switch_slider projectCompletion={props.projectCompletion}/>
+                    </div>
+                {
+                !props.projectCompleted &&
+                <div>
                     <div className="modal_part_two-member-mentor">
                         <div>
                             <label>Looking for team members</label>
@@ -53,9 +69,14 @@ function ModalPart2(props: any) {
                     </div>
                     <div className="modal_part_two-roles-looking-for">
                         <span>What roles are you looking for?</span>
-                        <RolesLookingFor/>
-                        <RolesLookingFor/>
-                        <RolesLookingFor/>
+                        {
+                            allRolesNeeded.map((ele:any)=>{
+                                console.log(allRolesNeeded);
+                                return <RolesLookingFor role={ele.role} skillSelected={ele.skillNeeded}/>
+                                }
+                            )
+                        }
+                        <AddRolesLookingFor addAnotherRole={addAnotherRole}/>
                     </div>
                 </div>
             }

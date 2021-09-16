@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
+import RolesLookingFor from './RolesLookingFor';
 import SkillTags from './SkillTags';
 
-function RolesLookingFor(props: any) {
+function AddRolesLookingFor(props: any) {
     const allSkills = ["Competitive Programming", 
     "Python", 
     "Java", 
@@ -103,9 +104,15 @@ function RolesLookingFor(props: any) {
     'Subject Matter Experts (SMEs)',
     'Technical Documentation'];
 
-    const [skillSelected, setSkillSelected] = useState<string[]>(props.skillSelected);
+    const [skillSelected, setSkillSelected] = useState<string[]>([]);
     const [currentSkill, setCurrentSkill] = useState("");
     const [searchSkills, setSearchSkills] = useState<string[]>([]);
+    const [roleInput, setRoleInput] = useState("");
+
+    const handleRoleInputChange = (e:any)=>{
+        // console.log(e.target.value);
+        setRoleInput(e.target.value);
+    }
 
     const handleInputChange = (e:any) =>{
         const value = e.target.value;
@@ -132,12 +139,18 @@ function RolesLookingFor(props: any) {
         setSkillSelected(skillSelected.filter((ele)=> ele!==skill));
     }
 
+    const handleAddRole = ()=>{
+        props.addAnotherRole(roleInput, skillSelected);
+        setSkillSelected([]);
+        setRoleInput("");
+    }
     return (
-        <div className="roles_looking_for">
-            <div className="roles_looking_for-add-role">
-                <input type="text" value={props.role}/>
+        <div className="add_roles_looking_for">
+            <div className="add_roles_looking_for-add-role">
+                <input type="text" onChange={handleRoleInputChange} value={roleInput}/>
+                <button className="add_roles_looking_for-add-btn" onClick={handleAddRole}>+Add Role</button>
             </div>
-            <div className="roles_looking_for-add-skills">
+            <div className="add_roles_looking_for-add-skills">
                 <input type="text" placeholder="Type out the skills required for the above mentioned role" value={currentSkill} onChange={handleInputChange}/>
                 {
                     (searchSkills.length!==0) &&
@@ -164,4 +177,4 @@ function RolesLookingFor(props: any) {
     )
 }
 
-export default RolesLookingFor;
+export default AddRolesLookingFor;

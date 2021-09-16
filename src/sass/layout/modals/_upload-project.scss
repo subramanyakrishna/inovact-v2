@@ -128,7 +128,7 @@ $grey-border: rgb(180, 180, 180);
     padding: 0px 5px;
     font-size: 12px;
     background-color: #84e6b7;
-    margin: 0px 5px;
+    margin: 5px 5px;
     overflow: hidden;
     border-radius: 10px;
     display: flex;
@@ -155,12 +155,13 @@ $grey-border: rgb(180, 180, 180);
         input{
             border-radius: 10px;
             border: 1px solid $grey-border;
+            margin: 0px 5px 0px 0px;
         }
         div{
             display: flex;
             align-items: center;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: space-between;
         }
     }
     &-mentions{
@@ -193,6 +194,8 @@ $grey-border: rgb(180, 180, 180);
         input{
             border-radius: 10px;
             border: 1px solid $grey-border;
+            margin: 0px 3px 0px 0px;
+            background-color: #02BD63;
         }
         div{
             font-size: small;
@@ -215,23 +218,15 @@ $grey-border: rgb(180, 180, 180);
         justify-content: space-between;
         position: relative;
         input{
-            width: 100%;
+            width: 75%;
             border-radius: 10px;
             border: 1px solid $grey-border;
-        }
-        button{
-            color: rgb(0, 132, 255);
-            width: 140px;
-            margin: 0px 10px;
-            border: 1px solid lightblue;
-            border-radius: 10px;
-            background-color: $primary-background;
         }
     }
     &-add-skills{
         margin: 10px 0px;
         input{
-            width: 70%;
+            width: 100%;
             border: none;
             border-radius: none;
             border-bottom: 1px solid #02BD63;
@@ -280,3 +275,40 @@ input:focus{
     outline: none;
 }
 
+
+.add_roles_looking_for{
+    display: flex;
+    flex-direction: column;
+    &-add-role{
+        margin: 10px 0px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        input{
+            width: 80%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
+    }
+    &-add-skills{
+        margin: 10px 0px;
+        input{
+            width: 75%;
+            border: none;
+            border-radius: none;
+            border-bottom: 1px solid #02BD63;
+        }
+        div{
+            display: flex;
+            gap: 5px;
+        }
+    }
+    &-add-btn{
+        color:#02BD63;
+        width: 140px;
+        margin: 0px 10px;
+        border: 1px solid lightblue;
+        border-radius: 10px;
+        background-color: $primary-background;
+    }
+}

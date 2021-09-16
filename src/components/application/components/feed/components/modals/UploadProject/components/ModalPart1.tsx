@@ -51,10 +51,6 @@ function ModalPart1(props: any) {
                     }
                 </div>
             </div>
-            <div className="modal_part_one-completed">
-                <label>Completed Project</label>
-                <Switch_slider projectCompletion={props.projectCompletion}/>
-            </div>
         </div>
     )
 }

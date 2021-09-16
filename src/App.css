@@ -2293,7 +2293,7 @@ body {
   padding: 0px 5px;
   font-size: 12px;
   background-color: #84e6b7;
-  margin: 0px 5px;
+  margin: 5px 5px;
   overflow: hidden;
   border-radius: 10px;
   display: flex;
@@ -2316,12 +2316,13 @@ body {
     margin-bottom: 2rem; }
     .modal_part_two-team-worked input {
       border-radius: 10px;
-      border: 1px solid #b4b4b4; }
+      border: 1px solid #b4b4b4;
+      margin: 0px 5px 0px 0px; }
     .modal_part_two-team-worked div {
       display: flex;
       align-items: center;
       flex-direction: row;
-      justify-content: space-around; }
+      justify-content: space-between; }
   .modal_part_two-mentions {
     display: flex;
     flex-direction: column;
@@ -2346,7 +2347,9 @@ body {
     margin-bottom: 2rem; }
     .modal_part_two-project-status input {
       border-radius: 10px;
-      border: 1px solid #b4b4b4; }
+      border: 1px solid #b4b4b4;
+      margin: 0px 3px 0px 0px;
+      background-color: #02BD63; }
     .modal_part_two-project-status div {
       font-size: small;
       display: flex;
@@ -2364,20 +2367,13 @@ body {
     justify-content: space-between;
     position: relative; }
     .roles_looking_for-add-role input {
-      width: 100%;
+      width: 75%;
       border-radius: 10px;
       border: 1px solid #b4b4b4; }
-    .roles_looking_for-add-role button {
-      color: #0084ff;
-      width: 140px;
-      margin: 0px 10px;
-      border: 1px solid lightblue;
-      border-radius: 10px;
-      background-color: #ffffff; }
   .roles_looking_for-add-skills {
     margin: 10px 0px; }
     .roles_looking_for-add-skills input {
-      width: 70%;
+      width: 100%;
       border: none;
       border-radius: none;
       border-bottom: 1px solid #02BD63; }
@@ -2413,3 +2409,33 @@ body {
 
 input:focus {
   outline: none; }
+
+.add_roles_looking_for {
+  display: flex;
+  flex-direction: column; }
+  .add_roles_looking_for-add-role {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    position: relative; }
+    .add_roles_looking_for-add-role input {
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #b4b4b4; }
+  .add_roles_looking_for-add-skills {
+    margin: 10px 0px; }
+    .add_roles_looking_for-add-skills input {
+      width: 75%;
+      border: none;
+      border-radius: none;
+      border-bottom: 1px solid #02BD63; }
+    .add_roles_looking_for-add-skills div {
+      display: flex;
+      gap: 5px; }
+  .add_roles_looking_for-add-btn {
+    color: #02BD63;
+    width: 140px;
+    margin: 0px 10px;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    background-color: #ffffff; }
