@@ -2212,6 +2212,9 @@ body {
     font-size: 2rem;
     font-weight: 600;
     color: black; }
+    @media only screen and (max-width: 75em) {
+      .modal_cover-title {
+        font-size: 1.5rem; } }
   .modal_cover-post-btn {
     display: flex;
     justify-content: right; }
@@ -2578,3 +2581,47 @@ input, textarea:focus {
   @media only screen and (max-width: 75em) {
     .team-member-card {
       width: 30%; } }
+
+.roles-required-heading {
+  display: flex;
+  flex-direction: column; }
+  .roles-required-heading-main {
+    font-size: larger;
+    font-weight: 600; }
+    @media only screen and (max-width: 75em) {
+      .roles-required-heading-main {
+        font-size: medium; } }
+  .roles-required-heading-description {
+    color: #02BD63; }
+    @media only screen and (max-width: 75em) {
+      .roles-required-heading-description {
+        font-size: small; } }
+
+.roles-required-container {
+  display: flex;
+  flex-wrap: wrap; }
+
+.roles-required-all {
+  display: flex;
+  font-size: small;
+  padding: 10px; }
+  .roles-required-all-main {
+    display: flex;
+    flex-direction: column; }
+  .roles-required-all-skills {
+    color: #02BD63; }
+  .roles-required-all-checkbox {
+    margin: 5px; }
+  @media only screen and (max-width: 75em) {
+    .roles-required-all {
+      width: 50%; } }
+
+.roles-required-request-btn {
+  color: #02BD63;
+  font-size: 15px;
+  height: 2rem;
+  width: 120px;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  background-color: #ffffff;
+  float: right; }

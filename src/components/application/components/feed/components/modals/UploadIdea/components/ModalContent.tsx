@@ -11,7 +11,7 @@ function ModalContent() {
             </div>
             <div className="modal_part_one-description">
                 <label >Project Description</label>
-                <input type="text" placeholder="Describe your project"/>
+                <textarea placeholder="Describe your project"/>
                 <div>
                     <button>Upload Media</button>
                 </div>

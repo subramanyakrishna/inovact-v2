@@ -108,6 +108,7 @@ function Feed() {
         setShowUploadThought(false);
         setShowCreateTeam(false);
         setShowTeamMembers(false);
+        setShowRequestJoin(false);
         document.body.style.overflowY="scroll";
     }
     
