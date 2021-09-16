@@ -2452,6 +2452,15 @@ input, textarea:focus {
     border-radius: 10px;
     background-color: #ffffff; }
 
+.upload-media-btn {
+  color: #02BD63;
+  border: 1px solid gray;
+  border-radius: 15px;
+  font-size: small;
+  padding: 5px;
+  width: 6rem;
+  margin-bottom: 20px; }
+
 .team-name {
   display: flex;
   flex-direction: column; }

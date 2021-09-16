@@ -29,7 +29,7 @@ function CreatePost(props:any) {
                             New Idea
                         </div>
                         <div className="create-post__content__options__button" onClick={props.openThought}>
-                            Thoughts
+                            New Thought
                         </div>
                     </div>
                 </div>

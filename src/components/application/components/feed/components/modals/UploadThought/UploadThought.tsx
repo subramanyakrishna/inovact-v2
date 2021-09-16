@@ -11,7 +11,8 @@ function UploadThought(props:any) {
                         <label >Project Description</label>
                         <textarea placeholder="Describe your project"/>
                         <div>
-                            <button>Upload Media</button>
+                            <input type="file" id="upload-media-input" hidden/>
+                            <label className="upload-media-btn" htmlFor="upload-media-input">Upload Media</label>
                         </div>
                     </div>
                 </div>
