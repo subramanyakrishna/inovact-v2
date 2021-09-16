@@ -1767,7 +1767,7 @@ body {
 
 .feed__content {
   display: flex;
-  max-width: 1200px;
+  max-width: 1800px;
   margin: auto;
   width: 100%;
   padding: 4rem 1rem 0; }
@@ -2223,7 +2223,8 @@ body {
   @media only screen and (max-width: 62em) {
     .modal_cover {
       width: 60%;
-      height: 80%; } }
+      height: 80%;
+      padding: 2rem 2rem; } }
   @media only screen and (max-width: 48em) {
     .modal_cover {
       margin-top: 1rem;
@@ -2233,12 +2234,15 @@ body {
     .modal_cover {
       width: 100%;
       height: 100%;
-      border-radius: 0px; } }
+      border-radius: 0px;
+      padding: 1rem;
+      margin: 0; } }
 
 .modal_overlay {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
+  overflow: hidden;
   z-index: 101;
   background-color: black;
   opacity: 0.6; }
@@ -2247,7 +2251,7 @@ body {
   display: flex; }
   .modal_part_one div label {
     font-weight: 300; }
-  .modal_part_one div input {
+  .modal_part_one div input, .modal_part_one div textarea {
     font-size: small;
     padding: 5px;
     margin-bottom: 10px;
@@ -2263,7 +2267,7 @@ body {
 
 .modal_part_one-description {
   flex-direction: column; }
-  .modal_part_one-description input {
+  .modal_part_one-description textarea {
     height: 5rem; }
   .modal_part_one-description div {
     display: flex;
@@ -2407,7 +2411,7 @@ body {
     margin: 0;
     padding: 2px; }
 
-input:focus {
+input, textarea:focus {
   outline: none; }
 
 .add_roles_looking_for {
