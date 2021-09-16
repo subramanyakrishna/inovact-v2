@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import SkillTags from './SkillTags';
 import Switch_slider from './Switch_slider';
-
+import TeamNameDescription from './TeamNameDescription';
 function ModalPart1(props: any) {
     
     const [skillsNeeded, setSkillsNeeded] = useState<string[]>([]);
@@ -29,7 +29,7 @@ function ModalPart1(props: any) {
     
     return (
         <div className="modal_part_one">
-            <div className="modal_part_one-title">
+            {/* <div className="modal_part_one-title">
                 <label >Project Title</label>
                 <input type="text" placeholder="Give your project a suitable title"/>
             </div>
@@ -39,7 +39,10 @@ function ModalPart1(props: any) {
                 <div>
                     <button>Upload Media</button>
                 </div>
-            </div>
+            </div> */}
+
+            <TeamNameDescription/>
+            
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
                 <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>

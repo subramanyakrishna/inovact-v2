@@ -6,7 +6,7 @@ function Switch_slider( props: any ) {
     const [checked, setChecked] = useState(false);
     const toggleChecked = ()=>{
         setChecked(!checked);
-        props.projectCompletion();
+        props.projectCompletion && props.projectCompletion();
     }
     const GreenSwitch = withStyles({
         switchBase: {

@@ -34,7 +34,7 @@ const myteams: MyTeams[] = [
     }
   ];
   
-  const LeftBottom = () => {
+  const LeftBottom = (props: any) => {
   
     return (
       <div className="left-right-nav">
@@ -45,7 +45,7 @@ const myteams: MyTeams[] = [
           <MDBCardBody className="left-right-nav__card__body">
             <MDBListGroup flush className="left-right-nav__card__list">
               <MDBListGroupItem className="left-right-nav__card__list__item--create">
-                <img src={create} alt="create" />
+                <img src={create} alt="create" onClick={props.openCreateTeam}/>
                 <div className="left-right-nav__card__list__item__info">
                   <h2>
                     <a href="/createteam" className="title">

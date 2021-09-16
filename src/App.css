@@ -2189,7 +2189,8 @@ body {
 
 .modal_main {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  overflow: hidden; }
 
 .modal_content {
   padding: 2rem;
@@ -2258,6 +2259,10 @@ body {
     width: 100%;
     border-radius: 10px;
     border: 1px solid #b4b4b4; }
+
+.modal_part_one-team-description {
+  display: flex;
+  flex-direction: column; }
 
 .modal_part_one-title {
   flex-direction: column; }
@@ -2443,3 +2448,133 @@ input, textarea:focus {
     border: 1px solid lightblue;
     border-radius: 10px;
     background-color: #ffffff; }
+
+.team-name {
+  display: flex;
+  flex-direction: column; }
+  .team-name-title {
+    display: flex;
+    flex-direction: column; }
+  .team-name label {
+    font-weight: 300; }
+  .team-name input, .team-name textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
+  .team-name button {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: small;
+    border: 1px solid #b4b4b4;
+    background-color: #ffffff;
+    box-shadow: #b4b4b4;
+    color: #02BD63;
+    margin-bottom: 20px;
+    float: right; }
+
+.tags-covered {
+  display: flex;
+  flex-direction: column; }
+  .tags-covered div {
+    display: flex; }
+  .tags-covered input, .tags-covered textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
+
+.project-title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px; }
+  .project-title input, .project-title textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
+
+.team-members div {
+  display: flex;
+  justify-content: space-between; }
+
+.team-members input, .team-members textarea {
+  font-size: small;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #b4b4b4;
+  margin-right: 10px; }
+
+.team-members button {
+  color: #02BD63;
+  font-size: 15px;
+  height: 2rem;
+  width: 300px;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  background-color: #ffffff; }
+
+.adding-roles input {
+  font-size: small;
+  padding: 0 5px; }
+
+.team-member-tags-container {
+  display: flex;
+  flex-direction: column; }
+
+.team-member-tag {
+  font-size: 10px;
+  border: 1px solid gray;
+  padding: 3px;
+  width: max-content;
+  border-radius: 10px; }
+  .team-member-tag-email {
+    font-weight: 600;
+    color: #02BD63;
+    text-decoration: underline; }
+
+.all-team-member-cards {
+  display: flex;
+  flex-wrap: wrap; }
+
+.modal-complete-title {
+  display: flex;
+  flex-direction: column; }
+  .modal-complete-title-description {
+    color: #02BD63; }
+
+.team-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 10px;
+  border: 0.5px solid #c3c3c3; }
+  .team-member-card img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover; }
+  .team-member-card span {
+    padding: 0; }
+  .team-member-card-name {
+    font-weight: 600; }
+  .team-member-card-role {
+    font-size: small;
+    color: #02BD63; }
+  .team-member-card-designation {
+    font-weight: 200; }
+  @media only screen and (max-width: 75em) {
+    .team-member-card {
+      width: 30%; } }

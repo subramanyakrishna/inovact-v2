@@ -121,7 +121,6 @@ function AddRolesLookingFor(props: any) {
             setSearchSkills([]);
             return;
         }
-        console.log("change");
         const searchedSkills = allSkills.filter((skill)=>skill.toLowerCase().includes(value.toLowerCase())).slice(0,5);
         console.log(searchedSkills);
         setSearchSkills(searchedSkills);

@@ -7,6 +7,9 @@ import { postData } from './components/center/postData'
 import UploadProject from './components/modals/UploadProject/UploadProject';
 import UploadIdea from './components/modals/UploadIdea/UploadIdea'
 import UploadThought from './components/modals/UploadThought/UploadThought'
+import CreateTeam from './components/modals/CreateTeam/CreateTeam'
+import ViewTeamMembers from './components/modals/ViewTeamMembers/ViewTeamMembers'
+import RequestToJoin from './components/modals/RequestToJoin.tsx/RequestToJoin'
 
 function Feed() {
     const [posts, setPosts] = useState<postData[]>([
@@ -90,14 +93,22 @@ function Feed() {
     const [showUploadProject, setShowUploadProject] = useState(false);
     const [showUploadIdea, setShowUploadIdea] = useState(false);
     const [showUploadThought, setShowUploadThought] = useState(false);
+    const [showCreateTeam, setShowCreateTeam] = useState(false);
+    const [showTeamMembers, setShowTeamMembers] = useState(false);
+    const [showRequestJoin, setShowRequestJoin] = useState(false);
     const openModal = ()=>{
         setShowOverlay(true);
+        window.scrollTo(0,0);
+        document.body.style.overflowY="hidden";
     }
     const closeModal = ()=>{
         setShowOverlay(false);
         setShowUploadProject(false);
         setShowUploadIdea(false);
         setShowUploadThought(false);
+        setShowCreateTeam(false);
+        setShowTeamMembers(false);
+        document.body.style.overflowY="scroll";
     }
     
     const uploadProject = ()=>{
@@ -112,49 +123,83 @@ function Feed() {
         openModal();
         setShowUploadThought(true);
     }
+    const createTeam = ()=>{
+        openModal();
+        setShowCreateTeam(true);
+    }
+
+    const viewTeamMembers = ()=>{
+        openModal();
+        setShowTeamMembers(true);
+    }
+
+    const viewRequestJoin = ()=>{
+        openModal();
+        setShowRequestJoin(true);
+    }
+
     return (
         <div>
             {
                 showOverlay &&
-                <div className="modal_overlay" onClick={closeModal}></div>
+                <div>
+                    <div className="modal_overlay" onClick={closeModal}></div>
+                    {
+                        showUploadProject &&
+                        <div>
+                            <UploadProject closeModal={closeModal}/>
+                        </div>
+                        }
+
+                        {
+                            showUploadIdea &&
+                            <div>
+                                <UploadIdea closeModal={closeModal}/>
+                            </div>
+                        }
+
+                        {
+                            showUploadThought && 
+                            <div>
+                                <UploadThought closeModal={closeModal}/>
+                            </div>
+                        }
+                        {
+                            showCreateTeam &&
+                            <div>
+                                <CreateTeam closeModal={closeModal}/>
+                            </div>
+                        }
+                        {
+                            showTeamMembers && 
+                            <div>
+                                <ViewTeamMembers closeModal={closeModal}/>
+                            </div>
+                        }
+                        {
+                            showRequestJoin && 
+                            <div>
+                                <RequestToJoin closeModal={closeModal}/>
+                            </div>
+                        }
+                </div>
+                
             }
 
-            {
-                showUploadProject &&
-                <div>
-                    <UploadProject closeModal={closeModal}/>
-                </div>
-            }
-
-            {
-                showUploadIdea &&
-                <div>
-                    <UploadIdea closeModal={closeModal}/>
-                </div>
-            }
-
-            {
-                showUploadThought && 
-                <div>
-                    <UploadThought closeModal={closeModal}/>
-                </div>
-            }
-            
             <div className="feed__content">
                 <div className="feed__content__left">
-                    <LeftNavBar />
+                    <LeftNavBar openCreateTeam={createTeam}/>
                 </div>
                 <div className="feed__content__center">
-                    <CreatePost openProject={uploadProject} openIdea={uploadIdea} openThought={uploadThought}/>
+                    <CreatePost openProject={uploadProject} openIdea={uploadIdea} openThought={uploadThought} />
                     {posts.map((post, idx) => {
-                        return <Post key={idx} post={post} />
+                        return <Post key={idx} post={post} openTeamMember={viewTeamMembers} openRequestJoin={viewRequestJoin}/>
                     })}
                 </div>
                 <div className="feed__content__right">
                     <RightNavBar />
                 </div>
             </div>
-
         </div>
         
     )

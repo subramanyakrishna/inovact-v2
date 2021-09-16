@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
 import Switch_slider from './Switch_slider';
-
+import MemberMentor from './MemberMentor';
 function ModalPart2(props: any) {
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
 
@@ -40,7 +40,7 @@ function ModalPart2(props: any) {
                 {
                 !props.projectCompleted &&
                 <div>
-                    <div className="modal_part_two-member-mentor">
+                    {/* <div className="modal_part_two-member-mentor">
                         <div>
                             <label>Looking for team members</label>
                             <Switch_slider/>
@@ -49,7 +49,8 @@ function ModalPart2(props: any) {
                             <label>Looking for a mentor</label>
                             <Switch_slider/>
                         </div>
-                    </div>
+                    </div> */}
+                    <MemberMentor/>
                     <div className="modal_part_two-project-status">
                         <span>Project Status</span>
                         <div>
