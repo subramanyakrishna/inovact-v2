@@ -16,7 +16,7 @@ function ModalPart2(props: any) {
             <div className="modal_part_two-team-worked">
                 <label>Choose the team that worked on the project</label>
                 <input type="text" placeholder="Start typing team name"/>
-                <div >
+                <div>
                     <div>
                         <input type="checkbox"/>
                         <label>Individual Project</label>

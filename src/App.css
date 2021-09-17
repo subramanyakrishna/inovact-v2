@@ -1154,7 +1154,8 @@ body {
   display: none;
   background-color: #ffffff;
   transform: translate3d(0, 0, 0);
-  transition: all 250ms; }
+  transition: all 250ms;
+  z-index: 50; }
   .bottom-nav-component--scrolled {
     transform: translate3d(0, 100%, 0); }
   .bottom-nav-component__items {
@@ -2335,6 +2336,14 @@ body {
       align-items: center;
       flex-direction: row;
       justify-content: space-between; }
+      @media only screen and (max-width: 36em) {
+        .modal_part_two-team-worked div {
+          flex-direction: column;
+          align-items: flex-start; }
+          .modal_part_two-team-worked div div {
+            flex-direction: row;
+            align-items: center;
+            margin: 10px 0px; } }
   .modal_part_two-mentions {
     display: flex;
     flex-direction: column;
@@ -2354,7 +2363,11 @@ body {
     .modal_part_two-member-mentor div {
       width: auto;
       display: flex;
+      align-items: center;
       justify-content: space-between; }
+    @media only screen and (max-width: 36em) {
+      .modal_part_two-member-mentor {
+        width: 100%; } }
   .modal_part_two-project-status {
     margin-bottom: 2rem; }
     .modal_part_two-project-status input {
@@ -2367,6 +2380,15 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between; }
+      @media only screen and (max-width: 36em) {
+        .modal_part_two-project-status div {
+          flex-direction: column;
+          align-items: flex-start; }
+          .modal_part_two-project-status div div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 10px 0px; } }
   .modal_part_two-roles-looking-for {
     margin-top: 1rem; }
 
@@ -2609,6 +2631,10 @@ input, textarea:focus {
 .roles-required-container {
   display: flex;
   flex-wrap: wrap; }
+  @media only screen and (max-width: 36em) {
+    .roles-required-container {
+      flex-direction: column;
+      width: 100%; } }
 
 .roles-required-all {
   display: flex;
@@ -2624,6 +2650,9 @@ input, textarea:focus {
   @media only screen and (max-width: 75em) {
     .roles-required-all {
       width: 50%; } }
+  @media only screen and (max-width: 36em) {
+    .roles-required-all {
+      width: 100%; } }
 
 .roles-required-request-btn {
   color: #02BD63;
@@ -2633,4 +2662,5 @@ input, textarea:focus {
   border: 1px solid lightblue;
   border-radius: 10px;
   background-color: #ffffff;
-  float: right; }
+  float: right;
+  margin: 30px 0px; }
