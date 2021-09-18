@@ -1,0 +1,56 @@
+$color-primary-green: #02bd63;
+$color-primary-grey: #f9f5f5;
+$color-primary-blue: #001948;
+$color-secondary-blue:#5579BD;
+$color-primary-light-blue: #4B72BC;
+
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-red: red;
+.teams-part-of{
+  display: flex;
+  flex-direction: column;
+  &-heading{
+    padding: 0px 20px;
+    font-size: larger;
+    font-weight: 600;
+    text-align: left;
+    margin: 10px;
+  }
+  &-view-all-btn{
+    width: 100%;
+    border: none;
+    background-color: $color-primary-green;
+    color: #ffffff;
+    padding: 10px;
+  }
+}
+
+
+.team-tag{
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  &-img-container{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin: 10px;
+    border-radius: 50%;
+  }
+  &-content{
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 0px 10px;
+    &-name{
+      font-weight: 600;
+    }
+    &-members{
+      font-size: small;
+      font-weight: 600;
+      color: rgb(155, 155, 155);
+    }
+  }
+}

@@ -2664,3 +2664,270 @@ input, textarea:focus {
   background-color: #ffffff;
   float: right;
   margin: 30px 0px; }
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #ffffff; }
+  .bio-heading {
+    font-weight: 600;
+    text-align: left;
+    font-size: larger; }
+  .bio-description {
+    text-align: left;
+    line-height: 1.2; }
+    .bio-description span {
+      float: right;
+      color: #4B72BC;
+      text-decoration: underline;
+      font-weight: 500;
+      cursor: pointer; }
+  .bio-email-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; }
+    .bio-email-link-email {
+      display: flex; }
+    .bio-email-link-link {
+      display: flex; }
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  border-radius: 20px;
+  width: 100%; }
+  .dashboard-main-title {
+    padding: 20px;
+    margin: 0px;
+    font-weight: 600;
+    text-align: left;
+    font-size: large; }
+  .dashboard-main-content {
+    padding: 0px 20px;
+    display: flex; }
+    .dashboard-main-content div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      margin: 10px; }
+    .dashboard-main-content-description {
+      color: #02bd63;
+      font-weight: 600; }
+    .dashboard-main-content-number {
+      color: gray; }
+
+.percentage-growth {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px; }
+  .percentage-growth-heading {
+    font-weight: 500; }
+  .percentage-growth-value {
+    color: #02bd63; }
+
+.connect-message {
+  display: flex;
+  justify-content: space-around; }
+  .connect-message button {
+    border-radius: 15px;
+    width: 8rem;
+    border: 1px solid #4B72BC;
+    font-weight: 600; }
+  .connect-message-connectbtn {
+    background-color: #4B72BC;
+    color: #ffffff; }
+  .connect-message-messagebtn {
+    background-color: #ffffff;
+    color: #4B72BC; }
+
+.skills-and-interests {
+  display: flex;
+  flex-direction: column;
+  padding: 20px; }
+  .skills-and-interests-heading {
+    font-size: larger;
+    font-weight: 600;
+    text-align: left; }
+  .skills-and-interests-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .skills-and-interests-switch-right {
+    padding: 0px 0px 0px 20px; }
+  .skills-and-interests-switch-left {
+    padding: 0px 20px 0px 0px; }
+  .skills-and-interests-bottom-switch {
+    display: flex;
+    justify-content: center; }
+    .skills-and-interests-bottom-switch button {
+      border: 1px solid #02bd63;
+      margin: 2px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%; }
+
+.skill-tag-container {
+  width: 100%; }
+
+.skill-tag {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray; }
+  .skill-tag-heading {
+    font-weight: 600;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between; }
+  .skill-tag-skillno {
+    font-size: 12px;
+    color: grey;
+    line-height: 0.8;
+    margin: 0px; }
+  .skill-tag-skills {
+    margin: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 600; }
+
+.interests-tags {
+  display: flex;
+  flex-wrap: wrap; }
+  .interests-tags span {
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #02bd63;
+    border-radius: 15px; }
+
+.teams-part-of {
+  display: flex;
+  flex-direction: column; }
+  .teams-part-of-heading {
+    padding: 0px 20px;
+    font-size: larger;
+    font-weight: 600;
+    text-align: left;
+    margin: 10px; }
+  .teams-part-of-view-all-btn {
+    width: 100%;
+    border: none;
+    background-color: #02bd63;
+    color: #ffffff;
+    padding: 10px; }
+
+.team-tag {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px; }
+  .team-tag-img-container {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin: 10px;
+    border-radius: 50%; }
+  .team-tag-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 0px 10px; }
+    .team-tag-content-name {
+      font-weight: 600; }
+    .team-tag-content-members {
+      font-size: small;
+      font-weight: 600;
+      color: #9b9b9b; }
+
+.left_profile_content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  margin: 20px; }
+
+.profile--content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1800px;
+  margin: 0px;
+  margin-top: 4rem; }
+  .profile--content-bottom-container {
+    display: flex;
+    margin: 3rem auto;
+    width: 80%; }
+  .profile--content-left {
+    width: 50%; }
+  .profile--content-right {
+    margin-left: 30px;
+    width: 100%; }
+    .profile--content-right div {
+      background-color: #ffffff;
+      width: 100%;
+      height: 50%;
+      margin: 20px;
+      border-radius: 20px;
+      padding: 20px; }
+
+.top-profile-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-image: url("\\images\\profile\\profile_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 250px; }
+
+.top-profile-user-tag {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px 10px 0px 0px;
+  height: 70px;
+  border-radius: 10px; }
+
+.top-profile-user-img {
+  width: 100px;
+  transform: translateX(-20%);
+  opacity: 1; }
+
+.top-profile-user-data {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2; }
+  .top-profile-user-data-name {
+    font-weight: 600; }
+  .top-profile-user-data-designation {
+    font-size: 14px; }
+  .top-profile-user-data-university {
+    font-size: small; }
+
+.top-profile-post-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 0px;
+  width: 55%;
+  border-radius: 5px;
+  transform: translateY(150%);
+  box-shadow: 1px 4px 15px -8px rgba(0, 0, 0, 0.75); }
+  .top-profile-post-buttons div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small; }
+    .top-profile-post-buttons div img {
+      width: 30px; }
+    .top-profile-post-buttons div button {
+      background-color: #ffffff;
+      border: none;
+      font-size: 40px;
+      text-align: center; }
