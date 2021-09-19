@@ -34,7 +34,15 @@ function Form({ prevStep,nextStep, handleChange, values }:AppProps){
           <MDBCol md='12'>
                 <div className="form-group">
                  <label htmlFor="university">University/College <span className="paragraph-primary--red">*</span></label>
-                 <input id="university" name="university" className="input-formComponent" type="text" placeholder="Enter Your University or College"  onChange={handleChange('university')} defaultValue={values.university}/>
+                 <input 
+                 
+                 id="university" 
+                 name="university" 
+                 className="input-formComponent" 
+                 type="text" 
+                 placeholder="Enter Your University or College" 
+                 onChange={handleChange('university')} 
+                 defaultValue={values.university} required/>
                 </div>
           </MDBCol>
         </MDBRow>

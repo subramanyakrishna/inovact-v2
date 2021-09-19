@@ -5,7 +5,7 @@ import Mentor from 'components/authentication/userInfoForm/components/mentor/Men
 import Enterprenuer from 'components/authentication/userInfoForm/components/enterprenuer/Enterprenuer'
 import AreaOfInterest from 'components/authentication/userInfoForm/components/areaOfInterest/AreaOfInterest'
 import UploadPicture from 'components/authentication/userInfoForm/components/upload/Upload'
-
+import CheckoutPage from './Info/CheckoutPage';
 interface UserInfo {
     role: string
     university: string
@@ -28,7 +28,6 @@ const UserInfoForm = () => {
     let [step, setStep] = useState(1)
     const [user, setUser] = useState<UserInfo>({
         role: 'student',
-
         university: '',
         degree: '',
         year: '',
@@ -49,6 +48,7 @@ const UserInfoForm = () => {
     }
 
     const handleChange = (input: any) => (e: any) => {
+      
         if (e.target.tagName === 'IMG') {
             setUser((prevState) => ({
                 ...prevState,
@@ -68,6 +68,7 @@ const UserInfoForm = () => {
     }
 
     const FormStep = () => {
+       
         switch (step) {
             case 1:
                 return (
@@ -122,6 +123,10 @@ const UserInfoForm = () => {
                         values={user}
                     />
                 )
+                case 6:
+                    return (
+                        <CheckoutPage/>
+                    )
             case 5:
                 return (
                     <UploadPicture
@@ -130,13 +135,19 @@ const UserInfoForm = () => {
                         values={user}
                     />
                 )
+        
 
             default:
             // do nothing
         }
     }
 
-    return <div> {FormStep()}</div>
+    return <div className="user-info">
+        <div className="user-info__card">
+        <CheckoutPage/>
+        </div>
+         
+          </div>
 }
 
 export default UserInfoForm
