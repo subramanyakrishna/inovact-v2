@@ -37,9 +37,11 @@ $color-red: red;
     align-items: flex-start;
     &-email{
       display: flex;
+      column-gap: 10px;
     }
     &-link{
       display: flex;
+      column-gap: 10px;
     }
   }
 }

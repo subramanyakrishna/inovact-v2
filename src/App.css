@@ -2688,9 +2688,11 @@ input, textarea:focus {
     flex-direction: column;
     align-items: flex-start; }
     .bio-email-link-email {
-      display: flex; }
+      display: flex;
+      column-gap: 10px; }
     .bio-email-link-link {
-      display: flex; }
+      display: flex;
+      column-gap: 10px; }
 
 .dashboard-main {
   display: flex;
