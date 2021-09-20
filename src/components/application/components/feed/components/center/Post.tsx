@@ -5,7 +5,7 @@ import share from 'images/feed/post/share.svg'
 import { Link } from 'react-router-dom'
 import Photos from './Photos'
 
-function Post({ post }: any) {
+function Post({ post, openTeamMember, openRequestJoin }: any) {
     return (
         <div className="post">
             <div className="post__author">
@@ -80,8 +80,8 @@ function Post({ post }: any) {
                 </div>
                 {post.type === 1 ? (
                     <>
-                        <p className="post__footer__team__text">Team Members</p>
-                        <p className="post__footer__team__request">Join Team</p>
+                        <p className="post__footer__team__text" onClick={openTeamMember}>Team Members</p>
+                        <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>
                     </>
                 ) : (
                     <div className="post__footer__team__empty"></div>

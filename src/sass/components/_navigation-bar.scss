@@ -112,7 +112,7 @@
     background-color: $color-white;
     transform: translate3d(0, 0, 0);
     transition: all 250ms;
-
+    z-index: 50;
     &--scrolled {
         transform: translate3d(0, 100%, 0);
     }
