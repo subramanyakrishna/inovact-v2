@@ -1,0 +1,19 @@
+.documents-info {
+    display: flex;
+   padding: 1rem;
+   flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    & img {
+       width: 5rem;
+        object-fit: cover;
+        margin-right:2rem ;
+        @include respond(sm){
+            width: 3rem;
+            margin-right:1rem ;
+        }
+    }
+    &__text {
+        color:$color-primary-green
+    }
+}

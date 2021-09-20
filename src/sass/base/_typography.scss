@@ -68,6 +68,10 @@
         text-align: center;
         font-size: 0.9rem;
       }
+      &--small {
+        font-size: 0.9rem;
+        margin: 0;
+      }
     }
 .muted {
       &--italic{
@@ -79,6 +83,11 @@
         font-style: bold;
         color: gray;
         font-size: 0.8rem;
+      }
+      &--small {
+           color: gray;
+          font-size: 0.8rem;
+          margin: 0;
       }
  }
  

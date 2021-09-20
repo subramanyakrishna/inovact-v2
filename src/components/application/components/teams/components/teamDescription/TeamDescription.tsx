@@ -12,6 +12,40 @@ interface Props{
     progress:number;
 }
 
+const tags =[
+  {
+    tag :"Java"
+  },
+  {
+    tag :"Problem Solving"
+  },
+  {
+    tag :"OOPS"
+  },
+  {
+    tag :"API"
+  },
+  {
+    tag :"Java"
+  },
+  {
+    tag :"Problem Solving"
+  },
+  {
+    tag :"OOPS"
+  },
+  {
+    tag :"API"
+  },
+  {
+    tag :"Java"
+  },
+  {
+    tag :"Problem Solving"
+  },
+  
+  
+]
 const ReadMore = ({ children } : any) => {
         const text = children;
         const [isReadMore, setIsReadMore] = useState(true);
@@ -32,25 +66,38 @@ const TeamDescription =({name , description,image,progress}:Props)=>{
     return(
         <div className="teams-description">
            <div className="teams-description__info">
-               <img src={image} alt="teamImage" />
-               <div className="teams-description__info__text">
-                    <h6 className="title">{name}</h6>
-                    <p><ReadMore children={description}/></p>
+             <div className="teams-description__info__left">
+                   <img src={image} alt="teamImage" />
+                   <div className="teams-description__info__left__text">
+                   <h6 className="teams-description__info__left__text__title">Project Status</h6>
+                   <p className="teams-description__info__left__text__title__status">Just Started</p>
+                   </div>
+                  
+             </div>
+             
+               <div className="teams-description__info__right">
+                    <h6 className="teams-description__info__right__teamname">{name}</h6>
+                    <p>{description}</p>
+                    <h6 className="teams-description__info__right__title" >Project Title </h6>
+                    <h6 className="teams-description__info__right__title ">Project Tags </h6>
+                    <ul  className="teams-description__info__right__tags"> {tags.map(({ tag }, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <div>
+                                                <h6 className="teams-description__info__right__tags__tag"
+                                                >
+                                                    {tag}
+                                                </h6>
+                                            </div>
+                                        </li>
+                                    )
+                                })}
+                              </ul>
                </div>
            </div>
            <div className="teams-description__info__progress">
-           <CircularProgressbar
-        value={progress}
-        text={`${progress}%`}
-        strokeWidth={6}
-        styles={buildStyles({
-          strokeLinecap: "butt",
-          textColor: "black",
-          pathColor: "#02bd63",
-          trailColor: "grey"
-        })}
-      />
-      </div>
+       
+         </div>
     </div>
     )
 }

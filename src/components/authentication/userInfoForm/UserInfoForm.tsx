@@ -144,7 +144,7 @@ const UserInfoForm = () => {
 
     return <div className="user-info">
         <div className="user-info__card">
-        <CheckoutPage/>
+        {FormStep()}
         </div>
          
           </div>

@@ -7,7 +7,8 @@ import {
   MDBTabsPane
 } from 'mdb-react-ui-kit';
 import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo';
-
+import RequestsTab from './Requests';
+import DocumentsTab from './DocumentsTab'
 const TeamInfo =()=>{
   const [basicActive, setBasicActive] = useState('members');
 
@@ -28,21 +29,21 @@ const TeamInfo =()=>{
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink  onClick={() => handleBasicClick('groupchat')} active={basicActive === 'groupchat'}>
-            Group Chats
+          <MDBTabsLink  onClick={() => handleBasicClick('documents')} active={basicActive === 'documents'}>
+            Documents
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink  onClick={() => handleBasicClick('documents')} active={basicActive === 'documents'}>
-            Documents
+          <MDBTabsLink  onClick={() => handleBasicClick('requests')} active={basicActive === 'requests'}>
+            Requests
           </MDBTabsLink>
         </MDBTabsItem>
       </MDBTabs>
 
       <MDBTabsContent>
-        <MDBTabsPane show={basicActive === 'members'}><MemberInfo /></MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'groupchat'}>Group Chats</MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'documents'}>Documents</MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'members'}><MemberInfo /></MDBTabsPane> 
+        <MDBTabsPane show={basicActive === 'documents'}> <DocumentsTab /></MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'requests'}><RequestsTab /> </MDBTabsPane>
       </MDBTabsContent>
     </>
     )

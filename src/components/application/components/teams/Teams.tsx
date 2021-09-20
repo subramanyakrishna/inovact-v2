@@ -6,7 +6,7 @@ import {
 
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
-
+import SuggestionInvitation from 'components/application/components/teams/components/teamInfo/SuggestionInvitation';
 import UserTeam from 'components/application/components/teams/components/userTeams/UserTeams'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/teamDescription/TeamDescription'
@@ -48,11 +48,16 @@ function Teams() {
                 <img src={add} alt="" />
             </div>
 
-            <div className="teams__content__user-teams">
-                <UserTeam userTeams={userTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
+            <div className="teams__content__left">
+                <div className="teams__content__user-teams">
+                    <UserTeam userTeams={userTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
+                </div>
+                <div className="team-info__suggestion">
+                             <SuggestionInvitation />
+                </div>
             </div>
 
-            <MDBTabsContent style={{width:'100%'}}>
+            <MDBTabsContent className="teams__content__right" >
                 { userTeams.map(({id,name,description,image,progress}:UserTeams,key)=>{
                 return(
                     <MDBTabsPane show={verticalActive === id}>
@@ -63,7 +68,7 @@ function Teams() {
                             <div className="teams__content__team-info">
                                 <TeamInfo />
                             </div>
-                           </div>
+                        </div>
                   </MDBTabsPane>
              )})}
           </MDBTabsContent>

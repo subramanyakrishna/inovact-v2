@@ -93,6 +93,9 @@ body {
     font-style: italic;
     text-align: center;
     font-size: 0.9rem; }
+  .sub-title--small {
+    font-size: 0.9rem;
+    margin: 0; }
 
 .muted--italic {
   font-style: italic;
@@ -103,6 +106,11 @@ body {
   font-style: bold;
   color: gray;
   font-size: 0.8rem; }
+
+.muted--small {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 0; }
 
 .heading {
   font-style: normal;
@@ -752,24 +760,26 @@ body {
 
 .teams-description {
   display: flex;
+  max-width: 100%;
   justify-content: flex-start;
-  align-items: center;
   flex-direction: row;
-  padding: 0.5rem;
+  overflow: hidden;
   background-color: #ffffff;
-  border-radius: 1rem; }
+  border-radius: 1rem;
+  padding: 1rem; }
   .teams-description__info {
-    padding: 1.5rem;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     flex-direction: row; }
     @media only screen and (max-width: 48em) {
       .teams-description__info {
         padding: 0.5rem; } }
     .teams-description__info img {
-      width: 7rem;
-      height: 7rem;
+      width: 6.5rem;
+      height: 6.5rem;
+      margin-top: 2rem;
+      margin-left: 1rem;
       object-fit: cover;
       border-radius: 50%;
       background-color: gray; }
@@ -777,25 +787,55 @@ body {
         .teams-description__info img {
           width: 5rem;
           height: 5rem; } }
-    .teams-description__info__text {
+    .teams-description__info__left {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin-left: 1rem;
+      width: 15%; }
+      .teams-description__info__left__text {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column; }
+        .teams-description__info__left__text__title {
+          font-weight: 500;
+          text-align: center; }
+          .teams-description__info__left__text__title__status {
+            margin-top: 0rem;
+            text-align: center;
+            color: #02bd63;
+            font-weight: 600; }
+    .teams-description__info__right {
+      width: 85%;
       display: flex;
       justify-content: left;
       flex-direction: column;
-      margin-left: 1rem; }
-      .teams-description__info__text p {
+      padding: 1rem; }
+      .teams-description__info__right__teamname {
+        font-size: 1.5rem;
+        font-weight: 500; }
+      .teams-description__info__right__title {
+        margin-bottom: 1rem;
+        font-size: 1.2rem; }
+      .teams-description__info__right p {
         margin-top: 0.5rem; }
         @media only screen and (max-width: 48em) {
-          .teams-description__info__text p {
+          .teams-description__info__right p {
             font-size: 14px; } }
-    .teams-description__info__progress {
-      width: 15rem;
-      padding: 1rem; }
-      @media only screen and (max-width: 48em) {
-        .teams-description__info__progress {
-          display: none; } }
-
-.read-or-hide {
-  color: blue; }
+      .teams-description__info__right__tags {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0; }
+        .teams-description__info__right__tags__tag {
+          min-width: 96px;
+          text-align: center;
+          background-color: #f2f7ff;
+          color: #000000;
+          padding: 0.5rem;
+          border-radius: 15px;
+          margin: 1rem 1rem 0 0; }
 
 .teams-info__details {
   display: flex;
@@ -879,61 +919,174 @@ body {
     .members-info__details--role {
       display: flex;
       flex-direction: row;
-      align-items: center; }
-      .members-info__details--role img {
-        width: 1rem;
-        height: 1rem; }
+      align-items: center;
+      position: relative; }
       .members-info__details--role h5 {
         margin-right: 1rem; }
         @media only screen and (max-width: 48em) {
           .members-info__details--role h5 {
             display: none; } }
 
+.dropdown-content {
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 5px;
+  text-align: center;
+  position: absolute; }
+
+.dropdown-content li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+
 .suggestions {
-  display: none; }
-  @media only screen and (max-width: 36em) {
-    .suggestions {
-      display: block;
-      margin: 0.3rem 0; }
+  display: block;
+  background-color: #ffffff;
+  margin: 0.3rem 0; }
+  .suggestions__title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 1.5rem; }
+    @media only screen and (max-width: 48em) {
+      .suggestions__title {
+        padding: 0rem;
+        font-size: 1.2rem; } }
+  .suggestions__row {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    display: flex;
+    flex-direction: row; }
+    @media only screen and (max-width: 48em) {
       .suggestions__row {
-        background-color: #ffffff;
+        margin-top: 0.3rem;
         border-radius: 1rem;
-        margin-top: 0.3rem; }
-        .suggestions__row__rowInfo {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          padding: 1rem;
-          align-items: center; }
-          .suggestions__row__rowInfo img {
-            width: 3rem;
-            height: 3rem;
-            object-fit: cover;
-            border-radius: 50%; }
-        .suggestions__row__text {
-          display: flex;
+        border: 1px solid #ffffff; } }
+    .suggestions__row__rowInfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: 1rem;
+      align-items: center; }
+      .suggestions__row__rowInfo img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        border-radius: 50%; }
+    .suggestions__row__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      align-items: center;
+      margin-left: 0.2rem; }
+    .suggestions__row__buttons {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center; }
+    .suggestions__row__button--green {
+      color: white;
+      padding: 0 0.5rem;
+      border-radius: 2rem;
+      min-width: 5rem;
+      height: 2rem;
+      border: 1px solid #02bd63;
+      background-color: #02bd63; }
+    .suggestions__row__button--white {
+      margin-left: 0.5rem;
+      color: #000000;
+      background: none;
+      height: 2rem;
+      padding: 0 0.5rem;
+      border-radius: 5rem;
+      border: 1px solid black; }
+
+.requests-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  justify-content: space-between; }
+  .requests-info__details {
+    display: flex;
+    flex-direction: row; }
+    .requests-info__details img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 0.5rem; }
+    .requests-info__details__text {
+      display: flex;
+      flex-direction: column; }
+      .requests-info__details__text h5 {
+        margin: 0; }
+    .requests-info__details__buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+      .requests-info__details__buttons button {
+        width: 6rem;
+        height: 2rem;
+        border-radius: 2.5rem;
+        margin: 20px; }
+      @media screen and (max-width: 26rem) {
+        .requests-info__details__buttons {
           flex-direction: column;
-          justify-content: left;
-          align-items: center; }
-        .suggestions__row__buttons {
-          display: inline-flex;
-          flex-direction: row; }
-        .suggestions__row__button--green {
-          color: white;
-          padding: 0 0.5rem;
-          border-radius: 2rem;
-          min-width: 5rem;
-          height: 2rem;
-          border: 1px solid #02bd63;
-          background-color: #02bd63; }
-        .suggestions__row__button--white {
-          margin-left: 0.5rem;
-          color: #000000;
-          background: none;
-          height: 2rem;
-          padding: 0 0.5rem;
-          border-radius: 5rem;
-          border: 1px solid black; } }
+          justify-content: space-evenly; }
+          .requests-info__details__buttons button {
+            height: 1.5rem; } }
+      .requests-info__details__buttons--accept {
+        background-color: #02bd63;
+        color: white;
+        border: 1px solid #02bd63; }
+      .requests-info__details__buttons--white {
+        border: 1px solid black;
+        background-color: #ffffff; }
+    @media only screen and (max-width: 48em) {
+      .requests-info__details {
+        margin: 0; } }
+
+.documents-info {
+  display: flex;
+  padding: 1rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start; }
+  .documents-info img {
+    width: 5rem;
+    object-fit: cover;
+    margin-right: 2rem; }
+    @media only screen and (max-width: 48em) {
+      .documents-info img {
+        width: 3rem;
+        margin-right: 1rem; } }
+  .documents-info__text {
+    color: #02bd63; }
+
+.invite-members {
+  z-index: 500;
+  display: flex;
+  background-color: #ffffff;
+  width: 80%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+  .invite-members__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .invite-members__details__title {
+      font-size: 1.2rem; }
+      @media only screen and (max-width: 48em) {
+        .invite-members__details__title {
+          font-size: 1rem; } }
+    .invite-members__details img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 0.5rem; }
 
 .input-component {
   display: block;
@@ -1767,9 +1920,12 @@ body {
           flex-direction: row;
           justify-content: space-between;
           text-align: center; } }
+    .teams__content__left {
+      max-width: 402px;
+      width: 30%;
+      padding: 2rem 1rem 1rem 0rem; }
     .teams__content__user-teams {
-      width: 25%;
-      padding: 2rem 1rem; }
+      width: 100%; }
       @media only screen and (max-width: 62em) {
         .teams__content__user-teams {
           width: 30%;
@@ -1777,9 +1933,12 @@ body {
       @media only screen and (max-width: 48em) {
         .teams__content__user-teams {
           display: none; } }
+    .teams__content__right {
+      width: 70%; }
     .teams__content__info {
       display: flex;
       height: 100%;
+      width: 100%;
       padding: 2rem 0;
       flex-direction: column;
       justify-content: flex-start;

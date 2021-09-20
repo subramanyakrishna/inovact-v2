@@ -1,28 +1,32 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
 import SuggestionInvitation from 'components/application/components/teams/components/teamInfo/SuggestionInvitation';
 import TeamInfoTabs from 'components/application/components/teams/components/teamInfo/TeamInfoTabs';
+import InviteMembers from './InviteMembers';
 
 const TeamInfo =()=>{
+  const [showPopUp, setShowPopUp] = useState(false);
+
+    const togglePopUp = ()=>{
+        setShowPopUp(!showPopUp);
+    }
+
+    const closePopUp = ()=>{
+        setShowPopUp(false);
+    }
   return (
     <>
     <div className="teams-info">
       <div className="teams-info__details">
         <p>5 out of 15 members</p>
-        <MDBDropdown group className='teams-info__details--dropdown shadow-0'>
-        <MDBDropdownToggle color='link' style={{color:'black'}}>Invite Team members</MDBDropdownToggle>
-        <MDBDropdownMenu>
-          <MDBDropdownItem>
-            <MDBDropdownLink href="#">Something</MDBDropdownLink>
-          </MDBDropdownItem>
-        </MDBDropdownMenu>
-      </MDBDropdown>
+        <div  className='teams-info__details--dropdown' onClick={togglePopUp}>
+             Invite Team Members
+        </div>
+        {showPopUp &&
+         <InviteMembers />
+         }
       </div>
-
-      <div className="team-info__suggestion">
-        <SuggestionInvitation />
-      </div>
-
+    
       <div className="teams-info__tabs">
        <TeamInfoTabs />
       </div>

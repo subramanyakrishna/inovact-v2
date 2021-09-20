@@ -21,9 +21,13 @@
                 text-align: center;
             }
         }
+         &__left {
+            max-width:402px;
+            width: 30%;
+            padding: 2rem 1rem 1rem 0rem;
+         }
         &__user-teams{
-            width: 25%;
-            padding: 2rem 1rem;
+            width: 100%;
             @include respond(md) {
                 width: 30%;
                 margin: 0;
@@ -32,9 +36,13 @@
                 display: none;
             }
         }
+        &__right {
+            width: 70%;
+        }
         &__info{
             display: flex;
             height: 100%;
+            width: 100%;
             padding: 2rem 0;
             flex-direction: column;
             justify-content: flex-start;

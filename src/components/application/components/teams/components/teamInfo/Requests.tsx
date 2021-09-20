@@ -1,7 +1,6 @@
-import React,{useState} from 'react'
+import React from 'react'
 import msg from 'images/teams/msg.svg'
 import menu from 'images/teams/more.svg'
-import MoreVert from '@material-ui/icons/MoreVert';
 
 const teamInfo =[
     {
@@ -27,39 +26,34 @@ const teamInfo =[
 ]
     
 
-const MemberInfo =()=>{
-    const [menuBar, setMenuBar] = useState(false);
-
-    const handleMenuDropdown = (e:any)=>{
-        setMenuBar(!menuBar);
-    }
+const RequestsTab =()=>{
     return(
         <>
         {
             teamInfo.map((item,index)=>{
                 return(
-                    <div className="members-info">
-                    <div className="members-info__details">
+                    <div className="requests-info">
+                     <div className="requests-info__details">
                         <img src={item.image} alt="name"/>
-                        <h5 className="members-info__details__title">{item.name}</h5>
+                        <div className="requests-info__details__text">
+                            <h5 className="requests-info__details__title">{item.name}</h5>
+                            <p className="sub-title--small">Designation</p>
+                            <p className="muted--small">Java,HTML</p>
+                        </div>
+                        
                     </div>
             
-                    <div className="members-info__details--contact">
-                            <img src={msg} alt="msg"/>
-                            <h5 className="members-info__details__title">Message Privately</h5>
+                    
+                    <div className="requests-info__details__buttons">
+                             <button className="requests-info__details__buttons--accept">Accept</button>
+                         <button className="requests-info__details__buttons--white">Remove</button>
                     </div>
                     
-                    <div className="members-info__details--role">
-                            <h5 className="members-info__details__title">Role</h5>
-                           <div className="dropdown">
-                            <MoreVert  />
-                           </div>
-                    </div>
-                  </div>
+                </div>
                 );
             })}
         </>
      
     )
 }
-export default MemberInfo;
+export default RequestsTab;

@@ -65,6 +65,13 @@ const NavBar = () => {
                                 alt="Connection"
                             />
                         </Link>
+                        <Link to="/teams">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={teams}
+                                alt="Teams"
+                            />
+                        </Link>
                         <Link to="/notifications">
                             <img
                                 className="nav-component__icons"
