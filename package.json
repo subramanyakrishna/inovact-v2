@@ -21,6 +21,7 @@
         "mdb-react-ui-kit": "^1.2.0",
         "moment": "^2.29.1",
         "node-sass": "^6.0.1",
+        "prop-types": "^15.7.2",
         "react": "^17.0.2",
         "react-circular-progressbar": "^2.0.4",
         "react-device-detect": "^1.17.0",
@@ -61,7 +62,9 @@
         ]
     },
     "devDependencies": {
+        "@types/react-select": "^4.0.17",
         "react-images": "^1.2.0-beta.7",
+        "react-select": "^4.3.1",
         "rxjs": "^7.3.0",
         "rxjs-hooks": "^0.7.0"
     }

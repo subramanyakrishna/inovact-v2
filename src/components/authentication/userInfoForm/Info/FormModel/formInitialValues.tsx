@@ -1,14 +1,14 @@
 import checkoutFormModel from './checkoutFormModel';
 const {
   formField: {
+    //step1
+    role,
+    //step2
     firstName,
     lastName,
-    role,
     university,
     degree,
     year,
-    bio,
-    image,
 
     //mentor
     McurrDesignation,
@@ -20,7 +20,12 @@ const {
     EcurrRole,
     EstartOfJourney,
 
-    aoi
+    //step3
+    aoi,
+    
+    //step4
+    bio,
+    image,
   }
 } = checkoutFormModel;
 

@@ -7,7 +7,7 @@ import mentor from 'images/user-info/mentor.png'
 import { MDBRow, MDBCol} from 'mdb-react-ui-kit'
 
 import {Field } from 'formik'
-import  Checkbox from 'components/authentication/userInfoForm/Info/FormFields/CheckBoxField';
+
 
 export default function RoleForm(props :any) {
   const {
@@ -49,7 +49,7 @@ export default function RoleForm(props :any) {
                         : 'role-selection__form__cards__item'
                 }
             >
-          <Field type="radio" name="role" value="student" hidden/>
+          <Field type="radio" name={role.name} value="student" hidden/>
                 <img
                     src={student}
                     alt="student"
@@ -72,7 +72,7 @@ export default function RoleForm(props :any) {
                 }
                
             >
-                 <Field type="radio" name="role" value="mentor" hidden/>
+                 <Field type="radio" name={role.name} value="mentor" hidden/>
                 <img
                      src={mentor}
                        alt="mentor"
@@ -98,7 +98,7 @@ export default function RoleForm(props :any) {
                 }
                
             >
-                 <Field type="radio" name="role" value="enterprenuer" hidden/>
+                 <Field type="radio" name={role.name} value="enterprenuer" hidden/>
                 <img
                     src={enterprenuer}
                     id="enterprenuer"

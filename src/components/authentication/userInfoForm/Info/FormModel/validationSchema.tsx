@@ -42,8 +42,11 @@ export default [
     [McurrOrganization.name]: Yup.string().required(`${McurrOrganization.requiredErrorMsg}`),
     [ profExperience.name]: Yup.string()
       .nullable()
-      .required(`${ profExperience.requiredErrorMsg}`),
-      [EcurrOrganization.name]: Yup.string().required(`${EcurrOrganization.requiredErrorMsg}`),
+      .required(`${ profExperience.requiredErrorMsg}`), 
+  }),
+
+  Yup.object().shape({
+    [EcurrOrganization.name]: Yup.string().required(`${EcurrOrganization.requiredErrorMsg}`),
       [EcurrRole.name]: Yup.string().required(`${EcurrRole.requiredErrorMsg}`),
       [ EstartOfJourney.name]: Yup.string()
         .nullable()
@@ -51,10 +54,10 @@ export default [
   }),
 
   Yup.object().shape({
-    [aoi.name]: Yup.string().required(`${aoi.requiredErrorMsg}`),
+    
   }),
 
   Yup.object().shape({
     [bio.name]: Yup.string().required(`${aoi.requiredErrorMsg}`),
   })
-];
+];  

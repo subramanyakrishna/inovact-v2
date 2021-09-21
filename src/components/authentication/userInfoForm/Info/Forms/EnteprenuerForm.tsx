@@ -5,13 +5,14 @@ import {Field } from 'formik';
 
 
 
-export default function MentorForm(props :any) {
+  
+export default function EnteprenuerForm(props :any) {
   const {
-    
+   
     formField: {
-      McurrDesignation,
-      McurrOrganization,
-      profExperience,
+        EcurrOrganization,
+        EcurrRole,
+        EstartOfJourney
   
     }
   } = props;
@@ -29,11 +30,11 @@ export default function MentorForm(props :any) {
                     </div>
                     <div className="user-details__form">
                     <MDBRow>
-                        <MDBCol md='12'>
+                        <MDBCol md='6'>
                              <div>
                               <label htmlFor="university">Enter Your Designation <span className="paragraph-primary--red">*</span></label>
                               <Field
-                              name={McurrDesignation.name} 
+                              name={EcurrOrganization.name} 
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your Designation" 
@@ -41,11 +42,11 @@ export default function MentorForm(props :any) {
                               />
                            </div>
                         </MDBCol>
-                        <MDBCol md='12'>
+                        <MDBCol md='6'>
                              <div>
-                              <label htmlFor="university">Enter Your Current Organization <span className="paragraph-primary--red">*</span></label>
+                              <label htmlFor="university">Enter Your Organization Name<span className="paragraph-primary--red">*</span></label>
                               <Field
-                              name={McurrOrganization.name} 
+                              name={ EcurrRole.name} 
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your Current Organization" 
@@ -59,7 +60,7 @@ export default function MentorForm(props :any) {
                     <MDBCol md='12'>
                                   <label htmlFor="university">Enter the number of Years of Experience <span className="paragraph-primary--red">*</span></label>
                                   <Field
-                                  name={profExperience.name}
+                                  name={EstartOfJourney.name}
                                   className="input-formComponent" 
                                   type="number" 
                                   placeholder="Enter the number of Years of Experience" 

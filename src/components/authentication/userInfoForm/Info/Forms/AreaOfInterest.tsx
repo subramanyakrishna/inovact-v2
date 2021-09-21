@@ -17,11 +17,7 @@ import hr from 'images/user-info/aoi/HR.svg'
 import marketing from 'images/user-info/aoi/marketing.svg'
 import stock from 'images/user-info/aoi/stock.svg'
 
-interface Props {
-    name:string;
-    image:string;
-}
-const aoi = [
+const areas = [
     {
         name: 'Data Science',
         image: datascience,
@@ -113,14 +109,14 @@ export default function AreaOfInterest(props :any) {
                     <div className="area-of-interest__form">
                         <form>
                             <ul className="area-of-interest__form__list">
-                                {aoi.map((item:any, index:number) => {
+                                {areas.map((item:any, index:number) => {
                                     return (
                                         <li key={index}>
                                             <div className="area-of-interest__form__list__item">
                                                 <input
                                                     type="checkbox"
                                                     id={`aoi-${index}`}
-                                                    name={item.name}
+                                                    name={aoi.name}
                                                     value={item.name}
                                                     hidden
                                                   

@@ -13,7 +13,7 @@ import TeamDescription from 'components/application/components/teams/components/
 
 import MenuIcon from '@material-ui/icons/Menu';
 import {userTeams} from 'data/data'
-import {teamData }from './TeamData';
+import {teamData }from 'components/application/components/teams/teamData';
 
 import Navbar from 'components/application/components/NavBar'
 interface Connection {

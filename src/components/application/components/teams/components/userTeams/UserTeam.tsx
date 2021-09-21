@@ -1,6 +1,4 @@
 import React from 'react'
-import {teamData }from 'components/application/components/teams/TeamData';
-
 interface AppProps {
    
     teamname:string

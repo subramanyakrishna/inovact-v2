@@ -1,30 +1,14 @@
-import React from 'react'
-import datascience from 'images/user-info/aoi/datascience.svg'
-import project from 'images/user-info/aoi/projectmanagement.svg'
-import webdev from 'images/user-info/aoi/webdev.svg'
-import cloud from 'images/user-info/aoi/cloud.svg'
-import ml from 'images/user-info/aoi/ml.svg'
-import robotics from 'images/user-info/aoi/robotics.svg'
-import coding from 'images/user-info/aoi/coding.svg'
-import business from 'images/user-info/aoi/businessanalysis.svg'
-import gaming from 'images/user-info/aoi/gaming.svg'
-import electrical from 'images/user-info/aoi/electrical.svg'
-import uiux from 'images/user-info/aoi/uiux.svg'
-import fintech from 'images/user-info/aoi/fintech.svg'
-import economics from 'images/user-info/aoi/economics.svg'
-import mechanical from 'images/user-info/aoi/mechanical.svg'
-import hr from 'images/user-info/aoi/HR.svg'
-import marketing from 'images/user-info/aoi/marketing.svg'
-import stock from 'images/user-info/aoi/stock.svg'
 
+import React from 'react'
+import {Field } from 'formik';
 import avatar from 'images/user-info/avatar.png';
-import { MDBBtn } from 'mdb-react-ui-kit';
 import {Link} from 'react-router-dom';
 
 export default function AreaOfInterest(props :any) {
     const {
       formField: {
-         aoi   
+         bio,
+         image   
       }
     } = props;
 
@@ -50,7 +34,7 @@ export default function AreaOfInterest(props :any) {
                  <h6 className="heading-secondary">Add Bio To your Profile</h6>
                   <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                     
-                    <textarea className="input-formComponent"
+                    <Field className="input-formComponent" name={bio.name}
                         placeholder='Write down a short summary about you and your interest' 
                       
                         rows={3}

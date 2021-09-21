@@ -1,17 +1,17 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import  InputField from 'components/authentication/userInfoForm/Info/FormFields/InputField';
-import  SelectField from 'components/authentication/userInfoForm/Info/FormFields/SelectField';
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 
-const years =[
-  {value:"1",
-  label:'2001'
-},
-{value:"2",
-label:'2002'
-},
-  ];
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
+import {Field } from 'formik';
+
+
+const yearOptions = [
+  { value: "1960", label: "1960" },
+  { value: "1961", label: "1961" },
+  { value: "1962", label: "1962" },
+  { value: "1963", label: "1963" },
+  { value: "1964", label: "1964" },
+  { value: "1965", label: "1965" }
+];
   const degrees=[
     {value:"1",
   label:'B.E'},
@@ -21,17 +21,9 @@ label:'2002'
   label:'B.sc'},
   ];
   
-export default function AddressForm(props :any) {
+export default function GeneralForm(props :any) {
   const {
-    values,
-    touched,
-    errors,
-    dirty,
-    isSubmitting,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    handleReset,
+    
     formField: {
         firstName,
         lastName,
@@ -57,20 +49,20 @@ export default function AddressForm(props :any) {
                         <MDBCol md='6'>
                              <div>
                               <label htmlFor="university">First Name <span className="paragraph-primary--red">*</span></label>
-                              <input 
+                              <Field
                               name={firstName.name} 
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your FirstName" 
-                              
+                            
                               />
                            </div>
                         </MDBCol>
                         <MDBCol md='6'>
                              <div>
                               <label htmlFor="university">Last Name <span className="paragraph-primary--red">*</span></label>
-                              <input 
-                              name={firstName.name} 
+                              <Field
+                              name={lastName.name} 
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your LastName" 
@@ -80,11 +72,10 @@ export default function AddressForm(props :any) {
                         </MDBCol>
                     </MDBRow>
                    
-
                     <MDBRow>
                     <MDBCol md='12'>
                                   <label htmlFor="university">University/College <span className="paragraph-primary--red">*</span></label>
-                                  <input 
+                                  <Field
                                   name={university.name}
                                   className="input-formComponent" 
                                   type="text" 
@@ -97,24 +88,31 @@ export default function AddressForm(props :any) {
                         <div className="form-group">
                               <label htmlFor="degree">Degree <span className="paragraph-primary--red">*</span></label>
                               <br />
-                              <InputField
-                               name={year.name}
-                                label={year.label}
-                                  data={years}
-                                
-                                />
+                              <Field  className="input-formComponent"  as="select" name="degree" id="degree">
+                    <option value="Enter your degreee" label="Enter your degreee">
+                    Enter your degreee{" "}
+                    </option>
+                    {degrees.map(item => 
+                      <option value={item.value} label={item.label}>{item.value}</option>
+                  )} 
+    </Field>
                         </div>
-                      </MDBCol>r
+                      </MDBCol>
                     </MDBRow>
 
                     <MDBRow>
                       <MDBCol md='12'>
-                      <InputField
-           name={degree.name}
-           label={degree.label}
-           fullWidth
-         />
-                      </MDBCol>
+                      <label htmlFor="year">Year Of Graduation<span className="paragraph-primary--red">*</span></label>
+                  <br />
+                  <Field  className="input-formComponent"  as="select" name="year" id="year">
+                    <option value=" Select the  Year Of Graduation" label=" Select the  Year Of Graduation">
+                    Select the  Year Of Graduation{" "}
+                    </option>
+                    {yearOptions.map(item => 
+                      <option value={item.value} label={item.label}>{item.value}</option>
+                  )} 
+    </Field>
+                            </MDBCol>
                     </MDBRow>
                     
                     </div>

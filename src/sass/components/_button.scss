@@ -1,3 +1,4 @@
+
 .button--green {
     &:hover {
         box-shadow: 0 2px 4px #012b16;
@@ -18,6 +19,54 @@
 		font-size: 18px;
 		font-style: normal;
 		font-weight: 500;
+    }
+}
+.form-button {
+    display: block;
+    font-size: 1.5rem;
+    padding: 0.2rem 0.8rem;
+    width: 299px;
+    height: 48px;
+    text-transform: capitalize;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    &--center {
+        align-self: center;
+    }      
+    margin-left: 10px;
+    &:hover {
+        box-shadow: 0 2px 4px #012b16;
+        cursor: pointer;
+    }
+    @include respond(xs) {
+      width: 100px;
+      font-size: 1rem;
+      
+     }
+    
+    &--green {
+      background-color: $color-primary-green;
+      color:$color-white;
+      border: none;
+      @include respond (xs){
+          margin: 0;
+      }
+    }
+    &--white {
+      background-color: $color-white;
+      color:$color-black;
+      border: 1px solid black;
+     &:hover{
+        box-shadow: 0 2px 4px #999999;
+        cursor: pointer;
+        background-color: none !important;
+     }
     }
 }
 .button {

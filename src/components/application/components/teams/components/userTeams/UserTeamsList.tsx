@@ -7,7 +7,7 @@ import {
   
   } from 'mdb-react-ui-kit';
 
-import {teamData }from 'components/application/components/teams/TeamData';
+import {teamData }from 'components/application/components/teams/teamData';
 import UserTeam from 'components/application/components/teams/components/userTeams/UserTeam';
 interface AppProps {
     teams:teamData[],
