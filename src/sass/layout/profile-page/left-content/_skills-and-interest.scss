@@ -15,8 +15,15 @@ $color-red: red;
   padding: 20px;
   &-heading{
     font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 600;
     text-align: left;
+  }
+  &-addbtn{
+    float: right;
+    width: auto;
   }
   &-container{
     display: flex;

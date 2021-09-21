@@ -3,6 +3,7 @@ import Skills from "./Skills";
 import AreaOfInterests from "./AreaOfInterests";
 import ArrowForwardIosRounded from '@material-ui/icons/ArrowForwardIosRounded';
 import ArrowBackIosRounded from '@material-ui/icons/ArrowBackIosRounded';
+import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
 
 function SkillsAndInterests() {
   const data = [
@@ -41,11 +42,21 @@ function SkillsAndInterests() {
       <div className="dashboard-main">
           <div className="skills-and-interests">
       {showSkills ? (
-        <p className="skills-and-interests-heading">Skills</p>
+        <div className="skills-and-interests-heading">
+          <p>Skills</p>
+          <AddCircleSharp style={{color:"#02bd63"}}/>
+        </div>
       ) : (
-        <p className="skills-and-interests-heading">Area of Interest</p>
+        <div className="skills-and-interests-heading">
+          <p >Area of Interest</p>
+          <AddCircleSharp style={{color:"#02bd63"}}/>
+        </div>
+        
       )}
-
+      <div className="skills-and-interests-addbtn">
+        
+      </div>
+      
       <div>
         {showSkills && (
           <div className="skills-and-interests-container">

@@ -63,7 +63,7 @@ $grey-border: rgb(180, 180, 180);
 .modal_overlay{
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     z-index: 101;
     background-color: black;
@@ -72,8 +72,13 @@ $grey-border: rgb(180, 180, 180);
 
 .modal_part_one{
     div{
-        display: flex;
+        // display: flex;
         
+        
+    }
+    &-team-description{
+        display: flex;
+        flex-direction: column;
         label{
             // margin-left: 10px;
             // font-size: 12px;
@@ -88,20 +93,58 @@ $grey-border: rgb(180, 180, 180);
             border: 1px solid $grey-border;
         }
     }
-    &-team-description{
-        display: flex;
-        flex-direction: column;
-    }
     &-title{
         flex-direction: column;
+        label{
+            // margin-left: 10px;
+            // font-size: 12px;
+            font-weight: 300;
+        }
+        input, textarea{
+            font-size: small;
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
     }
     &-tags{
         
         flex-direction: column;
+        &-all{
+            display: flex;
+        }
+        label{
+            // margin-left: 10px;
+            // font-size: 12px;
+            font-weight: 300;
+        }
+        input, textarea{
+            font-size: small;
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
     }
     &-description{
         
         flex-direction: column;
+        label{
+            // margin-left: 10px;
+            // font-size: 12px;
+            font-weight: 300;
+        }
+        input, textarea{
+            font-size: small;
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid $grey-border;
+        }
         textarea{
             height: 5rem;
             
@@ -261,8 +304,9 @@ $grey-border: rgb(180, 180, 180);
     }
     &-add-skills{
         margin: 10px 0px;
-        input{
+        &-text{
             width: 100%;
+            font-size: small;
             border: none;
             border-radius: none;
             border-bottom: 1px solid #02BD63;
@@ -347,6 +391,14 @@ input, textarea:focus{
         border-radius: 10px;
         background-color: $primary-background;
     }
+}
+.remove_roles_looking_for-add-btn{
+        color:#bd0202;
+        width: 130px;
+        margin: 0px 10px;
+        border: 1px solid lightblue;
+        border-radius: 10px;
+        background-color: $primary-background;
 }
 .upload-media-btn{
     color: #02BD63;

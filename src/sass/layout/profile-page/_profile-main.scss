@@ -9,21 +9,29 @@
             display: flex;
             
             margin: 3rem auto;
-            width: 80%;
+            width: 90%;
+            column-gap: 50px;
+            @include respond(md){
+                width: 100%;
+                column-gap: 10px;
+            }
         }
         &-left{
             width: 50%;
+            @include respond(md){
+                display: block;
+                width: 40%;
+            }
+            @include respond(sm){
+                // display: none;
+                width: 100%;
+            }
         }
         &-right{
-            margin-left: 30px;
+            padding: 20px;
             width: 100%;
-            div{
-                background-color: $color-white;
-                width: 100%;
-                height: 50%;
-                margin: 20px;
-                border-radius: 20px;
-                padding: 20px;
+            @include respond(sm){
+                // display: none;
             }
         }
         
@@ -43,6 +51,10 @@
         background-size: cover;
         width: 100%;
         height: 250px;
+        @include respond(md){
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
 
     }
     &-user{
@@ -85,6 +97,29 @@
         border-radius: 5px;
         transform: translateY(150%);
         box-shadow: 1px 4px 15px -8px rgba(0,0,0,0.75);
+        &-options{
+            position: relative;
+            
+            &-all{
+                margin: 0;
+                position: absolute;
+                width: 120px;
+                transform: translate(40%,-90%);
+                background-color: $color-white;
+                z-index: 999;
+                // border: 1px solid gray;
+                box-shadow: -1px 4px 10px -6px rgba(0,0,0,0.75);
+                span{
+                    padding: 5px;
+                    width: 100%;
+                    text-align: left;
+                    cursor: pointer;
+                }
+                span:hover{
+                    background-color: rgb(221, 219, 219);
+                }
+            }
+        }
         div{
             display: flex;
             flex-direction: column;
@@ -100,8 +135,41 @@
                 text-align: center;
             }
         }
+        @include respond(md){
+            // width: 70%;
+            width: 90vw;
+            transform: translateY(70%);
+        }
+        @include respond(sm){
+            
+        }
 
 
     }
 }
 
+.profile-hidden-component{
+    display: hidden;
+}
+
+.modal-overlay-profile{
+    width: 100vw;
+    height: 105vh;
+    margin: 0;
+    top:-1%;
+    background-color: black;
+    opacity: 0.6;
+    position: fixed;
+    overflow: hidden;
+    z-index: 101;
+}
+
+.profile-modal-cover{
+    display: flex;
+    justify-content: center;
+    top: -5%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}

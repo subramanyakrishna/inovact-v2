@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import MailRounded from "@material-ui/icons/MailRounded";
 import LanguageRounded from "@material-ui/icons/LanguageRounded";
+import EditIcon from "@material-ui/icons/Edit";
 function BioDescription() {
     const [showMore, setShowMore] = useState(false);
   const toggleReadMore = () => {
@@ -9,7 +10,11 @@ function BioDescription() {
   return (
       <div className="dashboard-main">
             <div className="bio">
-      <p className="bio-heading">Bio</p>
+      <div className="bio-heading">
+        <p>Bio</p>
+        <EditIcon/>
+      </div>        
+      
       {!showMore && (
         <p className="bio-description">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -34,11 +39,11 @@ function BioDescription() {
 
       <div className="bio-email-link">
         <div className="bio-email-link-email">
-          <MailRounded />
+          <MailRounded style={{color: "#02bd63"}}/>
           <span>mattleevolupat3241@gmail.com</span>
         </div>
         <div className="bio-email-link-link">
-          <LanguageRounded />
+          <LanguageRounded style={{color: "#02bd63"}}/>
           <span>www.reasearchgate.com</span>
         </div>
       </div>

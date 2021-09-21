@@ -1,4 +1,5 @@
 import TeamTag from "./TeamTag";
+import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
 function TeamsPartOf() {
   const teamsData = [
     {
@@ -23,7 +24,10 @@ function TeamsPartOf() {
   return (
       <div className="dashboard-main">
             <div className="teams-part-of">
-      <p className="teams-part-of-heading">Jane's Team</p>
+      <div className="teams-part-of-heading">
+        <p>Jane's Team</p>
+        <AddCircleSharp style={{color:"#02bd63"}}/>
+      </div>
       <div className="teams-part-of-all-teams">
         {teamsData.map((team: any) => {
           return (

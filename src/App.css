@@ -2246,17 +2246,18 @@ body {
 .modal_overlay {
   width: 100vw;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   z-index: 101;
   background-color: black;
   opacity: 0.6; }
 
-.modal_part_one div {
-  display: flex; }
-  .modal_part_one div label {
+.modal_part_one-team-description {
+  display: flex;
+  flex-direction: column; }
+  .modal_part_one-team-description label {
     font-weight: 300; }
-  .modal_part_one div input, .modal_part_one div textarea {
+  .modal_part_one-team-description input, .modal_part_one-team-description textarea {
     font-size: small;
     padding: 5px;
     margin-bottom: 10px;
@@ -2264,18 +2265,43 @@ body {
     border-radius: 10px;
     border: 1px solid #b4b4b4; }
 
-.modal_part_one-team-description {
-  display: flex;
-  flex-direction: column; }
-
 .modal_part_one-title {
   flex-direction: column; }
+  .modal_part_one-title label {
+    font-weight: 300; }
+  .modal_part_one-title input, .modal_part_one-title textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
 
 .modal_part_one-tags {
   flex-direction: column; }
+  .modal_part_one-tags-all {
+    display: flex; }
+  .modal_part_one-tags label {
+    font-weight: 300; }
+  .modal_part_one-tags input, .modal_part_one-tags textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
 
 .modal_part_one-description {
   flex-direction: column; }
+  .modal_part_one-description label {
+    font-weight: 300; }
+  .modal_part_one-description input, .modal_part_one-description textarea {
+    font-size: small;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #b4b4b4; }
   .modal_part_one-description textarea {
     height: 5rem; }
   .modal_part_one-description div {
@@ -2406,8 +2432,9 @@ body {
       border: 1px solid #b4b4b4; }
   .roles_looking_for-add-skills {
     margin: 10px 0px; }
-    .roles_looking_for-add-skills input {
+    .roles_looking_for-add-skills-text {
       width: 100%;
+      font-size: small;
       border: none;
       border-radius: none;
       border-bottom: 1px solid #02BD63; }
@@ -2473,6 +2500,14 @@ input, textarea:focus {
     border: 1px solid lightblue;
     border-radius: 10px;
     background-color: #ffffff; }
+
+.remove_roles_looking_for-add-btn {
+  color: #bd0202;
+  width: 130px;
+  margin: 0px 10px;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  background-color: #ffffff; }
 
 .upload-media-btn {
   color: #02BD63;
@@ -2673,7 +2708,9 @@ input, textarea:focus {
   .bio-heading {
     font-weight: 600;
     text-align: left;
-    font-size: larger; }
+    font-size: larger;
+    display: flex;
+    justify-content: space-between; }
   .bio-description {
     text-align: left;
     line-height: 1.2; }
@@ -2753,8 +2790,14 @@ input, textarea:focus {
   padding: 20px; }
   .skills-and-interests-heading {
     font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 600;
     text-align: left; }
+  .skills-and-interests-addbtn {
+    float: right;
+    width: auto; }
   .skills-and-interests-container {
     display: flex;
     justify-content: space-between;
@@ -2814,10 +2857,12 @@ input, textarea:focus {
   display: flex;
   flex-direction: column; }
   .teams-part-of-heading {
-    padding: 0px 20px;
+    padding: 10px 20px;
     font-size: larger;
     font-weight: 600;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
     margin: 10px; }
   .teams-part-of-view-all-btn {
     width: 100%;
@@ -2863,19 +2908,24 @@ input, textarea:focus {
   .profile--content-bottom-container {
     display: flex;
     margin: 3rem auto;
-    width: 80%; }
+    width: 90%;
+    column-gap: 50px; }
+    @media only screen and (max-width: 62em) {
+      .profile--content-bottom-container {
+        width: 100%;
+        column-gap: 10px; } }
   .profile--content-left {
     width: 50%; }
+    @media only screen and (max-width: 62em) {
+      .profile--content-left {
+        display: block;
+        width: 40%; } }
+    @media only screen and (max-width: 48em) {
+      .profile--content-left {
+        width: 100%; } }
   .profile--content-right {
-    margin-left: 30px;
+    padding: 20px;
     width: 100%; }
-    .profile--content-right div {
-      background-color: #ffffff;
-      width: 100%;
-      height: 50%;
-      margin: 20px;
-      border-radius: 20px;
-      padding: 20px; }
 
 .top-profile-content {
   display: flex;
@@ -2886,6 +2936,10 @@ input, textarea:focus {
   background-size: cover;
   width: 100%;
   height: 250px; }
+  @media only screen and (max-width: 62em) {
+    .top-profile-content {
+      flex-direction: column;
+      justify-content: space-evenly; } }
 
 .top-profile-user-tag {
   display: flex;
@@ -2921,6 +2975,23 @@ input, textarea:focus {
   border-radius: 5px;
   transform: translateY(150%);
   box-shadow: 1px 4px 15px -8px rgba(0, 0, 0, 0.75); }
+  .top-profile-post-buttons-options {
+    position: relative; }
+    .top-profile-post-buttons-options-all {
+      margin: 0;
+      position: absolute;
+      width: 120px;
+      transform: translate(40%, -90%);
+      background-color: #ffffff;
+      z-index: 999;
+      box-shadow: -1px 4px 10px -6px rgba(0, 0, 0, 0.75); }
+      .top-profile-post-buttons-options-all span {
+        padding: 5px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer; }
+      .top-profile-post-buttons-options-all span:hover {
+        background-color: #dddbdb; }
   .top-profile-post-buttons div {
     display: flex;
     flex-direction: column;
@@ -2933,3 +3004,133 @@ input, textarea:focus {
       border: none;
       font-size: 40px;
       text-align: center; }
+  @media only screen and (max-width: 62em) {
+    .top-profile-post-buttons {
+      width: 90vw;
+      transform: translateY(70%); } }
+
+.profile-hidden-component {
+  display: hidden; }
+
+.modal-overlay-profile {
+  width: 100vw;
+  height: 105vh;
+  margin: 0;
+  top: -1%;
+  background-color: black;
+  opacity: 0.6;
+  position: fixed;
+  overflow: hidden;
+  z-index: 101; }
+
+.profile-modal-cover {
+  display: flex;
+  justify-content: center;
+  top: -5%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center; }
+
+.block-account {
+  background-color: #ffffff;
+  border-radius: 10px;
+  z-index: 999;
+  width: 40%;
+  padding: 40px;
+  text-align: left; }
+  .block-account-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2; }
+    .block-account-head div {
+      display: flex;
+      justify-content: space-between; }
+  .block-account-heading {
+    font-size: larger;
+    font-weight: 600; }
+  .block-account-description {
+    font-size: small;
+    color: #02bd63; }
+  .block-account-buttons {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; }
+  .block-account-report-n-block {
+    font-size: small;
+    font-weight: 600;
+    color: #ba0047;
+    text-decoration: underline;
+    cursor: pointer; }
+
+.close-modal {
+  width: auto;
+  height: auto;
+  float: right;
+  font-size: 30px;
+  color: #02bd63;
+  background-color: #fff;
+  border: none; }
+
+.confirm-action-btn {
+  border: 1px solid gray;
+  background-color: #ffffff;
+  color: gray;
+  padding: 10px 20px;
+  border-radius: 25px;
+  float: right;
+  font-size: small; }
+
+.confirm-action-btn:hover {
+  color: black;
+  background-color: #02bd63;
+  opacity: 0.7; }
+
+.report-account {
+  background-color: #ffffff;
+  z-index: 105;
+  border-radius: 10px;
+  width: 40%;
+  padding: 20px 40px;
+  text-align: left; }
+  .report-account-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+    .report-account-content-heading {
+      font-size: larger;
+      font-weight: 600; }
+    .report-account-content-reasons {
+      padding: 0px 20px; }
+      .report-account-content-reasons input {
+        margin-right: 20px; }
+  .report-account-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: auto; }
+    .report-account-bottom-just-block {
+      font-size: small;
+      font-weight: 600;
+      color: #ba0047;
+      text-decoration: underline;
+      cursor: pointer; }
+
+.restrict-account {
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 40%;
+  z-index: 105;
+  padding: 20px 40px;
+  text-align: left; }
+  .restrict-account-head {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2; }
+  .restrict-account-heading {
+    font-size: larger;
+    font-weight: 600; }
+  .restrict-account-description {
+    font-size: small;
+    color: #02bd63; }

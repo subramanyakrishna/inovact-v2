@@ -114,9 +114,7 @@ function RolesLookingFor(props: any) {
             setSearchSkills([]);
             return;
         }
-        console.log("change");
         const searchedSkills = allSkills.filter((skill)=>skill.toLowerCase().includes(value.toLowerCase())).slice(0,5);
-        console.log(searchedSkills);
         setSearchSkills(searchedSkills);
     }
 
@@ -131,14 +129,14 @@ function RolesLookingFor(props: any) {
     const removeTheSkill = (skill: any)=>{
         setSkillSelected(skillSelected.filter((ele)=> ele!==skill));
     }
-
     return (
         <div className="roles_looking_for">
             <div className="roles_looking_for-add-role">
                 <input type="text" value={props.role}/>
+                <button className="remove_roles_looking_for-add-btn" onClick={props.removeTheRole.bind(null,props.id)}>-Remove Role</button>
             </div>
             <div className="roles_looking_for-add-skills">
-                <input type="text" placeholder="Type out the skills required for the above mentioned role" value={currentSkill} onChange={handleInputChange}/>
+                <input type="text" className="roles_looking_for-add-skills-text" placeholder="Type out the skills required for the above mentioned role" value={currentSkill} onChange={handleInputChange}/>
                 {
                     (searchSkills.length!==0) &&
                     <div style={{position: "relative"}}>

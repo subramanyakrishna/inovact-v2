@@ -1,0 +1,23 @@
+
+.restrict-account{
+  background-color: $color-white;
+  border-radius: 10px;
+  width: 40%;
+
+  z-index: 105;
+    padding: 20px 40px;
+    text-align: left;
+    &-head{
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    &-heading{
+      font-size: larger;
+      font-weight: 600;
+    }
+    &-description{
+      font-size: small;
+      color: $color-primary-green;
+    }
+  }
