@@ -124,7 +124,14 @@
 
         &__share {
             cursor: pointer;
-            & img {
+            &-img-container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 50px;
+            }
+            &-img {
                 height: 20px;
 
                 @include respond(sm) {
@@ -135,11 +142,51 @@
                     margin-right: 1rem;
                 }
             }
+            &_to{
+                position: absolute;
+                background-color: $color-white;
+                transform: translateY(-100%);
+                width: 300px;
+                padding: 20px;
+                z-index: 800;
+                border-radius: 10px;
+                &-heading{
+                    font-size: larger;
+                    font-weight: 600;
+                }
+                &-separator{
+                    display:flex;
+                    justify-content: space-around;
+                    font-weight: 600;
+                    & span{
+                        // height: 40px;
+                        cursor: pointer;
+                        margin: 0px 10px;
+                    }
+                }
+                &-teams-and-users{
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: scroll;
+                }
+                &-sharebtn{
+                    float: right;
+                    background-color: $color-white;
+                    border: 1px solid #02bd63;
+                    color: #02bd63;
+                    width: 5rem;
+                    border-radius: 5px;
+                }
+                &-sharebtn:hover{
+                    background-color: #5edaa0;
+                    color: black;
+                }
+            }
         }
 
         &__team {
             &__text {
-                margin: auto 0;
+                margin: auto 10px;
                 display: flex;
                 align-items: center;
                 color: $color-white;

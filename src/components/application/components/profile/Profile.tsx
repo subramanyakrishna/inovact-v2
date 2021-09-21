@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import LeftProfileContent from './components/LeftProfileContent/LeftProfileContent';
 import TopProfileContent from './components/TopProfileContent/TopProfileContent';
-import Post from "../feed/components/center/Post";
+// import Post from "../feed/components/center/Post";
+import Post from "./components/RightProfileContent/Post";
 import Photos from "../feed/components/center/Photos";
 import {postData} from "../feed/components/center/postData";
 import BlockAccount from './components/BlockAccount';
 import RestrictAccount from './components/RestrictAccount';
 import ReportAccount from './components/ReportAccount';
+import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -95,6 +97,7 @@ function Profile() {
     const [showLeft, setShowLeft] = useState(true);
     const [showRight, setShowRight] = useState(true);
     const [showAbout, setShowAbout] = useState(false);
+    
     // const leftContent = document.querySelector(".profile--content-left");
     // const rightContent = document.querySelector(".profile--content-right");
 
@@ -114,6 +117,7 @@ function Profile() {
     const [showBlockUser, setShowBlockUser] = useState(false);
     const [showReportUser, setShowReportUser] = useState(false);
     const [showRestrictUser, setShowRestrictUser] = useState(false);
+    const [showTeamMembers, setShowTeamMembers] = useState(false);
     const openModal = ()=>{
         setShowOverlay(true);
         window.scrollTo(0,0);
@@ -125,6 +129,7 @@ function Profile() {
         setShowBlockUser(false);
         setShowReportUser(false);
         setShowRestrictUser(false);
+        setShowTeamMembers(false);
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{
@@ -140,6 +145,10 @@ function Profile() {
         setShowReportUser(true);
     }
 
+    const viewTeamMembers =()=>{
+        openModal();
+        setShowTeamMembers(true);
+    }
     return (
         <div>
             {
@@ -158,6 +167,10 @@ function Profile() {
                     {
                         showRestrictUser &&
                         <RestrictAccount closeModal={closeModal}/>
+                    }
+                    {
+                        showTeamMembers &&
+                        <ViewTeamMembers closeModal={closeModal}/>
                     }
 
                 </div>
@@ -183,7 +196,7 @@ function Profile() {
                         showRight && 
                         <div className="profile--content-right">
                             {posts.map((post, idx) => {
-                                return <Post key={idx} post={post}/>
+                                return <Post key={idx} post={post} openTeamMember={viewTeamMembers}/>
                             })}
                         </div>
                     }
