@@ -36,11 +36,10 @@ const RequestsTab =()=>{
                      <div className="requests-info__details">
                         <img src={item.image} alt="name"/>
                         <div className="requests-info__details__text">
-                            <h5 className="requests-info__details__title">{item.name}</h5>
-                            <p className="sub-title--small">Designation</p>
-                            <p className="muted--small">Java,HTML</p>
+                        <h5 className="text-style--bold text-align--left text-size--big">Jane Doe</h5>
+                            <p className="text-style--light text-align--left text-size--small">Designation</p>
+                            <p className="text-style--italic text-align--left text-color--gray text-size--small">HTML,Css</p>
                         </div>
-                        
                     </div>
             
                     

@@ -6,8 +6,8 @@ import {
   MDBTabsContent,
   MDBTabsPane
 } from 'mdb-react-ui-kit';
-import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo';
-import RequestsTab from './Requests';
+import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfoTab';
+import RequestsTab from './RequestsTab';
 import DocumentsTab from './DocumentsTab'
 const TeamInfo =()=>{
   const [basicActive, setBasicActive] = useState('members');
@@ -21,7 +21,6 @@ const TeamInfo =()=>{
 
   return (
     <>
-   
       <MDBTabs className='mb-3'>
         <MDBTabsItem>
           <MDBTabsLink  onClick={() => handleBasicClick('members')} active={basicActive === 'members'}>

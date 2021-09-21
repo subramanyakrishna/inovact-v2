@@ -65,3 +65,17 @@
      }
     }
 }
+.connect-button {
+    width: 5.5rem;
+    border: none;
+    border-radius: 1rem;
+   
+    background-color:$color-secondary-blue;
+   margin-top: 0.3rem;
+    color:white;
+    max-height: 26px;
+    margin-left:1rem;
+    @include respond(xs){
+        font-size: small;
+    }  
+}

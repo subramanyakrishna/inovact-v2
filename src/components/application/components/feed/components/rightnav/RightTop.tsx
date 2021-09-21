@@ -42,9 +42,9 @@ import {
     return (
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
-          <MDBCardHeader>
-            <MDBCardTitle className="heading">People you may know</MDBCardTitle>
-            <p className="sub-title--green">Based on your recent connections</p>
+          <MDBCardHeader >
+            <MDBCardTitle className="text-style--bold text-align--center">People you may know</MDBCardTitle>
+            <p className="text-style--italic text-align--center text-color--green text-size--small">Based on your recent connections</p>
           </MDBCardHeader>
           <MDBCardBody className="left-right-nav__card__body">
             <MDBListGroup flush className="left-right-nav__card__list">
@@ -58,15 +58,13 @@ import {
                     />
   
                     <div className="left-right-nav__card__list__item__info">
-                      <h2 className="title">{name} </h2>
-                      <h6 className="sub-title">{designation}</h6>
-                      <p className="muted--italic">
-                        connection1,
-                      +23 others
+                      <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>
+                      <h6 className="text-style--light text-align--left">{designation}</h6>
+                      <p className="text-style--italic text-align--left text-size--small text-color--gray">
+                        connection1, +23 others
                       </p>
                     </div>
                     </div>
-  
                     <button className="left-right-nav__card__list__item__button">
                       Connect
                     </button>
@@ -76,7 +74,7 @@ import {
             </MDBListGroup>
           </MDBCardBody>
           <MDBCardFooter className="left-right-nav__card__footer ">
-            <a href="/" className="title--bold">
+            <a href="/" className="text-style--bold text-align--center">
               View All
             </a>
           </MDBCardFooter>

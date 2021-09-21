@@ -20,6 +20,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         {post.time} hrs ago
                     </p>
                 </div>
+                <button className="connect-button">Connect</button>
             </div>
             <div className="post__text">
                 {post.title ? (

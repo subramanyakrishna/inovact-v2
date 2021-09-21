@@ -40,7 +40,7 @@ const myteams: MyTeams[] = [
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
           <MDBCardHeader>
-            <MDBCardTitle className="heading">My Teams</MDBCardTitle>
+            <MDBCardTitle className="text-style--bold text-align--center">My Teams</MDBCardTitle>
           </MDBCardHeader>
           <MDBCardBody className="left-right-nav__card__body">
             <MDBListGroup flush className="left-right-nav__card__list">
@@ -48,7 +48,7 @@ const myteams: MyTeams[] = [
                 <img src={create} alt="create" onClick={props.openCreateTeam}/>
                 <div className="left-right-nav__card__list__item__info">
                   <h2>
-                    <a href="/createteam" className="title">
+                    <a href="/createteam" className="text-style--bold text-align--center text-size--big">
                       Create New Team{" "}
                     </a>
                   </h2>
@@ -59,8 +59,8 @@ const myteams: MyTeams[] = [
                   <MDBListGroupItem className="left-right-nav__card__list__item">
                     <img src={image} alt={name} />
                     <div className="left-right-nav__card__list__item__info">
-                      <h2 className="title">{name}</h2>
-                      <p className="muted--bold">{members} members</p>
+                      <h2 className="text-style--bold text-align--left text-size--big">{name}</h2>
+                      <p className="text-style--bold text-align--left text-color--gray text-size--small">{members} members</p>
                     </div>
                   </MDBListGroupItem>
                 );
@@ -68,7 +68,7 @@ const myteams: MyTeams[] = [
             </MDBListGroup>
           </MDBCardBody>
           <MDBCardFooter className="left-right-nav__card__footer ">
-            <a href="/" className="title--bold">
+            <a href="/" className="text-style--bold text-align--center text-color--white">
               View All
             </a>
           </MDBCardFooter>

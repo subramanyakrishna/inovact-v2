@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
 import SuggestionInvitation from 'components/application/components/teams/components/teamInfo/SuggestionInvitation';
 import TeamInfoTabs from 'components/application/components/teams/components/teamInfo/TeamInfoTabs';
-import InviteMembers from './InviteMembers';
+import InviteMembers from './InviteMembersModal';
 
 const TeamInfo =()=>{
   const [showPopUp, setShowPopUp] = useState(false);

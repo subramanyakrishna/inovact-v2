@@ -25,19 +25,22 @@
             max-width:402px;
             width: 30%;
             padding: 2rem 1rem 1rem 0rem;
+            @include respond(sm) {
+              
+               display: none;
+            }
          }
         &__user-teams{
             width: 100%;
-            @include respond(md) {
-                width: 30%;
-                margin: 0;
-            }
             @include respond(sm) {
                 display: none;
             }
         }
         &__right {
             width: 70%;
+            @include respond(xs) {
+               width: 100%;
+            }
         }
         &__info{
             display: flex;
@@ -47,9 +50,10 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            @include respond(sm) {
-                width: 100%;
-            }
+            @include respond(xs) {
+                padding: 1rem 0;
+             }
+          
         }
         &__team-description {
             width: 100%;

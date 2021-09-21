@@ -6,7 +6,11 @@
         overflow: hidden;
         background-color: $color-white;
         border-radius: 1rem;
-        padding: 1rem  ;
+        
+        @include respond(md){
+            padding: 0  ;
+          
+        }
     &__info{
         display: flex;
         justify-content: center;
@@ -26,22 +30,29 @@
             border-radius:50%;
             background-color: gray;
             @include respond(xs){
-                width: 5rem;
-                height: 5rem;
+                width: 4rem;
+                height: 4rem;
+                align-self: center;
+                margin-left: 0;
             }
         }
         &__left {
-            
             display: flex;
             justify-content: center;
             flex-direction: column;
             margin-left: 1rem;
              width:15%;
+             @include respond (md){
+                width:30%;
+                margin-left: 0;
+             }
+           
             &__text{
                 margin-top: 1rem;
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
+                
                 &__title{
                     font-weight: 500;
                     text-align: center;
@@ -60,19 +71,19 @@
             display: flex;
             justify-content: left;
             flex-direction: column;
-          padding: 1rem;
-          &__teamname{
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-        &__title {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
+            padding: 1rem;
+            
+          @include respond (md){
+                  width:70%;
+                 padding: 0.5rem;
+            }
+          
             & p{
                 margin-top: 0.5rem;
-               
                 @include respond(sm){
+                    margin-top: 0;
+                    margin-bottom: 0.2rem;
+                    
                     font-size: 14px;
                 } 
             }
@@ -90,6 +101,18 @@
                     padding: 0.5rem;
                     border-radius: 15px;
                     margin: 1rem 1rem 0 0;
+                    @include respond(sm){
+                       min-width: fit-content;
+                    } 
+                    &__arrow{
+                    text-align: center;
+                    background-color: $color-light-bg;
+                    color: $color-black;
+                    padding:  0.2rem;
+                    border-radius: 15px;
+                    margin: 1rem 1rem 0 0;
+                    align-self: center;
+                    }
                 }
             }
         }   

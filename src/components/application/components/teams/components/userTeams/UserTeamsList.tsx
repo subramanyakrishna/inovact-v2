@@ -6,42 +6,27 @@ import {
     MDBTabsLink,
   
   } from 'mdb-react-ui-kit';
-interface Connection {
-    name: string;
-    image: string;
-    designation: string;
-    duration: string;
-  }
-interface UserTeams {
-    id:number;
-    name: string;
-    image: string;
-    description:string;
-    progress:number;
-    members: Connection[],
-}
+
+import {teamData }from 'components/application/components/teams/TeamData';
+import UserTeam from 'components/application/components/teams/components/userTeams/UserTeam';
 interface AppProps {
-    userTeams:UserTeams[],
+    teams:teamData[],
     handleVerticalClick :any,
     idx:number
+   
 }
-const UserTeams =({userTeams,handleVerticalClick,idx}:AppProps)=>{
+const UserTeamsList =({teams,handleVerticalClick,idx}:AppProps)=>{
     return(
         <div className="user-team">
             <div className="user-title">
             <h6 className="title" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
             </div>
-          { userTeams.map(({id,name,image}:UserTeams,key)=>{
+          { teams.map(({teamname,avatar,id},key)=>{
              return(
                 <MDBTabs className='flex-column text-center'>
                 <MDBTabsItem>
                   <MDBTabsLink onClick={() => handleVerticalClick(id)} active={idx === id} >
-                  <div className="user-team__tab">
-                       <div className="user-team__tab__tabInfo">
-                            <img src={image} alt=""/>
-                            <h5 className="title">{name}</h5>
-                       </div>
-                   </div>
+                      <UserTeam teamname={teamname} avatar={avatar} />
                   </MDBTabsLink>
                 </MDBTabsItem>
               </MDBTabs>
@@ -50,4 +35,4 @@ const UserTeams =({userTeams,handleVerticalClick,idx}:AppProps)=>{
     </div>
     )
 }
-export default UserTeams;
+export default UserTeamsList;

@@ -32,10 +32,16 @@
             height: 2rem;
             border-radius: 2.5rem;
             margin: 20px;
-            
+            @include respond(sm){
+                width: 4rem;
+                margin: 0;
+                margin-left: 0.5rem;
+            }  
         }
         @include respond(xxs){
-            flex-direction: column;
+            align-self: center;
+            align-items: center;
+            text-align: center;
             justify-content: space-evenly;
             button{
                 height: 1.5rem;

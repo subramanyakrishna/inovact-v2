@@ -48,7 +48,7 @@ const LeftTop = () => {
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
           <MDBCardHeader>
-            <MDBCardTitle className="heading">Recent Connections</MDBCardTitle>
+            <MDBCardTitle className="text-style--bold text-align--center">Recent Connections</MDBCardTitle>
           </MDBCardHeader>
           
           <MDBCardBody className="left-right-nav__card__body">
@@ -58,9 +58,9 @@ const LeftTop = () => {
                   <MDBListGroupItem className="left-right-nav__card__list__item">
                     <img src={image} alt={name} />
                     <div className="left-right-nav__card__list__item__info">
-                      <h2 className="title">{name} </h2>
-                      <h6 className="sub-title">{designation}</h6>
-                      <p className="muted--italic">Connected {duration} ago</p>
+                      <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>
+                      <h6 className="text-style--light text-align--left">{designation}</h6>
+                      <p className="text-style--italic text-color--gray text-align--left text-size--small">Connected {duration} ago</p>
                     </div>
                   </MDBListGroupItem>
                 );

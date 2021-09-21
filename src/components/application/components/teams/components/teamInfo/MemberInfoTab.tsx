@@ -1,7 +1,8 @@
-import React from 'react'
-import pdf from 'images/teams/pdf.svg'
-
-
+import React,{useState} from 'react'
+import msg from 'images/teams/msg.svg'
+import menu from 'images/teams/more.svg'
+import MoreVert from '@material-ui/icons/MoreVert';
+import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo'
 const teamInfo =[
     {
         name:'Jane Doe',
@@ -13,26 +14,18 @@ const teamInfo =[
         image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
         role:'student'
     },
-    
 ]
     
-
-const DocumentsTab =()=>{
+const MemberInfoTab =(props: any)=>{
     return(
         <>
-         <div className="documents-info">
         {
             teamInfo.map((item,index)=>{
                 return(
-                        <div className="documents-info__document">
-                            <img src={pdf} alt="name"/>
-                            <h5 className="text-size--small">file name</h5>  
-                        </div>    
+                   <MemberInfo />
                 );
             })}
-             </div>
         </>
-     
     )
 }
-export default DocumentsTab;
+export default MemberInfoTab;

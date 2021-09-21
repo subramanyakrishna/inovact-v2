@@ -57,6 +57,13 @@ const NavBar = () => {
                                 className="input-component--search"
                             />
                         </div>
+                        <Link to="/feed">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={home}
+                                alt="Home"
+                            />
+                        </Link>
 
                         <Link to="/connections">
                             <img
