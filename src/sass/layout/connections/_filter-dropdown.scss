@@ -9,6 +9,7 @@ $primary-background: #ffffff;
     border: 1px solid rgb(179, 179, 179);
     transform: translateX(-20%);
     overflow: hidden;
+    z-index:10000000;
     &-title{
         margin: 0 auto;
     }

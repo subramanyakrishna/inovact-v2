@@ -10,6 +10,9 @@ import UploadThought from './components/modals/UploadThought/UploadThought'
 import CreateTeam from './components/modals/CreateTeam/CreateTeam'
 import ViewTeamMembers from './components/modals/ViewTeamMembers/ViewTeamMembers'
 import RequestToJoin from './components/modals/RequestToJoin.tsx/RequestToJoin'
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SortByDropdown from 'components/application/components/feed/components/SortByDropdown';
 
 function Feed() {
     const [posts, setPosts] = useState<postData[]>([
@@ -88,6 +91,7 @@ function Feed() {
             numComments: 250,
         },
     ])
+    const [showFilter, setShowFilter] = useState(false);
 
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadProject, setShowUploadProject] = useState(false);
@@ -96,6 +100,13 @@ function Feed() {
     const [showCreateTeam, setShowCreateTeam] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
     const [showRequestJoin, setShowRequestJoin] = useState(false);
+    const [currentFilter, setCurrentFilter] = useState("All");
+
+    const handleChangeFilter = (event:any)=>{
+        const filterOption = event.target.getAttribute("data-value");
+        setCurrentFilter(filterOption);
+        setShowFilter(false);
+    }
     const openModal = ()=>{
         setShowOverlay(true);
         window.scrollTo(0,0);
@@ -138,7 +149,9 @@ function Feed() {
         openModal();
         setShowRequestJoin(true);
     }
-
+    const handleFilterShow = () => {
+        setShowFilter(!showFilter);
+    }
     return (
         <div>
             {
@@ -193,6 +206,22 @@ function Feed() {
                 </div>
                 <div className="feed__content__center">
                     <CreatePost openProject={uploadProject} openIdea={uploadIdea} openThought={uploadThought} />
+                    <div className="sort">                    
+                    <div className="line-separation">   
+                        <hr  className="line-separation-line" style={{}}/>
+                        <div onMouseLeave={()=>{
+                            setTimeout(()=>{
+                                setShowFilter(false);
+                            }, 300);
+                        }}>
+                    <span>Sort by:  <label onClick={handleFilterShow}>{`${currentFilter}`}<span>{showFilter ? <ExpandLessIcon />: <ExpandMoreIcon/>}</span></label></span>
+                    {
+                        showFilter &&
+                            <SortByDropdown />
+                    }
+                </div>
+            </div>
+            </div>
                     {posts.map((post, idx) => {
                         return <Post key={idx} post={post} openTeamMember={viewTeamMembers} openRequestJoin={viewRequestJoin}/>
                     })}
