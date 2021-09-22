@@ -9,6 +9,8 @@ import BlockAccount from './components/BlockAccount';
 import RestrictAccount from './components/RestrictAccount';
 import ReportAccount from './components/ReportAccount';
 import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
+import CreateTeam from '../feed/components/modals/CreateTeam/CreateTeam';
+import EditBio from './components/modals/EditBio';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -118,6 +120,8 @@ function Profile() {
     const [showReportUser, setShowReportUser] = useState(false);
     const [showRestrictUser, setShowRestrictUser] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
+    const [showCreateTeam, setShowCreateTeam] = useState(false);
+    const [showEditBio, setShowEditBio] = useState(false);
     const openModal = ()=>{
         setShowOverlay(true);
         window.scrollTo(0,0);
@@ -149,6 +153,14 @@ function Profile() {
         openModal();
         setShowTeamMembers(true);
     }
+    const viewCreateTeam = ()=>{
+        openModal();
+        setShowCreateTeam(true);
+    }
+    const viewEditBio = ()=>{
+        openModal();
+        setShowEditBio(true);
+    }
     return (
         <div>
             {
@@ -172,6 +184,14 @@ function Profile() {
                         showTeamMembers &&
                         <ViewTeamMembers closeModal={closeModal}/>
                     }
+                    {
+                        showCreateTeam && 
+                        <CreateTeam closeModal={closeModal}/>
+                    }
+                    {
+                        showEditBio &&
+                        <EditBio closeModal= {closeModal}/>
+                    }
 
                 </div>
                 
@@ -189,7 +209,7 @@ function Profile() {
                     {
                         showLeft &&
                         <div className="profile--content-left">
-                            <LeftProfileContent/>
+                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio}/>
                         </div>
                     }
                     {

@@ -32,10 +32,10 @@ $color-red: red;
   }
   &-switch{
     &-right{
-      padding: 0px 0px 0px 20px;
+      padding: 0px 0px 0px 5px;
     }
     &-left{
-      padding: 0px 20px 0px 0px;
+      padding: 0px 5px 0px 0px;
     }
   }
   &-bottom-switch{
@@ -55,7 +55,7 @@ $color-red: red;
 }
 .skill-tag{
   width: 100%;
-  padding: 10px 0px;
+  padding: 5px 0px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -86,8 +86,9 @@ $color-red: red;
 .interests-tags{
   display: flex;
   flex-wrap: wrap;
+  font-size: small;
   span{
-    padding: 5px 10px;
+    padding: 2px 10px;
     margin: 5px;
     border: 1px solid $color-primary-green;
     border-radius: 15px;

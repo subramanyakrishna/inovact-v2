@@ -47,28 +47,37 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             name: "Jane Doe",
           }
       ]
-      const [showTeams, setShowTeams] = useState(true);
-      const [showComments, setShowComments] = useState(false);
-      const sharePost =()=>{
-          setShowShareOption(!showShareOption);
-      }
-      const toggleShowTeams = ()=>{
-          setShowTeams(true);
-      }
-      const toggleShowUsers =()=>{
-          setShowTeams(false);
-      }
-      const closeShareOptionSlow =()=>{
-          setTimeout(()=>{
-              setShowShareOption(false);
-          },1000);
-      }
-      const toggleShowComments = ()=>{
-          setShowComments(!showComments);
-      }
-      const backToPost = ()=>{
-          setShowComments(false);
-      }
+    const [showTeams, setShowTeams] = useState(true);
+    const [showComments, setShowComments] = useState(false);
+    const [showPostOptions, setShowPostOptions] = useState(false);
+    const sharePost =()=>{
+        setShowShareOption(!showShareOption);
+    }
+    const toggleShowTeams = ()=>{
+        setShowTeams(true);
+    }
+    const toggleShowUsers =()=>{
+        setShowTeams(false);
+    }
+    const closeShareOptionSlow =()=>{
+        setTimeout(()=>{
+            setShowShareOption(false);
+        },1000);
+    }
+    const toggleShowComments = ()=>{
+        setShowComments(!showComments);
+    }
+    const backToPost = ()=>{
+        setShowComments(false);
+    }
+    const viewPostOptions = ()=>{
+        setShowPostOptions(!showPostOptions);
+    }
+    const removePostOptionsSLow = ()=>{
+        setTimeout(()=>{
+            setShowPostOptions(false);
+        },1000);
+    }
     return (
         <div className="post">
             <div>
@@ -199,7 +208,17 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     {post.type === 1 ? (
                         <>
                             <p className="post__footer__team__text" onClick={openTeamMember}> View Team Members</p>
-                            {/* <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p> */}
+                            <div className="post__footer__team__options-menu">
+                                {
+                                    showPostOptions &&
+                                    <div className="post__footer__team__options-all" onMouseLeave={removePostOptionsSLow}>
+                                        <span>Edit Post</span>
+                                        <span>Post Statistics</span>
+                                        <span>Delete Post</span>
+                                    </div>
+                                }
+                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p>
+                            </div>
                         </>
                     ) : (
                         <div className="post__footer__team__empty"></div>

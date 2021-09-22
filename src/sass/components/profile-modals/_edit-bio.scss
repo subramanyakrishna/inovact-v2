@@ -1,0 +1,59 @@
+.edit-bio{
+    &-modal{
+        display: flex;
+        flex-direction: column;
+        column-gap: 20px;
+        padding: 2rem 4rem;
+        background-color: white;
+        z-index: 999;
+        width: 40%;
+        border-radius: 10px;
+    }
+    &-heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        &-title{
+            font-size: larger;
+            font-weight: 600;
+        }
+        &-exitbtn{
+            background-color: white;
+            border: none;
+            font-size: 30px;
+            color: $color-primary-green;
+        }
+    }
+    &-content{
+        min-height: 100px;
+        width: 100%;
+        border-radius: 10px;
+        margin: 10px 0px;
+        padding: 2px 10px;
+    }
+    &-email{
+        padding: 2px 10px;    
+        border-radius: 10px;
+        margin: 10px 0px;
+        border: 0.5px solid grey;
+    }
+    &-website{
+        padding: 2px 10px;
+        border-radius: 10px;
+        margin: 10px 0px;
+        border: 0.5px solid grey;
+    }
+
+    &-editbtn{
+        background-color: white;
+        border: 1px solid $color-primary-green;
+        color: $color-primary-green;
+        width: 6rem;
+        float: right;
+        border-radius: 10px;
+    }
+    &-editbtn:hover{
+        background-color: rgb(129, 221, 167);
+        color: black;
+    }
+}

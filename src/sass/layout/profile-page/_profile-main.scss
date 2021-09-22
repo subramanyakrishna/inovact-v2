@@ -2,14 +2,13 @@
     &--content{
         display: flex;
         flex-direction: column;
-        max-width: 1800px;
-        margin: 0px ;
+        
         margin-top: 4rem;
         &-bottom-container{
             display: flex;
-            
-            margin: 3rem auto;
-            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            width: 80%;
             column-gap: 50px;
             @include respond(md){
                 width: 100%;
@@ -17,21 +16,21 @@
             }
         }
         &-left{
-            width: 50%;
+            width: 30%;
             @include respond(md){
-                display: block;
                 width: 40%;
             }
             @include respond(sm){
-                // display: none;
                 width: 100%;
             }
         }
         &-right{
             padding: 20px;
-            width: 100%;
+            max-width: 700px;
+            width: 80%;
+            margin: 0px auto;
             @include respond(sm){
-                // display: none;
+                width: 100%;
             }
         }
         
@@ -50,7 +49,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
-        height: 250px;
+        height: 200px;
         @include respond(md){
             flex-direction: column;
             justify-content: space-evenly;
@@ -91,11 +90,12 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        height: 4rem;
         background-color: $color-white;
         padding: 10px 0px; 
-        width: 55%;
+        width: 45%;
         border-radius: 5px;
-        transform: translateY(150%);
+        transform: translate(-10%,150%);
         box-shadow: 1px 4px 15px -8px rgba(0,0,0,0.75);
         &-options{
             position: relative;
@@ -126,7 +126,7 @@
             align-items: center;
             font-size: small;
             img{
-                width: 30px;
+                width: 20px;
             }
             button{
                 background-color: $color-white;

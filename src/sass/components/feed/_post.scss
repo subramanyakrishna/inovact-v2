@@ -72,6 +72,10 @@
             }
         }
     }
+    &__images{
+        max-width: 600px;
+        margin: 0px auto;
+    }
 
     &__footer {
         display: flex;
@@ -209,6 +213,35 @@
 
                 @include respond(xs) {
                     margin-right: 1rem;
+                }
+            }
+            &__options{
+                background-color: #4b72bc;
+                color: white;
+                margin: 0 ;
+                font-size: 30px;
+                padding: 0px 20px;
+                cursor: pointer;
+                &-menu{
+                    position: relative;
+                }
+                &-all{
+                    display: flex;
+                    flex-direction: column;
+                    width: 8rem;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    transform: translate(10%,-100%);
+                    box-shadow: -2px 2px 18px -6px rgba(0,0,0,0.75);
+                    position: absolute;
+                    background-color: white;
+                    span{
+                        padding: 5px 10px;
+                        cursor: pointer;
+                    }
+                    span:hover{
+                        background-color: rgb(209, 208, 208);
+                    }
                 }
             }
 

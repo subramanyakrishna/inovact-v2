@@ -1,6 +1,6 @@
 import TeamTag from "./TeamTag";
 import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
-function TeamsPartOf() {
+function TeamsPartOf(props:any) {
   const teamsData = [
     {
       img:
@@ -26,7 +26,7 @@ function TeamsPartOf() {
             <div className="teams-part-of">
       <div className="teams-part-of-heading">
         <p>Jane's Team</p>
-        <AddCircleSharp style={{color:"#02bd63"}}/>
+        <AddCircleSharp style={{color:"#02bd63", cursor:"pointer"}} onClick={props.createTeam}/>
       </div>
       <div className="teams-part-of-all-teams">
         {teamsData.map((team: any) => {

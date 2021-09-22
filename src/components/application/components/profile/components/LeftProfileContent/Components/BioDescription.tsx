@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MailRounded from "@material-ui/icons/MailRounded";
 import LanguageRounded from "@material-ui/icons/LanguageRounded";
 import EditIcon from "@material-ui/icons/Edit";
-function BioDescription() {
+function BioDescription(props:any) {
     const [showMore, setShowMore] = useState(false);
   const toggleReadMore = () => {
     setShowMore(!showMore);
@@ -12,7 +12,7 @@ function BioDescription() {
             <div className="bio">
       <div className="bio-heading">
         <p>Bio</p>
-        <EditIcon/>
+        <EditIcon onClick={props.viewEditBio}/>
       </div>        
       
       {!showMore && (

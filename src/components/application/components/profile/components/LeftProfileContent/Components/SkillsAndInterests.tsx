@@ -68,7 +68,7 @@ function SkillsAndInterests() {
                 onClick={toggleShowSkills}
                 className="skills-and-interests-switch-right"
               >
-                <ArrowForwardIosRounded fontSize="large"/>
+                <ArrowForwardIosRounded fontSize="medium"/>
                 
               </span>
             </div>
@@ -81,7 +81,7 @@ function SkillsAndInterests() {
                 onClick={toggleShowSkills}
                 className="skills-and-interests-switch-left"
               >
-                <ArrowBackIosRounded fontSize="large"/>
+                <ArrowBackIosRounded fontSize="medium"/>
               </span>
             </div>
             <div>
