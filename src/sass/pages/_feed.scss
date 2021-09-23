@@ -1,5 +1,4 @@
 .feed {
-
     &__content {
         display: flex;
         max-width: 1200px;
@@ -9,7 +8,9 @@
         
         &__left {
             width: 25%;
-
+            position: sticky;
+            top: 0;
+            left: 0;
             @include respond(md) {
                 width: 30%;
             }
@@ -19,24 +20,25 @@
         }
 
         &__center {
-            width: 50%;
+            width: 50%; 
             padding: 1rem;
             @include respond(md) {
                 width: 70%;
             }
-
             @include respond(sm) {
                 width: 100%;
-                padding: 0;
             }
         }
-
         &__right {
             width: 25%;
-
             @include respond(md) {
                 display: none;
             }
         }
+    }
+}
+.sort {
+    @include respond(sm)  {
+        display: none;
     }
 }

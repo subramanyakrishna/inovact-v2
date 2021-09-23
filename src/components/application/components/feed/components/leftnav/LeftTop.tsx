@@ -48,7 +48,7 @@ const LeftTop = () => {
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
           <MDBCardHeader>
-            <MDBCardTitle className="heading">Recent Connections</MDBCardTitle>
+            <MDBCardTitle className="text-style--bold text-align--center">Recent Connections</MDBCardTitle>
           </MDBCardHeader>
           
           <MDBCardBody className="left-right-nav__card__body">

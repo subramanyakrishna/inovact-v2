@@ -26,11 +26,11 @@ import {
     return (
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
-          <MDBCardHeader className="left-right-nav__card__header">
-            <MDBCardTitle className="heading">
+          <MDBCardHeader style={{paddingLeft:'15px'}} >
+            <MDBCardTitle  className="text-style--bold text-align--center">
               Teams that may interest you
             </MDBCardTitle>
-            <p className="sub-title--green">
+            <p className="text-style--italic text-align--center text-color--green text-size--small">
               Based on your interest and recent projects
             </p>
           </MDBCardHeader>
@@ -41,8 +41,8 @@ import {
                 return (
                   <MDBListGroupItem className="left-right-nav__card__list__item--right">
                     <div className="left-right-nav__card__list__item__info">
-                      <h2 className="title">{name} </h2>
-                      <p className="muted--italic">Javascript,REACT, +3more</p>
+                      <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>
+                      <p className="text-style--italic text-align--left  text-color--gray">Javascript,REACT, +3more</p>
                     </div>
                     <button className="left-right-nav__card__list__item__button">
                       Join
@@ -54,7 +54,7 @@ import {
           </MDBCardBody>
 
           <MDBCardFooter className="left-right-nav__card__footer ">
-            <a href="/" className="title--bold">
+            <a href="/" className="text-style--bold text-align--center">
               View All
             </a>
           </MDBCardFooter>

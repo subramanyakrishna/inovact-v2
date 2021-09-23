@@ -57,12 +57,26 @@ const NavBar = () => {
                                 className="input-component--search"
                             />
                         </div>
+                        <Link to="/feed">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={home}
+                                alt="Home"
+                            />
+                        </Link>
 
                         <Link to="/connections">
                             <img
                                 className="nav-component__icons--hidden"
                                 src={connection}
                                 alt="Connection"
+                            />
+                        </Link>
+                        <Link to="/teams">
+                            <img
+                                className="nav-component__icons--hidden"
+                                src={teams}
+                                alt="Teams"
                             />
                         </Link>
                         <Link to="/notifications">
