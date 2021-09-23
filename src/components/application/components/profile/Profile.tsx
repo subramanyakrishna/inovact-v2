@@ -134,6 +134,8 @@ function Profile() {
         setShowReportUser(false);
         setShowRestrictUser(false);
         setShowTeamMembers(false);
+        setShowEditBio(false);
+        setShowCreateTeam(false);
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{

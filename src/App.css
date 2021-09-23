@@ -75,24 +75,12 @@ body {
     color: red;
     font-size: 14px; }
 
-.title {
-  margin: 0.1rem;
-  font-weight: 500;
-  font-size: 1rem; }
-  .title--bold {
-    font-weight: 550;
-    text-align: center; }
-  .title--space {
-    letter-spacing: 1.5px; }
-
-.sub-title {
-  margin: 0.1rem;
-  font-size: 0.8rem; }
-  .sub-title--green {
-    color: #02bd63;
-    font-style: italic;
-    text-align: center;
-    font-size: 0.9rem; }
+.text-style--bold {
+  margin: 0;
+  padding: 0;
+  font-family: 'Euclid Circular A';
+  font-style: normal;
+  font-weight: 500; }
 
 .text-style--light {
   margin: 0;
@@ -111,11 +99,22 @@ body {
 .text-color--black {
   color: #000000; }
 
-.heading {
-  font-style: normal;
-  font-weight: 550;
-  font-size: 1rem;
-  color: #000000;
+.text-color--green {
+  color: #02bd63; }
+
+.text-color--white {
+  color: #ffffff; }
+
+.text-color--gray {
+  color: gray; }
+
+.text-size--big {
+  font-size: 1.2rem; }
+
+.text-size--small {
+  font-size: 0.9rem; }
+
+.text-align--center {
   text-align: center; }
 
 .text-align--left {
@@ -624,14 +623,10 @@ body {
     background-color: gray; }
   .left-right-nav__card {
     background-color: #ffffff;
-<<<<<<< HEAD
     border-radius: 1rem;
     overflow: hidden; }
     .left-right-nav__card__header {
       padding: 1rem 0.1rem; }
-=======
-    border-radius: 1rem; }
->>>>>>> a1b650fc25a5ff807f30fba60913bb7ce2c5459a
     .left-right-nav__card p {
       margin: 0;
       padding: 0; }
@@ -737,7 +732,6 @@ body {
           border-radius: 1rem;
           margin-top: 1rem;
           background-color: #5579bd;
-<<<<<<< HEAD
           align-self: center;
           font-size: small;
           border: 1px solid #5579bd;
@@ -745,12 +739,6 @@ body {
           border-radius: 2rem;
           min-width: 5rem;
           padding: 0.3rem;
-          color: white; }
-          @media only screen and (max-width: 75em) {
-            .left-right-nav__card__list__item__button {
-              padding: 0.1rem; } }
-=======
-          align-self: flex-start;
           color: white;
           min-height: max-content; }
           @media only screen and (max-width: 36em) {
@@ -759,9 +747,7 @@ body {
               font-size: small; } }
           @media only screen and (max-width: 75em) {
             .left-right-nav__card__list__item__button {
-              margin-top: 0.5rem;
-              margin-left: 1rem; } }
->>>>>>> a1b650fc25a5ff807f30fba60913bb7ce2c5459a
+              padding: 0.1rem; } }
     .left-right-nav__card__footer {
       background-color: #02bd63;
       text-align: center; }
