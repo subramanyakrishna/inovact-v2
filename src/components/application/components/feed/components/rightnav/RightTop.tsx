@@ -52,10 +52,10 @@ import {
                 return (
                   <MDBListGroupItem className="left-right-nav__card__list__item--right left-right-nav__card__list__item__rightTop">
                     <div className="left-right-nav__card__list__item__rightTop--row">
-                    <img
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-                      alt="conn"
-                    />
+                      <img
+                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                        alt="conn"
+                      />
   
                     <div className="left-right-nav__card__list__item__info">
                       <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>

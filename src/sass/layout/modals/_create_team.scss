@@ -76,7 +76,7 @@
         border: 1px solid $grey-border;
         margin-right: 10px;
     }
-    button{
+    &-addbtn{
         color:#02BD63;
         font-size: 15px;
         height: 2rem;
@@ -107,5 +107,16 @@
         font-weight: 600;
         color: #02BD63;
         text-decoration: underline;
+    }
+    &-button{
+        
+        button{
+            width: 10px;
+            height: 10px;
+            height: min-content;
+            font-size: small;
+            background-color: $color-white;
+            border: none;
+        }
     }
 }

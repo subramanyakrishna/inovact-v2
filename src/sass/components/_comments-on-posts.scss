@@ -1,0 +1,130 @@
+.comments-on-posts{
+    &-back{
+        font-size: smaller;
+        font-weight: 600;
+        color: $color-primary-green;
+        cursor: pointer;
+    }
+    &-heading{
+        font-size: 25px;
+        font-weight: 600;
+    }
+    &-contents{
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &-img-container{
+        margin: 0px 20px 0px 0px;
+        overflow: hidden;
+        min-width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & img{
+            height: 100%;
+            object-fit: cover;
+        }
+        @include respond(md){
+            height: 50px;
+            min-width: 50px;
+        }
+    }
+    &-main-comment-container{
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+    &-user-name{
+        font-size: large;
+        font-weight: 600;
+        margin: 0px;
+    }
+    &-comment-time{
+        font-size: small;
+        color: grey;
+    }
+    &-comment{
+        font-size: 14px;
+    }
+    &-replies{
+        &-container{
+            display: flex;
+            flex-direction: column;
+        }
+        &-view{
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            cursor: pointer;
+            &-separator{
+                width: 70%;
+                @include respond(md){
+                    width: 50%;
+                }
+            }
+            @include respond(md){
+                font-size: small;
+            }
+        }
+        
+    }
+}
+
+.reply-tag{
+    display: flex;
+    padding: 10px;
+    @include respond(md){
+        border: 0.5px solid rgb(177, 177, 177);
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+    &-img-container{
+        margin: 0px 20px 0px 0px;
+        overflow: hidden;
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            height: 100%;
+            object-fit: cover;
+        }
+        @include respond(md){
+            display: none;
+        }
+    }
+    &-content{
+        display:flex;
+        flex-direction: column;
+        align-items:flex-start;
+    }
+    &-name-container{
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0px;
+    }
+    &-name{
+        font-size: small;
+        font-weight: 600;
+    }
+    &-time{
+        font-size: smaller;
+        color: gray;
+    }
+    &-user-tagged{
+        font-size: smaller;
+        color: $color-primary-green;
+        margin: 0px 3px;
+    }
+    &-user-comment{
+        font-size: smaller;
+    }
+}

@@ -3,8 +3,8 @@
     padding: 1rem 0rem;
 
     & img{
-        width:3.5rem;
-        height: 3.5rem;
+        width:3rem;
+        height: 3rem;
         object-fit: cover;
         border-radius:50%;
         background-color: gray;
@@ -13,7 +13,10 @@
    &__card{
      background-color:$color-white;
      border-radius:1rem;
-       
+     overflow: hidden;
+    &__header{
+        padding: 1rem 0.1rem;
+    }
     & p{
         margin: 0;
 
@@ -28,6 +31,7 @@
         padding:0 !important;
         display: flex;
         justify-content: center;   
+        align-items: center;
     }
 
    &__list{
@@ -91,7 +95,8 @@
         align-items:left;
         text-align:left;
         margin-top: 0.1rem;
-        @include respond(lg){
+
+        @include respond(sm){
           & p {
             display: none;
           }
@@ -123,14 +128,16 @@
         flex-direction:row;
         justify-content:flex-start;
         align-items:left;
-        @include respond(lg){
-        margin-left: -1.7rem;
+          @include respond(lg){
+            margin-left: -1.7rem;
+          
           }
         }
       
         @include respond(lg){
           padding: 0.7rem;
             flex-direction:column;
+            align-items: center;
         }
       }
 
@@ -145,12 +152,17 @@
         }
         margin-top:1rem;
         background-color:$color-secondary-blue;
-        align-self: flex-start;
+        align-self: center;
+        font-size: small;
+        border: 1px solid $color-secondary-blue;
+        box-shadow: 0 0 0.2rem $color-secondary-blue;
+        border-radius:2rem;
+        min-width: 5rem;
+        padding: 0.3rem ;
         color:white;
         min-height: max-content;
         @include respond(lg){
-        margin-top: 0.5rem;
-       margin-left: 1rem;
+        padding: 0.1rem ;
         }
         }
      }

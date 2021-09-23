@@ -4,13 +4,13 @@ import DashboardContent from './Components/DashboardContent';
 import SkillsAndInterests from './Components/SkillsAndInterests';
 import TeamsPartOf from './Components/TeamsPartOf';
 
-function LeftProfileContent() {
+function LeftProfileContent(props: any) {
     return (
         <div className="left_profile_content">
             <DashboardContent/>
-            <BioDescription/>
+            <BioDescription viewEditBio={props.viewEditBio}/>
             <SkillsAndInterests/>
-            <TeamsPartOf/>
+            <TeamsPartOf createTeam={props.createTeam}/>
         </div>
     )
 }

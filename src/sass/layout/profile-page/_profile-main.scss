@@ -2,28 +2,35 @@
     &--content{
         display: flex;
         flex-direction: column;
-        max-width: 1800px;
-        margin: 0px ;
+        
         margin-top: 4rem;
         &-bottom-container{
             display: flex;
-            
-            margin: 3rem auto;
+            max-width: 1200px;
+            margin: 2rem auto;
             width: 80%;
+            column-gap: 50px;
+            @include respond(md){
+                width: 100%;
+                column-gap: 10px;
+            }
         }
         &-left{
-            width: 50%;
+            width: 30%;
+            @include respond(md){
+                width: 40%;
+            }
+            @include respond(sm){
+                width: 100%;
+            }
         }
         &-right{
-            margin-left: 30px;
-            width: 100%;
-            div{
-                background-color: $color-white;
+            padding: 20px;
+            max-width: 700px;
+            width: 80%;
+            margin: 0px auto;
+            @include respond(sm){
                 width: 100%;
-                height: 50%;
-                margin: 20px;
-                border-radius: 20px;
-                padding: 20px;
             }
         }
         
@@ -42,7 +49,11 @@
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
-        height: 250px;
+        height: 200px;
+        @include respond(md){
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
 
     }
     &-user{
@@ -79,19 +90,43 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        height: 4rem;
         background-color: $color-white;
         padding: 10px 0px; 
-        width: 55%;
+        width: 45%;
         border-radius: 5px;
-        transform: translateY(150%);
+        transform: translate(-10%,150%);
         box-shadow: 1px 4px 15px -8px rgba(0,0,0,0.75);
+        &-options{
+            position: relative;
+            
+            &-all{
+                margin: 0;
+                position: absolute;
+                width: 120px;
+                transform: translate(40%,-90%);
+                background-color: $color-white;
+                z-index: 999;
+                // border: 1px solid gray;
+                box-shadow: -1px 4px 10px -6px rgba(0,0,0,0.75);
+                span{
+                    padding: 5px;
+                    width: 100%;
+                    text-align: left;
+                    cursor: pointer;
+                }
+                span:hover{
+                    background-color: rgb(221, 219, 219);
+                }
+            }
+        }
         div{
             display: flex;
             flex-direction: column;
             align-items: center;
             font-size: small;
             img{
-                width: 30px;
+                width: 20px;
             }
             button{
                 background-color: $color-white;
@@ -100,8 +135,55 @@
                 text-align: center;
             }
         }
+        @include respond(md){
+            // width: 70%;
+            width: 90vw;
+            transform: translateY(70%);
+        }
+        @include respond(sm){
+            
+        }
 
 
     }
 }
 
+.profile-hidden-component{
+    display: hidden;
+}
+
+.modal-overlay-profile{
+    width: 100vw;
+    height: 105vh;
+    margin: 0;
+    top:-1%;
+    background-color: black;
+    opacity: 0.6;
+    position: fixed;
+    overflow: hidden;
+    z-index: 101;
+}
+
+.profile-modal-cover{
+    display: flex;
+    justify-content: center;
+    top: -5%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.user-tag{
+    &-main{
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+    &-img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0px 20px ;
+    }
+}

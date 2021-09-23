@@ -58,9 +58,9 @@ const LeftTop = () => {
                   <MDBListGroupItem className="left-right-nav__card__list__item">
                     <img src={image} alt={name} />
                     <div className="left-right-nav__card__list__item__info">
-                      <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>
-                      <h6 className="text-style--light text-align--left">{designation}</h6>
-                      <p className="text-style--italic text-color--gray text-align--left text-size--small">Connected {duration} ago</p>
+                      <h4 className="title">{name} </h4>
+                      <p className="sub-title">{designation}</p>
+                      <p className="muted--italic">Connected {duration} ago</p>
                     </div>
                   </MDBListGroupItem>
                 );

@@ -18,6 +18,8 @@ $color-red: red;
     font-weight: 600;
     text-align: left;
     font-size: larger;
+    display: flex;
+    justify-content: space-between;
   }
   &-description{
     text-align: left;
