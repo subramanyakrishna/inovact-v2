@@ -34,10 +34,9 @@ export default function AreaOfInterest(props :any) {
                  <h6 className="heading-secondary">Add Bio To your Profile</h6>
                   <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                     
-                    <Field className="input-formComponent" name={bio.name}
+                    <Field className="input-formComponent" as="textarea" name={bio.name}
                         placeholder='Write down a short summary about you and your interest' 
-                      
-                        rows={3}
+                       
                       />
                 </div>
               </div>

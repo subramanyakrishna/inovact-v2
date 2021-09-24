@@ -36,9 +36,7 @@ $primary-background: #ffffff;
             justify-content: space-between;
         }
     }
-    @include respond(md){
-        font-size: small;
-    }
+
     @include respond(sm){
         padding: 0;
         transform: translateX(-20%);

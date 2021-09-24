@@ -1,7 +1,8 @@
 .nav-wrapper {
-    display: flex;
+    display: flex; 
     justify-content: center;
     width: 100%;
+    background-color: $color-white;
 }
 
 .nav-component {
@@ -36,6 +37,9 @@
         @include respond(md) {
             width: 20%;
         }
+        @include respond(sm) {
+            width: 20%;
+        }
 
         &__brandname {
             font-weight: 600;
@@ -48,7 +52,7 @@
     }
 
     &__items {
-        width: 90%;
+        width: 70%;
         margin: 0 2rem 0 0;
         display: flex;
         flex-direction: row;
@@ -59,54 +63,79 @@
             width: 98%;
         }
 
-        @include respond(xs) {
-            width: 95%;
+        @include respond(md) {
+            width: 90%;
             margin: 0;
+            justify-content: center;
+        }
+        @include respond(sm) {
+            width: 90%;
+        }
+
+        &__item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             justify-content: space-between;
+            &__icons {
+                width: 1.75rem;
+               margin-left: 2rem;
+               @include respond(md) {
+                width: 1.25rem;
+                margin-left: 1.5rem;
+               }
+                @include respond(xs) {
+                    width: 1.5rem;
+                    margin: auto 1rem;
+                }
+        
+                &--hidden {
+                    width: 1.75rem;
+                    margin-left: 2rem;
+                    @include respond(md) {
+                        width: 1.25rem;
+                        margin-left: 1.5rem;
+                    }
+                    @include respond(xs) {
+                        display: none;
+                    }
+                }
+        
+                &--user {
+                    width: 3rem;
+                    margin-left: 1rem;
+                    @include respond(md) {
+                        width: 1.5rem;
+                    }
+                    @include respond(xs) {
+                        display: none;
+                    }
+                }
+            }
+        
         }
     }
 
-    &__icons {
-        width: 1.25rem;
-
-        @include respond(xs) {
-            width: 1.5rem;
-            margin: auto 1rem;
-        }
-
-        &--hidden {
-            width: 1.25rem;
-
-            @include respond(xs) {
-                display: none;
-            }
-        }
-
-        &--user {
-            width: 4rem;
-
-            @include respond(xs) {
-                display: none;
-            }
-        }
-    }
 
     &__search {
         position: relative;
         & img {
+        
             position: absolute;
             left: 0.5rem;
             top: 0.4rem;
             @include respond(md) {
                 width: 1rem;
                 left: 0.9rem;
+                top: 0.6rem;
             }
             @include respond(sm) {
                 width: 1rem;
                 left: 0.7rem;
+               
             }
             @include respond(xs) {
-                width: 0.9rem;
+                width: 1rem;
                 left: 0.8rem;
             }
         }

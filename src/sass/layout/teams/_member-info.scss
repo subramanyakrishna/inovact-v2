@@ -5,30 +5,17 @@
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid rgba(0,0,0,.125);
+  
     &__details{
         display: flex;
         flex-direction: row;
         align-items: center;
         &__dropdown{
-            
-            &__list{
-                display: flex;
-            flex-direction: column;
+            display: flex;
+            flex-direction: column-reverse;
             align-items: center;
-            font-size: small;
-              z-index:50000;
-            
-            border: 1px solid $color-gray;
-            border-radius: 5px;
-               
-                &__element{
-                    padding: 0.5rem;
-                    text-align: center;
-                    border-bottom: 1px solid $color-gray;
-                }
-              
-
-            }
+          
+      
         }
         &__title{
             font-size: 1.2rem;
@@ -67,7 +54,7 @@
             border: none;
             font-size: 40px;
             text-align: center;
-        }
+           }
             & h5 {
                 margin-right: 1rem;
                 @include respond(sm){
@@ -76,5 +63,31 @@
             }
         }
     }
-   
+
+}
+.member-info-tab {
+    position:relative;
+    &__addFile {
+        display: none;
+        @include respond(sm){
+            display: block;
+            border: none;
+            background-color: transparent;
+            color: $color-primary-green;
+            position: absolute;
+            top: -3rem;
+            right: 30px;
+            @include respond(sm){
+                font-size: 0.9rem;
+                top:0;
+                right: 1rem;
+            }
+            &__icon {
+                @include respond(sm){
+                font-size: 1rem !important;
+                }
+            }
+        }
+  
+    }
 }

@@ -23,10 +23,13 @@ import {
   ];
   
   const RightBottom = () => {
+    const handleJoinTeam=(e:any)=>{
+
+    }
     return (
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
-          <MDBCardHeader style={{paddingLeft:'15px'}} >
+          <MDBCardHeader style={{padding:'1rem 0.2rem'}} >
             <MDBCardTitle  className="text-style--bold text-align--center">
               Teams that may interest you
             </MDBCardTitle>
@@ -44,7 +47,7 @@ import {
                       <h2 className="text-style--bold text-align--left text-size--big">{name} </h2>
                       <p className="text-style--italic text-align--left  text-color--gray">Javascript,REACT, +3more</p>
                     </div>
-                    <button className="left-right-nav__card__list__item__button">
+                    <button className="left-right-nav__card__list__item__button" onClick={handleJoinTeam}>
                       Join
                     </button>
                   </MDBListGroupItem>
@@ -54,7 +57,7 @@ import {
           </MDBCardBody>
 
           <MDBCardFooter className="left-right-nav__card__footer ">
-            <a href="/" className="text-style--bold text-align--center">
+            <a href="/teams" className="text-style--bold text-align--center">
               View All
             </a>
           </MDBCardFooter>

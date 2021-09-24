@@ -83,8 +83,8 @@
         }
 
         div label {
-            padding: 1vh 5%;
-            font-size: 12px;
+            padding: 1vh 0;
+            font-size: 14px;
             font-weight: 300;
         }
 
@@ -133,11 +133,13 @@
             &--header {
                 top: 0.5rem;
                 font-size: 190%;
+                padding: 0 1rem;
             }
 
             &--desc {
                 top: 0.2rem;
                 font-size: 110%;
+                padding: 0 1rem;
             }
 
             &--form {
@@ -162,6 +164,18 @@
             width: 100%;
             margin: 0 5%;
             padding-bottom: 0;
+            &--header {
+                font-size: 150%;
+                padding: 0 1rem;
+            }
+
+            &--desc {
+               
+                padding: 0 1rem;
+               a{
+                   padding: 0;
+               }
+            }
         }
     }
 
@@ -175,11 +189,16 @@
             margin-top: 5%;
 
             &--header {
-                font-size: 150%;
+                font-size: 110%;
+                padding: 0 1rem;
             }
 
             &--desc {
-                font-size: 95%;
+                font-size: 90%;
+                padding: 0 1rem;
+               a{
+                   padding: 0;
+               }
             }
 
             &--form {
