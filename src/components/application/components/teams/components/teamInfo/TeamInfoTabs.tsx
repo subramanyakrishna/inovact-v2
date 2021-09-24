@@ -9,7 +9,7 @@ import {
 import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfoTab';
 import RequestsTab from './RequestsTab';
 import DocumentsTab from './DocumentsTab'
-const TeamInfo =()=>{
+const TeamInfo =(props:any)=>{
   const [basicActive, setBasicActive] = useState('members');
 
   const handleBasicClick = (value: string) => {
@@ -21,7 +21,7 @@ const TeamInfo =()=>{
 
   return (
     <>
-      <MDBTabs className='mb-3'>
+      <MDBTabs className='team-info-tabs mb-3'>
         <MDBTabsItem>
           <MDBTabsLink  onClick={() => handleBasicClick('members')} active={basicActive === 'members'}>
             Members
@@ -41,7 +41,7 @@ const TeamInfo =()=>{
 
       <MDBTabsContent>
         <MDBTabsPane show={basicActive === 'members'}><MemberInfo /></MDBTabsPane> 
-        <MDBTabsPane show={basicActive === 'documents'}> <DocumentsTab /></MDBTabsPane>
+        <MDBTabsPane show={basicActive === 'documents'}> <DocumentsTab team={props.team} openUpload={props.openUpload} /></MDBTabsPane>
         <MDBTabsPane show={basicActive === 'requests'}><RequestsTab /> </MDBTabsPane>
       </MDBTabsContent>
     </>

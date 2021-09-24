@@ -1,7 +1,5 @@
 import React,{useState} from 'react'
-import msg from 'images/teams/msg.svg'
-import menu from 'images/teams/more.svg'
-import MoreVert from '@material-ui/icons/MoreVert';
+import AddIcon from '@material-ui/icons/Add';
 import MemberInfo from 'components/application/components/teams/components/teamInfo/MemberInfo'
 const teamInfo =[
     {
@@ -19,12 +17,18 @@ const teamInfo =[
 const MemberInfoTab =(props: any)=>{
     return(
         <>
+        <div className="member-info-tab">
         {
             teamInfo.map((item,index)=>{
                 return(
                    <MemberInfo />
                 );
             })}
+                    <button className="text-style--bold text-color--green member-info-tab__addFile" onClick={props.openDocument}>
+                            Invite Members <AddIcon className="text-style--bold text-color--green member-info-tab__addFile__icon"/>
+                        </button>
+        </div>
+    
         </>
     )
 }

@@ -1,17 +1,12 @@
 import React,{useState}  from 'react';
 import { isMobile } from "react-device-detect";
-import {
-    CircularProgressbar,
-    buildStyles
-  } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 interface Props{
     team:any
 }
-
 
 const TeamTags = ({team}:Props) => {
         

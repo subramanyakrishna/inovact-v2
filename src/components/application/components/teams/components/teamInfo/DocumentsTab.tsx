@@ -1,6 +1,6 @@
 import React from 'react'
 import pdf from 'images/teams/pdf.svg'
-
+import AddIcon from '@material-ui/icons/Add';
 
 const teamInfo =[
     {
@@ -17,19 +17,22 @@ const teamInfo =[
 ]
     
 
-const DocumentsTab =()=>{
+const DocumentsTab =(props:any)=>{
     return(
         <>
          <div className="documents-info">
         {
-            teamInfo.map((item,index)=>{
+           props.team.documents.map((item:any,index:number)=>{
                 return(
                         <div className="documents-info__document">
-                            <img src={pdf} alt="name"/>
+                            <img src={item} alt="name"/>
                             <h5 className="text-size--small">file name</h5>  
                         </div>    
                 );
             })}
+            <button className="text-style--bold text-color--green documents-info__addFile" onClick={props.openDocument}>
+                Add File <AddIcon className="text-style--bold text-color--green documents-info__addFile__icon"/>
+            </button>
              </div>
         </>
      

@@ -25,16 +25,21 @@
             max-width:402px;
             width: 30%;
             padding: 2rem 1rem 1rem 0rem;
-            @include respond(sm) {
-              
+            @include respond(sm) { 
                display: none;
             }
          }
         &__user-teams{
             width: 100%;
+            overflow-y: scroll;
+            height: 300px;
             @include respond(sm) {
                 display: none;
             }
+        }
+        &__suggestions{
+            overflow-y: scroll;
+            height: 300px;
         }
         &__right {
             width: 70%;

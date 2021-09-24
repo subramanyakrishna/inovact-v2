@@ -46,6 +46,8 @@
 @import 'pages/feed';
 @import 'pages/application';
 @import 'pages/teams';
+@import 'pages/messages';
+
 @import 'layout/connections/request-and-connections';
 @import 'layout/connections/peopleToKnow';
 @import "layout/connections/connections_main";
@@ -54,6 +56,7 @@
 @import "layout/modals/create_team";
 @import "layout/modals/team-members";
 @import "layout/modals/request_to_join";
+@import "layout/modals/yes-no-modal";
 
 @import "layout/profile-page/left-content/bio";
 @import "layout/profile-page/left-content/dashboard";

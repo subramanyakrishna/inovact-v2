@@ -17,7 +17,6 @@ function MainComponent() {
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/login" exact component={Signin} />
                     <Route path="/feed" exact component={Application} />
-                    <Route path="/teams" exact component={Teams} />
                 </Switch>
             </Router>
         </div>

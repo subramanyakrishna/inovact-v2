@@ -1,18 +1,23 @@
 .invite-members {
     z-index:500;
     display: flex;
-    background-color:$color-white;
-    width:80%;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    width: 100%;
+  
     &__details{
         display: flex;
+        padding: 1rem;
         flex-direction: row;
         justify-content:space-between;
-    
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        &__text {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
         &__title{
             font-size: 1.2rem;
             @include respond(sm){

@@ -791,8 +791,8 @@ body {
     .teams-description__info img {
       width: 6.5rem;
       height: 6.5rem;
+      align-self: center;
       margin-top: 2rem;
-      margin-left: 1rem;
       object-fit: cover;
       border-radius: 50%;
       background-color: gray; }
@@ -913,6 +913,9 @@ body {
     padding: 0;
     background-color: #f2f7ff; } }
 
+.teams-info-tabs {
+  position: relative; }
+
 .members-info {
   display: flex;
   flex-direction: row;
@@ -972,6 +975,28 @@ body {
         @media only screen and (max-width: 48em) {
           .members-info__details--role h5 {
             display: none; } }
+
+.member-info-tab {
+  position: relative; }
+  .member-info-tab__addFile {
+    display: none; }
+    @media only screen and (max-width: 48em) {
+      .member-info-tab__addFile {
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: #02bd63;
+        position: absolute;
+        top: -3rem;
+        right: 30px; } }
+  @media only screen and (max-width: 48em) and (max-width: 48em) {
+    .member-info-tab__addFile {
+      font-size: 0.9rem;
+      top: 0;
+      right: 1rem; } }
+  @media only screen and (max-width: 48em) and (max-width: 48em) {
+    .member-info-tab__addFile__icon {
+      font-size: 1rem !important; } }
 
 .suggestions {
   display: block;
@@ -1096,7 +1121,8 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   .documents-info__document {
     margin-right: 2rem; }
     @media only screen and (max-width: 48em) {
@@ -1110,21 +1136,40 @@ body {
         width: 3rem; } }
   .documents-info__text {
     color: #02bd63; }
+  .documents-info__addFile {
+    border: none;
+    background-color: transparent;
+    color: #02bd63;
+    position: absolute;
+    top: -3rem;
+    right: 30px; }
+    @media only screen and (max-width: 48em) {
+      .documents-info__addFile {
+        font-size: 0.9rem;
+        top: 0;
+        right: 1rem; } }
+    @media only screen and (max-width: 48em) {
+      .documents-info__addFile__icon {
+        font-size: 1rem !important; } }
 
 .invite-members {
   z-index: 500;
   display: flex;
-  background-color: #ffffff;
-  width: 80%;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+  width: 100%; }
   .invite-members__details {
     display: flex;
+    padding: 1rem;
     flex-direction: row;
-    justify-content: space-between; }
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
+    .invite-members__details__text {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
     .invite-members__details__title {
       font-size: 1.2rem; }
       @media only screen and (max-width: 48em) {
@@ -2036,7 +2081,8 @@ body {
   max-width: 1800px;
   margin: auto;
   width: 100%;
-  padding: 4rem 1rem 0; }
+  padding: 4rem 1rem 0;
+  margin: 0 4rem; }
   .feed__content__left {
     width: 25%;
     position: sticky;
@@ -2099,10 +2145,15 @@ body {
         .teams__content__left {
           display: none; } }
     .teams__content__user-teams {
-      width: 100%; }
+      width: 100%;
+      overflow-y: scroll;
+      height: 300px; }
       @media only screen and (max-width: 48em) {
         .teams__content__user-teams {
           display: none; } }
+    .teams__content__suggestions {
+      overflow-y: scroll;
+      height: 300px; }
     .teams__content__right {
       width: 70%; }
       @media only screen and (max-width: 36em) {
@@ -2123,6 +2174,61 @@ body {
       width: 100%; }
     .teams__content__team-info {
       width: 100%; }
+
+.messages {
+  height: 100%; }
+  .messages__content {
+    display: flex;
+    max-width: 1800px;
+    margin: auto;
+    background-color: #f2f7ff;
+    height: 100%;
+    width: 100%;
+    padding: 4rem 1rem 0; }
+    @media only screen and (max-width: 36em) {
+      .messages__content {
+        flex-direction: column; } }
+    .messages__content__header {
+      display: none; }
+      @media only screen and (max-width: 36em) {
+        .messages__content__header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: center; } }
+    .messages__content__left {
+      max-width: 402px;
+      width: 30%;
+      padding: 2rem 1rem 1rem 0rem; }
+      @media only screen and (max-width: 48em) {
+        .messages__content__left {
+          display: none; } }
+    .messages__content__team-messages {
+      width: 100%;
+      overflow-y: scroll;
+      height: 300px; }
+      @media only screen and (max-width: 48em) {
+        .messages__content__team-messages {
+          display: none; } }
+    .messages__content__personal-mesaages {
+      overflow-y: scroll;
+      height: 300px; }
+    .messages__content__right {
+      width: 70%; }
+      @media only screen and (max-width: 36em) {
+        .messages__content__right {
+          width: 100%; } }
+    .messages__content__info {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      padding: 2rem 0;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center; }
+      @media only screen and (max-width: 36em) {
+        .messages__content__info {
+          padding: 1rem 0; } }
 
 .right-network-stats {
   padding: 2rem;
@@ -2505,6 +2611,18 @@ body {
       background: none;
       border: 1px solid #b4b4b4;
       color: #02BD63; }
+    .modal_cover-post-btn--green {
+      width: 5rem;
+      border-radius: 10px;
+      border: 1px solid #02bd63;
+      background-color: #02BD63;
+      color: #ffffff; }
+    .modal_cover-post-btn--blue {
+      display: block;
+      width: 100%;
+      color: #ffffff;
+      background-color: #5579bd;
+      margin-top: 1rem; }
   @media only screen and (max-width: 62em) {
     .modal_cover {
       width: 60%;
@@ -2762,6 +2880,20 @@ input, textarea:focus {
   padding: 5px;
   width: 6rem;
   margin-bottom: 20px; }
+
+.upload-media-div {
+  border: 3px dotted rgba(0, 0, 0, 0.125);
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.yes-no-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
 
 .team-name {
   display: flex;

@@ -4,7 +4,7 @@ import SuggestionInvitation from 'components/application/components/teams/compon
 import TeamInfoTabs from 'components/application/components/teams/components/teamInfo/TeamInfoTabs';
 import InviteMembers from './InviteMembersModal';
 
-const TeamInfo =()=>{
+const TeamInfo =(props:any)=>{
   const [showPopUp, setShowPopUp] = useState(false);
 
     const togglePopUp = ()=>{
@@ -28,7 +28,7 @@ const TeamInfo =()=>{
       </div>
     
       <div className="teams-info__tabs">
-       <TeamInfoTabs />
+         <TeamInfoTabs team={props.team} openUpload={props.openUpload}/>
       </div>
     </div>
       

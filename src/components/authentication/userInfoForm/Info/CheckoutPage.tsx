@@ -50,7 +50,7 @@ export default function CheckoutPage() {
       if(isLastStep){
         submitForm(values,actions)
       }
-      if(activeStep==2){
+      if(activeStep==1){
         if( values.role === "student") {
           setActiveStep(activeStep + 3);
         }
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? 'Finish' : 'Next'}
+                  {isLastStep ? <a href="/feed">' Finish'</a> : 'Next'}
                 </button>
                 
                 </div>

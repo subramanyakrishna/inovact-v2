@@ -36,8 +36,7 @@ export default function AreaOfInterest(props :any) {
                     
                     <Field className="input-formComponent" name={bio.name}
                         placeholder='Write down a short summary about you and your interest' 
-                      
-                        rows={3}
+                       
                       />
                 </div>
               </div>

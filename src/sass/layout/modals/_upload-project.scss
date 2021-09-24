@@ -41,6 +41,20 @@ $grey-border: rgb(180, 180, 180);
             border: 1px solid $grey-border;
             color: #02BD63;
         }
+        &--green {
+            width: 5rem;
+            border-radius: 10px;
+            border: 1px solid $color-primary-green;
+            background-color: #02BD63;
+            color: $color-white;
+        }
+        &--blue{
+            display: block;
+            width: 100%;
+            color: $color-white;
+            background-color: $color-secondary-blue;
+            margin-top: 1rem;
+        }
     }
     @include respond(md){
         width: 60%;
@@ -99,6 +113,7 @@ $grey-border: rgb(180, 180, 180);
         
         flex-direction: column;
     }
+  
     &-description{
         
         flex-direction: column;
@@ -356,4 +371,19 @@ input, textarea:focus{
     padding: 5px;
     width: 6rem;
     margin-bottom: 20px;
+}
+
+.upload-media-div {
+    border: 3px dotted $color-gray;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.yes-no-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

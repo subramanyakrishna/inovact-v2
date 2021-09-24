@@ -5,6 +5,7 @@
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid rgba(0,0,0,.125);
+  
     &__details{
         display: flex;
         flex-direction: row;
@@ -76,5 +77,32 @@
             }
         }
     }
+
    
+}
+.member-info-tab {
+    position:relative;
+    &__addFile {
+        display: none;
+        @include respond(sm){
+            display: block;
+            border: none;
+            background-color: transparent;
+            color: $color-primary-green;
+            position: absolute;
+            top: -3rem;
+            right: 30px;
+            @include respond(sm){
+                font-size: 0.9rem;
+                top:0;
+                right: 1rem;
+            }
+            &__icon {
+                @include respond(sm){
+                font-size: 1rem !important;
+                }
+            }
+        }
+  
+    }
 }

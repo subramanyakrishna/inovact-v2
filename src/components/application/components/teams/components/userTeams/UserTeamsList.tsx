@@ -19,7 +19,7 @@ const UserTeamsList =({teams,handleVerticalClick,idx}:AppProps)=>{
     return(
         <div className="user-team">
             <div className="user-title">
-            <h6 className="title" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
+            <h6 className="text-style--bold text-align--left text-size--big" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
             </div>
           { teams.map(({teamname,avatar,id},key)=>{
              return(

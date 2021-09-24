@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import msg from 'images/teams/msg.svg'
-import menu from 'images/teams/more.svg'
 import MoreVert from '@material-ui/icons/MoreVert';
-    
+
+  
 const MemberInfo =(props:any)=>{
     const [showOptions, setShowOptions] = useState(false);
     const toggleShowOptions = ()=>{
@@ -37,6 +37,7 @@ const MemberInfo =(props:any)=>{
                                         </div>
                                         }
                         </div>
+                
                     </div>
                 );
 }
