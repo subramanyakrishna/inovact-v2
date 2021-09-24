@@ -102,7 +102,32 @@ function Profile() {
     
     // const leftContent = document.querySelector(".profile--content-left");
     // const rightContent = document.querySelector(".profile--content-right");
-
+    useEffect(()=>{
+        console.log("page loaded");
+        if(window.innerWidth>900){
+            setShowLeft(true);
+            setShowRight(true);
+            setShowAbout(false);
+        }
+        if(window.innerWidth<=900){
+            setShowLeft(false);
+            setShowRight(true);
+            setShowAbout(true);
+        }
+    },[])
+        // document.addEventListener("load",()=>{
+        //     console.log("page loaded");
+        //     if(window.innerWidth>900){
+        //         setShowLeft(true);
+        //         setShowRight(true);
+        //         setShowAbout(false);
+        //     }
+        //     if(window.innerWidth<=900){
+        //         setShowLeft(false);
+        //         setShowRight(true);
+        //         setShowAbout(true);
+        //     }
+        // });
     window.addEventListener("resize",()=>{
             if(window.innerWidth>900){
                 setShowLeft(true);
@@ -202,7 +227,7 @@ function Profile() {
 
             <div className="profile--content">
                 <div className="profile--content-top-container">
-                    <TopProfileContent setShowLeft={setShowLeft} setShowRight={setShowRight} showAbout={showAbout}
+                    <TopProfileContent showLeft={showLeft} setShowLeft={setShowLeft} setShowRight={setShowRight} showAbout={showAbout}
                     showReportUser={reportAccount}
                     showBlockUser={blockAccount}
                     showRestrictUser={restrictAccount}/>
@@ -216,6 +241,7 @@ function Profile() {
                     }
                     {
                         showRight && 
+                        
                         <div className="profile--content-right">
                             {posts.map((post, idx) => {
                                 return <Post key={idx} post={post} openTeamMember={viewTeamMembers}/>

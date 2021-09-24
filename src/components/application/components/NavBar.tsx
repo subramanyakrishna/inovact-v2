@@ -119,27 +119,35 @@ const NavBar = () => {
                     }`}
                 >
                     <div className="bottom-nav-component__items">
-                        <img
-                            className="bottom-nav-component__items--active"
-                            src={home}
-                            alt="home"
-                        />
+                        <Link to="/feed">    
+                            <img
+                                className="bottom-nav-component__items--active"
+                                src={home}
+                                alt="home"
+                            />
+                        </Link>
 
-                        <img
-                            className="bottom-nav-component__items__icons"
-                            src={connection}
-                            alt="connection"
-                        />
-                        <img
-                            className="bottom-nav-component__items__icons"
-                            src={teams}
-                            alt="Team"
-                        />
-                        <img
-                            className="bottom-nav-component__items__icons--user"
-                            src={user}
-                            alt="user"
-                        />
+                        <Link to="/connections">    
+                            <img
+                                className="bottom-nav-component__items__icons"
+                                src={connection}
+                                alt="connection"
+                            />
+                        </Link>
+                        <Link to="/teams">
+                            <img
+                                className="bottom-nav-component__items__icons"
+                                src={teams}
+                                alt="Team"
+                            />
+                        </Link>
+                        <Link to="/profile">
+                            <img
+                                className="bottom-nav-component__items__icons--user"
+                                src={user}
+                                alt="user"
+                            />
+                        </Link>
                     </div>
                 </div>
             </div>

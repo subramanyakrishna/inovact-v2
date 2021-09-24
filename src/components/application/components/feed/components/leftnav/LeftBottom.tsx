@@ -47,11 +47,11 @@ const myteams: MyTeams[] = [
               <MDBListGroupItem className="left-right-nav__card__list__item--create">
                 <img src={create} alt="create" onClick={props.openCreateTeam}/>
                 <div className="left-right-nav__card__list__item__info">
-                  <p>
+                  <h6>
                     <a href="/createteam" className="title">
                       Create New Team{" "}
                     </a>
-                  </p>
+                  </h6>
                 </div>
               </MDBListGroupItem>
               {myteams.map(({ name, image, members }, index) => {

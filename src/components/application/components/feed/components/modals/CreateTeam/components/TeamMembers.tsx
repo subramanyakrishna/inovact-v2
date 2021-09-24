@@ -27,7 +27,7 @@ function TeamMembers() {
     return (
         <div className="team-members">
             <span>Type the email id of the members your would like to add your team</span>
-            <div>
+            <div className="team-members-add">
                 <input type="text" placeholder="Emailid" onChange={handleChangeEmail} value={currentEmail}/>
                 <input type="text" placeholder="Role" onChange={handleChangeRole} value={currentRole}/>
                 <button onClick={addTeamMember.bind(null, currentEmail, currentRole)} className="team-members-addbtn">+Add Member</button>
