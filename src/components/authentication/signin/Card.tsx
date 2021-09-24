@@ -10,8 +10,8 @@ const Card: React.FC<Props> = (props) => {
         <div className="signin__card">
             <span className="signin__card--header">Sign in</span>
             <div className="signin__card--desc">
-                <span>New user?</span>
-                <a href="./signup">Create an account</a>
+                <span className="text-style--light text-align--left text-size--small">New user?</span>
+                <a href="./signup" className="text-style--bold text-align--left text-size--small">Create an account</a>
             </div>
             <div className="signin__card--form">
                 <form onSubmit={(event) => event.preventDefault()}>
@@ -51,7 +51,7 @@ const Card: React.FC<Props> = (props) => {
                     <MDBRow>
                         <MDBCol lg="12" className="signin__card__forgot-pw-div">
                             <a
-                                href="./login"
+                                href="/forgotpassword"
                                 className="signin__card__forgot-pw"
                             >
                                 Forgot password?

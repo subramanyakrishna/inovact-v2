@@ -100,7 +100,7 @@ export default function CheckoutPage() {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? <a href="/feed">' Finish'</a> : 'Next'}
+                  {isLastStep ? <a href="/feed" className="text-color--white">Finish</a> : 'Next'}
                 </button>
                 
                 </div>

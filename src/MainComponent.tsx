@@ -5,7 +5,7 @@ import Signin from 'components/authentication/signin/Signin'
 import LandingPage from 'components/authentication/landingPage/LandingPage'
 import UserInfo from 'components/authentication/userInfoForm/UserInfoForm'
 import Application from 'components/application/Application'
-import Teams from 'components/application/components/teams/Teams'
+import ForgotPassword from 'components/authentication/signin/forgotpassword'
 
 function MainComponent() {
     return (
@@ -16,6 +16,7 @@ function MainComponent() {
                     <Route path="/userinfo" exact component={UserInfo} />
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/login" exact component={Signin} />
+                    <Route path="/forgotpassword" exact component={ForgotPassword} />
                     <Route path="/feed" exact component={Application} />
                 </Switch>
             </Router>

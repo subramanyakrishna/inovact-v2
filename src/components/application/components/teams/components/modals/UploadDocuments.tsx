@@ -4,7 +4,7 @@ function UploadDocuments(props:any) {
     return (
         <div className="modal_main">
         <div className="modal_cover">
-            <button className="close-modal" >&times;</button>
+            <button className="close-modal" onClick={props.closeModal} >&times;</button>
             <label className="modal_cover-title">Add Document</label>
             <div className="modal_part_one">
                 <div className="modal_part_one-title">

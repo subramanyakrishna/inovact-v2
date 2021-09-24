@@ -33,7 +33,7 @@
    border-width: 4px 0 0 0;
    @include respond(sm){
     font-size: 12px;
-    padding: 0.3rem;
+    padding: 0.3rem 0.1rem;
 } 
 }
 .nav-tabs .nav-link.active{
@@ -48,7 +48,4 @@
         padding: 0;
         background-color: $color-light-bg;
     }
-}
-.teams-info-tabs {
-    position: relative;
 }

@@ -36,7 +36,7 @@ export default {
   [degree.name]: '',
   [university.name]: '',
   [year.name]: '',
-  [bio.name]: false,
+  [bio.name]: "",
   [image.name]: '',
 
   [McurrDesignation.name]: '',
