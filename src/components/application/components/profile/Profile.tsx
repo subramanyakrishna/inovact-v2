@@ -11,6 +11,7 @@ import ReportAccount from './components/ReportAccount';
 import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
 import CreateTeam from '../feed/components/modals/CreateTeam/CreateTeam';
 import EditBio from './components/modals/EditBio';
+import EditProject from './components/modals/EditProject';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -147,6 +148,7 @@ function Profile() {
     const [showTeamMembers, setShowTeamMembers] = useState(false);
     const [showCreateTeam, setShowCreateTeam] = useState(false);
     const [showEditBio, setShowEditBio] = useState(false);
+    const [showEditProject, setShowEditProject] = useState(false);
     const openModal = ()=>{
         setShowOverlay(true);
         window.scrollTo(0,0);
@@ -161,6 +163,7 @@ function Profile() {
         setShowTeamMembers(false);
         setShowEditBio(false);
         setShowCreateTeam(false);
+        
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{
@@ -187,6 +190,10 @@ function Profile() {
     const viewEditBio = ()=>{
         openModal();
         setShowEditBio(true);
+    }
+    const viewEditProject = ()=>{
+        openModal();
+        setShowEditProject(true);
     }
     return (
         <div>
@@ -219,7 +226,10 @@ function Profile() {
                         showEditBio &&
                         <EditBio closeModal= {closeModal}/>
                     }
-
+                    {
+                        showEditProject &&
+                        <EditProject closeModal = {closeModal}/>
+                    }
                 </div>
                 
                 
@@ -236,7 +246,7 @@ function Profile() {
                     {
                         showLeft &&
                         <div className="profile--content-left">
-                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio}/>
+                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} />
                         </div>
                     }
                     {
@@ -244,7 +254,7 @@ function Profile() {
                         
                         <div className="profile--content-right">
                             {posts.map((post, idx) => {
-                                return <Post key={idx} post={post} openTeamMember={viewTeamMembers}/>
+                                return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                             })}
                         </div>
                     }
