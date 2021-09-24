@@ -72,6 +72,10 @@
             }
         }
     }
+    &__images{
+        max-width: 600px;
+        margin: 0px auto;
+    }
 
     &__footer {
         display: flex;
@@ -124,7 +128,14 @@
 
         &__share {
             cursor: pointer;
-            & img {
+            &-img-container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 50px;
+            }
+            &-img {
                 height: 20px;
 
                 @include respond(sm) {
@@ -135,11 +146,51 @@
                     margin-right: 1rem;
                 }
             }
+            &_to{
+                position: absolute;
+                background-color: $color-white;
+                transform: translateY(-100%);
+                width: 300px;
+                padding: 20px;
+                z-index: 800;
+                border-radius: 10px;
+                &-heading{
+                    font-size: larger;
+                    font-weight: 600;
+                }
+                &-separator{
+                    display:flex;
+                    justify-content: space-around;
+                    font-weight: 600;
+                    & span{
+                        // height: 40px;
+                        cursor: pointer;
+                        margin: 0px 10px;
+                    }
+                }
+                &-teams-and-users{
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: scroll;
+                }
+                &-sharebtn{
+                    float: right;
+                    background-color: $color-white;
+                    border: 1px solid #02bd63;
+                    color: #02bd63;
+                    width: 5rem;
+                    border-radius: 5px;
+                }
+                &-sharebtn:hover{
+                    background-color: #5edaa0;
+                    color: black;
+                }
+            }
         }
 
         &__team {
             &__text {
-                margin: auto 0;
+                margin: auto 10px;
                 display: flex;
                 align-items: center;
                 color: $color-white;
@@ -162,6 +213,35 @@
 
                 @include respond(xs) {
                     margin-right: 1rem;
+                }
+            }
+            &__options{
+                background-color: #4b72bc;
+                color: white;
+                margin: 0 ;
+                font-size: 30px;
+                padding: 0px 20px;
+                cursor: pointer;
+                &-menu{
+                    position: relative;
+                }
+                &-all{
+                    display: flex;
+                    flex-direction: column;
+                    width: 8rem;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    transform: translate(10%,-100%);
+                    box-shadow: -2px 2px 18px -6px rgba(0,0,0,0.75);
+                    position: absolute;
+                    background-color: white;
+                    span{
+                        padding: 5px 10px;
+                        cursor: pointer;
+                    }
+                    span:hover{
+                        background-color: rgb(209, 208, 208);
+                    }
                 }
             }
 

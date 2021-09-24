@@ -10,9 +10,6 @@ function TeamNameDescription() {
             <div className="team-name-description">
                 <label >Team Description</label>
                 <textarea placeholder="Describe your project"/>
-                <div>
-                    <button>Upload Media</button>
-                </div>
             </div>
         </div>
     )

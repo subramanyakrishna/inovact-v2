@@ -21,18 +21,21 @@ function TeamMembers() {
         }
         
     }
+    const removeTeamMember = (id: any)=>{
+        setTeamMembers([...teamMembers.filter((ele: any,index: any)=>index!==id)]);
+    }
     return (
         <div className="team-members">
             <span>Type the email id of the members your would like to add your team</span>
             <div>
                 <input type="text" placeholder="Emailid" onChange={handleChangeEmail} value={currentEmail}/>
                 <input type="text" placeholder="Role" onChange={handleChangeRole} value={currentRole}/>
-                <button onClick={addTeamMember.bind(null, currentEmail, currentRole)}>+Add Member</button>
+                <button onClick={addTeamMember.bind(null, currentEmail, currentRole)} className="team-members-addbtn">+Add Member</button>
             </div>
             <div className="team-member-tags-container">
                 {
-                    teamMembers.map((ele: any)=>{
-                        return (<TeamMemberTag emailid={ele.email} role={ele.role}/>);
+                    teamMembers.map((ele: any, index: any)=>{
+                        return (<TeamMemberTag emailid={ele.email} role={ele.role} removeTeamMember={removeTeamMember} id={index}/>);
                     })
                 }
             </div>

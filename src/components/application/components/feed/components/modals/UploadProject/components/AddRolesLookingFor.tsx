@@ -151,6 +151,7 @@ function AddRolesLookingFor(props: any) {
             </div>
             <div className="add_roles_looking_for-add-skills">
                 <input type="text" placeholder="Type out the skills required for the above mentioned role" value={currentSkill} onChange={handleInputChange}/>
+
                 {
                     (searchSkills.length!==0) &&
                     <div style={{position: "relative"}}>
