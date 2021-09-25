@@ -12,6 +12,8 @@ import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamM
 import CreateTeam from '../feed/components/modals/CreateTeam/CreateTeam';
 import EditBio from './components/modals/EditBio';
 import EditProject from './components/modals/EditProject';
+import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
+import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -163,7 +165,7 @@ function Profile() {
         setShowTeamMembers(false);
         setShowEditBio(false);
         setShowCreateTeam(false);
-        
+        setShowEditProject(false)
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{
@@ -250,13 +252,22 @@ function Profile() {
                         </div>
                     }
                     {
-                        showRight && 
+                        showRight && posts.length!==0 &&
                         
                         <div className="profile--content-right">
                             {posts.map((post, idx) => {
                                 return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                             })}
                         </div>
+                        
+                    }
+                    {
+                        posts.length===0 &&
+                        <div className="profile--content-right">
+                            <NoPostsYet/>
+                            <PeopleYouMayKnow/>
+                        </div>
+
                     }
                     
                 </div>

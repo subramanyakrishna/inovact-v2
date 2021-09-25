@@ -7,7 +7,9 @@
     box-shadow: 0 10px 15px -3px rgba($color-black, 0.07),
         0 4px 6px -2px rgba($color-black, 0.05);
     position: relative;
-
+    @include respond(sm){
+        padding: 20px;
+    }
     &__author {
         display: flex;
 
@@ -284,8 +286,8 @@
     cursor: pointer;
 }
 .extra-images-btn{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     top: 85%;
     left: 90%;
     transform: translate(-50%, -50%);
@@ -299,7 +301,14 @@
     opacity: 0.8;
     font-size: 2rem;
     @include respond(md){
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
     }
+    @include respond(sm){
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
 }

@@ -1553,6 +1553,9 @@ body {
   border-radius: 8px 8px 0 0;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   position: relative; }
+  @media only screen and (max-width: 48em) {
+    .post {
+      padding: 20px; } }
   .post__author {
     display: flex; }
     .post__author__avatar {
@@ -1763,8 +1766,8 @@ body {
   cursor: pointer; }
 
 .extra-images-btn {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   top: 85%;
   left: 90%;
   transform: translate(-50%, -50%);
@@ -1779,8 +1782,14 @@ body {
   font-size: 2rem; }
   @media only screen and (max-width: 62em) {
     .extra-images-btn {
-      width: 50px;
-      height: 50px; } }
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem; } }
+  @media only screen and (max-width: 48em) {
+    .extra-images-btn {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem; } }
 
 .landing-page__hero {
   height: 100vh;
@@ -3459,6 +3468,17 @@ input, textarea:focus {
   border-radius: 50%;
   margin: 0px 20px; }
 
+.user-not-posted-anything {
+  font-size: larger;
+  font-weight: 600;
+  height: 200px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6; }
+
 .block-account {
   background-color: #ffffff;
   border-radius: 10px;
@@ -3610,8 +3630,8 @@ input, textarea:focus {
     object-fit: cover; }
   @media only screen and (max-width: 62em) {
     .comments-on-posts-img-container {
-      height: 50px;
-      min-width: 50px; } }
+      height: 40px;
+      min-width: 40px; } }
 
 .comments-on-posts-main-comment-container {
   display: flex;
@@ -3639,7 +3659,7 @@ input, textarea:focus {
   align-items: center;
   column-gap: 10px;
   cursor: pointer;
-  font-size: smaller; }
+  font-size: 12px; }
   .comments-on-posts-replies-view-separator {
     width: 70%; }
     @media only screen and (max-width: 62em) {
@@ -3647,7 +3667,26 @@ input, textarea:focus {
         width: 50%; } }
   @media only screen and (max-width: 62em) {
     .comments-on-posts-replies-view {
-      font-size: small; } }
+      font-size: 10px; } }
+
+.comments-on-posts-addcomment {
+  display: flex; }
+  .comments-on-posts-addcomment textarea {
+    font-size: small;
+    padding: 5px 20px;
+    resize: none;
+    width: 100%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f2f7ff; }
+  .comments-on-posts-addcomment button {
+    width: 4rem;
+    border-radius: 10px;
+    background-color: #5579BD;
+    border: none;
+    color: white;
+    margin: 0px 20px; }
 
 .reply-tag {
   display: flex;

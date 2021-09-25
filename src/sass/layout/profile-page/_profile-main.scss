@@ -36,6 +36,9 @@
                 margin: 0 auto;
                 width: 100%;
             }
+            &-noposts{
+
+            }
         }
         
     }
@@ -195,4 +198,16 @@
         border-radius: 50%;
         margin: 0px 20px ;
     }
+}
+
+.user-not-posted-anything{
+    font-size: larger;
+    font-weight: 600;
+    height: 200px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
 }

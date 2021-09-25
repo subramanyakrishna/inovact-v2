@@ -33,7 +33,20 @@ const watchScroll = () =>
 
 const NavBar = () => {
     const scrollDirection = useObservable(watchScroll, 'Up')
-
+    // const removeTheBorder = (target: any)=>{
+    //     console.log(target);
+    //     const childrenHidden = target.closest(".nav-component__items").querySelectorAll(".nav-component__icons--hidden");
+    //     const childrenNotHidden = target.closest(".nav-component__items").querySelectorAll(".nav-component__icons");
+    //     const children = [...childrenHidden, ...childrenNotHidden];
+    //     children.forEach((node:any)=>{
+    //         node.style.borderBottom = "none";
+    //     });
+    // }
+    // const addBorder = (e: any)=>{
+    //     removeTheBorder(e.target);
+    //     // e.target.style.padding= "10px";
+    //     e.target.style.borderBottom = "3px solid #02bd63";
+    // }
     return (
         <>
             {/* Top Bar*/}
