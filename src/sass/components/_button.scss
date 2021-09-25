@@ -103,6 +103,19 @@
           margin: 0;
       }
     }
+    &--blue {
+        background-color: $color-secondary-blue;
+        color:$color-white;
+        padding: 0.5rem;
+        border: none;
+        @include respond (xs){
+            padding: 0.1rem;
+          
+        }
+        @include respond (xs){
+            margin: 0;
+        }
+      }
     &--white {
       background-color: $color-white;
       color:$color-black;
@@ -127,4 +140,16 @@
     @include respond(xs){
         font-size: small;
     }  
+    &--green{
+        width: 5.5rem;
+        border: none;
+        border-radius: 1rem;
+       
+       
+       margin-top: 0.3rem;
+        color:white;
+        max-height: 26px;
+        margin-left:1rem;
+        background-color: $color-primary-green;
+    }
 }

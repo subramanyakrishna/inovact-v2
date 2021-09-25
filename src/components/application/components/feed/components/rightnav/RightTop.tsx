@@ -39,6 +39,10 @@ import {
   ];
   
   const RightTop = () => {
+    const handleConnect=(e:any)=>{
+
+    }
+
     return (
       <div className="left-right-nav">
         <MDBCard className="left-right-nav__card">
@@ -65,7 +69,7 @@ import {
                       </p>
                     </div>
                     </div>
-                    <button className="left-right-nav__card__list__item__button">
+                    <button className="left-right-nav__card__list__item__button" onClick={handleConnect}>
                       Connect
                     </button>
                   </MDBListGroupItem>
@@ -74,7 +78,7 @@ import {
             </MDBListGroup>
           </MDBCardBody>
           <MDBCardFooter className="left-right-nav__card__footer ">
-            <a href="/" className="text-style--bold text-align--center">
+            <a href="/connections" className="text-style--bold text-align--center">
               View All
             </a>
           </MDBCardFooter>

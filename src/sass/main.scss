@@ -37,6 +37,7 @@
 @import 'components/navigation-bar.scss';
 @import 'components/feed/create-post';
 @import 'components/feed/post';
+@import 'components/dropdown';
 
 @import 'pages/landing-page.scss';
 @import 'pages/signup';
@@ -45,6 +46,8 @@
 @import 'pages/feed';
 @import 'pages/application';
 @import 'pages/teams';
+@import 'pages/messages';
+
 @import 'layout/connections/request-and-connections';
 @import 'layout/connections/peopleToKnow';
 @import 'layout/connections/connections_main';
@@ -61,10 +64,12 @@
 @import 'layout/profile-page/left-content/left-content-main';
 @import 'layout/profile-page/profile-main';
 
+@import 'layout/settings/settings';
+
+@import 'components/teams-modal/delete-modal.scss';
+@import 'components/teams-modal/upload-document-modal';
 @import 'components/profile-modals/block-account';
 @import 'components/profile-modals/report-account';
 @import 'components/profile-modals/restrict-account';
 @import 'components/comments-on-posts';
 @import 'components/profile-modals/edit-bio';
-
-@import 'layout/settings/settings';

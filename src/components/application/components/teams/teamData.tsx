@@ -4,6 +4,13 @@ interface connection {
     designation:string
     role:string
 }
+interface Projects {
+    title:string
+    status:boolean
+}
+interface Ideas {
+    title:string
+}
 export interface teamData{
     id: number
     teamname: string
@@ -14,4 +21,6 @@ export interface teamData{
     members?: Array<connection>
     documents: Array<string>
     requests: Array<connection>
+    projects :Array <Projects>
+    ideas :Array <Ideas>
 }

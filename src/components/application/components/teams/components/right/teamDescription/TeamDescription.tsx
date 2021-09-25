@@ -62,38 +62,60 @@ const TeamTags = ({ team }: Props) => {
 }
 
 const TeamDescription = ({ team }: Props) => {
+    const [showAll, setShowAll] = useState(true)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            setShowAll(true)
+        }
+        if (window.innerWidth <= 768) {
+            setShowAll(false)
+        }
+    })
     return (
         <div className="teams-description">
             <div className="teams-description__info">
                 <div className="teams-description__info__left">
                     <img src={team.avatar} alt="teamImage" />
                     <div className="teams-description__info__left__text">
-                        <h6 className="text-style--bold text-align--center text-size--small sm-extrasmall ">
-                            Project Status
-                        </h6>
-                        <p className="text-style--bold text-align--center text-size--small text-color--green sm-extrasmall">
-                            Just Started
-                        </p>
+                        <button className=" button--blue text-align--center sm-small">
+                            Group Chat{' '}
+                        </button>
                     </div>
                 </div>
 
                 <div className="teams-description__info__right">
-                    <h6 className="text-style--bold text-align--left text-size--big">
-                        {team.teamname}
-                    </h6>
-                    <p className="sm-small">{team.description}</p>
-                    <h6 className="text-style--bold text-align--left text-size--big sm-small">
-                        Project Title{' '}
-                    </h6>
+                    <span className="text-style--bold text-align--left text-size--big ">
+                        {team.teamname}{' '}
+                    </span>
+                    <span
+                        className="text-style--bold text-align--left text-size--big sm-small"
+                        style={{ marginTop: '1rem' }}
+                    >
+                        Number of Projects :{' '}
+                        <span
+                            className="text-style--bold text-color--green  text-align--left text-size--big sm-small"
+                            style={{ marginLeft: '1rem' }}
+                        >
+                            9{' '}
+                        </span>{' '}
+                    </span>
+
+                    <span className="text-style--bold text-align--left text-size--big sm-small">
+                        Number of Ideas :{' '}
+                        <span
+                            className="text-style--bold text-align--left text-color--green text-size--big sm-small"
+                            style={{ marginLeft: '1rem' }}
+                        >
+                            21{' '}
+                        </span>{' '}
+                    </span>
                     <span
                         className="text-style--bold text-align--left text-size--big sm-small"
                         style={{ marginTop: '15px' }}
                     >
                         Project Tags{' '}
                     </span>
-                    {isMobile ? (
-                        <TeamTags team={team} />
-                    ) : (
+                    {showAll ? (
                         <ul className="teams-description__info__right__tags">
                             {team.tags?.map((tag: string, index: any) => {
                                 return (
@@ -107,6 +129,8 @@ const TeamDescription = ({ team }: Props) => {
                                 )
                             })}
                         </ul>
+                    ) : (
+                        <TeamTags team={team} />
                     )}
                 </div>
             </div>
