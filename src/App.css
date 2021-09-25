@@ -3693,3 +3693,94 @@ input, textarea:focus {
 .edit-bio-editbtn:hover {
   background-color: #81dda7;
   color: black; }
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  width: 100%; }
+  .settings-breadcrumb {
+    display: flex;
+    flex-direction: row; }
+    .settings-breadcrumb-pc {
+      color: #02bd63;
+      justify-content: flex-start;
+      align-items: center;
+      height: 85px;
+      background-color: #ffffff;
+      padding-left: 98px;
+      margin-bottom: 16px;
+      font-style: normal;
+      font-weight: 600; }
+    .settings-breadcrumb-mobile {
+      color: #000000;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0px;
+      height: 39px;
+      padding-left: 2.5%;
+      padding-right: 2.5%; }
+    @media only screen and (max-width: 36em) {
+      .settings-breadcrumb {
+        margin-top: -1.25rem; } }
+  .settings-main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between; }
+    .settings-main-left {
+      width: 26.5%;
+      background-color: #ffffff; }
+      @media only screen and (max-width: 62em) {
+        .settings-main-left {
+          width: 35%; } }
+      @media only screen and (max-width: 48em) {
+        .settings-main-left {
+          width: 100%; } }
+    .settings-main-right {
+      width: 72%;
+      background-color: #ffffff; }
+      @media only screen and (max-width: 62em) {
+        .settings-main-right {
+          width: 63%; } }
+      @media only screen and (max-width: 48em) {
+        .settings-main-right {
+          width: 100%; } }
+
+.settings-left {
+  display: flex;
+  flex-direction: column; }
+  .settings-left-main-container {
+    width: 100%; }
+  .settings-left-heading {
+    height: 87px;
+    display: flex;
+    align-items: center; }
+  .settings-left-container {
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%; }
+  .settings-left-pad {
+    padding-left: 33px; }
+  .settings-left hr {
+    margin-top: 0px;
+    margin-bottom: 0px; }
+  .settings-left-selected {
+    border-right: 5px solid #4b72bc; }
+  .settings-left-expandicon {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding-right: 7%;
+    padding-top: 5%; }
+  .settings-left-expand {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 33px;
+    color: #4b72bc; }
