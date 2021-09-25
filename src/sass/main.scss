@@ -31,7 +31,6 @@
 @import 'layout/teams/document-info.scss';
 @import 'layout/teams/invite-member.scss';
 
-
 @import 'components/input.scss';
 @import 'components/button';
 @import 'components/input';
@@ -51,25 +50,26 @@
 
 @import 'layout/connections/request-and-connections';
 @import 'layout/connections/peopleToKnow';
-@import "layout/connections/connections_main";
-@import "layout/connections/filter-dropdown";
-@import "layout/modals/upload-project";
-@import "layout/modals/create_team";
-@import "layout/modals/team-members";
-@import "layout/modals/request_to_join";
+@import 'layout/connections/connections_main';
+@import 'layout/connections/filter-dropdown';
+@import 'layout/modals/upload-project';
+@import 'layout/modals/create_team';
+@import 'layout/modals/team-members';
+@import 'layout/modals/request_to_join';
 
+@import 'layout/profile-page/left-content/bio';
+@import 'layout/profile-page/left-content/dashboard';
+@import 'layout/profile-page/left-content/skills-and-interest';
+@import 'layout/profile-page/left-content/teams-part-of';
+@import 'layout/profile-page/left-content/left-content-main';
+@import 'layout/profile-page/profile-main';
 
-@import "layout/profile-page/left-content/bio";
-@import "layout/profile-page/left-content/dashboard";
-@import "layout/profile-page/left-content/skills-and-interest";
-@import "layout/profile-page/left-content/teams-part-of";
-@import "layout/profile-page/left-content/left-content-main";
-@import "layout/profile-page/profile-main";
+@import 'layout/settings/settings';
 
-@import "components/teams-modal/delete-modal.scss";
-@import "components/teams-modal/upload-document-modal";
-@import "components/profile-modals/block-account";
-@import "components/profile-modals/report-account";
-@import "components/profile-modals/restrict-account";
-@import "components/comments-on-posts";
-@import "components/profile-modals/edit-bio"
+@import 'components/teams-modal/delete-modal.scss';
+@import 'components/teams-modal/upload-document-modal';
+@import 'components/profile-modals/block-account';
+@import 'components/profile-modals/report-account';
+@import 'components/profile-modals/restrict-account';
+@import 'components/comments-on-posts';
+@import 'components/profile-modals/edit-bio';
