@@ -3,29 +3,23 @@ import expandDown from '../../../../../../images/settings/expandDownIcon.svg'
 import expandUp from '../../../../../../images/settings/expandUpIcon.svg'
 
 interface PropType {
-    selected: string
-    onSelection(option: string): any
+    selected: number
+    onSelection(option: number): any
     options: { name: string; main: string; sub: string }[]
-    onclick(): any
 }
 const SettingsLeft: React.FC<PropType> = ({
     selected,
     onSelection,
     options,
-    onclick,
 }) => {
-    const [selectedOption, setSelectedOption] = useState(selected)
     const [expand, setExpand] = useState(false)
-
-    useEffect(() => {
-        onSelection(selectedOption)
-    }, [selectedOption])
+    const SIZE_LIMIT: number = 768
 
     return (
         <div className="settings-left">
-            {window.innerWidth > 768 && (
+            {window.innerWidth > SIZE_LIMIT && (
                 <>
-                    <div className="heading-secondary text-color--black text-style--bold settings-left-pad settings-left-heading ">
+                    <div className="heading-secondary text-color--black text-style--bold settings-left-pad settings-left-heading">
                         Account Settings
                     </div>
                     <hr />
@@ -35,16 +29,14 @@ const SettingsLeft: React.FC<PropType> = ({
             {options.map((option, i) => (
                 <div
                     key={i}
-                    onClick={(e) => {
-                        setSelectedOption(option.name)
-                        onclick()
+                    onClick={() => {
+                        onSelection(i)
                     }}
                     className={'settings-left-main-container '}
                 >
                     <div
                         className={`settings-left-container ${
-                            option.name == selectedOption &&
-                            'settings-left-selected'
+                            i == selected && 'settings-left-selected'
                         }`}
                     >
                         <div
@@ -85,7 +77,7 @@ const SettingsLeft: React.FC<PropType> = ({
                 )}
             </div>
             {expand && (
-                <div className={'settings-left-expand'}>
+                <div className={'settings-left-expandedText'}>
                     <div
                         className={
                             'settings-left-expand-logout paragraph-secondary text-style--bold'
