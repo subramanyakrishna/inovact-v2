@@ -65,7 +65,9 @@
 @import 'layout/profile-page/profile-main';
 
 @import 'layout/settings/settings';
-
+@import 'layout/settings/privacy-settings';
+@import 'layout/settings/notifications';
+@import 'layout/settings/faq';
 @import 'components/teams-modal/delete-modal.scss';
 @import 'components/teams-modal/upload-document-modal';
 @import 'components/profile-modals/block-account';
@@ -73,3 +75,4 @@
 @import 'components/profile-modals/restrict-account';
 @import 'components/comments-on-posts';
 @import 'components/profile-modals/edit-bio';
+@import 'components/toggle/toggle';
