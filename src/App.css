@@ -4115,6 +4115,27 @@ input, textarea:focus {
       .notification-end {
         width: 95%; } }
 
+.faq {
+  display: flex;
+  flex-direction: column;
+  padding: 2% 4% 2% 4%; }
+  .faq-head {
+    margin-bottom: 17px; }
+  .faq-call, .faq-mail {
+    font-size: 1.1rem;
+    color: #000000; }
+    .faq-call a, .faq-mail a {
+      color: #02bd63;
+      font-weight: 500; }
+  .faq-mail a {
+    text-decoration: underline; }
+  .faq-headQ {
+    font-size: 1.3rem;
+    color: #000000;
+    margin-bottom: 15px; }
+  .faq img {
+    margin-bottom: 30px; }
+
 .delete-member-buttons {
   margin-top: 2rem;
   display: flex;

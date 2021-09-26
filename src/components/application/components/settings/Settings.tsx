@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import back from 'images/teams/back.svg'
 import PrivacySettings from './components/PrivacySettings/PrivacySettings'
 import Notifications from './components/Notifications/Notifications'
+import Faq from './components/Faq/Faq'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -110,6 +111,7 @@ const Settings: React.FC = () => {
                     <div className={'settings-main-right'}>
                         {selectedOption == 1 && <PrivacySettings />}
                         {selectedOption == 3 && <Notifications />}
+                        {selectedOption == 5 && <Faq />}
                     </div>
                 )}
             </div>
