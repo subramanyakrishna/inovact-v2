@@ -2949,7 +2949,6 @@ body {
       background: none;
       border: 1px solid #b4b4b4;
       color: #02BD63; }
-  @media only screen and (max-width: 75em) {
     .modal_cover-post-btn--green {
       width: 5rem;
       border-radius: 10px;
@@ -2962,7 +2961,7 @@ body {
       color: #ffffff;
       background-color: #5579bd;
       margin-top: 1rem; }
-  @media only screen and (max-width: 62em) {
+  @media only screen and (max-width: 75em) {
     .modal_cover {
       width: 70%;
       height: 80%;
@@ -3876,6 +3875,7 @@ input, textarea:focus {
   align-items: center;
   justify-content: center;
   opacity: 0.6; }
+
 .settings {
   display: flex;
   flex-direction: column;
@@ -4574,4 +4574,3 @@ input, textarea:focus {
       border-radius: 100%;
       transition: 0.2s;
       background: #fff; }
-    }
