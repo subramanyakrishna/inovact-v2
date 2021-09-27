@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: flex-start;
     text-align: center;
+    position: relative;
     &__document{
         margin-right:2rem ;
         @include respond(sm){
@@ -20,5 +21,23 @@
     }
     &__text {
         color:$color-primary-green
+    }
+    &__addFile {
+        border: none;
+        background-color: transparent;
+        color: $color-primary-green;
+        position: absolute;
+        top: -3rem;
+        right: 30px;
+        @include respond(sm){
+            font-size: 0.9rem;
+            top:0;
+            right: 1rem;
+        }
+        &__icon {
+            @include respond(sm){
+            font-size: 1rem !important;
+            }
+        }
     }
 }

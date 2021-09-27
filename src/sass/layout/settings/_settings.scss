@@ -1,0 +1,117 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    &-breadcrumb {
+        display: flex;
+        flex-direction: row;
+
+        &-pc {
+            color: $color-primary-green;
+            justify-content: flex-start;
+            align-items: center;
+            height: 85px;
+            background-color: $color-white;
+            padding-left: 98px;
+            margin-bottom: 16px;
+            font-style: normal;
+            font-weight: 600;
+        }
+        &-mobile {
+            color: $color-black;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0px;
+            height: 39px;
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+        @include respond(lg) {
+            margin-top: -1.25rem;
+        }
+    }
+
+    &-main {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        &-options {
+            width: 100%;
+        }
+        &-left {
+            height: 100vh;
+            width: 26.5%;
+            background-color: $color-white;
+
+            @include respond(md) {
+                width: 35%;
+            }
+            @include respond(sm) {
+                width: 100%;
+            }
+        }
+        &-right {
+            width: 72%;
+            height: auto;
+            background-color: $color-white;
+            @include respond(md) {
+                width: 63%;
+            }
+            @include respond(sm) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.settings-left {
+    display: flex;
+    flex-direction: column;
+    &-main-container {
+        width: 100%;
+    }
+    &-heading {
+        height: 87px;
+        display: flex;
+        align-items: center;
+    }
+    &-container {
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+    }
+    &-pad {
+        padding-left: 33px;
+    }
+    hr {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    &-selected {
+        border-right: 5px solid $color-feed-component-blue;
+    }
+    &-expandicon {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        padding-right: 7%;
+        padding-top: 5%;
+    }
+    &-expandedText {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        padding-left: 33px;
+        color: $color-feed-component-blue;
+    }
+}

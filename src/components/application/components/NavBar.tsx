@@ -70,9 +70,10 @@ const NavBar = () => {
                                 className="input-component--search"
                             />
                         </div>
+                        <div className="nav-component__items__item">
                         <Link to="/feed">
                             <img
-                                className="nav-component__icons--hidden"
+                                className="nav-component__items__item__icons--hidden"
                                 src={home}
                                 alt="Home"
                             />
@@ -80,46 +81,48 @@ const NavBar = () => {
 
                         <Link to="/connections">
                             <img
-                                className="nav-component__icons--hidden"
+                                className="nav-component__items__item__icons--hidden"
                                 src={connection}
                                 alt="Connection"
                             />
                         </Link>
                         <Link to="/teams">
                             <img
-                                className="nav-component__icons--hidden"
+                                className="nav-component__items__item__icons--hidden"
                                 src={teams}
                                 alt="Teams"
                             />
                         </Link>
                         <Link to="/notifications">
                             <img
-                                className="nav-component__icons"
+                                className="nav-component__items__item__icons"
                                 src={notifications}
                                 alt="Notifications"
                             />
                         </Link>
                         <Link to="/messages">
                             <img
-                                className="nav-component__icons"
+                                className="nav-component__items__item__icons"
                                 src={messages}
                                 alt="messages"
                             />
                         </Link>
                         <Link to="/settings">
                             <img
-                                className="nav-component__icons--hidden"
+                                className="nav-component__items__item__icons--hidden"
                                 src={settings}
                                 alt="settings"
                             />
                         </Link>
                         <Link to="/profile">
                             <img
-                                className="nav-component__icons--user"
+                                className="nav-component__items__item__icons--user"
                                 src={user}
                                 alt="User"
                             />
                         </Link>
+                        </div>
+                        
                     </div>
                 </div>
 

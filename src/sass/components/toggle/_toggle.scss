@@ -1,0 +1,33 @@
+.toggle {
+    position: relative;
+    input {
+        position: absolute;
+        opacity: 0;
+        &:checked + span {
+            background-color: $color-primary-green;
+            &::before {
+                left: 22px;
+            }
+        }
+    }
+    span {
+        display: flex;
+        width: 40px;
+        height: 20px;
+        background-color: #c4c4c4;
+        border-radius: 70px;
+        position: relative;
+        transition: background-color 0.2s;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 1.5px;
+            left: 1px;
+            width: 17px;
+            height: 17px;
+            border-radius: 100%;
+            transition: 0.2s;
+            background: #fff;
+        }
+    }
+}

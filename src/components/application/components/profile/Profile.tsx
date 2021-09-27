@@ -143,12 +143,26 @@ function Profile() {
                 setShowAbout(true);
             }
     });
+       
+    useEffect (()=>{
+        if(window.innerWidth>900){
+            setShowLeft(true);
+            setShowRight(true);
+            setShowAbout(false);
+        }
+        if(window.innerWidth<=900){
+            setShowLeft(false);
+            setShowRight(true);
+            setShowAbout(true);
+        }
+      },[])
     const [showOverlay, setShowOverlay] = useState(false);
     const [showBlockUser, setShowBlockUser] = useState(false);
     const [showReportUser, setShowReportUser] = useState(false);
     const [showRestrictUser, setShowRestrictUser] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
     const [showCreateTeam, setShowCreateTeam] = useState(false);
+    
     const [showEditBio, setShowEditBio] = useState(false);
     const [showEditProject, setShowEditProject] = useState(false);
     const openModal = ()=>{
