@@ -4192,6 +4192,195 @@ input, textarea:focus {
   .faq img {
     margin-bottom: 30px; }
 
+.settings-my-profile-main {
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem; }
+  @media only screen and (max-width: 75em) {
+    .settings-my-profile-main {
+      padding: 2rem 2rem; } }
+
+.settings-my-profile-nametag {
+  display: flex;
+  align-items: center; }
+  .settings-my-profile-nametag div {
+    display: flex;
+    flex-direction: column; }
+  .settings-my-profile-nametag-img-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden; }
+    .settings-my-profile-nametag-img-container img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-nametag-img-container {
+        width: 100px;
+        height: 100px;
+        margin: 10px; } }
+    @media only screen and (max-width: 36em) {
+      .settings-my-profile-nametag-img-container {
+        width: 70px;
+        height: 70px;
+        margin: 10px; } }
+  .settings-my-profile-nametag-editcontainer {
+    padding: 5px;
+    transform: scale(0.7) translate(-150%, 120%); }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-nametag-editcontainer {
+        transform: scale(0.7) translate(-150%, 100%); } }
+    @media only screen and (max-width: 36em) {
+      .settings-my-profile-nametag-editcontainer {
+        transform: scale(0.5) translate(-200%, 80%); } }
+    .settings-my-profile-nametag-editcontainer button {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      float: right;
+      background-color: #5579BD;
+      border: none; }
+  .settings-my-profile-nametag-name {
+    font-size: 25px;
+    font-weight: 600; }
+
+.settings-my-profile-details {
+  display: flex;
+  justify-content: space-between; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-details {
+      flex-direction: column;
+      row-gap: 50px; } }
+  .settings-my-profile-details div {
+    width: 80%; }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-details div {
+        width: 100%; } }
+  .settings-my-profile-details-name {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: space-between; }
+    .settings-my-profile-details-name span {
+      font-size: large;
+      font-weight: 600; }
+    .settings-my-profile-details-name input {
+      width: 60%;
+      border-radius: 10px;
+      border: none;
+      background-color: #F2F7FF; }
+  .settings-my-profile-details-bio {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 1rem;
+    transform: translateY(-10%); }
+    .settings-my-profile-details-bio span {
+      font-size: larger;
+      font-weight: 600; }
+    .settings-my-profile-details-bio textarea {
+      border-radius: 10px;
+      height: 80px;
+      background-color: #F2F7FF;
+      border: none;
+      width: 100%; }
+
+.settings-my-profile-area-of-interests-heading {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px; }
+
+.settings-my-profile-area-of-interests-allskills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px; }
+
+.settings-my-profile-area-of-interests-skills {
+  border: 2px solid #02bd63;
+  padding: 0px 10px;
+  border-radius: 15px; }
+  .settings-my-profile-area-of-interests-skills button {
+    background-color: #02bd63;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    font-size: small;
+    transform: scale(0.7) translate(50%, -80%); }
+
+.settings-my-profile-skills {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 10px; }
+  .settings-my-profile-skills-heading {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 2rem; }
+
+.settings-my-profile-education-heading {
+  font-size: 25px;
+  font-weight: 600; }
+
+.settings-my-profile-education-college {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .settings-my-profile-education-college input {
+    margin: 0px 10px 0px 0px;
+    width: 80%; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-college {
+      flex-direction: column;
+      align-items: flex-start; } }
+
+.settings-my-profile-education-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px; }
+  @media only screen and (max-width: 48em) {
+    .settings-my-profile-education-content {
+      font-size: small;
+      font-weight: 600; } }
+  .settings-my-profile-education-content input {
+    border: none;
+    padding: 5px 10px;
+    background-color: #F2F7FF;
+    border-radius: 10px; }
+
+.settings-my-profile-education-degree-details {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 25px; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-degree-details {
+      flex-direction: column;
+      row-gap: 20px; } }
+
+.settings-my-profile-education-degree {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-degree {
+      flex-direction: column;
+      align-items: flex-start; } }
+  .settings-my-profile-education-degree input {
+    width: 60%;
+    margin: 0px 10px; }
+
+.settings-my-profile-delete-account button {
+  float: right;
+  border: none;
+  background-color: white;
+  font-weight: 600;
+  color: red;
+  text-decoration: underline; }
+
 .delete-member-buttons {
   margin-top: 2rem;
   display: flex;
