@@ -3978,6 +3978,73 @@ input, textarea:focus {
     padding-left: 33px;
     color: #4b72bc; }
 
+.modal-overlay-settings {
+  width: 100vw;
+  height: 105vh;
+  margin: 0;
+  top: -1%;
+  background-color: black;
+  opacity: 0.6;
+  position: fixed;
+  overflow: hidden;
+  z-index: 101; }
+
+.settings-modal-main {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center; }
+
+.settings-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 100%;
+  height: auto; }
+
+.settings-modal-cover {
+  background-color: #ffffff;
+  z-index: 105;
+  position: absolute;
+  width: 30%;
+  height: auto;
+  border-radius: 30px;
+  padding: 1rem; }
+  .settings-modal-cover-title {
+    font-size: larger;
+    font-weight: 600; }
+  .settings-modal-cover-inputfields {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 1rem 0rem; }
+    .settings-modal-cover-inputfields input {
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 10px;
+      padding: 5px 15px; }
+  .settings-modal-cover-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem; }
+    .settings-modal-cover-buttons button {
+      width: 6rem;
+      background-color: white;
+      border-radius: 20px; }
+    .settings-modal-cover-buttons-signout {
+      border: 1px solid #02bd63; }
+      .settings-modal-cover-buttons-signout:hover {
+        background-color: #02bd63;
+        color: white; }
+    .settings-modal-cover-buttons-cancel {
+      border: 1px solid red; }
+      .settings-modal-cover-buttons-cancel:hover {
+        background-color: red;
+        color: white; }
+
 .privacy-settings {
   padding: 4%;
   width: 100%;
@@ -4272,6 +4339,7 @@ input, textarea:focus {
       font-weight: 600; }
     .settings-my-profile-details-name input {
       width: 60%;
+      padding: 5px 10px;
       border-radius: 10px;
       border: none;
       background-color: #F2F7FF; }
@@ -4285,10 +4353,12 @@ input, textarea:focus {
       font-weight: 600; }
     .settings-my-profile-details-bio textarea {
       border-radius: 10px;
-      height: 80px;
+      height: 100px;
       background-color: #F2F7FF;
       border: none;
-      width: 100%; }
+      width: 100%;
+      padding: 5px 10px;
+      resize: none; }
 
 .settings-my-profile-area-of-interests-heading {
   font-size: 25px;
@@ -4314,7 +4384,7 @@ input, textarea:focus {
     border: none;
     padding: 0;
     font-size: small;
-    transform: scale(0.7) translate(50%, -80%); }
+    transform: scale(0.7) translate(100%, -80%); }
 
 .settings-my-profile-skills {
   padding: 20px;
@@ -4768,3 +4838,49 @@ input, textarea:focus {
       border-radius: 100%;
       transition: 0.2s;
       background: #fff; }
+
+.notifications-main {
+  margin: 8rem auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column; }
+
+.notifications-tag {
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  display: flex;
+  column-gap: 20px;
+  justify-content: space-around;
+  align-items: center; }
+  @media only screen and (max-width: 62em) {
+    .notifications-tag {
+      padding: 0.5rem; } }
+  .notifications-tag-img-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0px 10px;
+    overflow: hidden; }
+    .notifications-tag-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+    @media only screen and (max-width: 62em) {
+      .notifications-tag-img-container {
+        width: 30px;
+        height: 30px;
+        margin: 0; } }
+  .notifications-tag-comment {
+    margin: 0; }
+    @media only screen and (max-width: 62em) {
+      .notifications-tag-comment {
+        font-size: small; } }
+  .notifications-tag-time {
+    margin: 0; }
+  .notifications-tag-optionsbtn {
+    background-color: white;
+    border: none;
+    font-size: 30px; }

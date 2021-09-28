@@ -1,9 +1,9 @@
 import React from 'react'
 
-function DeleteAccount() {
+function DeleteAccount(props: any) {
     return (
         <div className="settings-my-profile-delete-account">
-            <button>Delete Account</button>
+            <button onClick={props.deleteAccount}>Delete Account</button>
         </div>
     )
 }

@@ -88,6 +88,7 @@
             }
             input{
                 width: 60%;
+                padding: 5px 10px;
                 border-radius: 10px;
                 border: none;
                 background-color: #F2F7FF;
@@ -104,10 +105,12 @@
             }
             textarea{
                 border-radius: 10px;
-                height: 80px;
+                height: 100px;
                 background-color: #F2F7FF;
                 border: none;
                 width: 100%;
+                padding: 5px 10px;
+                resize: none;
             }
         }
     }
@@ -136,7 +139,7 @@
                 border: none;
                 padding: 0;
                 font-size: small;
-                transform: scale(0.7) translate(50%,-80%);
+                transform: scale(0.7) translate(100%,-80%);
             }
         }
     }

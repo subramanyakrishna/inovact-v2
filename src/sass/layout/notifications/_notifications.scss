@@ -1,0 +1,52 @@
+.notifications-main{
+    margin: 8rem auto;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+
+}
+.notifications-tag{
+    padding: 1rem;
+    border-bottom: 1px solid grey;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: flex;
+    column-gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    @include respond(md){
+        padding: 0.5rem;
+    }
+    &-img-container{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0px 10px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @include respond(md){
+            width: 30px;
+            height: 30px;
+            margin: 0;
+        }
+    }
+    &-comment{
+        margin: 0;
+        @include respond(md){
+            font-size: small;
+        }
+    }
+    &-time{
+        margin: 0;
+    }
+    &-optionsbtn{
+        background-color: white;
+        border: none;
+        font-size: 30px;
+    }
+}

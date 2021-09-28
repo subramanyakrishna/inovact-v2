@@ -6,7 +6,7 @@ import UserSkills from "./components/UserSkills";
 import UserEducation from "./components/UserEducation";
 import UserExperience from "./components/UserExperience";
 import DeleteAccount from "./components/DeleteAccount";
-function YourProfile() {
+function YourProfile(props: any) {
     
     return (
         <div className="settings-my-profile-main">
@@ -16,7 +16,7 @@ function YourProfile() {
             <UserSkills/>
             <UserExperience/>
             <UserEducation/>
-            <DeleteAccount/>
+            <DeleteAccount deleteAccount={props.deleteAccount}/>
         </div>
     )
 }
