@@ -44,25 +44,25 @@ function TopProfileContent(props: any) {
                 {
                     props.showAbout &&
                     <div className="top-profile-post-buttons-about-btn" onClick={showLeftContent}>
-                        <img src={aboutImg}/>
+                        <img src={aboutImg} alt="about"/>
                         <span>About</span>
                     </div>
                 }
                 
                 <div onClick={removeLeftContent}>
-                    <img src={projectsImg}/>
+                    <img src={projectsImg} alt="projects"/>
                     <span>Projects</span>
                 </div>
                 <div>
-                    <img src={ideasImg}/>
+                    <img src={ideasImg}  alt="ideas"/>
                     <span>Ideas</span>
                 </div>
                 <div>
-                    <img src={thoughtImg}/>
+                    <img src={thoughtImg}  alt="thoughts"/>
                     <span>Thoughts</span>
                 </div>
                 <div>
-                    <img src={mentionsImg}/>
+                    <img src={mentionsImg}  alt="mention"/>
                     <span>Mentions</span>
                 </div>
                 <div className="top-profile-post-buttons-options">

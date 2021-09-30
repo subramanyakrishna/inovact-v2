@@ -3,16 +3,17 @@ import {
     MDBTabsContent,
     MDBTabsPane,
   } from 'mdb-react-ui-kit';
+
+//components
+import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
+
+//icons
+import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
-import SuggestionInvitation from 'components/application/components/teams/components/left/SuggestionInvitation';
-import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
-
-import MenuIcon from '@material-ui/icons/Menu';
+//schema
 import {teamData }from 'components/application/components/teams/teamData';
-
-import Navbar from 'components/application/components/NavBar'
 
 function Messages() {
     const [teams,setTeams] =useState<teamData[]>([
@@ -97,7 +98,7 @@ function Messages() {
 
       <div>    
     <div className="messages">
-        <Navbar />
+      
         <div className="messages__content">
             <div className="messages__content__header">
                 <img src={back} alt="" />
