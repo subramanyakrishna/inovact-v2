@@ -50,7 +50,7 @@ export default function CheckoutPage() {
       if(isLastStep){
         submitForm(values,actions)
       }
-      if(activeStep==1){
+      if(activeStep === 1){
         if( values.role === "student") {
           setActiveStep(activeStep + 3);
         }

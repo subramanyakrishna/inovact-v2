@@ -52,6 +52,7 @@
 @import 'layout/connections/peopleToKnow';
 @import 'layout/connections/connections_main';
 @import 'layout/connections/filter-dropdown';
+
 @import 'layout/modals/upload-project';
 @import 'layout/modals/create_team';
 @import 'layout/modals/team-members';
@@ -69,13 +70,18 @@
 @import 'layout/settings/notifications';
 @import 'layout/settings/faq';
 @import "layout/settings/my-profile";
+
+
 @import 'components/teams-modal/delete-modal.scss';
 @import 'components/teams-modal/upload-document-modal';
+
 @import 'components/profile-modals/block-account';
 @import 'components/profile-modals/report-account';
 @import 'components/profile-modals/restrict-account';
+
 @import 'components/comments-on-posts';
 @import 'components/profile-modals/edit-bio';
 @import 'components/toggle/toggle';
 
 @import "layout/notifications/notifications";
+@import 'components/toggle/toggle';

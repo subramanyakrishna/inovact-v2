@@ -1,5 +1,4 @@
-import * as Yup from 'yup';
-import moment from 'moment';
+import * as Yup from 'yup';   
 import checkoutFormModel from './checkoutFormModel';
 const {
   formField: {
@@ -10,8 +9,7 @@ const {
     degree,
     year,
     bio,
-    image,
-aoi,
+    aoi,
     //mentor
     McurrDesignation,
     McurrOrganization,

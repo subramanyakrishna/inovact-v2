@@ -1,4 +1,5 @@
 interface IUser {
+    role?:string
     first_name?: string
     last_name?: string
     user_name?: string
@@ -16,6 +17,7 @@ interface IUser {
     journey_start_date?: string
     years_of_personal_experience?: number
     userId?: string
+    authenticated:boolean;
 }
 
 type UserState = {
