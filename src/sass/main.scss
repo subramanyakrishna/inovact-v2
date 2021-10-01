@@ -69,6 +69,7 @@
 @import 'layout/settings/privacy-settings';
 @import 'layout/settings/notifications';
 @import 'layout/settings/faq';
+@import "layout/settings/my-profile";
 
 
 @import 'components/teams-modal/delete-modal.scss';
@@ -80,4 +81,7 @@
 
 @import 'components/comments-on-posts';
 @import 'components/profile-modals/edit-bio';
+@import 'components/toggle/toggle';
+
+@import "layout/notifications/notifications";
 @import 'components/toggle/toggle';

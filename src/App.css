@@ -3978,6 +3978,73 @@ input, textarea:focus {
     padding-left: 33px;
     color: #4b72bc; }
 
+.modal-overlay-settings {
+  width: 100vw;
+  height: 105vh;
+  margin: 0;
+  top: -1%;
+  background-color: black;
+  opacity: 0.6;
+  position: fixed;
+  overflow: hidden;
+  z-index: 101; }
+
+.settings-modal-main {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center; }
+
+.settings-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 100%;
+  height: auto; }
+
+.settings-modal-cover {
+  background-color: #ffffff;
+  z-index: 105;
+  position: absolute;
+  width: 30%;
+  height: auto;
+  border-radius: 30px;
+  padding: 1rem; }
+  .settings-modal-cover-title {
+    font-size: larger;
+    font-weight: 600; }
+  .settings-modal-cover-inputfields {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 1rem 0rem; }
+    .settings-modal-cover-inputfields input {
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 10px;
+      padding: 5px 15px; }
+  .settings-modal-cover-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem; }
+    .settings-modal-cover-buttons button {
+      width: 6rem;
+      background-color: white;
+      border-radius: 20px; }
+    .settings-modal-cover-buttons-signout {
+      border: 1px solid #02bd63; }
+      .settings-modal-cover-buttons-signout:hover {
+        background-color: #02bd63;
+        color: white; }
+    .settings-modal-cover-buttons-cancel {
+      border: 1px solid red; }
+      .settings-modal-cover-buttons-cancel:hover {
+        background-color: red;
+        color: white; }
+
 .privacy-settings {
   padding: 4%;
   width: 100%;
@@ -4196,6 +4263,198 @@ input, textarea:focus {
     margin-bottom: 15px; }
   .faq img {
     margin-bottom: 30px; }
+
+.settings-my-profile-main {
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem; }
+  @media only screen and (max-width: 75em) {
+    .settings-my-profile-main {
+      padding: 2rem 2rem; } }
+
+.settings-my-profile-nametag {
+  display: flex;
+  align-items: center; }
+  .settings-my-profile-nametag div {
+    display: flex;
+    flex-direction: column; }
+  .settings-my-profile-nametag-img-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden; }
+    .settings-my-profile-nametag-img-container img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-nametag-img-container {
+        width: 100px;
+        height: 100px;
+        margin: 10px; } }
+    @media only screen and (max-width: 36em) {
+      .settings-my-profile-nametag-img-container {
+        width: 70px;
+        height: 70px;
+        margin: 10px; } }
+  .settings-my-profile-nametag-editcontainer {
+    padding: 5px;
+    transform: scale(0.7) translate(-150%, 120%); }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-nametag-editcontainer {
+        transform: scale(0.7) translate(-150%, 100%); } }
+    @media only screen and (max-width: 36em) {
+      .settings-my-profile-nametag-editcontainer {
+        transform: scale(0.5) translate(-200%, 80%); } }
+    .settings-my-profile-nametag-editcontainer button {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      float: right;
+      background-color: #5579BD;
+      border: none; }
+  .settings-my-profile-nametag-name {
+    font-size: 25px;
+    font-weight: 600; }
+
+.settings-my-profile-details {
+  display: flex;
+  justify-content: space-between; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-details {
+      flex-direction: column;
+      row-gap: 50px; } }
+  .settings-my-profile-details div {
+    width: 80%; }
+    @media only screen and (max-width: 62em) {
+      .settings-my-profile-details div {
+        width: 100%; } }
+  .settings-my-profile-details-name {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: space-between; }
+    .settings-my-profile-details-name span {
+      font-size: large;
+      font-weight: 600; }
+    .settings-my-profile-details-name input {
+      width: 60%;
+      padding: 5px 10px;
+      border-radius: 10px;
+      border: none;
+      background-color: #F2F7FF; }
+  .settings-my-profile-details-bio {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 1rem;
+    transform: translateY(-10%); }
+    .settings-my-profile-details-bio span {
+      font-size: larger;
+      font-weight: 600; }
+    .settings-my-profile-details-bio textarea {
+      border-radius: 10px;
+      height: 100px;
+      background-color: #F2F7FF;
+      border: none;
+      width: 100%;
+      padding: 5px 10px;
+      resize: none; }
+
+.settings-my-profile-area-of-interests-heading {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px; }
+
+.settings-my-profile-area-of-interests-allskills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px; }
+
+.settings-my-profile-area-of-interests-skills {
+  border: 2px solid #02bd63;
+  padding: 0px 10px;
+  border-radius: 15px; }
+  .settings-my-profile-area-of-interests-skills button {
+    background-color: #02bd63;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    font-size: small;
+    transform: scale(0.7) translate(100%, -80%); }
+
+.settings-my-profile-skills {
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 10px; }
+  .settings-my-profile-skills-heading {
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 2rem; }
+
+.settings-my-profile-education-heading {
+  font-size: 25px;
+  font-weight: 600; }
+
+.settings-my-profile-education-college {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .settings-my-profile-education-college input {
+    margin: 0px 10px 0px 0px;
+    width: 80%; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-college {
+      flex-direction: column;
+      align-items: flex-start; } }
+
+.settings-my-profile-education-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px; }
+  @media only screen and (max-width: 48em) {
+    .settings-my-profile-education-content {
+      font-size: small;
+      font-weight: 600; } }
+  .settings-my-profile-education-content input {
+    border: none;
+    padding: 5px 10px;
+    background-color: #F2F7FF;
+    border-radius: 10px; }
+
+.settings-my-profile-education-degree-details {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 25px; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-degree-details {
+      flex-direction: column;
+      row-gap: 20px; } }
+
+.settings-my-profile-education-degree {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; }
+  @media only screen and (max-width: 62em) {
+    .settings-my-profile-education-degree {
+      flex-direction: column;
+      align-items: flex-start; } }
+  .settings-my-profile-education-degree input {
+    width: 60%;
+    margin: 0px 10px; }
+
+.settings-my-profile-delete-account button {
+  float: right;
+  border: none;
+  background-color: white;
+  font-weight: 600;
+  color: red;
+  text-decoration: underline; }
 
 .delete-member-buttons {
   margin-top: 2rem;
@@ -4579,3 +4838,96 @@ input, textarea:focus {
       border-radius: 100%;
       transition: 0.2s;
       background: #fff; }
+
+.notifications-main {
+  margin: 8rem auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column; }
+
+.notifications-tag {
+  position: relative;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid grey;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  display: flex;
+  column-gap: 20px;
+  justify-content: space-around;
+  align-items: center; }
+  @media only screen and (max-width: 62em) {
+    .notifications-tag {
+      padding: 0.5rem 2rem;
+      justify-content: space-between; } }
+  .notifications-tag-img-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0px 10px;
+    overflow: hidden;
+    position: relative; }
+    .notifications-tag-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+    @media only screen and (max-width: 62em) {
+      .notifications-tag-img-container {
+        width: 40px;
+        height: 40px;
+        margin: 0; } }
+    @media only screen and (max-width: 48em) {
+      .notifications-tag-img-container {
+        width: 30px;
+        height: 30px; } }
+  .notifications-tag-comment {
+    margin: 0; }
+    @media only screen and (max-width: 62em) {
+      .notifications-tag-comment {
+        font-size: small; } }
+    @media only screen and (max-width: 48em) {
+      .notifications-tag-comment {
+        width: 60%; } }
+  .notifications-tag-time {
+    margin: 0; }
+  .notifications-tag-optionsbtn {
+    background-color: white;
+    border: none;
+    font-size: 30px; }
+
+.notifications-options {
+  position: absolute;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  z-index: 105;
+  background-color: white;
+  box-shadow: -1px -1px 11px 0px rgba(0, 0, 0, 0.39);
+  transform: translate(0%, -10%); }
+  .notifications-options:first-child {
+    border-bottom: 1px solid grey; }
+  .notifications-options div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+    line-height: 1.2; }
+    .notifications-options div:hover {
+      background-color: #f1eeee;
+      cursor: pointer; }
+  .notifications-options-heading {
+    font-weight: 600;
+    font-size: 15px; }
+  .notifications-options-description {
+    font-size: 10px; }
+    @media only screen and (max-width: 48em) {
+      .notifications-options-description {
+        display: none; } }
+  @media only screen and (max-width: 62em) {
+    .notifications-options {
+      transform: translate(-90%, -10%); } }
+  @media only screen and (max-width: 48em) {
+    .notifications-options {
+      width: 100px; } }

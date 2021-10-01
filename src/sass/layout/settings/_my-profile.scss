@@ -1,0 +1,226 @@
+.settings-my-profile{
+    &-main{
+        padding: 4rem 6rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 4rem;
+        @include respond(lg){
+            padding: 2rem 2rem;
+        }
+    }
+    &-nametag{
+        display: flex;
+
+        align-items: center;
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+        &-img-container{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            // margin-right: 4rem;
+            overflow: hidden;
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+            @include respond(md){
+                width: 100px;
+                height: 100px;
+                margin: 10px;
+            }
+            @include respond(xs){
+                width: 70px;
+                height: 70px;
+                margin: 10px;
+            }
+        }
+        &-editcontainer{
+            
+            padding: 5px;
+            
+            transform: scale(0.7) translate(-150%,120%);
+            @include respond(md){
+                transform: scale(0.7) translate(-150%,100%);
+
+            }
+            @include respond(xs){
+                transform: scale(0.5) translate(-200%,80%);
+            }
+            button{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                float: right;
+                background-color: $color-secondary-blue;
+                border: none;
+            }
+        }
+        &-name{
+            font-size: 25px;
+            font-weight: 600;
+        }
+        
+    }
+    &-details{
+        display: flex;
+        justify-content: space-between;
+        @include respond(md){
+            flex-direction: column;
+            row-gap: 50px;
+        }
+        div{
+            width: 80%;
+            @include respond(md){
+                width: 100%;
+            }
+        }
+        &-name{
+            margin: 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            span{
+                font-size: large;
+                font-weight: 600;
+            }
+            input{
+                width: 60%;
+                padding: 5px 10px;
+                border-radius: 10px;
+                border: none;
+                background-color: #F2F7FF;
+            }
+        }
+        &-bio{
+            display: flex;
+            flex-direction: column;
+            margin: 0rem 1rem;
+            transform: translateY(-10%);
+            span{
+                font-size: larger;
+                font-weight: 600;
+            }
+            textarea{
+                border-radius: 10px;
+                height: 100px;
+                background-color: #F2F7FF;
+                border: none;
+                width: 100%;
+                padding: 5px 10px;
+                resize: none;
+            }
+        }
+    }
+    &-area-of-interests{
+        &-heading{
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        &-allskills{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px;
+        }
+        &-skills{
+            border: 2px solid $color-primary-green;
+            padding: 0px 10px;
+            border-radius: 15px;
+            button{
+                background-color: $color-primary-green;
+                color: white;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: none;
+                padding: 0;
+                font-size: small;
+                transform: scale(0.7) translate(100%,-80%);
+            }
+        }
+    }
+    &-skills{
+        padding: 20px;
+        border: 1px solid grey;
+        border-radius: 10px;
+        &-heading{
+            font-size: 25px;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+    }
+    &-education{
+        &-heading{
+            font-size: 25px;
+            font-weight: 600;
+        }
+        
+        &-college{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            input{
+                margin: 0px 10px 0px 0px;
+                width: 80%;
+            }
+            @include respond(md){
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        &-content{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            @include respond(sm){
+                font-size: small;
+                font-weight: 600;
+            }
+            input{
+                border: none;
+                padding: 5px 10px;
+                background-color: #F2F7FF;
+                border-radius: 10px;
+            }
+        }
+        &-degree-details{
+            display: flex;
+            justify-content: space-between;
+            column-gap: 25px;
+            @include respond(md){
+                flex-direction: column;
+                
+                row-gap: 20px;
+            }
+        }
+        &-degree{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            @include respond(md){
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            input{
+                width: 60%;
+                margin: 0px 10px;
+            }
+        }
+    }
+    &-delete-account{
+        button{
+            float: right;
+            border:none;
+            background-color: white;
+            font-weight: 600;
+            color: red;
+            text-decoration: underline;
+        }
+    }
+}
