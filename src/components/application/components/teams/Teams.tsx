@@ -231,7 +231,6 @@ function Teams() {
        
     ])
     const [verticalActive, setVerticalActive] = useState(1);
-    const [menuBar,setMenuBar]=useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);
     const [showMakeAdmin, setShowMakeAdmin] = useState(false);
@@ -263,7 +262,7 @@ function Teams() {
             }
     });
     
-  const [showOptions, setShowOptions] = useState(false);
+  
   const toggleShowOptions = ()=>{
     if(window.innerWidth<768){
     setShowLeft(!showLeft);

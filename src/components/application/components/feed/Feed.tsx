@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import LeftNavBar from './components/leftnav/LeftNavBar'
 import CreatePost from './components/center/CreatePost'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'

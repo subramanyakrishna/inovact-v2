@@ -88,7 +88,7 @@ export default function GeneralForm(props :any) {
                         <div className="form-group">
                               <label htmlFor="degree">Degree <span className="paragraph-primary--red">*</span></label>
                               <br />
-                              <Field  className="input-formComponent"  as="select" name="degree" id="degree">
+                              <Field  className="input-formComponent"  as="select" name={degree.name} id="degree">
                     <option value="Enter your degreee" label="Enter your degreee">
                     Enter your degreee{" "}
                     </option>
@@ -104,7 +104,7 @@ export default function GeneralForm(props :any) {
                       <MDBCol md='12'>
                       <label htmlFor="year">Year Of Graduation<span className="paragraph-primary--red">*</span></label>
                   <br />
-                  <Field  className="input-formComponent"  as="select" name="year" id="year">
+                  <Field  className="input-formComponent"  as="select" name={year.name} id="year">
                     <option value=" Select the  Year Of Graduation" label=" Select the  Year Of Graduation">
                     Select the  Year Of Graduation{" "}
                     </option>

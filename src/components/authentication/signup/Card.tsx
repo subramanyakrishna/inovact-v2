@@ -1,11 +1,29 @@
-import React from 'react'
+import React,{useState} from 'react'
 import facebook from 'images/sign-up/facebook.png'
 import google from 'images/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
-import { Link } from 'react-router-dom'
-interface Props {}
+import { Link } from 'react-router-dom';
+import userPool from 'UserPool';
+interface Props {
+ 
+}
 
 const Card: React.FC<Props> = (props) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const signup = (e :any) => {
+        const attributeList : any= [];
+        e.preventDefault();
+        userPool.signUp(email, password, attributeList, null , (err, data) => {
+            if (err) {
+                alert(err.message || JSON.stringify(err));
+                return;
+            }
+            console.log(data);
+          });
+      };
+
     return (
         <div className="signup__card">
             <span className="signup__card--header ">Create an Account</span>
@@ -14,7 +32,7 @@ const Card: React.FC<Props> = (props) => {
                 <Link to="/login" className="text-style--bold text-align--left text-size--small text-color--green" style={{marginLeft:'2px'}}>Login</Link>
             </div>
             <div className="signup__card--form">
-                <form onSubmit={(event) => event.preventDefault()}>
+                <form onSubmit={signup}>
                     <MDBRow>
                         <MDBCol sm="12">
                             <div className="form-group">
@@ -58,11 +76,11 @@ const Card: React.FC<Props> = (props) => {
                     </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
-                            <Link to="/userinfo">
-                                <button className="button--green button--green--round signup__card--button">
+                           
+                                <button type="submit" className="button--green button--green--round signup__card--button">
                                     Sign Up
                                 </button>
-                            </Link>
+                           
                         </MDBCol>
                     </MDBRow>
                     <hr />

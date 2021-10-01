@@ -84,7 +84,7 @@ function TopProfileContent(props: any) {
                     <span>Thoughts</span>
                 </div>
                 <div>
-                    <img src={mentionsImg}/>
+                    <img src={mentionsImg}  alt="mention"/>
                     <span>Mentions</span>
                 </div>
                 <div className="top-profile-post-buttons-options">
