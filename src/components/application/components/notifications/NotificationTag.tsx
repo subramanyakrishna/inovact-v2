@@ -1,7 +1,17 @@
 import React, {useState} from 'react';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 function NotificationTag(props: any) {
     const [showOptions, setShowOptions] = useState(false);
+    const toggleShowOptionsMenu = ()=>{
+        setShowOptions(!showOptions);
+    }
+    let timer;
+    const removeOptionsSlow = ()=>{
+        timer = setTimeout(()=>{
+            setShowOptions(false);
+        },500);
+    }
     return (
         <div className="notifications-tag">
             <div className="notifications-tag-img-container">
@@ -12,20 +22,22 @@ function NotificationTag(props: any) {
                 {props.comment}
             </p>
             <p className="notifications-tag-time">{props.time}</p>
-            <button className="notifications-tag-optionsbtn">&#8942;</button>
-            {
-                showOptions && 
-                <div>
-                    <div>
-                        <span>Delete</span>
-                        <span>Delete this notification</span>
+            <div>
+                <button className="notifications-tag-optionsbtn" onClick={toggleShowOptionsMenu}>&#8942;</button>
+                {
+                    showOptions && 
+                    <div className="notifications-options" onMouseLeave={removeOptionsSlow}>
+                        <div>
+                            <span className="notifications-options-heading">Delete</span>
+                            <span className="notifications-options-description">Delete this notification</span>
+                        </div>
+                        <div>
+                            <span className="notifications-options-heading">Turn off</span>
+                            <span className="notifications-options-description">Stop seeing {props.name}'s updates</span>
+                        </div>
                     </div>
-                    <div>
-                        <span>Turn off</span>
-                        <span>Stop seeing {props.name}'s updates</span>
-                    </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     )
 }
