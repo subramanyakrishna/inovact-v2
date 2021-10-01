@@ -6,7 +6,7 @@ export const userService = {
     register, 
 };
 
-const baseUrl =""
+const baseUrl = "cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev";
 
 function register(user :any) {
     const requestOptions = {
@@ -26,7 +26,7 @@ function login(email :string, password :any) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch(`/users/authenticate`, requestOptions)
+    return fetch(`${baseUrl}/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             localStorage.setItem('user', JSON.stringify(user));
