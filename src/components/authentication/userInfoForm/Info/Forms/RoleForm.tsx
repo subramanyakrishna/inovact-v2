@@ -39,8 +39,13 @@ export default function RoleForm(props :any) {
         <MDBCol
            xs="12"
            sm="4"
+           name="role"
+           value="student"
             className="role-selection__form__cards__col"
-            onClick={() => toggleClick(0)}
+            onClick={(event: any) => {
+                toggleClick(0);
+                props.handleChange("role", "Student");
+            }}
         >
             <div
                 className={
@@ -49,7 +54,7 @@ export default function RoleForm(props :any) {
                         : 'role-selection__form__cards__item'
                 }
             >
-          <Field type="radio" name={role.name} value="student" hidden/>
+          <Field type="radio" name="role" value="student" hidden/>
                 <img
                     src={student}
                     alt="student"
@@ -60,9 +65,14 @@ export default function RoleForm(props :any) {
 
         <MDBCol
             xs="12"
-            sm="4"    
+            sm="4" 
+            name="role"
+           value="Mentor"   
             className="role-selection__form__cards__col"
-            onClick={() => toggleClick(1)}
+            onClick={(event: any) => {
+                toggleClick(1);
+                props.handleChange('role', "Mentor");
+            }}
         >
             <div
                 className={
@@ -87,8 +97,13 @@ export default function RoleForm(props :any) {
             xs="12"
             
             sm="4"
+            name="role"
+           value="Enterprenuer"
             className="role-selection__form__cards__col"
-            onClick={() => toggleClick(2)}
+            onClick={(event: any) => {
+                toggleClick(2);
+                props.handleChange("role", "Enterprenuer");
+            }}
         >
             <div
                 className={
@@ -98,7 +113,7 @@ export default function RoleForm(props :any) {
                 }
                
             >
-                 <Field type="radio" name={role.name} value="enterprenuer" hidden/>
+                 <Field type="radio" name="role" value="enterprenuer" hidden/>
                 <img
                     src={enterprenuer}
                     id="enterprenuer"

@@ -11,31 +11,32 @@ import validationSchema from './FormModel/validationSchema';
 import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
 import NavBar from 'components/application/components/NavBar'
+import userSignup from 'redux/UserAuthentication/UserSignup';
 
 
 const steps = ['Role', 'General Info', 'Mentor','Enteprenuer','AreaOfInterest','Upload Form'];
 const { formId, formField } = checkoutFormModel;
 
-function _renderStepContent(step :number) {
+function _renderStepContent(step :number, handleChange: any) {
   switch (step) {
     case 0:
-      return <RoleForm formField={formField} />;
+      return <RoleForm formField={formField} handleChange={handleChange}/>;
     case 1:
-      return <GeneralForm formField={formField} />;
+      return <GeneralForm formField={formField} handleChange={handleChange}/>;
     case 2:
-        return <MentorForm formField={formField} />;
+        return <MentorForm formField={formField} handleChange={handleChange}/>;
     case 3:
-          return <EnteprenuerForm formField={formField} />;
+          return <EnteprenuerForm formField={formField} handleChange={handleChange}/>;
     case 4:
-            return <AreaOfInterest formField={formField} />;
+            return <AreaOfInterest formField={formField} handleChange={handleChange}/>;
     case 5 : 
-    return <UploadForm  formField={formField}/>
+    return <UploadForm  formField={formField} handleChange={handleChange}/>
     default:
       return <div>Not Found</div>;
   }
 }
 
-export default function CheckoutPage() {
+export default function CheckoutPage(props: any) {
 
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
@@ -45,16 +46,21 @@ export default function CheckoutPage() {
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
   }
-
+ 
+  const signup = (e :any) => {
+    console.log("IT called the signup function");
+    e.preventDefault();
+    userSignup(props.userCreds.email, props.userCreds.password, props.userInfo);
+  };
   function handleSubmit(values :any, actions :any) {
       if(isLastStep){
         submitForm(values,actions)
       }
       if(activeStep === 1){
-        if( values.role === "student") {
+        if( props.userInfo.role === "student") {
           setActiveStep(activeStep + 3);
         }
-        else if(values.role === "mentor"){
+        else if(props.userInfo.role === "mentor"){
           setActiveStep(activeStep+1)
         }
         else {
@@ -86,7 +92,7 @@ export default function CheckoutPage() {
           >
             {({ isSubmitting }) => (
               <Form id={formId}>
-                {_renderStepContent(activeStep)}
+                {_renderStepContent(activeStep, props.handleChange)}
 
                 <div className="buttons">
                   {activeStep !== 0 && (
@@ -100,7 +106,7 @@ export default function CheckoutPage() {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? <a href="/feed" className="text-color--white">Finish</a> : 'Next'}
+                  {isLastStep ? <button className="text-color--white" onClick={signup}>Finish</button> : 'Next'}
                 </button>
                 
                 </div>

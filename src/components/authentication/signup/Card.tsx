@@ -3,33 +3,24 @@ import facebook from 'images/sign-up/facebook.png'
 import google from 'images/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import { Link } from 'react-router-dom';
-import userSignup from "UserAuthentication/UserSignup";
-interface Props {
- 
-}
 
-const Card: React.FC<Props> = (props) => {
+
+
+const Card= (props: any) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const signup = (e :any) => {
-        e.preventDefault();
-        if(password!==confirmPassword){
-            alert("Passwords do not match!!");
-            return;
-        }
-        userSignup(email, password);
-      };
+    console.log(props);
+    const handleEmailChange = (e: any)=>{
+      setEmail(e.target.value);
+    }
+    const handlePasswordChange = (e: any)=>{
+      setPassword(e.target.value);
+    }
+    const handleConfirmPasswordChange = (e: any)=>{
+      setConfirmPassword(e.target.value);
+    }
 
-      const handleEmailChange = (e: any)=>{
-        setEmail(e.target.value);
-      }
-      const handlePasswordChange = (e: any)=>{
-        setPassword(e.target.value);
-      }
-      const handleConfirmPasswordChange = (e: any)=>{
-        setConfirmPassword(e.target.value);
-      }
     return (
         <div className="signup__card">
             <span className="signup__card--header ">Create an Account</span>
@@ -38,7 +29,7 @@ const Card: React.FC<Props> = (props) => {
                 <Link to="/login" className="text-style--bold text-align--left text-size--small text-color--green" style={{marginLeft:'2px'}}>Login</Link>
             </div>
             <div className="signup__card--form">
-                <form onSubmit={signup}>
+                <form >
                     <MDBRow>
                         <MDBCol sm="12">
                             <div className="form-group">
@@ -48,7 +39,11 @@ const Card: React.FC<Props> = (props) => {
                                     name="email"
                                     className="input-component"
                                     placeholder="Enter Email Id"
-                                    onChange={handleEmailChange}
+                                    onChange={(e: any)=>{
+                                        handleEmailChange(e);
+                                        console.log("hi there its working");
+                                        props.handleChange("email", email);
+                                    }}
                                 />
                             </div>
                         </MDBCol>
@@ -62,7 +57,10 @@ const Card: React.FC<Props> = (props) => {
                                     name="password"
                                     className="input-component"
                                     placeholder="Enter Password"
-                                    onChange={handlePasswordChange}
+                                    onChange={(e: any)=>{
+                                        handlePasswordChange(e)
+                                        props.handleChange("password", password);
+                                    }}
                                 />
                             </div>
                         </MDBCol>
@@ -85,10 +83,11 @@ const Card: React.FC<Props> = (props) => {
                     </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
-                           
+                           <Link to={{pathname: "/userinfo"}}>
                                 <button type="submit" className="button--green button--green--round signup__card--button">
                                     Sign Up
                                 </button>
+                           </Link>
                            
                         </MDBCol>
                     </MDBRow>

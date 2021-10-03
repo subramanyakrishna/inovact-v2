@@ -1,10 +1,10 @@
 import React from 'react'
 import CheckoutPage from './Info/CheckoutPage';
 
-const UserInfoForm = () => {
+const UserInfoForm = (props: any) => {
     return (
           <div >     
-            <CheckoutPage />
+            <CheckoutPage handleChange={props.handleChange}/>
           </div>
     );
 }
