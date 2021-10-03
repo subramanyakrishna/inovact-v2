@@ -29,6 +29,29 @@ function MainComponent() {
         areasOfInterest: [],
         bio: "",
     });
+    const [userCreds, setUserCreds] = useState({
+        email: "",
+        password: ""
+    });
+    const handleUserCredsChange = (name: any, value: any)=>{
+        console.log(name, value);
+        switch(name){
+            case "email":
+                setUserCreds({
+                    ...userCreds,
+                    email: value,
+                });
+                break;
+            case "password":
+                setUserCreds({
+                    ...userCreds,
+                    password: value,
+                });
+                break;
+            default: console.log(name, value);
+        }
+        console.log(userCreds);
+    }
     const handleUserInfoChange = (name: any, value: any)=>{
         console.log(name, value);
         switch(name){
@@ -101,8 +124,8 @@ function MainComponent() {
             <Router>
                 <Switch>
                     <Route path="/" exact component={LandingPage} />
-                    <Route path="/userinfo" exact render={()=> <CheckoutPage handleChange={handleUserInfoChange} userInfo={userInfo}/>}/>
-                    <Route path="/signup" exact component={Signup} />
+                    <Route path="/userinfo" exact render={()=> <CheckoutPage handleChange={handleUserInfoChange} userInfo={userInfo} userCreds={userCreds}/>}/>
+                    <Route path="/signup" exact render={()=> <Signup handleChange={handleUserCredsChange} />} />
                     <Route path="/login" exact component={Signin} />
                     <Route path="/forgotpassword" exact component={ForgotPassword} />
                     <Route path="/feed" exact component={Application} />

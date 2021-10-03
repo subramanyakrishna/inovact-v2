@@ -2,12 +2,8 @@ import React, {useState} from 'react'
 import name from 'images/sign-up/name.png'
 import Card from 'components/authentication/signup/Card'
 
-const Signup: React.FC = () => {
-    const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: "",
-        
-    });
+const Signup = (props: any) => {
+    console.log("signup", props);
     return (
         <div className="signup">
             <div className="signup__flex-container">
@@ -19,7 +15,7 @@ const Signup: React.FC = () => {
                     />
                 </div>
                 <div className="signup__flex-child">
-                    <Card />
+                    <Card handleChange={props.handleChange}/>
                 </div>
             </div>
         </div>

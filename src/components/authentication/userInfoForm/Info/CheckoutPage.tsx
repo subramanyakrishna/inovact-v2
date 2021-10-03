@@ -11,6 +11,7 @@ import validationSchema from './FormModel/validationSchema';
 import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
 import NavBar from 'components/application/components/NavBar'
+import userSignup from 'redux/UserAuthentication/UserSignup';
 
 
 const steps = ['Role', 'General Info', 'Mentor','Enteprenuer','AreaOfInterest','Upload Form'];
@@ -45,7 +46,12 @@ export default function CheckoutPage(props: any) {
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
   }
-
+ 
+  const signup = (e :any) => {
+    console.log("IT called the signup function");
+    e.preventDefault();
+    userSignup(props.userCreds.email, props.userCreds.password, props.userInfo);
+  };
   function handleSubmit(values :any, actions :any) {
       if(isLastStep){
         submitForm(values,actions)
@@ -100,7 +106,7 @@ export default function CheckoutPage(props: any) {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? <a href="/feed" className="text-color--white">Finish</a> : 'Next'}
+                  {isLastStep ? <button className="text-color--white" onClick={signup}>Finish</button> : 'Next'}
                 </button>
                 
                 </div>
