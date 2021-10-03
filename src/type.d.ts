@@ -5,7 +5,7 @@ interface IUser {
     user_name?: string
     bio?: string
     avatar?: string
-    phone_number?: string
+    // phone_number?: string
     email_id?: string
     status?: string
     designation?: string

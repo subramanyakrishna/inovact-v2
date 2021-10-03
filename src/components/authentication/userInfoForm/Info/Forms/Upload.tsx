@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, {useState} from 'react'
 import {Field } from 'formik';
 import avatar from 'images/user-info/avatar.png';
 import {Link} from 'react-router-dom';
@@ -11,7 +11,11 @@ export default function AreaOfInterest(props :any) {
          image   
       }
     } = props;
-
+    const [userBio, setUserBio] = useState("");
+    const handleChangeBio = (e: any)=>{
+      setUserBio(e.target.value);
+      props.handleChange("bio",userBio);
+    }
     return (
         <section className="upload">
           
@@ -34,14 +38,14 @@ export default function AreaOfInterest(props :any) {
                  <h6 className="heading-secondary">Add Bio To your Profile</h6>
                   <p className="paragraph-primary--green">A well written bio goes a long way in making a good impresssion</p>
                     
-                    <Field className="input-formComponent" as="textarea" name={bio.name}
+                    <Field className="input-formComponent" as="textarea" onChange={handleChangeBio} name={bio.name} value={userBio}
                         placeholder='Write down a short summary about you and your interest' 
                        
                       />
                 </div>
               </div>
         </form>
-          <Link to="feed" className="skip">Skip for now</Link>
+          {/* <Link to="feed" className="skip">Skip for now</Link> */}
         
       </section>
     )

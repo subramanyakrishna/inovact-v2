@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import datascience from 'images/user-info/aoi/datascience.svg'
 import project from 'images/user-info/aoi/projectmanagement.svg'
 import webdev from 'images/user-info/aoi/webdev.svg'
@@ -95,7 +95,16 @@ export default function AreaOfInterest(props :any) {
          aoi   
       }
     } = props;
-
+    const [userAOI, setUserAOI] = useState<string[]>([]);
+    
+    const addAOI = (name: any)=>{
+        const aoi = userAOI.slice(0);
+        // aoi.includes(name) ? aoi.filter((ele)=>ele!==name) : aoi.push(name);
+        aoi.includes(name) ? aoi.splice(aoi.indexOf(name),1) : aoi.push(name);
+        setUserAOI([...aoi]);
+        console.log(userAOI);
+        props.handleChange('area-of-interest', userAOI);
+    }
     return (
                 <section className="area-of-interest">
                     <div className="area-of-interest__text">
@@ -118,12 +127,13 @@ export default function AreaOfInterest(props :any) {
                                                     id={`aoi-${index}`}
                                                     name={aoi.name}
                                                     value={item.name}
+                                                    onClick={addAOI.bind(null, item.name)} 
                                                     hidden
-                                                  
                                                 />
                                                 <label
                                                     className="checkbox-label"
                                                     htmlFor={`aoi-${index}`}
+                                                    
                                                 >
                                                     <img src={item.image} alt="" />
                                                     {item.name}

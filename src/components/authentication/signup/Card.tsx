@@ -3,7 +3,7 @@ import facebook from 'images/sign-up/facebook.png'
 import google from 'images/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import { Link } from 'react-router-dom';
-import userSignup from "UserAuthentication/UserSignup";
+import userSignup from "redux/UserAuthentication/UserSignup";
 interface Props {
  
 }
@@ -38,7 +38,7 @@ const Card: React.FC<Props> = (props) => {
                 <Link to="/login" className="text-style--bold text-align--left text-size--small text-color--green" style={{marginLeft:'2px'}}>Login</Link>
             </div>
             <div className="signup__card--form">
-                <form onSubmit={signup}>
+                <form >
                     <MDBRow>
                         <MDBCol sm="12">
                             <div className="form-group">
@@ -85,10 +85,11 @@ const Card: React.FC<Props> = (props) => {
                     </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
-                           
+                           <Link to={{pathname: "/userinfo"}}>
                                 <button type="submit" className="button--green button--green--round signup__card--button">
                                     Sign Up
                                 </button>
+                           </Link>
                            
                         </MDBCol>
                     </MDBRow>

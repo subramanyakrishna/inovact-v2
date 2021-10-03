@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import facebook from 'images/sign-up/facebook.png'
 import google from 'images/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
-import userAuthentication from "UserAuthentication/UserAuthentication";
+import userAuthentication from "redux/UserAuthentication/UserAuthentication";
 import { useDispatch, useSelector } from 'react-redux';
 import { userConstants } from 'redux/actionTypes/userConstants';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 interface Props {}
 
 const Card: React.FC<Props> = (props) => {

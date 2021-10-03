@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import {Field } from 'formik';
+import { useFormik } from 'formik';
+
 
 
 const yearOptions = [
@@ -32,6 +34,14 @@ export default function GeneralForm(props :any) {
         year,    
     }
   } = props;
+  const [userDegree, setUserDegree] = useState("");
+  const [userYOG, setUserYOG] = useState("");
+  const handleDegreeChange = (deg: any)=>{
+    setUserDegree(deg);
+  }
+  const handleYOGChange = (yog: any)=>{
+    setUserYOG(yog);
+  }
   return (
     <React.Fragment>
      
@@ -50,11 +60,11 @@ export default function GeneralForm(props :any) {
                              <div>
                               <label htmlFor="university">First Name <span className="paragraph-primary--red">*</span></label>
                               <Field
-                              name={firstName.name} 
+                              name="first-name"
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your FirstName" 
-                            
+                              onChange={(event:any)=> props.handleChange("first-name", event.target.value)}
                               />
                            </div>
                         </MDBCol>
@@ -62,11 +72,11 @@ export default function GeneralForm(props :any) {
                              <div>
                               <label htmlFor="university">Last Name <span className="paragraph-primary--red">*</span></label>
                               <Field
-                              name={lastName.name} 
+                              name="last-name" 
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your LastName" 
-                              
+                              onChange={(event:any)=> props.handleChange("last-name", event.target.value)}
                               />
                            </div>
                         </MDBCol>
@@ -76,10 +86,11 @@ export default function GeneralForm(props :any) {
                     <MDBCol md='12'>
                                   <label htmlFor="university">University/College <span className="paragraph-primary--red">*</span></label>
                                   <Field
-                                  name={university.name}
+                                  name="college"
                                   className="input-formComponent" 
                                   type="text" 
                                   placeholder="Enter Your University or College" 
+                                  onChange={(event:any)=> props.handleChange("college", event.target.value)}
                                 />
                               </MDBCol>
                     </MDBRow>
@@ -88,12 +99,14 @@ export default function GeneralForm(props :any) {
                         <div className="form-group">
                               <label htmlFor="degree">Degree <span className="paragraph-primary--red">*</span></label>
                               <br />
-                              <Field  className="input-formComponent"  as="select" name={degree.name} id="degree">
-                    <option value="Enter your degreee" label="Enter your degreee">
+                              <Field  className="input-formComponent"  as="select" id="degree" value={userDegree} onChange={(event:any)=> {
+                                handleDegreeChange(event.target.value);
+                                props.handleChange("degree", event.target.value)}}>
+                    <option value="Enter your degree" label="Enter your degree">
                     Enter your degreee{" "}
                     </option>
                     {degrees.map(item => 
-                      <option value={item.value} label={item.label}>{item.value}</option>
+                      <option value={item.label} label={item.label}>{item.label}</option>
                   )} 
     </Field>
                         </div>
@@ -104,12 +117,14 @@ export default function GeneralForm(props :any) {
                       <MDBCol md='12'>
                       <label htmlFor="year">Year Of Graduation<span className="paragraph-primary--red">*</span></label>
                   <br />
-                  <Field  className="input-formComponent"  as="select" name={year.name} id="year">
-                    <option value=" Select the  Year Of Graduation" label=" Select the  Year Of Graduation">
+                  <Field  className="input-formComponent" value={userYOG} as="select" name={year.name} id="year"  onChange={(event:any)=>{ 
+                    handleYOGChange(event.target.value);
+                    props.handleChange("year-of-graduation", event.target.value)}}>
+                    <option value=" Select the  Year Of Graduation" label=" Select the  Year Of Graduation" >
                     Select the  Year Of Graduation{" "}
                     </option>
                     {yearOptions.map(item => 
-                      <option value={item.value} label={item.label}>{item.value}</option>
+                      <option value={item.label} label={item.label}>{item.value}</option>
                   )} 
     </Field>
                             </MDBCol>

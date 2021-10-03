@@ -29,6 +29,7 @@ const userAuthentication = async (email: any, password: any)=>{
                     jwtToken: accessToken,
                 }
             });
+            console.log(store.getState());
         },
         onFailure: function(err){
             console.log(err);
