@@ -1,21 +1,20 @@
-import React, {useState} from 'react';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
+import {useState} from 'react';
+
 
 function NotificationTag(props: any) {
     const [showOptions, setShowOptions] = useState(false);
     const toggleShowOptionsMenu = ()=>{
         setShowOptions(!showOptions);
     }
-    let timer;
     const removeOptionsSlow = ()=>{
-        timer = setTimeout(()=>{
+        setTimeout(()=>{
             setShowOptions(false);
         },500);
     }
     return (
         <div className="notifications-tag">
             <div className="notifications-tag-img-container">
-                <img src={props.img}/>
+                <img src={props.img} alt=""/>
             </div>
             <p className="notifications-tag-comment">
                 <b>{props.name} </b> 
