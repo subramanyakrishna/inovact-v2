@@ -1,8 +1,10 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import facebook from 'images/sign-up/facebook.png'
 import google from 'images/sign-up/google.png'
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userCredsConstants } from 'redux/actionTypes/userCredsConstants';
 
 
 
@@ -11,15 +13,24 @@ const Card= (props: any) => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     console.log(props);
+    const dispatch = useDispatch();
+    const state = useSelector(state=>state);
     const handleEmailChange = (e: any)=>{
-      setEmail(e.target.value);
+    //   setEmail(e.target.value);
+      dispatch({type: userCredsConstants.UPDATE_EMAIL_ID, payload: e.target.value});
     }
     const handlePasswordChange = (e: any)=>{
-      setPassword(e.target.value);
+        // setPassword(e.target.value);
+        dispatch({type: userCredsConstants.UPDATE_PASSWORD, payload: e.target.value});
     }
     const handleConfirmPasswordChange = (e: any)=>{
+        
       setConfirmPassword(e.target.value);
     }
+
+    useEffect(()=>{
+        console.log(state);
+    }, [state]);
 
     return (
         <div className="signup__card">
@@ -41,8 +52,8 @@ const Card= (props: any) => {
                                     placeholder="Enter Email Id"
                                     onChange={(e: any)=>{
                                         handleEmailChange(e);
-                                        console.log("hi there its working");
-                                        props.handleChange("email", email);
+                                        // console.log("hi there its working");
+                                        props.handleChange("email_id", email);
                                     }}
                                 />
                             </div>
@@ -59,7 +70,7 @@ const Card= (props: any) => {
                                     placeholder="Enter Password"
                                     onChange={(e: any)=>{
                                         handlePasswordChange(e)
-                                        props.handleChange("password", password);
+                                        // props.handleChange("password", password);
                                     }}
                                 />
                             </div>
