@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { authentication } from 'redux/reducers/loginReducer';
 import { registration } from 'redux/reducers/registerReducer';
 import { updateUserCreds } from './userCredsReducer';
-import { updateUserInfo } from './userInformation';
+import { updateUserInfo } from './userInformationReducer';
 
 const rootReducer = combineReducers({
   authentication: authentication,

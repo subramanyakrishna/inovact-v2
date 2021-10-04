@@ -18,7 +18,7 @@ function MainComponent() {
         password: ""
     });
 
-    const state = useSelector(state=>state);
+    const state = useSelector((state: any)=>state);
     const dispatch = useDispatch();
     // const handleUserCredsChange = (name: any, value: any)=>{
     //     console.log(name, value);
@@ -117,6 +117,7 @@ function MainComponent() {
                     type: userInfoConstants.UPDATE_AOI,
                     payload: value,
                 })
+                break;
         }
     }
     return (
@@ -124,8 +125,8 @@ function MainComponent() {
             <Router>
                 <Switch>
                     <Route path="/" exact component={LandingPage} />
-                    <Route path="/userinfo" exact render={()=> <CheckoutPage handleChange={handleUserInfoChange} userCreds={userCreds}/>}/>
-                    <Route path="/signup" exact render={()=> <Signup handleChange={handleUserCredsChange} handleUserCredsChange={handleUserCredsChange}/>} />
+                    <Route path="/userinfo" exact render={()=> <CheckoutPage handleChange={handleUserInfoChange} userCreds={userCreds} userInfo ={state.userInfo}/>}/>
+                    <Route path="/signup" exact render={()=> <Signup handleUserCredsChange={handleUserCredsChange}/>} />
                     <Route path="/login" exact component={Signin} />
                     <Route path="/forgotpassword" exact component={ForgotPassword} />
                     <Route path="/feed" exact component={Application} />

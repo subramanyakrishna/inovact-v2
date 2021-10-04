@@ -15,7 +15,7 @@ const Signup = (props: any) => {
                     />
                 </div>
                 <div className="signup__flex-child">
-                    <Card handleChange={props.handleChange}/>
+                    <Card handleUserCredsChange={props.handleUserCredsChange}/>
                 </div>
             </div>
         </div>

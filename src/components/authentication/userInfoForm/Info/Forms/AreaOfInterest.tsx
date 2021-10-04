@@ -16,6 +16,8 @@ import mechanical from 'images/user-info/aoi/mechanical.svg'
 import hr from 'images/user-info/aoi/HR.svg'
 import marketing from 'images/user-info/aoi/marketing.svg'
 import stock from 'images/user-info/aoi/stock.svg'
+import { useSelector } from 'react-redux'
+
 
 const areas = [
     {
@@ -89,21 +91,21 @@ const areas = [
     },
 ];
 
-export default function AreaOfInterest(props :any) {
+function AreaOfInterest(props :any) {
     const {
       formField: {
          aoi   
       }
     } = props;
     const [userAOI, setUserAOI] = useState<string[]>([]);
-    
+    const userInfo = useSelector((state: any)=> state.userInfo);
     const addAOI = (name: any)=>{
-        const aoi = userAOI.slice(0);
+        const aoi = userInfo.area_of_interests.slice(0);
         // aoi.includes(name) ? aoi.filter((ele)=>ele!==name) : aoi.push(name);
         aoi.includes(name) ? aoi.splice(aoi.indexOf(name),1) : aoi.push(name);
         setUserAOI([...aoi]);
-        console.log(userAOI);
-        props.handleChange('area-of-interest', userAOI);
+        // console.log(userAOI);
+        props.handleChange('area-of-interest', aoi);
     }
     return (
                 <section className="area-of-interest">
@@ -152,3 +154,4 @@ export default function AreaOfInterest(props :any) {
     )
 }
 
+export default AreaOfInterest;

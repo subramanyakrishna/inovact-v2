@@ -5,33 +5,17 @@ import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userCredsConstants } from 'redux/actionTypes/userCredsConstants';
+import userSignup from 'redux/UserAuthentication/UserSignup';
 
 
 
 const Card= (props: any) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    console.log(props);
-    const dispatch = useDispatch();
-    const state = useSelector(state=>state);
-    const handleEmailChange = (e: any)=>{
-    //   setEmail(e.target.value);
-      dispatch({type: userCredsConstants.UPDATE_EMAIL_ID, payload: e.target.value});
+ 
+    const userCreds = useSelector((state: any)=>state.userCreds);
+    const signup = ()=>{
+        userSignup(userCreds.email_id, userCreds.password);
+        console.log(userCreds.email_id, userCreds.password);
     }
-    const handlePasswordChange = (e: any)=>{
-        // setPassword(e.target.value);
-        dispatch({type: userCredsConstants.UPDATE_PASSWORD, payload: e.target.value});
-    }
-    const handleConfirmPasswordChange = (e: any)=>{
-        
-      setConfirmPassword(e.target.value);
-    }
-
-    useEffect(()=>{
-        console.log(state);
-    }, [state]);
-
     return (
         <div className="signup__card">
             <span className="signup__card--header ">Create an Account</span>
@@ -51,9 +35,10 @@ const Card= (props: any) => {
                                     className="input-component"
                                     placeholder="Enter Email Id"
                                     onChange={(e: any)=>{
-                                        handleEmailChange(e);
+                                        // handleEmailChange(e);
                                         // console.log("hi there its working");
-                                        props.handleChange("email_id", email);
+                                        // props.handleChange("email_id", email);
+                                        props.handleUserCredsChange("email_id", e.target.value);
                                     }}
                                 />
                             </div>
@@ -69,7 +54,8 @@ const Card= (props: any) => {
                                     className="input-component"
                                     placeholder="Enter Password"
                                     onChange={(e: any)=>{
-                                        handlePasswordChange(e)
+                                        // handlePasswordChange(e)
+                                        props.handleUserCredsChange("password", e.target.value);
                                         // props.handleChange("password", password);
                                     }}
                                 />
@@ -87,7 +73,9 @@ const Card= (props: any) => {
                                     name="confirm-password"
                                     className="input-component"
                                     placeholder="Confirm Password"
-                                    onChange={handleConfirmPasswordChange}
+                                    onChange={(e: any)=>{
+                                        props.handleUserCredsChange("confirm-password", e.target.value);
+                                    }}
                                 />
                             </div>
                         </MDBCol>
@@ -95,7 +83,7 @@ const Card= (props: any) => {
                     <MDBRow>
                         <MDBCol sm="12">
                            <Link to={{pathname: "/userinfo"}}>
-                                <button type="submit" className="button--green button--green--round signup__card--button">
+                                <button type="submit" className="button--green button--green--round signup__card--button" onClick={signup}>
                                     Sign Up
                                 </button>
                            </Link>

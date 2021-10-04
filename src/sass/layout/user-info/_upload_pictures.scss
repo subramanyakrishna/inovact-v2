@@ -37,8 +37,15 @@
             }
           
         }
+        &__image{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
         & img{
             width: 5rem;
+            object-fit: cover;
             @include respond(sm) {
                margin: 0 6rem ;
             }

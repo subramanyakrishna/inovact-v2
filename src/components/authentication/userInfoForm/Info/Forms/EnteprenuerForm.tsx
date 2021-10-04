@@ -33,7 +33,7 @@ export default function EnteprenuerForm(props :any) {
                         <MDBCol md='6'>
                              <div>
                               <label htmlFor="university">Enter Your Designation <span className="paragraph-primary--red">*</span></label>
-                              <Field
+                              <input
                               name={EcurrOrganization.name} 
                               className="input-formComponent" 
                               type="text" 
@@ -45,7 +45,7 @@ export default function EnteprenuerForm(props :any) {
                         <MDBCol md='6'>
                              <div>
                               <label htmlFor="university">Enter Your Organization Name<span className="paragraph-primary--red">*</span></label>
-                              <Field
+                              <input
                               name={ EcurrRole.name} 
                               className="input-formComponent" 
                               type="text" 
@@ -59,7 +59,7 @@ export default function EnteprenuerForm(props :any) {
                     <MDBRow>
                     <MDBCol md='12'>
                                   <label htmlFor="university">Enter the number of Years of Experience <span className="paragraph-primary--red">*</span></label>
-                                  <Field
+                                  <input
                                   name={EstartOfJourney.name}
                                   className="input-formComponent" 
                                   type="number" 

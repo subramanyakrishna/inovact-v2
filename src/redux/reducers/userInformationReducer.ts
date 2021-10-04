@@ -8,7 +8,7 @@ const initialState = {
     bio: "",
     avatar: "",
     email_id: "",
-    role: "",
+    role: "Student",
     designation: "",
     organization: "",
     organizational_role: "",
@@ -92,7 +92,13 @@ const updateUserInfo = (state = initialState, action: any)=>{
         return {
             ...state,
             degree: action.payload,
-        }   
+        }  
+        
+        case userInfoConstants.UPDATE_AOI:
+            return {
+                ...state,
+                area_of_interests: action.payload,
+            }
         default : return state;
     }
 }
