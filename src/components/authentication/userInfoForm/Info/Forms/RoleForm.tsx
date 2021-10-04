@@ -7,6 +7,7 @@ import mentor from 'images/user-info/mentor.png'
 import { MDBRow, MDBCol} from 'mdb-react-ui-kit'
 
 import {Field } from 'formik'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function RoleForm(props :any) {
@@ -21,7 +22,9 @@ export default function RoleForm(props :any) {
       setActiveIndex(index)
       console.log (role);
   }
- 
+//   const state = useSelector((state: any)=>state?.userInfo);
+//   const dispatch = useDispatch();
+  
   return (
       
     <React.Fragment>

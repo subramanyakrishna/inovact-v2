@@ -38,7 +38,7 @@ export default function EnteprenuerForm(props :any) {
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your Designation" 
-                            
+                              onChange={(e:any)=>props.handleChange("designation",e.target.value)}
                               />
                            </div>
                         </MDBCol>
@@ -50,7 +50,7 @@ export default function EnteprenuerForm(props :any) {
                               className="input-formComponent" 
                               type="text" 
                               placeholder="Enter Your Current Organization" 
-                              
+                              onChange={(e:any)=>props.handleChange("organization",e.target.value)}
                               />
                            </div>
                         </MDBCol>
@@ -64,6 +64,7 @@ export default function EnteprenuerForm(props :any) {
                                   className="input-formComponent" 
                                   type="number" 
                                   placeholder="Enter the number of Years of Experience" 
+                                  onChange={(e:any)=>props.handleChange("years_of_professional_experience",e.target.value)}
                                 />
                               </MDBCol>
                     </MDBRow>
