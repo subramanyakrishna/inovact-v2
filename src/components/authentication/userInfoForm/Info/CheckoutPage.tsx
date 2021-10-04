@@ -12,6 +12,8 @@ import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
 import NavBar from 'components/application/components/NavBar'
 import userSignup from 'redux/UserAuthentication/UserSignup';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 const steps = ['Role', 'General Info', 'Mentor','Enteprenuer','AreaOfInterest','Upload Form'];
@@ -42,16 +44,21 @@ export default function CheckoutPage(props: any) {
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
+  const userInfo = useSelector((state: any)=>state.userInfo);
  function submitForm(values:any, actions:any) {
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
   }
  
-  const signup = (e :any) => {
-    console.log("IT called the signup function");
+  const uploadDetails = (e: any)=>{
     e.preventDefault();
-    userSignup(props.userCreds.email, props.userCreds.password, props.userInfo);
-  };
+    axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user", {
+      headers: {
+        "Authorization": localStorage.getItem("user"),
+      },
+      body: userInfo
+    }).then((response)=>console.log(response)).catch(err=>console.log(err));
+  }
   function handleSubmit(values :any, actions :any) {
       if(isLastStep){
         submitForm(values,actions)
@@ -96,9 +103,9 @@ export default function CheckoutPage(props: any) {
 
                 <div className="buttons">
                   {activeStep !== 0 && (
-                    <button onClick={handleBack} className="button button--white">
+                    <a onClick={handleBack} className="button button--white">
                       Back
-                    </button>
+                    </a>
                   )}
                  
                   <button
@@ -106,7 +113,7 @@ export default function CheckoutPage(props: any) {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? <button className="text-color--white" onClick={signup}>Finish</button> : 'Next'}
+                  {isLastStep ? <a className="text-color--white" href="" onClick={uploadDetails}>Finish</a> : 'Next'}
                 </button>
                 
                 </div>

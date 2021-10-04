@@ -572,8 +572,14 @@ body {
       @media only screen and (max-width: 48em) {
         .upload__form__bio {
           padding: 1.5rem 1rem 1rem; } }
+    .upload__form__image {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      overflow: hidden; }
     .upload__form img {
-      width: 5rem; }
+      width: 5rem;
+      object-fit: cover; }
       @media only screen and (max-width: 48em) {
         .upload__form img {
           margin: 0 6rem; } }
@@ -4931,3 +4937,31 @@ input, textarea:focus {
   @media only screen and (max-width: 48em) {
     .notifications-options {
       width: 100px; } }
+
+.toggle {
+  position: relative; }
+  .toggle input {
+    position: absolute;
+    opacity: 0; }
+    .toggle input:checked + span {
+      background-color: #02bd63; }
+      .toggle input:checked + span::before {
+        left: 22px; }
+  .toggle span {
+    display: flex;
+    width: 40px;
+    height: 20px;
+    background-color: #c4c4c4;
+    border-radius: 70px;
+    position: relative;
+    transition: background-color 0.2s; }
+    .toggle span::before {
+      content: '';
+      position: absolute;
+      top: 1.5px;
+      left: 1px;
+      width: 17px;
+      height: 17px;
+      border-radius: 100%;
+      transition: 0.2s;
+      background: #fff; }

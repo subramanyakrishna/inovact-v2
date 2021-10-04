@@ -90,7 +90,7 @@ export default function GeneralForm(props :any) {
                                   className="input-formComponent" 
                                   type="text" 
                                   placeholder="Enter Your University or College" 
-                                  onChange={(event:any)=> props.handleChange("college", event.target.value)}
+                                  onChange={(event:any)=> props.handleChange("university", event.target.value)}
                                 />
                               </MDBCol>
                     </MDBRow>
@@ -119,7 +119,7 @@ export default function GeneralForm(props :any) {
                   <br />
                   <Field  className="input-formComponent" value={userYOG} as="select" name={year.name} id="year"  onChange={(event:any)=>{ 
                     handleYOGChange(event.target.value);
-                    props.handleChange("year-of-graduation", event.target.value)}}>
+                    props.handleChange("graduation-year", event.target.value)}}>
                     <option value=" Select the  Year Of Graduation" label=" Select the  Year Of Graduation" >
                     Select the  Year Of Graduation{" "}
                     </option>

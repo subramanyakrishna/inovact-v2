@@ -2,10 +2,14 @@ import { combineReducers } from 'redux';
 
 import { authentication } from 'redux/reducers/loginReducer';
 import { registration } from 'redux/reducers/registerReducer';
+import { updateUserCreds } from './userCredsReducer';
+import { updateUserInfo } from './userInformationReducer';
 
 const rootReducer = combineReducers({
-  authentication,
-  registration,
+  authentication: authentication,
+  registration: registration,
+  userInfo: updateUserInfo,
+  userCreds: updateUserCreds,
 });
 
 export default rootReducer;

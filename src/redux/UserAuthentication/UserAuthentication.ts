@@ -22,6 +22,7 @@ const userAuthentication = async (email: any, password: any)=>{
     cognitoUser.authenticateUser(authenticationDetails,{
         onSuccess: function(result){
             const accessToken = result.getAccessToken().getJwtToken();
+            console.log(result);
             store.dispatch({
                 type: userConstants.LOGIN_SUCCESS, 
                 user: {
