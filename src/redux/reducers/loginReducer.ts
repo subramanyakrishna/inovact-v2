@@ -1,6 +1,6 @@
 import { userConstants } from 'redux/actionTypes/userConstants';
-
-let user = JSON.parse(localStorage.getItem('user')!);
+// const userTemp = localStorage.getItem("user");
+// let user = userTemp && JSON.parse(userTemp!);
 
 // const initialState = user ? {
 //      loggedIn: true,
@@ -48,7 +48,7 @@ export function authentication(state = initialState, action :any) {
         ...state,
         userAuthenticated: true,
         loading: false,
-        user: action.user,
+        // user: action.user,
       };
     case userConstants.LOGIN_FAILURE:
       return {

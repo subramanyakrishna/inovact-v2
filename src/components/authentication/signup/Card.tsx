@@ -82,7 +82,7 @@ const Card= (props: any) => {
                     </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
-                           <Link to={{pathname: "/userinfo"}}>
+                           <Link to={{pathname: "/login"}}>
                                 <button type="submit" className="button--green button--green--round signup__card--button" onClick={signup}>
                                     Sign Up
                                 </button>

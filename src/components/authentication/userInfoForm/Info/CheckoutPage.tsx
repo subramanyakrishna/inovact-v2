@@ -14,9 +14,10 @@ import NavBar from 'components/application/components/NavBar'
 import userSignup from 'redux/UserAuthentication/UserSignup';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import UserPool from 'redux/UserAuthentication/UserPool';
 
 
-const steps = ['Role', 'General Info', 'Mentor','Enteprenuer','AreaOfInterest','Upload Form'];
+const steps = ['Role', 'General Info', 'Role-Specific-Form','AreaOfInterest','Upload Form'];
 const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step :number, handleChange: any) {
@@ -28,10 +29,8 @@ function _renderStepContent(step :number, handleChange: any) {
     case 2:
         return <MentorForm formField={formField} handleChange={handleChange}/>;
     case 3:
-          return <EnteprenuerForm formField={formField} handleChange={handleChange}/>;
-    case 4:
             return <AreaOfInterest formField={formField} handleChange={handleChange}/>;
-    case 5 : 
+    case 4 : 
     return <UploadForm  formField={formField} handleChange={handleChange}/>
     default:
       return <div>Not Found</div>;
@@ -52,26 +51,30 @@ export default function CheckoutPage(props: any) {
  
   const uploadDetails = (e: any)=>{
     e.preventDefault();
-    axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user", {
+    //
+    const currentUser: any = UserPool.getCurrentUser();
+    console.log(currentUser);
+    axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
       headers: {
-        "Authorization": localStorage.getItem("user"),
-      },
-      body: userInfo
-    }).then((response)=>console.log(response)).catch(err=>console.log(err));
+        "Authorization": currentUser.storage.user,
+      }
+    }).then((resp)=> console.log(resp)).catch(err=>console.log(err));
+    // axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",{
+    //   headers: {
+    //     "Authorization": localStorage.getItem("user"),
+    //   },
+    // }).then((response)=>console.log(response)).catch(err=>console.log(err));
   }
   function handleSubmit(values :any, actions :any) {
       if(isLastStep){
         submitForm(values,actions)
       }
       if(activeStep === 1){
-        if( props.userInfo.role === "student") {
-          setActiveStep(activeStep + 3);
-        }
-        else if(props.userInfo.role === "mentor"){
-          setActiveStep(activeStep+1)
+        if( props.userInfo.role === "Student") {
+          setActiveStep(activeStep + 2);
         }
         else {
-          setActiveStep(activeStep + 2);
+          setActiveStep(activeStep + 1);
         }
       }
      else{
@@ -82,7 +85,11 @@ export default function CheckoutPage(props: any) {
   }
 
   function handleBack() {
-    setActiveStep(activeStep - 1);
+    if(activeStep===3){
+      setActiveStep(activeStep-2);
+    }else{
+      setActiveStep(activeStep - 1);
+    }
   }
  
 
