@@ -6,7 +6,7 @@ import userAuthentication from "redux/UserAuthentication/UserAuthentication";
 import { useDispatch, useSelector } from 'react-redux';
 import { userConstants } from 'redux/actionTypes/userConstants';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 interface Props {}
 
 const Card: React.FC<Props> = (props) => {
@@ -19,15 +19,21 @@ const Card: React.FC<Props> = (props) => {
         setPassword(e.target.value);
     }
     const dispatch = useDispatch();
-    const state = useSelector(state=> state);
-    
+    const state = useSelector((state: any)=> state);
+    const history = useHistory();
     const signin = async (e: any)=>{
         e.preventDefault();
         console.log(email, password);
         dispatch({type: userConstants.LOGIN_REQUEST});
-        await userAuthentication(email, password);
-        console.log(state);
+        userAuthentication(email, password).then(()=>{
+            console.log("redirecting to feed");
+            history.push("/feed");
+        }).catch(err=>{
+            console.log(err);
+            history.push("/login");
+        });
     }
+
     return (
         <div className="signin__card">
             <span className="signin__card--header">Sign in</span>
@@ -68,9 +74,13 @@ const Card: React.FC<Props> = (props) => {
                     </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
-                            <button className="button--green button--green--round signup__card--button">
-                                Sign In
-                            </button>
+                            {/* <Link to="/feed"> */}
+                                <button className="button--green button--green--round signup__card--button" >
+                                    Sign In
+                                </button>
+                            
+                            {/* </Link> */}
+                                
                         </MDBCol>
                     </MDBRow>
                     <MDBRow>

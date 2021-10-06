@@ -19,6 +19,7 @@ import {
     switchMap,
     throttleTime,
 } from 'rxjs/operators'
+import { useSelector } from 'react-redux'
 
 const watchScroll = () =>
     of(typeof window === 'undefined').pipe(
@@ -32,6 +33,7 @@ const watchScroll = () =>
     )
 
 const NavBar = () => {
+    const userData = useSelector((state: any)=>state.userData);
     const scrollDirection = useObservable(watchScroll, 'Up')
     // const removeTheBorder = (target: any)=>{
     //     console.log(target);
@@ -115,11 +117,12 @@ const NavBar = () => {
                             />
                         </Link>
                         <Link to="/profile">
-                            <img
-                                className="nav-component__items__item__icons--user"
-                                src={user}
-                                alt="User"
-                            />
+                            <div className="nav-component__items__item__icons--user">
+                                <img
+                                    src={userData.avatar}
+                                    alt="User"
+                                />
+                            </div>
                         </Link>
                         </div>
                         

@@ -43,7 +43,7 @@ export default function RoleForm(props :any) {
            xs="12"
            sm="4"
            name="role"
-           value="student"
+           value="Student"
             className="role-selection__form__cards__col"
             onClick={(event: any) => {
                 toggleClick(0);
@@ -57,10 +57,10 @@ export default function RoleForm(props :any) {
                         : 'role-selection__form__cards__item'
                 }
             >
-          <Field type="radio" name="role" value="student" hidden/>
+          <Field type="radio" name="role" value="Student" hidden/>
                 <img
                     src={student}
-                    alt="student"
+                    alt="Student"
                 />
                <h6>Student</h6>
             </div>
@@ -116,7 +116,7 @@ export default function RoleForm(props :any) {
                 }
                
             >
-                 <Field type="radio" name="role" value="enterprenuer" hidden/>
+                 <Field type="radio" name="role" value="Enterprenuer" hidden/>
                 <img
                     src={enterprenuer}
                     id="enterprenuer"

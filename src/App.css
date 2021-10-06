@@ -1544,6 +1544,9 @@ body {
               display: none; } }
         .nav-component__items__item__icons--user {
           width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          overflow: hidden;
           margin-left: 1rem; }
           @media only screen and (max-width: 62em) {
             .nav-component__items__item__icons--user {
@@ -1551,6 +1554,10 @@ body {
           @media only screen and (max-width: 36em) {
             .nav-component__items__item__icons--user {
               display: none; } }
+          .nav-component__items__item__icons--user img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; }
   .nav-component__search {
     position: relative; }
     .nav-component__search img {
@@ -3778,8 +3785,15 @@ input, textarea:focus {
 
 .top-profile-user-img {
   width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
   transform: translateX(-20%);
   opacity: 1; }
+  .top-profile-user-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
 
 .top-profile-user-data {
   display: flex;

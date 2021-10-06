@@ -1,6 +1,6 @@
 import { userConstants } from 'redux/actionTypes/userConstants';
-
-let user = JSON.parse(localStorage.getItem('user')!);
+// const userTemp = localStorage.getItem("user");
+// let user = userTemp && JSON.parse(userTemp!);
 
 // const initialState = user ? {
 //      loggedIn: true,
@@ -31,7 +31,9 @@ let user = JSON.parse(localStorage.getItem('user')!);
 // }
 const initialState = {
   userAuthenticated: false,
-  user: {},
+  user: {
+    profile_complete: false,
+  },
   loading: false,
   message: "",
 }

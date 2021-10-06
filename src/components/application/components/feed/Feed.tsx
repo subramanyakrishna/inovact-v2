@@ -15,6 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown';
 
 function Feed() {
+    //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([
         {
             id: '1',
