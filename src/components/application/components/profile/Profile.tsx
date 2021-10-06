@@ -14,6 +14,7 @@ import EditBio from './components/modals/EditBio';
 import EditProject from './components/modals/EditProject';
 import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
+import { useSelector } from 'react-redux';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -211,6 +212,7 @@ function Profile() {
         openModal();
         setShowEditProject(true);
     }
+    const userData = useSelector((state: any)=>state.userData);
     return (
         <div>
             {
@@ -256,13 +258,15 @@ function Profile() {
                     <TopProfileContent showLeft={showLeft} setShowLeft={setShowLeft} setShowRight={setShowRight} showAbout={showAbout}
                     showReportUser={reportAccount}
                     showBlockUser={blockAccount}
-                    showRestrictUser={restrictAccount}/>
+                    showRestrictUser={restrictAccount}
+                    userData = {userData}
+                    />
                 </div>
                 <div className="profile--content-bottom-container">
                     {
                         showLeft &&
                         <div className="profile--content-left">
-                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} />
+                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userData = {userData}/>
                         </div>
                     }
                     {

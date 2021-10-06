@@ -1,10 +1,17 @@
 import userPool from "./UserPool";
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 
-const userSignup = (email :any, password: any) => {
+const userSignup = ({email_id, password, user_name}: any) => {
+    const attributeData = {
+        Name: "email",
+        Value: email_id,
+    };
+    const attribute = new CognitoUserAttribute(attributeData);
+    
     const attributeList: any = [];
-    console.log(email, password);
-    userPool.signUp(email, password, attributeList, [] , (err: any, data: any) => {
+    attributeList.push(attribute);
+    console.log(email_id, user_name,password);
+    userPool.signUp(user_name, password, attributeList, [] , (err: any, data: any) => {
         if (err) {
             console.log(err);
             alert(err.message || JSON.stringify(err));

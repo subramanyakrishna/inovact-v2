@@ -1,10 +1,11 @@
 import { AuthenticationDetails, CognitoUser,  } from "amazon-cognito-identity-js";
 
-import userPool from "./UserPool";
+import UserPool from "./UserPool";
 import { store } from "redux/helpers/store";
 import { userActions } from "redux/actions/user.actions";
 import { userConstants } from "redux/actionTypes/userConstants";
 import axios from "axios";
+import userDataConstants from "redux/actionTypes/userDataConstants";
 
 const userAuthentication = async (email: any, password: any)=>{
     const authenticationData = {
@@ -15,7 +16,7 @@ const userAuthentication = async (email: any, password: any)=>{
 
     const userData = {
         Username: email,
-        Pool: userPool,
+        Pool: UserPool,
     };
     const cognitoUser = new CognitoUser(userData);
     store.dispatch({type: userConstants.LOGIN_REQUEST});
@@ -23,17 +24,19 @@ const userAuthentication = async (email: any, password: any)=>{
         onSuccess: function(result){
             // const accessToken = result.getAccessToken().getJwtToken();
             // console.log("result from aws: ",result);
-            store.dispatch({
-                type: userConstants.LOGIN_SUCCESS, 
-                user: {}
-            });
+            // store.dispatch({
+            //     type: userConstants.LOGIN_SUCCESS, 
+            //     user: {
+            //         profile_complete: false,
+            //     }
+            // });
             // localStorage.setItem("user", accessToken);
             // console.log(store.getState());
             // console.log(result);
-            const currentUser: any = userPool;
+            const currentUser: any = UserPool;
             // console.log(currentUser);
             localStorage.setItem("user",result.getIdToken().getJwtToken());
-            axios.get("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=15",{
+            axios.get("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=26",{
                headers: {
                 "Authorization": currentUser.storage.user,
               } 
@@ -45,7 +48,12 @@ const userAuthentication = async (email: any, password: any)=>{
                     user: {
                         profile_complete: resp.data.data.user[0].profile_complete
                     },
+                });
+                store.dispatch({
+                    type: userDataConstants.UPDATE_USER_INFO,
+                    data: resp.data.data.user[0],
                 })
+                console.log(store.getState());
 
             }).catch((err)=>console.log(err));
             
@@ -57,6 +65,8 @@ const userAuthentication = async (email: any, password: any)=>{
                 type: userConstants.LOGIN_FAILURE,
                 message: err.message,
             });
+            localStorage.removeItem("user");
+            return  new Error("authentication failure");
         }
     })
 }

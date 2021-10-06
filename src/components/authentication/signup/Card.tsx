@@ -13,7 +13,7 @@ const Card= (props: any) => {
  
     const userCreds = useSelector((state: any)=>state.userCreds);
     const signup = ()=>{
-        userSignup(userCreds.email_id, userCreds.password);
+        userSignup(userCreds);
         console.log(userCreds.email_id, userCreds.password);
     }
     return (

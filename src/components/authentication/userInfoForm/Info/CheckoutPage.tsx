@@ -12,9 +12,11 @@ import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
 import NavBar from 'components/application/components/NavBar'
 import userSignup from 'redux/UserAuthentication/UserSignup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import UserPool from 'redux/UserAuthentication/UserPool';
+import { store } from 'redux/helpers/store';
+import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
 
 
 const steps = ['Role', 'General Info', 'Role-Specific-Form','AreaOfInterest','Upload Form'];
@@ -48,22 +50,26 @@ export default function CheckoutPage(props: any) {
     actions.setSubmitting(false);
     setActiveStep(activeStep + 1);
   }
- 
-  const uploadDetails = (e: any)=>{
+  
+  const updateProfileCompleteStatus = async()=>{
+    store.dispatch({
+      type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
+    });
+  }
+  const uploadDetails = async(e: any)=>{
     e.preventDefault();
     //
     const currentUser: any = UserPool.getCurrentUser();
     console.log(currentUser);
-    axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
-      headers: {
-        "Authorization": currentUser.storage.user,
-      }
-    }).then((resp)=> console.log(resp)).catch(err=>console.log(err));
-    // axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",{
-    //   headers: {
-    //     "Authorization": localStorage.getItem("user"),
-    //   },
-    // }).then((response)=>console.log(response)).catch(err=>console.log(err));
+    
+    updateProfileCompleteStatus().then(()=>{
+      axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
+        headers: {
+          "Authorization": currentUser.storage.user,
+        }
+      }).then((resp)=> console.log(resp)).catch(err=>console.log(err));
+    })
+
   }
   function handleSubmit(values :any, actions :any) {
       if(isLastStep){

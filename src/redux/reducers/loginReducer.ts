@@ -31,7 +31,9 @@ import { userConstants } from 'redux/actionTypes/userConstants';
 // }
 const initialState = {
   userAuthenticated: false,
-  user: {},
+  user: {
+    profile_complete: false,
+  },
   loading: false,
   message: "",
 }
@@ -48,7 +50,7 @@ export function authentication(state = initialState, action :any) {
         ...state,
         userAuthenticated: true,
         loading: false,
-        // user: action.user,
+        user: action.user,
       };
     case userConstants.LOGIN_FAILURE:
       return {

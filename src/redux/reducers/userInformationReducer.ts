@@ -18,6 +18,7 @@ const initialState = {
     years_of_professional_experience: "",
     degree: "",
     area_of_interests: [],
+    profile_complete: false,
 }
 
 
@@ -98,6 +99,12 @@ const updateUserInfo = (state = initialState, action: any)=>{
             return {
                 ...state,
                 area_of_interests: action.payload,
+            }
+
+        case userInfoConstants.UPDATE_PROFILE_COMPLETE:
+            return{
+                ...state,
+                profile_complete: true,
             }
         default : return state;
     }

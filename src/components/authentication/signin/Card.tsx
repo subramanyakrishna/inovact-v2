@@ -25,7 +25,13 @@ const Card: React.FC<Props> = (props) => {
         e.preventDefault();
         console.log(email, password);
         dispatch({type: userConstants.LOGIN_REQUEST});
-        userAuthentication(email, password);
+        userAuthentication(email, password).then(()=>{
+            console.log("redirecting to feed");
+            history.push("/feed");
+        }).catch(err=>{
+            console.log(err);
+            history.push("/login");
+        });
     }
 
     return (

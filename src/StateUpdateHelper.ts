@@ -12,10 +12,10 @@ const handleUserCredsChange = (name: any, value: any)=>{
             store.dispatch({type: userCredsConstants.UPDATE_PASSWORD, payload: value});
             break;
     }
-    // console.log(state);
+    console.log(store.getState());
 }
 const handleUserInfoChange = async (name: any, value: any)=>{
-    console.log(name, value);
+    // console.log(name, value);
     switch(name){
 
         case "first-name": 
@@ -76,9 +76,10 @@ const handleUserInfoChange = async (name: any, value: any)=>{
             store.dispatch({
                 type: userInfoConstants.UPDATE_AOI,
                 payload: value,
-            })
+            });
             break;
     }
+    // console.log(store.getState());
 }
 
 export {
