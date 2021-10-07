@@ -1,56 +1,54 @@
-.settings-my-profile{
-    &-main{
+.settings-my-profile {
+    &-main {
         padding: 4rem 6rem;
         display: flex;
         flex-direction: column;
         row-gap: 4rem;
-        @include respond(lg){
+        @include respond(lg) {
             padding: 2rem 2rem;
         }
     }
-    &-nametag{
+    &-nametag {
         display: flex;
 
         align-items: center;
-        div{
+        div {
             display: flex;
             flex-direction: column;
         }
-        &-img-container{
+        &-img-container {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             // margin-right: 4rem;
             overflow: hidden;
-            img{
+            img {
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
-            @include respond(md){
+            @include respond(md) {
                 width: 100px;
                 height: 100px;
                 margin: 10px;
             }
-            @include respond(xs){
+            @include respond(xs) {
                 width: 70px;
                 height: 70px;
                 margin: 10px;
             }
         }
-        &-editcontainer{
-            
+        &-editcontainer {
             padding: 5px;
-            
-            transform: scale(0.7) translate(-150%,120%);
-            @include respond(md){
-                transform: scale(0.7) translate(-150%,100%);
 
+            transform: scale(0.7) translate(-150%, 120%);
+            @include respond(md) {
+                transform: scale(0.7) translate(-150%, 100%);
             }
-            @include respond(xs){
-                transform: scale(0.5) translate(-200%,80%);
+            @include respond(xs) {
+                transform: scale(0.5) translate(-200%, 80%);
             }
-            button{
+            button {
                 width: 35px;
                 height: 35px;
                 border-radius: 50%;
@@ -59,54 +57,53 @@
                 border: none;
             }
         }
-        &-name{
+        &-name {
             font-size: 25px;
             font-weight: 600;
         }
-        
     }
-    &-details{
+    &-details {
         display: flex;
         justify-content: space-between;
-        @include respond(md){
+        @include respond(md) {
             flex-direction: column;
             row-gap: 50px;
         }
-        div{
+        div {
             width: 80%;
-            @include respond(md){
+            @include respond(md) {
                 width: 100%;
             }
         }
-        &-name{
+        &-name {
             margin: 20px 20px;
             display: flex;
             justify-content: space-between;
-            span{
+            span {
                 font-size: large;
                 font-weight: 600;
             }
-            input{
+            input {
                 width: 60%;
                 padding: 5px 10px;
                 border-radius: 10px;
                 border: none;
-                background-color: #F2F7FF;
+                background-color: #f2f7ff;
             }
         }
-        &-bio{
+        &-bio {
             display: flex;
             flex-direction: column;
             margin: 0rem 1rem;
             transform: translateY(-10%);
-            span{
+            span {
                 font-size: larger;
                 font-weight: 600;
             }
-            textarea{
+            textarea {
                 border-radius: 10px;
                 height: 100px;
-                background-color: #F2F7FF;
+                background-color: #f2f7ff;
                 border: none;
                 width: 100%;
                 padding: 5px 10px;
@@ -114,23 +111,40 @@
             }
         }
     }
-    &-area-of-interests{
-        &-heading{
+    &-area-of-interests {
+        &-heading {
             font-size: 25px;
             font-weight: 600;
             margin-bottom: 30px;
         }
-        &-allskills{
+        &-allskills {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px;
         }
-        &-skills{
+        &-addskills {
+            margin: 0 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            input {
+                height: 48px;
+                width: 148px;
+                border-radius: 22px;
+                border: 1px solid gray;
+                box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+                -webkit-box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+                font-size: small;
+                text-align: center;
+            }
+        }
+        &-skills {
             border: 2px solid $color-primary-green;
             padding: 0px 10px;
             border-radius: 15px;
-            button{
+            button {
                 background-color: $color-primary-green;
                 color: white;
                 width: 20px;
@@ -139,84 +153,84 @@
                 border: none;
                 padding: 0;
                 font-size: small;
-                transform: scale(0.7) translate(100%,-80%);
+                transform: scale(0.7) translate(100%, -80%);
             }
         }
     }
-    &-skills{
+    &-skills {
         padding: 20px;
         border: 1px solid grey;
         border-radius: 10px;
-        &-heading{
+        &-heading {
             font-size: 25px;
             font-weight: 600;
             margin-top: 2rem;
         }
     }
-    &-education{
-        &-heading{
+    &-education {
+        &-heading {
             font-size: 25px;
             font-weight: 600;
         }
-        
-        &-college{
+
+        &-college {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            input{
+            input {
                 margin: 0px 10px 0px 0px;
                 width: 80%;
             }
-            @include respond(md){
+            @include respond(md) {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
-        &-content{
+        &-content {
             width: 100%;
             display: flex;
             flex-direction: column;
             row-gap: 20px;
-            @include respond(sm){
+            @include respond(sm) {
                 font-size: small;
                 font-weight: 600;
             }
-            input{
+            input {
                 border: none;
                 padding: 5px 10px;
-                background-color: #F2F7FF;
+                background-color: #f2f7ff;
                 border-radius: 10px;
             }
         }
-        &-degree-details{
+        &-degree-details {
             display: flex;
             justify-content: space-between;
             column-gap: 25px;
-            @include respond(md){
+            @include respond(md) {
                 flex-direction: column;
-                
+
                 row-gap: 20px;
             }
         }
-        &-degree{
+        &-degree {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            @include respond(md){
+            @include respond(md) {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            input{
+            input {
                 width: 60%;
                 margin: 0px 10px;
             }
         }
     }
-    &-delete-account{
-        button{
+    &-delete-account {
+        button {
             float: right;
-            border:none;
+            border: none;
             background-color: white;
             font-weight: 600;
             color: red;

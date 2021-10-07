@@ -1,22 +1,50 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-function UserEducation() {
+function UserEducation({ handleUserInfoChange }: any) {
+    const userInfo = useSelector((state: any) => state.userInfo)
     return (
         <div className="settings-my-profile-education">
-            <span className="settings-my-profile-education-heading">Education</span>
+            <span className="settings-my-profile-education-heading">
+                Education
+            </span>
             <div className="settings-my-profile-education-content">
                 <div className="settings-my-profile-education-college">
                     <label>University/College</label>
-                    <input type="text" placeholder="University Name"/>
+                    <input
+                        type="text"
+                        placeholder="University Name"
+                        value={userInfo['university']}
+                        onChange={(e) =>
+                            handleUserInfoChange('university', e.target.value)
+                        }
+                    />
                 </div>
                 <div className="settings-my-profile-education-degree-details">
                     <div className="settings-my-profile-education-degree">
                         <span>Degree</span>
-                        <input type="text" placeholder="Eg .   B.E"/>
+                        <input
+                            type="text"
+                            placeholder="Eg .   B.E"
+                            value={userInfo['degree']}
+                            onChange={(e) =>
+                                handleUserInfoChange('degree', e.target.value)
+                            }
+                        />
                     </div>
                     <div className="settings-my-profile-education-degree">
                         <span>Year Of Graduation</span>
-                        <input type="text" placeholder="Eg .   2011"/>
+                        <input
+                            type="text"
+                            placeholder="Eg .   2011"
+                            value={userInfo['graduation_year']}
+                            onChange={(e) =>
+                                handleUserInfoChange(
+                                    'graduation-year',
+                                    e.target.value
+                                )
+                            }
+                        />
                     </div>
                 </div>
             </div>
@@ -24,4 +52,4 @@ function UserEducation() {
     )
 }
 
-export default UserEducation;
+export default UserEducation
