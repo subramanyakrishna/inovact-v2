@@ -4538,7 +4538,8 @@ input, textarea:focus {
         .teamset-delete-team-left img {
           width: 44px;
           height: 44px;
-          border-radius: 100%; }
+          border-radius: 100%;
+          object-fit: cover; }
         .teamset-delete-team-left-name {
           margin-left: 10px;
           font-size: 1.1rem; }
