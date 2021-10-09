@@ -4,7 +4,6 @@ import EditIcon from "@material-ui/icons/Edit";
 
 
 function ProfileImage() {
-    // const userData = 
     return (
         <div className="settings-my-profile-nametag">
             <div className="settings-my-profile-nametag-img-container">

@@ -6,6 +6,7 @@ import { userActions } from "redux/actions/user.actions";
 import { userConstants } from "redux/actionTypes/userConstants";
 import axios from "axios";
 import userDataConstants from "redux/actionTypes/userDataConstants";
+import { userInfoConstants } from "redux/actionTypes/userInfoConstants";
 
 const userAuthentication = async (email: any, password: any)=>{
     const authenticationData = {
@@ -50,7 +51,7 @@ const userAuthentication = async (email: any, password: any)=>{
                     },
                 });
                 store.dispatch({
-                    type: userDataConstants.UPDATE_USER_INFO,
+                    type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
                     data: resp.data.data.user[0],
                 })
                 console.log(store.getState());
@@ -65,7 +66,8 @@ const userAuthentication = async (email: any, password: any)=>{
                 type: userConstants.LOGIN_FAILURE,
                 message: err.message,
             });
-            localStorage.removeItem("user");
+            // localStorage.removeItem("user");
+            localStorage.clear();
             return  new Error("authentication failure");
         }
     })

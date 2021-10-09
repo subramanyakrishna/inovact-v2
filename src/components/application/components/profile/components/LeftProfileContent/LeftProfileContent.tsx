@@ -8,7 +8,7 @@ function LeftProfileContent(props: any) {
     return (
         <div className="left_profile_content">
             <DashboardContent/>
-            <BioDescription viewEditBio={props.viewEditBio} userData = {props.userData}/>
+            <BioDescription viewEditBio={props.viewEditBio} userInfo = {props.userInfo}/>
             <SkillsAndInterests/>
             <TeamsPartOf createTeam={props.createTeam}/>
         </div>

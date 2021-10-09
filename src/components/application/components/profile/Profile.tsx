@@ -212,7 +212,7 @@ function Profile() {
         openModal();
         setShowEditProject(true);
     }
-    const userData = useSelector((state: any)=>state.userData);
+    const userInfo = useSelector((state: any)=>state.userInfo);
     return (
         <div>
             {
@@ -259,14 +259,14 @@ function Profile() {
                     showReportUser={reportAccount}
                     showBlockUser={blockAccount}
                     showRestrictUser={restrictAccount}
-                    userData = {userData}
+                    userInfo = {userInfo}
                     />
                 </div>
                 <div className="profile--content-bottom-container">
                     {
                         showLeft &&
                         <div className="profile--content-left">
-                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userData = {userData}/>
+                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {userInfo}/>
                         </div>
                     }
                     {

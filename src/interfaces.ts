@@ -249,7 +249,7 @@ interface TeamRequestI {
 /*
  *  Team Interface
  */
-export interface TeamDataI {
+interface TeamDataI {
   id: number;
   name: string;
   tags: [number];
@@ -272,3 +272,22 @@ export interface TeamDataI {
 //   like_notification: boolean;
 //   comments_notification: boolean;
 // }
+
+export type {
+  AreaOfInterstI,
+  UserI,
+  RoleI,
+  SkillI,
+  DocumentI,
+  CommentI,
+  ProjectI,
+  IdeaI,
+  ThoughtI,
+  Notifications,
+  ConnectionsI,
+  RequestsI,
+  TeamMemberI,
+  TeamInvitation,
+  TeamRequestI,
+  TeamDataI,
+}
