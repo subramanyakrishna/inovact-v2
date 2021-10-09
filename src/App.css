@@ -3910,12 +3910,13 @@ input, textarea:focus {
   height: 100vh; }
   .settings-breadcrumb {
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    height: 39px; }
     .settings-breadcrumb-pc {
       color: #02bd63;
       justify-content: flex-start;
       align-items: center;
-      height: 85px;
+      height: 150px;
       background-color: #ffffff;
       padding-left: 98px;
       margin-bottom: 16px;
@@ -4175,7 +4176,8 @@ input, textarea:focus {
             .privacy-settings-mid-block-box-user-left-img, .privacy-settings-mid-restrict-box-user-left-img {
               width: 50px;
               height: 50px;
-              border-radius: 100%; }
+              border-radius: 100%;
+              object-fit: cover; }
             .privacy-settings-mid-block-box-user-left-text, .privacy-settings-mid-restrict-box-user-left-text {
               display: flex;
               flex-direction: column;
@@ -4245,7 +4247,8 @@ input, textarea:focus {
         .notification-mid-teams-team-left img {
           width: 44px;
           height: 44px;
-          border-radius: 100%; }
+          border-radius: 100%;
+          object-fit: cover; }
         .notification-mid-teams-team-left-name {
           margin-left: 10px;
           font-size: 1.1rem; }
@@ -4282,7 +4285,8 @@ input, textarea:focus {
     color: #000000;
     margin-bottom: 15px; }
   .faq img {
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    object-fit: cover; }
 
 .settings-my-profile-main {
   padding: 4rem 6rem;
@@ -4362,7 +4366,7 @@ input, textarea:focus {
       padding: 5px 10px;
       border-radius: 10px;
       border: none;
-      background-color: #F2F7FF; }
+      background-color: #f2f7ff; }
   .settings-my-profile-details-bio {
     display: flex;
     flex-direction: column;
@@ -4374,7 +4378,7 @@ input, textarea:focus {
     .settings-my-profile-details-bio textarea {
       border-radius: 10px;
       height: 100px;
-      background-color: #F2F7FF;
+      background-color: #f2f7ff;
       border: none;
       width: 100%;
       padding: 5px 10px;
@@ -4390,6 +4394,22 @@ input, textarea:focus {
   flex-wrap: wrap;
   gap: 10px;
   margin: 20px; }
+
+.settings-my-profile-area-of-interests-addskills {
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+  .settings-my-profile-area-of-interests-addskills input {
+    height: 48px;
+    width: 148px;
+    border-radius: 22px;
+    border: 1px solid gray;
+    box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 24px -12px rgba(0, 0, 0, 0.75);
+    font-size: small;
+    text-align: center; }
 
 .settings-my-profile-area-of-interests-skills {
   border: 2px solid #02bd63;
@@ -4443,7 +4463,7 @@ input, textarea:focus {
   .settings-my-profile-education-content input {
     border: none;
     padding: 5px 10px;
-    background-color: #F2F7FF;
+    background-color: #f2f7ff;
     border-radius: 10px; }
 
 .settings-my-profile-education-degree-details {
@@ -4475,6 +4495,59 @@ input, textarea:focus {
   font-weight: 600;
   color: red;
   text-decoration: underline; }
+
+.teamset {
+  padding: 2% 4% 2% 4%;
+  display: flex;
+  flex-direction: column; }
+  .teamset-select {
+    padding-left: 15px;
+    margin-top: 15px;
+    width: 70%;
+    display: flex;
+    flex-direction: column; }
+    @media only screen and (max-width: 62em) {
+      .teamset-select {
+        width: 95%; } }
+    .teamset-select-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px; }
+  .teamset-delete {
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 2% 5% 2% 5%;
+    display: flex;
+    height: 296px;
+    width: 95%;
+    flex-direction: column;
+    overflow: auto; }
+    .teamset-delete-team {
+      height: 80px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .teamset-delete-team-left {
+        width: 60%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+        .teamset-delete-team-left img {
+          width: 44px;
+          height: 44px;
+          border-radius: 100%;
+          object-fit: cover; }
+        .teamset-delete-team-left-name {
+          margin-left: 10px;
+          font-size: 1.1rem; }
+        .teamset-delete-team-left-deleteTeam {
+          color: red;
+          text-decoration: underline; }
+      .teamset-delete-team input {
+        margin-right: 30px; }
 
 .delete-member-buttons {
   margin-top: 2rem;

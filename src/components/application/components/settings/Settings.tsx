@@ -4,12 +4,14 @@ import MenuIcon from '@material-ui/icons/Menu'
 import back from 'images/teams/back.svg'
 import PrivacySettings from './components/PrivacySettings/PrivacySettings'
 import Notifications from './components/Notifications/Notifications'
-import Faq from './components/Faq/Faq';
-import YourProfile from "./components/YourProfile/YourProfile";
+import Faq from './components/Faq/Faq'
+import YourProfile from './components/YourProfile/YourProfile'
 import LogOutModal from './components/modals/LogOutModal'
 import DeleteTeamModal from './components/modals/DeleteTeamModal'
 import DeleteAccountModal from './components/modals/DeleteAccountModal'
-
+import TeamSettings from './components/TeamSettings/TeamSettings'
+import { useSelector } from 'react-redux'
+import { handleUserInfoChange } from '../../../../StateUpdateHelper'
 const options: { name: string; main: string; sub: string }[] = [
     {
         name: 'profile',
@@ -36,14 +38,14 @@ const Settings: React.FC = () => {
 
     const SIZE_LIMIT: number = 768
 
-    const [showLeft, setShowLeft] = useState(true);
-    const [showRight, setShowRight] = useState(true);
-    const [showLogOut, setShowLogOut] = useState(false);
-    const [showOverlay, setShowOverlay] = useState(false);
-    const [showDeleteTeam, setShowDeleteTeam] = useState(false);
-    const [showDeleteAccount, setShowDeleteAccount] = useState(false);
+    const [showLeft, setShowLeft] = useState(true)
+    const [showRight, setShowRight] = useState(true)
+    const [showLogOut, setShowLogOut] = useState(false)
+    const [showOverlay, setShowOverlay] = useState(false)
+    const [showDeleteTeam, setShowDeleteTeam] = useState(false)
+    const [showDeleteAccount, setShowDeleteAccount] = useState(false)
     const [width, setWidth] = useState(window.innerWidth)
-
+    console.log(useSelector((state) => state))
     const handleWindowResize = () => {
         setWidth(window.innerWidth)
     }
@@ -73,58 +75,52 @@ const Settings: React.FC = () => {
     }
     const onSelection = (selection: number) => {
         setSelectedOption(selection)
-        console.log(selection)
-        console.log(showLeft, showRight)
         if (width < SIZE_LIMIT) {
             setShowLeft(!showLeft)
             setShowRight(!showRight)
         }
     }
-    const openModal = ()=>{
-        setShowOverlay(true);
-        window.scrollTo(0,0);
-        document.body.style.overflow="hidden";
+    const openModal = () => {
+        setShowOverlay(true)
+        window.scrollTo(0, 0)
+        document.body.style.overflow = 'hidden'
     }
-    const closeModal = ()=>{
-        setShowOverlay(false);
-        setShowLogOut(false);
-        setShowDeleteTeam(false);
-        setShowDeleteAccount(false);
-        document.body.style.overflow="scroll";
+    const closeModal = () => {
+        setShowOverlay(false)
+        setShowLogOut(false)
+        setShowDeleteTeam(false)
+        setShowDeleteAccount(false)
+        document.body.style.overflow = 'scroll'
     }
-    const logOut = ()=>{
-        openModal();
-        setShowLogOut(true);
+    const logOut = () => {
+        openModal()
+        setShowLogOut(true)
     }
-    const deleteTeam = ()=>{
-        openModal();
-        setShowDeleteTeam(true);
+    const deleteTeam = () => {
+        openModal()
+        setShowDeleteTeam(true)
     }
-    const deleteAccount = ()=>{
-        openModal();
-        setShowDeleteAccount(true);
+    const deleteAccount = () => {
+        openModal()
+        setShowDeleteAccount(true)
     }
     return (
         <div>
-
-                {
-                    showOverlay &&
-                    <div>
-                        <div className="modal-overlay-settings" onClick={closeModal}></div>
-                        {
-                            showLogOut &&
-                            <LogOutModal closeModal={closeModal}/>
-                        }
-                        {
-                            showDeleteTeam &&
-                            <DeleteTeamModal closeModal={closeModal}/>
-                        }
-                        {
-                            showDeleteAccount &&
-                            <DeleteAccountModal closeModal={closeModal}/>
-                        }
-                    </div>
-                }
+            {showOverlay && (
+                <div>
+                    <div
+                        className="modal-overlay-settings"
+                        onClick={closeModal}
+                    ></div>
+                    {showLogOut && <LogOutModal closeModal={closeModal} />}
+                    {showDeleteTeam && (
+                        <DeleteTeamModal closeModal={closeModal} />
+                    )}
+                    {showDeleteAccount && (
+                        <DeleteAccountModal closeModal={closeModal} />
+                    )}
+                </div>
+            )}
             <div className={'settings'}>
                 <div
                     className={`settings-breadcrumb ${
@@ -136,7 +132,9 @@ const Settings: React.FC = () => {
                     {width > SIZE_LIMIT && <div>&lt;&lt;Back to Profile</div>}
                     {width < SIZE_LIMIT && <img src={back} alt="" />}
                     {width < SIZE_LIMIT && (
-                        <div className={' heading-secondary'}>Account Settings</div>
+                        <div className={' heading-secondary'}>
+                            Account Settings
+                        </div>
                     )}
                     {width < SIZE_LIMIT && (
                         <MenuIcon
@@ -162,8 +160,14 @@ const Settings: React.FC = () => {
 
                     {showRight && (
                         <div className={'settings-main-right'}>
-                            {selectedOption ==0 && <YourProfile deleteAccount={deleteAccount}/>}
+                            {selectedOption == 0 && (
+                                <YourProfile
+                                    deleteAccount={deleteAccount}
+                                    handleUserInfoChange={handleUserInfoChange}
+                                />
+                            )}
                             {selectedOption == 1 && <PrivacySettings />}
+                            {selectedOption == 2 && <TeamSettings />}
                             {selectedOption == 3 && <Notifications />}
                             {selectedOption == 5 && <Faq />}
                         </div>
