@@ -7,7 +7,6 @@ const handleUserCredsChange = (name: any, value: any)=>{
         case "email_id":
             store.dispatch({type: userCredsConstants.UPDATE_EMAIL_ID, payload: value});
             break;
-        
         case "password": 
             store.dispatch({type: userCredsConstants.UPDATE_PASSWORD, payload: value});
             break;

@@ -15,7 +15,7 @@ function BioDescription(props:any) {
         <EditIcon onClick={props.viewEditBio}/>
       </div>        
       {
-        props.userData.bio.length>=230 && 
+        props.userInfo.bio.length>=230 && 
         <div>
           {!showMore && (
             <p className="bio-description">
@@ -41,10 +41,10 @@ function BioDescription(props:any) {
         </div>
       }
       {
-        props.userData.bio.length<230 &&
+        props.userInfo.bio.length<230 &&
         <div>
           <p className="bio-description">
-              {props.userData.bio}
+              {props.userInfo.bio}
             </p>
         </div>
       }
@@ -53,11 +53,11 @@ function BioDescription(props:any) {
       <div className="bio-email-link">
         <div className="bio-email-link-email">
           <MailRounded style={{color: "#02bd63"}}/>
-          <span>{props.userData.email_id}</span>
+          <span>{props.userInfo.email_id}</span>
         </div>
         <div className="bio-email-link-link">
           <LanguageRounded style={{color: "#02bd63"}}/>
-          <span>{props.userData.website? props.userData.website: "No Field Yet..."}</span>
+          <span>{props.userInfo.website? props.userInfo.website: "No Field Yet..."}</span>
         </div>
       </div>
     </div>

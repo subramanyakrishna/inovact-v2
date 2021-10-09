@@ -56,12 +56,12 @@ function TopProfileContent(props: any) {
         <div className="top-profile-content">
             <div className="top-profile-user-tag">
                 <div className="top-profile-user-img">
-                    <img src={props.userData.avatar}  alt="User"/>
+                    <img src={props.userInfo.avatar}  alt="User"/>
                 </div>
                 <div className="top-profile-user-data">
-                    <span className="top-profile-user-data-name">{props.userData.first_name} {props.userData.last_name}</span>
-                    <span className="top-profile-user-data-designation">{props.userData.designation}</span>
-                    <span className="top-profile-user-data-university">{props.userData.university}</span>
+                    <span className="top-profile-user-data-name">{props.userInfo.first_name} {props.userInfo.last_name}</span>
+                    <span className="top-profile-user-data-designation">{props.userInfo.designation}</span>
+                    <span className="top-profile-user-data-university">{props.userInfo.university}</span>
                 </div>
             </div>
             <div className="top-profile-post-buttons">

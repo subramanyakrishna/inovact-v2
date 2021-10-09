@@ -33,7 +33,7 @@ const watchScroll = () =>
     )
 
 const NavBar = () => {
-    const userData = useSelector((state: any)=>state.userData);
+    const userInfo = useSelector((state: any)=>state.userInfo);
     const scrollDirection = useObservable(watchScroll, 'Up')
     // const removeTheBorder = (target: any)=>{
     //     console.log(target);
@@ -119,7 +119,7 @@ const NavBar = () => {
                         <Link to="/profile">
                             <div className="nav-component__items__item__icons--user">
                                 <img
-                                    src={userData.avatar}
+                                    src={userInfo.avatar}
                                     alt="User"
                                 />
                             </div>
@@ -158,6 +158,13 @@ const NavBar = () => {
                                 className="bottom-nav-component__items__icons"
                                 src={teams}
                                 alt="Team"
+                            />
+                        </Link>
+                        <Link to="/settings">
+                            <img
+                                className="bottom-nav-component__items__item__icons"
+                                src={settings}
+                                alt="settings"
                             />
                         </Link>
                         <Link to="/profile">

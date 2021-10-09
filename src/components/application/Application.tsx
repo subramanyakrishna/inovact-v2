@@ -18,6 +18,7 @@ import { userConstants } from 'redux/actionTypes/userConstants'
 import axios from 'axios'
 import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
 import PrivateRoute from '../../PrivateRoute';
+import userDataConstants from 'redux/actionTypes/userDataConstants'
 
 
 
@@ -45,6 +46,10 @@ function Application() {
                             profile_complete: resp.data.data.user[0].profile_complete
                         },
                     });
+                    dispatch({
+                        type: userDataConstants.UPDATE_USER_INFO,
+                        data: resp.data.data.user[0]
+                    })
     
                 }).catch((err)=>console.log(err));
         }else{

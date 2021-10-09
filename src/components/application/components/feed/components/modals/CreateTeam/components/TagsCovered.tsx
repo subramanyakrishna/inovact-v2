@@ -13,7 +13,7 @@ function TagsCovered() {
     }
     return (
         <div className="tags-covered">
-                <label>Tags covered in your project</label>
+                <label>Team Tags</label>
                 <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
                 <div>
                     {

@@ -11,7 +11,6 @@ const rootReducer = combineReducers({
   registration: registration,
   userInfo: updateUserInfo,
   userCreds: updateUserCreds,
-  userData: updateUserData,
 });
 
 export default rootReducer;

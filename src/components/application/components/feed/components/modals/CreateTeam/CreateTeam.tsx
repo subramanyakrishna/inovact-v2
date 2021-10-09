@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //Components
 import TeamNameDescription from './components/TeamNameDescription';
 import TeamMembers from './components/TeamMembers';
+import TagsCovered from './components/TagsCovered';
 
 
 function CreateTeam(props: any) {
@@ -17,6 +18,7 @@ function CreateTeam(props: any) {
                 <div className="modal_content">
                     <div>    
                         <TeamNameDescription/>
+                        <TagsCovered/>
                         <TeamMembers/>                   
                     </div>
                     <div className="modal_cover-post-btn">
