@@ -160,6 +160,13 @@ const NavBar = () => {
                                 alt="Team"
                             />
                         </Link>
+                        <Link to="/settings">
+                            <img
+                                className="bottom-nav-component__items__item__icons"
+                                src={settings}
+                                alt="settings"
+                            />
+                        </Link>
                         <Link to="/profile">
                             <img
                                 className="bottom-nav-component__items__icons--user"
