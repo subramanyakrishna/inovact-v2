@@ -2,11 +2,11 @@ import React from 'react'
 import profilepic from '../../../../../../../images/connections/profilepic.png'
 import EditIcon from '@material-ui/icons/Edit'
 
-function ProfileImage({ handleUserInfoChange }: any) {
+function ProfileImage({ handleUserInfoChange, userInfo }: any) {
     return (
         <div className="settings-my-profile-nametag">
             <div className="settings-my-profile-nametag-img-container">
-                <img src={profilepic} />
+                <img src={userInfo.avatar} />
             </div>
             <div className="settings-my-profile-nametag-editcontainer">
                 <button>

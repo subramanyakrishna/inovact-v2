@@ -90,31 +90,25 @@ const Notifications: React.FC = () => {
                     Show notification from selected teams
                 </div>
                 <div className={'notification-mid-teams'}>
-                    {TeamsData.map((team) => (
-                        <>
-                            <div className={'notification-mid-teams-team'}>
-                                <div className="notification-mid-teams-team-left">
-                                    <img
-                                        src={team.avatar}
-                                        alt={team.name}
-                                    ></img>
-                                    <div className="notification-mid-teams-team-left-name text-style--bold text-color--black">
-                                        {team.name}
-                                    </div>
+                    {TeamsData.map((team, i) => (
+                        <div className={'notification-mid-teams-team'}>
+                            <div className="notification-mid-teams-team-left">
+                                <img src={team.avatar} alt={team.name}></img>
+                                <div className="notification-mid-teams-team-left-name text-style--bold text-color--black">
+                                    {team.name}
                                 </div>
-
-                                <input
-                                    type="checkbox"
-                                    onChange={(event) =>
-                                        handleEachTeamNotif({
-                                            ...team,
-                                            checked: event.target.checked,
-                                        })
-                                    }
-                                />
                             </div>
-                            <hr />
-                        </>
+
+                            <input
+                                type="checkbox"
+                                onChange={(event) =>
+                                    handleEachTeamNotif({
+                                        ...team,
+                                        checked: event.target.checked,
+                                    })
+                                }
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
