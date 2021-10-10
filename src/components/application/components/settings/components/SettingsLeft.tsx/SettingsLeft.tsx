@@ -6,7 +6,7 @@ interface PropType {
     selected: number
     onSelection(option: number): any
     options: { name: string; main: string; sub: string }[]
-    logOut(): any,
+    logOut(): any
     deleteAccount(): any
 }
 const SettingsLeft: React.FC<PropType> = ({
@@ -14,7 +14,7 @@ const SettingsLeft: React.FC<PropType> = ({
     onSelection,
     options,
     logOut,
-    deleteAccount
+    deleteAccount,
 }) => {
     const [expand, setExpand] = useState(false)
     const SIZE_LIMIT: number = 768
@@ -82,14 +82,6 @@ const SettingsLeft: React.FC<PropType> = ({
             </div>
             {expand && (
                 <div className={'settings-left-expandedText'}>
-                    <div
-                        className={
-                            'settings-left-expand-logout paragraph-secondary text-style--bold'
-                        }
-                        onClick={logOut}
-                    >
-                        Log Out
-                    </div>
                     <div
                         className={
                             'settings-left-expand-signout paragraph-secondary text-style--bold'

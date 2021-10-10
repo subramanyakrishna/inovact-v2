@@ -1,15 +1,80 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import User from './User/User'
 import Toggle from '../Toggle/Toggle'
-import { accounts } from './tempData'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    updateBlockedUser,
+    updateRestrictedUser,
+} from 'redux/actions/blockedRestrictedAccounts.action'
 
-const PrivacySettings: React.FC = () => {
+const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
+    const is_public = useSelector((state: any) => state.userInfo.is_public)
     const [currentPswd, setCurrentPswd] = useState<string>('')
     const [newPswd, setNewPswd] = useState<string>('')
     const [rePswd, setRePswd] = useState<string>('')
-    const [blockedUser, setBlockedUser] = useState(accounts)
-    const [restrictedUser, setRestrictedUser] = useState(accounts)
-    const [makeProfilePublic, setMakeProfilePublic] = useState(false)
+
+    const dispath = useDispatch()
+    const userInfo = useSelector((state: any) => state.userInfo)
+
+    const blockedUsers = useSelector(
+        (state: any) => state.blockedAndRestricted.blocked_users
+    )
+    const restrictedUsers = useSelector(
+        (state: any) => state.blockedAndRestricted.restricted_users
+    )
+
+    useEffect(() => {
+        const blockedUsersIds = userInfo.blocked_users
+        if (blockedUsersIds.length) {
+            const blocked_users_data = blockedUsersIds.map((_id: any) => {
+                //call the user Endpoint using id
+                const user = {
+                    id: _id,
+                    first_name: 'John',
+                    last_name: 'dev' + Math.random().toString().substring(2, 4),
+                    user_name: 'john_dev',
+                    avatar: 'https://bit.ly/3EKg3dQ',
+                    designation:
+                        'ReactJs Developer' +
+                        Math.random().toString().substring(2, 4),
+                }
+
+                return {
+                    id: _id,
+                    name: user.first_name + ' ' + user.last_name,
+                    avatar: user.avatar,
+                    designation: user.designation,
+                }
+            })
+            dispath(updateBlockedUser(blocked_users_data))
+        }
+        const restrictedUsersIds = userInfo.restricted_users
+        if (restrictedUsersIds.length) {
+            const restricted_users_data = restrictedUsersIds.map((_id: any) => {
+                //call the user Endpoint using id
+                const user = {
+                    id: _id,
+                    first_name: 'John',
+                    last_name: 'dev' + Math.random().toString().substring(2, 4),
+                    user_name: 'john_dev',
+                    avatar: 'https://bit.ly/3EKg3dQ',
+                    designation:
+                        'ReactJs Developer' +
+                        Math.random().toString().substring(2, 4),
+                }
+
+                return {
+                    id: _id,
+                    name: user.first_name + ' ' + user.last_name,
+                    avatar: user.avatar,
+                    designation: user.designation,
+                    spanAfterConnection: '10 min', //ask how to do this
+                }
+            })
+            dispath(updateRestrictedUser(restricted_users_data))
+        }
+    }, [])
+
     const handlePswdChangeSubmit = () => {
         console.log(' password changed clicked')
     }
@@ -17,14 +82,43 @@ const PrivacySettings: React.FC = () => {
         console.log('forget password clicked')
     }
 
-    const handleBlockedUserUnBlock = (_id: string) => {
-        console.log('Unblock', _id)
+    const handleblockedUsersUnBlock = (idOfUnblockedAccount: any) => {
+        handleUserInfoChange(
+            'blocked_users',
+            userInfo.blocked_users.filter(
+                (id: any) => id != idOfUnblockedAccount
+            )
+        )
+        dispath(
+            updateBlockedUser(
+                blockedUsers.filter(
+                    (user: any) => user.id != idOfUnblockedAccount
+                )
+            )
+        )
+        console.log('Unblock', idOfUnblockedAccount)
     }
-    const handleRestrictedUserUnRestrict = (_id: string) => {
-        console.log('UnRestrict', _id)
+    const handlerestrictedusersUnRestrict = (
+        idOfUnRestrictedAccount: string
+    ) => {
+        handleUserInfoChange(
+            'restricted_users',
+            userInfo.restricted_users.filter(
+                (id: any) => id != idOfUnRestrictedAccount
+            )
+        )
+        dispath(
+            updateRestrictedUser(
+                restrictedUsers.filter(
+                    (user: any) => user.id != idOfUnRestrictedAccount
+                )
+            )
+        )
+        console.log('UnRestrict', idOfUnRestrictedAccount)
     }
     const handleMakeProfilePublic = (checked: any) => {
-        console.log('Profile Public Handling, ', checked)
+        handleUserInfoChange('is_public', checked)
+        console.log('is public', checked)
     }
     return (
         <div className={'privacy-settings'}>
@@ -92,11 +186,11 @@ const PrivacySettings: React.FC = () => {
                         Blocked Users
                     </div>
                     <div className={'privacy-settings-mid-block-box'}>
-                        {blockedUser.map((user, i) => (
+                        {blockedUsers.map((user: any, i: any) => (
                             <User
                                 key={i}
                                 user={user}
-                                handleClick={handleBlockedUserUnBlock}
+                                handleClick={handleblockedUsersUnBlock}
                                 rightText={'Unblock'}
                             />
                         ))}
@@ -112,11 +206,11 @@ const PrivacySettings: React.FC = () => {
                         Restricted Users
                     </div>
                     <div className={'privacy-settings-mid-block-box'}>
-                        {restrictedUser.map((user, i) => (
+                        {restrictedUsers.map((user: any, i: any) => (
                             <User
                                 key={i}
                                 user={user}
-                                handleClick={handleRestrictedUserUnRestrict}
+                                handleClick={handlerestrictedusersUnRestrict}
                                 rightText={'Unrestrict'}
                             />
                         ))}
@@ -136,6 +230,7 @@ const PrivacySettings: React.FC = () => {
                         handleChecked={(e) =>
                             handleMakeProfilePublic(e.target.checked)
                         }
+                        checked={is_public}
                     />
                 </div>
                 <div

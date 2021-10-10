@@ -5,10 +5,22 @@ function DeleteTeamModal(props: any) {
         <div className="settings-modal-main">
             <div className="settings-modal-cover">
                 <div className="settings-modal-content">
-                    <p className="settings-modal-cover-title">Are you sure you want to delete the team?</p>
+                    <p className="settings-modal-cover-title">
+                        Are you sure you want to delete the team?
+                    </p>
                     <div className="settings-modal-cover-buttons">
-                        <button onClick={props.closeModal} className="settings-modal-cover-buttons-signout" >Yes</button>
-                        <button onClick={props.closeModal}className="settings-modal-cover-buttons-cancel">Cancel</button>
+                        <button
+                            onClick={props.sendDeleteTeamRequest}
+                            className="settings-modal-cover-buttons-signout"
+                        >
+                            Yes
+                        </button>
+                        <button
+                            onClick={props.closeModal}
+                            className="settings-modal-cover-buttons-cancel"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </div>
             </div>
@@ -16,4 +28,4 @@ function DeleteTeamModal(props: any) {
     )
 }
 
-export default DeleteTeamModal;
+export default DeleteTeamModal

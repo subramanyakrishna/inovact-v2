@@ -11,7 +11,7 @@ const interestData = [
     'spring boot',
     'spring',
 ]
-function AreasOfInterests({ handleUserInfoChange }: any) {
+function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
     const [skill, setSkill] = useState('')
 
     useEffect(() => {

@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-function UserEducation({ handleUserInfoChange }: any) {
-    const userInfo = useSelector((state: any) => state.userInfo)
+function UserEducation({ handleUserInfoChange, userInfo }: any) {
     return (
         <div className="settings-my-profile-education">
             <span className="settings-my-profile-education-heading">

@@ -10,8 +10,10 @@ import LogOutModal from './components/modals/LogOutModal'
 import DeleteTeamModal from './components/modals/DeleteTeamModal'
 import DeleteAccountModal from './components/modals/DeleteAccountModal'
 import TeamSettings from './components/TeamSettings/TeamSettings'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { handleUserInfoChange } from '../../../../StateUpdateHelper'
+import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
+
 const options: { name: string; main: string; sub: string }[] = [
     {
         name: 'profile',
@@ -45,6 +47,14 @@ const Settings: React.FC = () => {
     const [showDeleteTeam, setShowDeleteTeam] = useState(false)
     const [showDeleteAccount, setShowDeleteAccount] = useState(false)
     const [width, setWidth] = useState(window.innerWidth)
+    const [selectedTeamToDelete, setSelectedTeamToDelete] = useState(-1)
+    const team_with_admin_access_ids = useSelector(
+        (state: any) => state.userInfo.team_with_admin_access
+    )
+    const team_with_admin_access_data = useSelector(
+        (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
+    )
+    const dispath = useDispatch()
     console.log(useSelector((state) => state))
     const handleWindowResize = () => {
         setWidth(window.innerWidth)
@@ -67,12 +77,6 @@ const Settings: React.FC = () => {
         }
     }, [width])
 
-    const toggleShowOptions = () => {
-        if (window.innerWidth < SIZE_LIMIT) {
-            setShowLeft(!showLeft)
-            setShowRight(!showRight)
-        }
-    }
     const onSelection = (selection: number) => {
         setSelectedOption(selection)
         if (width < SIZE_LIMIT) {
@@ -96,9 +100,33 @@ const Settings: React.FC = () => {
         openModal()
         setShowLogOut(true)
     }
-    const deleteTeam = () => {
+    const deleteTeam = (id: number) => {
+        setSelectedTeamToDelete(id)
         openModal()
         setShowDeleteTeam(true)
+    }
+    const sendDeleteTeamRequest = () => {
+        console.log(
+            'sending request for website to delete the team with id',
+            selectedTeamToDelete
+        )
+
+        handleUserInfoChange(
+            'team_with_admin_access',
+            team_with_admin_access_ids.filter(
+                (id: number) => id != selectedTeamToDelete
+            )
+        )
+        dispath(
+            updateTeamWithAdminAccessAction(
+                team_with_admin_access_data.filter((team: any) => {
+                    console.log(team.id)
+                    return team.id != selectedTeamToDelete
+                })
+            )
+        )
+        closeModal()
+        setSelectedTeamToDelete(-1)
     }
     const deleteAccount = () => {
         openModal()
@@ -114,7 +142,10 @@ const Settings: React.FC = () => {
                     ></div>
                     {showLogOut && <LogOutModal closeModal={closeModal} />}
                     {showDeleteTeam && (
-                        <DeleteTeamModal closeModal={closeModal} />
+                        <DeleteTeamModal
+                            closeModal={closeModal}
+                            sendDeleteTeamRequest={sendDeleteTeamRequest}
+                        />
                     )}
                     {showDeleteAccount && (
                         <DeleteAccountModal closeModal={closeModal} />
@@ -166,10 +197,19 @@ const Settings: React.FC = () => {
                                     handleUserInfoChange={handleUserInfoChange}
                                 />
                             )}
-                            {selectedOption === 1 && <PrivacySettings />}
-                            {selectedOption === 2 && <TeamSettings />}
-                            {selectedOption === 3 && <Notifications />}
-                            {selectedOption === 5 && <Faq />}
+                            {selectedOption == 1 && (
+                                <PrivacySettings
+                                    handleUserInfoChange={handleUserInfoChange}
+                                />
+                            )}
+                            {selectedOption == 2 && (
+                                <TeamSettings
+                                    deleteTeam={deleteTeam}
+                                    handleUserInfoChange={handleUserInfoChange}
+                                />
+                            )}
+                            {selectedOption == 3 && <Notifications />}
+                            {selectedOption == 5 && <Faq />}
                         </div>
                     )}
                 </div>

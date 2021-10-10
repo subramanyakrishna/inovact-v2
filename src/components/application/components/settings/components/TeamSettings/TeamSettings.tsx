@@ -1,18 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
 import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'
-const TeamSettings: React.FC = () => {
-    const handleAllowOthersToViewTeam = (checked: boolean) => {
-        console.log('handleAllowOthersToViewTeam', checked)
+interface teamSettings {
+    deleteTeam(id: number): void
+    handleUserInfoChange(name: string, value: any): void
+}
+const TeamSettings: React.FC<teamSettings> = ({
+    deleteTeam,
+    handleUserInfoChange,
+}) => {
+    const team_with_admin_access_ids = useSelector(
+        (state: any) => state.userInfo.team_with_admin_access
+    )
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const team_with_admin_access_data = team_with_admin_access_ids.map(
+            (team_id: number) => {
+                //call the teams end point and get the team details which is name
+                const team = {
+                    id: team_id,
+                    name: 'Team ' + Math.random().toString().substring(2, 4),
+                    avatar: 'https://bit.ly/3EKg3dQ',
+                }
+                return {
+                    id: team.id,
+                    name: team.name,
+                    avatar: team.avatar,
+                }
+            }
+        )
+        dispatch(updateTeamWithAdminAccessAction(team_with_admin_access_data))
+    }, [])
+    const team_with_admin_access_data = useSelector(
+        (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
+    )
+    const handleAllowOthersToViewTeam = (event: any) => {
+        handleUserInfoChange('team_public_visibility', event.target.checked)
     }
-    const handleAllowOthersToRequestJoin = (checked: boolean) => {
-        console.log('handleAllowOthersToRequestJoin', checked)
-    }
-    const handleAllTeamMemberSendInvitation = (checked: boolean) => {
-        console.log('handleAllTeamMemberSendInvitation', checked)
-    }
-    const handleDeleteTeam = (team: { _id: string; name: string }) => {
-        console.log(team)
+    // const handleAllowOthersToRequestJoin = (checked: boolean) => {
+    //     console.log('handleAllowOthersToRequestJoin', checked)
+    // }
+    // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
+    //     console.log('handleAllTeamMemberSendInvitation', checked)
+    // }
+    const handleDeleteTeam = (id: number) => {
+        deleteTeam(id)
     }
     return (
         <div className={'teamset'}>
@@ -28,20 +62,32 @@ const TeamSettings: React.FC = () => {
                     <div className="text-color--black">
                         Allow other users to view your teams
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToViewTeam} />
+                    <Toggle
+                        checked={useSelector(
+                            (state: any) =>
+                                state.userInfo.team_public_visibility
+                        )}
+                        handleChecked={handleAllowOthersToViewTeam}
+                    />
                 </div>
-                <div className={'teamset-select-item'}>
+                {/* <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow everyone to request to join
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToRequestJoin} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllowOthersToRequestJoin}
+                    />
                 </div>
                 <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow all team memebers to send invitations
                     </div>
-                    <Toggle handleChecked={handleAllTeamMemberSendInvitation} />
-                </div>
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllTeamMemberSendInvitation}
+                    />
+                </div> */}
             </div>
             <div
                 className={
@@ -51,31 +97,25 @@ const TeamSettings: React.FC = () => {
                 Delete a team
             </div>
             <div className={'teamset-delete'}>
-                {TeamsData.map((team) => (
-                    <>
-                        <div className={'teamset-delete-team'}>
-                            <div className="teamset-delete-team-left">
+                {team_with_admin_access_data.map((team: any) => (
+                    <div className={'teamset-delete-team'} key={team.id}>
+                        <div className={'teamset-delete-team-main'}>
+                            <div className="teamset-delete-team-main-left">
                                 <img src={team.avatar} alt={team.name}></img>
-                                <div className="teamset-delete-team-left-name text-style--bold text-color--black">
+                                <div className="teamset-delete-team-main-left-name text-style--bold text-color--black">
                                     {team.name}
                                 </div>
                             </div>
                             <div
-                                onClick={() => handleDeleteTeam(team)}
+                                onClick={() => handleDeleteTeam(team.id)}
                                 className={
-                                    'teamset-delete-team-left-deleteTeam text-style--bold'
+                                    'teamset-delete-team-main-left-deleteTeam text-style--bold'
                                 }
                             >
                                 Delete team
                             </div>
                         </div>
-                        <hr
-                            style={{
-                                border: 'none',
-                                borderBottom: '1px solid black',
-                            }}
-                        />
-                    </>
+                    </div>
                 ))}
             </div>
         </div>
