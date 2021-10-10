@@ -1,43 +1,40 @@
-import { AreaOfInterstI, UserI } from "interfaces";
-import { userInfoConstants } from "redux/actionTypes/userInfoConstants";
-
+import { AreaOfInterstI, UserI } from 'interfaces'
+import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 const initialState = {
-    first_name: "",
-    last_name: "",
-    user_name: "",
-    bio: "",
-    avatar: "",
-    email_id: "",
-    role: "student",
-    designation: "",
-    organization: "",
-    organizational_role: "",
-    university: "",
+    first_name: '',
+    last_name: '',
+    user_name: '',
+    bio: '',
+    avatar: '',
+    email_id: '',
+    role: 'student',
+    designation: '',
+    organization: '',
+    organizational_role: '',
+    university: '',
     graduation_year: new Date(),
     journey_start_date: new Date(),
     years_of_professional_experience: 0,
-    degree: "",
+    degree: 'BE',
     area_of_interests: [],
     profile_complete: false,
     id: 0,
-    cognito_sub: "",
+    cognito_sub: '',
     appearance: 0,
     percentage_growth: 0,
-    website: "",
+    website: '',
     skills: [],
     projects: [],
     ideas: [],
     thoughts: [],
     is_public: false,
-    blocked_users: [],
-    restricted_users: []
+    blocked_users: [0, 1, 2, 3, 4, 5],
+    restricted_users: [0, 1, 2, 3, 4, 5], //added for the use of teamsettings page
 }
 
-
-
-const updateUserInfo = (state = initialState, action: any)=>{
-    switch(action.type){
+const updateUserInfo = (state = initialState, action: any) => {
+    switch (action.type) {
         case userInfoConstants.UPDATE_FIRSTNAME:
             return {
                 ...state,
@@ -120,57 +117,58 @@ const updateUserInfo = (state = initialState, action: any)=>{
                 ...state,
                 profile_complete: true,
             }
-        case userInfoConstants.UPDATE_USER_NAME: 
-            return{
+        case userInfoConstants.UPDATE_USER_NAME:
+            return {
                 ...state,
                 user_name: action.payload,
-            }    
-        case userInfoConstants.UPDATE_WEBSITE: 
-            return{
+            }
+        case userInfoConstants.UPDATE_WEBSITE:
+            return {
                 ...state,
                 website: action.payload,
-            } 
-        case userInfoConstants.UPDATE_RESTRICTED_USERS: 
-            return{
+            }
+        case userInfoConstants.UPDATE_RESTRICTED_USERS:
+            return {
                 ...state,
                 restricted_users: action.payload,
-            }    
-        case userInfoConstants.UPDATE_BLOCKED_USERS: 
-            return{
+            }
+        case userInfoConstants.UPDATE_BLOCKED_USERS:
+            return {
                 ...state,
                 blocked_users: action.payload,
-            }    
-        case userInfoConstants.UPDATE_SKILLS: 
-            return{
+            }
+        case userInfoConstants.UPDATE_SKILLS:
+            return {
                 ...state,
                 skills: action.payload,
-            } 
+            }
         case userInfoConstants.UPDATE_PROJECTS:
             return {
                 ...state,
                 projects: action.payload,
-            }      
-        case userInfoConstants.UPDATE_IDEAS: 
-            return{
+            }
+        case userInfoConstants.UPDATE_IDEAS:
+            return {
                 ...state,
                 ideas: action.payload,
-            }   
-        case userInfoConstants.UPDATE_THOUGHTS: 
-            return{
+            }
+        case userInfoConstants.UPDATE_THOUGHTS:
+            return {
                 ...state,
                 thoughts: action.payload,
-            }       
-        case userInfoConstants.UPDATE_IS_PUBLIC: 
-            return{
+            }
+        case userInfoConstants.UPDATE_IS_PUBLIC:
+            return {
                 ...state,
                 is_public: action.payload,
-            }     
+            }
         case userInfoConstants.UPDATE_COMPLETE_PROFILE:
-            return{
+            return {
                 ...state,
                 ...action.data,
-            }    
-        default : return state;
+            }
+        default:
+            return state
     }
 }
 

@@ -31,19 +31,28 @@ const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
                     <div className="text-color--black">
                         Allow other users to view your teams
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToViewTeam} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllowOthersToViewTeam}
+                    />
                 </div>
                 <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow everyone to request to join
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToRequestJoin} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllowOthersToRequestJoin}
+                    />
                 </div>
                 <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow all team memebers to send invitations
                     </div>
-                    <Toggle handleChecked={handleAllTeamMemberSendInvitation} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllTeamMemberSendInvitation}
+                    />
                 </div>
             </div>
             <div

@@ -16,6 +16,7 @@ import SortByDropdown from 'components/application/components/feed/components/So
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
+    
     const [posts, setPosts] = useState<postData[]>([
         {
             id: '1',

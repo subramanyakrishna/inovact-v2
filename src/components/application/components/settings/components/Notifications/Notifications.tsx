@@ -49,26 +49,29 @@ const Notifications: React.FC = () => {
                     >
                         Turn of all notifications
                     </div>
-                    <Toggle handleChecked={handleAllNotification} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllNotification}
+                    />
                 </div>
                 <div className="notification-first-dirmess">
                     <div className="notification-first-dirmess-text text-color--black">
                         Show notifications on recieving a direct message
                     </div>
-                    <Toggle handleChecked={handleDirectMsg} />
+                    <Toggle checked={true} handleChecked={handleDirectMsg} />
                 </div>
                 <div className="notification-first-login">
                     <div className="notification-first-login-text text-color--black">
                         Show notifications when a new device logs-in to this
                         account
                     </div>
-                    <Toggle handleChecked={handleLoginNotif} />
+                    <Toggle checked={true} handleChecked={handleLoginNotif} />
                 </div>
                 <div className="notification-first-newVersion">
                     <div className="notification-first-newVersion-text text-color--black">
                         Show notifications when a new version is released
                     </div>
-                    <Toggle handleChecked={handlenewVersion} />
+                    <Toggle checked={true} handleChecked={handlenewVersion} />
                 </div>
                 <div className="notification-first-teamNotif">
                     <div
@@ -82,7 +85,7 @@ const Notifications: React.FC = () => {
                     <div className="notification-first-offAllTeamNotif-text text-color--black">
                         Disable notifications from all teams
                     </div>
-                    <Toggle handleChecked={offAllTeamNotif} />
+                    <Toggle checked={true} handleChecked={offAllTeamNotif} />
                 </div>
             </div>
             <div className={'notification-mid'}>
@@ -125,19 +128,22 @@ const Notifications: React.FC = () => {
                     <div className="notification-end-mentionNotif-text text-color--black">
                         Show notificatoins when someone mentions you in a post
                     </div>
-                    <Toggle handleChecked={handleMentionNotif} />
+                    <Toggle checked={true} handleChecked={handleMentionNotif} />
                 </div>
                 <div className="notification-end-likesNotif">
                     <div className="notification-end-likesNotif-text text-color--black">
                         Show notifications when someone likes your post
                     </div>
-                    <Toggle handleChecked={handleLikesNotif} />
+                    <Toggle checked={true} handleChecked={handleLikesNotif} />
                 </div>
                 <div className="notification-end-commentsNotif">
                     <div className="notification-end-commentsNotif-text text-color--black">
                         Show notifications when someone comments on your post
                     </div>
-                    <Toggle handleChecked={handleCommentsNotif} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleCommentsNotif}
+                    />
                 </div>
             </div>
         </div>

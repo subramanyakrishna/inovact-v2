@@ -23,10 +23,17 @@ function YourProfile(props: any) {
             />
             <AreasOfInterests
                 handleUserInfoChange={props.handleUserInfoChange}
+                userInfo={userInfo}
             />
             <UserSkills />
-            <UserExperience handleUserInfoChange={props.handleUserInfoChange} />
-            <UserEducation handleUserInfoChange={props.handleUserInfoChange} />
+            <UserExperience
+                handleUserInfoChange={props.handleUserInfoChange}
+                userInfo={userInfo}
+            />
+            <UserEducation
+                handleUserInfoChange={props.handleUserInfoChange}
+                userInfo={userInfo}
+            />
             <DeleteAccount deleteAccount={props.deleteAccount} />
         </div>
     )

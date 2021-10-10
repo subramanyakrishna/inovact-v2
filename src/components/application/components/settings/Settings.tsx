@@ -166,7 +166,11 @@ const Settings: React.FC = () => {
                                     handleUserInfoChange={handleUserInfoChange}
                                 />
                             )}
-                            {selectedOption == 1 && <PrivacySettings />}
+                            {selectedOption == 1 && (
+                                <PrivacySettings
+                                    handleUserInfoChange={handleUserInfoChange}
+                                />
+                            )}
                             {selectedOption == 2 && (
                                 <TeamSettings deleteTeam={deleteTeam} />
                             )}
