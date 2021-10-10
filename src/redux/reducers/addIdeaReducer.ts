@@ -4,10 +4,7 @@ const initialState = {
     title: "",
     description: "",
     documents: [],
-    idea_tags: [],
-    looking_for_team: false,
-    looking_for_mentor: false,
-    roles_looking_for: [],
+    idea_tags: [1,2,3,4],
 }
 
 const updateIdeaInfoReducer = (state = initialState, action: any)=>{
@@ -45,9 +42,12 @@ const updateIdeaInfoReducer = (state = initialState, action: any)=>{
         case addIdeaConstants.IDEA_UPDATE_ROLE_LOOKING_FOR: 
             return {
                 ...state,
-                roles_looking_for: action.payload,
+                required_roles: action.payload,
             }   
-        
+        case addIdeaConstants.IDEA_CLEAR_DATA:
+             return {
+                 ...initialState,
+             }
         default: return state;
     }
 }

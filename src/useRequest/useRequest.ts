@@ -11,17 +11,17 @@ const useRequests = ({route, method, body, onSuccess} : any) =>{
             const response = await axios({
                 method: method,
                 url: `${baseUrl}${route}`,
-                data: body,
+                data: body?body:null,
                 headers: {
                     "Authorization": localStorage.getItem("user"),
                 }
             });
-            console.log(...response.data);
+            console.log(response.data);
             if(onSuccess){
                 onSuccess(response.data);
             }
             return response.data;
-        }catch(err){
+        }catch(err: any){
             console.log(err);
         }
     }

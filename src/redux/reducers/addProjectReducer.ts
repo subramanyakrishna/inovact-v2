@@ -3,8 +3,8 @@ import { addProjectConstants } from "redux/actionTypes/addProjectConstants"
 const initialState = {
     title: "",
     description: "",
-    project_tags: [],
-    mentions: [],
+    project_tags: [1, 2, 3, 4],
+    mentions: [17, 26],
     team_id: null,
     project_status: "",
     required_roles: [],

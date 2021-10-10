@@ -4,7 +4,6 @@ import {Field } from 'formik';
 import avatar from 'images/user-info/avatar.png';
 import {Link} from 'react-router-dom';
 import configOptions from 'imageUpload/config';
-import uploader from 'imageUpload/imageUploader';
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
 
