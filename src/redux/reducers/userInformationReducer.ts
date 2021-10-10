@@ -31,7 +31,8 @@ const initialState = {
     thoughts: [],
     is_public: false,
     blocked_users: [],
-    restricted_users: []
+    restricted_users: [],
+    teams: [],
 }
 
 
@@ -169,6 +170,11 @@ const updateUserInfo = (state = initialState, action: any)=>{
             return{
                 ...state,
                 ...action.data,
+            }    
+        case userInfoConstants.UPDATE_TEAMS:
+            return{
+                ...state,
+                teams : action.payload
             }    
         default : return state;
     }

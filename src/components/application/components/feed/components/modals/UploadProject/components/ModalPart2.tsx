@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
-import Switch_slider from './Switch_slider';
+import SwitchSlider from './SwitchSlider';
 import MemberMentor from './MemberMentor';
+import { handleAddProjectChange } from 'StateUpdateHelper';
 function ModalPart2(props: any) {
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
     const [teamMembersNeeded, setTeamMembersNeeded] = useState(false);
@@ -27,6 +28,10 @@ function ModalPart2(props: any) {
     }
     const toggleIsIndividualProject =()=>{
         setIsIndividualProject(!isIndividualProject);
+    }
+    const changeProjectStatus = (e: any)=>{
+        console.log(e.target.getAttribute("data-value"));
+        handleAddProjectChange("project_status",e.target.getAttribute("data-value"));
     }
     return (
         <div className="modal_part_two">
@@ -56,9 +61,17 @@ function ModalPart2(props: any) {
                             <input type="text" placeholder="Type the usernames of the people you would like to mention"/>
                         </div>
                     }
-                    <div className="modal_part_one-completed">
+                    <div className="modal_part_one-completed" >
                         <label>Completed Project</label>
-                        <Switch_slider projectCompletion={props.projectCompletion}/>
+                        <div onClick={(e: any)=>{
+                                if(props.projectCompleted){
+                                    handleAddProjectChange("project_status", "just_started");
+                                }else{
+                                    handleAddProjectChange("project_status","completed");
+                                }
+                            }}>
+                            <SwitchSlider projectCompletion={props.projectCompletion} />
+                        </div>
                     </div>
                 {
                 !props.projectCompleted &&
@@ -77,16 +90,16 @@ function ModalPart2(props: any) {
                     <div className="modal_part_two-project-status">
                         <span>Project Status</span>
                         <div>
-                            <div>
-                                <input type="radio" name="project-status"/><label >Just Started</label>
+                            <div onClick={changeProjectStatus} >
+                                <input type="radio" name="project-status" id="just-started" data-value="just_started"/><label htmlFor="just-started" data-value="just_started">Just Started</label>
                             </div>
                             
-                            <div>
-                                <input type="radio" name="project-status"/><label>In Progress</label>
+                            <div onClick={changeProjectStatus} >
+                                <input type="radio" name="project-status" id="in-progress" data-value="in_progress"/><label htmlFor="in-progress" data-value="in_progress">In Progress</label>
                             </div>
                             
-                            <div>
-                                <input type="radio" name="project-status"/><label>Nearing Completion</label>
+                            <div onClick={changeProjectStatus} data-value="near_completion">
+                                <input type="radio" name="project-status" id="nearing-completion" data-value="near_completion"/><label htmlFor="nearing-completion" data-value="near_completion">Nearing Completion</label>
                             </div>
                             
                         </div>

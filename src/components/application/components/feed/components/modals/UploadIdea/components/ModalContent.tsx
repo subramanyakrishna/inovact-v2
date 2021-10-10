@@ -1,15 +1,20 @@
 import React, {useState} from 'react'
 import SkillTags from '../../UploadProject/components/SkillTags';
-import Switch_slider from '../../UploadProject/components/Switch_slider';
+import SwitchSlider from '../../UploadProject/components/SwitchSlider';
 import RolesLookingFor from "../../UploadProject/components/RolesLookingFor";
 import AddRolesLookingFor from '../../UploadProject/components/AddRolesLookingFor';
+import { handleAddIdeaChange } from 'StateUpdateHelper';
 
 
 function ModalContent() {
     const [teamMembersNeeded, setTeamMembersNeeded] = useState(false);
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
-    const toggleTeamMemberNeeded = ()=>{
+    const [currentTag, setCurrentTag] = useState("");
+    const [allIdeaTags, setAllIdeaTags] = useState<string[]>([]);
+    const [lookingForTeam, setLookingForTeam] = useState(false);
+    const toggleTeamMemberNeeded = (e: any)=>{
         setTeamMembersNeeded(!teamMembersNeeded);
+        handleAddIdeaChange("looking_for_team",e.target.value);
     }
     const addAnotherRole = (role:any, tags:any)=>{
         if(role==="" && tags.length===0){
@@ -17,19 +22,28 @@ function ModalContent() {
         }
         setAllRolesNeeded([...allRolesNeeded, {role: role, skillNeeded: tags}]);
     }  
+    const handleCurrentTag = (e: any)=>{
+        setCurrentTag(e.target.value);
+    }
+    const addTag = ()=>{
+        setCurrentTag("");
+        setAllIdeaTags([...allIdeaTags, currentTag]);
+    }
     const removeTheRole = (id:any)=>{
         setAllRolesNeeded(allRolesNeeded.filter((ele:any,idx: any)=> idx!==id));
     }
-
+    const removeSkill = (id: any)=>{
+        setAllIdeaTags(allIdeaTags.filter((ele: any, idx: any)=>idx!==id));
+    }
     return (
         <div className="modal_part_one">
             <div className="modal_part_one-title">
-                <label >Project Title</label>
-                <input type="text" placeholder="Give your project a suitable title"/>
+                <label >Idea Title</label>
+                <input type="text" placeholder="Give your project a suitable title" onChange={(e: any)=> handleAddIdeaChange("title", e.target.value)}/>
             </div>
             <div className="modal_part_one-description">
-                <label >Project Description</label>
-                <textarea placeholder="Describe your project"/>
+                <label >Idea Description</label>
+                <textarea placeholder="Describe your project" onChange={(e: any)=> handleAddIdeaChange("description", e.target.value)}/>
                 <div>
                     <input type="file" id="upload-media-input" hidden/>
                     <label className="upload-media-btn" htmlFor="upload-media-input">Upload Media</label>
@@ -37,25 +51,38 @@ function ModalContent() {
             </div>
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <input type="text" placeholder="Type out the skills used"/>
+                <div>
+                    <input type="text" placeholder="Type out the skills used" onChange={handleCurrentTag}/>
+                    <button onClick={addTag}>+Add Tag</button>
+                </div>
                 <div className="modal_part_one-tags-all">
-                    <SkillTags skill="OOP"/>
-                    <SkillTags skill="C"/>
-                    <SkillTags skill="Python"/>
-                    <SkillTags skill="Algorithms"/>
+                    {
+                        allIdeaTags.map((skill: any, id: any)=><SkillTags skill={skill} id={id} removeSkill = {removeSkill}/>)
+                    }
                 </div>
             </div>
             <div className="modal_part_two">
                 <div className="modal_part_two-member-mentor">
                     <div>
                         <label>Looking for team members</label>
-                        <div onClick={toggleTeamMemberNeeded}>
-                            <Switch_slider/>
+                        <div onClick={toggleTeamMemberNeeded} >
+                            <SwitchSlider/>
                         </div>
                     </div>
                     <div>
                         <label>Looking for a mentor</label>
-                        <Switch_slider/>
+                        <div onClick={(e: any)=> {
+                                if(lookingForTeam){
+                                    handleAddIdeaChange("looking_for_mentor", false);
+                                    setTeamMembersNeeded(false);
+                                }else{
+                                    handleAddIdeaChange("looking_for_mentor", true);
+                                    setTeamMembersNeeded(true);
+                                }
+                            }
+                        }>
+                            <SwitchSlider/>
+                        </div>
                     </div>
                 </div>
 

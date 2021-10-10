@@ -19,6 +19,7 @@ import axios from 'axios'
 import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
 import PrivateRoute from '../../PrivateRoute';
 import userDataConstants from 'redux/actionTypes/userDataConstants'
+import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 
 
@@ -47,7 +48,7 @@ function Application() {
                         },
                     });
                     dispatch({
-                        type: userDataConstants.UPDATE_USER_INFO,
+                        type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
                         data: resp.data.data.user[0]
                     })
     
@@ -55,7 +56,7 @@ function Application() {
         }else{
             history.push("/login");
         }
-    },[dispatch,history]);
+    },[]);
     // console.log(state);
     return (
         <div className="application">
