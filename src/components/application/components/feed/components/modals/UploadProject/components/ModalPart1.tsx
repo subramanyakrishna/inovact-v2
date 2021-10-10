@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import SkillTags from './SkillTags';
-import Switch_slider from './Switch_slider';
 import TeamNameDescription from './TeamNameDescription';
 function ModalPart1(props: any) {
     
@@ -9,19 +8,12 @@ function ModalPart1(props: any) {
     const removeSkill = (skill:any)=>{
         setSkillsNeeded(skillsNeeded.filter((ele)=>ele!==skill));
     }
-    /* //Need to work on this
-    const addSkill = (e:any)=>{
-        if(e.key=="Enter"){
-            if(!skillsNeeded.includes(currentSkill)){
-                setSkillsNeeded([...skillsNeeded, currentSkill]);
-                setCurrentSkill("");
-            }
-        }
-    }
-    useEffect(()=>{
-        document.querySelector(".modal_part_one-tags input")?.addEventListener("keydown",addSkill);
-    });
-    */
+   const addSkill = (e:any)=>{
+       if(!skillsNeeded.includes(currentSkill)){
+            setSkillsNeeded([...skillsNeeded, currentSkill]);
+            setCurrentSkill("");
+       }
+   }
     const handleChangeInput = (e:any)=>{
         const value = e.target.value;
         setCurrentSkill(value);
@@ -45,7 +37,10 @@ function ModalPart1(props: any) {
             
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
+                <div>
+                    <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
+                    <button onClick={addSkill}>+Add Tag</button>
+                </div>
                 <div>
                     {
                         skillsNeeded.map((skill)=>{

@@ -31,6 +31,7 @@ const initialState = {
     is_public: false,
     blocked_users: [0, 1, 2, 3, 4, 5],
     restricted_users: [0, 1, 2, 3, 4, 5], //added for the use of teamsettings page
+    teams: [],
 }
 
 const updateUserInfo = (state = initialState, action: any) => {
@@ -166,6 +167,11 @@ const updateUserInfo = (state = initialState, action: any) => {
             return {
                 ...state,
                 ...action.data,
+            }
+        case userInfoConstants.UPDATE_TEAMS:
+            return {
+                ...state,
+                teams: action.payload,
             }
         default:
             return state

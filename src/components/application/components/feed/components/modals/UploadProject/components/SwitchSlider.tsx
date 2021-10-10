@@ -2,7 +2,7 @@ import { Switch, withStyles } from '@material-ui/core';
 import React, {useState} from 'react';
 
 
-function Switch_slider( props: any ) {
+function SwitchSlider( props: any ) {
     const [checked, setChecked] = useState(false);
     const toggleChecked = ()=>{
         setChecked(!checked);
@@ -28,4 +28,4 @@ function Switch_slider( props: any ) {
     )
 }
 
-export default Switch_slider;
+export default SwitchSlider;
