@@ -33,9 +33,9 @@ const userAuthentication = async (email: any, password: any) => {
             // });
             // localStorage.setItem("user", accessToken);
             // console.log(store.getState());
-            // console.log(result);
+            console.log('results', result)
             const currentUser: any = UserPool
-            console.log(currentUser)
+            console.log('currentUser', currentUser)
             localStorage.setItem('user', result.getIdToken().getJwtToken())
             axios
                 .get(

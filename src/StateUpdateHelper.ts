@@ -145,6 +145,18 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
+        case 'team_with_admin_access':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_TEAM_WITH_ADMIN_ACCESS_IDS,
+                payload: value,
+            })
+            break
+        case 'team_public_visibility':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_TEAM_PUBLIC_VISIBILITY,
+                payload: value,
+            })
+            break
     }
     // console.log(store.getState());
 }

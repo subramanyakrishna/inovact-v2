@@ -1,4 +1,3 @@
-import { AreaOfInterstI, UserI } from 'interfaces'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 const initialState = {
@@ -32,6 +31,8 @@ const initialState = {
     blocked_users: [0, 1, 2, 3, 4, 5],
     restricted_users: [0, 1, 2, 3, 4, 5], //added for the use of teamsettings page
     teams: [],
+    team_with_admin_access: [4, 5, 6, 7, 8],
+    team_public_visibility: true,
 }
 
 const updateUserInfo = (state = initialState, action: any) => {
@@ -172,6 +173,16 @@ const updateUserInfo = (state = initialState, action: any) => {
             return {
                 ...state,
                 teams: action.payload,
+            }
+        case userInfoConstants.UPDATE_TEAM_WITH_ADMIN_ACCESS_IDS:
+            return {
+                ...state,
+                team_with_admin_access: action.payload,
+            }
+        case userInfoConstants.UPDATE_TEAM_PUBLIC_VISIBILITY:
+            return {
+                ...state,
+                team_public_visibility: action.payload,
             }
         default:
             return state

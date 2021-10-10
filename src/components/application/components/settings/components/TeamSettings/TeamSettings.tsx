@@ -1,21 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
 import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'
 interface teamSettings {
-    deleteTeam(team: { _id: string; name: string }): void
+    deleteTeam(id: number): void
+    handleUserInfoChange(name: string, value: any): void
 }
-const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
-    const handleAllowOthersToViewTeam = (checked: boolean) => {
-        console.log('handleAllowOthersToViewTeam', checked)
+const TeamSettings: React.FC<teamSettings> = ({
+    deleteTeam,
+    handleUserInfoChange,
+}) => {
+    const team_with_admin_access_ids = useSelector(
+        (state: any) => state.userInfo.team_with_admin_access
+    )
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const team_with_admin_access_data = team_with_admin_access_ids.map(
+            (team_id: number) => {
+                //call the teams end point and get the team details which is name
+                const team = {
+                    id: team_id,
+                    name: 'Team ' + Math.random().toString().substring(2, 4),
+                    avatar: 'https://bit.ly/3EKg3dQ',
+                }
+                return {
+                    id: team.id,
+                    name: team.name,
+                    avatar: team.avatar,
+                }
+            }
+        )
+        dispatch(updateTeamWithAdminAccessAction(team_with_admin_access_data))
+    }, [])
+    const team_with_admin_access_data = useSelector(
+        (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
+    )
+    const handleAllowOthersToViewTeam = (event: any) => {
+        handleUserInfoChange('team_public_visibility', event.target.checked)
     }
-    const handleAllowOthersToRequestJoin = (checked: boolean) => {
-        console.log('handleAllowOthersToRequestJoin', checked)
-    }
-    const handleAllTeamMemberSendInvitation = (checked: boolean) => {
-        console.log('handleAllTeamMemberSendInvitation', checked)
-    }
-    const handleDeleteTeam = (team: { _id: string; name: string }) => {
-        deleteTeam(team)
+    // const handleAllowOthersToRequestJoin = (checked: boolean) => {
+    //     console.log('handleAllowOthersToRequestJoin', checked)
+    // }
+    // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
+    //     console.log('handleAllTeamMemberSendInvitation', checked)
+    // }
+    const handleDeleteTeam = (id: number) => {
+        deleteTeam(id)
     }
     return (
         <div className={'teamset'}>
@@ -32,11 +63,14 @@ const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
                         Allow other users to view your teams
                     </div>
                     <Toggle
-                        checked={true}
+                        checked={useSelector(
+                            (state: any) =>
+                                state.userInfo.team_public_visibility
+                        )}
                         handleChecked={handleAllowOthersToViewTeam}
                     />
                 </div>
-                <div className={'teamset-select-item'}>
+                {/* <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow everyone to request to join
                     </div>
@@ -53,7 +87,7 @@ const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
                         checked={true}
                         handleChecked={handleAllTeamMemberSendInvitation}
                     />
-                </div>
+                </div> */}
             </div>
             <div
                 className={
@@ -63,28 +97,24 @@ const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
                 Delete a team
             </div>
             <div className={'teamset-delete'}>
-                {TeamsData.map((team, i) => (
-                    <div className={'teamset-delete-team'} key={i}>
-                        <div className="teamset-delete-team-left">
-                            <img src={team.avatar} alt={team.name}></img>
-                            <div className="teamset-delete-team-left-name text-style--bold text-color--black">
-                                {team.name}
+                {team_with_admin_access_data.map((team: any) => (
+                    <div className={'teamset-delete-team'} key={team.id}>
+                        <div className={'teamset-delete-team-main'}>
+                            <div className="teamset-delete-team-main-left">
+                                <img src={team.avatar} alt={team.name}></img>
+                                <div className="teamset-delete-team-main-left-name text-style--bold text-color--black">
+                                    {team.name}
+                                </div>
+                            </div>
+                            <div
+                                onClick={() => handleDeleteTeam(team.id)}
+                                className={
+                                    'teamset-delete-team-main-left-deleteTeam text-style--bold'
+                                }
+                            >
+                                Delete team
                             </div>
                         </div>
-                        <div
-                            onClick={() => handleDeleteTeam(team)}
-                            className={
-                                'teamset-delete-team-left-deleteTeam text-style--bold'
-                            }
-                        >
-                            Delete team
-                        </div>
-                        {/* <hr
-                            style={{
-                                border: 'none',
-                                borderBottom: '1px solid black',
-                            }}
-                        /> */}
                     </div>
                 ))}
             </div>
