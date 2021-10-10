@@ -150,7 +150,7 @@ const handleAddIdeaChange = (name: any, value: any)=>{
             break;
         case "looking_for_mentor":
             store.dispatch({
-                type: addIdeaConstants.IDEA_UPDATE_ROLE_LOOKING_FOR,
+                type: addIdeaConstants.IDEA_UPDATE_LOOKING_FOR_MENTOR,
                 payload: value,
             });
             break;    

@@ -4,6 +4,7 @@ import SwitchSlider from '../../UploadProject/components/SwitchSlider';
 import RolesLookingFor from "../../UploadProject/components/RolesLookingFor";
 import AddRolesLookingFor from '../../UploadProject/components/AddRolesLookingFor';
 import { handleAddIdeaChange } from 'StateUpdateHelper';
+import { useSelector } from 'react-redux';
 
 
 function ModalContent() {
@@ -12,9 +13,13 @@ function ModalContent() {
     const [currentTag, setCurrentTag] = useState("");
     const [allIdeaTags, setAllIdeaTags] = useState<string[]>([]);
     const [lookingForTeam, setLookingForTeam] = useState(false);
-    const toggleTeamMemberNeeded = (e: any)=>{
+    const addIdea = useSelector((state:any)=>state.addIdea);
+    const toggleTeamMemberNeeded = async(e: any)=>{
         setTeamMembersNeeded(!teamMembersNeeded);
-        handleAddIdeaChange("looking_for_team",e.target.value);
+        handleAddIdeaChange("looking_for_team", !addIdea.looking_for_team);
+    }
+    const toggleMentorNeeded = (e:any)=>{
+        handleAddIdeaChange("looking_for_mentor", !addIdea.looking_for_mentor);
     }
     const addAnotherRole = (role:any, tags:any)=>{
         if(role==="" && tags.length===0){
@@ -71,16 +76,7 @@ function ModalContent() {
                     </div>
                     <div>
                         <label>Looking for a mentor</label>
-                        <div onClick={(e: any)=> {
-                                if(lookingForTeam){
-                                    handleAddIdeaChange("looking_for_mentor", false);
-                                    setTeamMembersNeeded(false);
-                                }else{
-                                    handleAddIdeaChange("looking_for_mentor", true);
-                                    setTeamMembersNeeded(true);
-                                }
-                            }
-                        }>
+                        <div onClick={toggleMentorNeeded}> 
                             <SwitchSlider/>
                         </div>
                     </div>

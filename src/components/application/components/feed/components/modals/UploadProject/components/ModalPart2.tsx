@@ -25,6 +25,7 @@ function ModalPart2(props: any) {
 
     const toggleTeamMemberNeeded = ()=>{
         setTeamMembersNeeded(!teamMembersNeeded);
+        // handleAddProjectChange("")
     }
     const toggleIsIndividualProject =()=>{
         setIsIndividualProject(!isIndividualProject);
