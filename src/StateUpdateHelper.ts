@@ -154,6 +154,11 @@ const handleAddIdeaChange = (name: any, value: any)=>{
                 payload: value,
             });
             break;    
+        case "idea_clear_data":
+            store.dispatch({
+                type: addIdeaConstants.IDEA_CLEAR_DATA,
+            });
+            break;
     }
     console.log(store.getState());
 }

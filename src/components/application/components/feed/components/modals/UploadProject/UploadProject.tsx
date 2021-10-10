@@ -18,16 +18,16 @@ function UploadProject(props: any) {
         },
         onSuccess: (data: any)=> {
             handleAddProjectChange("project_clear_data", "");
-            props.closeModal();
         }
     });
     
     const toggleProjectCompletion = () =>{
         setProjectCompleted(!projectCompleted);
     }
-
+    
     const addTheProject = async(e: any)=>{
         e.preventDefault();
+        props.closeModal();
         await doRequest();
     }
     return (

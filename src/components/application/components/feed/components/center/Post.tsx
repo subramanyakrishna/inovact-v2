@@ -83,7 +83,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     <div className="post__author__text">
                         <h1 className="post__author__text__name">{post.author}</h1>
                         <p className="post__author__text__time">
-                            {post.time} hrs ago
+                            {post.time}
                         </p>
                     </div>
                     <button className="connect-button">Connect</button>

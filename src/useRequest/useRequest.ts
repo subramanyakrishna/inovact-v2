@@ -21,7 +21,7 @@ const useRequests = ({route, method, body, onSuccess} : any) =>{
                 onSuccess(response.data);
             }
             return response.data;
-        }catch(err){
+        }catch(err: any){
             console.log(err);
         }
     }

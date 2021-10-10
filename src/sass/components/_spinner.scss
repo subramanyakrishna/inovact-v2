@@ -15,4 +15,8 @@
             transform: rotate(360deg);
         }
     }
+    @include respond(sm){
+        width: 30px;
+        height: 30px;
+    }
 }

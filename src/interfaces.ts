@@ -84,6 +84,10 @@ interface Team_DocumentI extends DocumentI {
     team_id: number;
 }
 
+interface TagI{
+  id: number;
+  name: string;
+}
 /*
  *  Comments' Interfaces
  */
@@ -138,12 +142,12 @@ interface ProjectI {
     project_tags: [number];
     tead_id: number;
     mentions: [{ id: number, user_name: string }];
-    project_status:
+    status:
         | "just_started"
         | "in_progress"
         | "near_completion"
         | "completed";
-    looking_for_roles: [RoleI]; // Role ids
+    required_roles: [RoleI]; // Role ids
     comments: [ProjectCommentI]
     likes: [ProjectLikeI]
     created_at: Date;

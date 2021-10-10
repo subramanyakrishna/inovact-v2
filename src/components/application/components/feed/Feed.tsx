@@ -19,36 +19,41 @@ import Spinner from 'components/application/Spinner'
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([]);
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const convertDate = (dateISO: any)=>{
+        const date = new Date(dateISO);
+        return `${date.getDate()} ${months[date.getMonth()]}`
+    }
     const {doRequest, errors} = useRequests({
         route: "post",
         method: "get",
         body: null,
         onSuccess: (data: any)=>{
             console.log(data);
+            data.data.project.reverse();
             setPosts(data.data.project.map((post: any)=>({
                 id: post.id,
                 title: post.title,
                 description: post.description,
                 type: 1,
-                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-            author: 'Jane Doe',
-            tags: [
-                'OOP',
-                'JavaScript',
-                'HTML',
-                'CSS',
-                'ReactJS',
-                'NodeJS',
-                'MongoDB',
-            ],
-            numLikes: 250,
-            numComments: 250,
-            })))
+                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+                author: 'Jane Doe',
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 250,
+                numComments: 250,
+                })));
         }
     });
     useEffect(()=>{
         doRequest();
-    },[doRequest])
+    },[])
     const [showFilter, setShowFilter] = useState(false);
 
     const [showOverlay, setShowOverlay] = useState(false);

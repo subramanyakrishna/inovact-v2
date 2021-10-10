@@ -3,8 +3,10 @@ import SkillTags from '../../UploadProject/components/SkillTags';
 import SwitchSlider from '../../UploadProject/components/SwitchSlider';
 import RolesLookingFor from "../../UploadProject/components/RolesLookingFor";
 import AddRolesLookingFor from '../../UploadProject/components/AddRolesLookingFor';
-import { handleAddIdeaChange } from 'StateUpdateHelper';
+import { handleAddIdeaChange, handleAddProjectChange } from 'StateUpdateHelper';
 import { useSelector } from 'react-redux';
+import { imageUploader } from 'imageUpload/imageUploader';
+import ImageTag from '../../UploadProject/components/ImageTag';
 
 
 function ModalContent() {
@@ -32,13 +34,21 @@ function ModalContent() {
     }
     const addTag = ()=>{
         setCurrentTag("");
-        setAllIdeaTags([...allIdeaTags, currentTag]);
+        if(!(currentTag==="") && !allIdeaTags.includes(currentTag)){
+            setAllIdeaTags([...allIdeaTags, currentTag]);
+            handleAddIdeaChange("idea_tags",[...addIdea.idea_tags, currentTag]);
+        }
     }
     const removeTheRole = (id:any)=>{
         setAllRolesNeeded(allRolesNeeded.filter((ele:any,idx: any)=> idx!==id));
     }
     const removeSkill = (id: any)=>{
         setAllIdeaTags(allIdeaTags.filter((ele: any, idx: any)=>idx!==id));
+    }
+    const loadFile = async(e: any)=>{
+        imageUploader(e.target.files).then((data: any)=>{
+            handleAddIdeaChange("documents", data);
+        });
     }
     return (
         <div className="modal_part_one">
@@ -50,14 +60,19 @@ function ModalContent() {
                 <label >Idea Description</label>
                 <textarea placeholder="Describe your project" onChange={(e: any)=> handleAddIdeaChange("description", e.target.value)}/>
                 <div>
-                    <input type="file" id="upload-media-input" hidden/>
-                    <label className="upload-media-btn" htmlFor="upload-media-input">Upload Media</label>
+                    <input type="file" id="upload-media-input" hidden multiple onChange={loadFile}/>
+                    <label className="upload-media-btn" htmlFor="upload-media-input" >Upload Media</label>
                 </div>
+                {
+                    addIdea.documents.map((file: any)=>{
+                        return <ImageTag name={file.name}/>
+                    })
+                }
             </div>
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
                 <div>
-                    <input type="text" placeholder="Type out the skills used" onChange={handleCurrentTag}/>
+                    <input type="text" placeholder="Type out the skills used" onChange={handleCurrentTag} value={currentTag}/>
                     <button onClick={addTag}>+Add Tag</button>
                 </div>
                 <div className="modal_part_one-tags-all">
@@ -81,7 +96,6 @@ function ModalContent() {
                         </div>
                     </div>
                 </div>
-
             </div>
             {
                     teamMembersNeeded && 

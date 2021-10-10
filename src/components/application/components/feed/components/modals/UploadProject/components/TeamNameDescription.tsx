@@ -1,7 +1,17 @@
-import React from 'react';
+import { imageUploader } from 'imageUpload/imageUploader';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { handleAddProjectChange } from 'StateUpdateHelper';
+import ImageTag from "./ImageTag";
 
 function TeamNameDescription() {
+    const loadFile = async(e: any)=>{
+        imageUploader(e.target.files).then((data: any)=>{
+            handleAddProjectChange("documents", data);
+        });
+    }
+    const addProject = useSelector((state: any)=> state.addProject);
+    // const [allImages, setAllImages] = useState<string[]>([]);
     return (
         <div className="modal_part_one-team-description">
             <div className="modal_part_one-title">
@@ -12,9 +22,14 @@ function TeamNameDescription() {
                 <label >Project Description</label>
                 <textarea placeholder="Describe your project" onChange={(e: any)=>handleAddProjectChange("description", e.target.value)}/>
                 <div>
-                    <input type="file" id="upload-media-input" hidden/>
+                    <input type="file" id="upload-media-input" hidden onChange={loadFile} multiple/>
                     <label className="upload-media-btn" htmlFor="upload-media-input">Upload Media</label>
                 </div>
+                {
+                    addProject.documents.map((file: any)=>{
+                        return <ImageTag name={file.name}/>
+                    })
+                }
             </div>
         </div>
     )
