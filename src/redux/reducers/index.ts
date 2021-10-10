@@ -4,11 +4,11 @@ import { authentication } from 'redux/reducers/loginReducer'
 import { registration } from 'redux/reducers/registerReducer'
 import { updateUserCreds } from './userCredsReducer'
 import { updateUserInfo } from './userInformationReducer'
-import { updateUserData } from './userDataReducer'
 import { updateProjectInfoReducer } from './addProjectReducer'
 import { updateIdeaInfoReducer } from './addIdeaReducer'
 import { updateThoughtInfoReducer } from './addThoughtReducer'
 import { blockedRestrictedAccounts } from './blockedAndRestrictedReducer'
+import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
     addIdea: updateIdeaInfoReducer,
     addThought: updateThoughtInfoReducer,
     blockedAndRestricted: blockedRestrictedAccounts,
+    teamWithAdminAccess: updateTeamWithAdminAccessReducer,
 })
 
 export default rootReducer
