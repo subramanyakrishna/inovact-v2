@@ -16,9 +16,10 @@ function UploadIdea(props:any) {
             handleAddIdeaChange("idea_clear_data", "");
         }
     });
-    const addTheIdea = ()=>{
+    const addTheIdea = async()=>{
         props.closeModal();
-        doRequest();
+        await doRequest();
+        window.location.reload();
     }
     return (
         <div className="modal_main">

@@ -3,7 +3,7 @@ import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 const initialState = {
     first_name: '',
     last_name: '',
-    user_name: '',
+    user_name: 'temp',
     bio: '',
     avatar: '',
     email_id: '',

@@ -5,8 +5,8 @@ function ModalPart1(props: any) {
     
     const [skillsNeeded, setSkillsNeeded] = useState<string[]>([]);
     const [currentSkill, setCurrentSkill] = useState("");
-    const removeSkill = (skill:any)=>{
-        setSkillsNeeded(skillsNeeded.filter((ele)=>ele!==skill));
+    const removeSkill = (id:any)=>{
+        setSkillsNeeded(skillsNeeded.filter((ele,idx)=>idx!==id));
     }
    const addSkill = (e:any)=>{
        if(!skillsNeeded.includes(currentSkill)){
@@ -37,14 +37,14 @@ function ModalPart1(props: any) {
             
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <div>
+                <div className="modal_part_one-tags-taginput">
                     <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
-                    <button onClick={addSkill}>+Add Tag</button>
+                    <button onClick={addSkill} className="modal_part_one-tags-tagbtn">+Add Tag</button>
                 </div>
-                <div>
+                <div className="modal_part_one-tags-all">
                     {
-                        skillsNeeded.map((skill)=>{
-                            return (<SkillTags skill={skill} removeSkill={removeSkill}/>);
+                        skillsNeeded.map((skill,id)=>{
+                            return (<SkillTags skill={skill} id={id} removeSkill={removeSkill}/>);
                         })
                     }
                 </div>

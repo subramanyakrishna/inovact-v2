@@ -7,7 +7,7 @@ import settings from 'images/feed/settings.svg'
 import home from 'images/feed/home.svg'
 import connection from 'images/feed/connections.svg'
 import teams from 'images/feed/teams.svg'
-import logo from 'images/logo/inovact-logo.png'
+import logo from 'images/logo/inovactlogo.png'
 import { of, fromEvent, animationFrameScheduler } from 'rxjs'
 import { useObservable } from 'rxjs-hooks'
 import { Link } from 'react-router-dom'
@@ -59,7 +59,7 @@ const NavBar = () => {
                     }`}
                 >
                     <div className="nav-component__brand">
-                        <img src={logo} alt="logo" />
+                        <img src={logo} alt="logo" width="40px"/>
                         <h2 className="nav-component__brand__brandname">
                             Inovact
                         </h2>
