@@ -1,9 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
-function FirstLastNameBio({ handleUserInfoChange }: any) {
-    const userInfo = useSelector((state: any) => state.userInfo)
-
+function FirstLastNameBio({ handleUserInfoChange, userInfo }: any) {
     return (
         <div className="settings-my-profile-details">
             <div>

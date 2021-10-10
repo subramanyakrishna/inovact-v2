@@ -1,7 +1,10 @@
 import React from 'react'
 import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'
-const TeamSettings: React.FC = () => {
+interface teamSettings {
+    deleteTeam(team: { _id: string; name: string }): void
+}
+const TeamSettings: React.FC<teamSettings> = ({ deleteTeam }) => {
     const handleAllowOthersToViewTeam = (checked: boolean) => {
         console.log('handleAllowOthersToViewTeam', checked)
     }
@@ -12,7 +15,7 @@ const TeamSettings: React.FC = () => {
         console.log('handleAllTeamMemberSendInvitation', checked)
     }
     const handleDeleteTeam = (team: { _id: string; name: string }) => {
-        console.log(team)
+        deleteTeam(team)
     }
     return (
         <div className={'teamset'}>
@@ -28,19 +31,28 @@ const TeamSettings: React.FC = () => {
                     <div className="text-color--black">
                         Allow other users to view your teams
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToViewTeam} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllowOthersToViewTeam}
+                    />
                 </div>
                 <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow everyone to request to join
                     </div>
-                    <Toggle handleChecked={handleAllowOthersToRequestJoin} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllowOthersToRequestJoin}
+                    />
                 </div>
                 <div className={'teamset-select-item'}>
                     <div className="text-color--black">
                         Allow all team memebers to send invitations
                     </div>
-                    <Toggle handleChecked={handleAllTeamMemberSendInvitation} />
+                    <Toggle
+                        checked={true}
+                        handleChecked={handleAllTeamMemberSendInvitation}
+                    />
                 </div>
             </div>
             <div
@@ -51,31 +63,29 @@ const TeamSettings: React.FC = () => {
                 Delete a team
             </div>
             <div className={'teamset-delete'}>
-                {TeamsData.map((team) => (
-                    <>
-                        <div className={'teamset-delete-team'}>
-                            <div className="teamset-delete-team-left">
-                                <img src={team.avatar} alt={team.name}></img>
-                                <div className="teamset-delete-team-left-name text-style--bold text-color--black">
-                                    {team.name}
-                                </div>
-                            </div>
-                            <div
-                                onClick={() => handleDeleteTeam(team)}
-                                className={
-                                    'teamset-delete-team-left-deleteTeam text-style--bold'
-                                }
-                            >
-                                Delete team
+                {TeamsData.map((team, i) => (
+                    <div className={'teamset-delete-team'} key={i}>
+                        <div className="teamset-delete-team-left">
+                            <img src={team.avatar} alt={team.name}></img>
+                            <div className="teamset-delete-team-left-name text-style--bold text-color--black">
+                                {team.name}
                             </div>
                         </div>
-                        <hr
+                        <div
+                            onClick={() => handleDeleteTeam(team)}
+                            className={
+                                'teamset-delete-team-left-deleteTeam text-style--bold'
+                            }
+                        >
+                            Delete team
+                        </div>
+                        {/* <hr
                             style={{
                                 border: 'none',
                                 borderBottom: '1px solid black',
                             }}
-                        />
-                    </>
+                        /> */}
+                    </div>
                 ))}
             </div>
         </div>

@@ -4167,7 +4167,8 @@ input, textarea:focus {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          width: 100%; }
+          width: 100%;
+          margin-top: 13px; }
           .privacy-settings-mid-block-box-user-left, .privacy-settings-mid-restrict-box-user-left {
             width: 70%;
             display: flex;
@@ -4183,6 +4184,8 @@ input, textarea:focus {
               flex-direction: column;
               justify-content: flex-start;
               align-items: flex-start; }
+              .privacy-settings-mid-block-box-user-left-text-name, .privacy-settings-mid-restrict-box-user-left-text-name {
+                margin-bottom: -10px; }
           .privacy-settings-mid-block-box-user-right, .privacy-settings-mid-restrict-box-user-right {
             color: #4b72bc; }
     @media only screen and (max-width: 62em) {
@@ -4235,6 +4238,7 @@ input, textarea:focus {
     overflow: auto; }
     .notification-mid-teams-team {
       height: 80px;
+      margin-bottom: 12px;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -4526,6 +4530,7 @@ input, textarea:focus {
     overflow: auto; }
     .teamset-delete-team {
       height: 80px;
+      margin-bottom: 20px;
       width: 100%;
       display: flex;
       justify-content: space-between;

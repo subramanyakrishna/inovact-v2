@@ -96,7 +96,7 @@ const Settings: React.FC = () => {
         openModal()
         setShowLogOut(true)
     }
-    const deleteTeam = () => {
+    const deleteTeam = (team: { _id: string; name: string }) => {
         openModal()
         setShowDeleteTeam(true)
     }
@@ -166,10 +166,16 @@ const Settings: React.FC = () => {
                                     handleUserInfoChange={handleUserInfoChange}
                                 />
                             )}
-                            {selectedOption === 1 && <PrivacySettings />}
-                            {selectedOption === 2 && <TeamSettings />}
-                            {selectedOption === 3 && <Notifications />}
-                            {selectedOption === 5 && <Faq />}
+                            {selectedOption == 1 && (
+                                <PrivacySettings
+                                    handleUserInfoChange={handleUserInfoChange}
+                                />
+                            )}
+                            {selectedOption == 2 && (
+                                <TeamSettings deleteTeam={deleteTeam} />
+                            )}
+                            {selectedOption == 3 && <Notifications />}
+                            {selectedOption == 5 && <Faq />}
                         </div>
                     )}
                 </div>

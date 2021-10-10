@@ -1,11 +1,10 @@
 import React from 'react'
 interface UserProp {
     user: {
-        _id: string
+        id: string
         name: string
         avatar: string
         designation: string
-        spanAfterConnection: string
     }
     handleClick(_id: string): any
     rightText: string
@@ -36,13 +35,6 @@ const User: React.FC<UserProp> = ({ user, handleClick, rightText }) => {
                     >
                         {user.designation}
                     </div>
-                    <div
-                        className={
-                            'privacy-settings-mid-block-box-user-left-text-time text-style--italic'
-                        }
-                    >
-                        connected {user.spanAfterConnection} ago
-                    </div>
                 </div>
             </div>
 
@@ -50,7 +42,7 @@ const User: React.FC<UserProp> = ({ user, handleClick, rightText }) => {
                 className={
                     'privacy-settings-mid-block-box-user-right text-style--bold'
                 }
-                onClick={() => handleClick(user._id)}
+                onClick={() => handleClick(user.id)}
             >
                 {rightText}
             </div>
