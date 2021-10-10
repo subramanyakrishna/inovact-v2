@@ -22,7 +22,7 @@ interface UserI {
     journey_start_date: Date;
     years_of_professional_experience: number;
     degree: string;
-    area_of_interests: [AreaOfInterstI];
+    area_of_interests: [number];
     profile_complete: boolean;
     // connections: [number]; // These numbers will be user ids
 
@@ -121,7 +121,7 @@ interface ProjectLikeI extends LikeI {
 }
 
 interface IdeaLikeI extends LikeI {
-  project_id: number
+  idea_id: number
 }
 
 /*
@@ -136,7 +136,7 @@ interface ProjectI {
 
     // @TODO
     project_tags: [number];
-    
+    tead_id: number;
     mentions: [{ id: number, user_name: string }];
     project_status:
         | "just_started"

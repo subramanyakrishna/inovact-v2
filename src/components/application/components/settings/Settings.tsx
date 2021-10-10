@@ -166,10 +166,10 @@ const Settings: React.FC = () => {
                                     handleUserInfoChange={handleUserInfoChange}
                                 />
                             )}
-                            {selectedOption == 1 && <PrivacySettings />}
-                            {selectedOption == 2 && <TeamSettings />}
-                            {selectedOption == 3 && <Notifications />}
-                            {selectedOption == 5 && <Faq />}
+                            {selectedOption === 1 && <PrivacySettings />}
+                            {selectedOption === 2 && <TeamSettings />}
+                            {selectedOption === 3 && <Notifications />}
+                            {selectedOption === 5 && <Faq />}
                         </div>
                     )}
                 </div>

@@ -2,18 +2,21 @@ import axios from "axios";
 import { useState } from "react";
 
 
-const useRequests = ({url, method, body, onSuccess} : any) =>{
+const useRequests = ({route, method, body, onSuccess} : any) =>{
     const [errors, setErrors] = useState(null);
+    const baseUrl = "https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/";
     const doRequest = async (props = {})=>{
         try {
             setErrors(null);
-            // const response = await axios[`&{method}`](url, {...body, ...props});
             const response = await axios({
                 method: method,
-                url: url,
-                data: body
+                url: `${baseUrl}${route}`,
+                data: body,
+                headers: {
+                    "Authorization": localStorage.getItem("user"),
+                }
             });
-            console.log(response);
+            console.log(...response.data);
             if(onSuccess){
                 onSuccess(response.data);
             }

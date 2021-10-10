@@ -35,7 +35,7 @@ const userAuthentication = async (email: any, password: any)=>{
             // console.log(store.getState());
             // console.log(result);
             const currentUser: any = UserPool;
-            // console.log(currentUser);
+            console.log(currentUser.getCurrentUser());
             localStorage.setItem("user",result.getIdToken().getJwtToken());
             axios.get("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=26",{
                headers: {

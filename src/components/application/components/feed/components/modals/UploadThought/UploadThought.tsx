@@ -1,4 +1,5 @@
 import React from 'react'
+import { handleAddThoughtChange } from 'StateUpdateHelper';
 
 function UploadThought(props:any) {
     return (
@@ -8,8 +9,8 @@ function UploadThought(props:any) {
                 <label className="modal_cover-title">Upload Thought</label>
                 <div className="modal_part_one">
                     <div className="modal_part_one-description">
-                        <label >Project Description</label>
-                        <textarea placeholder="Describe your project"/>
+                        <label >Thought Description</label>
+                        <textarea placeholder="What's on your mind?" onChange={(e: any)=>handleAddThoughtChange("description", e.target.value)}/>
                     </div>
                 </div>
                 <div className="modal_cover-post-btn">

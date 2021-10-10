@@ -1,5 +1,5 @@
 import React from 'react';
-import Switch_slider from './Switch_slider';
+import SwitchSlider from './SwitchSlider';
 
 
 function MemberMentor(props: any) {
@@ -8,13 +8,13 @@ function MemberMentor(props: any) {
             <div>
                 <label>Looking for team members</label>
                 <div onClick={props.teamMemberNeeded}>
-                    <Switch_slider/>
+                    <SwitchSlider/>
                 </div>
                 
             </div>
             <div>
                 <label>Looking for a mentor</label>
-                <Switch_slider/>
+                <SwitchSlider/>
             </div>
         </div>
     )

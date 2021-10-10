@@ -92,6 +92,7 @@ function Feed() {
             numComments: 250,
         },
     ])
+    
     const [showFilter, setShowFilter] = useState(false);
 
     const [showOverlay, setShowOverlay] = useState(false);
