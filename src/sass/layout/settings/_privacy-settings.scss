@@ -148,6 +148,8 @@ $width-percent-privacy-settings: 95%;
         }
 
         @include respond(md) {
+        }
+        @media only screen and (max-width: 72em) {
             grid-template-columns: 100%;
         }
     }

@@ -4188,7 +4188,7 @@ input, textarea:focus {
                 margin-bottom: -10px; }
           .privacy-settings-mid-block-box-user-right, .privacy-settings-mid-restrict-box-user-right {
             color: #4b72bc; }
-    @media only screen and (max-width: 62em) {
+    @media only screen and (max-width: 72em) {
       .privacy-settings-mid {
         grid-template-columns: 100%; } }
   .privacy-settings-end {
@@ -4307,6 +4307,9 @@ input, textarea:focus {
   .settings-my-profile-nametag div {
     display: flex;
     flex-direction: column; }
+  .settings-my-profile-nametag-imageAndEditContainer {
+    display: flex;
+    align-items: center; }
   .settings-my-profile-nametag-img-container {
     width: 150px;
     height: 150px;

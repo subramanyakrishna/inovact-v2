@@ -16,6 +16,10 @@
             display: flex;
             flex-direction: column;
         }
+        &-imageAndEditContainer {
+            display: flex;
+            align-items: center;
+        }
         &-img-container {
             width: 150px;
             height: 150px;
