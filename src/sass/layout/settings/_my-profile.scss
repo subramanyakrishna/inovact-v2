@@ -116,6 +116,14 @@
         }
     }
     &-area-of-interests {
+        &-select {
+            input {
+                width: 75%;
+                border: none;
+                border-radius: none;
+                border-bottom: 1px solid #02bd63;
+            }
+        }
         &-heading {
             font-size: 25px;
             font-weight: 600;

@@ -4391,6 +4391,12 @@ input, textarea:focus {
       padding: 5px 10px;
       resize: none; }
 
+.settings-my-profile-area-of-interests-select input {
+  width: 75%;
+  border: none;
+  border-radius: none;
+  border-bottom: 1px solid #02bd63; }
+
 .settings-my-profile-area-of-interests-heading {
   font-size: 25px;
   font-weight: 600;
