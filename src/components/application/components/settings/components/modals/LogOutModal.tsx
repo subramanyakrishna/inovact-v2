@@ -6,10 +6,22 @@ function LogOutModal(props: any) {
             <div className="settings-modal-cover">
                 {/* <button className="close-modal" onClick={props.closeModal}>&times;</button> */}
                 <div className="settings-modal-content">
-                    <p className="settings-modal-cover-title">Are you sure you want to sign out?</p>
+                    <p className="settings-modal-cover-title">
+                        Are you sure you want to sign out?
+                    </p>
                     <div className="settings-modal-cover-buttons">
-                        <button onClick={props.closeModal} className="settings-modal-cover-buttons-signout" >Sign Out</button>
-                        <button onClick={props.closeModal}className="settings-modal-cover-buttons-cancel">Cancel</button>
+                        <button
+                            onClick={props.logOutyes}
+                            className="settings-modal-cover-buttons-signout"
+                        >
+                            Sign Out
+                        </button>
+                        <button
+                            onClick={props.closeModal}
+                            className="settings-modal-cover-buttons-cancel"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </div>
             </div>
@@ -17,4 +29,4 @@ function LogOutModal(props: any) {
     )
 }
 
-export default LogOutModal;
+export default LogOutModal
