@@ -29,6 +29,7 @@ function UploadProject(props: any) {
         e.preventDefault();
         props.closeModal();
         await doRequest();
+        window.location.reload();
     }
     return (
         <div className="modal_main">

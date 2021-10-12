@@ -2375,7 +2375,7 @@ body {
 
 .feed__content {
   display: flex;
-  max-width: 1200px;
+  max-width: 1300px;
   justify-content: center;
   margin: auto;
   width: 100%;
@@ -2967,6 +2967,9 @@ body {
       background: none;
       border: 1px solid #b4b4b4;
       color: #02BD63; }
+      .modal_cover-post-btn button:hover {
+        color: white;
+        background-color: #02BD63; }
     .modal_cover-post-btn--green {
       width: 5rem;
       border-radius: 10px;
@@ -3086,7 +3089,21 @@ body {
 .modal_part_one-tags {
   flex-direction: column; }
   .modal_part_one-tags-all {
-    display: flex; }
+    display: flex;
+    flex-wrap: wrap; }
+  .modal_part_one-tags-taginput {
+    display: flex;
+    column-gap: 20px; }
+    .modal_part_one-tags-taginput button {
+      width: 7rem;
+      height: 2rem;
+      background-color: #ffffff;
+      border: 1px solid #02bd63;
+      color: #02bd63;
+      border-radius: 20px; }
+      .modal_part_one-tags-taginput button:hover {
+        background-color: #02BD63;
+        color: white; }
   .modal_part_one-tags label {
     font-weight: 300; }
   .modal_part_one-tags input, .modal_part_one-tags textarea {
@@ -3323,6 +3340,10 @@ input, textarea:focus {
   padding: 5px;
   width: 6rem;
   margin-bottom: 20px; }
+  .upload-media-btn:hover {
+    background-color: #02BD63;
+    color: white;
+    cursor: pointer; }
 
 .upload-media-div {
   border: 3px dotted rgba(0, 0, 0, 0.125);

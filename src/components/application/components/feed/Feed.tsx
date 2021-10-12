@@ -15,10 +15,12 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown';
 import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
+import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange } from 'StateUpdateHelper'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([]);
+    const [ideas, setIdeas] = useState<postData[]>([]);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
@@ -31,7 +33,7 @@ function Feed() {
         onSuccess: (data: any)=>{
             console.log(data);
             data.data.project.reverse();
-            setPosts(data.data.project.map((post: any)=>({
+            setPosts([...posts,...data.data.project.map((post: any)=>({
                 id: post.id,
                 title: post.title,
                 description: post.description,
@@ -48,11 +50,43 @@ function Feed() {
                 time: convertDate(post.created_at),
                 numLikes: 250,
                 numComments: 250,
-                })));
+                }))]);
+                // window.location.reload();
+        }
+    });
+    const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
+        route: "idea",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            data.data.idea.reverse();
+            console.log("on success of ideas");
+            setIdeas([...ideas,...data.data.idea.map((post: any)=>({
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                type: 2,
+                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+                author: 'Jane Doe',
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 250,
+                numComments: 250,
+                }))]);
+                // window.location.reload();
         }
     });
     useEffect(()=>{
-        doRequest();
+        (async ()=>{
+            await doRequest();
+            await doRequestIdea();
+        })();
     },[])
     const [showFilter, setShowFilter] = useState(false);
 
@@ -83,6 +117,9 @@ function Feed() {
         setShowCreateTeam(false);
         setShowTeamMembers(false);
         setShowRequestJoin(false);
+        handleAddIdeaChange("idea_clear_data","");
+        handleAddProjectChange("project_clear_data","");
+        handleAddThoughtChange("thought_clear_data","null");
         document.body.style.overflowY="scroll";
     }
     
@@ -185,7 +222,7 @@ function Feed() {
                 </div>
             </div>
             </div>
-                    {posts.map((post, idx) => {
+                    {posts.concat(ideas).map((post, idx) => {
                         return <Post key={idx} post={post} openTeamMember={viewTeamMembers} openRequestJoin={viewRequestJoin}/>
                     })}
                     <Spinner/>

@@ -272,7 +272,12 @@ const handleAddThoughtChange = (name: any, value: any) => {
                 type: addThoughtConstants.THOUGHT_UPDATE_DESCRIPTION,
                 payload: value,
             })
-            break
+            break;
+        case "thought_clear_data": 
+            store.dispatch({
+                type: addThoughtConstants.THOUGHT_CLEAR_DATA,
+            });
+            break;
     }
     console.log(store.getState())
 }
