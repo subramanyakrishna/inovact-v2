@@ -3,7 +3,7 @@ import { userCredsConstants } from "redux/actionTypes/userCredsConstants";
 const initialState = {
     email_id: "",
     password: "",
-    user_name: "tempusername12asdf",
+    user_name: "temp",
 }
 
 const updateUserCreds = (state = initialState, action: any)=>{

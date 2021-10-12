@@ -7,6 +7,7 @@ import { handleAddProjectChange } from 'StateUpdateHelper';
 function ModalPart2(props: any) {
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
     const [teamMembersNeeded, setTeamMembersNeeded] = useState(false);
+    const [teamNotOnInovact, setTeamNotOnInovact] = useState(false);
     const [isIndividualProject, setIsIndividualProject] = useState(false);
     const addAnotherRole = (role:any, tags:any)=>{
         if(role==="" && tags.length===0) return;
@@ -27,6 +28,9 @@ function ModalPart2(props: any) {
         setTeamMembersNeeded(!teamMembersNeeded);
         // handleAddProjectChange("")
     }
+    const toggleTeamNotOnInovact = ()=>{
+        setTeamNotOnInovact(!teamNotOnInovact);
+    }
     const toggleIsIndividualProject =()=>{
         setIsIndividualProject(!isIndividualProject);
     }
@@ -46,9 +50,9 @@ function ModalPart2(props: any) {
                     </div>
                     {
                         !isIndividualProject &&
-                        <div>
-                            <input type="checkbox"/>
-                            <span>Team not on Inovact</span>
+                        <div >
+                            <input type="checkbox" id="team-not-inovact" onClick={toggleTeamNotOnInovact}/>
+                            <label htmlFor="team-not-inovact" onClick={toggleTeamNotOnInovact}>Team not on Inovact</label>
                         </div>
                     }
                     
@@ -56,7 +60,8 @@ function ModalPart2(props: any) {
                 </div>
             </div>
                     {
-                        !isIndividualProject &&
+                        !isIndividualProject && 
+                        !teamNotOnInovact &&
                         <div className="modal_part_two-mentions">
                             <label>Mentions</label>
                             <input type="text" placeholder="Type the usernames of the people you would like to mention"/>
@@ -87,7 +92,6 @@ function ModalPart2(props: any) {
                             <Switch_slider/>
                         </div>
                     </div> */}
-                    <MemberMentor teamMemberNeeded={toggleTeamMemberNeeded}/>
                     <div className="modal_part_two-project-status">
                         <span>Project Status</span>
                         <div>

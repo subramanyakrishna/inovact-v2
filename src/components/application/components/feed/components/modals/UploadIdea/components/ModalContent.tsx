@@ -71,7 +71,7 @@ function ModalContent() {
             </div>
             <div className="modal_part_one-tags">
                 <label>Tags covered in your project</label>
-                <div>
+                <div className="modal_part_one-tags-taginput">
                     <input type="text" placeholder="Type out the skills used" onChange={handleCurrentTag} value={currentTag}/>
                     <button onClick={addTag}>+Add Tag</button>
                 </div>
@@ -81,7 +81,7 @@ function ModalContent() {
                     }
                 </div>
             </div>
-            <div className="modal_part_two">
+            {/* <div className="modal_part_two">
                 <div className="modal_part_two-member-mentor">
                     <div>
                         <label>Looking for team members</label>
@@ -96,7 +96,7 @@ function ModalContent() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {
                     teamMembersNeeded && 
                     <div >
