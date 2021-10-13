@@ -131,7 +131,19 @@
     width: 5.5rem;
     border: none;
     border-radius: 1rem;
-   
+   &-container{
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       width: 60%;
+       p{
+           margin: 0px;
+       }
+       @include respond(sm){
+           flex-direction: column;
+           justify-content: space-around;
+       }
+   }
     background-color:$color-secondary-blue;
    margin-top: 0.3rem;
     color:white;
