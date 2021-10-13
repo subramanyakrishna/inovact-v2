@@ -4220,7 +4220,7 @@ input, textarea:focus {
                 margin-bottom: -10px; }
           .privacy-settings-mid-block-box-user-right, .privacy-settings-mid-restrict-box-user-right {
             color: #4b72bc; }
-    @media only screen and (max-width: 62em) {
+    @media only screen and (max-width: 72em) {
       .privacy-settings-mid {
         grid-template-columns: 100%; } }
   .privacy-settings-end {
@@ -4339,6 +4339,9 @@ input, textarea:focus {
   .settings-my-profile-nametag div {
     display: flex;
     flex-direction: column; }
+  .settings-my-profile-nametag-imageAndEditContainer {
+    display: flex;
+    align-items: center; }
   .settings-my-profile-nametag-img-container {
     width: 150px;
     height: 150px;
@@ -4419,6 +4422,12 @@ input, textarea:focus {
       width: 100%;
       padding: 5px 10px;
       resize: none; }
+
+.settings-my-profile-area-of-interests-select input {
+  width: 75%;
+  border: none;
+  border-radius: none;
+  border-bottom: 1px solid #02bd63; }
 
 .settings-my-profile-area-of-interests-heading {
   font-size: 25px;

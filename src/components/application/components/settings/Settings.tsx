@@ -13,6 +13,8 @@ import TeamSettings from './components/TeamSettings/TeamSettings'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleUserInfoChange } from '../../../../StateUpdateHelper'
 import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
+import axios from 'axios'
+import { useHistory } from 'react-router'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -54,7 +56,9 @@ const Settings: React.FC = () => {
     const team_with_admin_access_data = useSelector(
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
+    const userInfo = useSelector((state: any) => state.userInfo)
     const dispath = useDispatch()
+    const history = useHistory()
     console.log(useSelector((state) => state))
     const handleWindowResize = () => {
         setWidth(window.innerWidth)
@@ -83,6 +87,19 @@ const Settings: React.FC = () => {
             setShowLeft(!showLeft)
             setShowRight(!showRight)
         }
+
+        axios
+            .put(
+                'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
+                userInfo,
+                {
+                    headers: {
+                        Authorization: localStorage.getItem('user'),
+                    },
+                }
+            )
+            .then((resp) => console.log(resp))
+            .catch((err) => console.log(err))
     }
     const openModal = () => {
         setShowOverlay(true)
@@ -99,6 +116,12 @@ const Settings: React.FC = () => {
     const logOut = () => {
         openModal()
         setShowLogOut(true)
+    }
+    const logOutyes = () => {
+        console.log('logOutyes')
+        localStorage.clear()
+        history.push('/login')
+        closeModal()
     }
     const deleteTeam = (id: number) => {
         setSelectedTeamToDelete(id)
@@ -140,7 +163,12 @@ const Settings: React.FC = () => {
                         className="modal-overlay-settings"
                         onClick={closeModal}
                     ></div>
-                    {showLogOut && <LogOutModal closeModal={closeModal} />}
+                    {showLogOut && (
+                        <LogOutModal
+                            closeModal={closeModal}
+                            logOutyes={logOutyes}
+                        />
+                    )}
                     {showDeleteTeam && (
                         <DeleteTeamModal
                             closeModal={closeModal}

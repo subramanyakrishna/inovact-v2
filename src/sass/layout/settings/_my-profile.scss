@@ -16,6 +16,10 @@
             display: flex;
             flex-direction: column;
         }
+        &-imageAndEditContainer {
+            display: flex;
+            align-items: center;
+        }
         &-img-container {
             width: 150px;
             height: 150px;
@@ -112,6 +116,14 @@
         }
     }
     &-area-of-interests {
+        &-select {
+            input {
+                width: 75%;
+                border: none;
+                border-radius: none;
+                border-bottom: 1px solid #02bd63;
+            }
+        }
         &-heading {
             font-size: 25px;
             font-weight: 600;
