@@ -33,10 +33,10 @@ const userAuthentication = async (email: any, password: any) => {
             // });
             // localStorage.setItem("user", accessToken);
             // console.log(store.getState());
+            localStorage.setItem('user', result.getIdToken().getJwtToken())
             console.log('results', result)
             const currentUser: any = UserPool
             console.log('currentUser', currentUser)
-            localStorage.setItem('user', result.getIdToken().getJwtToken())
             axios
                 .get(
                     'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=26',

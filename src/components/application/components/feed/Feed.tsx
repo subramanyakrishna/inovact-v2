@@ -16,12 +16,17 @@ import SortByDropdown from 'components/application/components/feed/components/So
 import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
 import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange } from 'StateUpdateHelper'
+import { userInfo } from 'os'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([]);
     const [ideas, setIdeas] = useState<postData[]>([]);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const userInfo = useSelector((state: any)=>state.userInfo);
+    const history = useHistory();
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -87,6 +92,9 @@ function Feed() {
             await doRequest();
             await doRequestIdea();
         })();
+        if(!(userInfo.profile_complete)){
+            history.push("/userinfo");
+        }
     },[])
     const [showFilter, setShowFilter] = useState(false);
 

@@ -17,7 +17,7 @@ const initialState = {
     years_of_professional_experience: 0,
     degree: 'BE',
     area_of_interests: [1, 2, 3, 4],
-    profile_complete: false,
+    profile_complete: true,
     id: 0,
     cognito_sub: '',
     appearance: 0,

@@ -74,8 +74,13 @@
         }
         
     }
+    &-all-replies{
+        max-height: 200px;
+        overflow-y: scroll;
+    }
     &-addcomment{
         display: flex;
+        justify-content: space-between;
         textarea{
             font-size: small;
             padding: 5px 20px;
@@ -85,6 +90,11 @@
             border-radius: 20px;
             border: none;
             background-color: #f2f7ff;
+            scrollbar-color: none;
+            @include respond(md){
+                font-size: 10px;
+                padding: 5px 10px;
+            }
         }
         button{
             width: 4rem;
@@ -92,7 +102,7 @@
             background-color: $color-secondary-blue;
             border: none;
             color: white;
-            margin: 0px 20px;
+            margin-left: 5px;
         }
     }
 }
