@@ -8,7 +8,9 @@ import { updateProjectInfoReducer } from './addProjectReducer'
 import { updateIdeaInfoReducer } from './addIdeaReducer'
 import { updateThoughtInfoReducer } from './addThoughtReducer'
 import { blockedRestrictedAccounts } from './blockedAndRestrictedReducer'
-import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer'
+import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer';
+import { allPostsReducer } from './allPostsReducer'
+import { allIdeasReducer } from './allIdeasReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
     addThought: updateThoughtInfoReducer,
     blockedAndRestricted: blockedRestrictedAccounts,
     teamWithAdminAccess: updateTeamWithAdminAccessReducer,
+    allPosts: allPostsReducer,
+    allIdeas: allIdeasReducer,
 })
 
-export default rootReducer
+export default rootReducer;

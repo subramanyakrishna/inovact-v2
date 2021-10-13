@@ -40,7 +40,7 @@ function Application() {
                     "Authorization": localStorage.getItem("user"),
                   } 
                 }
-                ).then((resp: any)=>{
+                ).then(async(resp: any)=>{
                     console.log("user api call:",resp);
                     dispatch({
                         type: userConstants.LOGIN_SUCCESS,
@@ -48,15 +48,21 @@ function Application() {
                             profile_complete: resp.data.data.user[0].profile_complete
                         },
                     });
-                    dispatch({
+                    (async()=>{
+                        dispatch({
                         type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
                         data: resp.data.data.user[0]
-                    })
-                    if(!(state.userInfo.profile_complete)){
+                        })
+                    })().then(()=>{
+                        if(!(state.userInfo.profile_complete)){
                         console.log(state.userInfo.profile_complete);
                         history.push("/userinfo");
                         alert("Your profile is not complete, please complete it by giving the following information.");
-                    }   
+                    }
+                    });
+                }).then(()=>{
+                    console.log("profile status: ",state.userInfo.profile_complete);
+                    
                 }).catch((err)=>{
                     console.log(err);
                     alert(err.message);

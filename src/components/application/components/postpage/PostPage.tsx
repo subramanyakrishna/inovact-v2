@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import RequestToJoin from '../feed/components/modals/RequestToJoin.tsx/RequestToJoin';
 import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
 import CommentsOnPost from '../profile/components/RightProfileContent/CommentsOnPost';
@@ -7,9 +9,12 @@ import LikedBy from './components/LikedBy';
 import Post from './components/Post';
 import TeamMembers from './components/TeamMembers';
 
-function PostPage() {
-    const postData = {
-        id: '1',
+function PostPage(props: any) {
+    const allPosts = useSelector((state: any)=> state.allPosts);
+    const allIdeas = useSelector((state: any)=> state.allIdeas);
+    // console.log(props);
+    let postData: any = {
+        id: 1,
         type: 1,
         avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
         author: 'Jane Doe',
@@ -42,6 +47,40 @@ nihil, eveniet aliquid culpa officia aut!`,
         numComments: 250,
         completion: 80,
     };
+    // postData = allPosts.find((post: any)=>post.id===props.location.state.post_id);
+    const convertDate = (dateISO: any)=>{
+        const date = new Date(dateISO);
+        return `${date.getDate()} ${months[date.getMonth()]}`
+    }
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let { id }: any = useParams();
+    let params = useParams();
+    console.log("The route params are: ", params);
+    allPosts.forEach((ele: any)=>{
+        console.log(ele.id, id);
+        if(ele.id===Number(id)){
+            postData={
+                id: ele.id,
+                type: 1,
+                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+                author: 'Jane Doe',
+                time: convertDate(ele.created_at),
+                title: ele.title,
+                description: ele.description,
+                tags: ele.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: ele.project_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                numLikes: 250,
+                numComments: 250,
+                completion: 80,
+            }
+        }
+    });
+    // allIdeas.
     const [showOverlay, setShowOverlay] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
     const [showRequestJoin, setShowRequestJoin] = useState(false);
