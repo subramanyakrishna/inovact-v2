@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import datascience from 'images/user-info/aoi/datascience.svg'
 import project from 'images/user-info/aoi/projectmanagement.svg'
 import webdev from 'images/user-info/aoi/webdev.svg'
@@ -17,7 +17,6 @@ import hr from 'images/user-info/aoi/HR.svg'
 import marketing from 'images/user-info/aoi/marketing.svg'
 import stock from 'images/user-info/aoi/stock.svg'
 import { useSelector } from 'react-redux'
-
 
 const areas = [
     {
@@ -89,69 +88,66 @@ const areas = [
         name: 'Stock Trading',
         image: stock,
     },
-];
+]
 
-function AreaOfInterest(props :any) {
+function AreaOfInterest(props: any) {
     const {
-      formField: {
-         aoi   
-      }
-    } = props;
-    const [userAOI, setUserAOI] = useState<string[]>([]);
-    const userInfo = useSelector((state: any)=> state.userInfo);
-    const addAOI = (name: any)=>{
-        const aoi = userInfo.area_of_interests.slice(0);
+        formField: { aoi },
+    } = props
+    const [userAOI, setUserAOI] = useState<string[]>([])
+    const userInfo = useSelector((state: any) => state.userInfo)
+    const addAOI = (name: any) => {
+        const aoi = userInfo.area_of_interests.slice(0)
         // aoi.includes(name) ? aoi.filter((ele)=>ele!==name) : aoi.push(name);
-        aoi.includes(name) ? aoi.splice(aoi.indexOf(name),1) : aoi.push(name);
-        setUserAOI([...aoi]);
-        // console.log(userAOI);
-        props.handleChange('area-of-interest', aoi);
+        aoi.includes(name) ? aoi.splice(aoi.indexOf(name), 1) : aoi.push(name)
+        setUserAOI([...aoi])
+        props.handleChange('area-of-interest', aoi)
     }
     return (
-                <section className="area-of-interest">
-                    <div className="area-of-interest__text">
-                        <h6 className="heading-secondary size-small">
-                            Tell Us What You Are Interested In
-                        </h6>
-                        <p className="paragraph-primary--green">
-                            Make sure you select atleast three topics
-                        </p>
-                    </div>
-                    <div className="area-of-interest__form">
-                        <form>
-                            <ul className="area-of-interest__form__list">
-                                {areas.map((item:any, index:number) => {
-                                    return (
-                                        <li key={index}>
-                                            <div className="area-of-interest__form__list__item">
-                                                <input
-                                                    type="checkbox"
-                                                    id={`aoi-${index}`}
-                                                    name={aoi.name}
-                                                    value={item.name}
-                                                    onClick={addAOI.bind(null, item.name)} 
-                                                    hidden
-                                                />
-                                                <label
-                                                    className="checkbox-label"
-                                                    htmlFor={`aoi-${index}`}
-                                                    
-                                                >
-                                                    <img src={item.image} alt="" />
-                                                    {item.name}
-                                                </label>
-                                            </div>
-                                        </li>
-                                    )
-                                })}
-                                   <li >
-                                          
-                                        </li>
-                            </ul>
-                        </form>
-                    </div>
-                </section>
+        <section className="area-of-interest">
+            <div className="area-of-interest__text">
+                <h6 className="heading-secondary size-small">
+                    Tell Us What You Are Interested In
+                </h6>
+                <p className="paragraph-primary--green">
+                    Make sure you select atleast three topics
+                </p>
+            </div>
+            <div className="area-of-interest__form">
+                <form>
+                    <ul className="area-of-interest__form__list">
+                        {areas.map((item: any, index: number) => {
+                            return (
+                                <li key={index}>
+                                    <div className="area-of-interest__form__list__item">
+                                        <input
+                                            type="checkbox"
+                                            id={`aoi-${index}`}
+                                            name={aoi.name}
+                                            value={item.name}
+                                            onClick={addAOI.bind(
+                                                null,
+                                                item.name
+                                            )}
+                                            hidden
+                                        />
+                                        <label
+                                            className="checkbox-label"
+                                            htmlFor={`aoi-${index}`}
+                                        >
+                                            <img src={item.image} alt="" />
+                                            {item.name}
+                                        </label>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                        <li></li>
+                    </ul>
+                </form>
+            </div>
+        </section>
     )
 }
 
-export default AreaOfInterest;
+export default AreaOfInterest

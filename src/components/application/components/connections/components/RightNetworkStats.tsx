@@ -1,22 +1,37 @@
-import React from 'react';
+import React from 'react'
 
-import profilepic from "../../../../../images/connections/profilepic.png";
+import profilepic from '../../../../../images/connections/profilepic.png'
 
-function RightNetworkStats () {
-    return(
+function RightNetworkStats() {
+    return (
         <div className="right-network-stats">
             <div className="right-network-stats--img-container">
-                <img src={profilepic} className="right-network-stats--img"/>
+                <img src={profilepic} className="right-network-stats--img" />
                 <span>Matt Lee</span>
                 <h5>Your Network Stats</h5>
             </div>
             <div className="right-network-stats--content">
                 <div className="right-network-stats--content-titles">
-                    <p><span>Total connections</span><span>473</span></p>
-                    <p><span>Last week's connections</span><span>18</span></p>
-                    <p><span>Your mentors</span><span>4</span></p>
-                    <p><span>Appearances in People you may know</span><span>26</span></p>
-                    <p><span>Percentage Growth</span><span style={{color: '#07d400'}}>+3.95%</span></p>
+                    <p>
+                        <span>Total connections</span>
+                        <span>473</span>
+                    </p>
+                    <p>
+                        <span>Last week's connections</span>
+                        <span>18</span>
+                    </p>
+                    <p>
+                        <span>Your mentors</span>
+                        <span>4</span>
+                    </p>
+                    <p>
+                        <span>Appearances in People you may know</span>
+                        <span>26</span>
+                    </p>
+                    <p>
+                        <span>Percentage Growth</span>
+                        <span style={{ color: '#07d400' }}>+3.95%</span>
+                    </p>
                 </div>
                 {/* <div className="right-network-stats--content-data">
                     <p>473</p>
@@ -30,5 +45,4 @@ function RightNetworkStats () {
     )
 }
 
-
-export default RightNetworkStats;
+export default RightNetworkStats

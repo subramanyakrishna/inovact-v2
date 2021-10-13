@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 
 function YourProfile(props: any) {
     const userInfo = useSelector((state: any) => state.userInfo)
-    console.log('your profile', userInfo)
+
     return (
         <div className="settings-my-profile-main">
             <ProfileImage
