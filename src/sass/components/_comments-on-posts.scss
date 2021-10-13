@@ -74,6 +74,10 @@
         }
         
     }
+    &-all-replies{
+        max-height: 200px;
+        overflow-y: scroll;
+    }
     &-addcomment{
         display: flex;
         textarea{

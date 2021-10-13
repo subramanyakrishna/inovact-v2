@@ -20,6 +20,7 @@ import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
 import PrivateRoute from '../../PrivateRoute';
 import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
+import PostPage from './components/postpage/PostPage'
 
 
 
@@ -51,8 +52,16 @@ function Application() {
                         type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
                         data: resp.data.data.user[0]
                     })
-    
-                }).catch((err)=>console.log(err));
+                    if(!(state.userInfo.profile_complete)){
+                        console.log(state.userInfo.profile_complete);
+                        history.push("/userinfo");
+                        alert("Your profile is not complete, please complete it by giving the following information.");
+                    }   
+                }).catch((err)=>{
+                    console.log(err);
+                    alert(err.message);
+                    history.push("/login");
+                });
         }else{
             history.push("/login");
         }
@@ -61,11 +70,7 @@ function Application() {
     return (
         <div className="application">
             <Router>
-                {
-                    state.authentication.userAuthenticated && 
-                    !state.authentication.user.profile_complete &&
-                    <Redirect to="/userinfo"/>
-                }
+                
                 {   
                     state.authentication.userAuthenticated && 
                     state.authentication.user.profile_complete && 
@@ -79,6 +84,7 @@ function Application() {
                     <PrivateRoute path="/notifications" isAuth={state.authentication.userAuthenticated} component={Notifications} />
                     <PrivateRoute path="/settings" isAuth={state.authentication.userAuthenticated} component={Settings} />
                     <PrivateRoute path="/messages" isAuth={state.authentication.userAuthenticated} component={Messages} />
+                    <PrivateRoute path="/:id" isAuth={state.authentication.userAuthenticated} component={()=><PostPage/>}/>
                     <PrivateRoute path="/userinfo" isAuth={state.authentication.userAuthenticated} component={()=> <CheckoutPage handleChange={handleUserInfoChange} userInfo ={state.userInfo}/>}/>
                 </Switch>
             </Router>

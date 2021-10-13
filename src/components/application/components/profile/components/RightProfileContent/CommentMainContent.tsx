@@ -71,14 +71,14 @@ function CommentMainContent(props: any) {
                                                         })
                                                 }
                                                 
-                                                <div className="comments-on-posts-addcomment">
-                                                    <textarea placeholder="Reply to comment..."/>
-                                                    <button>Post</button>
-                                                </div>
                                             </div>
                                             
                                         }
                                     </div>
+                                            <div className="comments-on-posts-addcomment">
+                                                <textarea placeholder="Reply to comment..."/>
+                                                <button>Post</button>
+                                            </div>
                                     
                                 </div>
                             }

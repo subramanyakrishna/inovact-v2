@@ -158,7 +158,7 @@ const handleUserInfoChange = async (name: any, value: any) => {
             })
             break
     }
-    // console.log(store.getState());
+    console.log(store.getState());
 }
 
 const handleAddProjectChange = (name: any, value: any) => {
