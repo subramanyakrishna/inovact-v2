@@ -11,10 +11,10 @@ import CommentsOnPost from 'components/application/components/profile/components
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true);
     const [showShareOption, setShowShareOption] = useState(false);
-    // const [showComments, setShowComments] = useState(false);
-    // const backToPost = ()=>{
-    //     setShowComments(false);
-    // }
+    const [showComments, setShowComments] = useState(false);
+    const backToPost = ()=>{
+        setShowComments(false);
+    }
     const teamsData = [
         {
           img:
@@ -66,12 +66,13 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const sharePost =()=>{
         setShowShareOption(!showShareOption);
     }
-    // const toggleShowComments = ()=>{
-    //     setShowComments(!showComments);
-    // }
+    const toggleShowComments = ()=>{
+        setShowComments(!showComments);
+    }
     return (
         <div className="post">
             {
+                !showComments && 
                 <div>
                     <div className="post__author">
                     <img
@@ -87,7 +88,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     </div>
                     <div className="connect-button-container">
                         <button className="connect-button">Connect</button>
-                        <p style={{fontWeight: 600, cursor: "pointer", color: "#5579bd"}} onClick={openTeamMember}>View Team Members</p>
+                        <p style={{fontWeight: 600, cursor: "pointer", color: "#5579bd", fontSize: "small"}} onClick={openTeamMember}>View Team Members</p>
                     </div>
                 </div>
                 <div className="post__text">
@@ -133,18 +134,23 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 ) : null}
                 </div>
             }
-            {/* <div>
+            <div>
                 {
+                    window.innerWidth < 768 &&
                     showComments && 
                     <CommentsOnPost backToPost={backToPost}/>
                 }
-            </div> */}
+            </div>
             <div className="post__footer">
                 <div className="post__footer__likes">
                     <img src={like} alt="" />
                     <p className="post__footer__likes__num">{post.numLikes}</p>
                 </div>
-                <div className="post__footer__comments">
+                <div className="post__footer__comments" onClick={(e)=>{
+                        if(window.innerWidth<768)
+                            toggleShowComments();
+
+                    }}>
                     <img src={comment} alt=""/>
                     <p className="post__footer__comments__num">
                         {post.numComments}

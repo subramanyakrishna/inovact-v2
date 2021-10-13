@@ -18,8 +18,16 @@ function LikedBy() {
     ]
     return (
         <div>
-            <h3>Liked By</h3>
+            {
+                window.innerWidth > 786 &&
+                <h3>Liked By</h3>
+            }
             <div>
+                {
+                    data.map((ele)=>{
+                        return <LikedUser user = {ele}/>
+                    })
+                }
                 <LikedUser user={data[0]}/>
             </div>
         </div>

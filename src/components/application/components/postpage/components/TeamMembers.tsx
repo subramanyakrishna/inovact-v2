@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import LikedBy from './LikedBy';
 import TeamMemberTag from './TeamMemberTag'
 
 const TeamMembers = (props: any)=> {
@@ -6,19 +8,42 @@ const TeamMembers = (props: any)=> {
         name: 'Jane Doe',
         role: "Role",
     }
+    const [showLikedBy, setShowLikedBy] = useState(false);
+    const viewLikedBy = ()=>{
+        setShowLikedBy(true);
+    }
+    const viewMembers = ()=>{
+        setShowLikedBy(false);
+    }
     return (
         <div className="post-dedicated-team-members-page" id="team-members">
             <div className="post-dedicated-team-members-page-top">
-                <p className="post-dedicated-team-members-page-title">Members</p>
-                <div className="post-dedicated-team-members-page-status">
-                    <p>Project Status:</p>
-                    <p style={{color: "#02bd63"}}>In Progress</p>
-                </div>
+                <p className="post-dedicated-team-members-page-title" onClick={viewMembers}>Members</p>
+                {
+                    window.innerWidth <= 992 &&
+                    <p className="post-dedicated-team-members-page-title" onClick={viewLikedBy}>Liked By</p>
+                }
+                {
+                    window.innerWidth >= 992 &&    
+                    <div className="post-dedicated-team-members-page-status">
+                        <p>Project Status:</p>
+                        <p style={{color: "#02bd63"}}>In Progress</p>
+                    </div>
+                }
             </div>
-            <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
-            <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
-            <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
-            <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+            {
+                !showLikedBy &&
+                <div>
+                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+                </div>
+            }
+            {
+                showLikedBy && 
+                <LikedBy/>
+            }
         </div>
     )
 };

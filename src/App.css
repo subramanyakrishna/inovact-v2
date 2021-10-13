@@ -1390,6 +1390,10 @@ body {
     width: 60%; }
     .connect-button-container p {
       margin: 0px; }
+    @media only screen and (max-width: 48em) {
+      .connect-button-container {
+        flex-direction: column;
+        justify-content: space-around; } }
   @media only screen and (max-width: 36em) {
     .connect-button {
       font-size: small; } }
@@ -4797,7 +4801,8 @@ input, textarea:focus {
   overflow-y: scroll; }
 
 .comments-on-posts-addcomment {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
   .comments-on-posts-addcomment textarea {
     font-size: small;
     padding: 5px 20px;
@@ -4806,14 +4811,19 @@ input, textarea:focus {
     height: 30px;
     border-radius: 20px;
     border: none;
-    background-color: #f2f7ff; }
+    background-color: #f2f7ff;
+    scrollbar-color: none; }
+    @media only screen and (max-width: 62em) {
+      .comments-on-posts-addcomment textarea {
+        font-size: 10px;
+        padding: 5px 10px; } }
   .comments-on-posts-addcomment button {
     width: 4rem;
     border-radius: 10px;
     background-color: #5579BD;
     border: none;
     color: white;
-    margin: 0px 20px; }
+    margin-left: 5px; }
 
 .reply-tag {
   display: flex;
@@ -5121,10 +5131,19 @@ input, textarea:focus {
     justify-content: center; }
     .post-dedicated-page-post-container {
       width: 70%; }
+      @media only screen and (max-width: 62em) {
+        .post-dedicated-page-post-container {
+          width: 90%; } }
+    @media only screen and (max-width: 48em) {
+      .post-dedicated-page-post {
+        width: 100%; } }
   .post-dedicated-page-comments {
     display: flex;
     justify-content: flex-end;
     width: 35%; }
+    @media only screen and (max-width: 62em) {
+      .post-dedicated-page-comments {
+        width: 45%; } }
     .post-dedicated-page-comments-container {
       display: flex;
       flex-direction: column;
@@ -5134,11 +5153,16 @@ input, textarea:focus {
       border-radius: 10px;
       background-color: white;
       padding: 30px; }
+    @media only screen and (max-width: 48em) {
+      .post-dedicated-page-comments {
+        display: none; } }
 
 .post-dedicated-liked-by {
   display: flex;
-  padding: 1rem 0rem;
+  padding: 1rem 0.5rem;
+  border-radius: 20px;
   width: 100%;
+  background-color: white;
   border-bottom: 1px solid #c8c8c8; }
   .post-dedicated-liked-by-img-container {
     width: 40px;
@@ -5152,11 +5176,11 @@ input, textarea:focus {
   .post-dedicated-liked-by p {
     margin: 0px;
     font-size: 20px;
-    font-weight: 600; }
+    font-weight: 600;
+    padding: 0px 20px; }
   .post-dedicated-liked-by-container {
-    width: 40%;
     display: flex;
-    justify-content: space-around; }
+    align-items: center; }
 
 .post-dedicated-team-members {
   display: flex;
@@ -5177,7 +5201,7 @@ input, textarea:focus {
     column-gap: 10px;
     font-weight: 600; }
   .post-dedicated-team-members-user {
-    width: 20%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-around; }
@@ -5192,7 +5216,11 @@ input, textarea:focus {
         object-fit: cover; }
     .post-dedicated-team-members-user-name {
       margin: 0px;
-      font-weight: 600; }
+      font-weight: 600;
+      padding-left: 10px; }
+    @media only screen and (max-width: 62em) {
+      .post-dedicated-team-members-user {
+        width: auto; } }
   .post-dedicated-team-members-btn {
     background-color: white;
     border: none;
