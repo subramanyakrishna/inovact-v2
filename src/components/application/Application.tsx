@@ -52,7 +52,7 @@ function Application() {
                         dispatch({
                         type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
                         data: resp.data.data.user[0]
-                        })
+                        });
                     })().then(()=>{
                         if(!(state.userInfo.profile_complete)){
                         console.log(state.userInfo.profile_complete);
@@ -90,12 +90,12 @@ function Application() {
                     <PrivateRoute path="/notifications" isAuth={state.authentication.userAuthenticated} component={Notifications} />
                     <PrivateRoute path="/settings" isAuth={state.authentication.userAuthenticated} component={Settings} />
                     <PrivateRoute path="/messages" isAuth={state.authentication.userAuthenticated} component={Messages} />
-                    <PrivateRoute path="/:id" isAuth={state.authentication.userAuthenticated} component={()=><PostPage/>}/>
                     <PrivateRoute path="/userinfo" isAuth={state.authentication.userAuthenticated} component={()=> <CheckoutPage handleChange={handleUserInfoChange} userInfo ={state.userInfo}/>}/>
+                    <PrivateRoute path="/:id" isAuth={state.authentication.userAuthenticated} component={()=><PostPage/>}/>
                 </Switch>
             </Router>
         </div>
     )
 }
 
-export default Application
+export default Application;
