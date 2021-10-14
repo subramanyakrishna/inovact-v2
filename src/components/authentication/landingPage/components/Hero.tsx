@@ -15,7 +15,8 @@ function Hero() {
                 </p>
                 <div className="landing-page__hero__text-box__button">
                     <Link
-                        to="/login"
+                        to={localStorage.getItem("user")?"/feed":"/login"}
+                        // to={"/login"}
                         className="landing-page__hero__text-box__button__item landing-page__hero__text-box__button__item--login"
                     >
                         Log In

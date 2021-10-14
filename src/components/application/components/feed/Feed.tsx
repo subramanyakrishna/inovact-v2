@@ -19,6 +19,7 @@ import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange, ha
 import { userInfo } from 'os'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import SmallSpinner from 'components/application/SmallSpinner'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -96,10 +97,15 @@ function Feed() {
             await doRequest();
             await doRequestIdea();
         })();
+        // if(!(userInfo.profile_complete)){
+        //     history.push("/userinfo");
+        // }
+    },[]);
+    useEffect(()=>{
         if(!(userInfo.profile_complete)){
             history.push("/userinfo");
         }
-    },[])
+    });
     const [showFilter, setShowFilter] = useState(false);
 
     const [showOverlay, setShowOverlay] = useState(false);

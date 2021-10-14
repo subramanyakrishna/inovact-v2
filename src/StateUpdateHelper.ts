@@ -101,14 +101,14 @@ const handleUserInfoChange = async (name: any, value: any) => {
         case 'graduation-year':
             store.dispatch({
                 type: userInfoConstants.UPDATE_GRADUATION_YEAR,
-                payload: value,
+                payload: new Date(value).toISOString(),
             })
             break
 
         case 'journey_start_date':
             store.dispatch({
                 type: userInfoConstants.UPDATE_JOURNEY_START_DATE,
-                payload: value,
+                payload: new Date(value).toISOString(),
             })
             break
 

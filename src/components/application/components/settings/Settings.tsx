@@ -88,7 +88,6 @@ const Settings: React.FC = () => {
             setShowLeft(!showLeft)
             setShowRight(!showRight)
         }
-
         axios
             .put(
                 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
@@ -120,7 +119,8 @@ const Settings: React.FC = () => {
     }
     const logOutyes = () => {
         localStorage.clear()
-        history.push('/login')
+        history.push('/login');
+        window.location.reload();
         closeModal()
     }
     const deleteTeam = (id: number) => {

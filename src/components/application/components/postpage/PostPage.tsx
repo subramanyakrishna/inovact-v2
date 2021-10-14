@@ -55,9 +55,7 @@ nihil, eveniet aliquid culpa officia aut!`,
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let { id }: any = useParams();
     let params = useParams();
-    console.log("The route params are: ", params);
     allPosts.forEach((ele: any)=>{
-        console.log(ele.id, id);
         if(ele.id===Number(id)){
             postData={
                 id: ele.id,

@@ -106,7 +106,7 @@ export default function GeneralForm(props :any) {
                     Enter your degreee{" "}
                     </option>
                     {degrees.map(item => 
-                      <option value={item.label} label={item.label}>{item.label}</option>
+                      <option value={item.label} label={item.label} >{item.label}</option>
                   )} 
     </Field>
                         </div>

@@ -20,3 +20,20 @@
         height: 30px;
     }
 }
+.loading-spinner-small{
+        border: 3px solid rgb(255, 255, 255);
+        border-top: 3px solid rgb(195, 195, 195);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 0.8s linear infinite;
+        margin:5px auto;
+        @keyframes spin{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+}

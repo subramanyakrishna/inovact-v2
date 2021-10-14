@@ -17,6 +17,7 @@ import axios from 'axios';
 import UserPool from 'redux/UserAuthentication/UserPool';
 import { store } from 'redux/helpers/store';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
+import { useHistory } from 'react-router';
 
 
 const steps = ['Role', 'General Info', 'Role-Specific-Form','AreaOfInterest','Upload Form'];
@@ -44,7 +45,7 @@ export default function CheckoutPage(props: any) {
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-
+  const history = useHistory();
   const userInfo = useSelector((state: any)=>state.userInfo);
  function submitForm(values:any, actions:any) {
     actions.setSubmitting(false);
@@ -67,7 +68,10 @@ export default function CheckoutPage(props: any) {
         headers: {
           "Authorization": currentUser.storage.user,
         }
-      }).then((resp)=> console.log(resp)).catch(err=>console.log(err));
+      }).then((resp)=> {
+        console.log(resp);
+        history.push("/feed");
+      }).catch(err=>console.log(err));
     })
 
   }
