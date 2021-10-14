@@ -96,7 +96,6 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                 )
             )
         )
-        console.log('Unblock', idOfUnblockedAccount)
     }
     const handlerestrictedusersUnRestrict = (
         idOfUnRestrictedAccount: string
@@ -114,11 +113,9 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                 )
             )
         )
-        console.log('UnRestrict', idOfUnRestrictedAccount)
     }
     const handleMakeProfilePublic = (checked: any) => {
         handleUserInfoChange('is_public', checked)
-        console.log('is public', checked)
     }
     return (
         <div className={'privacy-settings'}>

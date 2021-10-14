@@ -57,9 +57,10 @@ const Settings: React.FC = () => {
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
     const userInfo = useSelector((state: any) => state.userInfo)
+    console.log(userInfo)
     const dispath = useDispatch()
     const history = useHistory()
-    console.log(useSelector((state) => state))
+
     const handleWindowResize = () => {
         setWidth(window.innerWidth)
     }
@@ -117,7 +118,6 @@ const Settings: React.FC = () => {
         setShowLogOut(true)
     }
     const logOutyes = () => {
-        console.log('logOutyes')
         localStorage.clear()
         history.push('/login');
         window.location.reload();
@@ -129,11 +129,6 @@ const Settings: React.FC = () => {
         setShowDeleteTeam(true)
     }
     const sendDeleteTeamRequest = () => {
-        console.log(
-            'sending request for website to delete the team with id',
-            selectedTeamToDelete
-        )
-
         handleUserInfoChange(
             'team_with_admin_access',
             team_with_admin_access_ids.filter(
@@ -143,7 +138,6 @@ const Settings: React.FC = () => {
         dispath(
             updateTeamWithAdminAccessAction(
                 team_with_admin_access_data.filter((team: any) => {
-                    console.log(team.id)
                     return team.id != selectedTeamToDelete
                 })
             )

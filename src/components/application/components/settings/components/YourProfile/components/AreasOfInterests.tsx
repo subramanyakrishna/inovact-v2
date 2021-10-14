@@ -38,30 +38,13 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
             (interest: interestI) => interest != undefined
         )
         setAoiData(aoiDataTemp)
-        console.log('from use Effect aoiData ', aoiData)
     }, [])
 
-    // const changeAoiIdToAoiData = () => {
-    //     console.log(aoi)
-    //     let aoiDataTemp = aoi.map((interestId: number) =>
-    //         interests.find((interest: any) => interest.id === interestId)
-    //     )
-    //     console.log('1', aoiDataTemp)
-    //     aoiDataTemp = aoiDataTemp.filter(
-    //         (interest: interestI) => aoi != undefined
-    //     )
-
-    //     setAoiData(aoiDataTemp)
-    // }
-
     const handleClickDelete = (index: number) => {
-        console.log('handleClickDelete', index)
-
         handleUserInfoChange(
             'area-of-interest',
             aoi.filter((interest: number) => interest != index)
         )
-        console.log('handleClickDelete', aoiData)
         setAoiData([...aoiData.filter((interest: any) => interest.id != index)])
     }
 
@@ -81,13 +64,11 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
 
     const addTheSkill = (res: any) => {
         if (!aoi.includes(res.id)) {
-            console.log('addTheSkill', res)
             handleUserInfoChange('area-of-interest', [...aoi, res.id])
 
             setAoiData([...aoiData, res])
         }
 
-        console.log('aoi', aoi)
         setSearchRes([])
     }
 
@@ -108,7 +89,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                     <div style={{ position: 'relative' }}>
                         <div className="search_skills">
                             {searchRes.map((res: any) => {
-                                console.log('searchRes', res)
                                 return (
                                     <span
                                         key={res.id}

@@ -1,35 +1,34 @@
 $primary-background: #ffffff;
-$connect-btn-color: #5579BD;
+$connect-btn-color: #5579bd;
 
-.people-you-may-know{
+.people-you-may-know {
     width: 100%;
     height: auto;
     padding: 1rem 1rem;
     border-radius: 20px;
     background-color: $primary-background;
-    &-title{
+    &-title {
         font-size: large;
         font-weight: 500;
         padding: 20px;
-        @include respond(sm){
+        @include respond(sm) {
             padding: 0px;
         }
     }
-    &-profiles{
+    &-profiles {
         display: flex;
         flex-wrap: wrap;
         height: 400px;
         overflow-y: scroll;
-    }   
-    @include respond(sm){
+    }
+    @include respond(sm) {
         border-radius: 0;
     }
-    @include respond(xs){
-
+    @include respond(xs) {
     }
 }
 
-.people-profile-card{
+.people-profile-card {
     width: 20%;
     margin: 10px;
     height: 12rem;
@@ -40,56 +39,56 @@ $connect-btn-color: #5579BD;
     border: 1px solid gray;
     border-radius: 10px;
     padding: 1rem;
-    &-img-container{
+    &-img-container {
         margin: 0 auto;
         border-radius: 50%;
         overflow: hidden;
-        img{
+        img {
             width: 60px;
             height: 60px;
             object-fit: cover;
         }
     }
-    &-data{
+    &-data {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    &-name{
+    &-name {
         font-size: 15px;
         font-weight: 400;
     }
-    &-designation{
+    &-designation {
         font-size: 12px;
     }
-    &-mutual-connections{
+    &-mutual-connections {
         font-size: 10px;
         color: grey;
         font-style: italic;
     }
-    button{
+    button {
         width: 6rem;
         border: none;
         border-radius: 1rem;
         background-color: $connect-btn-color;
         color: $primary-background;
-        @include respond(xs){
+        @include respond(xs) {
             width: 120%;
             font-size: small;
         }
     }
-    @include respond(sm){
+    @include respond(sm) {
         width: 30%;
         margin: 5px;
         text-align: center;
     }
 }
 
-.line-separation{
+.line-separation {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    &-filter-parameters{
+    &-filter-parameters {
         background-color: $primary-background;
         text-align: left;
         display: flex;
@@ -99,23 +98,27 @@ $connect-btn-color: #5579BD;
         position: absolute;
         border: 1px solid gray;
         border-radius: 5px;
-        label{
+        label {
             border-bottom: 0.5px solid rgb(218, 218, 218);
             padding: 5px;
-            @include respond(sm){
+            @include respond(sm) {
                 font-size: 10px;
             }
         }
     }
-    &-line{
-        width: 80%;
-        text-align: "left";
-        margin-left: "0px";
-        @include respond(md){
-            width: 70%;
+    &-line {
+        width: 60%;
+        text-align: 'left';
+        margin-left: '0px';
+
+        @include respond(sm) {
+            width: 50%;
         }
-        @include respond(sm){
-            width: 60%;
+        @include respond(xs) {
+            width: 45%;
+        }
+        @include respond(xxs) {
+            width: 30%;
         }
     }
 }

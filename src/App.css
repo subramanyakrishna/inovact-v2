@@ -2770,7 +2770,7 @@ body {
     width: 6rem;
     border: none;
     border-radius: 1rem;
-    background-color: #5579BD;
+    background-color: #5579bd;
     color: #ffffff; }
     @media only screen and (max-width: 36em) {
       .people-profile-card button {
@@ -2803,15 +2803,18 @@ body {
         .line-separation-filter-parameters label {
           font-size: 10px; } }
   .line-separation-line {
-    width: 80%;
-    text-align: "left";
-    margin-left: "0px"; }
-    @media only screen and (max-width: 62em) {
-      .line-separation-line {
-        width: 70%; } }
+    width: 60%;
+    text-align: 'left';
+    margin-left: '0px'; }
     @media only screen and (max-width: 48em) {
       .line-separation-line {
-        width: 60%; } }
+        width: 50%; } }
+    @media only screen and (max-width: 36em) {
+      .line-separation-line {
+        width: 45%; } }
+    @media screen and (max-width: 26rem) {
+      .line-separation-line {
+        width: 30%; } }
 
 *::-webkit-scrollbar {
   width: 5px;
@@ -4997,9 +5000,6 @@ input, textarea:focus {
   height: 50px;
   animation: spin 0.8s linear infinite;
   margin: 20px auto; }
-  .loading-spinner-small {
-    width: 20px;
-    height: 20px; }
 
 @keyframes spin {
   0% {
