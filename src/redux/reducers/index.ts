@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-
 import { authentication } from 'redux/reducers/loginReducer'
 import { registration } from 'redux/reducers/registerReducer'
 import { updateUserCreds } from './userCredsReducer'
@@ -8,7 +7,8 @@ import { updateProjectInfoReducer } from './addProjectReducer'
 import { updateIdeaInfoReducer } from './addIdeaReducer'
 import { updateThoughtInfoReducer } from './addThoughtReducer'
 import { blockedRestrictedAccounts } from './blockedAndRestrictedReducer'
-import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer';
+import { connectionsReducer } from './connectionsReducer'
+import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer'
 import { allPostsReducer } from './allPostsReducer'
 import { allIdeasReducer } from './allIdeasReducer'
 
@@ -22,8 +22,9 @@ const rootReducer = combineReducers({
     addThought: updateThoughtInfoReducer,
     blockedAndRestricted: blockedRestrictedAccounts,
     teamWithAdminAccess: updateTeamWithAdminAccessReducer,
+    connections: connectionsReducer,
     allPosts: allPostsReducer,
     allIdeas: allIdeasReducer,
 })
 
-export default rootReducer;
+export default rootReducer
