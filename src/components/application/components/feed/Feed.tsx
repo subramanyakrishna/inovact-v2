@@ -15,7 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown';
 import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
-import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange } from 'StateUpdateHelper'
+import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange, handleAllIdeas, handleAllPosts } from 'StateUpdateHelper'
 import { userInfo } from 'os'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -26,6 +26,9 @@ function Feed() {
     const [ideas, setIdeas] = useState<postData[]>([]);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const userInfo = useSelector((state: any)=>state.userInfo);
+    const allPosts = useSelector((state: any)=>state.allPosts);
+    const allIdeas = useSelector((state: any)=>state.allIdeas);
+
     const history = useHistory();
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
@@ -38,6 +41,7 @@ function Feed() {
         onSuccess: (data: any)=>{
             console.log(data);
             data.data.project.reverse();
+            handleAllPosts("all-posts", [...data.data.project,...allPosts]);
             setPosts([...posts,...data.data.project.map((post: any)=>({
                 id: post.id,
                 title: post.title,
@@ -66,6 +70,7 @@ function Feed() {
         onSuccess: (data: any)=>{
             data.data.idea.reverse();
             console.log("on success of ideas");
+            handleAllIdeas("all-ideas", [...data.data.idea,...allIdeas]);
             setIdeas([...ideas,...data.data.idea.map((post: any)=>({
                 id: post.id,
                 title: post.title,
@@ -84,7 +89,6 @@ function Feed() {
                 numLikes: 250,
                 numComments: 250,
                 }))]);
-                // window.location.reload();
         }
     });
     useEffect(()=>{
@@ -245,3 +249,4 @@ function Feed() {
 }
 
 export default Feed;
+
