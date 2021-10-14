@@ -29,7 +29,6 @@ function CenterRequests({ makeApiCall }: any) {
     }
 
     const acceptConnectRequest = async (id: number) => {
-        console.log(id)
         dispath(
             updatePendingRequests(
                 pending_requests.filter((user: any) => user.id != id)
@@ -96,6 +95,7 @@ function CenterRequests({ makeApiCall }: any) {
                         {pending_requests &&
                             pending_requests.map((user: any) => (
                                 <RequestProfile
+                                    key={user.id}
                                     user={user}
                                     acceptConnectRequest={acceptConnectRequest}
                                     rejectConnectRequest={rejectConnectRequest}

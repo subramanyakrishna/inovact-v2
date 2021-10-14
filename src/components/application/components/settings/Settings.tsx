@@ -57,6 +57,7 @@ const Settings: React.FC = () => {
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
     const userInfo = useSelector((state: any) => state.userInfo)
+    console.log(userInfo)
     const dispath = useDispatch()
     const history = useHistory()
 

@@ -20,12 +20,6 @@ function RightFilterDropdown(props: any) {
         category: string,
         selectedFilterValue: string
     ) => {
-        console.log(
-            'category:',
-            category,
-            'selectedFilterValue:',
-            selectedFilterValue
-        )
         props.filterOptionSelector(category, selectedFilterValue)
     }
 
@@ -78,8 +72,9 @@ function RightFilterDropdown(props: any) {
                     {showOrganizations && (
                         <div className="filter-dropdown-roles">
                             {props.organisationList.map(
-                                (organization: string) => (
+                                (organization: string, i: number) => (
                                     <label
+                                        key={i}
                                         onClick={() =>
                                             changeFilterOption(
                                                 'organization',
@@ -108,17 +103,18 @@ function RightFilterDropdown(props: any) {
                     </label>
                     {showSkills && (
                         <div className="filter-dropdown-roles">
-                            {['Python', 'Javascript', 'HTML/CSS'].map(
-                                (skill) => (
+                            {props.skillsListData.map(
+                                (skill: any, i: number) => (
                                     <label
+                                        key={i}
                                         onClick={() =>
                                             changeFilterOption(
-                                                'skill',
-                                                skill.toLowerCase()
+                                                'skills',
+                                                skill.id.toString()
                                             )
                                         }
                                     >
-                                        <span>{skill}</span>{' '}
+                                        <span>{skill.name}</span>{' '}
                                         <input type="checkbox" />
                                     </label>
                                 )
