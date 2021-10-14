@@ -4,8 +4,11 @@ import { store } from 'redux/helpers/store'
 import { addIdeaConstants } from 'redux/actionTypes/addIdeaConstants'
 import { addProjectConstants } from 'redux/actionTypes/addProjectConstants'
 import { addThoughtConstants } from 'redux/actionTypes/addThoughtConstants'
+import { allPostsConstants } from 'redux/actionTypes/allPostsConstants'
+import { allIdeasConstants } from 'redux/actionTypes/allIdeasConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
+    console.log("all posts value: ", value);
     switch (name) {
         case 'email_id':
             store.dispatch({
@@ -282,10 +285,51 @@ const handleAddThoughtChange = (name: any, value: any) => {
     console.log(store.getState())
 }
 
+const handleAllPosts = (name: any, value: any) =>{
+    console.log("all posts value: ", value);
+    switch(name){
+        case "all-posts":
+            store.dispatch({
+                type: allPostsConstants.POSTS_UPDATE,
+                payload: value,
+            });
+            break;
+        case "clear-posts":
+            store.dispatch({
+                type: allPostsConstants.POSTS_CLEAR,
+                payload: value,
+            });
+            break;
+    }
+    console.log(store.getState());
+
+}
+const handleAllIdeas = (name: any, value: any) =>{
+    console.log("all posts value: ", value);
+    switch(name){
+        case "all-ideas":
+            store.dispatch({
+                type: allIdeasConstants.IDEAS_UPDATE,
+                payload: value,
+            });
+            break;
+        case "clear-ideas":
+            store.dispatch({
+                type: allIdeasConstants.IDEAS_CLEAR,
+                payload: value,
+            });
+            break;
+    }
+    console.log(store.getState());
+}
+
+
 export {
     handleUserCredsChange,
     handleUserInfoChange,
     handleAddProjectChange,
     handleAddIdeaChange,
     handleAddThoughtChange,
+    handleAllPosts,
+    handleAllIdeas
 }

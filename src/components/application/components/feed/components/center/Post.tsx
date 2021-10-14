@@ -97,8 +97,14 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             ? post.description.substring(0, 150)
                             : post.description}{' '}
                         {post.type === 1 ? (
-                            <Link to={`/posts/${post.id}`}>Read more</Link>
-                        ) : null}
+                            <Link to={{
+                                pathname: `/${post.id}`,
+                                state: {
+                                    post_id: post.id,
+                                }
+                            }}>Read more</Link>
+                            // <Link to={`/posts/${post.id}`}>Read more</Link>
+                            ) : null}
                     </p>
                 </div>
                 {post.tags ? (
