@@ -1,0 +1,31 @@
+.faq {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 4% 2% 4%;
+    &-head {
+        margin-bottom: 17px;
+    }
+    &-call,
+    &-mail {
+        font-size: 1.1rem;
+        color: $color-black;
+        a {
+            color: $color-primary-green;
+            font-weight: 500;
+        }
+    }
+    &-mail {
+        a {
+            text-decoration: underline;
+        }
+    }
+    &-headQ {
+        font-size: 1.3rem;
+        color: $color-black;
+        margin-bottom: 15px;
+    }
+    img {
+        margin-bottom: 30px;
+        object-fit: cover;
+    }
+}

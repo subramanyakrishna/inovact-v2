@@ -1,0 +1,126 @@
+.team-name{
+    display: flex;
+    flex-direction: column;
+    &-title{
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        // margin-left: 10px;
+        // font-size: 12px;
+        font-weight: 300;
+    }
+    input, textarea{
+        font-size: small;
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $grey-border;
+    }
+    button{
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        font-size: small;
+        border: 1px solid $grey-border;
+        background-color: $primary-background;
+        box-shadow: $grey-border;
+        color: #02BD63;
+        margin-bottom: 20px;
+        float: right;
+    }
+}
+
+.tags-covered{
+    display: flex;
+    flex-direction: column;
+    div{
+        display: flex;
+    }
+    input, textarea{
+        font-size: small;
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $grey-border;
+    }
+}
+
+.project-title{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    input, textarea{
+        font-size: small;
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $grey-border;
+    }
+}
+
+.team-members{
+    &-add{
+        display: flex;
+        justify-content: space-between;
+        @include respond(xs){
+            flex-direction: column;
+        }
+    }
+    input, textarea{
+        font-size: small;
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid $grey-border;
+        margin-right: 10px;
+    }
+    &-addbtn{
+        color:#02BD63;
+        font-size: 15px;
+        height: 2rem;
+        width: 300px;
+        border: 1px solid lightblue;
+        border-radius: 10px;
+        background-color: $primary-background;
+    }
+    
+}
+.adding-roles{
+    input{
+        font-size: small;
+        padding: 0 5px;
+    }
+}
+
+.team-member-tags-container{
+    display: flex;
+    flex-direction: column;
+}
+.team-member-tag{
+    font-size: 10px;
+    border: 1px solid gray;
+    padding: 3px;
+    width: max-content;
+    border-radius: 10px;
+    &-email{
+        font-weight: 600;
+        color: #02BD63;
+        text-decoration: underline;
+    }
+    &-button{
+        
+        button{
+            width: 10px;
+            height: 10px;
+            height: min-content;
+            font-size: small;
+            background-color: $color-white;
+            border: none;
+        }
+    }
+}

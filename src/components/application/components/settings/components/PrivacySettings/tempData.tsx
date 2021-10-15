@@ -1,0 +1,51 @@
+export const accounts = [
+    {
+        _id: '0',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '1',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '2',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '3',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '4',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '5',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+    {
+        _id: '6',
+        name: 'John Doe',
+        avatar: 'https://bit.ly/3EKg3dQ',
+        designation: 'ReactJs Developer',
+        spanAfterConnection: '10 min',
+    },
+]

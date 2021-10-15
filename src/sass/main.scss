@@ -1,7 +1,89 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
+@import 'base/animations';
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';
+
+@import 'layout/landing-page/about-section';
+@import 'layout/landing-page/mission-section';
+@import 'layout/landing-page/features-section';
+@import 'layout/landing-page/achievements-section';
+@import 'layout/landing-page/testimonial-section';
+@import 'layout/landing-page/contact-section';
+@import 'layout/landing-page/footer-section';
+@import 'layout/landing-page/navigation-bar';
+
+@import 'layout/user-info/role-selection';
+@import 'layout/user-info/area-of-interest';
+@import 'layout/user-info/upload_pictures';
+@import 'layout/user-info/user-details.scss';
+
+@import 'layout/feed/left-right-nav.scss';
+
+@import 'layout/teams/user-teams';
+@import 'layout/teams/team-description.scss';
+@import 'layout/teams/team-info.scss';
+@import 'layout/teams/member-info.scss';
+@import 'layout/teams/suggestion.scss';
+@import 'layout/teams/request-info.scss';
+@import 'layout/teams/document-info.scss';
+@import 'layout/teams/invite-member.scss';
+
+@import 'components/input.scss';
+@import 'components/button';
+@import 'components/input';
+@import 'components/navigation-bar.scss';
+@import 'components/feed/create-post';
+@import 'components/feed/post';
+@import 'components/dropdown';
+
+@import 'pages/landing-page.scss';
+@import 'pages/signup';
+@import 'pages/signin';
+@import 'pages/userInfo.scss';
+@import 'pages/feed';
+@import 'pages/application';
+@import 'pages/teams';
+@import 'pages/messages';
+
+@import 'layout/connections/request-and-connections';
+@import 'layout/connections/peopleToKnow';
+@import 'layout/connections/connections_main';
+@import 'layout/connections/filter-dropdown';
+
+@import 'layout/modals/upload-project';
+@import 'layout/modals/create_team';
+@import 'layout/modals/team-members';
+@import 'layout/modals/request_to_join';
+
+@import 'layout/profile-page/left-content/bio';
+@import 'layout/profile-page/left-content/dashboard';
+@import 'layout/profile-page/left-content/skills-and-interest';
+@import 'layout/profile-page/left-content/teams-part-of';
+@import 'layout/profile-page/left-content/left-content-main';
+@import 'layout/profile-page/profile-main';
+
+@import 'layout/settings/settings';
+@import 'layout/settings/privacy-settings';
+@import 'layout/settings/notifications';
+@import 'layout/settings/faq';
+@import 'layout/settings/my-profile';
+@import 'layout/settings/team-settings';
+
+@import 'components/teams-modal/delete-modal';
+// @import 'components/teams-modal/';
+
+@import 'components/profile-modals/block-account';
+@import 'components/profile-modals/report-account';
+@import 'components/profile-modals/restrict-account';
+
+@import 'components/comments-on-posts';
+@import 'components/profile-modals/edit-bio';
+@import 'components/toggle/toggle';
+@import "components/spinner";
+
+@import 'layout/notifications/notifications';
+@import 'components/toggle/toggle';
+@import 'pages/post-dedicated';

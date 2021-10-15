@@ -1,0 +1,314 @@
+.post {
+    background-color: $color-white;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    margin: 0.5rem auto 5rem;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 10px 15px -3px rgba($color-black, 0.07),
+        0 4px 6px -2px rgba($color-black, 0.05);
+    position: relative;
+    @include respond(sm){
+        padding: 20px;
+    }
+    &__author {
+        display: flex;
+
+        &__avatar {
+            margin-right: 1rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        &__text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &__name {
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin-bottom: 0;
+                color: $color-black;
+            }
+
+            &__time {
+                margin: 0;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__text {
+        margin: 1rem auto;
+
+        &__title {
+            color: $color-black;
+            font-size: 1.5rem;
+            @include respond(xs){
+                font-size: 1.2rem;
+            }
+        }
+
+        &__desc {
+            margin: 0;
+            line-height: 1.2;
+        }
+    }
+
+    &__tags {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        &__item {
+            text-align: center;
+            min-width: 70px;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+            background-color: $color-feed-tags;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1000px;
+
+            &:last-child {
+                color: #4f4f4f;
+            }
+            @include respond(xs){
+                font-size: smaller;
+                padding: 0px 5px;
+            }
+        }
+    }
+    &__images{
+        max-width: 600px;
+        margin: 0px auto;
+    }
+
+    &__footer {
+        display: flex;
+        position: absolute;
+        height: 4rem;
+        bottom: -4rem;
+        left: 0;
+        width: 100%;
+        background-color: $color-feed-component-blue;
+        border-radius: 0 0 8px 8px;
+        align-items: center;
+        justify-content: space-between;
+        @include respond(sm){
+            justify-content: space-around;
+        }
+
+        &__likes {
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            @include respond(xs) {
+                margin-left: 1rem;
+            }
+
+            &__num {
+                margin-bottom: 0;
+                color: $color-white;
+            }
+
+            & img {
+                height: 20px;
+                margin-right: 0.5rem;
+                @include respond(sm){
+                    margin-right: 0.2rem;
+                }
+            }
+        }
+
+        &__comments {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &__num {
+                margin-bottom: 0;
+                color: $color-white;
+            }
+
+            & img {
+                height: 20px;
+                margin-right: 0.5rem;
+            }
+        }
+
+        &__share {
+            cursor: pointer;
+            &-img-container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 50px;
+            }
+            &-img {
+                height: 20px;
+
+                @include respond(sm) {
+                    margin-right: 2rem;
+                }
+
+                @include respond(xs) {
+                    margin-right: 1rem;
+                }
+            }
+            &_to{
+                position: absolute;
+                background-color: $color-white;
+                transform: translateY(-100%);
+                width: 300px;
+                padding: 20px;
+                z-index: 800;
+                border-radius: 10px;
+                @include respond(md){
+                    transform: translate(-70%,-100%);
+                    box-shadow: 1px 5px 26px -7px rgba(0,0,0,0.75);
+                }
+                &-heading{
+                    font-size: larger;
+                    font-weight: 600;
+                }
+                &-separator{
+                    display:flex;
+                    justify-content: space-around;
+                    font-weight: 600;
+                    & span{
+                        cursor: pointer;
+                        margin: 0px 10px;
+                    }
+                }
+                &-teams-and-users{
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: scroll;
+                }
+                &-sharebtn{
+                    float: right;
+                    background-color: $color-white;
+                    border: 1px solid #02bd63;
+                    color: #02bd63;
+                    width: 5rem;
+                    border-radius: 5px;
+                }
+                &-sharebtn:hover{
+                    background-color: #5edaa0;
+                    color: black;
+                }
+            }
+        }
+
+        &__team {
+            &__text {
+                margin: auto 10px;
+                display: flex;
+                align-items: center;
+                color: $color-white;
+                cursor: pointer;
+                @include respond(xs) {
+                    display: none;
+                }
+            }
+
+            &__request {
+                margin: auto 0;
+                margin-right: 2rem;
+                display: flex;
+                align-items: center;
+                background-color: $color-white;
+                color: $color-feed-component-blue;
+                padding: 0.25rem 1rem;
+                border-radius: 1000px;
+                cursor: pointer;
+
+                @include respond(xs) {
+                    margin-right: 1rem;
+                }
+            }
+            &__options{
+                background-color: #4b72bc;
+                color: white;
+                margin: 0 ;
+                font-size: 30px;
+                padding: 0px 20px;
+                cursor: pointer;
+                &-menu{
+                    position: relative;
+                }
+                &-all{
+                    display: flex;
+                    flex-direction: column;
+                    width: 8rem;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    transform: translate(10%,-100%);
+                    box-shadow: -2px 2px 18px -6px rgba(0,0,0,0.75);
+                    position: absolute;
+                    background-color: white;
+                    @include respond(lg){
+                        transform: translate(-40%,-100%);
+                    }
+                    span{
+                        padding: 5px 10px;
+                        cursor: pointer;
+                    }
+                    span:hover{
+                        background-color: rgb(209, 208, 208);
+                    }
+                    
+                }
+            }
+
+            &__empty {
+                width: 50%;
+
+                @include respond(xs) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.preview-image-container{
+    position: relative;
+    width: 100%;
+}
+.preview-image{
+    width: 100%;
+    cursor: pointer;
+}
+.extra-images-btn{
+    width: 50px;
+    height: 50px;
+    top: 85%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: none;
+    margin: 10px;
+    background-color: black;
+    position: absolute;
+    color: white;
+    opacity: 0.8;
+    font-size: 2rem;
+    @include respond(md){
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    @include respond(sm){
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+}

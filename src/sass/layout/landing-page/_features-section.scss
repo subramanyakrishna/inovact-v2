@@ -1,0 +1,98 @@
+.section-features {
+    padding: 6rem 2rem;
+
+    @include respond(sm) {
+        padding: 3rem 1rem;
+    }
+
+    &__text {
+        text-align: center;
+        max-width: 764px;
+        margin: 0 auto 2rem;
+        width: 100%;
+
+        @include respond(sm) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__body {
+        &__text {
+            padding: 2rem;
+            padding-bottom: 1rem;
+            margin: 0 4rem;
+            position: relative;
+
+            @include respond(sm) {
+                margin: 0;
+                padding-bottom: 1rem;
+            }
+
+            &--learning {
+                text-align: right;
+            }
+
+            &__image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+
+                animation: scaleUpAndDown 2.5s linear infinite;
+
+                &--learning {
+                    right: 0;
+                    left: initial;
+                }
+            }
+
+            &__main {
+                color: $color-black;
+                font-size: 1.25rem;
+                font-weight: 500;
+            }
+
+            &__sub {
+                color: rgba($color-black, 0.6);
+                font-weight: 300;
+            }
+        }
+
+        &__content {
+            max-width: 992px;
+            width: 100%;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            @include respond(xs) {
+                flex-direction: column;
+                margin: 0 auto;
+            }
+
+            &__item {
+                text-align: center;
+                width: 200px;
+                margin: auto;
+
+                & img {
+                    margin-bottom: 1rem;
+                    transition: all 0.5s;
+
+                    &:hover {
+                        transform: scale(1.15);
+                    }
+                }
+
+                & p {
+                    color: $color-black;
+                }
+
+                @include respond(sm) {
+                    margin-bottom: 1.5rem;
+                }
+            }
+        }
+    }
+}

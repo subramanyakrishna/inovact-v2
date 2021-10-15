@@ -1,0 +1,31 @@
+.user-details{
+        padding: 2rem 8rem;
+        @include respond(md) {
+            padding: 2rem 4rem;
+           
+        }
+        @include respond(sm) {
+            padding:2rem 1rem;
+        }
+        @include respond(xs) {
+            padding: 1rem;
+           }
+        &__text{
+            @include respond(sm) {
+              
+                font-size:1rem;
+              margin-bottom: 0rem;
+              text-align: center;
+            }
+        }
+        .input-formComponent{
+            border: 1px solid #bdbdbd;
+            margin-bottom: 1rem;
+            border-radius: 0.25rem;
+            width: 100%;
+            color: #4f4f4f;
+            padding: 0.5rem 1rem;
+            min-height: none;
+            height: auto;
+        }
+     }

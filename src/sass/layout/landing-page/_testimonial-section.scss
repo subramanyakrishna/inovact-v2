@@ -1,0 +1,24 @@
+.section-testimonials {
+    padding: 6rem 3rem;
+
+    @include respond(sm) {
+        padding: 3rem 0.5rem;
+    }
+
+    &__text {
+        max-width: 764px;
+        margin: 0 auto 4rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    &__map {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & img {
+            width: 100%;
+        }
+    }
+}
