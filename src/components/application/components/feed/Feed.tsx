@@ -25,6 +25,7 @@ function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([]);
     const [ideas, setIdeas] = useState<postData[]>([]);
+    const [peopleToKnow, setPeopleToKnow] = useState<any>([]);
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const userInfo = useSelector((state: any)=>state.userInfo);
     const allPosts = useSelector((state: any)=>state.allPosts);
@@ -35,6 +36,33 @@ function Feed() {
         const date = new Date(dateISO);
         return `${date.getDate()} ${months[date.getMonth()]}`
     }
+    const {doRequest: userGet, errors: userErrors} = useRequests({
+        route: "user",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log(data);
+            
+        }
+    });
+    const {doRequest: getPeopleToKnow, errors: getPeopleErrors} = useRequests({
+        route: "users",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            data.data.user.reverse();
+            const ptk: any = data.data.user.map((ele: any)=>{
+                return {
+                    user_id: ele.id,
+                    name: ele.first_name,
+                    image: ele.avatar,
+                    duration: '10 min',
+                    designation: ele.designation?ele.designation: "Student",
+                }
+            })
+            setPeopleToKnow([...ptk.slice(0,4)]);
+        }
+    })
     const {doRequest, errors} = useRequests({
         route: "post",
         method: "get",
@@ -64,6 +92,9 @@ function Feed() {
                 // window.location.reload();
         }
     });
+    const userAvatarName = ()=>{
+        
+    }
     const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
         route: "idea",
         method: "get",
@@ -87,8 +118,8 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
-                numLikes: 250,
-                numComments: 250,
+                numLikes: 0,
+                numComments: 0,
                 }))]);
         }
     });
@@ -96,6 +127,7 @@ function Feed() {
         (async ()=>{
             await doRequest();
             await doRequestIdea();
+            await getPeopleToKnow();
         })();
         // if(!(userInfo.profile_complete)){
         //     history.push("/userinfo");
@@ -143,6 +175,7 @@ function Feed() {
     
     const uploadProject = ()=>{
         openModal();
+        handleAddProjectChange("user_id",userInfo.id);
         setShowUploadProject(true);
     }
     const uploadIdea = ()=>{
@@ -246,7 +279,7 @@ function Feed() {
                     <Spinner/>
                 </div>
                 <div className="feed__content__right">
-                    <RightNavBar />
+                    <RightNavBar peopleToKnow={peopleToKnow}/>
                 </div>
             </div>
         </div>

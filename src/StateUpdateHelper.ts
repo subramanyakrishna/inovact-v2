@@ -15,13 +15,19 @@ const handleUserCredsChange = (name: any, value: any) => {
                 type: userCredsConstants.UPDATE_EMAIL_ID,
                 payload: value,
             })
-            break
+            break;
         case 'password':
             store.dispatch({
                 type: userCredsConstants.UPDATE_PASSWORD,
                 payload: value,
             })
-            break
+            break;
+        case "user-name":
+            store.dispatch({
+                type: userCredsConstants.UPDATE_USER_NAME,
+                payload: value,
+            });
+            break;
     }
     console.log(store.getState())
 }
@@ -166,12 +172,18 @@ const handleUserInfoChange = async (name: any, value: any) => {
 
 const handleAddProjectChange = (name: any, value: any) => {
     switch (name) {
+        case "user_id":
+            store.dispatch({
+                type: addProjectConstants.PROJECT_UPDATE_USER_ID,
+                payload: value,
+            })
+            break;
         case 'title':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_TITLE,
                 payload: value,
             })
-            break
+            break;
         case 'description':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_DESCRIPTION,

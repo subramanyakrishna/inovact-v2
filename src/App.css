@@ -717,7 +717,7 @@ body {
           padding: 1rem 0.5rem;
           display: flex;
           flex-direction: row;
-          justify-content: left;
+          justify-content: space-between;
           align-items: center; }
           .left-right-nav__card__list__item__rightTop--row {
             padding: 0.4rem;
@@ -2386,7 +2386,7 @@ body {
 
 .feed__content {
   display: flex;
-  max-width: 1200px;
+  max-width: 1300px;
   justify-content: center;
   margin: auto;
   width: 100%;

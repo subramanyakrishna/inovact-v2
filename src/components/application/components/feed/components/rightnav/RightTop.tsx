@@ -1,3 +1,4 @@
+import SmallSpinner from 'components/application/SmallSpinner'
 import {
     MDBCard,
     MDBCardBody,
@@ -35,7 +36,7 @@ export const connection: Connection[] = [
     },
 ]
 
-const RightTop = () => {
+const RightTop = (props: any) => {
     const handleConnect = (e: any) => {}
 
     return (
@@ -51,12 +52,13 @@ const RightTop = () => {
                 </MDBCardHeader>
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
-                        {connection.map(({ name, designation }, index) => {
+                        {   props.peopleToKnow.length>0 ?
+                            props.peopleToKnow.map(({ name, designation, image }: any, index: any) => {
                             return (
                                 <MDBListGroupItem className="left-right-nav__card__list__item--right left-right-nav__card__list__item__rightTop">
                                     <div className="left-right-nav__card__list__item__rightTop--row">
                                         <img
-                                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                                            src={image}
                                             alt="conn"
                                         />
 
@@ -82,7 +84,10 @@ const RightTop = () => {
                                     </div>
                                 </MDBListGroupItem>
                             )
-                        })}
+                        }):
+                            <SmallSpinner/>
+                        
+                        }
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import Feed from 'components/application/components/feed/Feed'
 import RoleForm from 'components/authentication/userInfoForm/Info/Forms/RoleForm';
@@ -57,14 +57,9 @@ export default function CheckoutPage(props: any) {
       type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
     });
   }
-  const uploadDetails = async(e: any)=>{
-    e.preventDefault();
-    //
+  const uploadAllDetails = ()=>{
     const currentUser: any = UserPool.getCurrentUser();
-    console.log(currentUser);
-    
-    updateProfileCompleteStatus().then(()=>{
-      axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
+    axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
         headers: {
           "Authorization": currentUser.storage.user,
         }
@@ -72,7 +67,29 @@ export default function CheckoutPage(props: any) {
         console.log(resp);
         history.push("/feed");
       }).catch(err=>console.log(err));
-    })
+  };
+  const uploadDetails = async(e: any)=>{
+    e.preventDefault();
+    //
+    const currentUser: any = UserPool.getCurrentUser();
+    console.log(currentUser);
+    // (async()=>{
+    //   await updateProfileCompleteStatus();
+    // })();
+    setTimeout(()=>{
+      uploadAllDetails();
+    },1000);
+    // updateProfileCompleteStatus().then(()=>{
+    //   console.log(store.getState());
+    //   axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
+    //     headers: {
+    //       "Authorization": currentUser.storage.user,
+    //     }
+    //   }).then((resp)=> {
+    //     console.log(resp);
+    //     history.push("/feed");
+    //   }).catch(err=>console.log(err));
+    // })
 
   }
   function handleSubmit(values :any, actions :any) {
@@ -101,7 +118,7 @@ export default function CheckoutPage(props: any) {
       setActiveStep(activeStep - 1);
     }
   }
- 
+  // const [uploading, setUploading] = useState(false);
 
   return (
     <React.Fragment>
