@@ -9,6 +9,7 @@ const initialState = {
     project_status: "",
     required_roles: [],
     documents: [],
+    user_id: null,
 }
 
 const updateProjectInfoReducer = (state = initialState, action: any)=>{
@@ -53,7 +54,11 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
                 ...state,
                 documents: action.payload,
             }
-         
+        case addProjectConstants.PROJECT_UPDATE_USER_ID:
+            return{
+                ...state,
+                user_id: action.payload,
+            }
         case addProjectConstants.PROJECT_CLEAR_DATA:
             return {
                 ...initialState,

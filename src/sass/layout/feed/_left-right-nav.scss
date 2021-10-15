@@ -49,7 +49,7 @@
                 @include respond(lg) {
                     padding: 0.7rem;
                 }
-                &--right {
+                &--right{
                     width: 100%;
                     margin: 0 !important;
                     padding: 1rem 0.5rem;
@@ -116,7 +116,7 @@
                     padding: 1rem 0.5rem;
                     display: flex;
                     flex-direction: row;
-                    justify-content: left;
+                    justify-content: space-between;
                     align-items: center;
 
                     &--row {

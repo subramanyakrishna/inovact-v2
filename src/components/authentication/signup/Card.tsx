@@ -25,6 +25,25 @@ const Card= (props: any) => {
             </div>
             <div className="signup__card--form">
                 <form >
+                <MDBRow>
+                        <MDBCol sm="12">
+                            <div className="form-group">
+                                <label htmlFor="username">Username</label>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    className="input-component"
+                                    placeholder="Enter Username"
+                                    onChange={(e: any)=>{
+                                        // handleEmailChange(e);
+                                        // console.log("hi there its working");
+                                        // props.handleChange("email_id", email);
+                                        props.handleUserCredsChange("user-name", e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </MDBCol>
+                    </MDBRow>
                     <MDBRow>
                         <MDBCol sm="12">
                             <div className="form-group">
@@ -44,6 +63,7 @@ const Card= (props: any) => {
                             </div>
                         </MDBCol>
                     </MDBRow>
+
                     <MDBRow>
                         <MDBCol sm="12">
                             <div className="form-group">

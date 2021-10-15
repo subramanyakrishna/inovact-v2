@@ -113,7 +113,7 @@ const TeamDescription = ({ team }: Props) => {
                         className="text-style--bold text-align--left text-size--big sm-small"
                         style={{ marginTop: '15px' }}
                     >
-                        Project Tags{' '}
+                        Team Tags{' '}
                     </span>
                     {showAll ? (
                         <ul className="teams-description__info__right__tags">
