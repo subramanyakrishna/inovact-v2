@@ -1,25 +1,32 @@
-import React from 'react';
+import React from 'react'
 
 function SortByDropDown(props: any) {
-    const changeFilterOption = (option: string)=>{
-        props.filterOptionSelector(option);
+    const changeFilterOption = (option: string) => {
+        props.filterOptionSelector(option)
     }
 
     return (
-        <div className="filter-dropdown" >
+        <div className="filter-dropdown">
             <div className="filter-dropdown-content">
-                <div className="filter-dropdown-parameter">
-                    <label >Projects</label>
-                </div>
-                <div className="filter-dropdown-parameter">
-                 Ideas
-                </div>
-                <div className="filter-dropdown-parameter">
-                  Thoughts
-                </div>
+                {['All', 'Projects', 'Ideas', 'Thoughts'].map(
+                    (type: string, i: number) => (
+                        <div className="filter-dropdown-parameter" key={i}>
+                            <label
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    marginRight: '10px',
+                                }}
+                                onClick={() => changeFilterOption(type)}
+                            >
+                                <span>{type}</span>
+                            </label>
+                        </div>
+                    )
+                )}
             </div>
         </div>
     )
 }
 
-export default SortByDropDown;
+export default SortByDropDown

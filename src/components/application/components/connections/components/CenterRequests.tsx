@@ -108,8 +108,9 @@ function CenterRequests({ makeApiCall }: any) {
                 <div className="requests-connections-profiles">
                     <div>
                         {my_connections &&
-                            my_connections.map((user: any) => (
+                            my_connections.map((user: any, i: number) => (
                                 <ConnectionProfile
+                                    key={i}
                                     user={user}
                                     removeConnection={removeConnection}
                                 />
