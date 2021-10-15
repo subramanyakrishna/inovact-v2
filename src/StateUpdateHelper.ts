@@ -6,6 +6,9 @@ import { addProjectConstants } from 'redux/actionTypes/addProjectConstants'
 import { addThoughtConstants } from 'redux/actionTypes/addThoughtConstants'
 import { allPostsConstants } from 'redux/actionTypes/allPostsConstants'
 import { allIdeasConstants } from 'redux/actionTypes/allIdeasConstants'
+import { otherUserInfoConstants } from 'redux/actionTypes/otherUserInfoConstants'
+import { allUserIdeaConstants } from 'redux/actionTypes/allUserIdeaConstants'
+import { allUserProjectConstants } from 'redux/actionTypes/allUserProjectConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log("all posts value: ", value);
@@ -335,7 +338,54 @@ const handleAllIdeas = (name: any, value: any) =>{
     console.log(store.getState());
 }
 
+const handleOtherUserInfoChange = (name: any, value: any)=>{
+    switch(name){
+        case "other-user-update": 
+            store.dispatch({
+                type: otherUserInfoConstants.OTHER_USER_UPDATE_INFO,
+                payload: value,
+            });
+            break;
+        case "clear-other-user":
+            store.dispatch({
+                type: otherUserInfoConstants.OTHER_USER_CLEAR_INFO,
+            });    
+    }
+    console.log(store.getState());
+}
 
+const handleAllUserIdeas = (name: any, value: any)=>{
+    switch(name){
+        case "all-user-ideas":
+            store.dispatch({
+                type: allUserIdeaConstants.UPDATE_USER_IDEAS,
+                payload: value,
+            });
+            break;
+        case "clear-all-user-ideas":
+            store.dispatch({
+                type: allUserIdeaConstants.CLEAR_USER_IDEAS,
+            })
+            break;
+    }
+    console.log(store.getState());
+}
+const handleAllUserProject = (name: any, value: any)=>{
+    switch(name){
+        case "all-user-projects":
+            store.dispatch({
+                type: allUserProjectConstants.UPDATE_USER_PROJECTS,
+                payload: value,
+            });
+            break;
+        case "clear-all-user-projects":
+            store.dispatch({
+                type: allUserProjectConstants.CLEAR_USER_PROJECTS,
+            })
+            break;
+    }
+    console.log(store.getState());
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -343,5 +393,8 @@ export {
     handleAddIdeaChange,
     handleAddThoughtChange,
     handleAllPosts,
-    handleAllIdeas
+    handleAllIdeas,
+    handleOtherUserInfoChange,
+    handleAllUserIdeas,
+    handleAllUserProject,
 }

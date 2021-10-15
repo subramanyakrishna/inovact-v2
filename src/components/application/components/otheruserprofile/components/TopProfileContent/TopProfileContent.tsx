@@ -41,12 +41,12 @@ function TopProfileContent(props: any) {
         removeLeftContent();
     }
     const showProjectsOnly = ()=>{
-        props.showProjectsOnly();
+        props.showOnlyProjects();
         removeBorderAll();
         setShowProjects(true);
     }
     const showIdeasOnly = ()=>{
-        props.showIdeasOnly();
+        props.showOnlyIdeas();
         removeBorderAll();
         setShowIdeas(true);
     }
@@ -93,14 +93,14 @@ function TopProfileContent(props: any) {
                 </div>
                 <div className="top-profile-post-buttons-options">
                     <button onClick={toggleShowOptions}>&#8942;</button>
-                    {/* {
+                    {
                         showOptions &&
                         <div className="top-profile-post-buttons-options-all" onMouseLeave={toggleShowOptionsSlow}>
                             <span onClick={props.showBlockUser}>Block Account</span>
                             <span onClick={props.showReportUser}>Report Account</span>
                             <span onClick={props.showRestrictUser}>Restrict Account</span>
                         </div>
-                    } */}
+                    }
                     
                 </div>
             </div>

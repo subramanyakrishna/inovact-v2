@@ -16,116 +16,96 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-function Profile() {
+import { handleAllUserIdeas, handleAllUserProject } from 'StateUpdateHelper';
+import axios from 'axios';
+import Spinner from 'components/application/Spinner';
+function OtherProfile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
     //     const leftContent = document.querySelector(".profile--content-left");
     //     const rightContent = document.querySelector(".profile--content-right");
         
     // },[]);
-    
-    
-    const [posts, setPosts] = useState<postData[]>([
-        {
-            id: '1',
-            type: 1,
-            avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-            author: 'Jane Doe',
-            time: 10,
-            title: 'Project Title',
-            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
- molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
- numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
- optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
- obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
- nihil, eveniet aliquid culpa officia aut!`,
-            tags: [
-                'OOP',
-                'JavaScript',
-                'HTML',
-                'CSS',
-                'ReactJS',
-                'NodeJS',
-                'MongoDB',
-            ],
-            images: [
-                'https://images.unsplash.com/photo-1492551557933-34265f7af79e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-                'https://images.unsplash.com/photo-1614947746254-4fd8c6cb1a7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=403&q=80',
-                'https://images.unsplash.com/photo-1527219525722-f9767a7f2884?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
-                "https://www.lifewire.com/thmb/cobvsxBXqwdPzm17STO4o8pAdgA=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-zoom-and-how-does-it-work-b1cab4b7f8e9474fa46f5b50c8e694e4.jpg",
-                "https://www.lifewire.com/thmb/cobvsxBXqwdPzm17STO4o8pAdgA=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-zoom-and-how-does-it-work-b1cab4b7f8e9474fa46f5b50c8e694e4.jpg",
-                "https://www.lifewire.com/thmb/cobvsxBXqwdPzm17STO4o8pAdgA=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-zoom-and-how-does-it-work-b1cab4b7f8e9474fa46f5b50c8e694e4.jpg",
-            ],
-            numLikes: 250,
-            numComments: 250,
-            completion: 80,
-        },
-        {
-            id: '2',
-            type: 2,
-            avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-            author: 'Jane Doe',
-            time: 10,
-            title: 'Idea Title',
-            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
- molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
- numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
- optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
- obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
- nihil, eveniet aliquid culpa officia aut!`,
-            tags: [
-                'OOP',
-                'JavaScript',
-                'HTML',
-                'CSS',
-                'ReactJS',
-                'NodeJS',
-                'MongoDB',
-            ],
-            numLikes: 250,
-            numComments: 250,
-        },
-        {
-            id: '3',
-            type: 3,
-            avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-            author: 'Jane Doe',
-            time: 10,
-            description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
- molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
- numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
- optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
- obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
- nihil, eveniet aliquid culpa officia aut!`,
-            numLikes: 250,
-            numComments: 250,
-        },
-    ]);
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const convertDate = (dateISO: any)=>{
+        const date = new Date(dateISO);
+        return `${date.getDate()} ${months[date.getMonth()]}`
+    }
+    const [showIdeas, setShowIdeas] = useState(false);
+    const [showProjects, setShowProjects] = useState(true);
+    const getTheUserIdeas = async(userId: any)=>{
+        await axios({
+            method: "get",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/idea?user_id=${userId}`,
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        }).then((resp: any)=>{
+            console.log(resp);
+            // resp.data.idea.reverse();
+            setPosts([...resp.data.data.idea.map((post:any)=>({
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                type: 2,
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+            }))]);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    const getTheUserProjects = async(userId: any)=>{
+        await axios({
+            method: "get",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/post?user_id=${userId}`,
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            } 
+        }).then((resp: any)=>{
+            console.log(resp);
+            setPosts([...resp.data.data.project.map((post: any)=>({
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 250,
+                numComments: 250,
+            }))])
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    const [posts, setPosts] = useState<postData[]>([]);
+    const [ideas, setIdeas] = useState<postData[]>([]);
     const [showLeft, setShowLeft] = useState(true);
     const [showRight, setShowRight] = useState(true);
     const [showAbout, setShowAbout] = useState(false);
     
-    const [showProjects, setShowProjects] = useState(true);
-    const [showIdeas, setShowIdeas] = useState(false);
-
-    const [userProjects, setUserProjects] = useState<any>([]);
-    const [userIdeas, setUserIdeas] = useState<any>([]);
-    const userAllProjects = useSelector((state: any)=> state.userAllProjects);
-    const userAllIdeas = useSelector((state: any)=>state.userAllIdeas);
-    const showProjectsOnly = ()=>{
-        setShowIdeas(false);
-        setShowProjects(true);
-    }
-    const showIdeasOnly = ()=>{
-        setShowIdeas(true);
-        setShowProjects(false);
-    }
+    // const leftContent = document.querySelector(".profile--content-left");
+    // const rightContent = document.querySelector(".profile--content-right");
     useEffect(()=>{
         console.log("page loaded");
-        // (async()=>{
-        //     await getUserIdeas();
-        //     await getUserProjects();
-        // })();
         if(window.innerWidth>900){
             setShowLeft(true);
             setShowRight(true);
@@ -136,7 +116,7 @@ function Profile() {
             setShowRight(true);
             setShowAbout(true);
         }
-    },[]);
+    },[])
         // document.addEventListener("load",()=>{
         //     console.log("page loaded");
         //     if(window.innerWidth>900){
@@ -230,7 +210,24 @@ function Profile() {
         openModal();
         setShowEditProject(true);
     }
-    const userInfo = useSelector((state: any)=>state.userInfo);
+    const otherUser = useSelector((state: any)=>state.otherUser);
+    const showOnlyProjects = ()=>{
+        setShowIdeas(false);
+        setShowProjects(true);
+    }
+    const showOnlyIdeas = ()=>{
+        setShowIdeas(true);
+        setShowProjects(false);
+    }
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(()=>{
+        setIsLoading(true);
+        (async()=>{
+            await getTheUserIdeas(otherUser.id);
+            await getTheUserProjects(otherUser.id);
+        })();
+        setIsLoading(false);
+    },[])
     return (
         <div>
             {
@@ -277,31 +274,31 @@ function Profile() {
                     showReportUser={reportAccount}
                     showBlockUser={blockAccount}
                     showRestrictUser={restrictAccount}
-                    userInfo = {userInfo}
-                    showProjectsOnly = {showProjectsOnly}
-                    showIdeasOnly = {showIdeasOnly}
+                    userInfo = {otherUser}
+                    showOnlyProjects = {showOnlyProjects}
+                    showOnlyIdeas = {showOnlyIdeas}
                     />
                 </div>
                 <div className="profile--content-bottom-container">
                     {
                         showLeft &&
                         <div className="profile--content-left">
-                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {userInfo}/>
+                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {otherUser}/>
                         </div>
                     }
                     {
-                        showRight && userAllIdeas.concat(userAllProjects).length!==0 && 
+                        showRight && posts.length!==0 &&
                         
                         <div className="profile--content-right">
                             {
-                                showIdeas &&
-                                userAllIdeas.map((post: any, idx: any) => {
+                                showProjects && 
+                                posts.map((post, idx) => {
                                 return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
                             }
                             {
-                                showProjects &&
-                                userAllProjects.map((post: any, idx: any) => {
+                                showIdeas && 
+                                ideas.map((post, idx) => {
                                     return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
                             }
@@ -309,7 +306,11 @@ function Profile() {
                         
                     }
                     {
-                        userAllIdeas.length===0 && userAllProjects.length===0 &&
+                        isLoading &&
+                        <Spinner/>
+                    }
+                    {
+                        posts.length===0 && ideas.length===0 && !isLoading &&
                         <div className="profile--content-right">
                             <NoPostsYet/>
                             <PeopleYouMayKnow/>
@@ -324,4 +325,4 @@ function Profile() {
     );
 }
 
-export default Profile
+export default OtherProfile

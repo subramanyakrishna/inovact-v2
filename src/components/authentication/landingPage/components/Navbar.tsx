@@ -10,7 +10,7 @@ import {
     MDBNavbarToggler,
     MDBCollapse,
 } from 'mdb-react-ui-kit'
-import logo from 'images/logo/inovact-logo.png'
+import logo from 'images/logo/inovactlogo.png'
 import { useEffect } from 'react'
 
 function Navbar() {
@@ -47,7 +47,7 @@ function Navbar() {
             <MDBNavbar expand="lg" light bgColor="light">
                 <MDBContainer>
                     <MDBNavbarBrand href="#">
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt="Logo" width="40px"/>
                         Inovact
                     </MDBNavbarBrand>
                     <MDBNavbarToggler

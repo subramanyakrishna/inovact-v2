@@ -15,7 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown';
 import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
-import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange, handleAllIdeas, handleAllPosts } from 'StateUpdateHelper'
+import { handleAddIdeaChange, handleAddProjectChange, handleAddThoughtChange, handleAllIdeas, handleAllPosts, handleAllUserIdeas, handleAllUserProject } from 'StateUpdateHelper'
 import { userInfo } from 'os'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -26,12 +26,12 @@ function Feed() {
     const [posts, setPosts] = useState<postData[]>([]);
     const [ideas, setIdeas] = useState<postData[]>([]);
     const [peopleToKnow, setPeopleToKnow] = useState<any>([]);
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const userInfo = useSelector((state: any)=>state.userInfo);
     const allPosts = useSelector((state: any)=>state.allPosts);
     const allIdeas = useSelector((state: any)=>state.allIdeas);
-
+    
     const history = useHistory();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -42,7 +42,6 @@ function Feed() {
         body: null,
         onSuccess: (data: any)=>{
             console.log(data);
-            
         }
     });
     const {doRequest: getPeopleToKnow, errors: getPeopleErrors} = useRequests({
@@ -76,8 +75,8 @@ function Feed() {
                 title: post.title,
                 description: post.description,
                 type: 1,
-                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-                author: 'Jane Doe',
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
                 tags: post.project_tags.map((tag: any)=>{
                     return tag.hashtag.name;
                 }),
@@ -108,8 +107,8 @@ function Feed() {
                 title: post.title,
                 description: post.description,
                 type: 2,
-                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-                author: 'Jane Doe',
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
                 tags: post.idea_tags.map((tag: any)=>{
                     return tag.hashtag.name;
                 }),
@@ -123,11 +122,68 @@ function Feed() {
                 }))]);
         }
     });
+    const {doRequest: getUserIdeas, errors: ideaErrors} = useRequests({
+        method: "get",
+        route: "user/idea",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile ideas",data);
+            data.data.idea.reverse();
+            handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                type: 2,
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+                }))]);
+        }   
+    });
+    const {doRequest: getUserProjects, errors: projectErrors} = useRequests({
+        method: "get",
+        route: "user/post",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile projects",data);
+            data.data.project.reverse();
+            const finalData = data.data.project.map((post: any)=>({
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+                }));
+            console.log("This is the final user projects: ", finalData);    
+            handleAllUserProject("all-user-projects",finalData);
+        }   
+    }); 
     useEffect(()=>{
         (async ()=>{
             await doRequest();
             await doRequestIdea();
             await getPeopleToKnow();
+            await getUserIdeas();
+            await getUserProjects();
         })();
         // if(!(userInfo.profile_complete)){
         //     history.push("/userinfo");

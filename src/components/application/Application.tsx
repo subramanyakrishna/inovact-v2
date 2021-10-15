@@ -21,6 +21,7 @@ import PrivateRoute from '../../PrivateRoute';
 import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
+import OtherProfile from './components/otheruserprofile/OtherProfile'
 
 
 
@@ -86,6 +87,7 @@ function Application() {
                     <PrivateRoute path="/feed" isAuth={state.authentication.userAuthenticated} component={Feed} />
                     <PrivateRoute path="/connections" isAuth={state.authentication.userAuthenticated} component={Connections} />
                     <PrivateRoute path="/profile" isAuth={state.authentication.userAuthenticated} component={Profile} />
+                    <PrivateRoute path="/otherprofile" isAuth={state.authentication.userAuthenticated} component={OtherProfile}/>
                     <PrivateRoute path="/teams" isAuth={state.authentication.userAuthenticated} component={Teams} />
                     <PrivateRoute path="/notifications" isAuth={state.authentication.userAuthenticated} component={Notifications} />
                     <PrivateRoute path="/settings" isAuth={state.authentication.userAuthenticated} component={Settings} />

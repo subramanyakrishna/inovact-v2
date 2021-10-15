@@ -1489,7 +1489,7 @@ body {
   .nav-component--scrolled {
     transform: translate3d(0, -100%, 0); }
   .nav-component__brand {
-    width: 35%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1532,6 +1532,10 @@ body {
       flex-direction: row;
       align-items: center;
       justify-content: space-between; }
+      .nav-component__items__item-icon-container {
+        display: flex;
+        justify-content: space-around;
+        width: 100%; }
       .nav-component__items__item__icons {
         width: 1.75rem;
         margin-left: 2rem; }
@@ -3636,7 +3640,8 @@ input, textarea:focus {
 
 .connect-message {
   display: flex;
-  justify-content: space-around; }
+  justify-content: space-around;
+  margin: 20px 0px; }
   .connect-message button {
     border-radius: 15px;
     width: 8rem;
