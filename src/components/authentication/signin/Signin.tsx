@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import name from 'images/sign-up/name.png'
+import logo from 'images/logo/inovactlogo.png'
 import Card from 'components/authentication/signin/Card'
 
 const Signup: React.FC = () => {
@@ -11,7 +11,7 @@ const Signup: React.FC = () => {
             <div className="signin__flex-container">
                 <div className="signin__flex-child">
                     <img
-                        src={name}
+                        src={logo}
                         alt="inovact-logo"
                         className="signin__logo"
                     />

@@ -2,6 +2,7 @@ import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import { store } from 'redux/helpers/store'
 import { addIdeaConstants } from 'redux/actionTypes/addIdeaConstants'
+import { addTeamConstants }  from 'redux/actionTypes/addTeamConstants'
 import { addProjectConstants } from 'redux/actionTypes/addProjectConstants'
 import { addThoughtConstants } from 'redux/actionTypes/addThoughtConstants'
 import { allPostsConstants } from 'redux/actionTypes/allPostsConstants'
@@ -297,6 +298,52 @@ const handleAddThoughtChange = (name: any, value: any) => {
     console.log(store.getState())
 }
 
+const handleAddTeamChange = (name: any, value: any) => {
+    switch (name) {
+        case 'name':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_TITLE,
+                payload: value,
+            })
+            break
+      
+        case 'tags':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_TEAM_TAGS,
+                payload: value,
+            })
+            break
+        case 'looking_for_members':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_LOOKING_FOR_MEMBERS,
+                payload: value,
+            })
+            break
+         case 'looking_for_mentor':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_LOOKING_FOR_MENTOR,
+                payload: value,
+            })
+            break
+
+        case 'roles':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_ROLE,
+                payload: value,
+            })
+            break
+        case 'members':
+            store.dispatch({
+                type: addTeamConstants.TEAM_UPDATE_MEMBERS,
+                payload: value,
+            })
+            break
+        case 'team_clear_data':
+            store.dispatch({ type: addTeamConstants.TEAM_CLEAR_DATA })
+            break
+    }
+    console.log(store.getState())
+}
 const handleAllPosts = (name: any, value: any) =>{
     console.log("all posts value: ", value);
     switch(name){
@@ -342,6 +389,7 @@ export {
     handleAddProjectChange,
     handleAddIdeaChange,
     handleAddThoughtChange,
+    handleAddTeamChange,
     handleAllPosts,
     handleAllIdeas
 }

@@ -97,42 +97,8 @@ function Messages() {
     return (
 
       <div>    
-    <div className="messages">
-      
-        <div className="messages__content">
-            <div className="messages__content__header">
-                <img src={back} alt="" />
-                <h6 className="text-style--bold text-align--left text-size--big">Messages</h6>
-                <div>
-                    <img src={add} alt="" style={{marginRight:'1rem'}}/>
-                    <MenuIcon />
-                </div>
-            </div>
-
-            <div className="messages__content__left">
-                <div className="messages__content__team-messages">
-                    <UserTeam teams={teams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
-                </div>
-                <div className="messages__content__personal-messages">
-                     <UserTeam teams={teams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
-                </div>
-            </div>
-
-            <MDBTabsContent className="messages__content__right" >
-                { teams.map((team,key)=>{
-                return(
-                    <MDBTabsPane show={verticalActive ===  team.id }>
-                        <div className="messages__content__info">
-                            <div className="messages__content__chat-box">
-                              Messages
-                            </div>
-                        </div>
-                  </MDBTabsPane>
-             )})}
-          </MDBTabsContent>
-        </div>
+      Messages
     </div>
-</div>
     )
 }
 

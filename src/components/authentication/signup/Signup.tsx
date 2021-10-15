@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import name from 'images/sign-up/name.png'
+import logo from 'images/logo/inovactlogo.png'
 import Card from 'components/authentication/signup/Card'
 
 const Signup = (props: any) => {
@@ -9,7 +9,7 @@ const Signup = (props: any) => {
             <div className="signup__flex-container">
                 <div className="signup__flex-child">
                     <img
-                        src={name}
+                        src={logo}
                         alt="inovact-logo"
                         className="signup__logo"
                     />

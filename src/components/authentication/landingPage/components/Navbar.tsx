@@ -10,7 +10,7 @@ import {
     MDBNavbarToggler,
     MDBCollapse,
 } from 'mdb-react-ui-kit'
-import logo from 'images/logo/inovact-logo.png'
+import logo from 'images/logo/inovactlogo.png'
 import { useEffect } from 'react'
 
 function Navbar() {
