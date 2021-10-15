@@ -8,6 +8,7 @@ import ModalPart2 from './components/ModalPart2';
 //Components
 
 function UploadProject(props: any) {
+    
     const [projectCompleted, setProjectCompleted] = useState(false);
     const appProjectData = useSelector((state: any)=> state.addProject);
     const { doRequest, errors } = useRequests({

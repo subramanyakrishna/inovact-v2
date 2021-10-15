@@ -1475,7 +1475,7 @@ body {
 
 .nav-component {
   position: fixed;
-  max-width: 1800px;
+  max-width: 2000px;
   width: 100%;
   height: auto;
   display: flex;
@@ -1489,7 +1489,7 @@ body {
   .nav-component--scrolled {
     transform: translate3d(0, -100%, 0); }
   .nav-component__brand {
-    width: 35%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1514,7 +1514,7 @@ body {
     margin: 0 2rem 0 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center; }
     @media only screen and (max-width: 75em) {
       .nav-component__items {
@@ -1534,7 +1534,7 @@ body {
       justify-content: space-between; }
       .nav-component__items__item__icons {
         width: 1.75rem;
-        margin-left: 2rem; }
+        margin-left: 3rem; }
         @media only screen and (max-width: 62em) {
           .nav-component__items__item__icons {
             width: 1.25rem;
@@ -1545,7 +1545,7 @@ body {
             margin: auto 1rem; } }
         .nav-component__items__item__icons--hidden {
           width: 1.75rem;
-          margin-left: 2rem; }
+          margin-left: 3rem; }
           @media only screen and (max-width: 62em) {
             .nav-component__items__item__icons--hidden {
               width: 1.25rem;
@@ -1558,10 +1558,14 @@ body {
           height: 3rem;
           border-radius: 50%;
           overflow: hidden;
-          margin-left: 1rem; }
+          margin-left: 2rem; }
+          @media only screen and (max-width: 75em) {
+            .nav-component__items__item__icons--user {
+              width: 1.25rem; } }
           @media only screen and (max-width: 62em) {
             .nav-component__items__item__icons--user {
-              width: 1.5rem; } }
+              width: 1.5rem;
+              height: 2rem; } }
           @media only screen and (max-width: 36em) {
             .nav-component__items__item__icons--user {
               display: none; } }

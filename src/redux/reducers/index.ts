@@ -11,6 +11,7 @@ import { connectionsReducer } from './connectionsReducer'
 import { updateTeamWithAdminAccessReducer } from './updateTeamWithAdminAccessReducer'
 import { allPostsReducer } from './allPostsReducer'
 import { allIdeasReducer } from './allIdeasReducer'
+import {updateTeamInfoReducer} from './updateTeamInfoReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     connections: connectionsReducer,
     allPosts: allPostsReducer,
     allIdeas: allIdeasReducer,
+    addTeam: updateTeamInfoReducer
 })
 
 export default rootReducer

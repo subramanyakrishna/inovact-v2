@@ -6,13 +6,17 @@ import TagsCovered from './components/TagsCovered';
 import SwitchSlider from '../UploadProject/components/SwitchSlider';
 import RolesLookingFor from '../UploadProject/components/RolesLookingFor';
 import AddRolesLookingFor from '../UploadProject/components/AddRolesLookingFor';
-
+//redux
+import { useSelector } from 'react-redux';
+import { handleAddTeamChange } from 'StateUpdateHelper';
+import useRequests from 'useRequest/useRequest';
 
 function CreateTeam(props: any) {
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
-
     const [allTeamMembers, setAllTeamMembers] = useState<Object[]>([]);
     const [teamMembersNeeded, setTeamMembersNeeded] = useState(false);
+    const [mentorNeeded, setMentorNeeded] = useState(false);
+
     const addAnotherRole = (role:any, tags:any)=>{
         if(role==="" && tags.length===0) return;
         let found=false;
@@ -24,14 +28,37 @@ function CreateTeam(props: any) {
         if(found) return;
         setAllRolesNeeded([...allRolesNeeded, {role: role, skillNeeded: tags}]);
     }   
+
+    const addnewTeam = useSelector((state: any)=> state.addTeam);
+
+    const { doRequest, errors } = useRequests({
+        route: "team",
+        method: "post",
+        body: {
+            ...addnewTeam,
+        },
+        onSuccess: (data: any)=> {
+            handleAddTeamChange("team_clear_data", "");
+            console.log("Sucessssfully addedd team",data);
+        }
+    });
+    
+    const addNewTeam = async(e: any)=>{
+        e.preventDefault();
+        props.closeModal();
+        await doRequest();
+        window.location.reload();
+    }
     const removeTheRole = (id:any)=>{
         setAllRolesNeeded(allRolesNeeded.filter((ele:any,idx: any)=> idx!==id));
     }
     const toggleTeamMemberNeeded = ()=>{
         setTeamMembersNeeded(!teamMembersNeeded);
+         handleAddTeamChange("looking_for_members",teamMembersNeeded);
     }
     const toggleMentorNeeded = ()=>{
-
+            setMentorNeeded(!mentorNeeded);
+            handleAddTeamChange("looking_for_mentor",mentorNeeded)
     }
     return (
         <div className="modal_main">
@@ -48,13 +75,13 @@ function CreateTeam(props: any) {
                     <div className="modal_part_two-member-mentor">
                         <div>
                             <label>Looking for team members</label>
-                            <div onClick={toggleTeamMemberNeeded} >
+                            <div onClick= {toggleTeamMemberNeeded}>
                                 <SwitchSlider/>
                             </div>
                         </div>
                         <div>
                             <label>Looking for a mentor</label>
-                            <div onClick={toggleMentorNeeded}> 
+                            <div onClick={ toggleMentorNeeded}> 
                                 <SwitchSlider/>
                             </div>
                         </div>
@@ -75,7 +102,7 @@ function CreateTeam(props: any) {
                     }
                 </div>
                     <div className="modal_cover-post-btn">
-                        <button>Create</button>
+                        <button onClick={addNewTeam}>Create</button>
                     </div>
                 </div>
             </div>
