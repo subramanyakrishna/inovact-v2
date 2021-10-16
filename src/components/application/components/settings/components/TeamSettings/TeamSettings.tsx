@@ -6,10 +6,12 @@ import { TeamsData } from './tempData'
 interface teamSettings {
     deleteTeam(id: number): void
     handleUserInfoChange(name: string, value: any): void
+    saveDataToServer(): void
 }
 const TeamSettings: React.FC<teamSettings> = ({
     deleteTeam,
     handleUserInfoChange,
+    saveDataToServer,
 }) => {
     const team_with_admin_access_ids = useSelector(
         (state: any) => state.userInfo.team_with_admin_access
@@ -117,6 +119,24 @@ const TeamSettings: React.FC<teamSettings> = ({
                         </div>
                     </div>
                 ))}
+            </div>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '30px',
+                    paddingLeft: '10px',
+                }}
+            >
+                <button
+                    className={
+                        'privacy-settings-pswd-change-btn text-color--white'
+                    }
+                    onClick={() => saveDataToServer()}
+                >
+                    Save Changes
+                </button>
             </div>
         </div>
     )

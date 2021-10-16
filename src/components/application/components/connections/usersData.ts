@@ -91,4 +91,5 @@ while (numberOfSkills <= 15) {
     numberOfSkills++
 }
 const skillsLocal = skillsTemp
+
 export { users, skillsLocal }

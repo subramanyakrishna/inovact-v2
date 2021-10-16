@@ -7,7 +7,10 @@ import {
     updateRestrictedUser,
 } from 'redux/actions/blockedRestrictedAccounts.action'
 
-const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
+const PrivacySettings: React.FC<any> = ({
+    handleUserInfoChange,
+    saveDataToServer,
+}: any) => {
     const is_public = useSelector((state: any) => state.userInfo.is_public)
     const [currentPswd, setCurrentPswd] = useState<string>('')
     const [newPswd, setNewPswd] = useState<string>('')
@@ -238,6 +241,24 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                     Your profile will be visible to every user on the platform
                     even if they are not a connection
                 </div>
+            </div>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '30px',
+                    paddingLeft: '10px',
+                }}
+            >
+                <button
+                    className={
+                        'privacy-settings-pswd-change-btn text-color--white'
+                    }
+                    onClick={() => saveDataToServer()}
+                >
+                    Save Changes
+                </button>
             </div>
         </div>
     )

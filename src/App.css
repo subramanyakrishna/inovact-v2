@@ -408,6 +408,8 @@ body {
   margin-right: 1rem; }
 
 .navbar-brand img {
+  width: 60px;
+  height: 50px;
   margin-right: 1rem; }
 
 .role-selection {
@@ -2838,7 +2840,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem; }
+  gap: 2rem;
+  width: 95%; }
 
 .connections-right-components {
   max-width: 500px;
@@ -2853,6 +2856,7 @@ body {
   margin: 6rem auto;
   display: flex;
   justify-content: center;
+  width: 100%;
   gap: 20px; }
   @media only screen and (max-width: 36em) {
     .connections-page {
@@ -2863,7 +2867,8 @@ body {
       margin-top: 3rem; } }
   @media only screen and (max-width: 62em) {
     .connections-page {
-      flex-direction: column; } }
+      flex-direction: column;
+      align-items: center; } }
 
 .filter-dropdown {
   width: 20%;
@@ -4540,13 +4545,19 @@ input, textarea:focus {
     width: 60%;
     margin: 0px 10px; }
 
-.settings-my-profile-delete-account button {
-  float: right;
-  border: none;
-  background-color: white;
-  font-weight: 600;
-  color: red;
-  text-decoration: underline; }
+.settings-my-profile-delete-account {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px; }
+  .settings-my-profile-delete-account-deleteBtn {
+    float: right;
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    color: red;
+    text-decoration: underline; }
 
 .teamset {
   padding: 2% 4% 2% 4%;

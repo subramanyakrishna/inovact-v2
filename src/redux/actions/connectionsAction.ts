@@ -19,5 +19,15 @@ const updatePendingRequests = (pending_requests: any) => {
         payload: pending_requests,
     }
 }
-
-export { updateMyConnections, updatePeopleYouMayKnow, updatePendingRequests }
+const updateConnectReqAcceptPending = (connect_req_accept_pending: any) => {
+    return {
+        type: connectionActionTypes.CONNECT_REQUEST_ACCEPT_PENDING,
+        payload: connect_req_accept_pending,
+    }
+}
+export {
+    updateMyConnections,
+    updatePeopleYouMayKnow,
+    updatePendingRequests,
+    updateConnectReqAcceptPending,
+}
