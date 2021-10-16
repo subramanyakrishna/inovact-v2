@@ -10,17 +10,29 @@ function Connections() {
         setWidth(window.innerWidth)
     }
 
-    const makeApiCall = async ({ method, route }: any) => {
+    const makeApiCall = async (method: any, route: string) => {
+        console.log('method', method)
+        console.log('route', route)
+
         const response = await axios({
             method: method,
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
             headers: {
                 Authorization: localStorage.getItem('user'),
+                'Content-Type': 'application/json',
             },
         })
-        console.log(response)
+        return response
     }
-
+    useEffect(() => {
+        ;(async () => {
+            const allConnectionsFromApi = await makeApiCall(
+                'get',
+                'connections'
+            )
+            console.log(allConnectionsFromApi)
+        })()
+    }, [])
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize)
         return () => {

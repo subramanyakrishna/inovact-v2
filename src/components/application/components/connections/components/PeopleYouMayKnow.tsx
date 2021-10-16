@@ -15,42 +15,71 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
     const [skillsListId, setSkillsListId] = useState<any>([])
     const [skillsListData, setSkillListData] = useState<any>()
     const [filteredUsers, setFilteredUsers] = useState<any>([])
+    const [showAllUsers, setShowAllUsers] = useState<boolean>(true)
     const dispatch = useDispatch()
     const people_you_may_know = useSelector(
         (state: any) => state.connections.people_you_may_know
     )
+    const userId = useSelector((state: any) => state.userInfo.id)
 
-    useEffect(() => {
-        //call the api to get all the people you may know
-        const people_you_may_know_from_api = users
-
-        dispatch(updatePeopleYouMayKnow(people_you_may_know_from_api))
-
+    const getFilteredUsers = (people_you_may_know_from_api: any) => {
         const pattern = new RegExp(selectedFilterValue, 'i')
+        console.log(currentFilter)
         const filteredUsersTemp = people_you_may_know_from_api.filter(
-            (user: any) => user[currentFilter].match(pattern) !== null
+            (user: any) =>
+                (user[currentFilter]
+                    ? user[currentFilter].match(pattern) !== null
+                    : false) && user.id != userId
         )
-        setFilteredUsers(filteredUsersTemp)
-
+        return filteredUsersTemp
+    }
+    const getUniqueOrganisations = (people_you_may_know_from_api: any) => {
         let uniqueOrganisationsSet = new Set()
         people_you_may_know_from_api.map((user: any) =>
             uniqueOrganisationsSet.add(user.organization)
         )
-        setOrganisationList(Array.from(uniqueOrganisationsSet))
+        return Array.from(uniqueOrganisationsSet)
+    }
+    const getFilteredSkills = async (PYMK_from_api: any) => {}
 
-        let skillsSet = new Set()
-        people_you_may_know_from_api.forEach((user: any) =>
-            user.skills.forEach((skill: any) => skillsSet.add(skill))
-        )
-        const skillsIds = Array.from(skillsSet)
-        setSkillsListId(skillsIds)
+    useEffect(() => {
+        //call the api to get all the people you may know
+        ;(async () => {
+            let PYMK_from_api = await makeApiCall('get', 'users')
+            PYMK_from_api = PYMK_from_api.data.data.user
+            //romove this when skills is added to api
+            PYMK_from_api = PYMK_from_api.map((pymk: any) => ({
+                ...pymk,
+                skills: Array.from(
+                    {
+                        length: 4,
+                    },
+                    () => Math.floor(Math.random() * 10)
+                ),
+            }))
 
-        //Now Call skills Api to get all  skills
-        const skillsToDisplay = skillsIds.map(
-            (skill: any) => skillsLocal[skill]
-        )
+            dispatch(updatePeopleYouMayKnow(PYMK_from_api))
 
-        setSkillListData(skillsToDisplay)
+            const filteredUsersTemp = getFilteredUsers(PYMK_from_api)
+            setFilteredUsers(filteredUsersTemp)
+
+            const uniqueOrganisations = getUniqueOrganisations(PYMK_from_api)
+            setOrganisationList(uniqueOrganisations)
+
+            let skillsSet = new Set()
+            PYMK_from_api.forEach((user: any) => {
+                user.skills.forEach((skill: any) => skillsSet.add(skill))
+            })
+            const skillsIds = Array.from(skillsSet)
+            setSkillsListId(skillsIds)
+
+            //Now Call skills Api to get all  skills
+            const uniqueSkills = skillsIds.map(
+                (skill: any) => skillsLocal[skill]
+            )
+
+            setSkillListData(uniqueSkills)
+        })()
     }, [])
 
     const handleFilterShow = () => {
@@ -61,16 +90,10 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
         category: string,
         selectedValue: string
     ) => {
-        setCurrentFilter(category)
-
-        if (category != 'skills') {
-            setSelectedFilterValue(selectedValue)
-            const pattern = new RegExp(selectedValue, 'i')
-            const filteredUsersTemp = await people_you_may_know.filter(
-                (user: any) => user[category].match(pattern) !== null
-            )
-            await setFilteredUsers(filteredUsersTemp)
-        } else {
+        if (category == 'All') {
+            setFilteredUsers(people_you_may_know)
+        } else if (category == 'skills') {
+            setCurrentFilter(category)
             const skillId = parseInt(selectedValue)
             const filteredUsersTemp = await people_you_may_know.filter(
                 (user: any) => user[category].indexOf(skillId) != -1
@@ -80,6 +103,16 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
                 (skill: any) => skill.id == skillId
             )[0]
             setSelectedFilterValue(selectedSkill.name)
+            setShowAllUsers(false)
+        } else {
+            setCurrentFilter(category)
+            setSelectedFilterValue(selectedValue)
+            const pattern = new RegExp(selectedValue, 'i')
+            const filteredUsersTemp = people_you_may_know.filter((user: any) =>
+                user[category] ? user[category].match(pattern) !== null : false
+            )
+            setFilteredUsers(filteredUsersTemp)
+            setShowAllUsers(false)
         }
         setTimeout(() => {
             setShowFilter(false)
@@ -87,7 +120,11 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
     }
 
     const sendConnectRequest = async (id: number) => {
-        await makeApiCall('POST', `connections/request?user_id=${id}`)
+        const res = await makeApiCall(
+            'post',
+            `connections/request?user_id=${id}`
+        )
+        setFilteredUsers(filteredUsers.filter((user: any) => user.id != id))
     }
     return (
         <div>
@@ -103,16 +140,20 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
                 >
                     <span>
                         Filter:{' '}
-                        <label onClick={handleFilterShow}>
-                            {`(${currentFilter} : ${selectedFilterValue})`}
-                            <span>
-                                {showFilter ? (
-                                    <ChevronRightIcon />
-                                ) : (
-                                    <ExpandMoreIcon />
-                                )}
-                            </span>
-                        </label>
+                        {
+                            <label onClick={handleFilterShow}>
+                                {showAllUsers
+                                    ? `All`
+                                    : `(${currentFilter} : ${selectedFilterValue})`}
+                                <span>
+                                    {showFilter ? (
+                                        <ChevronRightIcon />
+                                    ) : (
+                                        <ExpandMoreIcon />
+                                    )}
+                                </span>
+                            </label>
+                        }
                     </span>
                     {showFilter && (
                         <RightFilterDropdown

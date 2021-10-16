@@ -240,7 +240,12 @@
         }
     }
     &-delete-account {
-        button {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 10px;
+        &-deleteBtn {
             float: right;
             border: none;
             background-color: white;

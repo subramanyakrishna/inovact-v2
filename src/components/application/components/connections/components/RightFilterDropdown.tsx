@@ -18,7 +18,7 @@ function RightFilterDropdown(props: any) {
     }
     const changeFilterOption = (
         category: string,
-        selectedFilterValue: string
+        selectedFilterValue = 'filterValue'
     ) => {
         props.filterOptionSelector(category, selectedFilterValue)
     }
@@ -26,6 +26,12 @@ function RightFilterDropdown(props: any) {
     return (
         <div className="filter-dropdown">
             <div className="filter-dropdown-content">
+                <div className="filter-dropdown-parameter">
+                    <label onClick={() => changeFilterOption('All')}>
+                        Clear all filters
+                        <span></span>
+                    </label>
+                </div>
                 <div className="filter-dropdown-parameter">
                     <label onClick={handleRolesShow}>
                         Roles{' '}
