@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 
-interface Toggle {
+interface ToggleInterface {
     handleChecked(checked: any): any
     checked: boolean
 }
-const Toggle: React.FC<Toggle> = ({ handleChecked, checked }) => {
+const Toggle: React.FC<ToggleInterface> = ({ handleChecked, checked }) => {
     useEffect(() => {}, [checked])
     return (
         <label className={'toggle'}>

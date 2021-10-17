@@ -9,7 +9,7 @@ export const imageUploader = async (allFiles: any) => {
 
     for (let i = 0; i < allFiles.length; i++) {
         if (
-            allFiles[i].type == 'image/jpeg' ||
+            allFiles[i].type === 'image/jpeg' ||
             allFiles[i].type === 'image/png'
         ) {
             console.log('it is an image')

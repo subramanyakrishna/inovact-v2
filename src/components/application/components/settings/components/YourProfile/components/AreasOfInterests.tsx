@@ -35,7 +35,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
             interestData.find((interest: any) => interest.id === interestId)
         )
         aoiDataTemp = aoiDataTemp.filter(
-            (interest: interestI) => interest != undefined
+            (interest: interestI) => interest !== undefined
         )
         setAoiData(aoiDataTemp)
     }, [])
@@ -43,14 +43,16 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
     const handleClickDelete = (index: number) => {
         handleUserInfoChange(
             'area-of-interest',
-            aoi.filter((interest: number) => interest != index)
+            aoi.filter((interest: number) => interest !== index)
         )
-        setAoiData([...aoiData.filter((interest: any) => interest.id != index)])
+        setAoiData([
+            ...aoiData.filter((interest: any) => interest.id !== index),
+        ])
     }
 
     const handleInputChange = (e: any) => {
         setCurrentInterest(e.target.value)
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setSearchRes([])
             return
         }
@@ -85,7 +87,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                     value={currentInterest}
                     onChange={handleInputChange}
                 />
-                {searchRes.length != 0 && (
+                {searchRes.length !== 0 && (
                     <div style={{ position: 'relative' }}>
                         <div className="search_skills">
                             {searchRes.map((res: any) => {
@@ -123,6 +125,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                                 </div>
                             )
                         }
+                        return undefined
                     })}
             </div>
         </div>

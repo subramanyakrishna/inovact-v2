@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux'
 import profilepic from '../../../../../images/connections/profilepic.png'
 
 function RightNetworkStats() {
-    const connctionLength = useSelector(
-        (state: any) => state.connections.my_connections.length
-    )
+    const connectionLength = useSelector((state: any) => {
+        console.log(state.connections.my_connections.length)
+        return state.connections.my_connections.length
+    })
+    console.log(connectionLength)
     return (
         <div className="right-network-stats">
             <div className="right-network-stats--img-container">
@@ -18,7 +20,7 @@ function RightNetworkStats() {
                 <div className="right-network-stats--content-titles">
                     <p>
                         <span>Total connections</span>
-                        <span>{connctionLength}</span>
+                        {connectionLength && <span>{connectionLength}</span>}
                     </p>
                     <p>
                         <span>Last week's connections</span>

@@ -3,6 +3,7 @@ import RightNetworkStats from './components/RightNetworkStats'
 import CenterRequests from './components/CenterRequests'
 import PeopleYouMayKnow from './components/PeopleYouMayKnow'
 import axios from 'axios'
+
 function Connections() {
     const [width, setWidth] = useState(window.innerWidth)
     const WIDTH_LIMIT = 992
@@ -24,15 +25,7 @@ function Connections() {
         })
         return response
     }
-    useEffect(() => {
-        ;(async () => {
-            const allConnectionsFromApi = await makeApiCall(
-                'get',
-                'connections'
-            )
-            console.log(allConnectionsFromApi)
-        })()
-    }, [])
+
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize)
         return () => {
