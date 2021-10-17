@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import RequestProfile from './RequestProfile'
 import ConnectionProfile from './ConnectionProfile'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,7 @@ import {
     updateMyConnections,
     updatePendingRequests,
 } from 'redux/actions/connectionsAction'
-
+import Spinner from '../../../Spinner'
 interface userI {
     id: number
     name: string
@@ -22,13 +22,48 @@ interface userI {
 function CenterRequests({ makeApiCall }: any) {
     const [showRequest, setShowRequest] = useState(true)
     const [showConnection, setShowConnection] = useState(false)
+    const [pendingRequests, setPendingRequests] = useState([])
+    const [myConnections, setMyConnections] = useState([])
+    const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
+    const [myConnectionsLoad, setMyConnectionLoad] = useState<boolean>(true)
+
     const dispath = useDispatch()
-    const pending_requests = useSelector(
-        (state: any) => state.connections.pending_requests
-    )
-    const my_connections = useSelector(
-        (state: any) => state.connections.my_connections
-    )
+
+    useEffect(() => {
+        ;(async () => {
+            const dataFromConnectionApi = await makeApiCall(
+                'get',
+                'connections'
+            )
+            const allConnectionsFromApi =
+                dataFromConnectionApi.data.data.connections
+
+            const {
+                filteredPendingRequest,
+                filteredConnectedAccount,
+                filteredConnectReqAcceptPending,
+            } = await getFilteredPendingRequestsAndConnectedAccount(
+                allConnectionsFromApi
+            )
+
+            setPendingRequests(filteredPendingRequest)
+            console.log('filteredConnectedAccount', [
+                ...filteredConnectedAccount,
+            ])
+            setMyConnections(filteredConnectedAccount)
+            dispath(updatePendingRequests(filteredPendingRequest))
+            dispath(updateMyConnections(filteredConnectedAccount))
+            dispath(
+                updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
+            )
+        })()
+    }, [])
+
+    useEffect(() => {
+        console.log('myConnections', myConnections)
+        console.log('myConnections.length', myConnections.length)
+    }, [pendingRequests, myConnections])
+
     const ownId = useSelector((state: any) => state.userInfo.id)
     const handleRequestButton = (event: any) => {
         setShowRequest(true)
@@ -41,34 +76,45 @@ function CenterRequests({ makeApiCall }: any) {
     }
 
     const acceptConnectRequest = async (id: number) => {
-        dispath(
-            updatePendingRequests(
-                pending_requests.filter((user: any) => user.id != id)
-            )
+        const filteredPendingRequests = pendingRequests.filter(
+            (user: any) => user.id !== id
         )
+        setPendingRequests(filteredPendingRequests)
+        dispath(updatePendingRequests(filteredPendingRequests))
 
-        await makeApiCall('post', `connections/accept?user_id=${id}`)
+        const response = await makeApiCall(
+            'post',
+            `connections/accept?user_id=${id}`
+        )
+        console.log(response)
     }
 
     const rejectConnectRequest = async (id: number) => {
         //call api to connect
         console.log(id)
-        dispath(
-            updatePendingRequests(
-                pending_requests.filter((user: any) => user.id != id)
-            )
+        const filteredPendingRequest = pendingRequests.filter(
+            (user: any) => user.id !== id
         )
-        await makeApiCall('post', `connections/reject?user_id=${id}`)
+        setPendingRequests(filteredPendingRequest)
+        dispath(updatePendingRequests(filteredPendingRequest))
+        const response = await makeApiCall(
+            'post',
+            `connections/reject?user_id=${id}`
+        )
+        console.log(response)
     }
+
     const removeConnection = (id: number) => {
-        dispath(
-            updateMyConnections(
-                my_connections.filter((user: any) => user.id != id)
-            )
+        const filteredMyConnections = myConnections.filter(
+            (user: any) => user.id !== id
         )
+        setMyConnections(filteredMyConnections)
+        dispath(updateMyConnections(filteredMyConnections))
     }
+
     const getUserData = async (id: number, connected_at: string) => {
         const dataFromApi = await makeApiCall('get', `user?id=${id}`)
+        console.log(dataFromApi)
         const userData = dataFromApi.data.data.user[0]
         return {
             id: id,
@@ -89,52 +135,32 @@ function CenterRequests({ makeApiCall }: any) {
         let filteredConnectReqAcceptPending: any = []
         await allConnectionsFromApi.forEach(async (connection: any) => {
             const otherUserId =
-                connection.user1 == ownId ? connection.user2 : connection.user1
+                connection.user1 === ownId ? connection.user2 : connection.user1
             const theOtherUserData: userI = await getUserData(
                 otherUserId,
                 connection.connected_at
             )
             //user1 is connection sender user2 is receiver
-            if (connection.status == 'pending' && connection.user2 == ownId) {
+            if (connection.status === 'pending' && connection.user2 === ownId) {
                 filteredPendingRequest.push(theOtherUserData)
             } else if (
-                connection.status == 'pending' &&
-                connection.user1 == ownId
+                connection.status === 'pending' &&
+                connection.user1 === ownId
             ) {
                 filteredConnectReqAcceptPending.push(theOtherUserData)
             } else {
                 filteredConnectedAccount.push(theOtherUserData)
             }
         })
+        setPendingRequestLoad(false)
+        setMyConnectionLoad(false)
         return {
             filteredPendingRequest,
             filteredConnectedAccount,
             filteredConnectReqAcceptPending,
         }
     }
-    useEffect(() => {
-        ;(async () => {
-            const dataFromConnectionApi = await makeApiCall(
-                'get',
-                'connections'
-            )
-            const allConnectionsFromApi =
-                dataFromConnectionApi.data.data.connections
 
-            const {
-                filteredPendingRequest,
-                filteredConnectedAccount,
-                filteredConnectReqAcceptPending,
-            } = await getFilteredPendingRequestsAndConnectedAccount(
-                allConnectionsFromApi
-            )
-            dispath(updatePendingRequests(filteredPendingRequest))
-            dispath(updateMyConnections(filteredConnectedAccount))
-            dispath(
-                updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
-            )
-        })()
-    }, [])
     return (
         <div className="requests-connections">
             <div className="requests-connections-btn">
@@ -162,29 +188,61 @@ function CenterRequests({ makeApiCall }: any) {
             {showRequest && (
                 <div className="requests-connections-profiles">
                     <div>
-                        {pending_requests &&
-                            pending_requests.map((user: any) => (
+                        {pendingRequesLoad ? (
+                            <Spinner />
+                        ) : pendingRequests.length == 0 ? (
+                            <span
+                                style={{
+                                    display: 'flex',
+                                    width: '100%',
+                                    height: '100%',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginTop: '10rem',
+                                }}
+                            >
+                                Your pending requests will be shown here{' '}
+                            </span>
+                        ) : (
+                            pendingRequests.map((user: any) => (
                                 <RequestProfile
                                     key={user.id}
                                     user={user}
                                     acceptConnectRequest={acceptConnectRequest}
                                     rejectConnectRequest={rejectConnectRequest}
                                 />
-                            ))}
+                            ))
+                        )}
                     </div>
                 </div>
             )}
             {showConnection && (
                 <div className="requests-connections-profiles">
                     <div>
-                        {my_connections &&
-                            my_connections.map((user: any, i: number) => (
+                        {myConnectionsLoad ? (
+                            <Spinner />
+                        ) : myConnections.length == 0 ? (
+                            <span
+                                style={{
+                                    display: 'flex',
+                                    width: '100%',
+                                    height: '100%',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginTop: '10rem',
+                                }}
+                            >
+                                Your connections will be shown here{' '}
+                            </span>
+                        ) : (
+                            myConnections.map((user: any, i: number) => (
                                 <ConnectionProfile
                                     key={i}
                                     user={user}
                                     removeConnection={removeConnection}
                                 />
-                            ))}
+                            ))
+                        )}
                     </div>
                 </div>
             )}

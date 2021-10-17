@@ -5,14 +5,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import RightFilterDropdown from './RightFilterDropdown'
 import { updatePeopleYouMayKnow } from 'redux/actions/connectionsAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { users, skillsLocal } from '../usersData'
+import { skillsLocal } from '../usersData'
 
 function PeopleYouMayKnow({ makeApiCall }: any) {
     const [showFilter, setShowFilter] = useState(false)
     const [currentFilter, setCurrentFilter] = useState('role')
     const [selectedFilterValue, setSelectedFilterValue] = useState('student')
     const [organisationList, setOrganisationList] = useState<any>()
-    const [skillsListId, setSkillsListId] = useState<any>([])
+    // const [skillsListId, setSkillsListId] = useState<any>([])
     const [skillsListData, setSkillListData] = useState<any>()
     const [filteredUsers, setFilteredUsers] = useState<any>([])
     const [showAllUsers, setShowAllUsers] = useState<boolean>(true)
@@ -71,7 +71,7 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
                 user.skills.forEach((skill: any) => skillsSet.add(skill))
             })
             const skillsIds = Array.from(skillsSet)
-            setSkillsListId(skillsIds)
+            // setSkillsListId(skillsIds)
 
             //Now Call skills Api to get all  skills
             const uniqueSkills = skillsIds.map(

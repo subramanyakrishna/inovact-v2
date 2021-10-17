@@ -89,13 +89,13 @@ const PrivacySettings: React.FC<any> = ({
         handleUserInfoChange(
             'blocked_users',
             userInfo.blocked_users.filter(
-                (id: any) => id != idOfUnblockedAccount
+                (id: any) => id !== idOfUnblockedAccount
             )
         )
         dispath(
             updateBlockedUser(
                 blockedUsers.filter(
-                    (user: any) => user.id != idOfUnblockedAccount
+                    (user: any) => user.id !== idOfUnblockedAccount
                 )
             )
         )
@@ -106,13 +106,13 @@ const PrivacySettings: React.FC<any> = ({
         handleUserInfoChange(
             'restricted_users',
             userInfo.restricted_users.filter(
-                (id: any) => id != idOfUnRestrictedAccount
+                (id: any) => id !== idOfUnRestrictedAccount
             )
         )
         dispath(
             updateRestrictedUser(
                 restrictedUsers.filter(
-                    (user: any) => user.id != idOfUnRestrictedAccount
+                    (user: any) => user.id !== idOfUnRestrictedAccount
                 )
             )
         )

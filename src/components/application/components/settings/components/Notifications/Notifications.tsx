@@ -1,4 +1,3 @@
-import { Email, InputOutlined } from '@material-ui/icons'
 import React from 'react'
 import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'

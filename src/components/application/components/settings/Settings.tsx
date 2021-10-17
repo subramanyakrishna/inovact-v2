@@ -133,13 +133,13 @@ const Settings: React.FC = () => {
         handleUserInfoChange(
             'team_with_admin_access',
             team_with_admin_access_ids.filter(
-                (id: number) => id != selectedTeamToDelete
+                (id: number) => id !== selectedTeamToDelete
             )
         )
         dispath(
             updateTeamWithAdminAccessAction(
                 team_with_admin_access_data.filter((team: any) => {
-                    return team.id != selectedTeamToDelete
+                    return team.id !== selectedTeamToDelete
                 })
             )
         )
@@ -214,32 +214,32 @@ const Settings: React.FC = () => {
 
                     {showRight && (
                         <div className={'settings-main-right'}>
-                            {selectedOption == 0 && (
+                            {selectedOption === 0 && (
                                 <YourProfile
                                     deleteAccount={deleteAccount}
                                     handleUserInfoChange={handleUserInfoChange}
                                     saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 1 && (
+                            {selectedOption === 1 && (
                                 <PrivacySettings
                                     handleUserInfoChange={handleUserInfoChange}
                                     saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 2 && (
+                            {selectedOption === 2 && (
                                 <TeamSettings
                                     deleteTeam={deleteTeam}
                                     handleUserInfoChange={handleUserInfoChange}
                                     saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 3 && (
+                            {selectedOption === 3 && (
                                 <Notifications
                                     saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 5 && <Faq />}
+                            {selectedOption === 5 && <Faq />}
                         </div>
                     )}
                 </div>
