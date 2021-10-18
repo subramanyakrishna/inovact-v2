@@ -20,7 +20,6 @@ function Photos(props: photoProps) {
     }
 
     const photos = props.images.map((img) => {
-        // console.log(img);
         return {
             src: img,
             width: 1,

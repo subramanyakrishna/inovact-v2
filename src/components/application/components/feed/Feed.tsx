@@ -23,7 +23,7 @@ import {
     handleAllPosts,
     handleAllUserIdeas,
     handleAllUserProject,
-} from 'StateUpdateHelper'
+} from '../../../../StateUpdateHelper'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import SmallSpinner from 'components/application/SmallSpinner'
@@ -47,10 +47,10 @@ function Feed() {
         'October',
         'November',
         'December',
-    ]
-    const userInfo = useSelector((state: any) => state.userInfo)
-    const allPosts = useSelector((state: any) => state.allPosts)
-    const allIdeas = useSelector((state: any) => state.allIdeas)
+    ];
+    const userInfo = useSelector((state: any) => state.userInfo);
+    const allPosts = useSelector((state: any) => state.allPosts);
+    const allIdeas = useSelector((state: any) => state.allIdeas);
 
     const history = useHistory()
     const convertDate = (dateISO: any) => {
