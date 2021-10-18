@@ -34,7 +34,10 @@ function YourProfile(props: any) {
                 handleUserInfoChange={props.handleUserInfoChange}
                 userInfo={userInfo}
             />
-            <DeleteAccount deleteAccount={props.deleteAccount} />
+            <DeleteAccount
+                deleteAccount={props.deleteAccount}
+                saveDataToServer={props.saveDataToServer}
+            />
         </div>
     )
 }

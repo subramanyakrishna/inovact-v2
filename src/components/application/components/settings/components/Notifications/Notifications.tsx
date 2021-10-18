@@ -1,9 +1,8 @@
-import { Email, InputOutlined } from '@material-ui/icons'
 import React from 'react'
 import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'
 
-const Notifications: React.FC = () => {
+const Notifications: React.FC<any> = (props: any) => {
     const handleAllNotification = (checked: boolean) => {
         console.log('handleAllNotification', checked)
     }
@@ -145,6 +144,24 @@ const Notifications: React.FC = () => {
                         handleChecked={handleCommentsNotif}
                     />
                 </div>
+            </div>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '30px',
+                    paddingLeft: '10px',
+                }}
+            >
+                <button
+                    className={
+                        'privacy-settings-pswd-change-btn text-color--white'
+                    }
+                    onClick={() => props.saveDataToServer()}
+                >
+                    Save Changes
+                </button>
             </div>
         </div>
     )

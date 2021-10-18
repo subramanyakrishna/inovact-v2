@@ -14,6 +14,7 @@ import { allIdeasReducer } from './allIdeasReducer'
 import { otherUserInfoReducer } from './otherUserInfoReducer'
 import { allUserProjectReducer } from './allUserProjectReducer'
 import { allUserIdeaReducer } from './allUserIdeaReducer'
+import {updateTeamInfoReducer} from './updateTeamInfoReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
     otherUser: otherUserInfoReducer,
     userAllProjects: allUserProjectReducer,
     userAllIdeas: allUserIdeaReducer,
+    teamInfo: updateTeamInfoReducer,
 });
 
 export default rootReducer;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import expandDown from '../../../../../../images/settings/expandDownIcon.svg'
 import expandUp from '../../../../../../images/settings/expandUpIcon.svg'
 
@@ -40,7 +40,7 @@ const SettingsLeft: React.FC<PropType> = ({
                 >
                     <div
                         className={`settings-left-container ${
-                            i == selected && 'settings-left-selected'
+                            i === selected && 'settings-left-selected'
                         }`}
                     >
                         <div

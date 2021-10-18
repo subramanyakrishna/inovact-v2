@@ -49,6 +49,7 @@ function ModalPart1(props: any) {
                     }
                 </div>
             </div>
+            
         </div>
     )
 }

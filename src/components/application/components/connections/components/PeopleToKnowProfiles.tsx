@@ -11,7 +11,7 @@ function PeopleToKnowProfiles(props: any) {
             </div>
             <div className="people-profile-card-data">
                 <span className="people-profile-card-name">
-                    {props.user.role}
+                    {`${props.user.first_name} ${props.user.last_name}`}
                 </span>
                 <span className="people-profile-card-designation">
                     {props.user.designation}

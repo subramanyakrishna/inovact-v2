@@ -71,7 +71,20 @@ const Settings: React.FC = () => {
             window.removeEventListener('resize', handleWindowResize)
         }
     }, [])
-
+    const saveDataToServer = async () => {
+        await axios
+            .put(
+                'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
+                userInfo,
+                {
+                    headers: {
+                        Authorization: localStorage.getItem('user'),
+                    },
+                }
+            )
+            .then((resp: any) => console.log(resp))
+            .catch((err: any) => console.log(err))
+    }
     useEffect(() => {
         if (width > SIZE_LIMIT) {
             setShowLeft(true)
@@ -88,18 +101,6 @@ const Settings: React.FC = () => {
             setShowLeft(!showLeft)
             setShowRight(!showRight)
         }
-        axios
-            .put(
-                'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
-                userInfo,
-                {
-                    headers: {
-                        Authorization: localStorage.getItem('user'),
-                    },
-                }
-            )
-            .then((resp) => console.log(resp))
-            .catch((err) => console.log(err))
     }
     const openModal = () => {
         setShowOverlay(true)
@@ -119,8 +120,8 @@ const Settings: React.FC = () => {
     }
     const logOutyes = () => {
         localStorage.clear()
-        history.push('/login');
-        window.location.reload();
+        history.push('/login')
+        window.location.reload()
         closeModal()
     }
     const deleteTeam = (id: number) => {
@@ -132,13 +133,13 @@ const Settings: React.FC = () => {
         handleUserInfoChange(
             'team_with_admin_access',
             team_with_admin_access_ids.filter(
-                (id: number) => id != selectedTeamToDelete
+                (id: number) => id !== selectedTeamToDelete
             )
         )
         dispath(
             updateTeamWithAdminAccessAction(
                 team_with_admin_access_data.filter((team: any) => {
-                    return team.id != selectedTeamToDelete
+                    return team.id !== selectedTeamToDelete
                 })
             )
         )
@@ -213,25 +214,32 @@ const Settings: React.FC = () => {
 
                     {showRight && (
                         <div className={'settings-main-right'}>
-                            {selectedOption == 0 && (
+                            {selectedOption === 0 && (
                                 <YourProfile
                                     deleteAccount={deleteAccount}
                                     handleUserInfoChange={handleUserInfoChange}
+                                    saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 1 && (
+                            {selectedOption === 1 && (
                                 <PrivacySettings
                                     handleUserInfoChange={handleUserInfoChange}
+                                    saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 2 && (
+                            {selectedOption === 2 && (
                                 <TeamSettings
                                     deleteTeam={deleteTeam}
                                     handleUserInfoChange={handleUserInfoChange}
+                                    saveDataToServer={saveDataToServer}
                                 />
                             )}
-                            {selectedOption == 3 && <Notifications />}
-                            {selectedOption == 5 && <Faq />}
+                            {selectedOption === 3 && (
+                                <Notifications
+                                    saveDataToServer={saveDataToServer}
+                                />
+                            )}
+                            {selectedOption === 5 && <Faq />}
                         </div>
                     )}
                 </div>

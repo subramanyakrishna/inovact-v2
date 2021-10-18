@@ -2,7 +2,7 @@ import React from 'react'
 
 import profilepic from '../../../../../images/connections/profilepic.png'
 
-function RightNetworkStats() {
+function RightNetworkStats({ numberOfConnections }: any) {
     return (
         <div className="right-network-stats">
             <div className="right-network-stats--img-container">
@@ -14,7 +14,7 @@ function RightNetworkStats() {
                 <div className="right-network-stats--content-titles">
                     <p>
                         <span>Total connections</span>
-                        <span>473</span>
+                        <span>{numberOfConnections}</span>
                     </p>
                     <p>
                         <span>Last week's connections</span>

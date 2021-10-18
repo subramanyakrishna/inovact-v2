@@ -6,13 +6,23 @@ import {
     updateBlockedUser,
     updateRestrictedUser,
 } from 'redux/actions/blockedRestrictedAccounts.action'
+import { cognitoUserClass } from 'forgotPassword/forgotPassword'
 
-const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
+const PrivacySettings: React.FC<any> = ({
+    handleUserInfoChange,
+    saveDataToServer,
+}: any) => {
     const is_public = useSelector((state: any) => state.userInfo.is_public)
     const [currentPswd, setCurrentPswd] = useState<string>('')
     const [newPswd, setNewPswd] = useState<string>('')
     const [rePswd, setRePswd] = useState<string>('')
-
+    const [verificationCode, setVerificationCode] = useState<string>('')
+    const [showVerificationInput, setShowVerificationInput] =
+        useState<boolean>(false)
+    const [isPswdNotMathching, setIsPswdNotMathching] = useState<boolean>(false)
+    const [errorMsg, setErrorMsg] = useState('')
+    const [showSubmitVerificationCode, setShowSubmitVerificationCode] =
+        useState(false)
     const dispath = useDispatch()
     const userInfo = useSelector((state: any) => state.userInfo)
 
@@ -80,19 +90,30 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
     }
     const handleForgotPassWord = () => {
         console.log('forget password clicked')
+        if (rePswd === '' || newPswd === '') {
+            setErrorMsg('please enter all fields')
+            setIsPswdNotMathching(true)
+        } else if (rePswd != newPswd) {
+            setErrorMsg('passwords not matching')
+            setIsPswdNotMathching(true)
+        } else {
+            setShowVerificationInput(true)
+            setShowSubmitVerificationCode(true)
+            cognitoUserClass.forgotPassword('human_unnamed')
+        }
     }
 
     const handleblockedUsersUnBlock = (idOfUnblockedAccount: any) => {
         handleUserInfoChange(
             'blocked_users',
             userInfo.blocked_users.filter(
-                (id: any) => id != idOfUnblockedAccount
+                (id: any) => id !== idOfUnblockedAccount
             )
         )
         dispath(
             updateBlockedUser(
                 blockedUsers.filter(
-                    (user: any) => user.id != idOfUnblockedAccount
+                    (user: any) => user.id !== idOfUnblockedAccount
                 )
             )
         )
@@ -103,19 +124,26 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
         handleUserInfoChange(
             'restricted_users',
             userInfo.restricted_users.filter(
-                (id: any) => id != idOfUnRestrictedAccount
+                (id: any) => id !== idOfUnRestrictedAccount
             )
         )
         dispath(
             updateRestrictedUser(
                 restrictedUsers.filter(
-                    (user: any) => user.id != idOfUnRestrictedAccount
+                    (user: any) => user.id !== idOfUnRestrictedAccount
                 )
             )
         )
     }
     const handleMakeProfilePublic = (checked: any) => {
         handleUserInfoChange('is_public', checked)
+    }
+    const handleSubmitVerificationCode = () => {
+        if (verificationCode !== '') {
+            setShowSubmitVerificationCode(false)
+            setShowVerificationInput(false)
+            cognitoUserClass.confirmPassword(verificationCode, newPswd)
+        }
     }
     return (
         <div className={'privacy-settings'}>
@@ -124,14 +152,14 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                     Password
                 </div>
                 <div className="privacy-settings-pswd-inputs">
-                    <div className="privacy-settings-pswd-inputs-curr">
+                    {/* <div className="privacy-settings-pswd-inputs-curr">
                         <label htmlFor="currentPswd">Current Password</label>
                         <input
                             type="password"
                             id="currentPswd"
                             onChange={(e) => setCurrentPswd(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div className="privacy-settings-pswd-inputs-new">
                         <div className="privacy-settings-pswd-inputs-new-ori">
                             <label htmlFor="newPswd">Enter new Password</label>
@@ -139,6 +167,10 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                                 type="password"
                                 id="newPswd"
                                 onChange={(e) => setNewPswd(e.target.value)}
+                                onInput={() => {
+                                    setIsPswdNotMathching(false)
+                                    setShowVerificationInput(false)
+                                }}
                             />
                         </div>
                         <div className="privacy-settings-pswd-inputs-new-re">
@@ -149,26 +181,58 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                                 type="password"
                                 id="rePswd"
                                 onChange={(e) => setRePswd(e.target.value)}
+                                onInput={() => {
+                                    setIsPswdNotMathching(false)
+                                    setShowVerificationInput(false)
+                                }}
                             />
+                            {isPswdNotMathching && (
+                                <span style={{ color: 'red' }}>{errorMsg}</span>
+                            )}
                         </div>
+                        {showVerificationInput ? (
+                            <div
+                                className="privacy-settings-pswd-inputs-new-ori"
+                                style={{ marginTop: '10px' }}
+                            >
+                                <label
+                                    htmlFor="verificationCode"
+                                    style={{ marginBottom: '5px' }}
+                                >
+                                    Enter Verification code sent to your mail
+                                </label>
+                                <input
+                                    id="verificationCode"
+                                    onChange={(e) =>
+                                        setVerificationCode(e.target.value)
+                                    }
+                                />
+                            </div>
+                        ) : undefined}
                     </div>
                 </div>
                 <div className="privacy-settings-pswd-change">
-                    <button
+                    {/* <button
                         className={
                             'privacy-settings-pswd-change-btn text-color--white'
                         }
                         onClick={() => handlePswdChangeSubmit()}
                     >
                         Change Password
-                    </button>
+                    </button> */}
                     <div
                         className={
                             'privacy-settings-pswd-change-fpswd text-color--green  text-style-bold'
                         }
-                        onClick={() => handleForgotPassWord()}
+                        onClick={() =>
+                            showSubmitVerificationCode
+                                ? handleSubmitVerificationCode()
+                                : handleForgotPassWord()
+                        }
                     >
-                        Forgot Password
+                        {showSubmitVerificationCode
+                            ? 'Submit Verification code'
+                            : 'Forgot Password'}
                     </div>
                 </div>
             </div>
@@ -238,6 +302,24 @@ const PrivacySettings: React.FC<any> = ({ handleUserInfoChange }: any) => {
                     Your profile will be visible to every user on the platform
                     even if they are not a connection
                 </div>
+            </div>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '30px',
+                    paddingLeft: '10px',
+                }}
+            >
+                <button
+                    className={
+                        'privacy-settings-pswd-change-btn text-color--white'
+                    }
+                    onClick={() => saveDataToServer()}
+                >
+                    Save Changes
+                </button>
             </div>
         </div>
     )

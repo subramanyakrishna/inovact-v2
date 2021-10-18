@@ -408,6 +408,8 @@ body {
   margin-right: 1rem; }
 
 .navbar-brand img {
+  width: 60px;
+  height: 50px;
   margin-right: 1rem; }
 
 .role-selection {
@@ -1475,7 +1477,7 @@ body {
 
 .nav-component {
   position: fixed;
-  max-width: 1800px;
+  max-width: 2000px;
   width: 100%;
   height: auto;
   display: flex;
@@ -1514,7 +1516,7 @@ body {
     margin: 0 2rem 0 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center; }
     @media only screen and (max-width: 75em) {
       .nav-component__items {
@@ -1538,7 +1540,7 @@ body {
         width: 100%; }
       .nav-component__items__item__icons {
         width: 1.75rem;
-        margin-left: 2rem; }
+        margin-left: 3rem; }
         @media only screen and (max-width: 62em) {
           .nav-component__items__item__icons {
             width: 1.25rem;
@@ -1549,7 +1551,7 @@ body {
             margin: auto 1rem; } }
         .nav-component__items__item__icons--hidden {
           width: 1.75rem;
-          margin-left: 2rem; }
+          margin-left: 3rem; }
           @media only screen and (max-width: 62em) {
             .nav-component__items__item__icons--hidden {
               width: 1.25rem;
@@ -1562,10 +1564,14 @@ body {
           height: 3rem;
           border-radius: 50%;
           overflow: hidden;
-          margin-left: 1rem; }
+          margin-left: 2rem; }
+          @media only screen and (max-width: 75em) {
+            .nav-component__items__item__icons--user {
+              width: 1.25rem; } }
           @media only screen and (max-width: 62em) {
             .nav-component__items__item__icons--user {
-              width: 1.5rem; } }
+              width: 1.5rem;
+              height: 2rem; } }
           @media only screen and (max-width: 36em) {
             .nav-component__items__item__icons--user {
               display: none; } }
@@ -2838,7 +2844,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem; }
+  gap: 2rem;
+  width: 95%; }
 
 .connections-right-components {
   max-width: 500px;
@@ -2853,6 +2860,7 @@ body {
   margin: 6rem auto;
   display: flex;
   justify-content: center;
+  width: 100%;
   gap: 20px; }
   @media only screen and (max-width: 36em) {
     .connections-page {
@@ -2863,7 +2871,8 @@ body {
       margin-top: 3rem; } }
   @media only screen and (max-width: 62em) {
     .connections-page {
-      flex-direction: column; } }
+      flex-direction: column;
+      align-items: center; } }
 
 .filter-dropdown {
   width: 20%;
@@ -4541,13 +4550,19 @@ input, textarea:focus {
     width: 60%;
     margin: 0px 10px; }
 
-.settings-my-profile-delete-account button {
-  float: right;
-  border: none;
-  background-color: white;
-  font-weight: 600;
-  color: red;
-  text-decoration: underline; }
+.settings-my-profile-delete-account {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px; }
+  .settings-my-profile-delete-account-deleteBtn {
+    float: right;
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    color: red;
+    text-decoration: underline; }
 
 .teamset {
   padding: 2% 4% 2% 4%;
