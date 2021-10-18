@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
-import profilepic from '../../../../../../../images/connections/profilepic.png'
+import React from 'react'
 import EditIcon from '@material-ui/icons/Edit'
-import { useDispatch } from 'react-redux'
 import { imageUploader } from 'imageUpload/imageUploader'
 
 function ProfileImage({ handleUserInfoChange, userInfo }: any) {
-    const [imageUrl, setImageURL] = useState('')
-    const dispatch = useDispatch()
     const loadFile = async (e: any) => {
         const data = await imageUploader(e.target.files)
         handleUserInfoChange('avatar', data[0].url)
@@ -26,7 +22,7 @@ function ProfileImage({ handleUserInfoChange, userInfo }: any) {
                 className={'settings-my-profile-nametag-imageAndEditContainer'}
             >
                 <div className="settings-my-profile-nametag-img-container">
-                    <img src={userInfo.avatar} />
+                    <img src={userInfo.avatar} alt="avatar" />
                 </div>
                 <div className="settings-my-profile-nametag-editcontainer">
                     {' '}

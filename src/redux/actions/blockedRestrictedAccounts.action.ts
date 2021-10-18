@@ -1,4 +1,3 @@
-import { func } from 'prop-types'
 import { blockedAndRestricted } from 'redux/actionTypes/blockedAndRestrictedConstants'
 
 function updateBlockedUser(blocked_user: any) {

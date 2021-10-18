@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
 import Toggle from '../Toggle/Toggle'
-import { TeamsData } from './tempData'
 interface teamSettings {
     deleteTeam(id: number): void
     handleUserInfoChange(name: string, value: any): void

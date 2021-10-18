@@ -16,6 +16,7 @@ const User: React.FC<UserProp> = ({ user, handleClick, rightText }) => {
             <div className={'privacy-settings-mid-block-box-user-left'}>
                 <img
                     src={user.avatar}
+                    alt="avatar"
                     className={'privacy-settings-mid-block-box-user-left-img'}
                 />
                 <div
