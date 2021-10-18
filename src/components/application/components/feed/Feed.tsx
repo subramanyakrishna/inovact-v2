@@ -25,6 +25,8 @@ import {
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import SmallSpinner from 'components/application/SmallSpinner'
+import { useDispatch } from 'react-redux'
+import { getTeams } from 'redux/actions/teams'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -155,11 +157,11 @@ function Feed() {
         //     history.push("/userinfo");
         // }
     }, [])
-    useEffect(() => {
-        if (!userInfo.profile_complete) {
-            history.push('/userinfo')
-        }
-    })
+    // useEffect(() => {
+    //     if (!userInfo.profile_complete) {
+    //         history.push('/userinfo')
+    //     }
+    // })
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -239,6 +241,14 @@ function Feed() {
     const handleFilterShow = () => {
         setShowFilter(!showFilter)
     }
+
+    const allTeams = useSelector((state: any) => state.teams)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getTeams('user'))
+    }, [])
+
     return (
         <div>
             {showOverlay && (
