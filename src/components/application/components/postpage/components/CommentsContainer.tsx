@@ -5,7 +5,7 @@ import CommentMainContent from '../../profile/components/RightProfileContent/Com
 function CommentsOnPost(props: any) {
     const history = useHistory();
     const goToFeed = ()=>{
-        history.push("/feed");
+        history.push("/app/feed");
     }
     return (
         <div className="comments-on-posts">

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -12,6 +13,7 @@ import TeamMembers from './components/TeamMembers';
 function PostPage(props: any) {
     const allPosts = useSelector((state: any)=> state.allPosts);
     const allIdeas = useSelector((state: any)=> state.allIdeas);
+
     // console.log(props);
     let postData: any = {
         id: 1,
@@ -48,6 +50,7 @@ nihil, eveniet aliquid culpa officia aut!`,
         completion: 80,
     };
     // postData = allPosts.find((post: any)=>post.id===props.location.state.post_id);
+    const user_id = useSelector((state: any)=> state.userInfo.id);
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -58,10 +61,11 @@ nihil, eveniet aliquid culpa officia aut!`,
     allPosts.forEach((ele: any)=>{
         if(ele.id===Number(id)){
             postData={
+                user_id: user_id,
                 id: ele.id,
                 type: 1,
-                avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-                author: 'Jane Doe',
+                avatar: ele.user.avatar,
+                author: ele.user.first_name+ " " +ele.user.last_name,
                 time: convertDate(ele.created_at),
                 title: ele.title,
                 description: ele.description,

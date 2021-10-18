@@ -16,9 +16,10 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAllUserIdeas, handleAllUserProject } from 'StateUpdateHelper';
+import { handleAllUserIdeas, handleAllUserProject, handleOtherUserInfoChange } from 'StateUpdateHelper';
 import axios from 'axios';
 import Spinner from 'components/application/Spinner';
+import { useHistory } from 'react-router';
 function OtherProfile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -33,7 +34,29 @@ function OtherProfile() {
     }
     const [showIdeas, setShowIdeas] = useState(false);
     const [showProjects, setShowProjects] = useState(true);
-    const getTheUserIdeas = async(userId: any)=>{
+    const history = useHistory();
+    const getTheUserData = async()=>{
+        if(localStorage.getItem("other-user")){
+            const userId = localStorage.getItem("other-user");
+            await axios({
+                method: "get",
+                url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
+                headers: {
+                    "Authorization": localStorage.getItem("user"),
+                }
+                
+            }).then((resp: any)=>{
+                console.log(resp.data.data.user[0]);
+                handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
+            }).then(()=>{
+                history.push("/app/otherprofile");
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+    }
+    const getTheUserIdeas = async()=>{
+        const userId = localStorage.getItem("other-user");
         await axios({
             method: "get",
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/idea?user_id=${userId}`,
@@ -65,7 +88,8 @@ function OtherProfile() {
             console.log(err);
         })
     }
-    const getTheUserProjects = async(userId: any)=>{
+    const getTheUserProjects = async()=>{
+        const userId = localStorage.getItem("other-user");
         await axios({
             method: "get",
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/post?user_id=${userId}`,
@@ -223,8 +247,9 @@ function OtherProfile() {
     useEffect(()=>{
         setIsLoading(true);
         (async()=>{
-            await getTheUserIdeas(otherUser.id);
-            await getTheUserProjects(otherUser.id);
+            await getTheUserData();
+            await getTheUserIdeas();
+            await getTheUserProjects();
         })();
         setIsLoading(false);
     },[])
@@ -270,37 +295,58 @@ function OtherProfile() {
 
             <div className="profile--content">
                 <div className="profile--content-top-container">
-                    <TopProfileContent showLeft={showLeft} setShowLeft={setShowLeft} setShowRight={setShowRight} showAbout={showAbout}
-                    showReportUser={reportAccount}
-                    showBlockUser={blockAccount}
-                    showRestrictUser={restrictAccount}
-                    userInfo = {otherUser}
-                    showOnlyProjects = {showOnlyProjects}
-                    showOnlyIdeas = {showOnlyIdeas}
-                    />
+                        <TopProfileContent showLeft={showLeft} setShowLeft={setShowLeft} setShowRight={setShowRight} showAbout={showAbout}
+                        showReportUser={reportAccount}
+                        showBlockUser={blockAccount}
+                        showRestrictUser={restrictAccount}
+                        userInfo = {otherUser}
+                        showOnlyProjects = {showOnlyProjects}
+                        showOnlyIdeas = {showOnlyIdeas}
+                        />
                 </div>
                 <div className="profile--content-bottom-container">
                     {
                         showLeft &&
-                        <div className="profile--content-left">
-                            <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {otherUser}/>
-                        </div>
+                            otherUser.avatar==="" ?
+                            <Spinner/> :
+                            <div className="profile--content-left">
+                                <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {otherUser}/>
+                            </div>
                     }
                     {
-                        showRight && posts.length!==0 &&
+                        showRight &&
                         
                         <div className="profile--content-right">
                             {
-                                showProjects && 
+                                showProjects &&
+                                posts.length!==0  &&
                                 posts.map((post, idx) => {
                                 return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
+
+                            }
+                            {
+                                showProjects &&
+                                posts.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet/>
+                                    <PeopleYouMayKnow/>
+                                </div>
                             }
                             {
                                 showIdeas && 
+                                ideas.length!==0 &&
                                 ideas.map((post, idx) => {
                                     return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
+                            }
+                            {
+                                showIdeas &&
+                                ideas.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet/>
+                                    <PeopleYouMayKnow/>
+                                </div>
                             }
                         </div>
                         
@@ -309,14 +355,14 @@ function OtherProfile() {
                         isLoading &&
                         <Spinner/>
                     }
-                    {
+                    {/* {
                         posts.length===0 && ideas.length===0 && !isLoading &&
                         <div className="profile--content-right">
                             <NoPostsYet/>
                             <PeopleYouMayKnow/>
                         </div>
 
-                    }
+                    } */}
                     
                 </div>
                 

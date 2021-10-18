@@ -27,6 +27,8 @@ import {
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import SmallSpinner from 'components/application/SmallSpinner'
+import { useDispatch } from 'react-redux'
+import { getTeams } from 'redux/actions/teams'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -52,7 +54,7 @@ function Feed() {
     const allPosts = useSelector((state: any) => state.allPosts);
     const allIdeas = useSelector((state: any) => state.allIdeas);
 
-    const history = useHistory()
+    const history = useHistory();
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -78,7 +80,10 @@ function Feed() {
                     image: ele.avatar,
                     duration: '10 min',
                     designation: ele.designation ? ele.designation : 'Student',
-                }))
+                })).filter((ele: any)=>{
+                    console.log(ele.user_id, userInfo.id);
+                    return ele.user_id!==userInfo.id});
+                console.log(ptk);
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
         }
@@ -91,10 +96,12 @@ function Feed() {
             console.log(data);
             data.data.project.reverse();
             handleAllPosts("all-posts", [...data.data.project,...allPosts]);
-            setPosts([...posts,...data.data.project.map((post: any)=>({
+            setPosts([...data.data.project.map((post: any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 1,
                 avatar: post.user.avatar,
                 author: post.user.first_name+ " "+ post.user.last_name,
@@ -106,8 +113,8 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
-                numLikes: 250,
-                numComments: 250,
+                numLikes: 0,
+                numComments: 0,
                 }))]);
                 // window.location.reload();
         }
@@ -123,10 +130,12 @@ function Feed() {
             data.data.idea.reverse();
             console.log("on success of ideas");
             handleAllIdeas("all-ideas", [...data.data.idea,...allIdeas]);
-            setIdeas([...ideas,...data.data.idea.map((post: any)=>({
+            setIdeas([...data.data.idea.map((post: any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 2,
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
@@ -151,6 +160,7 @@ function Feed() {
             console.log("This is profile ideas",data);
             data.data.idea.reverse();
             handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
@@ -178,6 +188,7 @@ function Feed() {
             console.log("This is profile projects",data);
             data.data.project.reverse();
             const finalData = data.data.project.map((post: any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
@@ -210,11 +221,11 @@ function Feed() {
         //     history.push("/userinfo");
         // }
     }, [])
-    useEffect(() => {
-        if (!userInfo.profile_complete) {
-            history.push('/userinfo')
-        }
-    })
+    // useEffect(() => {
+    //     if (!userInfo.profile_complete) {
+    //         history.push('/userinfo')
+    //     }
+    // })
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -294,6 +305,14 @@ function Feed() {
     const handleFilterShow = () => {
         setShowFilter(!showFilter)
     }
+
+    const allTeams = useSelector((state: any) => state.teams)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getTeams('user'))
+    }, [])
+
     return (
         <div>
             {showOverlay && (
@@ -377,18 +396,20 @@ function Feed() {
                             </div>
                         </div>
                     </div>
-                    {filteredPosts.map((post, idx) => {
-                        console.log(post)
-                        return (
-                            <Post
-                                key={idx}
-                                post={post}
-                                openTeamMember={viewTeamMembers}
-                                openRequestJoin={viewRequestJoin}
-                            />
-                        )
-                    })}
-                    <Spinner />
+                    <div className="feed__content__center--container">
+                        {filteredPosts.map((post, idx) => {
+                            // console.log(post)
+                            return (
+                                <Post
+                                    key={idx}
+                                    post={post}
+                                    openTeamMember={viewTeamMembers}
+                                    openRequestJoin={viewRequestJoin}
+                                />
+                            )
+                        })}
+                        <Spinner />
+                    </div>
                 </div>
                 <div className="feed__content__right">
                     <RightNavBar peopleToKnow={peopleToKnow} />

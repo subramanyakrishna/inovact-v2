@@ -679,7 +679,7 @@ body {
               justify-content: left; } }
         .left-right-nav__card__list__item--create {
           width: 100%;
-          margin: 0 !important;
+          margin: 10px !important;
           display: flex;
           flex-direction: row;
           justify-content: left;
@@ -690,6 +690,9 @@ body {
           @media only screen and (max-width: 75em) {
             .left-right-nav__card__list__item--create {
               padding: 0.5rem; } }
+          .left-right-nav__card__list__item--create img {
+            width: 35px;
+            height: 35px; }
         .left-right-nav__card__list__item__info {
           display: flex;
           width: 100%;
@@ -716,13 +719,13 @@ body {
         .left-right-nav__card__list__item__rightTop {
           width: 100%;
           margin: 0 !important;
-          padding: 1rem 0.5rem;
+          padding: 0.5rem 0.5rem;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
           align-items: center; }
           .left-right-nav__card__list__item__rightTop--row {
-            padding: 0.4rem;
+            padding: 5px 0.4rem;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -733,7 +736,7 @@ body {
                 padding: 0; } }
           @media only screen and (max-width: 75em) {
             .left-right-nav__card__list__item__rightTop {
-              padding: 0.7rem;
+              padding: 0.5rem;
               flex-direction: column;
               align-items: center; } }
         .left-right-nav__card__list__item__button {
@@ -1387,17 +1390,18 @@ body {
   margin-left: 1rem; }
   .connect-button-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 60%; }
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 50%; }
     .connect-button-container p {
       margin: 0px; }
     @media only screen and (max-width: 48em) {
       .connect-button-container {
         flex-direction: column;
-        justify-content: space-around; } }
+        justify-content: space-between; } }
   @media only screen and (max-width: 36em) {
     .connect-button {
+      width: 5rem;
       font-size: small; } }
   .connect-button--green {
     width: 5.5rem;
@@ -1408,6 +1412,42 @@ body {
     max-height: 26px;
     margin-left: 1rem;
     background-color: #02bd63; }
+
+.view-more-button {
+  width: 7rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #5579bd;
+  margin-top: 0.3rem;
+  color: white;
+  max-height: 26px;
+  margin-left: 1rem; }
+  .view-more-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%; }
+    .view-more-button-container p {
+      margin: 0px; }
+    @media only screen and (max-width: 48em) {
+      .view-more-button-container {
+        flex-direction: column;
+        justify-content: space-around; } }
+  @media only screen and (max-width: 36em) {
+    .view-more-button {
+      font-size: small; } }
+  .view-more-button--green {
+    width: 5.5rem;
+    border: none;
+    border-radius: 1rem;
+    margin-top: 0.3rem;
+    color: white;
+    max-height: 26px;
+    margin-left: 1rem;
+    background-color: #02bd63; }
+  .view-more-button img {
+    width: 20px;
+    color: white; }
 
 .input-component {
   display: block;
@@ -1641,8 +1681,14 @@ body {
       display: none; } }
   .create-post__avatar {
     width: 50px;
-    height: 100%;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
     margin-right: 1rem; }
+    .create-post__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
   .create-post__content {
     display: flex;
     flex-direction: column;
@@ -1743,14 +1789,27 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center; }
+      .post__author__text__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
       .post__author__text__name {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 500;
         margin-bottom: 0;
         color: #000000; }
+        @media only screen and (max-width: 48em) {
+          .post__author__text__name {
+            font-size: 1rem; } }
       .post__author__text__time {
         margin: 0;
         font-weight: 500; }
+      .post__author__text__type {
+        margin: 5px 0px;
+        border: 2px solid #02bd63;
+        padding: 0px 5px;
+        border-radius: 5px;
+        width: min-content; }
   .post__text {
     margin: 1rem auto; }
     .post__text__title {
@@ -2414,13 +2473,31 @@ body {
         display: none; } }
   .feed__content__center {
     width: 50%;
-    padding: 1rem; }
+    padding: 1rem;
+    scrollbar-width: 0px; }
     @media only screen and (max-width: 62em) {
       .feed__content__center {
         width: 70%; } }
     @media only screen and (max-width: 48em) {
       .feed__content__center {
         width: 100%; } }
+    .feed__content__center--container {
+      height: 120vh;
+      overflow-y: scroll; }
+      .feed__content__center--container::after {
+        content: '';
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        height: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(75%, 105vh);
+        background: linear-gradient(transparent 200px, white); }
+      @media only screen and (max-width: 62em) {
+        .feed__content__center--container::after {
+          content: ''; } }
   .feed__content__right {
     width: 25%; }
     @media only screen and (max-width: 62em) {
@@ -3804,7 +3881,7 @@ input, textarea:focus {
   .profile--content-right {
     padding: 20px;
     max-width: 700px;
-    width: 80%; }
+    width: 100%; }
     @media only screen and (max-width: 62em) {
       .profile--content-right {
         margin: 0 auto;
@@ -5104,7 +5181,7 @@ input, textarea:focus {
 
 .notifications-options {
   position: absolute;
-  width: 180px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   float: right;

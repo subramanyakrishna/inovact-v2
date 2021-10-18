@@ -6,6 +6,8 @@ import mentionsImg from "../../../../../../images/profile/mentions.png";
 import thoughtImg from "../../../../../../images/profile/thought.png";
 import aboutImg from "../../../../../../images/profile/about.png";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
+import Spinner from 'components/application/Spinner';
+import { useSelector } from 'react-redux';
 
 function TopProfileContent(props: any) {
     
@@ -54,18 +56,23 @@ function TopProfileContent(props: any) {
         removeBorderAll();
         setShowThoughts(true);
     }
+    const otherUser = useSelector((state: any)=>state.otherUser);
     return (
         <div className="top-profile-content">
-            <div className="top-profile-user-tag">
-                <div className="top-profile-user-img">
-                    <img src={props.userInfo.avatar}  alt="User"/>
-                </div>
-                <div className="top-profile-user-data">
-                    <span className="top-profile-user-data-name">{props.userInfo.first_name} {props.userInfo.last_name}</span>
-                    <span className="top-profile-user-data-designation">{props.userInfo.designation}</span>
-                    <span className="top-profile-user-data-university">{props.userInfo.university}</span>
-                </div>
-            </div>
+            {
+                otherUser.avatar ?
+                <div className="top-profile-user-tag">
+                    <div className="top-profile-user-img">
+                        <img src={props.userInfo.avatar}  alt="User"/>
+                    </div>
+                    <div className="top-profile-user-data">
+                        <span className="top-profile-user-data-name">{props.userInfo.first_name} {props.userInfo.last_name}</span>
+                        <span className="top-profile-user-data-designation">{props.userInfo.designation}</span>
+                        <span className="top-profile-user-data-university">{props.userInfo.university}</span>
+                    </div>
+                </div>:
+                <Spinner/>
+            }
             <div className="top-profile-post-buttons">
                 {
                     props.showAbout &&

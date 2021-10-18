@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';

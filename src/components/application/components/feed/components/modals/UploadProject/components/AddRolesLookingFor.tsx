@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import RolesLookingFor from './RolesLookingFor'
 import SkillTags from './SkillTags'
 
 function AddRolesLookingFor(props: any) {
@@ -111,34 +110,34 @@ function AddRolesLookingFor(props: any) {
     const [searchSkills, setSearchSkills] = useState<string[]>([])
     const [roleInput, setRoleInput] = useState('')
 
-    const handleRoleInputChange = (e: any) => {
-        // console.log(e.target.value);
-        setRoleInput(e.target.value)
-    }
+    // const handleRoleInputChange = (e: any) => {
+    //     // console.log(e.target.value);
+    //     setRoleInput(e.target.value)
+    // }
 
-    const handleInputChange = (e: any) => {
-        const value = e.target.value
-        setCurrentSkill(value)
-        if (value === '') {
-            setSearchSkills([])
-            return
-        }
-        const searchedSkills = allSkills
-            .filter((skill) =>
-                skill.toLowerCase().includes(value.toLowerCase())
-            )
-            .slice(0, 5)
-        console.log(searchedSkills)
-        setSearchSkills(searchedSkills)
-    }
+    // const handleInputChange = (e: any) => {
+    //     const value = e.target.value
+    //     setCurrentSkill(value)
+    //     if (value === '') {
+    //         setSearchSkills([])
+    //         return
+    //     }
+    //     const searchedSkills = allSkills
+    //         .filter((skill) =>
+    //             skill.toLowerCase().includes(value.toLowerCase())
+    //         )
+    //         .slice(0, 5)
+    //     console.log(searchedSkills)
+    //     setSearchSkills(searchedSkills)
+    // }
 
-    const addTheSkill = (e: any) => {
-        const value = e.target.getAttribute('data-value')
-        if (!skillSelected.includes(value))
-            setSkillSelected([...skillSelected, value])
-        setCurrentSkill('')
-        setSearchSkills([])
-    }
+    // const addTheSkill = (e: any) => {
+    //     const value = e.target.getAttribute('data-value')
+    //     if (!skillSelected.includes(value))
+    //         setSkillSelected([...skillSelected, value])
+    //     setCurrentSkill('')
+    //     setSearchSkills([])
+    // }
 
     const removeTheSkill = (skill: any) => {
         setSkillSelected(skillSelected.filter((ele) => ele !== skill))
@@ -146,6 +145,16 @@ function AddRolesLookingFor(props: any) {
 
     const handleAddRole = () => {
         props.addAnotherRole(roleInput, skillSelected)
+        props.setTeamDetails({
+            ...props.teamDetails,
+            roles: [
+                ...props.teamDetails.roles,
+                {
+                    role: roleInput,
+                    skills: skillSelected,
+                },
+            ],
+        })
         setSkillSelected([])
         setRoleInput('')
     }
@@ -154,7 +163,7 @@ function AddRolesLookingFor(props: any) {
             <div className="add_roles_looking_for-add-role">
                 <input
                     type="text"
-                    onChange={handleRoleInputChange}
+                    onChange={(e) => setRoleInput(e.target.value)}
                     value={roleInput}
                 />
                 <button
@@ -169,16 +178,31 @@ function AddRolesLookingFor(props: any) {
                     type="text"
                     placeholder="Type out the skills required for the above mentioned role"
                     value={currentSkill}
-                    onChange={handleInputChange}
+                    onChange={(e) => {
+                        setCurrentSkill(e.target.value)
+                        const skills = allSkills.filter((skill) =>
+                            skill
+                                .toLowerCase()
+                                .includes(e.target.value.toLowerCase())
+                        )
+                        setSearchSkills(skills)
+                    }}
                 />
 
-                {searchSkills.length !== 0 && (
+                {searchSkills && searchSkills.length !== 0 && (
                     <div style={{ position: 'relative' }}>
                         <div className="search_skills">
                             {searchSkills.map((skill) => {
                                 return (
                                     <span
-                                        onClick={addTheSkill}
+                                        onClick={() => {
+                                            setSkillSelected([
+                                                ...skillSelected,
+                                                skill,
+                                            ])
+                                            setCurrentSkill('')
+                                            setSearchSkills([])
+                                        }}
                                         data-value={skill}
                                     >
                                         {skill}
@@ -188,15 +212,40 @@ function AddRolesLookingFor(props: any) {
                         </div>
                     </div>
                 )}
+                {/* {
+                    searchSkills.length !== 0 && (
+                        <div>
+                            <div className="search_skills">
+                                {searchSkills.map((skill) => {
+                                    return (
+                                        <span
+                                            onClick={() =>
+                                                setSkillSelected([
+                                                    ...skillSelected,
+                                                    skill,
+                                                ])
+                                            }
+                                        >
+                                            {skill}
+                                        </span>
+                                    )
+                                })}
+
+                            </div>
+                        </div>
+                    )
+                } */}
+
                 <div>
-                    {skillSelected.map((skill) => {
-                        return (
-                            <SkillTags
-                                skill={skill}
-                                removeSkill={removeTheSkill}
-                            />
-                        )
-                    })}
+                    {skillSelected.length !== 0 &&
+                        skillSelected.map((skill) => {
+                            return (
+                                <SkillTags
+                                    skill={skill}
+                                    removeSkill={removeTheSkill}
+                                />
+                            )
+                        })}
                 </div>
             </div>
         </div>

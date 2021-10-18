@@ -1,39 +1,53 @@
-import React, { useState } from 'react';
-import SkillTags from '../../UploadProject/components/SkillTags';
+import React, { useState } from 'react'
+import SkillTags from '../../UploadProject/components/SkillTags'
+import { ICreateTeam } from 'redux/interfaces/teams.interface'
+import Tags from './Tags'
 
-function TagsCovered() {
-    const [currentSkill, setCurrentSkill] = useState("");  
-    const [skillsNeeded, setSkillsNeeded] = useState<string[]>([]);
+type Props = {
+    teamDetails: ICreateTeam
+    setTeamDetails: (teamDetails: ICreateTeam) => void
+}
 
-    const removeSkill = (id:any)=>{
-        setSkillsNeeded(skillsNeeded.filter((ele,idx)=>idx!==id));
+const TagsCovered = ({ setTeamDetails, teamDetails }: Props) => {
+    const [tag, setTag] = useState('')
+
+    const removeTag = (id: number) => {
+        setTeamDetails({
+            ...teamDetails,
+            tags: teamDetails.tags.filter((ele, idx) => idx !== id),
+        })
     }
-   const addSkill = (e:any)=>{
-       if(!skillsNeeded.includes(currentSkill)){
-            setSkillsNeeded([...skillsNeeded, currentSkill]);
-            setCurrentSkill("");
-       }
-   }
-    const handleChangeInput = (e:any)=>{
-        const value = e.target.value;
-        setCurrentSkill(value);
-    }
-  
+
     return (
         <div className="tags-covered">
-                <label>Team Tags</label>
-                <input type="text" placeholder="Type out the skills used" value={currentSkill} onChange={handleChangeInput}/>
-                 <button onClick={addSkill} className="upload-media-btn">+Add Tag</button>
-                <div>
-                    {
-                        skillsNeeded.map((skill,id)=>{
-                            return (<SkillTags skill={skill} id={id} removeSkill={removeSkill}/>);
+            <label>Team Tags</label>
+            <input
+                type="text"
+                placeholder="Type out the skills used"
+                onChange={(e) => setTag(e.target.value)}
+            />
+            <button
+                onClick={() => {
+                    if (!teamDetails.tags.includes(tag)) {
+                        setTeamDetails({
+                            ...teamDetails,
+                            tags: [...teamDetails.tags, tag],
                         })
+                        console.log(teamDetails)
+                        setTag('')
                     }
-                </div>
-                
+                }}
+                className="upload-media-btn"
+            >
+                +Add Tag
+            </button>
+            <div>
+                {teamDetails.tags.map((tag, id) => {
+                    return <Tags tag={tag} id={id} removeTag={removeTag} />
+                })}
             </div>
+        </div>
     )
 }
 
-export default TagsCovered;
+export default TagsCovered

@@ -2,7 +2,7 @@ import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import { store } from 'redux/helpers/store'
 import { addIdeaConstants } from 'redux/actionTypes/addIdeaConstants'
-import { addTeamConstants }  from 'redux/actionTypes/addTeamConstants'
+import { addTeamConstants } from 'redux/actionTypes/addTeamConstants'
 import { addProjectConstants } from 'redux/actionTypes/addProjectConstants'
 import { addThoughtConstants } from 'redux/actionTypes/addThoughtConstants'
 import { allPostsConstants } from 'redux/actionTypes/allPostsConstants'
@@ -12,26 +12,26 @@ import { allUserIdeaConstants } from 'redux/actionTypes/allUserIdeaConstants'
 import { allUserProjectConstants } from 'redux/actionTypes/allUserProjectConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
-    console.log("all posts value: ", value);
+    console.log('all posts value: ', value)
     switch (name) {
         case 'email_id':
             store.dispatch({
                 type: userCredsConstants.UPDATE_EMAIL_ID,
                 payload: value,
             })
-            break;
+            break
         case 'password':
             store.dispatch({
                 type: userCredsConstants.UPDATE_PASSWORD,
                 payload: value,
             })
-            break;
-        case "user-name":
+            break
+        case 'user-name':
             store.dispatch({
                 type: userCredsConstants.UPDATE_USER_NAME,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
     console.log(store.getState())
 }
@@ -171,23 +171,23 @@ const handleUserInfoChange = async (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 
 const handleAddProjectChange = (name: any, value: any) => {
     switch (name) {
-        case "user_id":
+        case 'user_id':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_USER_ID,
                 payload: value,
             })
-            break;
+            break
         case 'title':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_TITLE,
                 payload: value,
             })
-            break;
+            break
         case 'description':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_DESCRIPTION,
@@ -273,13 +273,13 @@ const handleAddIdeaChange = (name: any, value: any) => {
             store.dispatch({
                 type: addIdeaConstants.IDEA_UPDATE_LOOKING_FOR_MENTOR,
                 payload: value,
-            });
-            break;    
-        case "idea_clear_data":
+            })
+            break
+        case 'idea_clear_data':
             store.dispatch({
                 type: addIdeaConstants.IDEA_CLEAR_DATA,
-            });
-            break;
+            })
+            break
     }
     console.log(store.getState())
 }
@@ -291,12 +291,12 @@ const handleAddThoughtChange = (name: any, value: any) => {
                 type: addThoughtConstants.THOUGHT_UPDATE_DESCRIPTION,
                 payload: value,
             })
-            break;
-        case "thought_clear_data": 
+            break
+        case 'thought_clear_data':
             store.dispatch({
                 type: addThoughtConstants.THOUGHT_CLEAR_DATA,
-            });
-            break;
+            })
+            break
     }
     console.log(store.getState())
 }
@@ -309,7 +309,7 @@ const handleAddTeamChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-      
+
         case 'tags':
             store.dispatch({
                 type: addTeamConstants.TEAM_UPDATE_TEAM_TAGS,
@@ -322,7 +322,7 @@ const handleAddTeamChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-         case 'looking_for_mentor':
+        case 'looking_for_mentor':
             store.dispatch({
                 type: addTeamConstants.TEAM_UPDATE_LOOKING_FOR_MENTOR,
                 payload: value,
@@ -347,42 +347,41 @@ const handleAddTeamChange = (name: any, value: any) => {
     }
     console.log(store.getState())
 }
-const handleAllPosts = (name: any, value: any) =>{
-    console.log("all posts value: ", value);
-    switch(name){
-        case "all-posts":
+const handleAllPosts = (name: any, value: any) => {
+    console.log('all posts value: ', value)
+    switch (name) {
+        case 'all-posts':
             store.dispatch({
                 type: allPostsConstants.POSTS_UPDATE,
                 payload: value,
-            });
-            break;
-        case "clear-posts":
+            })
+            break
+        case 'clear-posts':
             store.dispatch({
                 type: allPostsConstants.POSTS_CLEAR,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
-
+    console.log(store.getState())
 }
-const handleAllIdeas = (name: any, value: any) =>{
-    console.log("all posts value: ", value);
-    switch(name){
-        case "all-ideas":
+const handleAllIdeas = (name: any, value: any) => {
+    console.log('all posts value: ', value)
+    switch (name) {
+        case 'all-ideas':
             store.dispatch({
                 type: allIdeasConstants.IDEAS_UPDATE,
                 payload: value,
-            });
-            break;
-        case "clear-ideas":
+            })
+            break
+        case 'clear-ideas':
             store.dispatch({
                 type: allIdeasConstants.IDEAS_CLEAR,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 
 const handleOtherUserInfoChange = (name: any, value: any)=>{

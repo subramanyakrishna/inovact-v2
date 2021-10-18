@@ -1,6 +1,6 @@
 .left-right-nav {
     padding: 1rem 0rem;
-
+    // position:fixed;
     & img {
         width: 3rem;
         height: 3rem;
@@ -67,7 +67,7 @@
 
                 &--create {
                     width: 100%;
-                    margin: 0 !important;
+                    margin: 10px !important;
                     display: flex;
                     flex-direction: row;
                     justify-content: left;
@@ -79,6 +79,10 @@
 
                     @include respond(lg) {
                         padding: 0.5rem;
+                    }
+                    img{
+                        width: 35px;
+                        height: 35px;
                     }
                 }
                 &__info {
@@ -113,14 +117,14 @@
                 &__rightTop {
                     width: 100%;
                     margin: 0 !important;
-                    padding: 1rem 0.5rem;
+                    padding: 0.5rem 0.5rem;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
 
                     &--row {
-                        padding: 0.4rem;
+                        padding: 5px 0.4rem;
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-start;
@@ -132,7 +136,7 @@
                     }
 
                     @include respond(lg) {
-                        padding: 0.7rem;
+                        padding: 0.5rem;
                         flex-direction: column;
                         align-items: center;
                     }

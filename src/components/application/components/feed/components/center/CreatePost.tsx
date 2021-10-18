@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import avatar from 'images/feed/user-avatar.png'
 import add from 'images/feed/add.svg'
+import { useSelector } from 'react-redux';
 
 function CreatePost(props:any) {
 
@@ -13,14 +14,16 @@ function CreatePost(props:any) {
     const closePopUp = ()=>{
         setShowPopUp(false);
     }
+    const userInfo = useSelector((state: any)=>state.userInfo);
+
     return (
         <>
             <div className="create-post">
                 <div className="create-post__avatar">
-                    <img src={avatar} alt="Avatar" />
+                    <img src={userInfo.avatar} alt="Avatar" />
                 </div>
                 <div className="create-post__content">
-                    <h1>What's on your mind, Matt?</h1>
+                    <h1>What's on your mind, {userInfo.first_name}?</h1>
                     <div className="create-post__content__options">
                         <div className="create-post__content__options__button" onClick={props.openProject}>
                             New Project

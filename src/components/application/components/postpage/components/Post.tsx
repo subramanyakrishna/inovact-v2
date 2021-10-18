@@ -7,6 +7,7 @@ import Photos from '../../feed/components/center/Photos';
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag';
 import UserTag from 'components/application/components/profile/components/RightProfileContent/UserTag';
 import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
+import { useSelector } from 'react-redux'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true);
@@ -69,17 +70,30 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = ()=>{
         setShowComments(!showComments);
     }
+    const user_id = useSelector((state: any)=> state.userInfo.id);
     return (
         <div className="post">
             {
                 !showComments && 
                 <div>
                     <div className="post__author">
-                    <img
-                        className="post__author__avatar"
-                        src={post.avatar}
-                        alt=""
-                    />
+                    {
+                            user_id===post.user_id?
+                            <Link to="/app/profile">
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
+                            </Link>:
+                            <Link to="/app/otherprofile" onClick={()=>localStorage.setItem("other-user",post.user_id)}>
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
+                            </Link>
+                        }
                     <div className="post__author__text">
                         <h1 className="post__author__text__name">{post.author}</h1>
                         <p className="post__author__text__time">

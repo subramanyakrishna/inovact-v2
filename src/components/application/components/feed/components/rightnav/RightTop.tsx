@@ -58,21 +58,23 @@ const RightTop = (props: any) => {
     const getTheOtherUser = async(userId: any)=>{
         console.log("the user id is of other: ", userId);
         setImageLoading(true);
-        await axios({
-            method: "get",
-            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
-            headers: {
-                "Authorization": localStorage.getItem("user"),
-            }
+        localStorage.setItem("other-user", userId);
+        history.push("/app/otherprofile");
+        // await axios({
+        //     method: "get",
+        //     url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
+        //     headers: {
+        //         "Authorization": localStorage.getItem("user"),
+        //     }
             
-        }).then((resp: any)=>{
-            console.log(resp.data.data.user[0]);
-            handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
-        }).then(()=>{
-            history.push("/otherprofile");
-        }).catch((err)=>{
-            console.log(err);
-        })
+        // }).then((resp: any)=>{
+        //     console.log(resp.data.data.user[0]);
+        //     handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
+        // }).then(()=>{
+        //     history.push("/app/otherprofile");
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
     }
     const [imageLoading, setImageLoading]= useState(false);
     return (

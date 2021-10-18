@@ -15,6 +15,7 @@ function BioDescription(props:any) {
         
       </div>        
       {
+        props.userInfo.bio &&
         props.userInfo.bio.length>=230 && 
         <div>
           {!showMore && (
@@ -41,6 +42,7 @@ function BioDescription(props:any) {
         </div>
       }
       {
+        props.userInfo.bio &&
         props.userInfo.bio.length<230 &&
         <div>
           <p className="bio-description">

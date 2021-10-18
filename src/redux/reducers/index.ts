@@ -14,7 +14,9 @@ import { allIdeasReducer } from './allIdeasReducer'
 import { otherUserInfoReducer } from './otherUserInfoReducer'
 import { allUserProjectReducer } from './allUserProjectReducer'
 import { allUserIdeaReducer } from './allUserIdeaReducer'
-import {updateTeamInfoReducer} from './updateTeamInfoReducer'
+// import {updateTeamInfoReducer} from './updateTeamInfoReducer'
+// import { updateTeamInfoReducer } from './updateTeamInfoReducer'
+import TeamReducer from './teams'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -32,7 +34,9 @@ const rootReducer = combineReducers({
     otherUser: otherUserInfoReducer,
     userAllProjects: allUserProjectReducer,
     userAllIdeas: allUserIdeaReducer,
-    teamInfo: updateTeamInfoReducer,
-});
+    // teamInfo: updateTeamInfoReducer,
+    // addTeam: updateTeamInfoReducer,
+    teams: TeamReducer,
+})
 
 export default rootReducer;
