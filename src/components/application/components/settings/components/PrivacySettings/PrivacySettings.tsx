@@ -6,7 +6,7 @@ import {
     updateBlockedUser,
     updateRestrictedUser,
 } from 'redux/actions/blockedRestrictedAccounts.action'
-import { cognitoUserClass } from 'forgotPassword/forgotPassword'
+import cognitoUserClass from 'forgotPassword/forgotPassword'
 
 const PrivacySettings: React.FC<any> = ({
     handleUserInfoChange,
@@ -85,9 +85,6 @@ const PrivacySettings: React.FC<any> = ({
         }
     }, [])
 
-    const handlePswdChangeSubmit = () => {
-        console.log(' password changed clicked')
-    }
     const handleForgotPassWord = () => {
         console.log('forget password clicked')
         if (rePswd === '' || newPswd === '') {
@@ -99,7 +96,7 @@ const PrivacySettings: React.FC<any> = ({
         } else {
             setShowVerificationInput(true)
             setShowSubmitVerificationCode(true)
-            cognitoUserClass.forgotPassword('human_unnamed')
+            cognitoUserClass.forgotPassword(userInfo.user_name)
         }
     }
 
