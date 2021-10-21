@@ -20,6 +20,7 @@ import { handleAllUserIdeas, handleAllUserProject, handleOtherUserInfoChange } f
 import axios from 'axios';
 import Spinner from 'components/application/Spinner';
 import { useHistory } from 'react-router';
+import RequestToJoin from '../feed/components/modals/RequestToJoin.tsx/RequestToJoin';
 function OtherProfile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -34,7 +35,9 @@ function OtherProfile() {
     }
     const [showIdeas, setShowIdeas] = useState(false);
     const [showProjects, setShowProjects] = useState(true);
+    const [showRequestJoin, setShowRequestJoin] = useState(false)
     const history = useHistory();
+    
     const getTheUserData = async()=>{
         if(localStorage.getItem("other-user")){
             const userId = localStorage.getItem("other-user");
@@ -200,9 +203,6 @@ function OtherProfile() {
         setShowReportUser(false);
         setShowRestrictUser(false);
         setShowTeamMembers(false);
-        setShowEditBio(false);
-        setShowCreateTeam(false);
-        setShowEditProject(false)
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{
@@ -222,18 +222,6 @@ function OtherProfile() {
         openModal();
         setShowTeamMembers(true);
     }
-    const viewCreateTeam = ()=>{
-        openModal();
-        setShowCreateTeam(true);
-    }
-    const viewEditBio = ()=>{
-        openModal();
-        setShowEditBio(true);
-    }
-    const viewEditProject = ()=>{
-        openModal();
-        setShowEditProject(true);
-    }
     const otherUser = useSelector((state: any)=>state.otherUser);
     const showOnlyProjects = ()=>{
         setShowIdeas(false);
@@ -243,6 +231,10 @@ function OtherProfile() {
         setShowIdeas(true);
         setShowProjects(false);
     }
+    const viewRequestJoin = () => {
+        openModal()
+        setShowRequestJoin(true)
+    }
     const [isLoading, setIsLoading] = useState(false);
     useEffect(()=>{
         setIsLoading(true);
@@ -250,8 +242,10 @@ function OtherProfile() {
             await getTheUserData();
             await getTheUserIdeas();
             await getTheUserProjects();
+            setIsLoading(false);
         })();
-        setIsLoading(false);
+        // setIsLoading(false);
+
     },[])
     return (
         <div>
@@ -277,16 +271,8 @@ function OtherProfile() {
                         <ViewTeamMembers closeModal={closeModal}/>
                     }
                     {
-                        showCreateTeam && 
-                        <CreateTeam closeModal={closeModal}/>
-                    }
-                    {
-                        showEditBio &&
-                        <EditBio closeModal= {closeModal}/>
-                    }
-                    {
-                        showEditProject &&
-                        <EditProject closeModal = {closeModal}/>
+                        showRequestJoin &&
+                        <RequestToJoin closeModal={closeModal}/>
                     }
                 </div>
                 
@@ -310,7 +296,7 @@ function OtherProfile() {
                             otherUser.avatar==="" ?
                             <Spinner/> :
                             <div className="profile--content-left">
-                                <LeftProfileContent createTeam={viewCreateTeam} viewEditBio={viewEditBio} userInfo = {otherUser}/>
+                                <LeftProfileContent userInfo = {otherUser}/>
                             </div>
                     }
                     {
@@ -318,10 +304,15 @@ function OtherProfile() {
                         
                         <div className="profile--content-right">
                             {
+                                isLoading &&
+                                <Spinner/>
+                            }
+                            {
                                 showProjects &&
                                 posts.length!==0  &&
                                 posts.map((post, idx) => {
-                                return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
+                                return <Post key={idx} post={post} openTeamMember={viewTeamMembers}
+                                openRequestJoin={viewRequestJoin}/>
                                 })
 
                             }
@@ -329,7 +320,7 @@ function OtherProfile() {
                                 showProjects &&
                                 posts.length===0 &&
                                 <div className="profile--content-right">
-                                    <NoPostsYet/>
+                                    <NoPostsYet postType="projects" name={otherUser.first_name}/>
                                     <PeopleYouMayKnow/>
                                 </div>
                             }
@@ -337,24 +328,23 @@ function OtherProfile() {
                                 showIdeas && 
                                 ideas.length!==0 &&
                                 ideas.map((post, idx) => {
-                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
+                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers}
+                                    openRequestJoin={viewRequestJoin}
+                                    />
                                 })
                             }
                             {
                                 showIdeas &&
                                 ideas.length===0 &&
                                 <div className="profile--content-right">
-                                    <NoPostsYet/>
+                                    <NoPostsYet postType="ideas" name={otherUser.first_name}/>
                                     <PeopleYouMayKnow/>
                                 </div>
                             }
                         </div>
                         
                     }
-                    {
-                        isLoading &&
-                        <Spinner/>
-                    }
+                    
                     {/* {
                         posts.length===0 && ideas.length===0 && !isLoading &&
                         <div className="profile--content-right">

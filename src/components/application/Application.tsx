@@ -29,6 +29,7 @@ import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
 import OtherProfile from './components/otheruserprofile/OtherProfile'
+import IdeaPage from './components/ideapage/IdeaPage'
 
 function Application() {
     const state = useSelector((state: any) => state)
@@ -151,6 +152,11 @@ function Application() {
                         path={`/posts/:id`}
                         isAuth={state.authentication.userAuthenticated}
                         component={() => <PostPage />}
+                    />
+                    <PrivateRoute
+                        path={`/ideas/:id`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={() => <IdeaPage />}
                     />
                 </Switch>
             </Router>

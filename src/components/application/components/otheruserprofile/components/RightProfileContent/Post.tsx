@@ -8,7 +8,7 @@ import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';
 import CommentsOnPost from './CommentsOnPost'
 
-function Post({ post, openTeamMember, viewEditProject }: any) {
+function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
     const [showShareOption, setShowShareOption] = useState(false);
     const teamsData = [
         {
@@ -125,7 +125,8 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                 </p>
                             )
                         })}
-                        {post.type === 1 ? (
+                        { (post.tags?.length>4) &&
+                        post.type === 1 ? (
                             <Link
                                 className="post__tags__item"
                                 to={`/posts/${post.id}`}
@@ -208,8 +209,9 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                     {post.type === 1 ? (
                         <>
                             <p className="post__footer__team__text" onClick={openTeamMember}> View Team Members</p>
+                            <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>
                             <div className="post__footer__team__options-menu">
-                                {
+                                {/* {
                                     showPostOptions &&
                                     <div className="post__footer__team__options-all" onMouseLeave={removePostOptionsSLow}>
                                         <span onClick={viewEditProject}>Edit Post</span>
@@ -217,7 +219,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                         <span>Delete Post</span>
                                     </div>
                                 }
-                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p>
+                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p> */}
                             </div>
                         </>
                     ) : (

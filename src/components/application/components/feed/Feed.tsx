@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import LeftNavBar from './components/leftnav/LeftNavBar'
 import CreatePost from './components/center/CreatePost'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
@@ -14,6 +14,15 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
+import { of, fromEvent, animationFrameScheduler } from 'rxjs'
+import {
+    distinctUntilChanged,
+    filter,
+    map,
+    pairwise,
+    switchMap,
+    throttleTime,
+} from 'rxjs/operators'
 import Spinner from 'components/application/Spinner'
 import {
     handleAddIdeaChange,
@@ -28,7 +37,9 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import SmallSpinner from 'components/application/SmallSpinner'
 import { useDispatch } from 'react-redux'
-import { getTeams } from 'redux/actions/teams'
+import { getTeams } from 'redux/actions/teams';
+import arrowUp from "../../../../images/feed/arrow-up.svg"
+import { useObservable } from 'rxjs-hooks'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -119,9 +130,6 @@ function Feed() {
                 // window.location.reload();
         }
     });
-    const userAvatarName = ()=>{
-        
-    }
     const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
         route: "idea",
         method: "get",
@@ -164,6 +172,7 @@ function Feed() {
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 2,
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
@@ -192,6 +201,7 @@ function Feed() {
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 1,
                 avatar: post.user.avatar,
                 author: post.user.first_name+ " "+ post.user.last_name,
@@ -217,6 +227,14 @@ function Feed() {
             await getUserIdeas();
             await getUserProjects();
         })();
+        if(errors==="Network Error" || errorsIdea==="Network Error" || projectErrors==="Network Error"||getPeopleErrors==="Network Error" || userErrors==="Network Error"){
+            console.log(errors);
+            console.log(errorsIdea);
+            console.log(projectErrors);
+            console.log(getPeopleErrors);
+            console.log(userErrors);
+            history.push("/app/login");
+        }
         // if(!(userInfo.profile_complete)){
         //     history.push("/userinfo");
         // }
@@ -311,8 +329,23 @@ function Feed() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getTeams('user'))
-    }, [])
-
+    }, []);
+    const feedContainer: any = useRef();
+    const goToTopFeed = ()=>{
+        window.scrollTo(0,0);
+        feedContainer?.current.scrollTo(0,0);
+    }
+    // const watchScroll = () =>
+    // of(typeof window === 'undefined').pipe(
+    //     filter((bool) => !bool),
+    //     switchMap(() => fromEvent(window, 'scroll', { passive: true })),
+    //     throttleTime(0, animationFrameScheduler),
+    //     map(() => window.pageYOffset),
+    //     pairwise(),
+    //     map(([previous, current]) => (current < previous ? 'Up' : 'Down')),
+    //     distinctUntilChanged()
+    // )
+    // const scrollDirection = useObservable(watchScroll, 'Down');
     return (
         <div>
             {showOverlay && (
@@ -396,7 +429,11 @@ function Feed() {
                             </div>
                         </div>
                     </div>
-                    <div className="feed__content__center--container">
+                    <div className="feed__content__center--container" ref={feedContainer}>
+                        {
+                            // scrollDirection === "Up" && 
+                            <button className="gotop-button" onClick={goToTopFeed}><img src={arrowUp} alt="^"/></button>
+                        }
                         {filteredPosts.map((post, idx) => {
                             // console.log(post)
                             return (
@@ -409,6 +446,7 @@ function Feed() {
                             )
                         })}
                         <Spinner />
+                        <div className="content-well"></div>
                     </div>
                 </div>
                 <div className="feed__content__right">

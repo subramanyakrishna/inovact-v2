@@ -26,7 +26,8 @@ const useRequests = ({route, method, body, id, onSuccess} : any) =>{
             }
             return response.data;
         }catch(err: any){
-            console.log(err);
+            console.log(err.message);
+            setErrors(err.message);
         }
     }
     return {doRequest, errors};

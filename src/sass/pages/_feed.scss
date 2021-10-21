@@ -33,23 +33,18 @@
             &--container{
                 height: 120vh;
                 overflow-y: scroll;
-                &::after{
-                    content:'';
-                    display: flex;
-                    justify-content: center;
-                    width:40%;
-                    height:50%;    
-                    position:absolute;
-                    left:0;
-                    top:0;
-                    transform: translate(75%,105vh);
-                    background:linear-gradient(transparent 200px, white)
-                }
-                @include respond(md){
-                    &::after{
-                        content:'';
-                    }
-                }
+                // &::after{
+                //     content:'';
+                //     display: flex;
+                //     justify-content: center;
+                //     width:40%;
+                //     height:50%;    
+                //     position:absolute;
+                //     left:0;
+                //     top:0;
+                //     transform: translate(75%,105vh);
+                //     background:linear-gradient(transparent 200px, white)
+                // }
             }
             
         }
@@ -77,4 +72,16 @@
     @include respond(sm)  {
         display: none;
     }
+}
+
+.content-well{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height:50%;    
+    position:absolute;
+    left:0;
+    top:0;
+    transform: translateY(105vh);
+    background:linear-gradient(transparent 200px, white)
 }

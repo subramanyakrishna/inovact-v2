@@ -6,17 +6,17 @@ import { useParams } from 'react-router';
 import useRequests from 'useRequest/useRequest';
 import RequestToJoin from '../feed/components/modals/RequestToJoin.tsx/RequestToJoin';
 import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
+import LikedBy from '../postpage/components/LikedBy';
+import TeamMembers from '../postpage/components/TeamMembers';
 import CommentsOnPost from '../profile/components/RightProfileContent/CommentsOnPost';
 import CommentsContainer from './components/CommentsContainer';
-import LikedBy from './components/LikedBy';
 import Post from './components/Post';
-import TeamMembers from './components/TeamMembers';
 
 function PostPage(props: any) {
     let postData: any = {};
     const {doRequest, errors} = useRequests({
         method: "get",
-        route: "post",
+        route: "idea",
         body: null,
         onSuccess: (data: any)=>{
             postData = {
@@ -50,27 +50,26 @@ function PostPage(props: any) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let { id }: any = useParams();
     let params = useParams();
-    allPosts.forEach((ele: any)=>{
+    allIdeas.forEach((ele: any)=>{
         if(ele.id===Number(id)){
             postData={
                 user_id: user_id,
                 id: ele.id,
-                type: 1,
+                type: 2,
                 avatar: ele.user.avatar,
                 author: ele.user.first_name+ " " +ele.user.last_name,
                 time: convertDate(ele.created_at),
                 title: ele.title,
                 description: ele.description,
-                tags: ele.project_tags.map((tag: any)=>{
+                tags: ele.idea_tags.map((tag: any)=>{
                     return tag.hashtag.name;
                 }),
-                images: ele.project_documents.map((image: any)=>{
+                images: ele.idea_documents.map((image: any)=>{
                     console.log(image.url);
                     return image.url;
                 }),
                 numLikes: 250,
                 numComments: 250,
-                completion: 80,
             }
         }
     });

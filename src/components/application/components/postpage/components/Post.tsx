@@ -131,7 +131,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 </p>
                             )
                         })}
-                        {post.type === 1 ? (
+                        {  (post.tags?.length>4) &&
+                        post.type === 1 ? (
                             <Link
                                 className="post__tags__item"
                                 to={`/posts/${post.id}`}

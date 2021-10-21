@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import LikedBy from './LikedBy';
 import TeamMemberTag from './TeamMemberTag'
 

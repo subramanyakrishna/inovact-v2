@@ -110,9 +110,9 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     </div>
                     <div className="connect-button-container">
                         <button className="connect-button">Connect</button>
-                        <Link to={`/posts/${post.id}`}>
-                        <button className="view-more-button">View More <b>{">>"}</b>
-                        </button>
+                        <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
+                            <button className="view-more-button">View More <b>{">>"}</b>
+                            </button>
                         </Link>
                     </div>
 
@@ -150,12 +150,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 </p>
                             )
                         })}
-                        {post.type === 1 ? (
+                        { (post.tags?.length>4) &&
+                        post.type === 1 ? (
                             <Link
-                                className="post__tags__item"
-                                to={`/posts/${post.id}`}
+                            className="post__tags__item"
+                            to={post.type===1?`/posts/${post.id}`:`/ideas/${post.id}`}
                             >
-                                + {post.tags?.length - 4} more
+                                {
+                                    post.tags?.length>4 &&
+                                    `+ ${post.tags?.length - 4} more`
+                                }
                             </Link>
                         ) : null}
                     </div>

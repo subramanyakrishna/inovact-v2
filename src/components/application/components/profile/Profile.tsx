@@ -16,6 +16,8 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
+import { handleAllUserIdeas, handleAllUserProject } from 'StateUpdateHelper';
+import Spinner from 'components/application/Spinner';
 function Profile() {
     // let leftContent, rightContent;
     // useEffect(()=>{
@@ -23,8 +25,83 @@ function Profile() {
     //     const rightContent = document.querySelector(".profile--content-right");
         
     // },[]);
-    
-    
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+    const convertDate = (dateISO: any) => {
+        const date = new Date(dateISO)
+        return `${date.getDate()} ${months[date.getMonth()]}`
+    }
+    const {doRequest: getUserIdeas, errors: ideaErrors} = useRequests({
+        method: "get",
+        route: "user/idea",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile ideas",data);
+            data.data.idea.reverse();
+            handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 2,
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+                }))]);
+        }   
+    });
+    const {doRequest: getUserProjects, errors: projectErrors} = useRequests({
+        method: "get",
+        route: "user/post",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile projects",data);
+            data.data.project.reverse();
+            const finalData = data.data.project.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+                }));
+            console.log("This is the final user projects: ", finalData);    
+            handleAllUserProject("all-user-projects",finalData);
+        }   
+    }); 
     const [posts, setPosts] = useState<postData[]>([
         {
             id: '1',
@@ -174,6 +251,12 @@ function Profile() {
             setShowRight(true);
             setShowAbout(true);
         }
+        setIsLoading(true);
+        (async()=>{
+            await getUserIdeas();
+            await getUserProjects();
+            setIsLoading(false);
+        })();
       },[])
     const [showOverlay, setShowOverlay] = useState(false);
     const [showBlockUser, setShowBlockUser] = useState(false);
@@ -230,6 +313,7 @@ function Profile() {
         openModal();
         setShowEditProject(true);
     }
+    const [isLoading, setIsLoading] = useState(false);
     const userInfo = useSelector((state: any)=>state.userInfo);
     return (
         <div>
@@ -294,27 +378,41 @@ function Profile() {
                         
                         <div className="profile--content-right">
                             {
-                                showIdeas &&
+                                isLoading &&
+                                <Spinner/>
+                            }
+                            {
+                                showIdeas && 
+                                userAllIdeas.length!==0 &&
                                 userAllIdeas.map((post: any, idx: any) => {
                                 return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
                             }
                             {
-                                showProjects &&
+                                showIdeas &&
+                                userAllIdeas.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet postType="ideas"/>
+                                    <PeopleYouMayKnow/>
+                                </div>
+                            }
+                            {
+                                showProjects && 
+                                userAllProjects.length!==0 &&
                                 userAllProjects.map((post: any, idx: any) => {
                                     return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
                                 })
                             }
+                            {
+                                showProjects &&
+                                posts.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet postType="projects"/>
+                                    <PeopleYouMayKnow/>
+                                </div>
+                            }
                         </div>
                         
-                    }
-                    {
-                        userAllIdeas.length===0 && userAllProjects.length===0 &&
-                        <div className="profile--content-right">
-                            <NoPostsYet/>
-                            <PeopleYouMayKnow/>
-                        </div>
-
                     }
                     
                 </div>

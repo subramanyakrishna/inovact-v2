@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
 import { Link } from 'react-router-dom'
-import Photos from './Photos'
-import TeamTag from '../LeftProfileContent/Components/TeamTag';
-import UserTag from './UserTag';
-import CommentsOnPost from './CommentsOnPost'
+import Photos from '../../feed/components/center/Photos';
+import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag';
+import UserTag from 'components/application/components/profile/components/RightProfileContent/UserTag';
+import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
 import { useSelector } from 'react-redux'
 
-function Post({ post, openTeamMember, viewEditProject }: any) {
+function Post({ post, openTeamMember, openRequestJoin }: any) {
+    const [showTeams, setShowTeams] = useState(true);
     const [showShareOption, setShowShareOption] = useState(false);
+    const [showComments, setShowComments] = useState(false);
+    const backToPost = ()=>{
+        setShowComments(false);
+    }
     const teamsData = [
         {
           img:
@@ -48,12 +53,6 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
             name: "Jane Doe",
           }
       ]
-    const [showTeams, setShowTeams] = useState(true);
-    const [showComments, setShowComments] = useState(false);
-    const [showPostOptions, setShowPostOptions] = useState(false);
-    const sharePost =()=>{
-        setShowShareOption(!showShareOption);
-    }
     const toggleShowTeams = ()=>{
         setShowTeams(true);
     }
@@ -65,65 +64,56 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
             setShowShareOption(false);
         },1000);
     }
+    const sharePost =()=>{
+        setShowShareOption(!showShareOption);
+    }
     const toggleShowComments = ()=>{
         setShowComments(!showComments);
-    }
-    const backToPost = ()=>{
-        setShowComments(false);
-    }
-    const viewPostOptions = ()=>{
-        setShowPostOptions(!showPostOptions);
-    }
-    const removePostOptionsSLow = ()=>{
-        setTimeout(()=>{
-            setShowPostOptions(false);
-        },1000);
     }
     const user_id = useSelector((state: any)=> state.userInfo.id);
     return (
         <div className="post">
-            <div>
-                {
-                    !showComments &&
-                    <div>
-                        <div className="post__author">
+            {
+                !showComments && 
+                <div>
+                    <div className="post__author">
+                    {
+                            user_id===post.user_id?
                             <Link to="/app/profile">
                                 <img
                                     className="post__author__avatar"
                                     src={post.avatar}
                                     alt=""
                                 />
+                            </Link>:
+                            <Link to="/app/otherprofile" onClick={()=>localStorage.setItem("other-user",post.user_id)}>
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
                             </Link>
-                            <div className="post__author__text">
-                            <h1 className="post__author__text__name">{post.author}</h1>
-                        <div className="post__author__text__bottom">
-                            <p className="post__author__text__time text-color--green text-size--small">
-                                {post.role[0].toUpperCase()+post.role.slice(1)}
-                            </p>
-                            <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
-                        </div>
-                                {/* <p className="post__author__text__time">
-                                    {post.time} hrs ago
-                                </p> */}
-                            </div>
-                            <div className="connect-button-container">
-                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
-                                <button className="view-more-button">View More <b>{">>"}</b>
-                                </button>
-                            </Link>
-                            </div>
-                        </div>
+                        }
+                    <div className="post__author__text">
+                        <h1 className="post__author__text__name">{post.author}</h1>
+                        <p className="post__author__text__time">
+                            {post.time}
+                        </p>
+                    </div>
+                    <div className="connect-button-container">
+                        <button className="connect-button">Connect</button>
+                        <p style={{fontWeight: 600, cursor: "pointer", color: "#5579bd", fontSize: "small"}} onClick={openTeamMember}>View Team Members</p>
+                    </div>
+                </div>
                 <div className="post__text">
                     {post.title ? (
                         <h1 className="post__text__title">{post.title}</h1>
                     ) : null}
                     <p className="post__text__desc">
-                        {/* {post.type === 1
+                        {post.type === 1
                             ? post.description.substring(0, 150)
                             : post.description}{' '}
-                        {post.type === 1 ? (
-                            <Link to={`/posts/${post.id}`}>Read more</Link>
-                        ) : null} */}
+                        
                     </p>
                 </div>
                 {post.tags ? (
@@ -141,11 +131,10 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                 </p>
                             )
                         })}
-                        { (post.tags?.length>4) && 
-                        post.type === 1 ? (
+                        {post.type === 1 ? (
                             <Link
                                 className="post__tags__item"
-                                to={post.type===1?`/posts/${post.id}`:`/ideas/${post.id}`}
+                                to={`/posts/${post.id}`}
                             >
                                 + {post.tags?.length - 4} more
                             </Link>
@@ -157,30 +146,32 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                         <Photos images={post.images} />
                     </div>
                 ) : null}
-                
                 </div>
-                }
-                
-            </div>
+            }
             <div>
                 {
+                    window.innerWidth < 768 &&
                     showComments && 
                     <CommentsOnPost backToPost={backToPost}/>
                 }
             </div>
             <div className="post__footer">
-                    <div className="post__footer__likes">
-                        <img src={like} alt="" />
-                        <p className="post__footer__likes__num">{post.numLikes}</p>
-                    </div>
-                    <div className="post__footer__comments">
-                        <img src={comment} alt="" onClick={toggleShowComments}/>
-                        <p className="post__footer__comments__num">
-                            {post.numComments}
-                        </p>
-                    </div>
-                    <div className="post__footer__share">
-                        {
+                <div className="post__footer__likes">
+                    <img src={like} alt="" />
+                    <p className="post__footer__likes__num">{post.numLikes}</p>
+                </div>
+                <div className="post__footer__comments" onClick={(e)=>{
+                        if(window.innerWidth<768)
+                            toggleShowComments();
+
+                    }}>
+                    <img src={comment} alt=""/>
+                    <p className="post__footer__comments__num">
+                        {post.numComments}
+                    </p>
+                </div>
+                <div className="post__footer__share">
+                {
                             showShareOption &&
                             <div className="post__footer__share_to" onMouseLeave={closeShareOptionSlow}>
                                 <p className="post__footer__share_to-heading">Share post to...</p>
@@ -221,31 +212,20 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                         <div style={{backgroundColor:showShareOption?"#385790":"#4b72bc" }} className="post__footer__share-img-container" onClick={sharePost}>
                             <img src={share} alt="" className="post__footer__share-img" />
                         </div>
-                    </div>
-                    {post.type === 1 ? (
-                        <>
-                            <p className="post__footer__team__text" onClick={openTeamMember}> View Team Members</p>
-                            <div className="post__footer__team__options-menu">
-                                {
-                                    showPostOptions &&
-                                    <div className="post__footer__team__options-all" onMouseLeave={removePostOptionsSLow}>
-                                        <span onClick={viewEditProject}>Edit Post</span>
-                                        <span>Post Statistics</span>
-                                        <span>Delete Post</span>
-                                    </div>
-                                }
-                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p>
-                            </div>
-                        </>
-                    ) : (
-                        <div className="post__footer__team__empty"></div>
-                    )}
                 </div>
+                {post.type === 1 ? (
+                    <>
+                        <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>
+                    </>
+                ) : (
+                    <div className="post__footer__team__empty"></div>
+                )}
+            </div>
         </div>
     )
 }
 
-export default Post;
+export default Post
 
 /* Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
  molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
