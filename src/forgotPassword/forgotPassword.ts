@@ -43,4 +43,4 @@ class cognitoUserClass {
     }
 }
 
-export { cognitoUserClass }
+export default cognitoUserClass
