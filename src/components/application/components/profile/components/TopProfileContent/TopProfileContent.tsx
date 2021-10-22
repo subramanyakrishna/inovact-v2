@@ -52,6 +52,7 @@ function TopProfileContent(props: any) {
         setShowIdeas(true);
     }
     const showThoughtsOnly = ()=>{
+        props.showThoughtsOnly();
         removeBorderAll();
         setShowThoughts(true);
     }

@@ -99,7 +99,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         <h1 className="post__author__text__name">{post.author}</h1>
                         <div className="post__author__text__bottom">
                             <p className="post__author__text__time text-color--green text-size--small">
-                                {post.role[0].toUpperCase()+post.role.slice(1)}
+                                { post.role &&
+                                post.role[0].toUpperCase()+post?.role.slice(1)}
                             </p>
                             <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
                         </div>
@@ -109,11 +110,13 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         
                     </div>
                     <div className="connect-button-container">
-                        <button className="connect-button">Connect</button>
-                        <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
-                            <button className="view-more-button">View More <b>{">>"}</b>
-                            </button>
-                        </Link>
+                        <button className="connect-button">Connect</button>{
+                            (post.type===1 || post.type===2) &&
+                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
+                                <button className="view-more-button">View More <b>{">>"}</b>
+                                </button>
+                            </Link>
+                        }
                     </div>
 
                 </div>

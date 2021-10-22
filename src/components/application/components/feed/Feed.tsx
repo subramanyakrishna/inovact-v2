@@ -30,6 +30,7 @@ import {
     handleAddThoughtChange,
     handleAllIdeas,
     handleAllPosts,
+    handleAllThoughts,
     handleAllUserIdeas,
     handleAllUserProject,
 } from '../../../../StateUpdateHelper'
@@ -46,7 +47,7 @@ function Feed() {
     const [posts, setPosts] = useState<postData[]>([])
     const [ideas, setIdeas] = useState<postData[]>([])
     const [peopleToKnow, setPeopleToKnow] = useState<any>([])
-    const [thoughts, SetThoughts] = useState<postData[]>([])
+    const [thoughts, setThoughts] = useState<postData[]>([])
     const months = [
         'January',
         'February',
@@ -64,7 +65,7 @@ function Feed() {
     const userInfo = useSelector((state: any) => state.userInfo);
     const allPosts = useSelector((state: any) => state.allPosts);
     const allIdeas = useSelector((state: any) => state.allIdeas);
-
+    const allThoughts = useSelector((state: any)=> state.allThoughts);
     const history = useHistory();
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
@@ -92,7 +93,7 @@ function Feed() {
                     duration: '10 min',
                     designation: ele.designation ? ele.designation : 'Student',
                 })).filter((ele: any)=>{
-                    console.log(ele.user_id, userInfo.id);
+                    // console.log(ele.user_id, userInfo.id);
                     return ele.user_id!==userInfo.id});
                 console.log(ptk);
                 setPeopleToKnow([...ptk.slice(0, 4)])
@@ -124,6 +125,7 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
+                created_at: post.created_at,
                 numLikes: 0,
                 numComments: 0,
                 }))]);
@@ -155,6 +157,7 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
+                created_at: post.created_at,
                 numLikes: 0,
                 numComments: 0,
                 }))]);
@@ -184,6 +187,7 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
+                created_at: post.created_at,
                 numLikes: 0,
                 numComments: 0,
                 }))]);
@@ -212,6 +216,7 @@ function Feed() {
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
+                created_at: post.created_at,
                 numLikes: 0,
                 numComments: 0,
                 }));
@@ -219,13 +224,37 @@ function Feed() {
             handleAllUserProject("all-user-projects",finalData);
         }   
     }); 
+    const {doRequest: getAllThoughts, errors: allThoughtsErrors} = useRequests({
+        method: "get",
+        route: "thoughts",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("The thoughts fetched are: ",data.data.thoughts);
+            const finalData = data.data.thoughts.map((thought: any)=>{
+                return {
+                    id: thought.id,
+                    type: 3,
+                    avatar: thought.user.avatar,
+                    author: thought.user.first_name+" "+thought.user.last_name,
+                    time: convertDate(thought.created_at),
+                    created_at: thought.created_at,
+                    description: thought.thought,
+                    numLikes: 0,
+                    numComments: 0,
+                }
+            });
+            setThoughts([...finalData]);
+            handleAllThoughts("all-thoughts",finalData);
+        }
+    });
     useEffect(()=>{
         (async ()=>{
             await doRequest();
             await doRequestIdea();
+            await getAllThoughts();
             await getPeopleToKnow();
-            await getUserIdeas();
-            await getUserProjects();
+            // await getUserIdeas();
+            // await getUserProjects();
         })();
         if(errors==="Network Error" || errorsIdea==="Network Error" || projectErrors==="Network Error"||getPeopleErrors==="Network Error" || userErrors==="Network Error"){
             console.log(errors);
@@ -257,14 +286,21 @@ function Feed() {
     const [filteredPosts, setFilteredPosts] = useState<postData[]>([])
 
     useEffect(() => {
+        const sortedPosts = [...posts,...ideas,...thoughts].sort((post1: any,post2: any)=>{
+            const post1Date: any = new Date(post1.created_at);
+            const post2Date: any = new Date(post2.created_at);
+            return post2Date.getTime()-post1Date.getTime();
+        });
+
+        console.log("sorted based on date",sortedPosts);
         if (posts.length && ideas.length) {
-            setFilteredPosts([...posts, ...ideas])
+            setFilteredPosts([...sortedPosts]);
         }
-    }, [posts, ideas])
+    }, [posts, ideas, thoughts])
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
-        if (type == 'All') {
-            setFilteredPosts([...posts, ...ideas])
+        if (type === 'All') {
+            setFilteredPosts([...posts, ...ideas, ...thoughts]);
             return
         }
         const filters: any = {
@@ -289,7 +325,7 @@ function Feed() {
         setShowRequestJoin(false)
         handleAddIdeaChange('idea_clear_data', '')
         handleAddProjectChange('project_clear_data', '')
-        handleAddThoughtChange('thought_clear_data', 'null')
+        handleAddThoughtChange('thought_clear_data', '')
         document.body.style.overflowY = 'scroll'
     }
 

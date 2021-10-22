@@ -102,6 +102,36 @@ function Profile() {
             handleAllUserProject("all-user-projects",finalData);
         }   
     }); 
+    const {doRequest: getUserThoughts, errors: thoughtErrors} = useRequests({
+        method: "get",
+        route: "user/thought",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile projects",data);
+            data.data.project.reverse();
+            const finalData = data.data.project.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+                }));
+            console.log("This is the final user projects: ", finalData);    
+            handleAllUserProject("all-user-projects",finalData);
+        }   
+    }); 
     const [posts, setPosts] = useState<postData[]>([
         {
             id: '1',
@@ -184,18 +214,27 @@ function Profile() {
     
     const [showProjects, setShowProjects] = useState(true);
     const [showIdeas, setShowIdeas] = useState(false);
-
+    const [showThoughts, setShowThoughts] = useState(false);
     const [userProjects, setUserProjects] = useState<any>([]);
     const [userIdeas, setUserIdeas] = useState<any>([]);
+    const [userThoughts, setUserThoughts] = useState<any>([]);
     const userAllProjects = useSelector((state: any)=> state.userAllProjects);
     const userAllIdeas = useSelector((state: any)=>state.userAllIdeas);
+    const userAllThoughts = useSelector((state: any)=>state.userAllThoughts);
     const showProjectsOnly = ()=>{
         setShowIdeas(false);
         setShowProjects(true);
+        setShowThoughts(false);
     }
     const showIdeasOnly = ()=>{
         setShowIdeas(true);
         setShowProjects(false);
+        setShowThoughts(false);
+    }
+    const showThoughtsOnly = ()=>{
+        setShowIdeas(false);
+        setShowProjects(false);
+        setShowThoughts(true);
     }
     useEffect(()=>{
         console.log("page loaded");
@@ -321,7 +360,6 @@ function Profile() {
                 showOverlay &&
                 <div className="profile-modal-cover">
                     <div className="modal-overlay-profile" onClick={closeModal}></div>
-                    
                     {
                         showBlockUser &&
                         <BlockAccount closeModal={closeModal}/>
@@ -364,6 +402,7 @@ function Profile() {
                     userInfo = {userInfo}
                     showProjectsOnly = {showProjectsOnly}
                     showIdeasOnly = {showIdeasOnly}
+                    showThoughtsOnly = {showThoughtsOnly}
                     />
                 </div>
                 <div className="profile--content-bottom-container">
@@ -405,18 +444,30 @@ function Profile() {
                             }
                             {
                                 showProjects &&
-                                posts.length===0 &&
+                                userAllProjects.length===0 &&
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="projects"/>
                                     <PeopleYouMayKnow/>
                                 </div>
                             }
+                            {
+                                showThoughts && 
+                                userAllThoughts.length!==0 &&
+                                userAllThoughts.map((post: any, idx: any) => {
+                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
+                                })
+                            }
+                            {
+                                showThoughts &&
+                                userAllThoughts.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet postType="thoughts"/>
+                                    <PeopleYouMayKnow/>
+                                </div>
+                            }
                         </div>
-                        
                     }
-                    
                 </div>
-                
             </div>
         </div>
     );
