@@ -20,7 +20,6 @@ function Photos(props: photoProps) {
     }
 
     var photos = props.images.map((img) => {
-        console.log(img);
         return {
             src: img,
             width: 1,
@@ -30,12 +29,20 @@ function Photos(props: photoProps) {
         }
     })
 
-
+    console.log(photos);
     return (
         <div>
             <div className="preview-image-container">
-                <img src={photos[0].src} className="preview-image" onClick={openLightbox} />
-                <button className="extra-images-btn" onClick={openLightbox}>+{photos.length-1}</button>
+            {
+                    photos[0] &&
+                    <div>
+                        <img src={photos[0]?.src} className="preview-image" onClick={openLightbox} alt="someimage"/>
+                        {
+                            photos.length>1 &&
+                            <button className="extra-images-btn" onClick={openLightbox}>+{photos.length-1}</button>
+                        }
+                    </div>
+                }
             </div>
             
             {/* <Gallery photos={photos} onClick={openLightbox} /> */}

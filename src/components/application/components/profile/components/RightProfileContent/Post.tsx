@@ -7,6 +7,7 @@ import Photos from './Photos'
 import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';
 import CommentsOnPost from './CommentsOnPost'
+import { useSelector } from 'react-redux'
 
 function Post({ post, openTeamMember, viewEditProject }: any) {
     const [showShareOption, setShowShareOption] = useState(false);
@@ -78,6 +79,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
             setShowPostOptions(false);
         },1000);
     }
+    const user_id = useSelector((state: any)=> state.userInfo.id);
     return (
         <div className="post">
             <div>
@@ -85,18 +87,32 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                     !showComments &&
                     <div>
                         <div className="post__author">
-                    <img
-                        className="post__author__avatar"
-                        src={post.avatar}
-                        alt=""
-                    />
-                    <div className="post__author__text">
-                        <h1 className="post__author__text__name">{post.author}</h1>
-                        <p className="post__author__text__time">
-                            {post.time} hrs ago
-                        </p>
-                    </div>
-                </div>
+                            <Link to="/app/profile">
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
+                            </Link>
+                            <div className="post__author__text">
+                            <h1 className="post__author__text__name">{post.author}</h1>
+                        <div className="post__author__text__bottom">
+                            <p className="post__author__text__time text-color--green text-size--small">
+                                {post.role[0].toUpperCase()+post.role.slice(1)}
+                            </p>
+                            <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
+                        </div>
+                                {/* <p className="post__author__text__time">
+                                    {post.time} hrs ago
+                                </p> */}
+                            </div>
+                            <div className="connect-button-container">
+                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
+                                <button className="view-more-button">View More <b>{">>"}</b>
+                                </button>
+                            </Link>
+                            </div>
+                        </div>
                 <div className="post__text">
                     {post.title ? (
                         <h1 className="post__text__title">{post.title}</h1>
@@ -105,9 +121,9 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                         {post.type === 1
                             ? post.description.substring(0, 150)
                             : post.description}{' '}
-                        {post.type === 1 ? (
+                        {/* {post.type === 1 ? (
                             <Link to={`/posts/${post.id}`}>Read more</Link>
-                        ) : null}
+                        ) : null} */}
                     </p>
                 </div>
                 {post.tags ? (
@@ -125,10 +141,11 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                 </p>
                             )
                         })}
-                        {post.type === 1 ? (
+                        { (post.tags?.length>4) && 
+                        post.type === 1 ? (
                             <Link
                                 className="post__tags__item"
-                                to={`/posts/${post.id}`}
+                                to={post.type===1?`/posts/${post.id}`:`/ideas/${post.id}`}
                             >
                                 + {post.tags?.length - 4} more
                             </Link>
@@ -205,7 +222,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                             <img src={share} alt="" className="post__footer__share-img" />
                         </div>
                     </div>
-                    {post.type === 1 ? (
+                    {post.type === 1 || post.type===2? (
                         <>
                             <p className="post__footer__team__text" onClick={openTeamMember}> View Team Members</p>
                             <div className="post__footer__team__options-menu">
@@ -217,7 +234,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                         <span>Delete Post</span>
                                     </div>
                                 }
-                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p>
+                                <p className="post__footer__team__options" onClick={viewPostOptions}>&#8942;</p>
                             </div>
                         </>
                     ) : (
@@ -228,7 +245,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
     )
 }
 
-export default Post
+export default Post;
 
 /* Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
  molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum

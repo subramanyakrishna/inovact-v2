@@ -47,7 +47,7 @@ function Navbar() {
             <MDBNavbar expand="lg" light bgColor="light">
                 <MDBContainer>
                     <MDBNavbarBrand href="#">
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt="Logo" width="40px"/>
                         Inovact
                     </MDBNavbarBrand>
                     <MDBNavbarToggler

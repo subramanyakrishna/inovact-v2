@@ -28,6 +28,8 @@ import PrivateRoute from '../../PrivateRoute'
 import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
+import OtherProfile from './components/otheruserprofile/OtherProfile'
+import IdeaPage from './components/ideapage/IdeaPage'
 
 function Application() {
     const state = useSelector((state: any) => state)
@@ -94,7 +96,7 @@ function Application() {
         <div className="application">
             <Router>
                 {state.authentication.userAuthenticated &&
-                    !state.authentication.user.profile_complete && <NavBar />}
+                    state.authentication.user.profile_complete && <NavBar />}
                 <Switch>
                     <PrivateRoute
                         path={`${path}/feed`}
@@ -142,9 +144,19 @@ function Application() {
                         )}
                     />
                     <PrivateRoute
-                        path="/:id"
+                        path={`${path}/otherprofile`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={OtherProfile}
+                    />
+                    <PrivateRoute
+                        path={`/posts/:id`}
                         isAuth={state.authentication.userAuthenticated}
                         component={() => <PostPage />}
+                    />
+                    <PrivateRoute
+                        path={`/ideas/:id`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={() => <IdeaPage />}
                     />
                 </Switch>
             </Router>

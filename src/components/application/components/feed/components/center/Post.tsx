@@ -7,6 +7,8 @@ import Photos from './Photos'
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag';
 import UserTag from 'components/application/components/profile/components/RightProfileContent/UserTag';
 import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
+import { useSelector } from 'react-redux';
+import playButton from "../../../../../../images/feed/play-button.svg";
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true);
@@ -69,28 +71,53 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = ()=>{
         setShowComments(!showComments);
     }
+    const user_id = useSelector((state: any)=> state.userInfo.id);
     return (
         <div className="post">
             {
                 !showComments && 
                 <div>
                     <div className="post__author">
-                    <img
-                        className="post__author__avatar"
-                        src={post.avatar}
-                        alt=""
-                    />
+                        {
+                            user_id===post.user_id?
+                            <Link to="/app/profile">
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
+                            </Link>:
+                            <Link to="/app/otherprofile" onClick={()=>localStorage.setItem("other-user",post.user_id)}>
+                                <img
+                                    className="post__author__avatar"
+                                    src={post.avatar}
+                                    alt=""
+                                />
+                            </Link>
+                        }
                     <div className="post__author__text">
                         <h1 className="post__author__text__name">{post.author}</h1>
-                        <p className="post__author__text__time text-color--green text-size--small">
-                            {"Student"}
-                        </p>
+                        <div className="post__author__text__bottom">
+                            <p className="post__author__text__time text-color--green text-size--small">
+                                { post.role &&
+                                post.role[0].toUpperCase()+post?.role.slice(1)}
+                            </p>
+                            <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
+                        </div>
                         {/* <p className="post__author__text__time  text-style--italic text-size--small ">
                             {post.time}
                         </p> */}
                         
                     </div>
-                        <button className="connect-button">Connect</button>
+                    <div className="connect-button-container">
+                        <button className="connect-button">Connect</button>{
+                            (post.type===1 || post.type===2) &&
+                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
+                                <button className="view-more-button">View More <b>{">>"}</b>
+                                </button>
+                            </Link>
+                        }
+                    </div>
 
                 </div>
                 <div className="post__text">
@@ -101,15 +128,14 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         {post.type === 1
                             ? post.description.substring(0, 150)
                             : post.description}{' '}
-                        {post.type === 1 ? (
+                        {/* {post.type === 1 ? (
                             <Link to={{
-                                pathname: `/${post.id}`,
+                                pathname: `/posts/${post.id}`,
                                 state: {
                                     post_id: post.id,
                                 }
                             }}>Read more</Link>
-                            // <Link to={`/posts/${post.id}`}>Read more</Link>
-                            ) : null}
+                            ) : null} */}
                     </p>
                 </div>
                 {post.tags ? (
@@ -127,12 +153,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 </p>
                             )
                         })}
-                        {post.type === 1 ? (
+                        { (post.tags?.length>4) &&
+                        post.type === 1 ? (
                             <Link
-                                className="post__tags__item"
-                                to={`/posts/${post.id}`}
+                            className="post__tags__item"
+                            to={post.type===1?`/posts/${post.id}`:`/ideas/${post.id}`}
                             >
-                                + {post.tags?.length - 4} more
+                                {
+                                    post.tags?.length>4 &&
+                                    `+ ${post.tags?.length - 4} more`
+                                }
                             </Link>
                         ) : null}
                     </div>
@@ -201,10 +231,10 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             </div>
                         }
                         <div style={{backgroundColor:showShareOption?"#385790":"#4b72bc" }} className="post__footer__share-img-container" onClick={sharePost}>
-                            <img src={share} alt="" className="post__footer__share-img" />
+                            <img src={share} alt="" className="post__footer__share-img"/>
                         </div>
                 </div>
-                {post.type === 1 ? (
+                {post.type === 1 || post.type === 2? (
                     <>
                         <p className="post__footer__team__text" onClick={openTeamMember}>Team Members</p>
                         <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>

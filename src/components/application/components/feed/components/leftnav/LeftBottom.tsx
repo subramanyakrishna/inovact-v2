@@ -34,6 +34,7 @@ const LeftBottom = (props: any) => {
                         <MDBListGroupItem className="left-right-nav__card__list__item--create">
                             <img
                                 src={create}
+                                
                                 alt="create"
                                 onClick={props.openCreateTeam}
                             />

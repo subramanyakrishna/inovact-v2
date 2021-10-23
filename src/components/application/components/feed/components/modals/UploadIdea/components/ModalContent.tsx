@@ -81,7 +81,7 @@ function ModalContent() {
                     }
                 </div>
             </div>
-            {/* <div className="modal_part_two">
+            <div className="modal_part_two">
                 <div className="modal_part_two-member-mentor">
                     <div>
                         <label>Looking for team members</label>
@@ -96,7 +96,7 @@ function ModalContent() {
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
             {
                     teamMembersNeeded && 
                     <div >

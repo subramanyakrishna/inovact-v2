@@ -1,3 +1,4 @@
+import axios from 'axios'
 import SmallSpinner from 'components/application/SmallSpinner'
 import {
     MDBCard,
@@ -8,6 +9,10 @@ import {
     MDBListGroupItem,
     MDBCardFooter,
 } from 'mdb-react-ui-kit'
+import { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { handleOtherUserInfoChange } from 'StateUpdateHelper'
+import useRequests from 'useRequest/useRequest'
 interface Connection {
     name: string
     image: string
@@ -38,7 +43,40 @@ export const connection: Connection[] = [
 
 const RightTop = (props: any) => {
     const handleConnect = (e: any) => {}
-
+    const [otherUserId, setOtherUserId]= useState(0);
+    // const {doRequest: getUser, errors: userErrors} = useRequests({
+    //     route: "user",
+    //     method: "get",
+    //     body: null,
+    //     id: otherUserId,
+    //     onSuccess: (data: any)=>{
+    //         console.log(data.data.user);
+    //         handleOtherUserInfoChange("other-user-update",data.data.user[0]);
+    //     }
+    // });
+    const history = useHistory();
+    const getTheOtherUser = async(userId: any)=>{
+        console.log("the user id is of other: ", userId);
+        setImageLoading(true);
+        localStorage.setItem("other-user", userId);
+        history.push("/app/otherprofile");
+        // await axios({
+        //     method: "get",
+        //     url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
+        //     headers: {
+        //         "Authorization": localStorage.getItem("user"),
+        //     }
+            
+        // }).then((resp: any)=>{
+        //     console.log(resp.data.data.user[0]);
+        //     handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
+        // }).then(()=>{
+        //     history.push("/app/otherprofile");
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
+    }
+    const [imageLoading, setImageLoading]= useState(false);
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -53,15 +91,19 @@ const RightTop = (props: any) => {
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {   props.peopleToKnow.length>0 ?
-                            props.peopleToKnow.map(({ name, designation, image }: any, index: any) => {
+                            props.peopleToKnow.map(({ name, designation,user_id, image }: any, index: any) => {
                             return (
                                 <MDBListGroupItem className="left-right-nav__card__list__item--right left-right-nav__card__list__item__rightTop">
-                                    <div className="left-right-nav__card__list__item__rightTop--row">
-                                        <img
-                                            src={image}
-                                            alt="conn"
-                                        />
+                                    <div className="left-right-nav__card__list__item__rightTop--row" onClick={getTheOtherUser.bind(null,user_id)} style={{cursor: "pointer"}}>
+                                        {
+                                            imageLoading ?
+                                            <SmallSpinner/>:
+                                            <img
+                                                src={image}
+                                                alt="conn"
+                                            />
 
+                                        }
                                         <div className="left-right-nav__card__list__item__info">
                                             <h2 className="text-style--bold text-align--left text-size--big">
                                                 {name}{' '}

@@ -50,7 +50,7 @@ function CommentMainContent(props: any) {
                         </div>
                         <div className="comments-on-posts-comment-contents">
                             <div className="comments-on-posts-comment">
-                                Project dA fermentum posuere tellus leo bibendum nibh. sed Sed commodo sit volutpat pellentesque nisl integer diam quis. A fermentum posuere tellus leo diam qui bibendum nibh. Sed commodo...escription Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Project dA fermentum posuere tellus leo bibendum nibh. sed Sed commodo sit volutpat pellentesque nisl 
                             </div>
                             {
                                 <div className="comments-on-posts-replies-container">

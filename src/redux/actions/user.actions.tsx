@@ -45,7 +45,7 @@ function login(email :any, password:any) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/feed');
+                    history.push('/app/feed');
                 },
                 error => {
                     dispatch(failure(error));

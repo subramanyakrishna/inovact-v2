@@ -4,8 +4,10 @@ import { imageUploader } from 'imageUpload/imageUploader'
 
 function ProfileImage({ handleUserInfoChange, userInfo }: any) {
     const loadFile = async (e: any) => {
-        const data = await imageUploader(e.target.files)
-        handleUserInfoChange('avatar', data[0].url)
+        if(e.target.files){
+            const data = await imageUploader(e.target.files)
+            handleUserInfoChange('avatar', data[0].url)
+        }
     }
 
     return (

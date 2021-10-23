@@ -41,7 +41,7 @@ const Card: React.FC<Props> = (props) => {
     useEffect(()=>{
         if(localStorage.getItem("user")){
             setIsLoading(false);
-            history.push("/feed");
+            history.push("/app/feed");
         }else{
             
         }

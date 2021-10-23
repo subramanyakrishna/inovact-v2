@@ -1,0 +1,4 @@
+export const allUserProjectConstants = {
+    UPDATE_USER_PROJECTS: "UPDATE_USER_PROJECTS",
+    CLEAR_USER_PROJECTS: "CLEAR_USER_PROJECTS",
+}

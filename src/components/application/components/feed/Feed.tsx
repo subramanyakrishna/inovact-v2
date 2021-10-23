@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import LeftNavBar from './components/leftnav/LeftNavBar'
 import CreatePost from './components/center/CreatePost'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
@@ -14,6 +14,15 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
+import { of, fromEvent, animationFrameScheduler } from 'rxjs'
+import {
+    distinctUntilChanged,
+    filter,
+    map,
+    pairwise,
+    switchMap,
+    throttleTime,
+} from 'rxjs/operators'
 import Spinner from 'components/application/Spinner'
 import {
     handleAddIdeaChange,
@@ -21,19 +30,24 @@ import {
     handleAddThoughtChange,
     handleAllIdeas,
     handleAllPosts,
-} from 'StateUpdateHelper'
+    handleAllThoughts,
+    handleAllUserIdeas,
+    handleAllUserProject,
+} from '../../../../StateUpdateHelper'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import SmallSpinner from 'components/application/SmallSpinner'
 import { useDispatch } from 'react-redux'
-import { getTeams } from 'redux/actions/teams'
+import { getTeams } from 'redux/actions/teams';
+import arrowUp from "../../../../images/feed/arrow-up.svg"
+import { useObservable } from 'rxjs-hooks'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
     const [posts, setPosts] = useState<postData[]>([])
     const [ideas, setIdeas] = useState<postData[]>([])
     const [peopleToKnow, setPeopleToKnow] = useState<any>([])
-    const [thoughts, SetThoughts] = useState<postData[]>([])
+    const [thoughts, setThoughts] = useState<postData[]>([])
     const months = [
         'January',
         'February',
@@ -47,12 +61,12 @@ function Feed() {
         'October',
         'November',
         'December',
-    ]
-    const userInfo = useSelector((state: any) => state.userInfo)
-    const allPosts = useSelector((state: any) => state.allPosts)
-    const allIdeas = useSelector((state: any) => state.allIdeas)
-
-    const history = useHistory()
+    ];
+    const userInfo = useSelector((state: any) => state.userInfo);
+    const allPosts = useSelector((state: any) => state.allPosts);
+    const allIdeas = useSelector((state: any) => state.allIdeas);
+    const allThoughts = useSelector((state: any)=> state.allThoughts);
+    const history = useHistory();
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -78,7 +92,10 @@ function Feed() {
                     image: ele.avatar,
                     duration: '10 min',
                     designation: ele.designation ? ele.designation : 'Student',
-                }))
+                })).filter((ele: any)=>{
+                    // console.log(ele.user_id, userInfo.id);
+                    return ele.user_id!==userInfo.id});
+                console.log(ptk);
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
         }
@@ -87,72 +104,167 @@ function Feed() {
         route: 'post',
         method: 'get',
         body: null,
-        onSuccess: (data: any) => {
-            console.log(data)
-            data.data.project.reverse()
-            handleAllPosts('all-posts', [...data.data.project, ...allPosts])
-            setPosts([
-                ...posts,
-                ...data.data.project.map((post: any) => ({
-                    id: post.id,
-                    title: post.title,
-                    description: post.description,
-                    type: 1,
-                    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-                    author: 'Jane Doe',
-                    tags: post.project_tags.map((tag: any) => {
-                        return tag.hashtag.name
-                    }),
-                    images: post.project_documents.map((image: any) => {
-                        console.log(image.url)
-                        return image.url
-                    }),
-                    time: convertDate(post.created_at),
-                    numLikes: 250,
-                    numComments: 250,
-                })),
-            ])
-            // window.location.reload();
-        },
-    })
-    const userAvatarName = () => {}
-    const { doRequest: doRequestIdea, errors: errorsIdea } = useRequests({
-        route: 'idea',
-        method: 'get',
+        onSuccess: (data: any)=>{
+            console.log(data);
+            data.data.project.reverse();
+            handleAllPosts("all-posts", [...data.data.project,...allPosts]);
+            setPosts([...data.data.project.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: 0,
+                numComments: 0,
+                }))]);
+                // window.location.reload();
+        }
+    });
+    const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
+        route: "idea",
+        method: "get",
         body: null,
-        onSuccess: (data: any) => {
-            data.data.idea.reverse()
-            console.log('on success of ideas')
-            handleAllIdeas('all-ideas', [...data.data.idea, ...allIdeas])
-            setIdeas([
-                ...ideas,
-                ...data.data.idea.map((post: any) => ({
-                    id: post.id,
-                    title: post.title,
-                    description: post.description,
-                    type: 2,
-                    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-                    author: 'Jane Doe',
-                    tags: post.idea_tags.map((tag: any) => {
-                        return tag.hashtag.name
-                    }),
-                    images: post.idea_documents.map((image: any) => {
-                        console.log(image.url)
-                        return image.url
-                    }),
-                    time: convertDate(post.created_at),
+        onSuccess: (data: any)=>{
+            data.data.idea.reverse();
+            console.log("on success of ideas");
+            handleAllIdeas("all-ideas", [...data.data.idea,...allIdeas]);
+            setIdeas([...data.data.idea.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 2,
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: 0,
+                numComments: 0,
+                }))]);
+        }
+    });
+    const {doRequest: getUserIdeas, errors: ideaErrors} = useRequests({
+        method: "get",
+        route: "user/idea",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile ideas",data);
+            data.data.idea.reverse();
+            handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 2,
+                avatar: post.user.avatar,
+                author:  post.user.first_name+ " "+ post.user.last_name,
+                tags: post.idea_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.idea_documents.map((image: any)=>{
+                    console.log(image.url);
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: 0,
+                numComments: 0,
+                }))]);
+        }   
+    });
+    const {doRequest: getUserProjects, errors: projectErrors} = useRequests({
+        method: "get",
+        route: "user/post",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile projects",data);
+            data.data.project.reverse();
+            const finalData = data.data.project.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                title: post.title,
+                description: post.description,
+                role:post.user.role,
+                type: 1,
+                avatar: post.user.avatar,
+                author: post.user.first_name+ " "+ post.user.last_name,
+                tags: post.project_tags.map((tag: any)=>{
+                    return tag.hashtag.name;
+                }),
+                images: post.project_documents.map((image: any)=>{
+                    return image.url;
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: 0,
+                numComments: 0,
+                }));
+            console.log("This is the final user projects: ", finalData);    
+            handleAllUserProject("all-user-projects",finalData);
+        }   
+    }); 
+    const {doRequest: getAllThoughts, errors: allThoughtsErrors} = useRequests({
+        method: "get",
+        route: "thoughts",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("The thoughts fetched are: ",data.data.thoughts);
+            const finalData = data.data.thoughts.map((thought: any)=>{
+                return {
+                    user_id: thought.user.id,
+                    id: thought.id,
+                    type: 3,
+                    avatar: thought.user.avatar,
+                    author: thought.user.first_name+" "+thought.user.last_name,
+                    time: convertDate(thought.created_at),
+                    created_at: thought.created_at,
+                    description: thought.thought,
                     numLikes: 0,
                     numComments: 0,
-                })),
-            ])
-        },
-    })
-    useEffect(() => {
-        ;(async () => {
-            await doRequest()
-            await doRequestIdea()
-            await getPeopleToKnow()
-        })()
+                }
+            });
+            setThoughts([...finalData]);
+            handleAllThoughts("all-thoughts",finalData);
+        }
+    });
+    useEffect(()=>{
+        (async ()=>{
+            await doRequest();
+            await doRequestIdea();
+            await getAllThoughts();
+            await getPeopleToKnow();
+            // await getUserIdeas();
+            // await getUserProjects();
+        })();
+        if(errors==="Network Error" || errorsIdea==="Network Error" || projectErrors==="Network Error"||getPeopleErrors==="Network Error" || userErrors==="Network Error"){
+            console.log(errors);
+            console.log(errorsIdea);
+            console.log(projectErrors);
+            console.log(getPeopleErrors);
+            console.log(userErrors);
+            history.push("/app/login");
+        }
         // if(!(userInfo.profile_complete)){
         //     history.push("/userinfo");
         // }
@@ -175,14 +287,21 @@ function Feed() {
     const [filteredPosts, setFilteredPosts] = useState<postData[]>([])
 
     useEffect(() => {
+        const sortedPosts = [...posts,...ideas,...thoughts].sort((post1: any,post2: any)=>{
+            const post1Date: any = new Date(post1.created_at);
+            const post2Date: any = new Date(post2.created_at);
+            return post2Date.getTime()-post1Date.getTime();
+        });
+
+        console.log("sorted based on date",sortedPosts);
         if (posts.length && ideas.length) {
-            setFilteredPosts([...posts, ...ideas])
+            setFilteredPosts([...sortedPosts]);
         }
-    }, [posts, ideas])
+    }, [posts, ideas, thoughts])
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
-        if (type == 'All') {
-            setFilteredPosts([...posts, ...ideas])
+        if (type === 'All') {
+            setFilteredPosts([...posts, ...ideas, ...thoughts]);
             return
         }
         const filters: any = {
@@ -207,7 +326,7 @@ function Feed() {
         setShowRequestJoin(false)
         handleAddIdeaChange('idea_clear_data', '')
         handleAddProjectChange('project_clear_data', '')
-        handleAddThoughtChange('thought_clear_data', 'null')
+        handleAddThoughtChange('thought_clear_data', '')
         document.body.style.overflowY = 'scroll'
     }
 
@@ -247,8 +366,23 @@ function Feed() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getTeams('user'))
-    }, [])
-
+    }, []);
+    const feedContainer: any = useRef();
+    const goToTopFeed = ()=>{
+        window.scrollTo(0,0);
+        feedContainer?.current.scrollTo(0,0);
+    }
+    // const watchScroll = () =>
+    // of(typeof window === 'undefined').pipe(
+    //     filter((bool) => !bool),
+    //     switchMap(() => fromEvent(window, 'scroll', { passive: true })),
+    //     throttleTime(0, animationFrameScheduler),
+    //     map(() => window.pageYOffset),
+    //     pairwise(),
+    //     map(([previous, current]) => (current < previous ? 'Up' : 'Down')),
+    //     distinctUntilChanged()
+    // )
+    // const scrollDirection = useObservable(watchScroll, 'Down');
     return (
         <div>
             {showOverlay && (
@@ -332,18 +466,25 @@ function Feed() {
                             </div>
                         </div>
                     </div>
-                    {filteredPosts.map((post, idx) => {
-                        console.log(post)
-                        return (
-                            <Post
-                                key={idx}
-                                post={post}
-                                openTeamMember={viewTeamMembers}
-                                openRequestJoin={viewRequestJoin}
-                            />
-                        )
-                    })}
-                    <Spinner />
+                    <div className="feed__content__center--container" ref={feedContainer}>
+                        {
+                            // scrollDirection === "Up" && 
+                            <button className="gotop-button" onClick={goToTopFeed}><img src={arrowUp} alt="^"/></button>
+                        }
+                        {filteredPosts.map((post, idx) => {
+                            // console.log(post)
+                            return (
+                                <Post
+                                    key={idx}
+                                    post={post}
+                                    openTeamMember={viewTeamMembers}
+                                    openRequestJoin={viewRequestJoin}
+                                />
+                            )
+                        })}
+                        <Spinner />
+                        <div className="content-well"></div>
+                    </div>
                 </div>
                 <div className="feed__content__right">
                     <RightNavBar peopleToKnow={peopleToKnow} />

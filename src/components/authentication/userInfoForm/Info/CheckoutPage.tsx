@@ -65,7 +65,7 @@ export default function CheckoutPage(props: any) {
         }
       }).then((resp)=> {
         console.log(resp);
-        history.push("/feed");
+        history.push("/app/feed");
       }).catch(err=>console.log(err));
   };
   const uploadDetails = async(e: any)=>{

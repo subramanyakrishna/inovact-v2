@@ -1,6 +1,6 @@
 import { addThoughtConstants } from "redux/actionTypes/addThoughtConstants";
 const initialState = {
-    description: "",
+    thought: "",
 }
 
 const updateThoughtInfoReducer = (state = initialState, action: any) =>{
@@ -8,8 +8,10 @@ const updateThoughtInfoReducer = (state = initialState, action: any) =>{
         case addThoughtConstants.THOUGHT_UPDATE_DESCRIPTION: 
             return {
                 ...state,
-                description: action.payload,
+                thought: action.payload,
             }
+        case addThoughtConstants.THOUGHT_CLEAR_DATA:
+            return initialState;
         default: return state;
     }
 }

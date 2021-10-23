@@ -16,9 +16,9 @@ function PeopleToKnowProfiles(props: any) {
                 <span className="people-profile-card-designation">
                     {props.user.designation}
                 </span>
-                <span className="people-profile-card-mutual-connections">
+                {/* <span className="people-profile-card-mutual-connections">
                     3 mutual connections
-                </span>
+                </span> */}
             </div>
             <div>
                 <button

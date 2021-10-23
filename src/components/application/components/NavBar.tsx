@@ -134,7 +134,7 @@ const NavBar = () => {
                     }`}
                 >
                     <div className="bottom-nav-component__items">
-                        <Link to="/feed">
+                        <Link to="/app/feed">
                             <img
                                 className="bottom-nav-component__items--active"
                                 src={home}
@@ -142,14 +142,14 @@ const NavBar = () => {
                             />
                         </Link>
 
-                        <Link to="/connections">
+                        <Link to="/app/connections">
                             <img
                                 className="bottom-nav-component__items__icons"
                                 src={connection}
                                 alt="connection"
                             />
                         </Link>
-                        <Link to="/teams">
+                        <Link to="/app/teams">
                             <img
                                 className="bottom-nav-component__items__icons"
                                 src={teams}
@@ -163,7 +163,7 @@ const NavBar = () => {
                                 alt="settings"
                             />
                         </Link>
-                        <Link to="/profile">
+                        <Link to="/app/profile">
                             <img
                                 className="bottom-nav-component__items__icons--user"
                                 src={user}
