@@ -292,7 +292,7 @@ $grey-border: rgb(180, 180, 180);
         }
         div{
             display: flex;
-            justify-content: right;
+            // justify-content: right;
         }
         button{
             width: 100px;
@@ -306,6 +306,14 @@ $grey-border: rgb(180, 180, 180);
             margin-bottom: 20px;
             float: right;
         }
+    }
+    &-edit-photos{ 
+        display: flex;
+        width: 100%;
+        height: 100px;
+        // overflow: hidden;
+        column-gap: 20px;
+        margin-bottom: 20px;
     }
     &-completed{
         display: flex;

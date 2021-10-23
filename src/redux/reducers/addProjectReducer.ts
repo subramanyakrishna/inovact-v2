@@ -63,6 +63,10 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
             return {
                 ...initialState,
             }
+        case addProjectConstants.PROJECT_UPDATE_ALL_DATA:
+            return {
+                ...action.payload,
+            }
         default: return state;
     }
 }

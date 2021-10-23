@@ -257,7 +257,7 @@ function Feed() {
             // await getUserIdeas();
             // await getUserProjects();
         })();
-        if(errors==="Network Error" || errorsIdea==="Network Error" || projectErrors==="Network Error"||getPeopleErrors==="Network Error" || userErrors==="Network Error"){
+        if(errors || errorsIdea || projectErrors||getPeopleErrors || userErrors){
             console.log(errors);
             console.log(errorsIdea);
             console.log(projectErrors);

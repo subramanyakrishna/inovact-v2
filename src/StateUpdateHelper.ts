@@ -234,7 +234,12 @@ const handleAddProjectChange = (name: any, value: any) => {
             break
         case 'project_clear_data':
             store.dispatch({ type: addProjectConstants.PROJECT_CLEAR_DATA })
-            break
+            break;
+        case "project_add_data":
+            store.dispatch({
+                type: addProjectConstants.PROJECT_UPDATE_ALL_DATA,
+                payload: value, 
+            })
     }
     console.log(store.getState())
 }

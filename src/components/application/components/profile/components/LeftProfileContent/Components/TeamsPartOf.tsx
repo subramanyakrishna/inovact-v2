@@ -25,7 +25,7 @@ function TeamsPartOf(props:any) {
       <div className="dashboard-main">
             <div className="teams-part-of">
       <div className="teams-part-of-heading">
-        <p>Jane's Team</p>
+        <p>{props.userName}'s Team</p>
         <AddCircleSharp style={{color:"#02bd63", cursor:"pointer"}} onClick={props.createTeam}/>
       </div>
       <div className="teams-part-of-all-teams">

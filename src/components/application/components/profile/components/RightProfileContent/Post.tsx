@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';
 import CommentsOnPost from './CommentsOnPost'
 import { useSelector } from 'react-redux'
 
-function Post({ post, openTeamMember, viewEditProject }: any) {
+function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
     const [showShareOption, setShowShareOption] = useState(false);
     const teamsData = [
         {
@@ -80,6 +80,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
         },1000);
     }
     const user_id = useSelector((state: any)=> state.userInfo.id);
+    const history = useHistory();
     return (
         <div className="post">
             <div>
@@ -229,8 +230,13 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                 {
                                     showPostOptions &&
                                     <div className="post__footer__team__options-all" onMouseLeave={removePostOptionsSLow}>
-                                        <span onClick={viewEditProject}>Edit Post</span>
-                                        <span>Post Statistics</span>
+                                        <span onClick={()=>{
+                                            viewEditProject();
+                                            editProject(post.id);
+                                            }}>Edit Post</span>
+                                        <span onClick={()=>{
+                                            history.push(`/posts/${post.id}`);
+                                        }}>Post Statistics</span>
                                         <span>Delete Post</span>
                                     </div>
                                 }
