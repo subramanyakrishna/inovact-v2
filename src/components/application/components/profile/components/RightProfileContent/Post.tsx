@@ -118,10 +118,10 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                         <h1 className="post__text__title">{post.title}</h1>
                     ) : null}
                     <p className="post__text__desc">
-                        {/* {post.type === 1
+                        {post.type === 1
                             ? post.description.substring(0, 150)
                             : post.description}{' '}
-                        {post.type === 1 ? (
+                        {/* {post.type === 1 ? (
                             <Link to={`/posts/${post.id}`}>Read more</Link>
                         ) : null} */}
                     </p>
@@ -222,7 +222,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                             <img src={share} alt="" className="post__footer__share-img" />
                         </div>
                     </div>
-                    {post.type === 1 ? (
+                    {post.type === 1 || post.type===2? (
                         <>
                             <p className="post__footer__team__text" onClick={openTeamMember}> View Team Members</p>
                             <div className="post__footer__team__options-menu">
@@ -234,7 +234,7 @@ function Post({ post, openTeamMember, viewEditProject }: any) {
                                         <span>Delete Post</span>
                                     </div>
                                 }
-                                <p className="post__footer__team__options" onClick={viewPostOptions} >&#8942;</p>
+                                <p className="post__footer__team__options" onClick={viewPostOptions}>&#8942;</p>
                             </div>
                         </>
                     ) : (

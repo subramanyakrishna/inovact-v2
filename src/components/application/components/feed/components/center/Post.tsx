@@ -234,7 +234,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             <img src={share} alt="" className="post__footer__share-img"/>
                         </div>
                 </div>
-                {post.type === 1 ? (
+                {post.type === 1 || post.type === 2? (
                     <>
                         <p className="post__footer__team__text" onClick={openTeamMember}>Team Members</p>
                         <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>

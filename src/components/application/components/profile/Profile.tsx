@@ -16,7 +16,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAllUserIdeas, handleAllUserProject } from 'StateUpdateHelper';
+import { handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts } from 'StateUpdateHelper';
 import Spinner from 'components/application/Spinner';
 function Profile() {
     // let leftContent, rightContent;
@@ -107,29 +107,22 @@ function Profile() {
         route: "user/thought",
         body: null,
         onSuccess: (data: any)=>{
-            console.log("This is profile projects",data);
-            data.data.project.reverse();
-            const finalData = data.data.project.map((post: any)=>({
+            console.log("This is profile thoughts",data);
+            data.data.thoughts.reverse();
+            const finalData = data.data.thoughts.map((post: any)=>({
                 user_id: post.user.id,
                 id: post.id,
-                title: post.title,
-                description: post.description,
+                description: post.thought,
                 role:post.user.role,
-                type: 1,
+                type: 3,
                 avatar: post.user.avatar,
-                author: post.user.first_name+ " "+post.user.last_name,
-                tags: post.project_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.project_documents.map((image: any)=>{
-                    return image.url;
-                }),
+                author: post.user.first_name+" "+post.user.last_name,
                 time: convertDate(post.created_at),
                 numLikes: 0,
                 numComments: 0,
-                }));
-            console.log("This is the final user projects: ", finalData);    
-            handleAllUserProject("all-user-projects",finalData);
+            }));
+            console.log("This is the final user thoughts: ", finalData);    
+            handleAllUserThoughts("all-user-thoughts",finalData);
         }   
     }); 
     const [posts, setPosts] = useState<postData[]>([
@@ -294,6 +287,7 @@ function Profile() {
         (async()=>{
             await getUserIdeas();
             await getUserProjects();
+            await getUserThoughts();
             setIsLoading(false);
         })();
       },[])
@@ -473,4 +467,4 @@ function Profile() {
     );
 }
 
-export default Profile
+export default Profile;

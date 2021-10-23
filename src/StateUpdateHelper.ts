@@ -479,4 +479,5 @@ export {
     handleAllUserIdeas,
     handleAllUserProject,
     handleAllThoughts,
+    handleAllUserThoughts
 }

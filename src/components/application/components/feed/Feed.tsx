@@ -232,6 +232,7 @@ function Feed() {
             console.log("The thoughts fetched are: ",data.data.thoughts);
             const finalData = data.data.thoughts.map((thought: any)=>{
                 return {
+                    user_id: thought.user.id,
                     id: thought.id,
                     type: 3,
                     avatar: thought.user.avatar,
