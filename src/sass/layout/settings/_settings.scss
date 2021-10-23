@@ -1,27 +1,33 @@
 .settings {
     display: flex;
     flex-direction: column;
-    margin-top: 4rem;
+    margin-top: 3.75rem;
     width: 100%;
     min-height: 100vh;
     height: 100vh;
     &-breadcrumb {
-        display: flex;
-        flex-direction: row;
-        height: 39px;
         &-pc {
             color: $color-primary-green;
+            height: 50px;
+            display: flex;
             justify-content: flex-start;
             align-items: center;
-            height: 150px;
             background-color: $color-white;
-            padding-left: 98px;
+            padding-left: 10rem;
+
+            @include respond(lg) {
+                padding-left: 6rem;
+            }
+            @include respond(lg) {
+                padding-left: 5rem;
+            }
             margin-bottom: 16px;
             font-style: normal;
             font-weight: 600;
         }
         &-mobile {
             color: $color-black;
+            display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0px;

@@ -176,72 +176,77 @@ const Settings: React.FC = () => {
                 </div>
             )}
             <div className={'settings'}>
-                <div
-                    className={`settings-breadcrumb ${
-                        width < SIZE_LIMIT
-                            ? 'settings-breadcrumb-mobile'
-                            : 'settings-breadcrumb-pc'
-                    }`}
-                >
-                    {width > SIZE_LIMIT && <div>&lt;&lt;Back to Profile</div>}
-                    {width < SIZE_LIMIT && <img src={back} alt="" />}
-                    {width < SIZE_LIMIT && (
-                        <div className={' heading-secondary'}>
-                            Account Settings
+                <div className={'settings-breadcrumb'}>
+                    {width > SIZE_LIMIT && (
+                        <div className={'settings-breadcrumb-pc'}>
+                            &lt;&lt;Back to Profile
                         </div>
                     )}
                     {width < SIZE_LIMIT && (
-                        <MenuIcon
-                            onClick={() => {
-                                setShowLeft(!showLeft)
-                                setShowRight(!showRight)
-                            }}
-                        />
-                    )}
-                </div>
-                <div className="settings-main">
-                    {showLeft && (
-                        <div className={'settings-main-left'}>
-                            <SettingsLeft
-                                selected={selectedOption}
-                                onSelection={onSelection}
-                                options={options}
-                                logOut={logOut}
-                                deleteAccount={deleteAccount}
+                        <div className={'settings-breadcrumb-mobile'}>
+                            <img src={back} alt="" />
+                            <div className={' heading-secondary'}>
+                                Account Settings
+                            </div>
+                            <MenuIcon
+                                onClick={() => {
+                                    setShowLeft(!showLeft)
+                                    setShowRight(!showRight)
+                                }}
                             />
+                            <div />
                         </div>
                     )}
-
-                    {showRight && (
-                        <div className={'settings-main-right'}>
-                            {selectedOption === 0 && (
-                                <YourProfile
+                    <div className="settings-main">
+                        {showLeft && (
+                            <div className={'settings-main-left'}>
+                                <SettingsLeft
+                                    selected={selectedOption}
+                                    onSelection={onSelection}
+                                    options={options}
+                                    logOut={logOut}
                                     deleteAccount={deleteAccount}
-                                    handleUserInfoChange={handleUserInfoChange}
-                                    saveDataToServer={saveDataToServer}
                                 />
-                            )}
-                            {selectedOption === 1 && (
-                                <PrivacySettings
-                                    handleUserInfoChange={handleUserInfoChange}
-                                    saveDataToServer={saveDataToServer}
-                                />
-                            )}
-                            {selectedOption === 2 && (
-                                <TeamSettings
-                                    deleteTeam={deleteTeam}
-                                    handleUserInfoChange={handleUserInfoChange}
-                                    saveDataToServer={saveDataToServer}
-                                />
-                            )}
-                            {selectedOption === 3 && (
-                                <Notifications
-                                    saveDataToServer={saveDataToServer}
-                                />
-                            )}
-                            {selectedOption === 5 && <Faq />}
-                        </div>
-                    )}
+                            </div>
+                        )}
+
+                        {showRight && (
+                            <div className={'settings-main-right'}>
+                                {selectedOption === 0 && (
+                                    <YourProfile
+                                        deleteAccount={deleteAccount}
+                                        handleUserInfoChange={
+                                            handleUserInfoChange
+                                        }
+                                        saveDataToServer={saveDataToServer}
+                                    />
+                                )}
+                                {selectedOption === 1 && (
+                                    <PrivacySettings
+                                        handleUserInfoChange={
+                                            handleUserInfoChange
+                                        }
+                                        saveDataToServer={saveDataToServer}
+                                    />
+                                )}
+                                {selectedOption === 2 && (
+                                    <TeamSettings
+                                        deleteTeam={deleteTeam}
+                                        handleUserInfoChange={
+                                            handleUserInfoChange
+                                        }
+                                        saveDataToServer={saveDataToServer}
+                                    />
+                                )}
+                                {selectedOption === 3 && (
+                                    <Notifications
+                                        saveDataToServer={saveDataToServer}
+                                    />
+                                )}
+                                {selectedOption === 5 && <Faq />}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ function CenterRequests({
     showRequest,
     pendingRequesLoad,
     myConnections,
+    handleRemoveConnection,
 }: any) {
     return (
         <div className="requests-connections">
@@ -28,7 +29,7 @@ function CenterRequests({
                             : 'none',
                     }}
                 >
-                    Requests (10)
+                    Requests ({pendingRequests.length})
                 </button>
                 <button
                     onClick={handleConnectionButton}
@@ -38,7 +39,7 @@ function CenterRequests({
                             : 'none',
                     }}
                 >
-                    My Connections (473)
+                    My Connections ({myConnections.length})
                 </button>
             </div>
             {showRequest && (
@@ -95,7 +96,9 @@ function CenterRequests({
                                 <ConnectionProfile
                                     key={i}
                                     user={user}
-                                    removeConnection={removeConnection}
+                                    handleRemoveConnection={
+                                        handleRemoveConnection
+                                    }
                                 />
                             ))
                         )}

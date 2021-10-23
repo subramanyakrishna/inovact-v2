@@ -20,7 +20,9 @@ function RequestProfile(props: any) {
             <div className="my-requests-profile-btn-container">
                 <button
                     className="my-requests-profile-accept-btn"
-                    onClick={() => props.acceptConnectRequest(props.user.id)}
+                    onClick={() =>
+                        props.acceptConnectRequest(props.user.id, props.user)
+                    }
                 >
                     Accept
                 </button>
