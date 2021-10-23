@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import RightNetworkStats from './components/RightNetworkStats'
 import CenterRequests from './components/CenterRequests'
 import PeopleYouMayKnow from './components/PeopleYouMayKnow'
@@ -41,7 +41,7 @@ function Connections() {
     const [showRequest, setShowRequest] = useState(true)
     const [showConnection, setShowConnection] = useState(false)
     const [pendingRequests, setPendingRequests] = useState([])
-    const [myConnections, setMyConnections] = useState([])
+    const [myConnections, setMyConnections] = useState<any[]>([])
     const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
     const [myConnectionsLoad, setMyConnectionLoad] = useState<boolean>(true)
     const ownId = useSelector((state: any) => state.userInfo.id)
@@ -93,7 +93,7 @@ function Connections() {
         setShowConnection(true)
     }
 
-    const acceptConnectRequest = async (id: number) => {
+    const acceptConnectRequest = async (id: number, user: any) => {
         const filteredPendingRequests = pendingRequests.filter(
             (user: any) => user.id !== id
         )
@@ -104,6 +104,8 @@ function Connections() {
             'post',
             `connections/accept?user_id=${id}`
         )
+
+        setMyConnections([...myConnections, user])
         console.log(response)
     }
 
@@ -178,6 +180,15 @@ function Connections() {
             filteredConnectReqAcceptPending,
         }
     }
+    const handleRemoveConnection = async (id: number) => {
+        setMyConnections(myConnections.filter((user: any) => user.id != id))
+        const response = await makeApiCall(
+            'post',
+            `connections/remove?user_id=${id}`
+        )
+        console.log(response)
+    }
+
     return (
         <div className="connections-page">
             <div className="connections-top-components">
@@ -188,6 +199,7 @@ function Connections() {
                     acceptConnectRequest={acceptConnectRequest}
                     handleConnectionButton={handleConnectionButton}
                     handleRequestButton={handleRequestButton}
+                    handleRemoveConnection={handleRemoveConnection}
                     myConnectionsLoad={myConnectionsLoad}
                     pendingRequests={pendingRequests}
                     showConnection={showConnection}

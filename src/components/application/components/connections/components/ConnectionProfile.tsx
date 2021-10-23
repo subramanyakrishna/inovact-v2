@@ -31,7 +31,7 @@ function ConnectionProfile(props: any) {
                 </button>
                 <button
                     className="my-connection-profile-reject-btn"
-                    onClick={() => props.removeConnection(props.user.id)}
+                    onClick={() => props.handleRemoveConnection(props.user.id)}
                 >
                     Remove
                 </button>

@@ -120,11 +120,11 @@ function PeopleYouMayKnow({ makeApiCall }: any) {
     }
 
     const sendConnectRequest = async (id: number) => {
+        setFilteredUsers(filteredUsers.filter((user: any) => user.id != id))
         const res = await makeApiCall(
             'post',
             `connections/request?user_id=${id}`
         )
-        setFilteredUsers(filteredUsers.filter((user: any) => user.id != id))
     }
     return (
         <div>
