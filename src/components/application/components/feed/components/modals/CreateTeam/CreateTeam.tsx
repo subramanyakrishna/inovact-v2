@@ -42,7 +42,8 @@ const CreateTeam = (props: any) => {
 
     const dispatch = useDispatch()
     const addTeam = () => {
-        dispatch(createTeam(teamDetails))
+        console.log('teamDetails', teamDetails)
+        // dispatch(createTeam(teamDetails))
     }
 
     return (

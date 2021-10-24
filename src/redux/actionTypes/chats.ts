@@ -1,0 +1,4 @@
+export const CREATE_TEAM_CHAT = 'CREATE_TEAM_CHAT'
+export const CREATE_CHAT_USER = 'CREATE_CHAT_USER'
+export const ADD_CHAT_USER = 'ADD_CHAT_USER'
+export const GET_TEAM_CHATS = 'GET_TEAM_CHATS'

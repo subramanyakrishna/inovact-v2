@@ -30,6 +30,7 @@ import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
 import OtherProfile from './components/otheruserprofile/OtherProfile'
 import IdeaPage from './components/ideapage/IdeaPage'
+import TeamChat from './components/teams/teamChat'
 
 function Application() {
     const state = useSelector((state: any) => state)
@@ -95,8 +96,10 @@ function Application() {
     return (
         <div className="application">
             <Router>
-                {state.authentication.userAuthenticated &&
-                    state.authentication.user.profile_complete && <NavBar />}
+                {state.authentication.userAuthenticated && (
+                    // state.authentication.user.profile_complete &&
+                    <NavBar />
+                )}
                 <Switch>
                     <PrivateRoute
                         path={`${path}/feed`}
@@ -157,6 +160,11 @@ function Application() {
                         path={`/ideas/:id`}
                         isAuth={state.authentication.userAuthenticated}
                         component={() => <IdeaPage />}
+                    />
+                    <PrivateRoute
+                        path={`${path}/chats`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={() => <TeamChat />}
                     />
                 </Switch>
             </Router>

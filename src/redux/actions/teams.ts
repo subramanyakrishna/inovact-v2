@@ -27,6 +27,7 @@ export const createTeam = (team: ICreateTeam) => async (dispatch: any) => {
 export const getTeams = (userId: string) => async (dispatch: any) => {
     try {
         const res = await TeamsService.getTeams(userId)
+        console.log('teams redux', res.data)
         dispatch({
             type: GET_TEAMS,
             payload: res.data,
