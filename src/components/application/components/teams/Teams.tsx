@@ -3,7 +3,7 @@ import {
   MDBTabsContent,
   MDBTabsPane,
 } from 'mdb-react-ui-kit';
-
+import { useSelector } from 'react-redux';
 import SuggestionInvitation from 'components/application/components/teams/components/left/SuggestionInvitation';
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
@@ -93,144 +93,13 @@ function Teams() {
             },
              ]
         },
-        {
-          id: 3,
-          teamname: 'Team Name',
-          title: 'React Web dev',
-          description: 'rLorem ipsum dolor sit amet consectetu adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborunumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium',
-          tags: [
-              'OOPS',
-              'JavaScript',
-              'HTML',
-              'CSS',
-              'ReactJS',
-              'NodeJS',
-              'MongoDB',
-          ],
-          avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-          members: [
-              {
-              id:"1",
-              role:'student',
-              name:'Jane Doe',
-              designation:'Designation'
-            },
-            {
-              id:"2",
-              role:'student',
-              name:'Jane Doe',
-              designation:'Designation'
-            },
-          ],
-          documents: [pdf,pdf],
-          requests: [
-              {
-              id:"1",
-              role:'student',
-              name:'Jane Doe',
-              designation:'Designation'
-            },
-            {
-              id:"2",
-              role:'student',
-              name:'Jane Doe',
-              designation:'Designation'
-            },
-          ],
-          projects:[
-            {
-              title:'Project Title',
-              status :true
-            },
-            {
-              title:'Project Title',
-              status :true
-            },
-            {
-              title:'Project Title',
-              status :false
-            },
-          ],
-          ideas :[
-          {
-            title:'Idea Title',
-          },
-          {
-            title:'Idea Title',
-          },
-           ]
-      },
-      {
-        id: 3,
-        teamname: 'Team Name',
-        title: 'React Web dev',
-        description: 'rLorem ipsum dolor sit amet consectetu adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborunumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium',
-        tags: [
-            'OOPS',
-            'JavaScript',
-            'HTML',
-            'CSS',
-            'ReactJS',
-            'NodeJS',
-            'MongoDB',
-        ],
-        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-        members: [
-            {
-            id:"1",
-            role:'student',
-            name:'Jane Doe',
-            designation:'Designation'
-          },
-          {
-            id:"2",
-            role:'student',
-            name:'Jane Doe',
-            designation:'Designation'
-          },
-        ],
-        documents: [pdf,pdf],
-        requests: [
-            {
-            id:"1",
-            role:'student',
-            name:'Jane Doe',
-            designation:'Designation'
-          },
-          {
-            id:"2",
-            role:'student',
-            name:'Jane Doe',
-            designation:'Designation'
-          },
-        ],
-        projects:[
-          {
-            title:'Project Title',
-            status :true
-          },
-          {
-            title:'Project Title',
-            status :true
-          },
-          {
-            title:'Project Title',
-            status :false
-          },
-        ],
-        ideas :[
-        {
-          title:'Idea Title',
-        },
-        {
-          title:'Idea Title',
-        },
-         ]
-    },
-   
-       
     ])
-    const [verticalActive, setVerticalActive] = useState(1);
+    
+
+    const allTeams = useSelector((state: any) => state.teams.teams)
+   
+    const idc=parseInt(allTeams[0].id);
+    const [verticalActive, setVerticalActive] = useState(idc);
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);
     const [showMakeAdmin, setShowMakeAdmin] = useState(false);
@@ -303,8 +172,11 @@ function Teams() {
       if (value === verticalActive) {
         return;
       }
+      console.log(allTeams[0].id);
+      console.log(verticalActive);
       setVerticalActive(value);
     };
+    
     return (
 
       <div>
@@ -347,7 +219,7 @@ function Teams() {
               showLeft && 
                   <div className="teams__content__left" >         
                     <div className="teams__content__user-teams" onClick={toggleShowOptions}>
-                        <UserTeam teams={teams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
+                        <UserTeam allTeams={allTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
                     </div>
                     <div className="teams__content__suggestions team-info__suggestion">
                         <SuggestionInvitation />
@@ -357,7 +229,7 @@ function Teams() {
                       
             {
               showRight && <MDBTabsContent className="teams__content__right" >
-              { teams.map((team,key)=>{
+              { allTeams && allTeams.map((team :any,key:any)=>{
               return(
                   <MDBTabsPane show={verticalActive ===  team.id }>
                       <div className="teams__content__info">
