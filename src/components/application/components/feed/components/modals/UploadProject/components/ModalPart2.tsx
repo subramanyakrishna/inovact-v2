@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { Ref, useRef, useState } from 'react'
 import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
 import SwitchSlider from './SwitchSlider';
 import MemberMentor from './MemberMentor';
 import { handleAddProjectChange } from 'StateUpdateHelper';
+import { useSelector } from 'react-redux';
+import SearchedPeople from './SearchedPeople';
+import MentionsTag from './MentionsTag';
 function ModalPart2(props: any) {
     const [allRolesNeeded, setAllRolesNeeded] = useState<Object[]>([]);
     const [teamMembersNeeded, setTeamMembersNeeded] = useState(false);
     const [teamNotOnInovact, setTeamNotOnInovact] = useState(false);
     const [isIndividualProject, setIsIndividualProject] = useState(false);
+    const addProject = useSelector((state: any)=> state.addProject);
     const addAnotherRole = (role:any, tags:any)=>{
         if(role==="" && tags.length===0) return;
         let found=false;
@@ -38,6 +42,29 @@ function ModalPart2(props: any) {
         console.log(e.target.getAttribute("data-value"));
         handleAddProjectChange("project_status",e.target.getAttribute("data-value"));
     }
+    const peopleYouMayKnow = useSelector((state: any)=>{
+        return state.peopleYouMayKnow;
+    });
+    const [searchedPeople, setSearchedPeople] = useState<any[]>([]);
+    const searchUsernames = (e: any)=>{
+        const value = e.target.value;
+        if(value===""){
+            setSearchedPeople([]);
+            return;
+        }
+        setSearchedPeople([...peopleYouMayKnow.filter((ppl: any)=>ppl.user_name.includes(value)).slice(0,4)]);
+    }
+    const [mentionsOfProject, setMentionsOfProject] = useState<any[]>([]);
+    const addMentions = (mention: any)=>{
+        mentionInput.current.value="";
+        setSearchedPeople([]);
+        setMentionsOfProject([...mentionsOfProject.filter((men: any)=>{
+            return men.user_name!==mention.user_name;
+        }), mention]);
+        handleAddProjectChange("mentions", [...addProject.mentions, mention.id])
+    }
+    // const [currentMention, setCurrentMention]
+    const mentionInput: any = useRef();
     return (
         <div className="modal_part_two">
             <div className="modal_part_two-team-worked">
@@ -64,7 +91,21 @@ function ModalPart2(props: any) {
                         !teamNotOnInovact &&
                         <div className="modal_part_two-mentions">
                             <label>Mentions</label>
-                            <input type="text" placeholder="Type the usernames of the people you would like to mention"/>
+                            <input type="text" placeholder="Type the usernames of the people you would like to mention" onChange={searchUsernames} ref={mentionInput}/>
+                            <div className="modal_part_two-mentions-dropdown">
+                                {
+                                    searchedPeople.map((ppl: any)=>{
+                                        return <SearchedPeople ppl={ppl} addMentions={addMentions}/>
+                                    })
+                                }
+                            </div>
+                            <div className="modal_part_two-mentions-tag-container">
+                                {
+                                    mentionsOfProject.map((ppl: any)=>{
+                                        return <MentionsTag ppl={ppl} />
+                                    })
+                                }
+                            </div>
                         </div>
                     }
                     <div className="modal_part_one-completed" >

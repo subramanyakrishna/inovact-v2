@@ -3,8 +3,10 @@ const DocumentsTab =(props:any)=>{
     return(
         <>
          <div className="documents-info">
+         { props.team.team_documents.length == 0 ? <div className="text-align--center">No Documents yet </div>: null }
             {
-            props.team.documents.map((item:any,index:number)=>{
+                
+            props.team.team_documents.map((item:any,index:number)=>{
                     return(
                             <div className="documents-info__document">
                                 <img src={item} alt="name"/>

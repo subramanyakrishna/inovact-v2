@@ -2,6 +2,7 @@ import React from 'react'
 const RequestsTab =(props:any)=>{
     return(
         <>
+         { props.requests.length == 0 ? <div className="text-align--center">No Requests yet </div>: null }
         {
            props.requests.map((request:any,index:number)=>{
                 return(

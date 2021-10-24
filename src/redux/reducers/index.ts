@@ -14,11 +14,13 @@ import { allIdeasReducer } from './allIdeasReducer'
 import { otherUserInfoReducer } from './otherUserInfoReducer'
 import { allUserProjectReducer } from './allUserProjectReducer'
 import { allUserIdeaReducer } from './allUserIdeaReducer'
-// import {updateTeamInfoReducer} from './updateTeamInfoReducer'
-// import { updateTeamInfoReducer } from './updateTeamInfoReducer'
 import TeamReducer from './teams'
 import { allThoughtsReducer } from './allThoughtsReducer'
 import { allUserThoughtsReducer } from './allUserThoughtsReducer'
+import { allTagsReducer } from './allTagsReducer'
+import { allSkillsReducer } from './allSkillsReducer'
+import { allRolesReducer } from './allRolesReducer'
+import { peopleYouMayKnowReducer } from './peopleYouMayKnowReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -38,9 +40,11 @@ const rootReducer = combineReducers({
     userAllProjects: allUserProjectReducer,
     userAllIdeas: allUserIdeaReducer,
     userAllThoughts: allUserThoughtsReducer,
-    // teamInfo: updateTeamInfoReducer,
-    // addTeam: updateTeamInfoReducer,
     teams: TeamReducer,
-})
+    allTags: allTagsReducer,
+    allSkills: allSkillsReducer,
+    allRoles: allRolesReducer,
+    peopleYouMayKnow: peopleYouMayKnowReducer,
+});
 
 export default rootReducer;

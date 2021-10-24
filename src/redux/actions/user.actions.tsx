@@ -17,7 +17,6 @@ function register( user :any) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    // history.push('/userinfo');
                 },
                 error => {
                     dispatch(failure(error));
@@ -45,7 +44,7 @@ function login(email :any, password:any) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/app/feed');
+                    // history.push('/app/feed');
                 },
                 error => {
                     dispatch(failure(error));

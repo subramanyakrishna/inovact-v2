@@ -121,7 +121,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 </div>
                 <div className="post__text">
                     {post.title ? (
-                        <h1 className="post__text__title">{post.title}</h1>
+                        <h1 className="post__text__title">{post.title} {}</h1>
                     ) : null}
                     <p className="post__text__desc">
                         {post.type === 1

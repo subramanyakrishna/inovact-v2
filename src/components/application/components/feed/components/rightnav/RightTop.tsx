@@ -13,33 +13,7 @@ import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { handleOtherUserInfoChange } from 'StateUpdateHelper'
 import useRequests from 'useRequest/useRequest'
-interface Connection {
-    name: string
-    image: string
-    designation: string
-    duration: string
-}
 
-export const connection: Connection[] = [
-    {
-        name: 'Jane Doe',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-        designation: 'Designation',
-        duration: '10 min',
-    },
-    {
-        name: 'Jane Doe',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-        designation: 'Designation',
-        duration: '10 min',
-    },
-    {
-        name: 'Jane Doe',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-        designation: 'Designation',
-        duration: '10 min',
-    },
-]
 
 const RightTop = (props: any) => {
     const handleConnect = (e: any) => {}

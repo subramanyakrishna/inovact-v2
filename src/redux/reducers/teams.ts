@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const teamsReducer = (state = initialState, action: any) => {
-    console.log(action.type, action.payload)
+    console.log("action bleh",action.type, action.payload)
     switch (action.type) {
         case GET_TEAMS:
             return {
@@ -13,6 +13,7 @@ const teamsReducer = (state = initialState, action: any) => {
                 teams: action.payload.data.team,
             }
         case CREATE_TEAM:
+            console.log("The teams data added and fetched: ",action.payload.data);
             return {
                 ...state,
                 teams: [...state.teams, action.payload.data.team],

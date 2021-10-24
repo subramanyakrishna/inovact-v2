@@ -7,7 +7,7 @@ const MemberInfoTab =(props: any)=>{
         <>
         <div className="member-info-tab">
         {
-            props.team.members.map((member :any,index:number)=>{
+            props.team.team_members.map((member :any,index:number)=>{
                 return(
                    <MemberInfo member={member} viewDeleteMember={props.viewDeleteMember} viewMakeAdmin={props.viewMakeAdmin}/>
                 );

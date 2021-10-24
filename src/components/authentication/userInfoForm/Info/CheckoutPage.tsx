@@ -18,6 +18,7 @@ import UserPool from 'redux/UserAuthentication/UserPool';
 import { store } from 'redux/helpers/store';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
 import { useHistory } from 'react-router';
+import { handleUserInfoChange } from 'StateUpdateHelper';
 
 
 const steps = ['Role', 'General Info', 'Role-Specific-Form','AreaOfInterest','Upload Form'];
@@ -40,7 +41,7 @@ function _renderStepContent(step :number, handleChange: any) {
   }
 }
 
-export default function CheckoutPage(props: any) {
+export default function CheckoutPage() {
 
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
@@ -97,7 +98,7 @@ export default function CheckoutPage(props: any) {
         submitForm(values,actions)
       }
       if(activeStep === 1){
-        if( props.userInfo.role === "Student") {
+        if( userInfo.role === "Student") {
           setActiveStep(activeStep + 2);
         }
         else {
@@ -133,7 +134,7 @@ export default function CheckoutPage(props: any) {
           >
             {({ isSubmitting }) => (
               <Form id={formId}>
-                {_renderStepContent(activeStep, props.handleChange)}
+                {_renderStepContent(activeStep, handleUserInfoChange)}
 
                 <div className="buttons">
                   {activeStep !== 0 && (

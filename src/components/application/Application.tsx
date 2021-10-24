@@ -64,13 +64,12 @@ function Application() {
                     })
                     ;(async () => {
                         dispatch({
-                            type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
+                            type: userInfoConstants.UPDATE_WHOLE_PROFILE,
                             data: resp.data.data.user[0],
                         })
                     })().then(() => {
                         if (!state.userInfo.profile_complete) {
                             console.log(state.userInfo.profile_complete)
-                            // history.push('/app/userinfo')
                             // alert(
                             //     'Your profile is not complete, please complete it by giving the following information.'
                             // )
@@ -137,12 +136,7 @@ function Application() {
                     <PrivateRoute
                         path={`${path}/userinfo`}
                         isAuth={state.authentication.userAuthenticated}
-                        component={() => (
-                            <CheckoutPage
-                                handleChange={handleUserInfoChange}
-                                userInfo={state.userInfo}
-                            />
-                        )}
+                        component={CheckoutPage}
                     />
                     <PrivateRoute
                         path={`${path}/otherprofile`}
