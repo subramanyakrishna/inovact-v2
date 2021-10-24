@@ -70,7 +70,7 @@ function Application() {
                     })().then(() => {
                         if (!state.userInfo.profile_complete) {
                             console.log(state.userInfo.profile_complete)
-                            // history.push('/userinfo')
+                            // history.push('/app/userinfo')
                             // alert(
                             //     'Your profile is not complete, please complete it by giving the following information.'
                             // )
@@ -95,8 +95,9 @@ function Application() {
     return (
         <div className="application">
             <Router>
-                {state.authentication.userAuthenticated &&
-                    state.authentication.user.profile_complete && <NavBar />}
+                {/* {state.authentication.userAuthenticated &&
+                    state.authentication.user.profile_complete && <NavBar />} */}
+                    <NavBar/>
                 <Switch>
                     <PrivateRoute
                         path={`${path}/feed`}

@@ -266,14 +266,17 @@ function Feed() {
             history.push("/app/login");
         }
         // if(!(userInfo.profile_complete)){
-        //     history.push("/userinfo");
+        //     history.push("/app/userinfo");
         // }
     }, [])
     // useEffect(() => {
     //     if (!userInfo.profile_complete) {
-    //         history.push('/userinfo')
+    //         history.push('/app/userinfo')
     //     }
-    // })
+    // },[])
+    // if(!(userInfo.profile_complete)){
+    //     history.push("/app/userinfo");
+    // }
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)

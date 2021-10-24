@@ -118,7 +118,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             </Link>
                         }
                     </div>
-
                 </div>
                 <div className="post__text">
                     {post.title ? (

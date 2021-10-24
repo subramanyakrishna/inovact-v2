@@ -17,7 +17,7 @@ function register( user :any) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/userinfo');
+                    // history.push('/userinfo');
                 },
                 error => {
                     dispatch(failure(error));
