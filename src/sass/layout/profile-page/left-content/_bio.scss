@@ -1,0 +1,49 @@
+$color-primary-green: #02bd63;
+$color-primary-grey: #f9f5f5;
+$color-primary-blue: #001948;
+$color-secondary-blue:#5579BD;
+$color-primary-light-blue: #4B72BC;
+
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-red: red;
+
+.bio{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: $color-white;
+  &-heading{
+    font-weight: 600;
+    text-align: left;
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+  }
+  &-description{
+    text-align: left;
+    line-height: 1.2;
+    span{
+      float: right;
+      color: $color-primary-light-blue;
+      text-decoration: underline;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+  &-email-link{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &-email{
+      display: flex;
+      column-gap: 10px;
+    }
+    &-link{
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+}

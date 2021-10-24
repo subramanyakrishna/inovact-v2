@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+// signup card height = initial
+// signup card width = (100vh - 50vh)
+
+.signin {
+    display: grid;
+    height: 100%;
+    background-image: linear-gradient(
+            0deg,
+            rgba($color-primary-blue, 0.84),
+            rgba($color-primary-blue, 0.84)
+        ),
+        url('./images/sign-up/bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__flex-container {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &__flex-child {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        height: 3.75rem;
+    }
+
+    &__card {
+        width: calc(100vh - 50vh);
+        height: initial;
+        border-radius: 8px;
+        padding: 5%;
+        background-color: $color-white;
+        overflow: hidden;
+
+        &--header {
+            position: relative;
+            font-size: calc(100vh - 95vh);
+            top: 3%;
+            font-style: normal;
+            font-weight: 600;
+            text-align: left;
+            padding: 0 30px;
+            color: $color-primary-blue;
+        }
+
+        &--desc {
+            position: relative;
+            font-size: calc(100vh - 97.5vh);
+            top: 2%;
+            padding: 0 30px;
+            font-style: normal;
+            font-family: 'Nunito', sans-serif;
+            font-weight: normal;
+        }
+
+        a {
+            color: $color-primary-green;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+
+        &--form {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5% calc(100vh - 215%);
+            padding-bottom: 0;
+        }
+
+        div label {
+            padding: 1vh 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        &--button {
+            margin-top: 5%;
+            color: $color-white;
+            position: relative;
+        }
+
+        form hr {
+            position: relative;
+            top: 0.5rem;
+        }
+
+        &__forgot-pw-div {
+            margin-top: 3%;
+            text-align: end;
+        }
+
+        &--or {
+            margin: auto;
+            width: fit-content;
+            position: relative;
+            bottom: 1.5rem;
+            text-align: center;
+            font-size: 13px;
+            background-color: $color-white;
+            padding: 5px;
+        }
+    }
+
+    &__social {
+        margin-top: 5%;
+        position: relative;
+        top: -1.5rem;
+        display: flex;
+        justify-content: center;
+
+        &--links {
+            padding: 0 10px;
+            transition: all 0.2s;
+            height: calc(100vh - 95vh);
+        }
+    }
+
+    @include respond(md) {
+        &__card {
+            width: 22rem;
+            height: initial;
+
+            &--header {
+                top: 0.5rem;
+                font-size: 190%;
+            }
+
+            &--desc {
+                top: 0.2rem;
+                font-size: 110%;
+            }
+
+            &--form {
+                padding: 0 8%;
+            }
+        }
+    }
+
+    @include respond(sm) {
+        &__flex-container {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &__logo {
+            margin-top: 0rem;
+            margin-bottom: 1rem;
+        }
+
+        &__card {
+            height: initial;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        &__logo {
+            height: 3rem;
+        }
+
+        &__card {
+            width: 100%;
+        }
+    }
+}
+.forgot-password {
+    min-height: 350px;
+    padding: 2rem  4rem;
+    h6{
+        font-size: 1.5rem;
+    }
+    p {
+        text-align: center;
+    }
+    label {
+        margin-top: 2rem;
+        @include respond(sm){
+            margin-top: 1rem;
+        }
+       
+    }
+    button {
+        margin-top: 2rem;
+        padding: 0.5rem;
+        width: 100%;
+        border-radius: 15px;
+    }
+}

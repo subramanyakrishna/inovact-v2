@@ -1,0 +1,87 @@
+.feed {
+    &__content {
+        display: flex;
+        max-width: 1300px;
+        justify-content: center;
+        margin: auto;
+        width: 100%;
+        padding: 4rem 1rem 0;
+       
+        &__left {
+            width: 25%;
+            position: sticky;
+            top: 0;
+            left: 0;
+            @include respond(md) {
+                width: 30%;
+            }
+            @include respond(sm) {
+                display: none;
+            }
+        }
+
+        &__center {
+            width: 50%; 
+            padding: 1rem;
+            scrollbar-width: 0px;
+            @include respond(md) {
+                width: 70%;
+            }
+            @include respond(sm) {
+                width: 100%;
+            }
+            &--container{
+                height: 120vh;
+                overflow-y: scroll;
+                // &::after{
+                //     content:'';
+                //     display: flex;
+                //     justify-content: center;
+                //     width:40%;
+                //     height:50%;    
+                //     position:absolute;
+                //     left:0;
+                //     top:0;
+                //     transform: translate(75%,105vh);
+                //     background:linear-gradient(transparent 200px, white)
+                // }
+            }
+            
+        }
+        // &__center::after{
+        //     content:'';
+        //     margin: 0px auto;
+        //     display: flex;
+        //     justify-content: center;
+        //     width:40%;
+        //     height:100px;    
+        //     position:absolute;
+        //     left:0;
+        //     top:0;
+        //     background:linear-gradient(transparent 150px, white);
+        // }
+        &__right {
+            width: 25%;
+            @include respond(md) {
+                display: none;
+            }
+        }
+    }
+}
+.sort {
+    @include respond(sm)  {
+        display: none;
+    }
+}
+
+.content-well{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height:50%;    
+    position:absolute;
+    left:0;
+    top:0;
+    transform: translateY(105vh);
+    background:linear-gradient(transparent 200px, white)
+}

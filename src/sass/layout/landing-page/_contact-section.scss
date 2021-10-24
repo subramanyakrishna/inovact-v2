@@ -1,0 +1,78 @@
+.section-contact {
+    background-color: $color-primary-blue;
+    padding: 6rem 3rem;
+
+    @include respond(sm) {
+        padding: 3rem 1rem;
+    }
+
+    &__text {
+        text-align: center;
+        max-width: 768px;
+        margin: auto;
+        margin-bottom: 3rem;
+    }
+
+    &__form {
+        border: 1px inset rgba($color-white, 0.2);
+        border-radius: 8px;
+        padding: 4rem;
+        max-width: 568px;
+        margin: auto;
+
+        @include respond(sm) {
+            padding: 4rem 2rem;
+        }
+
+        &__label {
+            display: block;
+            color: $color-white;
+        }
+
+        &__input {
+            width: 100%;
+            margin-bottom: 2rem;
+            background-color: $color-primary-blue;
+            border: 1px solid rgba($color-white, 0.2);
+            border-radius: 5px;
+            padding: 0.5rem;
+            outline: none;
+            color: $color-white;
+        }
+
+        &__textarea {
+            resize: none;
+            width: 100%;
+            margin-bottom: 3rem;
+            background-color: $color-primary-blue;
+            border: 1px solid rgba($color-white, 0.2);
+            border-radius: 5px;
+            color: $color-white;
+            outline: none;
+            padding: 0.5rem;
+            height: 6rem;
+        }
+
+        &__button {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+
+            &__item {
+                background-color: $color-primary-green;
+                color: $color-white;
+                padding: 1rem 2rem;
+                border-radius: 2px;
+                width: 10rem;
+
+                &:hover {
+                    color: white;
+                }
+
+                &:active {
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
+}

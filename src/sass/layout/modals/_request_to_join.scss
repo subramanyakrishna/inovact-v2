@@ -1,0 +1,57 @@
+.roles-required-heading{
+    display: flex;
+    flex-direction: column;
+    &-main{
+        font-size: larger;
+        font-weight: 600;
+        @include respond(lg){
+            font-size: medium;
+        }
+    }
+    &-description{
+        color: #02BD63;
+        @include respond(lg){
+            font-size: small;
+        }
+    }
+}
+.roles-required-container{
+    display: flex;
+    flex-wrap: wrap;
+    @include respond(xs){
+        flex-direction: column;
+        width: 100%;
+    }
+}
+.roles-required-all{
+    display: flex;
+    font-size: small;
+    padding: 10px;
+    &-main{
+        display: flex;
+        flex-direction: column;
+    }
+    &-skills{
+        color:#02BD63;
+    }
+    &-checkbox{
+        margin: 5px;
+    }
+    @include respond(lg){
+        width: 50%;
+    }
+    @include respond(xs){
+        width: 100%;
+    }
+}
+.roles-required-request-btn{
+    color:#02BD63;
+    font-size: 15px;
+    height: 2rem;
+    width: 120px;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    background-color: $primary-background;
+    float: right;
+    margin: 30px 0px;
+}

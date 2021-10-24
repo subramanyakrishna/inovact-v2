@@ -1,0 +1,136 @@
+.post-dedicated{
+    &-page{
+        margin: 0 auto;
+        margin-top: 5rem;
+        // max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        &-post{
+            width: 65%;
+            display: flex;
+            justify-content: center;
+            &-container{
+                width: 70%;
+                @include respond(md){
+                    width: 90%;
+                }
+            }
+            @include respond(sm){
+                width: 100%;
+            }
+        }
+        &-comments{
+            display: flex;
+            justify-content: flex-end;
+            
+            width: 35%;
+            @include respond(md){
+                width: 45%;
+            }
+            &-container{
+                display: flex;
+                flex-direction: column;
+                row-gap: 30px;
+                margin: 0 auto;
+                margin-top: 0.5rem;
+                border-radius: 10px;
+                background-color: white;
+                padding: 30px;
+            }
+            @include respond(sm){
+                display: none;
+            }
+        }
+    }
+    &-liked-by{
+        display: flex;
+        padding: 1rem 0.5rem;
+        border-radius: 20px;
+        width: 100%;
+        background-color: white;
+        border-bottom: 1px solid rgb(200, 200, 200);
+        &-img-container{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        p{
+            margin: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 0px 20px;
+        }
+        &-container{
+            // width: 40%;
+            display: flex;
+            align-items: center;
+            // justify-content: space-around;
+        }
+    }
+    &-team-members{
+        display: flex;
+        padding: 20px 10px;
+        margin: 5px 0px;
+        justify-content: space-between;
+        border-radius: 20px;
+        align-items: center;
+        background-color: white;
+        &-page{
+            &-top{
+                display: flex;
+                justify-content: space-between;
+            }
+            &-title{
+                font-weight: 600;
+                border-bottom: 2px solid $color-secondary-blue;
+            }
+            &-status{
+                display: flex;
+                column-gap: 10px;
+                font-weight: 600;
+            }
+        }
+        &-user{
+            width: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &-img-container{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            &-name{
+                margin: 0px;
+                font-weight: 600;
+                padding-left: 10px;
+            }
+            @include respond(md){
+                width: auto;
+            }
+        }
+        &-btn{
+            background-color: white;
+            border: none;
+            font-weight: 600;
+            color: gray;
+        }
+        &-role{
+            margin: 0;
+            font-weight: 600;
+            padding-right: 20px;
+        }
+    }
+}

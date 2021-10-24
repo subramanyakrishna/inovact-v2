@@ -1,0 +1,96 @@
+.role-selection{
+    padding: 2rem 8rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align:left;
+    align-items: center;
+    @include respond(md) {
+        padding: 2rem 4rem;
+        text-align: center;
+    }
+    @include respond(sm) {
+        padding:4rem 0rem;
+    }
+    @include respond(xs) {
+     padding: 1rem;
+    }
+    &__text{
+        align-self: flex-start;
+         .heading-secondary{
+             display: block;
+             text-align: left;
+        @include respond(lg){
+            text-align: center;
+        }
+        
+    }
+    & p{
+        margin-bottom:0;
+    }
+    @include respond(lg){
+        align-self: center;
+    }
+    }
+    &__form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+    &__cards {
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include respond(md) {
+            margin: 2rem 1rem;
+           
+        }
+       
+        &__col {
+           
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            @include respond(md) {
+                margin-bottom: 1rem;
+            }
+        }
+        &__item {
+            margin: 0 ;
+            padding: 2rem 2rem 0.5rem;
+            text-align: center;
+            float: left;
+            border: 2.61728px solid #bdbdbd;
+            box-sizing: border-box;
+            border-radius: 8.72428px;
+            &--active{
+                border: 2px solid $color-primary-green;
+            }
+            @include respond(md) {
+                padding: 1rem;
+                width: 9rem;
+            }
+            @include respond(xs) {
+                padding: 0.5rem;
+                width: 8rem;
+            }
+            & img {
+                margin-left: 0.5rem;
+                width: 80px;
+                height:80px;
+                padding:0.1rem;
+              
+                @include respond(xs) {
+                  
+                    width: 40px;
+                    height:40px;
+                 }
+            }
+
+          
+        }
+    }
+}
+}

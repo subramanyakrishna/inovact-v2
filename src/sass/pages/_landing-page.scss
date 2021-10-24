@@ -1,0 +1,70 @@
+.landing-page {
+    &__hero {
+        height: 100vh;
+        background-image: linear-gradient(
+                rgba($color-primary-blue, 0.72),
+                rgba($color-primary-blue, 0.72)
+            ),
+            url('images/landing-section-1/hero-bg.png');
+        background-position: center;
+        background-size: cover;
+
+        &__text-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            text-align: center;
+            max-width: 1076px;
+            width: 100%;
+            padding: 1rem;
+
+            &__main {
+                text-transform: uppercase;
+                color: rgba($color-primary-green, 0.6);
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            &__sub {
+                color: $color-white;
+                font-size: 2.75rem;
+            }
+
+            &__button {
+                margin-top: 2rem;
+                &__item {
+                    text-align: center;
+                    border: 1px solid $color-primary-green;
+                    background-color: rgba($color-primary-green, 0.6);
+                    color: $color-white;
+                    padding: 0.5rem 2rem;
+                    border-radius: 8px;
+                    font-size: 1.2rem;
+                    width: 10rem;
+
+                    &--login {
+                        padding: 0.5rem 2.5rem;
+                    }
+
+                    &:hover {
+                        background-color: $color-primary-green;
+                        color: $color-white;
+                        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+                    }
+
+                    &:first-child {
+                        margin-right: 2rem;
+                    }
+                }
+            }
+        }
+
+        &__down-arrows {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

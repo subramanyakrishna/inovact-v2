@@ -1,0 +1,11 @@
+.section-footer {
+    background-color: $color-primary-grey;
+    text-align: center;
+    padding: 1rem;
+
+    & p {
+        font-size: 20px;
+        color: $color-primary-blue;
+        margin: 0;
+    }
+}
