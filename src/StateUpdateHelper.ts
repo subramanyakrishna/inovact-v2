@@ -386,85 +386,85 @@ const handleAllIdeas = (name: any, value: any) => {
     console.log(store.getState())
 }
 
-const handleOtherUserInfoChange = (name: any, value: any)=>{
-    switch(name){
-        case "other-user-update": 
+const handleOtherUserInfoChange = (name: any, value: any) => {
+    switch (name) {
+        case 'other-user-update':
             store.dispatch({
                 type: otherUserInfoConstants.OTHER_USER_UPDATE_INFO,
                 payload: value,
-            });
-            break;
-        case "clear-other-user":
+            })
+            break
+        case 'clear-other-user':
             store.dispatch({
                 type: otherUserInfoConstants.OTHER_USER_CLEAR_INFO,
-            });    
+            })
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 
-const handleAllUserIdeas = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-ideas":
+const handleAllUserIdeas = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-ideas':
             store.dispatch({
                 type: allUserIdeaConstants.UPDATE_USER_IDEAS,
                 payload: value,
-            });
-            break;
-        case "clear-all-user-ideas":
+            })
+            break
+        case 'clear-all-user-ideas':
             store.dispatch({
                 type: allUserIdeaConstants.CLEAR_USER_IDEAS,
             })
-            break;
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllUserProject = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-projects":
+const handleAllUserProject = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-projects':
             store.dispatch({
                 type: allUserProjectConstants.UPDATE_USER_PROJECTS,
                 payload: value,
-            });
-            break;
-        case "clear-all-user-projects":
+            })
+            break
+        case 'clear-all-user-projects':
             store.dispatch({
                 type: allUserProjectConstants.CLEAR_USER_PROJECTS,
             })
-            break;
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllThoughts = (name: any,value: any )=>{
-    switch(name){
-        case "all-thoughts":
+const handleAllThoughts = (name: any, value: any) => {
+    switch (name) {
+        case 'all-thoughts':
             store.dispatch({
                 type: allThoughtConstants.THOUGHTS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "clear-all-thoughts":
+            })
+            break
+        case 'clear-all-thoughts':
             store.dispatch({
                 type: allThoughtConstants.THOUGHT_CLEAR_ALL,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllUserThoughts = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-thoughts":
+const handleAllUserThoughts = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-thoughts':
             store.dispatch({
                 type: allUserThoughtsConstants.USER_THOUGHTS_UPDATE,
                 payload: value,
-            });
-            break;
-        case "all-user-thoughts-clear":
+            })
+            break
+        case 'all-user-thoughts-clear':
             store.dispatch({
                 type: allUserThoughtsConstants.USER_THOUGHTS_CLEAR,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 export {
     handleUserCredsChange,
@@ -479,5 +479,5 @@ export {
     handleAllUserIdeas,
     handleAllUserProject,
     handleAllThoughts,
-    handleAllUserThoughts
+    handleAllUserThoughts,
 }

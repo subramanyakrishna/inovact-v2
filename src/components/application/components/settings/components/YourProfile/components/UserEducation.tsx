@@ -36,7 +36,9 @@ function UserEducation({ handleUserInfoChange, userInfo }: any) {
                         <input
                             type="text"
                             placeholder="Eg .   2011"
-                            value={userInfo['graduation_year']}
+                            value={new Date(userInfo['graduation_year'])
+                                .getFullYear()
+                                .toString()}
                             onChange={(e) =>
                                 handleUserInfoChange(
                                     'graduation-year',

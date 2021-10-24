@@ -28,15 +28,23 @@ const ForgotPassword = () => {
             cognitoUserClass.forgotPassword(username)
         }
     }
-    const handleChangePassword = () => {
+    const handleChangePassword = async () => {
         if (verificationCode === '') {
             setError('Please enter varification code')
             setShowError(true)
         } else {
             setShowVerificationCode(false)
             setShowForgotPasswordSubmit(false)
-            cognitoUserClass.confirmPassword(verificationCode, password)
-            history.push('/login')
+            const res = await cognitoUserClass.confirmPassword(
+                verificationCode,
+                password
+            )
+            if (res == 'SUCCESS') {
+                setError('SUCCESS')
+                setShowError(true)
+            } else {
+                setError('Please enter valid verification code')
+            }
         }
     }
     return (
@@ -92,7 +100,17 @@ const ForgotPassword = () => {
                             </>
                         )}
                         {showError && (
-                            <span style={{ color: 'red' }}>{error}</span>
+                            <span
+                                style={{
+                                    color: `${
+                                        error == 'SUCCESS' ? 'green' : 'red'
+                                    }`,
+                                }}
+                            >
+                                {error == 'SUCCESS'
+                                    ? 'Password change Successfull'
+                                    : error}
+                            </span>
                         )}
                     </div>
                     <button
@@ -100,12 +118,16 @@ const ForgotPassword = () => {
                         onClick={() =>
                             showForgotPasswordSubmit
                                 ? handleChangePassword()
+                                : error == 'SUCCESS'
+                                ? history.push('/login')
                                 : handleSendVerificationCode()
                         }
                     >
                         {showForgotPasswordSubmit
-                            ? 'Change Password'
-                            : 'Send Verification Code'}
+                            ? 'Change password'
+                            : error == 'SUCCESS'
+                            ? 'Go to Login Page'
+                            : 'Send verification code'}
                     </button>
                 </div>
             </div>

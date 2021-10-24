@@ -28,8 +28,6 @@ const initialState = {
     ideas: [],
     thoughts: [],
     is_public: false,
-    blocked_users: [0, 1, 2, 3, 4, 5],
-    restricted_users: [0, 1, 2, 3, 4, 5], //added for the use of teamsettings page
     teams: [],
     team_with_admin_access: [4, 5, 6, 7, 8],
     team_public_visibility: true,

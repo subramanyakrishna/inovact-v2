@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import User from './User/User'
 import Toggle from '../Toggle/Toggle'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    updateBlockedUser,
-    updateRestrictedUser,
-} from 'redux/actions/blockedRestrictedAccounts.action'
+// import {
+//     updateBlockedUser,
+//     updateRestrictedUser,
+// } from 'redux/actions/blockedRestrictedAccounts.action'
 import cognitoUserClass from 'forgotPassword/forgotPassword'
 
 const PrivacySettings: React.FC<any> = ({
@@ -19,10 +18,13 @@ const PrivacySettings: React.FC<any> = ({
     const [verificationCode, setVerificationCode] = useState<string>('')
     const [showVerificationInput, setShowVerificationInput] =
         useState<boolean>(false)
+    const [verificationCodeMsg, setVerificationCodeMessage] = useState('')
     const [isPswdNotMathching, setIsPswdNotMathching] = useState<boolean>(false)
     const [errorMsg, setErrorMsg] = useState('')
     const [showSubmitVerificationCode, setShowSubmitVerificationCode] =
         useState(false)
+    const [showVerificationCodeMessage, setshowVerificationCodeMessage] =
+        useState<boolean>(false)
     const dispath = useDispatch()
     const userInfo = useSelector((state: any) => state.userInfo)
 
@@ -34,55 +36,53 @@ const PrivacySettings: React.FC<any> = ({
     )
 
     useEffect(() => {
-        const blockedUsersIds = userInfo.blocked_users
-        if (blockedUsersIds.length) {
-            const blocked_users_data = blockedUsersIds.map((_id: any) => {
-                //call the user Endpoint using id
-                const user = {
-                    id: _id,
-                    first_name: 'John',
-                    last_name: 'dev' + Math.random().toString().substring(2, 4),
-                    user_name: 'john_dev',
-                    avatar: 'https://bit.ly/3EKg3dQ',
-                    designation:
-                        'ReactJs Developer' +
-                        Math.random().toString().substring(2, 4),
-                }
-
-                return {
-                    id: _id,
-                    name: user.first_name + ' ' + user.last_name,
-                    avatar: user.avatar,
-                    designation: user.designation,
-                }
-            })
-            dispath(updateBlockedUser(blocked_users_data))
-        }
-        const restrictedUsersIds = userInfo.restricted_users
-        if (restrictedUsersIds.length) {
-            const restricted_users_data = restrictedUsersIds.map((_id: any) => {
-                //call the user Endpoint using id
-                const user = {
-                    id: _id,
-                    first_name: 'John',
-                    last_name: 'dev' + Math.random().toString().substring(2, 4),
-                    user_name: 'john_dev',
-                    avatar: 'https://bit.ly/3EKg3dQ',
-                    designation:
-                        'ReactJs Developer' +
-                        Math.random().toString().substring(2, 4),
-                }
-
-                return {
-                    id: _id,
-                    name: user.first_name + ' ' + user.last_name,
-                    avatar: user.avatar,
-                    designation: user.designation,
-                    spanAfterConnection: '10 min', //ask how to do this
-                }
-            })
-            dispath(updateRestrictedUser(restricted_users_data))
-        }
+        // const blockedUsersIds = userInfo.blocked_users
+        // if (blockedUsersIds.length) {
+        //     const blocked_users_data = blockedUsersIds.map((_id: any) => {
+        //         //call the user Endpoint using id
+        //         const user = {
+        //             id: _id,
+        //             first_name: 'John',
+        //             last_name: 'dev' + Math.random().toString().substring(2, 4),
+        //             user_name: 'john_dev',
+        //             avatar: 'https://bit.ly/3EKg3dQ',
+        //             designation:
+        //                 'ReactJs Developer' +
+        //                 Math.random().toString().substring(2, 4),
+        //         }
+        //         return {
+        //             id: _id,
+        //             name: user.first_name + ' ' + user.last_name,
+        //             avatar: user.avatar,
+        //             designation: user.designation,
+        //         }
+        //     })
+        //     dispath(updateBlockedUser(blocked_users_data))
+        // }
+        // const restrictedUsersIds = userInfo.restricted_users
+        // if (restrictedUsersIds.length) {
+        //     const restricted_users_data = restrictedUsersIds.map((_id: any) => {
+        //         //call the user Endpoint using id
+        //         const user = {
+        //             id: _id,
+        //             first_name: 'John',
+        //             last_name: 'dev' + Math.random().toString().substring(2, 4),
+        //             user_name: 'john_dev',
+        //             avatar: 'https://bit.ly/3EKg3dQ',
+        //             designation:
+        //                 'ReactJs Developer' +
+        //                 Math.random().toString().substring(2, 4),
+        //         }
+        //         return {
+        //             id: _id,
+        //             name: user.first_name + ' ' + user.last_name,
+        //             avatar: user.avatar,
+        //             designation: user.designation,
+        //             spanAfterConnection: '10 min', //ask how to do this
+        //         }
+        //     })
+        //     dispath(updateRestrictedUser(restricted_users_data))
+        // }
     }, [])
 
     const handleForgotPassWord = () => {
@@ -100,46 +100,56 @@ const PrivacySettings: React.FC<any> = ({
         }
     }
 
-    const handleblockedUsersUnBlock = (idOfUnblockedAccount: any) => {
-        handleUserInfoChange(
-            'blocked_users',
-            userInfo.blocked_users.filter(
-                (id: any) => id !== idOfUnblockedAccount
-            )
-        )
-        dispath(
-            updateBlockedUser(
-                blockedUsers.filter(
-                    (user: any) => user.id !== idOfUnblockedAccount
-                )
-            )
-        )
-    }
-    const handlerestrictedusersUnRestrict = (
-        idOfUnRestrictedAccount: string
-    ) => {
-        handleUserInfoChange(
-            'restricted_users',
-            userInfo.restricted_users.filter(
-                (id: any) => id !== idOfUnRestrictedAccount
-            )
-        )
-        dispath(
-            updateRestrictedUser(
-                restrictedUsers.filter(
-                    (user: any) => user.id !== idOfUnRestrictedAccount
-                )
-            )
-        )
-    }
+    // const handleblockedUsersUnBlock = (idOfUnblockedAccount: any) => {
+    //     handleUserInfoChange(
+    //         'blocked_users',
+    //         userInfo.blocked_users.filter(
+    //             (id: any) => id !== idOfUnblockedAccount
+    //         )
+    //     )
+    //     dispath(
+    //         updateBlockedUser(
+    //             blockedUsers.filter(
+    //                 (user: any) => user.id !== idOfUnblockedAccount
+    //             )
+    //         )
+    //     )
+    // }
+    // const handlerestrictedusersUnRestrict = (
+    //     idOfUnRestrictedAccount: string
+    // ) => {
+    //     handleUserInfoChange(
+    //         'restricted_users',
+    //         userInfo.restricted_users.filter(
+    //             (id: any) => id !== idOfUnRestrictedAccount
+    //         )
+    //     )
+    //     dispath(
+    //         updateRestrictedUser(
+    //             restrictedUsers.filter(
+    //                 (user: any) => user.id !== idOfUnRestrictedAccount
+    //             )
+    //         )
+    //     )
+    // }
     const handleMakeProfilePublic = (checked: any) => {
         handleUserInfoChange('is_public', checked)
     }
-    const handleSubmitVerificationCode = () => {
+    const handleSubmitVerificationCode = async () => {
         if (verificationCode !== '') {
             setShowSubmitVerificationCode(false)
             setShowVerificationInput(false)
-            cognitoUserClass.confirmPassword(verificationCode, newPswd)
+            const res = await cognitoUserClass.confirmPassword(
+                verificationCode,
+                newPswd
+            )
+            console.log('res res', res)
+            if (res != 'SUCCESS') {
+                setVerificationCodeMessage('NOT_MATCHING')
+            } else {
+                setVerificationCodeMessage('SUCCESS')
+            }
+            setshowVerificationCodeMessage(true)
         }
     }
     return (
@@ -167,6 +177,7 @@ const PrivacySettings: React.FC<any> = ({
                                 onInput={() => {
                                     setIsPswdNotMathching(false)
                                     setShowVerificationInput(false)
+                                    setshowVerificationCodeMessage(false)
                                 }}
                             />
                         </div>
@@ -181,12 +192,14 @@ const PrivacySettings: React.FC<any> = ({
                                 onInput={() => {
                                     setIsPswdNotMathching(false)
                                     setShowVerificationInput(false)
+                                    setshowVerificationCodeMessage(false)
                                 }}
                             />
                             {isPswdNotMathching && (
                                 <span style={{ color: 'red' }}>{errorMsg}</span>
                             )}
                         </div>
+
                         {showVerificationInput ? (
                             <div
                                 className="privacy-settings-pswd-inputs-new-ori"
@@ -203,9 +216,27 @@ const PrivacySettings: React.FC<any> = ({
                                     onChange={(e) =>
                                         setVerificationCode(e.target.value)
                                     }
+                                    onInput={() => {
+                                        setshowVerificationCodeMessage(false)
+                                    }}
                                 />
                             </div>
                         ) : undefined}
+                        {showVerificationCodeMessage && (
+                            <span
+                                style={{
+                                    color: `${
+                                        verificationCodeMsg == 'SUCCESS'
+                                            ? 'green'
+                                            : 'red'
+                                    }`,
+                                }}
+                            >
+                                {verificationCodeMsg == 'SUCCESS'
+                                    ? 'Password change successfull'
+                                    : 'Enter valid verification code'}
+                            </span>
+                        )}
                     </div>
                 </div>
                 <div className="privacy-settings-pswd-change">
@@ -229,12 +260,12 @@ const PrivacySettings: React.FC<any> = ({
                     >
                         {showSubmitVerificationCode
                             ? 'Submit Verification code'
-                            : 'Forgot Password'}
+                            : 'Change Password'}
                     </div>
                 </div>
             </div>
             <div className={'privacy-settings-mid'}>
-                <div className={'privacy-settings-mid-block'}>
+                {/* <div className={'privacy-settings-mid-block'}>
                     <div
                         className={
                             'paragraph-primary text-style--bold text-color--black'
@@ -273,7 +304,7 @@ const PrivacySettings: React.FC<any> = ({
                             />
                         ))}
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className={'privacy-settings-end'}>
                 <div className={'privacy-settings-end-first'}>

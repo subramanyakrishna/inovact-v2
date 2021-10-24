@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
+import makeApiCall from '../../makeApiCall'
 import Toggle from '../Toggle/Toggle'
+
 interface teamSettings {
     deleteTeam(id: number): void
     handleUserInfoChange(name: string, value: any): void
@@ -17,6 +19,14 @@ const TeamSettings: React.FC<teamSettings> = ({
     )
     const dispatch = useDispatch()
     useEffect(() => {
+        let teamsWhereCurrentUserIsMember
+        ;(async () => {
+            teamsWhereCurrentUserIsMember = await makeApiCall('get', 'team')
+            console.log(teamsWhereCurrentUserIsMember)
+
+            teamsWhereCurrentUserIsMember =
+                teamsWhereCurrentUserIsMember.data.data.team
+        })()
         const team_with_admin_access_data = team_with_admin_access_ids.map(
             (team_id: number) => {
                 //call the teams end point and get the team details which is name
