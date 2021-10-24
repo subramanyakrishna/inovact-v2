@@ -6,7 +6,7 @@ const TeamInfo =(props:any)=>{
     <>
     <div className="teams-info">
       <div className="teams-info__details">
-        <p>5 out of 15 members</p>
+        <p>Total members {props.team.team_members.length} members</p>
         <div  className='teams-info__details--dropdown text-color--green text-style--bold' onClick={props.viewInviteMember}>
              Invite Team Members 
         </div>

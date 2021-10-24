@@ -2,6 +2,20 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
+<<<<<<< HEAD
+=======
+import useRequests from 'useRequest/useRequest'
+
+import { of, fromEvent, animationFrameScheduler } from 'rxjs'
+import {
+    distinctUntilChanged,
+    filter,
+    map,
+    pairwise,
+    switchMap,
+    throttleTime,
+} from 'rxjs/operators'
+>>>>>>> 0cdea6596e6a6ffa2fb4cd7aee00014b03511e9d
 import Spinner from 'components/application/Spinner'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -90,6 +104,7 @@ function Feed() {
                     })
                 console.log(ptk)
                 setPeopleToKnow([...ptk.slice(0, 4)])
+               console.log("hello token", localStorage.getItem('user'))
             },
         }
     )

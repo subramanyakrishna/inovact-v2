@@ -10,23 +10,23 @@ import {
 import {teamData }from 'components/application/components/teams/teamData';
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeam';
 interface AppProps {
-    teams:teamData[],
+    allTeams:teamData[],
     handleVerticalClick :any,
     idx:number
    
 }
-const UserTeamsList =({teams,handleVerticalClick,idx}:AppProps)=>{
+const UserTeamsList =({allTeams,handleVerticalClick,idx}:AppProps)=>{
     return(
         <div className="user-team">
             <div className="user-title">
             <h6 className="text-style--bold text-align--left text-size--big" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
             </div>
-          { teams.map(({teamname,avatar,id},key)=>{
+          { allTeams.map((team :any,key:number)=>{
              return(
                 <MDBTabs className='flex-column text-center'>
                 <MDBTabsItem>
-                  <MDBTabsLink onClick={() => handleVerticalClick(id)} active={idx === id} >
-                      <UserTeam teamname={teamname} avatar={avatar} />
+                  <MDBTabsLink onClick={() => handleVerticalClick(team.id)} active={idx === team.id} >
+                      <UserTeam teamname={team.name}  avatar={team.avatar} />
                   </MDBTabsLink>
                 </MDBTabsItem>
               </MDBTabs>
