@@ -14,6 +14,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
+
 import { of, fromEvent, animationFrameScheduler } from 'rxjs'
 import {
     distinctUntilChanged,
@@ -97,6 +98,7 @@ function Feed() {
                     return ele.user_id!==userInfo.id});
                 console.log(ptk);
                 setPeopleToKnow([...ptk.slice(0, 4)])
+               console.log("hello token", localStorage.getItem('user'))
             },
         }
     )

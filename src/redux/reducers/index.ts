@@ -14,8 +14,6 @@ import { allIdeasReducer } from './allIdeasReducer'
 import { otherUserInfoReducer } from './otherUserInfoReducer'
 import { allUserProjectReducer } from './allUserProjectReducer'
 import { allUserIdeaReducer } from './allUserIdeaReducer'
-// import {updateTeamInfoReducer} from './updateTeamInfoReducer'
-// import { updateTeamInfoReducer } from './updateTeamInfoReducer'
 import TeamReducer from './teams'
 import { allThoughtsReducer } from './allThoughtsReducer'
 import { allUserThoughtsReducer } from './allUserThoughtsReducer'
@@ -38,8 +36,6 @@ const rootReducer = combineReducers({
     userAllProjects: allUserProjectReducer,
     userAllIdeas: allUserIdeaReducer,
     userAllThoughts: allUserThoughtsReducer,
-    // teamInfo: updateTeamInfoReducer,
-    // addTeam: updateTeamInfoReducer,
     teams: TeamReducer,
 })
 

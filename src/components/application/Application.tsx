@@ -95,8 +95,7 @@ function Application() {
     return (
         <div className="application">
             <Router>
-                {state.authentication.userAuthenticated &&
-                    state.authentication.user.profile_complete && <NavBar />}
+               <NavBar />
                 <Switch>
                     <PrivateRoute
                         path={`${path}/feed`}

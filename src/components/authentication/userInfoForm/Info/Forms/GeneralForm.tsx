@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import {Field } from 'formik';
-import { useFormik } from 'formik';
-
-
 
 const yearOptions = [
   { value: "1960", label: "1960" },

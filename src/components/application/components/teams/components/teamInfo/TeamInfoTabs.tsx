@@ -65,7 +65,7 @@ const TeamInfo =(props:any)=>{
             <DocumentsTab team={props.team} viewUploadDocument={props.viewUploadDocument} />
         </MDBTabsPane>
         <MDBTabsPane show={basicActive === 'requests'}>
-            <RequestsTab requests={props.team.requests} /> 
+            <RequestsTab requests={props.team.team_requests} /> 
         </MDBTabsPane>
       </MDBTabsContent>
     </>

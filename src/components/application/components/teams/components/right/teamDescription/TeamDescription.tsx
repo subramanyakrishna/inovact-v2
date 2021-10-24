@@ -96,7 +96,7 @@ const TeamDescription = ({ team }: Props) => {
                             className="text-style--bold text-color--green  text-align--left text-size--big sm-small"
                             style={{ marginLeft: '1rem' }}
                         >
-                            9{' '}
+                            {team.projects.length}{' '}
                         </span>{' '}
                     </span>
 
