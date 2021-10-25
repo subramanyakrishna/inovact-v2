@@ -63,3 +63,19 @@
         color: black;
     }
 }
+
+.edit-project-image-container{
+    button{
+        position: relative;
+        transform: translate(500%,0%);
+        width: 20px;
+        height: 20px;
+        box-shadow: 0px 0px 5px 2px black;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}

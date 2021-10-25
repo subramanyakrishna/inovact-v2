@@ -4,7 +4,7 @@ const initialState = {
     title: "",
     description: "",
     documents: [],
-    idea_tags: [1,2,3,4],
+    idea_tags: [],
 }
 
 const updateIdeaInfoReducer = (state = initialState, action: any)=>{

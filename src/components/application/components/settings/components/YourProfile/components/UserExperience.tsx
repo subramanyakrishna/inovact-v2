@@ -13,7 +13,7 @@ function UserExperience({ handleUserInfoChange, userInfo }: any) {
                     <input
                         type="text"
                         placeholder="Organisation Name"
-                        value={userInfo['organization']}
+                        defaultValue={userInfo['organization']}
                         onChange={(e) =>
                             handleUserInfoChange('organization', e.target.value)
                         }
@@ -39,12 +39,17 @@ function UserExperience({ handleUserInfoChange, userInfo }: any) {
                         <input
                             type="text"
                             placeholder="Eg .   2011"
-                            value={userInfo['journey_start_date']}
+                            maxLength={4}
+                            defaultValue={new Date(userInfo['journey_start_date']).getFullYear()}
                             onChange={(e) =>
-                                handleUserInfoChange(
+                                {
+                                    if(e.target.value.length<4 || e.target.value.length>4){
+                                        return;
+                                    }
+                                    handleUserInfoChange(
                                     'journey_start_date',
-                                    e.target.value
-                                )
+                                    new Date(e.target.value).toISOString()
+                                )}
                             }
                         />
                     </div>

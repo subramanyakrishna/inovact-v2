@@ -17,6 +17,10 @@ import { allUserIdeaReducer } from './allUserIdeaReducer'
 import TeamReducer from './teams'
 import { allThoughtsReducer } from './allThoughtsReducer'
 import { allUserThoughtsReducer } from './allUserThoughtsReducer'
+import { allTagsReducer } from './allTagsReducer'
+import { allSkillsReducer } from './allSkillsReducer'
+import { allRolesReducer } from './allRolesReducer'
+import { peopleYouMayKnowReducer } from './peopleYouMayKnowReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -37,6 +41,10 @@ const rootReducer = combineReducers({
     userAllIdeas: allUserIdeaReducer,
     userAllThoughts: allUserThoughtsReducer,
     teams: TeamReducer,
-})
+    allTags: allTagsReducer,
+    allSkills: allSkillsReducer,
+    allRoles: allRolesReducer,
+    peopleYouMayKnow: peopleYouMayKnowReducer,
+});
 
 export default rootReducer;

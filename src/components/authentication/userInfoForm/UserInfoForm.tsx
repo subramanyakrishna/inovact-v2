@@ -4,9 +4,9 @@ import CheckoutPage from './Info/CheckoutPage';
 const UserInfoForm = (props: any) => {
     return (
           <div >     
-            <CheckoutPage handleChange={props.handleChange}/>
+            <CheckoutPage/>
           </div>
     );
 }
 
-export default UserInfoForm
+export default UserInfoForm;

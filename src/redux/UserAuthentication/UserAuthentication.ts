@@ -57,8 +57,8 @@ const userAuthentication = async (email: any, password: any, setIsLoading: Funct
                             },
                         })
                         store.dispatch({
-                            type: userInfoConstants.UPDATE_COMPLETE_PROFILE,
-                            data: resp.data.data.user[0],
+                            type: userInfoConstants.UPDATE_WHOLE_PROFILE,
+                            data: resp.data.user[0],
                         })
                         console.log(store.getState())
                     })
