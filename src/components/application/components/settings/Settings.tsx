@@ -15,6 +15,8 @@ import { handleUserInfoChange } from '../../../../StateUpdateHelper'
 import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import makeApiCall from './makeApiCall'
+import cognitoUserClass from 'cognitoUserClass/cognitoUserClass'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -129,13 +131,7 @@ const Settings: React.FC = () => {
         openModal()
         setShowDeleteTeam(true)
     }
-    const sendDeleteTeamRequest = () => {
-        handleUserInfoChange(
-            'team_with_admin_access',
-            team_with_admin_access_ids.filter(
-                (id: number) => id !== selectedTeamToDelete
-            )
-        )
+    const sendDeleteTeamRequest = async () => {
         dispath(
             updateTeamWithAdminAccessAction(
                 team_with_admin_access_data.filter((team: any) => {
@@ -145,11 +141,17 @@ const Settings: React.FC = () => {
         )
         closeModal()
         setSelectedTeamToDelete(-1)
+        const res = await makeApiCall(
+            'delete',
+            `team?team_id=${selectedTeamToDelete}`
+        )
+        console.log(res)
     }
-    const deleteAccount = () => {
+    const deleteAccountClick = () => {
         openModal()
         setShowDeleteAccount(true)
     }
+
     return (
         <div>
             {showOverlay && (
@@ -205,7 +207,6 @@ const Settings: React.FC = () => {
                                     onSelection={onSelection}
                                     options={options}
                                     logOut={logOut}
-                                    deleteAccount={deleteAccount}
                                 />
                             </div>
                         )}
@@ -214,7 +215,7 @@ const Settings: React.FC = () => {
                             <div className={'settings-main-right'}>
                                 {selectedOption === 0 && (
                                     <YourProfile
-                                        deleteAccount={deleteAccount}
+                                        deleteAccountClick={deleteAccountClick}
                                         handleUserInfoChange={
                                             handleUserInfoChange
                                         }

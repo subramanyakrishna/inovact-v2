@@ -7,6 +7,7 @@ class cognitoUserClass {
         UserPoolId: 'ap-south-1_wfLpqbssZ',
         ClientId: '8fiq0u4g3619h8bab6rmlr9k5',
     })
+
     static forgotPassword(userName: string): void {
         console.log(cognitoUserClass.userPool)
         const userData = {
@@ -26,6 +27,7 @@ class cognitoUserClass {
             },
         })
     }
+
     static async confirmPassword(
         verificationCode: string,
         newPassword: string
@@ -66,6 +68,24 @@ class cognitoUserClass {
                 )
                 console.log(e.name)
             })
+    }
+    static deleteUser(userName: string): void {
+        const userData = {
+            Username: userName,
+            Pool: cognitoUserClass.userPool,
+        }
+        cognitoUserClass.cognitouser = new AmazonCognitoIdentity.CognitoUser(
+            userData
+        )
+        console.log(cognitoUserClass.cognitouser)
+        cognitoUserClass.cognitouser.deleteUser((err, data) => {
+            if (err) {
+                console.log(err)
+            }
+            if (data) {
+                console.log(data)
+            }
+        })
     }
 }
 

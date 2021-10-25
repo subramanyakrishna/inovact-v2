@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 //     updateBlockedUser,
 //     updateRestrictedUser,
 // } from 'redux/actions/blockedRestrictedAccounts.action'
-import cognitoUserClass from 'forgotPassword/forgotPassword'
+import cognitoUserClass from 'cognitoUserClass/cognitoUserClass'
 
 const PrivacySettings: React.FC<any> = ({
     handleUserInfoChange,

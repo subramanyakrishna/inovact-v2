@@ -1,5 +1,5 @@
 import SmallSpinner from 'components/application/SmallSpinner'
-import cognitoUserClass from 'forgotPassword/forgotPassword'
+import cognitoUserClass from 'cognitoUserClass/cognitoUserClass'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 

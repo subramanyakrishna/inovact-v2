@@ -7,14 +7,12 @@ interface PropType {
     onSelection(option: number): any
     options: { name: string; main: string; sub: string }[]
     logOut(): any
-    deleteAccount(): any
 }
 const SettingsLeft: React.FC<PropType> = ({
     selected,
     onSelection,
     options,
     logOut,
-    deleteAccount,
 }) => {
     const [expand, setExpand] = useState(false)
     const SIZE_LIMIT: number = 768
@@ -95,7 +93,6 @@ const SettingsLeft: React.FC<PropType> = ({
                         className={
                             'settings-left-expand-deactivate paragraph-secondary text-style--bold'
                         }
-                        onClick={deleteAccount}
                     >
                         Deactivate Account
                     </div>

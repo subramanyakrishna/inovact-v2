@@ -11,7 +11,7 @@ function DeleteAccount(props: any) {
             </button>
             <button
                 className="settings-my-profile-delete-account-deleteBtn"
-                onClick={props.deleteAccount}
+                onClick={props.deleteAccountClick}
             >
                 Delete Account
             </button>

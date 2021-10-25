@@ -37,7 +37,7 @@ function YourProfile(props: any) {
                 userInfo={userInfo}
             />
             <DeleteAccount
-                deleteAccount={props.deleteAccount}
+                deleteAccountClick={props.deleteAccountClick}
                 saveDataToServer={props.saveDataToServer}
             />
         </div>
