@@ -16,7 +16,6 @@ import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAcce
 import axios from 'axios'
 import { useHistory } from 'react-router'
 import makeApiCall from './makeApiCall'
-import cognitoUserClass from 'cognitoUserClass/cognitoUserClass'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -173,7 +172,10 @@ const Settings: React.FC = () => {
                         />
                     )}
                     {showDeleteAccount && (
-                        <DeleteAccountModal closeModal={closeModal} />
+                        <DeleteAccountModal
+                            closeModal={closeModal}
+                            user_name={userInfo.user_name}
+                        />
                     )}
                 </div>
             )}

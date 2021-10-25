@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
+import cognitoUserClass from 'cognitoUserClass/cognitoUserClass'
 
 function DeleteAccountModal(props: any) {
     const [deleteAssurance, setDeleteAssurace] = useState(false)
+    const [email, setEmail] = useState('')
+    const [pswd, setPswd] = useState('')
+
     const viewDeleteOptions = () => {
         setDeleteAssurace(true)
+    }
+
+    const handleDeleteAccount = () => {
+        cognitoUserClass.deleteUser(props.user_name)
+        console.log('handleDeleteAccount')
     }
     return (
         <div className="settings-modal-main">
@@ -45,21 +54,28 @@ function DeleteAccountModal(props: any) {
                                 <input
                                     type="text"
                                     placeholder="Enter your email id."
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <input
                                     type="text"
                                     placeholder="Enter your password."
+                                    onChange={(e) => setPswd(e.target.value)}
                                 />
                             </div>
                             <div className="settings-modal-cover-buttons">
                                 <button
-                                    onClick={() => props.closeModal()}
+                                    onClick={() => {
+                                        handleDeleteAccount()
+                                        props.closeModal()
+                                    }}
                                     className="settings-modal-cover-buttons-signout"
                                 >
                                     Confirm
                                 </button>
                                 <button
-                                    onClick={() => props.closeModal()}
+                                    onClick={() => {
+                                        props.closeModal()
+                                    }}
                                     className="settings-modal-cover-buttons-cancel"
                                 >
                                     Cancel

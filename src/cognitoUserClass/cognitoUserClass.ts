@@ -7,16 +7,29 @@ class cognitoUserClass {
         UserPoolId: 'ap-south-1_wfLpqbssZ',
         ClientId: '8fiq0u4g3619h8bab6rmlr9k5',
     })
+    static userData: {
+        Username: string
+        Pool: AmazonCognitoIdentity.CognitoUserPool
+    }
 
-    static forgotPassword(userName: string): void {
-        console.log(cognitoUserClass.userPool)
-        const userData = {
+    static upDateCognitoUserProperty(userName: string): void {
+        cognitoUserClass.userData = {
             Username: userName,
             Pool: cognitoUserClass.userPool,
         }
         cognitoUserClass.cognitouser = new AmazonCognitoIdentity.CognitoUser(
-            userData
+            cognitoUserClass.userData
         )
+    }
+    static authenticate(userName: string): void {
+        cognitoUserClass.upDateCognitoUserProperty(userName)
+        const authenticationDetails =
+            new AmazonCognitoIdentity.AuthenticationDetails(
+                cognitoUserClass.userData
+            )
+    }
+    static forgotPassword(userName: string): void {
+        cognitoUserClass.upDateCognitoUserProperty(userName)
         console.log(cognitoUserClass.cognitouser)
         cognitoUserClass.cognitouser.forgotPassword({
             onSuccess: (data) => {
@@ -70,21 +83,12 @@ class cognitoUserClass {
             })
     }
     static deleteUser(userName: string): void {
-        const userData = {
-            Username: userName,
-            Pool: cognitoUserClass.userPool,
-        }
-        cognitoUserClass.cognitouser = new AmazonCognitoIdentity.CognitoUser(
-            userData
-        )
-        console.log(cognitoUserClass.cognitouser)
-        cognitoUserClass.cognitouser.deleteUser((err, data) => {
-            if (err) {
-                console.log(err)
-            }
-            if (data) {
-                console.log(data)
-            }
+        cognitoUserClass.upDateCognitoUserProperty(userName)
+
+        cognitoUserClass.cognitouser.deleteUser((err, result) => {
+            console.log('err', err)
+
+            console.log('result', result)
         })
     }
 }
