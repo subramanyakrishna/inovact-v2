@@ -3,7 +3,7 @@ import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
 import SwitchSlider from './SwitchSlider';
 import MemberMentor from './MemberMentor';
-import { handleAddProjectChange } from 'StateUpdateHelper';
+import { handleAddProjectChange, handleUserInfoChange } from 'StateUpdateHelper';
 import { useSelector } from 'react-redux';
 import SearchedPeople from './SearchedPeople';
 import MentionsTag from './MentionsTag';
@@ -64,14 +64,42 @@ function ModalPart2(props: any) {
         handleAddProjectChange("mentions", [...addProject.mentions, mention.id])
     }
     // const [currentMention, setCurrentMention]
+    const userTeams = useSelector((state: any)=>state.teams.teams);
+    const [teamSearched, setTeamSearched] = useState<any[]>([]);
+    const teamMentionInput: any = useRef<HTMLInputElement>();
+    const searchTeam = (e: any)=>{
+        const value = e.target.value;
+        if(value===""){
+            setTeamSearched([]);
+            return;
+        } 
+        setTeamSearched(userTeams.filter((team: any)=>team.name.includes(e.target.value)));
+    }
+    const addTeamId = (id: any, name: any)=>{
+        handleAddProjectChange("team_id",id);
+        teamMentionInput.current.value = name;
+        setTeamSearched([]);
+    }
     const mentionInput: any = useRef();
     return (
         <div className="modal_part_two">
             <div className="modal_part_two-team-worked">
                 <label>Choose the team that worked on the project</label>
-                <input type="text" placeholder="Start typing team name"/>
-                <div>
-                    <div >
+                <div className="modal_part_two-team-worked-input">
+                    <input type="text" placeholder="Start typing team name" onChange={searchTeam} ref={teamMentionInput}/>
+                    <div className="modal_part_two-team-worked-dropdown">
+                        {
+                            teamSearched.map((team: any)=>{
+                                return <span onClick={addTeamId.bind(null,team.id, team.name)}>{team.name}</span>
+                            })
+                        }
+                    </div>
+                </div>
+                <div className="modal_part_two-team-worked-team-members">
+                    <div onClick={(e)=>{
+                        if(isIndividualProject) handleAddProjectChange("team_id",null);
+                        teamMentionInput.current.value = "";
+                    }}>
                         <input type="checkbox" onClick={toggleIsIndividualProject} id="individual"/>
                         <label htmlFor="individual">Individual Project</label>
                     </div>
@@ -82,8 +110,6 @@ function ModalPart2(props: any) {
                             <label htmlFor="team-not-inovact" onClick={toggleTeamNotOnInovact}>Team not on Inovact</label>
                         </div>
                     }
-                    
-                    
                 </div>
             </div>
                     {

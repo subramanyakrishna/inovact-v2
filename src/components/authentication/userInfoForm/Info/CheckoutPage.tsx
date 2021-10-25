@@ -53,11 +53,6 @@ export default function CheckoutPage() {
     setActiveStep(activeStep + 1);
   }
   
-  const updateProfileCompleteStatus = async()=>{
-    store.dispatch({
-      type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
-    });
-  }
   const uploadAllDetails = ()=>{
     const currentUser: any = UserPool.getCurrentUser();
     axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{

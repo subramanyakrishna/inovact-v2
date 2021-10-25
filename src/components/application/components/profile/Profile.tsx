@@ -16,7 +16,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAddProjectChange, handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts } from 'StateUpdateHelper';
+import { handleAddProjectChange, handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts, handleUserInfoChange } from 'StateUpdateHelper';
 import Spinner from 'components/application/Spinner';
 function Profile() {
     // let leftContent, rightContent;
@@ -72,6 +72,14 @@ function Profile() {
                 }))]);
         }   
     });
+    const {doRequest: getUserInfo, errors: userInfoErrors} = useRequests({
+        method: 'get',
+        route: "user",
+        body: null,
+        onSuccess: (data: any)=>{
+            handleUserInfoChange("update_complete_user",data.data.user[0]);
+        }
+    })
     const {doRequest: getUserProjects, errors: projectErrors} = useRequests({
         method: "get",
         route: "user/post",
@@ -247,19 +255,6 @@ function Profile() {
             setShowAbout(true);
         }
     },[]);
-        // document.addEventListener("load",()=>{
-        //     console.log("page loaded");
-        //     if(window.innerWidth>900){
-        //         setShowLeft(true);
-        //         setShowRight(true);
-        //         setShowAbout(false);
-        //     }
-        //     if(window.innerWidth<=900){
-        //         setShowLeft(false);
-        //         setShowRight(true);
-        //         setShowAbout(true);
-        //     }
-        // });
     window.addEventListener("resize",()=>{
             if(window.innerWidth>900){
                 setShowLeft(true);
@@ -286,9 +281,13 @@ function Profile() {
         }
         setIsLoading(true);
         (async()=>{
+            if(userInfo.avatar===""){
+                await getUserInfo();
+            }
             await getUserIdeas();
             await getUserProjects();
             await getUserThoughts();
+            
             setIsLoading(false);
         })();
       },[])

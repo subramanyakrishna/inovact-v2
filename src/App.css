@@ -1825,7 +1825,9 @@ body {
         border: 2px solid #02bd63;
         padding: 0px 5px;
         border-radius: 5px;
-        width: min-content; }
+        width: min-content;
+        font-size: 12px;
+        font-size: 600; }
   .post__text {
     margin: 1rem auto; }
     .post__text__title {
@@ -3219,6 +3221,7 @@ body {
     transform: translate(10px, 35px); }
     .modal_part_one-tags-dropdown span {
       background-color: white;
+      border-bottom: 0.5px solid #b4b4b4;
       padding: 5px 10px; }
       .modal_part_one-tags-dropdown span:hover {
         background-color: #dad6d6; }
@@ -3313,20 +3316,39 @@ body {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem; }
+    .modal_part_two-team-worked-input {
+      display: flex;
+      flex-direction: column;
+      position: relative; }
+    .modal_part_two-team-worked-dropdown {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      box-shadow: 0px 0px 5px 2px #bbbbbb;
+      transform: translate(10px, 35px);
+      z-index: 100; }
+      .modal_part_two-team-worked-dropdown span {
+        padding: 0px 10px;
+        border-bottom: 0.5px solid grey;
+        border-bottom: 0.5px solid #b4b4b4; }
+        .modal_part_two-team-worked-dropdown span:hover {
+          cursor: pointer;
+          background-color: #cccccc; }
     .modal_part_two-team-worked input {
       border-radius: 10px;
       border: 1px solid #b4b4b4;
       margin: 0px 5px 0px 0px; }
-    .modal_part_two-team-worked div {
+    .modal_part_two-team-worked-team-members {
       display: flex;
       align-items: center;
       flex-direction: row;
       justify-content: space-between; }
       @media only screen and (max-width: 36em) {
-        .modal_part_two-team-worked div {
+        .modal_part_two-team-worked-team-members {
           flex-direction: column;
           align-items: flex-start; }
-          .modal_part_two-team-worked div div {
+          .modal_part_two-team-worked-team-members div {
             flex-direction: row;
             align-items: center;
             margin: 10px 0px; } }
@@ -3372,7 +3394,8 @@ body {
       .modal_part_two-mentions-dropdown-ppl {
         display: flex;
         align-items: center;
-        padding: 0px 10px; }
+        padding: 0px 10px;
+        border-bottom: 0.5px solid #b4b4b4; }
         .modal_part_two-mentions-dropdown-ppl:hover {
           background-color: #c7c7c7;
           cursor: pointer; }
