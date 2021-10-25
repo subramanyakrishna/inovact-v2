@@ -1,3 +1,4 @@
+import SmallSpinner from 'components/application/SmallSpinner'
 import cognitoUserClass from 'forgotPassword/forgotPassword'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
@@ -6,46 +7,70 @@ const ForgotPassword = () => {
     const [password, setPassword] = useState<string>('')
     const [rePassword, setRePassword] = useState<string>('')
     const [username, setUsername] = useState<string>('')
-    const [showForgotPasswordSubmit, setShowForgotPasswordSubmit] =
-        useState<boolean>(false)
+    const [showButtonCode, setShowButtonCode] = useState<string>(
+        'SEND_VERIFICATION_CODE'
+    )
+
     const [showVerificationCode, setShowVerificationCode] =
         useState<boolean>(false)
     const [verificationCode, setVerificationCode] = useState<string>('')
-    const [error, setError] = useState<string>('')
-    const [showError, setShowError] = useState<boolean>(false)
+    const [message, setMessage] = useState<string>('')
+    const [showMessage, setShowMessage] = useState<boolean>(false)
+    const [isError, setIsError] = useState<boolean>()
+
     const history = useHistory()
     const handleSendVerificationCode = () => {
         if (password === '' || rePassword === '' || username === '') {
-            setError('please enter all the fields')
-            setShowError(true)
+            setMessage('please enter all the fields')
+            setShowMessage(true)
+            setIsError(true)
         }
         if (password !== rePassword) {
-            setError('passwords not matching')
-            setShowError(true)
+            setMessage('passwords not matching')
+            setShowMessage(true)
+            setIsError(true)
         } else {
             setShowVerificationCode(true)
-            setShowForgotPasswordSubmit(true)
+            setShowButtonCode('SUBMIT_VERIFICATION_CODE')
+            setMessage(
+                'Please submit the verification code sent to your registered mail'
+            )
+            setIsError(false)
+            setShowMessage(true)
             cognitoUserClass.forgotPassword(username)
         }
     }
-    const handleChangePassword = async () => {
+    const handleSubmitVerificationCode = async () => {
         if (verificationCode === '') {
-            setError('Please enter varification code')
-            setShowError(true)
+            setMessage('Please enter varification code')
+            setShowMessage(true)
+            setIsError(true)
         } else {
-            setShowVerificationCode(false)
-            setShowForgotPasswordSubmit(false)
+            setShowButtonCode('LOADING')
             const res = await cognitoUserClass.confirmPassword(
                 verificationCode,
                 password
             )
             if (res == 'SUCCESS') {
-                setError('SUCCESS')
-                setShowError(true)
+                setMessage('Password change successful')
+                setIsError(false)
+                setShowMessage(true)
+                setShowButtonCode('GO_TO_LOGIN')
+                setShowVerificationCode(false)
             } else {
-                setError('Please enter valid verification code')
+                setShowButtonCode('SUBMIT_VERIFICATION_CODE')
+                setMessage('Please enter valid verification code')
+                setIsError(true)
+                setShowMessage(true)
             }
         }
+    }
+    const handleButtonClick = () => {
+        if (showButtonCode == 'SEND_VERIFICATION_CODE')
+            handleSendVerificationCode()
+        if (showButtonCode == 'SUBMIT_VERIFICATION_CODE')
+            handleSubmitVerificationCode()
+        if (showButtonCode == 'GO_TO_LOGIN') history.push('/login')
     }
     return (
         <div className="user-info">
@@ -65,7 +90,7 @@ const ForgotPassword = () => {
                         <input
                             id="username"
                             className="input-component"
-                            onInput={() => setShowError(false)}
+                            onInput={() => setShowMessage(false)}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                         <label htmlFor="password">New Password </label>
@@ -74,7 +99,7 @@ const ForgotPassword = () => {
                             className="input-component"
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
-                            onInput={() => setShowError(false)}
+                            onInput={() => setShowMessage(false)}
                         />
                         <label htmlFor="repassword">Confirm Password </label>
                         <input
@@ -82,7 +107,7 @@ const ForgotPassword = () => {
                             className="input-component"
                             type="password"
                             onChange={(e) => setRePassword(e.target.value)}
-                            onInput={() => setShowError(false)}
+                            onInput={() => setShowMessage(false)}
                         />
                         {showVerificationCode && (
                             <>
@@ -95,39 +120,30 @@ const ForgotPassword = () => {
                                     onChange={(e) =>
                                         setVerificationCode(e.target.value)
                                     }
-                                    onInput={() => setShowError(false)}
+                                    onInput={() => setShowMessage(false)}
                                 />
                             </>
                         )}
-                        {showError && (
+                        {showMessage && (
                             <span
                                 style={{
-                                    color: `${
-                                        error == 'SUCCESS' ? 'green' : 'red'
-                                    }`,
+                                    color: `${isError ? 'red' : 'green'}`,
                                 }}
                             >
-                                {error == 'SUCCESS'
-                                    ? 'Password change Successfull'
-                                    : error}
+                                {message}
                             </span>
                         )}
                     </div>
                     <button
                         className="button--green"
-                        onClick={() =>
-                            showForgotPasswordSubmit
-                                ? handleChangePassword()
-                                : error == 'SUCCESS'
-                                ? history.push('/login')
-                                : handleSendVerificationCode()
-                        }
+                        onClick={() => handleButtonClick()}
                     >
-                        {showForgotPasswordSubmit
-                            ? 'Change password'
-                            : error == 'SUCCESS'
-                            ? 'Go to Login Page'
-                            : 'Send verification code'}
+                        {showButtonCode == 'SEND_VERIFICATION_CODE' &&
+                            'Send verification code'}
+                        {showButtonCode == 'SUBMIT_VERIFICATION_CODE' &&
+                            'Submit verification code'}
+                        {showButtonCode == 'GO_TO_LOGIN' && 'Go to login'}
+                        {showButtonCode == 'LOADING' && <SmallSpinner />}
                     </button>
                 </div>
             </div>

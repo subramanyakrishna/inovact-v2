@@ -37,6 +37,8 @@ class cognitoUserClass {
                 {
                     onFailure(err) {
                         rejects('NOT_MATCHING')
+                        console.log(err.name)
+                        cognitoUserClass.message = err.name
                     },
                     onSuccess(data) {
                         cognitoUserClass.message = data
@@ -57,7 +59,13 @@ class cognitoUserClass {
                 )
                 return cognitoUserClass.message
             })
-            .catch((e: any) => {})
+            .catch((e: any) => {
+                console.log(
+                    'cognitoUserClass.message out',
+                    cognitoUserClass.message
+                )
+                console.log(e.name)
+            })
     }
 }
 
