@@ -16,7 +16,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts } from 'StateUpdateHelper';
+import { handleAddProjectChange, handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts } from 'StateUpdateHelper';
 import Spinner from 'components/application/Spinner';
 function Profile() {
     // let leftContent, rightContent;
@@ -85,6 +85,7 @@ function Profile() {
                 title: post.title,
                 description: post.description,
                 role:post.user.role,
+                project_status: post.status,
                 type: 1,
                 avatar: post.user.avatar,
                 author: post.user.first_name+ " "+ post.user.last_name,
@@ -314,7 +315,8 @@ function Profile() {
         setShowTeamMembers(false);
         setShowEditBio(false);
         setShowCreateTeam(false);
-        setShowEditProject(false)
+        setShowEditProject(false);
+        handleAddProjectChange("project_clear_data", "");
         document.body.style.overflowY="scroll";
     }
     const blockAccount = ()=>{
@@ -348,6 +350,7 @@ function Profile() {
     }
     const [isLoading, setIsLoading] = useState(false);
     const userInfo = useSelector((state: any)=>state.userInfo);
+    const [projectId, setProjectId] = useState<any>(null);
     return (
         <div>
             {
@@ -380,7 +383,7 @@ function Profile() {
                     }
                     {
                         showEditProject &&
-                        <EditProject closeModal = {closeModal}/>
+                        <EditProject closeModal = {closeModal} id={projectId}/>
                     }
                 </div>
                 
@@ -433,7 +436,7 @@ function Profile() {
                                 showProjects && 
                                 userAllProjects.length!==0 &&
                                 userAllProjects.map((post: any, idx: any) => {
-                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject}/>
+                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers} viewEditProject={viewEditProject} editProject={setProjectId}/>
                                 })
                             }
                             {

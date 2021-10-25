@@ -34,6 +34,11 @@ import {
     handleAllThoughts,
     handleAllUserIdeas,
     handleAllUserProject,
+    handlePeopleYouMayKnow,
+    handleRolesChange,
+    handleSkillsChange,
+    handleTagsChange,
+    handleUserInfoChange,
 } from '../../../../StateUpdateHelper'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -77,7 +82,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
+            handleUserInfoChange("update_complete_user",data.data.user[0]);
         },
     })
     const { doRequest: getPeopleToKnow, errors: getPeopleErrors } = useRequests(
@@ -90,15 +95,16 @@ function Feed() {
                 const ptk: any = data.data.user.map((ele: any) => ({
                     user_id: ele.id,
                     name: ele.first_name,
+                    user_name: ele.user_name,
                     image: ele.avatar,
                     duration: '10 min',
                     designation: ele.designation ? ele.designation : 'Student',
                 })).filter((ele: any)=>{
                     // console.log(ele.user_id, userInfo.id);
                     return ele.user_id!==userInfo.id});
-                console.log(ptk);
-                setPeopleToKnow([...ptk.slice(0, 4)])
-               console.log("hello token", localStorage.getItem('user'))
+                // console.log(ptk);
+                handlePeopleYouMayKnow("pymk_update_all",ptk);
+                setPeopleToKnow([...ptk.slice(0, 4)]);
             },
         }
     )
@@ -123,7 +129,6 @@ function Feed() {
                     return tag.hashtag.name;
                 }),
                 images: post.project_documents.map((image: any)=>{
-                    console.log(image.url);
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
@@ -131,7 +136,6 @@ function Feed() {
                 numLikes: 0,
                 numComments: 0,
                 }))]);
-                // window.location.reload();
         }
     });
     const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
@@ -155,7 +159,7 @@ function Feed() {
                     return tag.hashtag.name;
                 }),
                 images: post.idea_documents.map((image: any)=>{
-                    console.log(image.url);
+                    // console.log(image.url);
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
@@ -165,67 +169,6 @@ function Feed() {
                 }))]);
         }
     });
-    const {doRequest: getUserIdeas, errors: ideaErrors} = useRequests({
-        method: "get",
-        route: "user/idea",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log("This is profile ideas",data);
-            data.data.idea.reverse();
-            handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                type: 2,
-                avatar: post.user.avatar,
-                author:  post.user.first_name+ " "+ post.user.last_name,
-                tags: post.idea_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.idea_documents.map((image: any)=>{
-                    console.log(image.url);
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                created_at: post.created_at,
-                numLikes: 0,
-                numComments: 0,
-                }))]);
-        }   
-    });
-    const {doRequest: getUserProjects, errors: projectErrors} = useRequests({
-        method: "get",
-        route: "user/post",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log("This is profile projects",data);
-            data.data.project.reverse();
-            const finalData = data.data.project.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                type: 1,
-                avatar: post.user.avatar,
-                author: post.user.first_name+ " "+ post.user.last_name,
-                tags: post.project_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.project_documents.map((image: any)=>{
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                created_at: post.created_at,
-                numLikes: 0,
-                numComments: 0,
-                }));
-            console.log("This is the final user projects: ", finalData);    
-            handleAllUserProject("all-user-projects",finalData);
-        }   
-    }); 
     const {doRequest: getAllThoughts, errors: allThoughtsErrors} = useRequests({
         method: "get",
         route: "thoughts",
@@ -250,32 +193,62 @@ function Feed() {
             handleAllThoughts("all-thoughts",finalData);
         }
     });
+    const {doRequest: getAllTags, errors: tagErrors} = useRequests({
+        route: "token/tags",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log(data);
+            handleTagsChange("udpate_all_tags", data.data.hashtag);
+        }
+    })
+    const {doRequest: getAllSkills, errors: skillsErrors} = useRequests({
+        route: "token/skills",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log(data);
+            handleSkillsChange("udpate_all_skills", data.data.skills);
+        }
+    })
+    const {doRequest: getAllRoles, errors: rolesErrors} = useRequests({
+        route: "token/roles",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log(data);
+            handleRolesChange("udpate_all_roles", data.data.roles);
+        }
+    })
     useEffect(()=>{
         (async ()=>{
+            if(userInfo.avatar===""){
+                await userGet();
+            }
             await doRequest();
             await doRequestIdea();
             await getAllThoughts();
             await getPeopleToKnow();
+            await getAllTags();
+            await getAllSkills();
+            await getAllRoles();
             // await getUserIdeas();
             // await getUserProjects();
+            if(errors || errorsIdea || getPeopleErrors || userErrors){
+                console.log(errors);
+                console.log(errorsIdea);
+                console.log(getPeopleErrors);
+                console.log(userErrors);
+                history.push("/login");
+            }
         })();
-        if(errors==="Network Error" || errorsIdea==="Network Error" || projectErrors==="Network Error"||getPeopleErrors==="Network Error" || userErrors==="Network Error"){
-            console.log(errors);
-            console.log(errorsIdea);
-            console.log(projectErrors);
-            console.log(getPeopleErrors);
-            console.log(userErrors);
-            history.push("/app/login");
-        }
-        // if(!(userInfo.profile_complete)){
-        //     history.push("/userinfo");
-        // }
+        console.log("The userProfile status: ", userInfo.profile_complete);
     }, [])
-    // useEffect(() => {
-    //     if (!userInfo.profile_complete) {
-    //         history.push('/userinfo')
-    //     }
-    // })
+    useEffect(() => {
+        if (!userInfo.profile_complete) {
+            history.push('/app/userinfo')
+        }
+    },[])
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)

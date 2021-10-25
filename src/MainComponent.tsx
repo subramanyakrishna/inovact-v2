@@ -34,17 +34,6 @@ function MainComponent() {
                 <Switch>
                     <Route path="/" exact component={LandingPage} />
                     <Route
-                        path="/userinfo"
-                        exact
-                        render={() => (
-                            <CheckoutPage
-                                handleChange={handleUserInfoChange}
-                                userCreds={userCreds}
-                                userInfo={state.userInfo}
-                            />
-                        )}
-                    />
-                    <Route
                         path="/signup"
                         exact
                         render={() => (

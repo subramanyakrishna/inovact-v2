@@ -99,7 +99,7 @@ function Teams() {
     const allTeams = useSelector((state: any) => state.teams.teams)
    
     const idc=parseInt(allTeams[0].id);
-    const [verticalActive, setVerticalActive] = useState(idc);
+    const [verticalActive, setVerticalActive] = useState(idc?idc:1);
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);
     const [showMakeAdmin, setShowMakeAdmin] = useState(false);

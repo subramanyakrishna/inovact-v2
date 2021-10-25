@@ -30,14 +30,23 @@ function ModalContent() {
         setAllRolesNeeded([...allRolesNeeded, {role: role, skillNeeded: tags}]);
     }  
     const handleCurrentTag = (e: any)=>{
-        setCurrentTag(e.target.value);
-    }
-    const addTag = ()=>{
-        setCurrentTag("");
-        if(!(currentTag==="") && !allIdeaTags.includes(currentTag)){
-            setAllIdeaTags([...allIdeaTags, currentTag]);
-            handleAddIdeaChange("idea_tags",[...addIdea.idea_tags, currentTag]);
+        // setCurrentTag(e.target.value);
+        const value = e.target.value;
+        if(value===""){
+            setSearchedTags([]);
+            setCurrentTag(value);
+        }else{
+            setSearchedTags(allTags.filter((tag: any)=>tag.name.includes(value)).slice(0,4));
+            setCurrentTag(value);
         }
+    }
+    const addTag = (skill: any)=>{
+        setCurrentTag("");
+        if(!(currentTag==="") && !allIdeaTags.includes(skill)){
+            setAllIdeaTags(([...allIdeaTags, skill]));
+            setCurrentTag("");
+        }
+        setSearchedTags([]);
     }
     const removeTheRole = (id:any)=>{
         setAllRolesNeeded(allRolesNeeded.filter((ele:any,idx: any)=> idx!==id));
@@ -50,6 +59,9 @@ function ModalContent() {
             handleAddIdeaChange("documents", data);
         });
     }
+    const allTags = useSelector((state: any)=> state.allTags);
+    // const addIdea = useSelector((state: any)=> state.addIdea);
+    const [searchedTags, setSearchedTags] = useState<any>([]);
     return (
         <div className="modal_part_one">
             <div className="modal_part_one-title">
@@ -73,11 +85,23 @@ function ModalContent() {
                 <label>Tags covered in your project</label>
                 <div className="modal_part_one-tags-taginput">
                     <input type="text" placeholder="Type out the skills used" onChange={handleCurrentTag} value={currentTag}/>
-                    <button onClick={addTag}>+Add Tag</button>
+                    {/* <button onClick={addTag}>+Add Tag</button> */}
+                    <div className="modal_part_one-tags-dropdown">
+                            {
+                                searchedTags.map((tag: any)=><span onClick={(e)=>{
+                                    setCurrentTag(tag.name);
+                                    addTag(tag.name);
+                                    handleAddIdeaChange("idea_tags",Array.from(new Set([...addIdea.idea_tags, tag.id])));
+                                }}>{tag.name}</span>)
+                            }
+                    </div>
                 </div>
                 <div className="modal_part_one-tags-all">
                     {
-                        allIdeaTags.map((skill: any, id: any)=><SkillTags skill={skill} id={id} removeSkill = {removeSkill}/>)
+                        allIdeaTags.map((skill: any, index: any)=>{
+                            const id = allTags.filter((tag: any)=>tag.name===skill)[0].id;
+                            return <SkillTags type="idea" skill={skill} index={index} id={id} removeSkill = {removeSkill}/>
+                        })
                     }
                 </div>
             </div>

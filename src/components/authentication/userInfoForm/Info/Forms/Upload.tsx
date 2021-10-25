@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import configOptions from 'imageUpload/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
+import { handleUserInfoChange } from 'StateUpdateHelper';
 
 export default function AreaOfInterest(props :any) {
     const {
@@ -27,6 +28,7 @@ export default function AreaOfInterest(props :any) {
       // const imageSource = URL.createObjectURL(e.target.files[0]);
       // console.log(imageSource);
       const imageData = new FormData();
+      handleUserInfoChange("profile_completed","");
       console.log(e.target.files[0]);
       imageData.append("file",e.target.files[0]);
       imageData.append("upload_preset", "inovact");

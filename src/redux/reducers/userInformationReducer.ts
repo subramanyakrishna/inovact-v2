@@ -162,11 +162,6 @@ const updateUserInfo = (state = initialState, action: any) => {
                 ...state,
                 is_public: action.payload,
             }
-        case userInfoConstants.UPDATE_COMPLETE_PROFILE:
-            return {
-                ...state,
-                ...action.data,
-            }
         case userInfoConstants.UPDATE_TEAMS:
             return {
                 ...state,
@@ -181,6 +176,11 @@ const updateUserInfo = (state = initialState, action: any) => {
             return {
                 ...state,
                 team_public_visibility: action.payload,
+            }
+        case userInfoConstants.UPDATE_WHOLE_PROFILE:
+            return {
+                ...state,
+                ...action.payload,
             }
         default:
             return state

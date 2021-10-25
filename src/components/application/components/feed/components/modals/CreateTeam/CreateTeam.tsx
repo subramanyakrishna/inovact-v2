@@ -65,7 +65,7 @@ const CreateTeam = (props: any) => {
                         <TeamMembers />
                     </div>
                     <div className="modal_part_two">
-                        <div className="modal_part_two-member-mentor">
+                        {/* <div className="modal_part_two-member-mentor">
                             <div>
                                 <label>Looking for team members</label>
                                 <div
@@ -94,7 +94,7 @@ const CreateTeam = (props: any) => {
                                     <SwitchSlider />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {teamDetails.looking_for_members && (
                             <div className="modal_part_two-roles-looking-for">
                                 <span>What roles are you looking for?</span>

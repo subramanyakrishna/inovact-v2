@@ -12,6 +12,10 @@ import { allUserIdeaConstants } from 'redux/actionTypes/allUserIdeaConstants'
 import { allUserProjectConstants } from 'redux/actionTypes/allUserProjectConstants'
 import { allThoughtConstants } from 'redux/actionTypes/allThoughtConstants'
 import { allUserThoughtsConstants } from 'redux/actionTypes/allUserThoughtsConstants'
+import { allTagsConstants } from 'redux/actionTypes/allTagsConstants'
+import { allSkillsConstants } from 'redux/actionTypes/allSkillsConstants'
+import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
+import { peopleYoumayKnowConstants } from 'redux/actionTypes/peopleYouMayKnowConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log('all posts value: ', value)
@@ -38,8 +42,13 @@ const handleUserCredsChange = (name: any, value: any) => {
     console.log(store.getState())
 }
 const handleUserInfoChange = async (name: any, value: any) => {
-    // console.log(name, value);
+    console.log(name, value)
     switch (name) {
+        case 'profile_completed':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
+            })
+            break
         case 'first-name':
             store.dispatch({
                 type: userInfoConstants.UPDATE_FIRSTNAME,
@@ -172,6 +181,11 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
+        case 'update_complete_user':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
+                payload: value,
+            })
     }
     console.log(store.getState())
 }
@@ -235,6 +249,11 @@ const handleAddProjectChange = (name: any, value: any) => {
         case 'project_clear_data':
             store.dispatch({ type: addProjectConstants.PROJECT_CLEAR_DATA })
             break
+        case 'project_add_data':
+            store.dispatch({
+                type: addProjectConstants.PROJECT_UPDATE_ALL_DATA,
+                payload: value,
+            })
     }
     console.log(store.getState())
 }
@@ -466,6 +485,78 @@ const handleAllUserThoughts = (name: any, value: any) => {
     }
     console.log(store.getState())
 }
+
+const handleTagsChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_tags':
+            store.dispatch({
+                type: allTagsConstants.TAGS_UPDATE_ALL,
+                payload: value,
+            })
+            break
+        case 'clear_all_tags':
+            store.dispatch({
+                type: allTagsConstants.TAGS_UPDATE_ALL,
+                payload: value,
+            })
+            break
+    }
+    console.log('The tags are updated: ', store.getState())
+}
+const handleSkillsChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_skills':
+            store.dispatch({
+                type: allSkillsConstants.SKILLS_UPDATE_ALL,
+                payload: value,
+            })
+            break
+        case 'clear_all_skills':
+            store.dispatch({
+                type: allSkillsConstants.SKILLS_UPDATE_ALL,
+                payload: value,
+            })
+            break
+    }
+    console.log('The tags are updated: ', store.getState())
+}
+const handleRolesChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_roles':
+            store.dispatch({
+                type: allRolesConstants.ROLES_UPDATE_ALL,
+                payload: value,
+            })
+            break
+        case 'clear_all_roles':
+            store.dispatch({
+                type: allRolesConstants.ROLES_UPDATE_ALL,
+                payload: value,
+            })
+            break
+    }
+    console.log('The tags are updated: ', store.getState())
+}
+const handlePeopleYouMayKnow = (name: any, value: any) => {
+    switch (name) {
+        case 'pymk_update_all':
+            store.dispatch({
+                type: peopleYoumayKnowConstants.PYMK_UPDATE_DATA,
+                payload: value,
+            })
+            break
+        case 'pymk_clear_all':
+            store.dispatch({
+                type: peopleYoumayKnowConstants.PYMK_CLEAR_DATA,
+                payload: value,
+            })
+            break
+    }
+    console.log('people you may know: ', store.getState())
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -480,4 +571,8 @@ export {
     handleAllUserProject,
     handleAllThoughts,
     handleAllUserThoughts,
+    handleTagsChange,
+    handleSkillsChange,
+    handleRolesChange,
+    handlePeopleYouMayKnow,
 }
