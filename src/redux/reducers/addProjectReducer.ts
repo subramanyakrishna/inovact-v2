@@ -3,8 +3,8 @@ import { addProjectConstants } from "redux/actionTypes/addProjectConstants"
 const initialState = {
     title: "",
     description: "",
-    project_tags: [1, 2, 3, 4],
-    mentions: [17, 26],
+    project_tags: [],
+    mentions: [],
     team_id: null,
     project_status: "",
     required_roles: [],
@@ -62,6 +62,10 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
         case addProjectConstants.PROJECT_CLEAR_DATA:
             return {
                 ...initialState,
+            }
+        case addProjectConstants.PROJECT_UPDATE_ALL_DATA:
+            return {
+                ...action.payload,
             }
         default: return state;
     }

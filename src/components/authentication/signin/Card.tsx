@@ -30,7 +30,6 @@ const Card: React.FC<Props> = (props) => {
         dispatch({type: userConstants.LOGIN_REQUEST});
         userAuthentication(email, password, setIsLoading, setErrors).then(()=>{
             console.log("redirecting to feed");
-            // history.push("/feed");
         }).catch(err=>{
             console.log(err);
             setIsLoading(false);

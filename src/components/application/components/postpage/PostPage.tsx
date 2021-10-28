@@ -18,6 +18,7 @@ function PostPage(props: any) {
         method: "get",
         route: "post",
         body: null,
+        id: props.id,
         onSuccess: (data: any)=>{
             postData = {
                 id: data.data.project.id,
@@ -74,7 +75,9 @@ function PostPage(props: any) {
             }
         }
     });
+    console.log(postData);
     if(postData==={}){
+        console.log("here post page");
         doRequest();
     }
     // allIdeas.
@@ -104,6 +107,9 @@ function PostPage(props: any) {
     const handleViewTeamMembers = ()=>{
         document.getElementById("team-members")?.scrollIntoView({behavior: "smooth"});
     }
+    useEffect(()=>{
+        doRequest();
+    },[]);
     return (
         <div className="post-dedicated-page">
             {
