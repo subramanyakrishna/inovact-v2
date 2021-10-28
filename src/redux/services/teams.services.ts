@@ -24,6 +24,9 @@ class TeamsService {
             },
         })
     }
+    public async inviteMember(userId: string): Promise<any> {
+        return await axios.post(`${baseUrl}/api/teams/invite`,)
+    }
 
     public async updateTeam(team: any): Promise<any> {
         return await axios.put(`${baseUrl}/api/teams/${team._id}`, team)

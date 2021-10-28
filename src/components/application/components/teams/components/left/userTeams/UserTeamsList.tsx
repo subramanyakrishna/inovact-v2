@@ -21,7 +21,7 @@ const UserTeamsList =({allTeams,handleVerticalClick,idx}:AppProps)=>{
             <div className="user-title">
             <h6 className="text-style--bold text-align--left text-size--big" style={{padding:'1rem',border:' 4px solid blue',borderWidth:'4px 0 0 0',display:'inline-flex'}}>Teams</h6>
             </div>
-          { allTeams.map((team :any,key:number)=>{
+          { allTeams.map((team :any)=>{
              return(
                 <MDBTabs className='flex-column text-center'>
                 <MDBTabsItem>

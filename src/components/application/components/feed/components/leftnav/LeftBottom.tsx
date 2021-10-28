@@ -11,7 +11,7 @@ import create from 'images/feed/create.svg'
 import { useDispatch, useSelector } from 'react-redux'
 
 const LeftBottom = (props: any) => {
-    const allTeams = useSelector((state: any) => state.teams.teams)
+       const allTeams = useSelector((state: any) => state.teams.teams)
 
         return (
         <div className="left-right-nav">
@@ -38,7 +38,7 @@ const LeftBottom = (props: any) => {
                             </div>
                         </MDBListGroupItem>
                         {allTeams &&
-                            allTeams.map((team: any, index: number) => {
+                            allTeams.slice(1,4).map((team: any, index: number) => {
                                 return (
                                     <MDBListGroupItem className="left-right-nav__card__list__item">
                                         <img src={team.avatar} alt={team.name} />

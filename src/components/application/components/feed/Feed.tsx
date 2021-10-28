@@ -14,16 +14,6 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
-
-import { of, fromEvent, animationFrameScheduler } from 'rxjs'
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    pairwise,
-    switchMap,
-    throttleTime,
-} from 'rxjs/operators'
 import Spinner from 'components/application/Spinner'
 import {
     handleAddIdeaChange,

@@ -1,4 +1,4 @@
-import { CREATE_TEAM, GET_TEAMS } from './../actionTypes/teams'
+import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS } from './../actionTypes/teams'
 import TeamsService from '../services/teams.services'
 import { ICreateTeam } from 'redux/interfaces/teams.interface'
 
@@ -30,6 +30,18 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
         dispatch({
             type: GET_TEAMS,
             payload: res.data,
+        })
+    } catch (error) {
+        throw error
+    }
+}
+
+export const inviteMembers =(userId: string) => async (dispatch: any) => {
+    try {
+        const res = await TeamsService.inviteMember(userId)
+        dispatch({
+            type:INVITE_MEMBERS,
+            payload: res.data
         })
     } catch (error) {
         throw error
