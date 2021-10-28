@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from 'react'
-=======
 import React, { useEffect, useState } from 'react'
->>>>>>> 4f9cf70ed9bcd9af5b3cfc88b956484e32177c3e
 import { useSelector } from 'react-redux'
 
 function RightNetworkStats() {
