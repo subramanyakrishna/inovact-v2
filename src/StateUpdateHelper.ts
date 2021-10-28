@@ -42,13 +42,13 @@ const handleUserCredsChange = (name: any, value: any) => {
     console.log(store.getState())
 }
 const handleUserInfoChange = async (name: any, value: any) => {
-    console.log(name, value);
+    console.log(name, value)
     switch (name) {
-        case "profile_completed":
+        case 'profile_completed':
             store.dispatch({
                 type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
-            });
-            break;
+            })
+            break
         case 'first-name':
             store.dispatch({
                 type: userInfoConstants.UPDATE_FIRSTNAME,
@@ -181,7 +181,7 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
-        case "update_complete_user":
+        case 'update_complete_user':
             store.dispatch({
                 type: userInfoConstants.UPDATE_WHOLE_PROFILE,
                 payload: value,
@@ -248,11 +248,11 @@ const handleAddProjectChange = (name: any, value: any) => {
             break
         case 'project_clear_data':
             store.dispatch({ type: addProjectConstants.PROJECT_CLEAR_DATA })
-            break;
-        case "project_add_data":
+            break
+        case 'project_add_data':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_ALL_DATA,
-                payload: value, 
+                payload: value,
             })
     }
     console.log(store.getState())
@@ -409,157 +409,157 @@ const handleAllIdeas = (name: any, value: any) => {
     console.log(store.getState())
 }
 
-const handleOtherUserInfoChange = (name: any, value: any)=>{
-    switch(name){
-        case "other-user-update": 
+const handleOtherUserInfoChange = (name: any, value: any) => {
+    switch (name) {
+        case 'other-user-update':
             store.dispatch({
                 type: otherUserInfoConstants.OTHER_USER_UPDATE_INFO,
                 payload: value,
-            });
-            break;
-        case "clear-other-user":
+            })
+            break
+        case 'clear-other-user':
             store.dispatch({
                 type: otherUserInfoConstants.OTHER_USER_CLEAR_INFO,
-            });    
+            })
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 
-const handleAllUserIdeas = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-ideas":
+const handleAllUserIdeas = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-ideas':
             store.dispatch({
                 type: allUserIdeaConstants.UPDATE_USER_IDEAS,
                 payload: value,
-            });
-            break;
-        case "clear-all-user-ideas":
+            })
+            break
+        case 'clear-all-user-ideas':
             store.dispatch({
                 type: allUserIdeaConstants.CLEAR_USER_IDEAS,
             })
-            break;
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllUserProject = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-projects":
+const handleAllUserProject = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-projects':
             store.dispatch({
                 type: allUserProjectConstants.UPDATE_USER_PROJECTS,
                 payload: value,
-            });
-            break;
-        case "clear-all-user-projects":
+            })
+            break
+        case 'clear-all-user-projects':
             store.dispatch({
                 type: allUserProjectConstants.CLEAR_USER_PROJECTS,
             })
-            break;
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllThoughts = (name: any,value: any )=>{
-    switch(name){
-        case "all-thoughts":
+const handleAllThoughts = (name: any, value: any) => {
+    switch (name) {
+        case 'all-thoughts':
             store.dispatch({
                 type: allThoughtConstants.THOUGHTS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "clear-all-thoughts":
+            })
+            break
+        case 'clear-all-thoughts':
             store.dispatch({
                 type: allThoughtConstants.THOUGHT_CLEAR_ALL,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleAllUserThoughts = (name: any, value: any)=>{
-    switch(name){
-        case "all-user-thoughts":
+const handleAllUserThoughts = (name: any, value: any) => {
+    switch (name) {
+        case 'all-user-thoughts':
             store.dispatch({
                 type: allUserThoughtsConstants.USER_THOUGHTS_UPDATE,
                 payload: value,
-            });
-            break;
-        case "all-user-thoughts-clear":
+            })
+            break
+        case 'all-user-thoughts-clear':
             store.dispatch({
                 type: allUserThoughtsConstants.USER_THOUGHTS_CLEAR,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 
-const handleTagsChange = (name: any, value: any)=>{
-    console.log(name, value);
-    switch(name){
-        case "udpate_all_tags":
+const handleTagsChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_tags':
             store.dispatch({
                 type: allTagsConstants.TAGS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "clear_all_tags":
+            })
+            break
+        case 'clear_all_tags':
             store.dispatch({
                 type: allTagsConstants.TAGS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log("The tags are updated: ",store.getState());
+    console.log('The tags are updated: ', store.getState())
 }
-const handleSkillsChange = (name: any, value: any)=>{
-    console.log(name, value);
-    switch(name){
-        case "udpate_all_skills":
+const handleSkillsChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_skills':
             store.dispatch({
                 type: allSkillsConstants.SKILLS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "clear_all_skills":
+            })
+            break
+        case 'clear_all_skills':
             store.dispatch({
                 type: allSkillsConstants.SKILLS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log("The tags are updated: ",store.getState());
+    console.log('The tags are updated: ', store.getState())
 }
-const handleRolesChange = (name: any, value: any)=>{
-    console.log(name, value);
-    switch(name){
-        case "udpate_all_roles":
+const handleRolesChange = (name: any, value: any) => {
+    console.log(name, value)
+    switch (name) {
+        case 'udpate_all_roles':
             store.dispatch({
                 type: allRolesConstants.ROLES_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "clear_all_roles":
+            })
+            break
+        case 'clear_all_roles':
             store.dispatch({
                 type: allRolesConstants.ROLES_UPDATE_ALL,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log("The tags are updated: ",store.getState());
+    console.log('The tags are updated: ', store.getState())
 }
-const handlePeopleYouMayKnow = (name: any, value: any)=>{
-    switch(name){
-        case "pymk_update_all":
+const handlePeopleYouMayKnow = (name: any, value: any) => {
+    switch (name) {
+        case 'pymk_update_all':
             store.dispatch({
                 type: peopleYoumayKnowConstants.PYMK_UPDATE_DATA,
                 payload: value,
-            });
-            break;
-        case "pymk_clear_all":
+            })
+            break
+        case 'pymk_clear_all':
             store.dispatch({
                 type: peopleYoumayKnowConstants.PYMK_CLEAR_DATA,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log("people you may know: ",store.getState());
+    console.log('people you may know: ', store.getState())
 }
 export {
     handleUserCredsChange,
@@ -578,5 +578,5 @@ export {
     handleTagsChange,
     handleSkillsChange,
     handleRolesChange,
-    handlePeopleYouMayKnow
+    handlePeopleYouMayKnow,
 }

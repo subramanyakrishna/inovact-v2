@@ -27,7 +27,7 @@ function YourProfile(props: any) {
             />
             <UserSkills />
             {
-                userInfo.role!=="Student" &&
+                userInfo.role!=="student" &&
                 <UserExperience
                     handleUserInfoChange={props.handleUserInfoChange}
                     userInfo={userInfo}
@@ -38,7 +38,7 @@ function YourProfile(props: any) {
                 userInfo={userInfo}
             />
             <DeleteAccount
-                deleteAccount={props.deleteAccount}
+                deleteAccountClick={props.deleteAccountClick}
                 saveDataToServer={props.saveDataToServer}
             />
         </div>
