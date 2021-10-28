@@ -1390,12 +1390,12 @@ body {
   margin-left: 1rem; }
   .connect-button-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-around;
     width: 50%; }
     .connect-button-container p {
       margin: 0px; }
-    @media only screen and (max-width: 48em) {
+    @media only screen and (max-width: 75em) {
       .connect-button-container {
         flex-direction: column;
         justify-content: space-between; } }
@@ -1463,6 +1463,26 @@ body {
   box-shadow: -1px 0px 19px -2px rgba(0, 0, 0, 0.75); }
   .gotop-button img {
     width: 25px; }
+  @media only screen and (max-width: 62em) {
+    .gotop-button {
+      transform: translate(79.5vw, 60vh); } }
+
+.edit-complete-profile {
+  background-color: #5579bd;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 10px; }
+
+.view-team-members {
+  font-weight: 600;
+  cursor: pointer;
+  color: #5579bd;
+  font-size: medium; }
+  @media only screen and (max-width: 75em) {
+    .view-team-members {
+      font-size: small; } }
 
 .input-component {
   display: block;
@@ -2650,18 +2670,26 @@ body {
   @media only screen and (max-width: 62em) {
     .right-network-stats {
       width: 100%; } }
-  .right-network-stats--img-container {
+  .right-network-stats--img-name {
     display: flex;
     flex-direction: column;
     align-items: center; }
     @media only screen and (max-width: 36em) {
-      .right-network-stats--img-container span {
+      .right-network-stats--img-name span {
         display: none; } }
-  .right-network-stats--img {
-    width: 6rem; }
-    @media only screen and (max-width: 36em) {
-      .right-network-stats--img {
-        display: none; } }
+  .right-network-stats--img-container {
+    width: 6rem;
+    height: 6rem;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px; }
+    .right-network-stats--img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+      @media only screen and (max-width: 36em) {
+        .right-network-stats--img-container img {
+          display: none; } }
   .right-network-stats--content-title {
     width: 50%; }
   .right-network-stats--content p {
@@ -5405,6 +5433,7 @@ input, textarea:focus {
 
 .post-dedicated-liked-by {
   display: flex;
+  justify-content: space-between;
   padding: 1rem 0.5rem;
   border-radius: 20px;
   width: 100%;

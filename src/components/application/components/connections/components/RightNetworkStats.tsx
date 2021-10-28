@@ -1,13 +1,17 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import profilepic from '../../../../../images/connections/profilepic.png'
 
 function RightNetworkStats({ numberOfConnections }: any) {
+    const userInfo = useSelector((state: any)=> state.userInfo);
     return (
         <div className="right-network-stats">
-            <div className="right-network-stats--img-container">
-                <img src={profilepic} className="right-network-stats--img" />
-                <span>Matt Lee</span>
+            <div className="right-network-stats--img-name">
+                <div className="right-network-stats--img-container">
+                    <img src={userInfo.avatar} alt="" className="right-network-stats--img" />
+                </div>
+                {/* <span>{userInfo.first_name} {userInfo.last_name}</span> */}
                 <h5>Your Network Stats</h5>
             </div>
             <div className="right-network-stats--content">

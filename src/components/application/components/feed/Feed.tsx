@@ -412,6 +412,7 @@ function Feed() {
                         openProject={uploadProject}
                         openIdea={uploadIdea}
                         openThought={uploadThought}
+                        feedContainer={feedContainer}
                     />
                     <div className="sort">
                         <div className="line-separation">

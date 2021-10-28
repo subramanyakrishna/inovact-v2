@@ -1,6 +1,7 @@
 import React from 'react'
 import EditIcon from '@material-ui/icons/Edit'
 import { imageUploader } from 'imageUpload/imageUploader'
+import { useHistory } from 'react-router'
 
 function ProfileImage({ handleUserInfoChange, userInfo }: any) {
     const loadFile = async (e: any) => {
@@ -9,7 +10,11 @@ function ProfileImage({ handleUserInfoChange, userInfo }: any) {
             handleUserInfoChange('avatar', data[0].url)
         }
     }
-
+    const history = useHistory();
+    const changeCompleteProfile = (e: any)=>{
+        e.preventDefault();
+        history.push("/app/userinfo");
+    }
     return (
         <div className="settings-my-profile-nametag">
             <input
@@ -43,6 +48,9 @@ function ProfileImage({ handleUserInfoChange, userInfo }: any) {
                 <span className="settings-my-profile-nametag-email">
                     {userInfo.email_id}
                 </span>
+            </div>
+            <div>
+                <button className="edit-complete-profile" onClick={changeCompleteProfile}>Edit complete profile</button>
             </div>
         </div>
     )

@@ -44,6 +44,7 @@
     }
     &-liked-by{
         display: flex;
+        justify-content: space-between;
         padding: 1rem 0.5rem;
         border-radius: 20px;
         width: 100%;

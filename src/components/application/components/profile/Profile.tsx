@@ -409,12 +409,10 @@ function Profile() {
                         </div>
                     }
                     {
-                        showRight && userAllIdeas.concat(userAllProjects).length!==0 && 
-                        
                         <div className="profile--content-right">
                             {
                                 isLoading &&
-                                <Spinner/>
+                                <Spinner/> 
                             }
                             {
                                 showIdeas && 
