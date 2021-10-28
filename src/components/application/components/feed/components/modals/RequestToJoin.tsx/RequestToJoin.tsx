@@ -1,7 +1,10 @@
 import React from 'react'
 import RoleRequired from './components/RoleRequired';
+import {useSelector } from 'react-redux';
 
 function RequestToJoin(props: any) {
+
+    const allTeams = useSelector((state: any) => state.teams.teams)
     const rolesRequired = [
         {
             role: "Front End Developer",

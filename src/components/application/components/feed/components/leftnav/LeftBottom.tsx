@@ -9,6 +9,7 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const LeftBottom = (props: any) => {
        const allTeams = useSelector((state: any) => state.teams.teams)
@@ -56,12 +57,11 @@ const LeftBottom = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <a
-                        href="/"
-                        className="text-style--bold text-align--center text-color--white"
-                    >
+                    <Link
+                        to="/app/teams"
+                        className="text-style--bold text-align--center text-color--white">
                         View All
-                    </a>
+                    </Link>
                 </MDBCardFooter>
             </MDBCard>
         </div>

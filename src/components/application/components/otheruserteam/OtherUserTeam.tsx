@@ -4,32 +4,26 @@ import {
   MDBTabsPane,
 } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
-import Invitation from 'components/application/components/teams/components/left/Invitations';
+import SuggestionInvitation from 'components/application/components/teams/components/left/Invitations';
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/right/teamDescription/TeamDescription'
-
 //icons
 import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
-
-
 //Modals
 import InviteMembers from 'components/application/components/teams/components/modals/InviteMembers';
 import DeleteMember from 'components/application/components/teams/components/modals/DeleteMember';
 import MakeAdmin from 'components/application/components/teams/components/modals/MakeAdmin';
 import ShareModal from 'components/application/components/teams/components/modals/ShareModal' 
 import UploadDocuments from 'components/application/components/teams/components/modals/UploadDocuments';
-
 import useRequests from 'useRequest/useRequest'
 
 function Teams() {
-    const allTeams = useSelector((state: any) => state.teams.teams)
-    const currentTeam= allTeams[0]
-    const teamId = currentTeam.id;
-    const [verticalActive, setVerticalActive] = useState(teamId);
+    
+    const [verticalActive, setVerticalActive] = useState(33);
 
     const [myTeams,setMyTeams]=useState([]);
     const [activeTeamId,setActiveTeamId] = useState(myTeams[0]);
@@ -42,6 +36,8 @@ function Teams() {
             console.log("The teams fetched are: ",data.data.team);
             console.log("data", data)
             setMyTeams(data.data.team);
+            console.log(myTeams[0])
+            console.log(verticalActive)
         }
     });
 
@@ -130,6 +126,9 @@ function Teams() {
       if (value === verticalActive) {
         return;
       }
+      console.log(verticalActive);
+      console.log(activeTeamId);
+      console.log(localStorage.getItem("user"));
       setVerticalActive(value);
     };
     
@@ -179,17 +178,17 @@ function Teams() {
               showLeft && 
                   <div className="teams__content__left" >         
                     <div className="teams__content__user-teams" onClick={toggleShowOptions}>
-                        <UserTeam allTeams={allTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
+                        <UserTeam allTeams={myTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
                     </div>
-                    <div className="teams__content__suggestions team-info__suggestion">
-                        <Invitation allTeams={allTeams} active_id={verticalActive}/>
-                    </div>
+                    {/* <div className="teams__content__suggestions team-info__suggestion">
+                        <SuggestionInvitation myTeams={myTeams} active_id={verticalActive}/>
+                    </div> */}
                 </div>
             }
                       
             {
               showRight && <MDBTabsContent className="teams__content__right" >
-              { allTeams && allTeams.map((team :any,key:any)=>{
+              { myTeams && myTeams.map((team :any,key:any)=>{
               return(
                   <MDBTabsPane show={verticalActive ===  team.id }>
                       <div className="teams__content__info">

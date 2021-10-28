@@ -2,44 +2,35 @@ import React,{useState,useEffect} from 'react';
 import search from 'images/feed/search.svg'
 import link from 'images/teams/cc-link.svg'
 import { useSelector } from 'react-redux';
-import useRequests from 'useRequest/useRequest'
+
 import MemberForInvite from 'components/application/components/teams/components/modals/FindMembers'
+import axios from 'axios';
 function InviteMembers(props:any) {
-    const [inviteMember, setinviteMember] = useState<any>([])
+    const allTeams = useSelector((state: any) => state.teams.teams)
+  
     const [buttonText, setButtonText] = useState("Invite"); 
     const changeText = () => setButtonText("Invited");
-    const userInfo = useSelector((state: any) => state.userInfo);
-    const { doRequest: getinviteMember, errors: getPeopleErrors } = useRequests(
-        {
-            route: 'users',
-            method: 'get',
-            body: null,
-            onSuccess: (data: any) => {
-                data.data.user.reverse()
-                const ptk: any = data.data.user.map((ele: any) => ({
-                    user_id: ele.id,
-                    name: ele.first_name,
-                    image: ele.avatar,
-                    duration: '10 min',
-                    designation: ele.designation ? ele.designation : 'Student',
-                })).filter((ele: any)=>{
-                    // console.log(ele.user_id, userInfo.id);
-                    return ele.user_id!==userInfo.id});
-                console.log(ptk);
-                setinviteMember([...ptk.slice(0, 4)])
-               console.log("hello token", localStorage.getItem('user'))
-            },
-        }
-    )
-    useEffect(()=>{
-        (async ()=>{
-            await getinviteMember();
-        })();
-    }, [])
+    const users =useSelector((state:any) => state.peopleYouMayKnow)
+    const userInfo =useSelector((state:any) => state.userInfo)
 
-    const handleInviteTeamMember = (e:any) => {
-        //
+    const handleShareModal=(e:any)=>{
+        props.closeModal();
+        props.viewShareModal();
     }
+    const handleInviteTeamMember  = async (e:any) =>{
+        const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
+        const teamId = currentTeam.id;
+        const userId = e;
+        const response =  await axios( {
+            method:'post',
+            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
+            data: { team_id:teamId, user_id:userId},
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        })
+    }
+
     return (
         <div className="modal_main">
            
@@ -67,12 +58,12 @@ function InviteMembers(props:any) {
                               </div>
                             </div>
                             
-                      <button className="connect-button">Share Link</button>
+                      <button className="connect-button" onClick={handleShareModal}>Share Link</button>
                     </div>
                
                 
                 <div className="invite-members">
-                { inviteMember.map((item :any,index :number)=>{
+                { users.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
                 return(                   
                          <MemberForInvite item={item} handleInviteTeamMember={handleInviteTeamMember} />
                 );

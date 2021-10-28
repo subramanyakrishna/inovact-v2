@@ -109,6 +109,7 @@ function Feed() {
             setPosts([...data.data.project.map((post: any)=>({
                 user_id: post.user.id,
                 id: post.id,
+                team_id:post.team_id,
                 title: post.title,
                 description: post.description,
                 role:post.user.role,
@@ -139,6 +140,7 @@ function Feed() {
             setIdeas([...data.data.idea.map((post: any)=>({
                 user_id: post.user.id,
                 id: post.id,
+                team_id:post.team_id,
                 title: post.title,
                 description: post.description,
                 role:post.user.role,
@@ -149,7 +151,7 @@ function Feed() {
                     return tag.hashtag.name;
                 }),
                 images: post.idea_documents.map((image: any)=>{
-                    // console.log(image.url);
+                    
                     return image.url;
                 }),
                 time: convertDate(post.created_at),

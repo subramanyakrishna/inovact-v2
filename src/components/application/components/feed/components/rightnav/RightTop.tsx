@@ -108,7 +108,7 @@ const RightTop = (props: any) => {
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
                     <a
-                        href="/connections"
+                        href="/app/connections"
                         className="text-style--bold text-align--center"
                     >
                         View All

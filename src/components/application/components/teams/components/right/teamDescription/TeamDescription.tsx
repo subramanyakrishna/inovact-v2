@@ -85,7 +85,7 @@ const TeamDescription = ({ team }: Props) => {
 
                 <div className="teams-description__info__right">
                     <span className="text-style--bold text-align--left text-size--big ">
-                        {team.teamname}{' '}
+                        {team.name}{' '}
                     </span>
                     <span
                         className="text-style--bold text-align--left text-size--big sm-small"

@@ -20,7 +20,7 @@ const MemberInfo =(props:any)=>{
                                 <img src={msg} alt="msg"/>
                                 <h5 className="text-size--big">Message Privately</h5>
                         </div>
-                        <div className="members-info__details--role">
+                       {props.member.admin && <div className="members-info__details--role">
                                 <h5 className="text-size--big">{props.member.role}</h5>
                                     <div className="members-info__details__dropdown">
                                         <button className="text-size--small" onClick={toggleShowOptions}>&#8942;</button>
@@ -32,7 +32,7 @@ const MemberInfo =(props:any)=>{
                                             </div>
                                         }
                                      </div>
-                            </div>
+                            </div> } 
                         </div>
                 );
 }

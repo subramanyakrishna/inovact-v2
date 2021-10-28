@@ -7,7 +7,7 @@ const ProjectInfoTab =(props: any)=>{
         <>
         <div className="member-info-tab">
             { props.team.projects.length == 0 ? <div className="text-align--center">No projects yet </div>: null }
-            {props.team.projacts && props.team.projects.map((project :any,index:number)=>{
+            {props.team.projects && props.team.projects.map((project :any,index:number)=>{
                 return(
                  <ProjectInfo project={project} viewDeleteMember={props.viewDeleteMember} viewMakeAdmin={props.viewMakeAdmin}/>
                 );
