@@ -45,6 +45,11 @@ const updateIdeaInfoReducer = (state = initialState, action: any)=>{
                 ...state,
                 required_roles: action.payload,
             }   
+        case addIdeaConstants.IDEA_UPDATE_TEAM_ID:
+            return{
+                ...state,
+                team_id: action.payload,
+            }
         case addIdeaConstants.IDEA_CLEAR_DATA:
              return {
                  ...initialState,
