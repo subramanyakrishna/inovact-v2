@@ -15,6 +15,8 @@ import { handleUserInfoChange } from '../../../../StateUpdateHelper'
 import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAccessActions'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import makeApiCall from './makeApiCall'
+import { userConstants } from 'redux/actionTypes/userConstants'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -50,9 +52,6 @@ const Settings: React.FC = () => {
     const [showDeleteAccount, setShowDeleteAccount] = useState(false)
     const [width, setWidth] = useState(window.innerWidth)
     const [selectedTeamToDelete, setSelectedTeamToDelete] = useState(-1)
-    const team_with_admin_access_ids = useSelector(
-        (state: any) => state.userInfo.team_with_admin_access
-    )
     const team_with_admin_access_data = useSelector(
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
@@ -120,6 +119,7 @@ const Settings: React.FC = () => {
     }
     const logOutyes = () => {
         localStorage.clear()
+        dispath({ type: userConstants.LOGOUT })
         history.push('/login')
         window.location.reload()
         closeModal()
@@ -129,13 +129,7 @@ const Settings: React.FC = () => {
         openModal()
         setShowDeleteTeam(true)
     }
-    const sendDeleteTeamRequest = () => {
-        handleUserInfoChange(
-            'team_with_admin_access',
-            team_with_admin_access_ids.filter(
-                (id: number) => id !== selectedTeamToDelete
-            )
-        )
+    const sendDeleteTeamRequest = async () => {
         dispath(
             updateTeamWithAdminAccessAction(
                 team_with_admin_access_data.filter((team: any) => {
@@ -145,11 +139,17 @@ const Settings: React.FC = () => {
         )
         closeModal()
         setSelectedTeamToDelete(-1)
+        const res = await makeApiCall(
+            'delete',
+            `team?team_id=${selectedTeamToDelete}`
+        )
+        console.log(res)
     }
-    const deleteAccount = () => {
+    const deleteAccountClick = () => {
         openModal()
         setShowDeleteAccount(true)
     }
+
     return (
         <div>
             {showOverlay && (
@@ -171,7 +171,10 @@ const Settings: React.FC = () => {
                         />
                     )}
                     {showDeleteAccount && (
-                        <DeleteAccountModal closeModal={closeModal} />
+                        <DeleteAccountModal
+                            closeModal={closeModal}
+                            user_name={userInfo.user_name}
+                        />
                     )}
                 </div>
             )}
@@ -205,7 +208,6 @@ const Settings: React.FC = () => {
                                     onSelection={onSelection}
                                     options={options}
                                     logOut={logOut}
-                                    deleteAccount={deleteAccount}
                                 />
                             </div>
                         )}
@@ -214,7 +216,7 @@ const Settings: React.FC = () => {
                             <div className={'settings-main-right'}>
                                 {selectedOption === 0 && (
                                     <YourProfile
-                                        deleteAccount={deleteAccount}
+                                        deleteAccountClick={deleteAccountClick}
                                         handleUserInfoChange={
                                             handleUserInfoChange
                                         }

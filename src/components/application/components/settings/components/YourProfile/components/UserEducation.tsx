@@ -36,16 +36,21 @@ function UserEducation({ handleUserInfoChange, userInfo }: any) {
                         <input
                             type="text"
                             placeholder="Eg .   2011"
-                            defaultValue={new Date(userInfo['graduation_year']).getFullYear()}
-                            onChange={(e) =>{
-                                if(e.target.value.length<4 || e.target.value.length>4){
-                                    return;
+                            defaultValue={new Date(
+                                userInfo['graduation_year']
+                            ).getFullYear()}
+                            onChange={(e) => {
+                                if (
+                                    e.target.value.length < 4 ||
+                                    e.target.value.length > 4
+                                ) {
+                                    return
                                 }
                                 handleUserInfoChange(
                                     'graduation-year',
-                                    new Date(e.target.value).toISOString())
-                            }
-                            }
+                                    new Date(e.target.value).toISOString()
+                                )
+                            }}
                         />
                     </div>
                 </div>

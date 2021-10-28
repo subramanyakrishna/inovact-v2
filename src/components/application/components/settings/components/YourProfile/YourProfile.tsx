@@ -26,16 +26,19 @@ function YourProfile(props: any) {
                 userInfo={userInfo}
             />
             <UserSkills />
-            <UserExperience
-                handleUserInfoChange={props.handleUserInfoChange}
-                userInfo={userInfo}
-            />
+            {
+                userInfo.role!=="student" &&
+                <UserExperience
+                    handleUserInfoChange={props.handleUserInfoChange}
+                    userInfo={userInfo}
+                />
+            }
             <UserEducation
                 handleUserInfoChange={props.handleUserInfoChange}
                 userInfo={userInfo}
             />
             <DeleteAccount
-                deleteAccount={props.deleteAccount}
+                deleteAccountClick={props.deleteAccountClick}
                 saveDataToServer={props.saveDataToServer}
             />
         </div>

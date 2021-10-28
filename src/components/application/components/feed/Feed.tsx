@@ -240,7 +240,7 @@ function Feed() {
         if (!userInfo.profile_complete) {
             history.push('/app/userinfo')
         }
-    },[])
+    },[userInfo.profile_complete]);
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -268,7 +268,12 @@ function Feed() {
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
         if (type === 'All') {
-            setFilteredPosts([...posts, ...ideas, ...thoughts]);
+            const sortedPosts = [...posts,...ideas,...thoughts].sort((post1: any,post2: any)=>{
+                const post1Date: any = new Date(post1.created_at);
+                const post2Date: any = new Date(post2.created_at);
+                return post2Date.getTime()-post1Date.getTime();
+            });
+            setFilteredPosts([...sortedPosts]);
             return
         }
         const filters: any = {
@@ -399,6 +404,7 @@ function Feed() {
                         openProject={uploadProject}
                         openIdea={uploadIdea}
                         openThought={uploadThought}
+                        feedContainer={feedContainer}
                     />
                     <div className="sort">
                         <div className="line-separation">

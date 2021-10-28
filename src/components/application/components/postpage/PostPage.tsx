@@ -50,15 +50,15 @@ function PostPage(props: any) {
     }
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let { id }: any = useParams();
-    let params = useParams();
     allPosts.forEach((ele: any)=>{
         if(ele.id===Number(id)){
             postData={
-                user_id: user_id,
+                user_id: ele.user.id,
                 id: ele.id,
                 type: 1,
                 avatar: ele.user.avatar,
                 author: ele.user.first_name+ " " +ele.user.last_name,
+                role: ele.user.role,
                 time: convertDate(ele.created_at),
                 title: ele.title,
                 description: ele.description,

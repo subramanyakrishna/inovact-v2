@@ -1,20 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import profilepic from '../../../../../images/connections/profilepic.png'
+function RightNetworkStats() {
+    const userInfo = useSelector((state: any) => state.userInfo)
+    const [totalConnections, setTotalConnections] = useState<number>(0)
+    const totalConnectionsFromStore = useSelector(
+        (state: any) => state.connections.my_connections.length
+    )
+    console.log()
+    useEffect(() => {
+        setTotalConnections(totalConnectionsFromStore)
+    }, [totalConnectionsFromStore])
 
-function RightNetworkStats({ numberOfConnections }: any) {
+    console.log('totalConnections', totalConnections)
     return (
         <div className="right-network-stats">
             <div className="right-network-stats--img-container">
-                <img src={profilepic} className="right-network-stats--img" />
-                <span>Matt Lee</span>
+                <img
+                    src={userInfo.avatar}
+                    className="right-network-stats--img"
+                />
+                <span>{userInfo.first_name + ' ' + userInfo.last_name}</span>
                 <h5>Your Network Stats</h5>
             </div>
             <div className="right-network-stats--content">
                 <div className="right-network-stats--content-titles">
                     <p>
                         <span>Total connections</span>
-                        <span>{numberOfConnections}</span>
+                        <span>{totalConnectionsFromStore}</span>
                     </p>
                     <p>
                         <span>Last week's connections</span>
@@ -33,13 +46,6 @@ function RightNetworkStats({ numberOfConnections }: any) {
                         <span style={{ color: '#07d400' }}>+3.95%</span>
                     </p>
                 </div>
-                {/* <div className="right-network-stats--content-data">
-                    <p>473</p>
-                    <p>18</p>
-                    <p>4</p>
-                    <p>26</p>
-                    <p style={{color: '#07d400'}}>+3.95%</p>
-                </div> */}
             </div>
         </div>
     )

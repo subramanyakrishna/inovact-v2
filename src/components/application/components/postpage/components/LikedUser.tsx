@@ -8,6 +8,7 @@ function LikedUser(props: any) {
                 <img src={props.user.avatar} alt="user"/>
                 </div>
                 <p>{props.user.name}</p>
+                <p style={{color: "#02bd63", fontSize: "medium"}}>{props.user.role}</p>
             </div>
             
         </div>
