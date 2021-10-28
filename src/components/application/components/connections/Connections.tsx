@@ -3,6 +3,8 @@ import RightNetworkStats from './components/RightNetworkStats'
 import CenterRequests from './components/CenterRequests'
 import PeopleYouMayKnow from './components/PeopleYouMayKnow'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 const makeApiCall = async (method: any, route: string) => {
     console.log('method', method)
@@ -25,13 +27,24 @@ function Connections() {
     const handleWindowResize = () => {
         setWidth(window.innerWidth)
     }
+    const dispatch = useDispatch()
+
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize)
         return () => {
             window.removeEventListener('resize', handleWindowResize)
         }
     }, [])
+    useEffect(() => {
+        ;(async () => {
+            const response = await makeApiCall('get', 'user')
 
+            dispatch({
+                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
+                payload: response.data.data.user[0],
+            })
+        })()
+    }, [])
     return (
         <div className="connections-page">
             <div className="connections-top-components">

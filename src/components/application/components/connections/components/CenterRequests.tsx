@@ -261,6 +261,7 @@ function CenterRequests({ makeApiCall }: any) {
     const [showConnection, setShowConnection] = useState(false)
     const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
     const [myConnectionsLoad, setMyConnectionLoad] = useState<boolean>(true)
+
     const ownId = useSelector((state: any) => state.userInfo.id)
 
     const pendingRequests = useSelector(
@@ -357,7 +358,7 @@ function CenterRequests({ makeApiCall }: any) {
 
     const getUserData = async (id: number, connected_at: string) => {
         const dataFromApi = await makeApiCall('get', `user?id=${id}`)
-        console.log(dataFromApi)
+        console.log('id', id)
         const userData = dataFromApi.data.data.user[0]
         return {
             id: id,
@@ -378,20 +379,26 @@ function CenterRequests({ makeApiCall }: any) {
         await allConnectionsFromApi.forEach(async (connection: any) => {
             const otherUserId =
                 connection.user1 === ownId ? connection.user2 : connection.user1
-            const theOtherUserData = await getUserData(
-                otherUserId,
-                connection.connected_at
-            )
-            //user1 is connection sender user2 is receiver
-            if (connection.status === 'pending' && connection.user2 === ownId) {
-                filteredPendingRequest.push(theOtherUserData)
-            } else if (
-                connection.status === 'pending' &&
-                connection.user1 === ownId
-            ) {
-                filteredConnectReqAcceptPending.push(theOtherUserData)
-            } else {
-                filteredConnectedAccount.push(theOtherUserData)
+            console.log('ownId', ownId)
+            if (otherUserId !== ownId) {
+                const theOtherUserData = await getUserData(
+                    otherUserId,
+                    connection.connected_at
+                )
+                //user1 is connection sender user2 is receiver
+                if (
+                    connection.status === 'pending' &&
+                    connection.user2 === ownId
+                ) {
+                    filteredPendingRequest.push(theOtherUserData)
+                } else if (
+                    connection.status === 'pending' &&
+                    connection.user1 === ownId
+                ) {
+                    filteredConnectReqAcceptPending.push(theOtherUserData)
+                } else {
+                    filteredConnectedAccount.push(theOtherUserData)
+                }
             }
         })
         setPendingRequestLoad(false)

@@ -7,6 +7,7 @@ function RightNetworkStats() {
     const totalConnectionsFromStore = useSelector(
         (state: any) => state.connections.my_connections.length
     )
+    console.log()
     useEffect(() => {
         setTotalConnections(totalConnectionsFromStore)
     }, [totalConnectionsFromStore])
@@ -26,7 +27,7 @@ function RightNetworkStats() {
                 <div className="right-network-stats--content-titles">
                     <p>
                         <span>Total connections</span>
-                        <span>{totalConnections}</span>
+                        <span>{totalConnectionsFromStore}</span>
                     </p>
                     <p>
                         <span>Last week's connections</span>
