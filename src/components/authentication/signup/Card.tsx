@@ -14,13 +14,15 @@ const Card = (props: any) => {
     const history = useHistory()
     const signup = (e: any) => {
         e.preventDefault()
-        if (confirmPSWD != userCreds.password) {
+        if (confirmPSWD !== userCreds.password) {
             setError('password not matching')
             return
         }
+
         userSignup(userCreds)
         console.log(userCreds.email_id, userCreds.password)
         history.push('/login')
+        alert("Check Your Mail and Verify the account before login ;)")
     }
 
     return (

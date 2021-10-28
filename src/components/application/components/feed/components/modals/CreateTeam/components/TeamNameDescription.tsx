@@ -1,7 +1,9 @@
+import { documentUploader } from 'imageUpload/docsUploader'
+import { imageUploader } from 'imageUpload/imageUploader'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { ICreateTeam } from 'redux/interfaces/teams.interface'
-import { handleAddTeamChange } from 'StateUpdateHelper'
+import { handleAddProjectChange, handleAddTeamChange } from 'StateUpdateHelper'
 
 type Props = {
     teamDetails: ICreateTeam
@@ -9,6 +11,15 @@ type Props = {
 }
 
 const TeamNameDescription = ({ setTeamDetails, teamDetails }: Props) => {
+    const loadFile = async(e: any)=>{
+        imageUploader(e.target.files).then((data: any)=>{
+            console.log(data);
+            setTeamDetails({
+                ...teamDetails,
+                avatar: data[0].url,
+            })
+        });
+    }
     return (
         <div className="team-name">
             <div className="team-name-title">
@@ -26,7 +37,7 @@ const TeamNameDescription = ({ setTeamDetails, teamDetails }: Props) => {
                 />
             </div>
             <div>
-                <input type="file" id="upload-media-input" hidden />
+                <input type="file" id="upload-media-input" hidden onChange={loadFile}/>
                 <label
                     className="upload-media-btn"
                     htmlFor="upload-media-input"

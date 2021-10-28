@@ -14,7 +14,9 @@ function PeopleYouMayKnow(props: any) {
     const makeApiCall = async (method: any, route: string) => {
         console.log('method', method)
         console.log('route', route)
-    
+        // if(people_you_may_know.length!==0){
+        //     return;
+        // }
         const response = await axios({
             method: method,
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
@@ -63,6 +65,7 @@ function PeopleYouMayKnow(props: any) {
         //call the api to get all the people you may know
         ;(async () => {
             let PYMK_from_api: any = await makeApiCall('get', 'users')
+            PYMK_from_api.data.data.user.reverse()
             PYMK_from_api = PYMK_from_api.data.data.user
             //romove this when skills is added to api
             PYMK_from_api = PYMK_from_api.map((pymk: any) => ({

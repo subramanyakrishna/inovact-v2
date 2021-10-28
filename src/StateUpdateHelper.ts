@@ -349,7 +349,11 @@ const handleAddTeamChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-
+        case "team_avatar":
+            // store.dispatch({
+            //     type: addTeam
+            // })
+            break;
         case 'roles':
             store.dispatch({
                 type: addTeamConstants.TEAM_UPDATE_ROLE,

@@ -53,9 +53,11 @@ function TopProfileContent(props: any) {
         setShowIdeas(true);
     }
     const showThoughtsOnly = ()=>{
+        props.showOnlyThoughts();
         removeBorderAll();
         setShowThoughts(true);
     }
+
     const otherUser = useSelector((state: any)=>state.otherUser);
     return (
         <div className="top-profile-content">

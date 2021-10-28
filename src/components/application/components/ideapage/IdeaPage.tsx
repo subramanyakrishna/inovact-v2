@@ -42,7 +42,6 @@ function PostPage(props: any) {
     const allIdeas = useSelector((state: any)=> state.allIdeas);
 
     
-    const user_id = useSelector((state: any)=> state.userInfo.id);
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -53,10 +52,11 @@ function PostPage(props: any) {
     allIdeas.forEach((ele: any)=>{
         if(ele.id===Number(id)){
             postData={
-                user_id: user_id,
+                user_id: ele.user_id,
                 id: ele.id,
                 type: 2,
                 avatar: ele.user.avatar,
+                role: ele.user.role,
                 author: ele.user.first_name+ " " +ele.user.last_name,
                 time: convertDate(ele.created_at),
                 title: ele.title,

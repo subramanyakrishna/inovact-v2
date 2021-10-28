@@ -17,6 +17,7 @@ const CreateTeam = (props: any) => {
     const [teamDetails, setTeamDetails] = useState<ICreateTeam>({
         name: '',
         tags: [],
+        avatar: "",
         looking_for_members: false,
         looking_for_mentor: false,
         roles: [],
