@@ -143,7 +143,7 @@ function ModalPart2(props: any) {
                                     handleAddProjectChange("project_status","completed");
                                 }
                             }}>
-                            <SwitchSlider projectCompletion={props.projectCompletion} />
+                            <SwitchSlider projectCompletion={props.projectCompletion}/>
                         </div>
                     </div>
                 {

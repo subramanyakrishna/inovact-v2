@@ -5,6 +5,7 @@ const initialState = {
     description: "",
     documents: [],
     idea_tags: [],
+    team_id: null,
 }
 
 const updateIdeaInfoReducer = (state = initialState, action: any)=>{

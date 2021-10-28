@@ -181,7 +181,7 @@ function Connections() {
         }
     }
     const handleRemoveConnection = async (id: number) => {
-        setMyConnections(myConnections.filter((user: any) => user.id != id))
+        setMyConnections(myConnections.filter((user: any) => user.id !== id))
         const response = await makeApiCall(
             'post',
             `connections/remove?user_id=${id}`
