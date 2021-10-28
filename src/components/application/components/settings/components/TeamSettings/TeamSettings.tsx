@@ -122,6 +122,11 @@ const TeamSettings: React.FC<teamSettings> = ({
                         <Spinner />
                     </div>
                 )}
+                {!isLoading && team_with_admin_access_data.length == 0 && (
+                    <div style={{ margin: 'auto' }}>
+                        Teams for which you have admin access will apear here
+                    </div>
+                )}
                 {!isLoading &&
                     team_with_admin_access_data.map((team: any) => (
                         <div className={'teamset-delete-team'} key={team.id}>

@@ -23,7 +23,28 @@ const initialState = {
     appearance: 0,
     percentage_growth: 0,
     website: '',
-    skills: [],
+    skills: {
+        beginner: [
+            { id: 1, name: 'java' },
+            { id: 2, name: 'python' },
+            { id: 3, name: 'spring' },
+        ],
+        intermediate: [
+            { id: 1, name: 'java' },
+            { id: 2, name: 'python' },
+            { id: 3, name: 'spring' },
+        ],
+        proficient: [
+            { id: 1, name: 'java' },
+            { id: 2, name: 'python' },
+            { id: 3, name: 'spring' },
+        ],
+        advanced: [
+            { id: 1, name: 'java' },
+            { id: 2, name: 'python' },
+            { id: 3, name: 'spring' },
+        ],
+    },
     projects: [],
     ideas: [],
     thoughts: [],

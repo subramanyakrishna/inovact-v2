@@ -2688,7 +2688,11 @@ body {
       padding: 0; } }
   .requests-connections-profiles {
     overflow-y: scroll;
-    height: 400px; }
+    height: 400px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center; }
   .requests-connections-btn button {
     background-color: #ffffff;
     border: none;
@@ -2701,7 +2705,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #C4C4C4;
+  border-bottom: 2px solid #c4c4c4;
   margin: 1rem 3rem; }
   .my-requests-profile-img {
     border-radius: 50%;
@@ -2747,7 +2751,7 @@ body {
         .my-requests-profile-btn-container button {
           height: 1.5rem; } }
   .my-requests-profile-accept-btn {
-    background-color: #02BD63; }
+    background-color: #02bd63; }
   @media only screen and (max-width: 48em) {
     .my-requests-profile {
       margin: 0;
@@ -2758,7 +2762,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #C4C4C4;
+  border-bottom: 2px solid #c4c4c4;
   margin: 0 3rem; }
   .my-connection-profile-img {
     border-radius: 50%;

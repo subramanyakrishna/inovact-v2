@@ -25,9 +25,17 @@ const updateConnectReqAcceptPending = (connect_req_accept_pending: any) => {
         payload: connect_req_accept_pending,
     }
 }
+const updateTotalNumberOfConnections = (connectionLength: number) => {
+    console.log('connectionLength', connectionLength)
+    return {
+        type: connectionActionTypes.MY_CONNECTION_LENGTH,
+        payload: connectionLength,
+    }
+}
 export {
     updateMyConnections,
     updatePeopleYouMayKnow,
     updatePendingRequests,
     updateConnectReqAcceptPending,
+    updateTotalNumberOfConnections,
 }

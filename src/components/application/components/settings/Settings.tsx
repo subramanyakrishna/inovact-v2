@@ -16,6 +16,7 @@ import { updateTeamWithAdminAccessAction } from 'redux/actions/teamWIthAdminAcce
 import axios from 'axios'
 import { useHistory } from 'react-router'
 import makeApiCall from './makeApiCall'
+import { userConstants } from 'redux/actionTypes/userConstants'
 
 const options: { name: string; main: string; sub: string }[] = [
     {
@@ -51,9 +52,6 @@ const Settings: React.FC = () => {
     const [showDeleteAccount, setShowDeleteAccount] = useState(false)
     const [width, setWidth] = useState(window.innerWidth)
     const [selectedTeamToDelete, setSelectedTeamToDelete] = useState(-1)
-    const team_with_admin_access_ids = useSelector(
-        (state: any) => state.userInfo.team_with_admin_access
-    )
     const team_with_admin_access_data = useSelector(
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
@@ -121,6 +119,7 @@ const Settings: React.FC = () => {
     }
     const logOutyes = () => {
         localStorage.clear()
+        dispath({ type: userConstants.LOGOUT })
         history.push('/login')
         window.location.reload()
         closeModal()
