@@ -44,6 +44,7 @@ const CreateTeam = (props: any) => {
     const dispatch = useDispatch()
     const addTeam = () => {
         dispatch(createTeam(teamDetails))
+        props.closeModal();
     }
 
     return (

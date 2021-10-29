@@ -14,7 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
-
+import { useDispatch } from 'react-redux'
+import { getTeams } from 'redux/actions/teams';
 
 //Modals
 import InviteMembers from 'components/application/components/teams/components/modals/InviteMembers';
@@ -85,7 +86,7 @@ function Teams() {
             }
     });
     
-  
+
   const toggleShowOptions = ()=>{
     if(window.innerWidth<768){
     setShowLeft(!showLeft);

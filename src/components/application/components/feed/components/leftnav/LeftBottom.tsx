@@ -9,11 +9,14 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link ,useHistory} from 'react-router-dom'
 
 const LeftBottom = (props: any) => {
        const allTeams = useSelector((state: any) => state.teams.teams)
-
+       const history = useHistory();
+       const getTheUserTeams =(e:any)=>{
+        history.push("/app/teams");
+    }
         return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -24,7 +27,7 @@ const LeftBottom = (props: any) => {
                 </MDBCardHeader>
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
-                        <MDBListGroupItem className="left-right-nav__card__list__item--create"  onClick={props.openCreateTeam}>
+                        <MDBListGroupItem className="left-right-nav__card__list__item--create" onClick={props.openCreateTeam}>
                             <img
                                 src={create}   
                                 alt="create"
@@ -39,11 +42,11 @@ const LeftBottom = (props: any) => {
                             </div>
                         </MDBListGroupItem>
                         {allTeams &&
-                            allTeams.slice(1,4).map((team: any, index: number) => {
+                            allTeams.slice(0,5).map((team: any, index: number) => {
                                 return (
                                     <MDBListGroupItem className="left-right-nav__card__list__item">
                                         <img src={team.avatar} alt={team.name} />
-                                        <div className="left-right-nav__card__list__item__info">
+                                        <div className="left-right-nav__card__list__item__info" onClick={getTheUserTeams.bind(null,team.id)} style={{cursor: "pointer"}}>
                                             <h2 className="text-style--bold text-align--left text-size--big">
                                                 {team.name}
                                             </h2>
@@ -57,11 +60,12 @@ const LeftBottom = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <Link
-                        to="/app/teams"
-                        className="text-style--bold text-align--center text-color--white">
+                    <a
+                        href="/app/teams"
+                        className="text-style--bold text-align--center" 
+                    >
                         View All
-                    </Link>
+                    </a>
                 </MDBCardFooter>
             </MDBCard>
         </div>

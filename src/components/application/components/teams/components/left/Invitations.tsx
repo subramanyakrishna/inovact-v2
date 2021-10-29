@@ -27,9 +27,7 @@ const SuggestionInvitation = (props :any) => {
                     </div>
                 </div>
                 <div className="suggestions__row__buttons">
-                    <button className="suggestions__row__button--white">
-                        Cancel
-                    </button>
+                <div className="text-color--grey text-style--italic">Pending</div>
                 </div>
             </div>
             )})} 

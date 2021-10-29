@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const teamsReducer = (state = initialState, action: any) => {
-    console.log("action bleh",action.type, action.payload)
+    console.log("teams reducer",action.type, action.payload)
     switch (action.type) {
         case GET_TEAMS:
             return {

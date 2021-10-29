@@ -372,6 +372,7 @@ const handleAddTeamChange = (name: any, value: any) => {
     }
     console.log(store.getState())
 }
+
 const handleAllPosts = (name: any, value: any) => {
     console.log('all posts value: ', value)
     switch (name) {
