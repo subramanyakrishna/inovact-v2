@@ -9,10 +9,11 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const LeftBottom = (props: any) => {
     const allTeams = useSelector((state: any) => state.teams.teams)
-
+    const history = useHistory()
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -61,12 +62,12 @@ const LeftBottom = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <a
-                        href="/"
+                    <div
+                        onClick={() => history.push('/app/teams')}
                         className="text-style--bold text-align--center text-color--white"
                     >
                         View All
-                    </a>
+                    </div>
                 </MDBCardFooter>
             </MDBCard>
         </div>
