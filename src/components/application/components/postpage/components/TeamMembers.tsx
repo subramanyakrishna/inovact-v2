@@ -28,7 +28,7 @@ const TeamMembers = (props: any)=> {
                     window.innerWidth >= 992 &&    
                     <div className="post-dedicated-team-members-page-status">
                         <p>Project Status:</p>
-                        <p style={{color: "#02bd63"}}>In Progress</p>
+                        <p style={{color: "#02bd63"}}>{props.postData.status}</p>
                     </div>
                 }
             </div>
