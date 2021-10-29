@@ -27,32 +27,33 @@ import UploadDocuments from 'components/application/components/teams/components/
 import useRequests from 'useRequest/useRequest'
 
 function Teams() {
+
     const allTeams = useSelector((state: any) => state.teams.teams)
-    const currentTeam= allTeams[0]
-    const teamId = currentTeam.id;
-    const [verticalActive, setVerticalActive] = useState(teamId);
+    const [isLoading,setLoading]=useState(true)
+    const dispatch = useDispatch()
+    const [initialTeam,setInitialTeam]=useState(0)
 
-    const [myTeams,setMyTeams]=useState([]);
-    const [activeTeamId,setActiveTeamId] = useState(myTeams[0]);
-
-    const {doRequest: getAllTeams, errors} = useRequests({
-        method: "get",
-        route: "team",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log("The teams fetched are: ",data.data.team);
-            console.log("data", data)
-            setMyTeams(data.data.team);
+    useEffect(() => {
+        dispatch(getTeams('user'))
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
         }
-    });
+    }, []);
 
-    useEffect(()=>{
-      (async ()=>{
-          await getAllTeams();
-      })();
-    }, [])
+    useEffect(() => {
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
+        }
+    }, []);
 
-   
+    const [verticalActive, setVerticalActive] = useState(initialTeam);
+
     //Modals
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);

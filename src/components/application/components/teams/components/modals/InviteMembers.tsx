@@ -2,17 +2,22 @@ import React,{useState,useEffect} from 'react';
 import search from 'images/feed/search.svg'
 import link from 'images/teams/cc-link.svg'
 import { useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux'
+import { inviteMembers } from 'redux/actions/teams'
 import MemberForInvite from 'components/application/components/teams/components/modals/FindMembers'
 import axios from 'axios';
 function InviteMembers(props:any) {
     const allTeams = useSelector((state: any) => state.teams.teams)
-  
+    const [inviteInfo, setInviteInfo] =useState({
+        team_id:0,
+        user_id:0,
+    })
+
     const [buttonText, setButtonText] = useState("Invite"); 
     const changeText = () => setButtonText("Invited");
     const users =useSelector((state:any) => state.peopleYouMayKnow)
     const userInfo =useSelector((state:any) => state.userInfo)
-
+    const dispatch = useDispatch()
     const handleShareModal=(e:any)=>{
         props.closeModal();
         props.viewShareModal();
@@ -21,6 +26,11 @@ function InviteMembers(props:any) {
         const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
         const teamId = currentTeam.id;
         const userId = e;
+       
+        // const addTeam = () => {
+        //     dispatch(inviteMembers({user_id:userId,team_id: teamId}))
+        // }
+        console.log("teamid,uderid",teamId,userId)
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
@@ -29,6 +39,7 @@ function InviteMembers(props:any) {
                 "Authorization": localStorage.getItem("user"),
             }
         })
+        
     }
 
     return (

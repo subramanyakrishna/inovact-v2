@@ -37,12 +37,12 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
 }
 
 
-export const inviteMembers =(userId: string) => async (dispatch: any) => {
+export const inviteMembers =(bodyData :any) => async (dispatch: any) => {
     try {
-        const res = await TeamsService.inviteMember(userId)
+        const res = await TeamsService.inviteMember(bodyData)
         dispatch({
             type:INVITE_MEMBERS,
-            payload: res.data
+            payload: res.data.insert_team_invitations.returning[0]
         })
     } catch (error) {
         throw error
