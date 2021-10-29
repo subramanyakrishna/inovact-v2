@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { makeApiCall } from 'components/application/components/connections/components/connectionsUtils'
 import SmallSpinner from 'components/application/SmallSpinner'
 import {
     MDBCard,
@@ -10,23 +11,30 @@ import {
     MDBCardFooter,
 } from 'mdb-react-ui-kit'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { handleOtherUserInfoChange } from 'StateUpdateHelper'
-import useRequests from 'useRequest/useRequest'
+import { handlePeopleYouMayKnow } from 'StateUpdateHelper'
 
 const RightTop = (props: any) => {
-    const handleConnect = (e: any) => {}
+    const peopleToKnow = useSelector(
+        (state: any) => state.peopleYouMayKnow
+    ).slice(0, 4)
+    const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
+    const dispatch = useDispatch()
+    const handleConnect = async (id: number) => {
+        const filteredpeopleYouMayKnow = peopleYouMayKnow.filter(
+            (user: any) => user.user_id != id
+        )
+
+        handlePeopleYouMayKnow('pymk_update_all', filteredpeopleYouMayKnow)
+
+        const res = await makeApiCall(
+            'post',
+            `connections/request?user_id=${id}`
+        )
+    }
     const [otherUserId, setOtherUserId] = useState(0)
-    // const {doRequest: getUser, errors: userErrors} = useRequests({
-    //     route: "user",
-    //     method: "get",
-    //     body: null,
-    //     id: otherUserId,
-    //     onSuccess: (data: any)=>{
-    //         console.log(data.data.user);
-    //         handleOtherUserInfoChange("other-user-update",data.data.user[0]);
-    //     }
-    // });
+
     const history = useHistory()
     const getTheOtherUser = async (userId: any) => {
         console.log('the user id is of other: ', userId)
@@ -63,8 +71,8 @@ const RightTop = (props: any) => {
                 </MDBCardHeader>
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
-                        {props.peopleToKnow.length > 0 ? (
-                            props.peopleToKnow.map(
+                        {peopleToKnow.length > 0 ? (
+                            peopleToKnow.map(
                                 (
                                     { name, designation, user_id, image }: any,
                                     index: any
@@ -105,7 +113,9 @@ const RightTop = (props: any) => {
                                             <div className="left-right-nav__card__list__item__button__box">
                                                 <button
                                                     className="left-right-nav__card__list__item__button"
-                                                    onClick={handleConnect}
+                                                    onClick={() =>
+                                                        handleConnect(user_id)
+                                                    }
                                                 >
                                                     Connect
                                                 </button>
@@ -120,12 +130,9 @@ const RightTop = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <a
-                        href="/connections"
-                        className="text-style--bold text-align--center"
-                    >
+                    <div onClick={() => history.push('/app/connections')}>
                         View All
-                    </a>
+                    </div>
                 </MDBCardFooter>
             </MDBCard>
         </div>
