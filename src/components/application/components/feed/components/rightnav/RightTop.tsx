@@ -130,12 +130,9 @@ const RightTop = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <a
-                        href="/connections"
-                        className="text-style--bold text-align--center"
-                    >
+                    <div onClick={() => history.push('/app/connections')}>
                         View All
-                    </a>
+                    </div>
                 </MDBCardFooter>
             </MDBCard>
         </div>
