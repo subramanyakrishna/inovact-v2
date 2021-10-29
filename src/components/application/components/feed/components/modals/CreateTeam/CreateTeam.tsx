@@ -17,7 +17,6 @@ const CreateTeam = (props: any) => {
     const [teamDetails, setTeamDetails] = useState<ICreateTeam>({
         name: '',
         tags: [],
-        avatar: "",
         looking_for_members: false,
         looking_for_mentor: false,
         roles: [],
@@ -43,7 +42,8 @@ const CreateTeam = (props: any) => {
 
     const dispatch = useDispatch()
     const addTeam = () => {
-        dispatch(createTeam(teamDetails))
+        console.log('teamDetails', teamDetails)
+        // dispatch(createTeam(teamDetails))
     }
 
     return (
@@ -65,7 +65,7 @@ const CreateTeam = (props: any) => {
                         />
                         <TeamMembers />
                     </div>
-                    
+
                     <div className="modal_cover-post-btn">
                         <button onClick={addTeam}>Create</button>
                     </div>
