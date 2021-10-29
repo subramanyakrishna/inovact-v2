@@ -6,7 +6,7 @@ import {
 
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/otheruserteam/components/teamInfo/TeamInfo'
-import TeamDescription from 'components/application/components/otheruserteam/components/TeamDescription'
+import TeamDescription from 'components/application/components/otheruserteam/components/teamInfo/TeamDescription'
 
 //icons
 import MenuIcon from '@material-ui/icons/Menu';

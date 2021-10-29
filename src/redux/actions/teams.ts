@@ -36,6 +36,7 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
     }
 }
 
+
 export const inviteMembers =(userId: string) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(userId)

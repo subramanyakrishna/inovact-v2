@@ -115,7 +115,6 @@ function Feed() {
                 role:post.user.role,
                 type: 1,
                 avatar: post.user.avatar,
-                team_id: post.team_id,
                 author: post.user.first_name+ " "+ post.user.last_name,
                 tags: post.project_tags.map((tag: any)=>{
                     return tag.hashtag.name;
@@ -146,7 +145,7 @@ function Feed() {
                 description: post.description,
                 role:post.user.role,
                 type: 2,
-                team_id: post.team_id,
+
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
                 tags: post.idea_tags.map((tag: any)=>{
@@ -356,6 +355,10 @@ function Feed() {
     //     distinctUntilChanged()
     // )
     // const scrollDirection = useObservable(watchScroll, 'Down');
+    const [reqToJoinId, setReqToJoinId] = useState<any>(null);
+    const changeTheTeamID = (id: any) => {
+        setReqToJoinId(id);
+    }
     return (
         <div>
             {showOverlay && (
@@ -390,7 +393,7 @@ function Feed() {
                     )}
                     {showRequestJoin && (
                         <div>
-                            <RequestToJoin closeModal={closeModal} />
+                            <RequestToJoin closeModal={closeModal} team_id={reqToJoinId}/>
                         </div>
                     )}
                 </div>
@@ -453,6 +456,7 @@ function Feed() {
                                     post={post}
                                     openTeamMember={viewTeamMembers}
                                     openRequestJoin={viewRequestJoin}
+                                    setReqToJoinId={setReqToJoinId}
                                 />
                             )
                         })}

@@ -1,6 +1,7 @@
 import React from 'react'
 import RoleRequired from './components/RoleRequired';
 import {useSelector } from 'react-redux';
+import axios from 'axios';
 
 function RequestToJoin(props: any) {
 
@@ -23,6 +24,21 @@ function RequestToJoin(props: any) {
             skills: ["Python", "Jupyter NoteBook"]
         },
     ];
+    console.log(props.team_id);
+    const handleJoinMember  = async (e:any) =>{
+        const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
+        const teamId = currentTeam.id;
+        const userId = e;
+        const response =  await axios( {
+            method:'post',
+            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
+            data: { team_id:teamId, user_id:userId},
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        })
+    }
+
     return (
         <div className="modal_main">
             <div className="modal_cover">
