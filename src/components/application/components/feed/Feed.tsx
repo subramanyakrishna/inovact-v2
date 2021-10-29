@@ -115,6 +115,7 @@ function Feed() {
                 role:post.user.role,
                 type: 1,
                 avatar: post.user.avatar,
+                team_id: post.team_id,
                 author: post.user.first_name+ " "+ post.user.last_name,
                 tags: post.project_tags.map((tag: any)=>{
                     return tag.hashtag.name;
@@ -145,6 +146,7 @@ function Feed() {
                 description: post.description,
                 role:post.user.role,
                 type: 2,
+                team_id: post.team_id,
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
                 tags: post.idea_tags.map((tag: any)=>{
@@ -333,12 +335,11 @@ function Feed() {
         setShowFilter(!showFilter)
     }
 
-    const allTeams = useSelector((state: any) => state.teams)
-
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getTeams('user'))
     }, []);
+    
     const feedContainer: any = useRef();
     const goToTopFeed = ()=>{
         window.scrollTo(0,0);

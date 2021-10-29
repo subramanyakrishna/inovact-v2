@@ -377,6 +377,10 @@ $grey-border: rgb(180, 180, 180);
             display: flex;
             flex-direction: column;
             position: relative;
+            input{
+                font-size: small;
+                padding: 5px 10px;
+            }
         }
         &-dropdown{
             position: absolute;

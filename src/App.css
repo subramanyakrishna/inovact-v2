@@ -3356,6 +3356,9 @@ body {
       display: flex;
       flex-direction: column;
       position: relative; }
+      .modal_part_two-team-worked-input input {
+        font-size: small;
+        padding: 5px 10px; }
     .modal_part_two-team-worked-dropdown {
       position: absolute;
       display: flex;
