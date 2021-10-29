@@ -23,28 +23,28 @@ const initialState = {
     appearance: 0,
     percentage_growth: 0,
     website: '',
-    skills: {
-        beginner: [
-            { id: 1, name: 'java' },
-            { id: 2, name: 'python' },
-            { id: 3, name: 'spring' },
-        ],
-        intermediate: [
-            { id: 1, name: 'java' },
-            { id: 2, name: 'python' },
-            { id: 3, name: 'spring' },
-        ],
-        proficient: [
-            { id: 1, name: 'java' },
-            { id: 2, name: 'python' },
-            { id: 3, name: 'spring' },
-        ],
-        advanced: [
-            { id: 1, name: 'java' },
-            { id: 2, name: 'python' },
-            { id: 3, name: 'spring' },
-        ],
-    },
+    skills: [
+        {
+            heading: 'Beginner',
+            skillNo: 3,
+            allSkills: ['Java', 'Blockchain', 'C'],
+        },
+        {
+            heading: 'Intermediate',
+            skillNo: 3,
+            allSkills: ['Java', 'Blockchain', 'C'],
+        },
+        {
+            heading: 'Proficient',
+            skillNo: 3,
+            allSkills: ['Java', 'Blockchain', 'C'],
+        },
+        {
+            heading: 'Advanced',
+            skillNo: 3,
+            allSkills: ['Java', 'Blockchain', 'C'],
+        },
+    ],
     projects: [],
     ideas: [],
     thoughts: [],
