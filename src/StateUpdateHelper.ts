@@ -55,7 +55,6 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
-
         case 'last-name':
             store.dispatch({
                 type: userInfoConstants.UPDATE_LASTNAME,
@@ -278,6 +277,12 @@ const handleAddIdeaChange = (name: any, value: any) => {
                 payload: value,
             })
             break
+        case "team_id":
+            store.dispatch({
+                type: addIdeaConstants.IDEA_UPDATE_TEAM_ID,
+                payload: value,
+            })
+            break;
         case 'idea_tags':
             store.dispatch({
                 type: addIdeaConstants.IDEA_UPDATE_IDEA_TAGS,

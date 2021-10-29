@@ -6,11 +6,11 @@ type Props = {
     removeTag: (tag: number) => void
 }
 
-function SkillTags({ tag, removeTag, id }: Props) {
+function SkillTags(props: any) {
     return (
         <div className="skills-tag">
-            <label>{tag}</label>
-            <button onClick={() => removeTag(id)}>&times;</button>
+            <label>{props.skill}</label>
+            <button onClick={() => props.removeTag(props.id)}>&times;</button>
         </div>
     )
 }
