@@ -76,11 +76,6 @@ const TeamDescription = ({ team }: Props) => {
             <div className="teams-description__info">
                 <div className="teams-description__info__left">
                     <img src={team.avatar} alt="teamImage" />
-                    <div className="teams-description__info__left__text">
-                        <button className=" button--blue text-align--center sm-small">
-                            Group Chat{' '}
-                        </button>
-                    </div>
                 </div>
 
                 <div className="teams-description__info__right">

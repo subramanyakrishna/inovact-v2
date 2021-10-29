@@ -14,16 +14,6 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
-
-import { of, fromEvent, animationFrameScheduler } from 'rxjs'
-import {
-    distinctUntilChanged,
-    filter,
-    map,
-    pairwise,
-    switchMap,
-    throttleTime,
-} from 'rxjs/operators'
 import Spinner from 'components/application/Spinner'
 import {
     handleAddIdeaChange,
@@ -119,13 +109,13 @@ function Feed() {
             setPosts([...data.data.project.map((post: any)=>({
                 user_id: post.user.id,
                 id: post.id,
+                team_id:post.team_id,
                 title: post.title,
                 description: post.description,
                 role:post.user.role,
                 type: 1,
                 project_status: post.status,
                 avatar: post.user.avatar,
-                team_id: post.team_id,
                 author: post.user.first_name+ " "+ post.user.last_name,
                 tags: post.project_tags.map((tag: any)=>{
                     return tag.hashtag.name;
@@ -151,18 +141,19 @@ function Feed() {
             setIdeas([...data.data.idea.map((post: any)=>({
                 user_id: post.user.id,
                 id: post.id,
+                team_id:post.team_id,
                 title: post.title,
                 description: post.description,
                 role:post.user.role,
                 type: 2,
-                team_id: post.team_id,
+
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
                 tags: post.idea_tags.map((tag: any)=>{
                     return tag.hashtag.name;
                 }),
                 images: post.idea_documents.map((image: any)=>{
-                    // console.log(image.url);
+                    
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
@@ -247,11 +238,13 @@ function Feed() {
         })();
         console.log("The userProfile status: ", userInfo.profile_complete);
     }, [])
+
     useEffect(() => {
         if (!userInfo.profile_complete) {
             history.push('/app/userinfo')
         }
     },[userInfo.profile_complete]);
+    
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -276,6 +269,7 @@ function Feed() {
             setFilteredPosts([...sortedPosts]);
         }
     }, [posts, ideas, thoughts])
+
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
         if (type === 'All') {
@@ -365,6 +359,10 @@ function Feed() {
     //     distinctUntilChanged()
     // )
     // const scrollDirection = useObservable(watchScroll, 'Down');
+    const [reqToJoinId, setReqToJoinId] = useState<any>(null);
+    const changeTheTeamID = (id: any) => {
+        setReqToJoinId(id);
+    }
     return (
         <div>
             {showOverlay && (
@@ -399,7 +397,7 @@ function Feed() {
                     )}
                     {showRequestJoin && (
                         <div>
-                            <RequestToJoin closeModal={closeModal} />
+                            <RequestToJoin closeModal={closeModal} team_id={reqToJoinId}/>
                         </div>
                     )}
                 </div>
@@ -462,6 +460,7 @@ function Feed() {
                                     post={post}
                                     openTeamMember={viewTeamMembers}
                                     openRequestJoin={viewRequestJoin}
+                                    setReqToJoinId={setReqToJoinId}
                                 />
                             )
                         })}
