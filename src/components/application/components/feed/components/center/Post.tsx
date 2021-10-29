@@ -15,6 +15,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showShareOption, setShowShareOption] = useState(false)
     const [showComments, setShowComments] = useState(false)
     const [likes, setLikes] = useState(0)
+    const [reqToJoinId, setReqToJoinId] = useState<number>()
     const backToPost = () => {
         setShowComments(false)
     }
