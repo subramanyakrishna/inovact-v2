@@ -1,12 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import TeamMemberTag from './TeamMemberTag';
 import { useSelector } from 'react-redux';
 import { handleAddTeamChange } from 'StateUpdateHelper';
-import SearchedPeople from '../../UploadProject/components/SearchedPeople';
-import MentionsTag from '../../UploadProject/components/MentionsTag';
 
 
-function TeamMembers(props: any) {
+function TeamMembers() {
     const [teamMembers, setTeamMembers] = useState<Object[]>([]);
     const [currentName, setCurrentName] = useState("");
     const [currentRole, setCurrentRole] = useState("");
@@ -29,35 +27,9 @@ function TeamMembers(props: any) {
     const removeTeamMember = (id: any)=>{
         setTeamMembers([...teamMembers.filter((ele: any,index: any)=>index!==id)]);
     }
-    const addMentions = (mention: any)=>{
-        mentionInput.current.value="";
-        setSearchedPeople([]);
-        setMentionsOfProject([...mentionsOfProject.filter((men: any)=>{
-            return men.user_name!==mention.user_name;
-        }), mention]);
-        console.log(mentionsOfProject);
-        props.setTeamDetails({
-            ...props.teamDetails,
-            team_members: mentionsOfProject.map((ele:any)=>ele.id)
-        });
-    }
-    const [mentionsOfProject, setMentionsOfProject] = useState<any[]>([]);
-    const [searchedPeople, setSearchedPeople] = useState<any[]>([]);
-    const peopleYouMayKnow = useSelector((state: any)=>{
-        return state.peopleYouMayKnow;
-    });
-    const searchUsernames = (e: any)=>{
-        const value = e.target.value;
-        if(value===""){
-            setSearchedPeople([]);
-            return;
-        }
-        setSearchedPeople([...peopleYouMayKnow.filter((ppl: any)=>ppl.user_name.includes(value)).slice(0,4)]);
-    }
-    const mentionInput: any = useRef();
     return (
         <div className="team-members">
-            <label>Type the users you would like to add to the team.</label>
+            <span>Type the username of the members your would like to add your team</span>
             <div className="team-members-add">
                 <input type="text" placeholder="Username" onChange={handleChangeName} value={currentName}/>
                 <input type="text" placeholder="Role" onChange={handleChangeRole} value={currentRole}/>
@@ -70,23 +42,6 @@ function TeamMembers(props: any) {
                     })
                 }
             </div>
-            {/* <div className="modal_part_two-mentions">
-                    <label>Add Team Members</label>
-                    <input type="text" placeholder="Type the usernames of the people you would like to add to team" onChange={searchUsernames} ref={mentionInput}/>
-                    <div className="modal_part_two-mentions-dropdown">
-                        {
-                            searchedPeople.map((ppl: any)=>{
-                                return <SearchedPeople ppl={ppl} addMentions={addMentions}/>
-                            })
-                        }
-            </div> */}
-            {/* <div className="modal_part_two-mentions-tag-container">
-                {
-                    mentionsOfProject.map((ppl: any)=>{
-                        return <MentionsTag ppl={ppl} />
-                    })
-                }
-            </div> */}
         </div>
     )
 }
