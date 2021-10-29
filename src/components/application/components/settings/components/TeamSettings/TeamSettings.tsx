@@ -61,14 +61,14 @@ const TeamSettings: React.FC<teamSettings> = ({
     const teams = useSelector((state:any)=>{
         return state.teams.teams;
     })
-    const teams_with_admin_access_data = teams.filter((team: any)=>{
+    const [teams_with_admin_access_data, setTWAA] =useState<any>(teams.filter((team: any)=>{
         for(let i=0;i<team.team_members.length;i++){
             if(team.team_members[i].admin){
                 return true;
             }
         }
         return false;
-    })
+    }))
     const handleAllowOthersToViewTeam = (event: any) => {
         handleUserInfoChange('team_public_visibility', event.target.checked)
     }
@@ -80,6 +80,9 @@ const TeamSettings: React.FC<teamSettings> = ({
     // }
     
     const handleDeleteTeam = async(id: number) => {
+        console.log(id, teams_with_admin_access_data)
+        setTWAA(teams_with_admin_access_data.filter((team: any)=>team.id!==id));
+        console.log("filtered");
         await axios({
             method: "delete",
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${id}`,

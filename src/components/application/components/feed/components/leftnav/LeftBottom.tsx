@@ -45,7 +45,7 @@ const LeftBottom = (props: any) => {
                                         key={index}
                                     >
                                         <img
-                                            src={team.avatar}
+                                            src={team.avatar!==""?team.avatar:"https://www.wallstreetpanel.com/wp-content/plugins/profilegrid-user-profiles-groups-and-communities/public/partials/images/default-group.jpg"}
                                             alt={team.name}
                                         />
                                         <div className="left-right-nav__card__list__item__info">
