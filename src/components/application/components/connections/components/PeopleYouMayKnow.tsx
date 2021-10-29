@@ -8,23 +8,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { skillsLocal } from '../usersData'
 import axios from 'axios'
 import Spinner from 'components/application/Spinner'
+import { makeApiCall } from './connectionsUtils'
 
 // function PeopleYouMayKnow({ makeApiCall }: any) {
 function PeopleYouMayKnow(props: any) {
-    const makeApiCall = async (method: any, route: string) => {
-        console.log('method', method)
-        console.log('route', route)
-    
-        const response = await axios({
-            method: method,
-            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
-            headers: {
-                Authorization: localStorage.getItem('user'),
-                'Content-Type': 'application/json',
-            },
-        })
-        return response
-    }
     const [showFilter, setShowFilter] = useState(false)
     const [currentFilter, setCurrentFilter] = useState('role')
     const [selectedFilterValue, setSelectedFilterValue] = useState('student')
@@ -187,11 +174,8 @@ function PeopleYouMayKnow(props: any) {
                 </div>
                 <div>
                     <div className="people-you-may-know-profiles">
-                        {
-                            filteredUsers.length ===0 &&
-                            <Spinner/>
-                        }
-                        {filteredUsers.length !==0 &&
+                        {filteredUsers.length === 0 && <Spinner />}
+                        {filteredUsers.length !== 0 &&
                             filteredUsers.map((user: any, i: any) => (
                                 <PeopleToKnowProfiles
                                     key={i}

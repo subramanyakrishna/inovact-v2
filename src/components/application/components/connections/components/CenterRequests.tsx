@@ -10,9 +10,12 @@ import {
     updateTotalNumberOfConnections,
 } from 'redux/actions/connectionsAction'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
-import { getFilteredPendingRequestsAndConnectedAccount } from './connectionsUtils'
+import {
+    getFilteredPendingRequestsAndConnectedAccount,
+    makeApiCall,
+} from './connectionsUtils'
 
-function CenterRequests({ makeApiCall }: any) {
+function CenterRequests() {
     const [showRequest, setShowRequest] = useState(true)
     const [showConnection, setShowConnection] = useState(false)
     const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
@@ -39,21 +42,18 @@ function CenterRequests({ makeApiCall }: any) {
                 type: userInfoConstants.UPDATE_WHOLE_PROFILE,
                 payload: response.data.data.user[0],
             })
-            const { id } = response.data.data.user[0]
-            const ownId = id
+            const { id: ownId } = response.data.data.user[0]
             const dataFromConnectionApi = await makeApiCall(
                 'get',
                 'connections'
             )
-            const allConnectionsFromApi =
-                dataFromConnectionApi.data.data.connections
 
             const {
                 filteredPendingRequest,
                 filteredConnectedAccount,
                 filteredConnectReqAcceptPending,
             } = getFilteredPendingRequestsAndConnectedAccount(
-                allConnectionsFromApi,
+                dataFromConnectionApi.data.data.connections,
                 ownId
             )
 

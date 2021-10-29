@@ -5,20 +5,6 @@ import PeopleYouMayKnow from './components/PeopleYouMayKnow'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 
-const makeApiCall = async (method: any, route: string) => {
-    console.log('method : ', method, ' ', 'route :', route)
-
-    const response = await axios({
-        method: method,
-        url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
-        headers: {
-            Authorization: localStorage.getItem('user'),
-            'Content-Type': 'application/json',
-        },
-    })
-    return response
-}
-
 function Connections() {
     const [width, setWidth] = useState(window.innerWidth)
     const WIDTH_LIMIT = 992
@@ -36,9 +22,9 @@ function Connections() {
     return (
         <div className="connections-page">
             <div className="connections-top-components">
-                <CenterRequests makeApiCall={makeApiCall} />
+                <CenterRequests />
                 {width < WIDTH_LIMIT && <RightNetworkStats />}
-                <PeopleYouMayKnow makeApiCall={makeApiCall} />
+                <PeopleYouMayKnow />
             </div>
             <div className="connections-right-components">
                 {width > WIDTH_LIMIT && <RightNetworkStats />}

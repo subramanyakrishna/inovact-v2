@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const findTimeDiffString = (connectedDateString: string) => {
     const ONE_SECONDS_IN_MS = 1000
     const ONE_MINUTE = ONE_SECONDS_IN_MS * 60
@@ -60,11 +62,49 @@ const getFilteredPendingRequestsAndConnectedAccount = (
             }
         }
     })
-
+    const ascendingOrderTimeSortCallback = (
+        connection1: any,
+        connection2: any
+    ) => {
+        const connection1Date: Date = new Date(connection1.created_at)
+        const connection2Date: Date = new Date(connection2.created_at)
+        return connection2Date === connection1Date
+            ? 0
+            : connection2Date > connection1Date
+            ? -1
+            : 1
+    }
+    filteredPendingRequest = filteredPendingRequest.sort(
+        ascendingOrderTimeSortCallback
+    )
+    filteredConnectedAccount = filteredConnectedAccount.sort(
+        ascendingOrderTimeSortCallback
+    )
+    filteredConnectReqAcceptPending = filteredConnectReqAcceptPending.sort(
+        ascendingOrderTimeSortCallback
+    )
     return {
         filteredPendingRequest,
         filteredConnectedAccount,
         filteredConnectReqAcceptPending,
     }
 }
-export { getFilteredPendingRequestsAndConnectedAccount, findTimeDiffString }
+const makeApiCall = async (method: any, route: string) => {
+    console.log('method : ', method, ' ', 'route :', route)
+
+    const response = await axios({
+        method: method,
+        url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
+        headers: {
+            Authorization: localStorage.getItem('user'),
+            'Content-Type': 'application/json',
+        },
+    })
+    return response
+}
+
+export {
+    getFilteredPendingRequestsAndConnectedAccount,
+    findTimeDiffString,
+    makeApiCall,
+}
