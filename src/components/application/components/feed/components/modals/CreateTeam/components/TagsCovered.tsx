@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 type Props = {
     teamDetails: ICreateTeam
-    setTeamDetails: (teamDetails: ICreateTeam) => void
+    setTeamDetails: (teamDetails: any) => void
 }
 
 const TagsCovered = ({ setTeamDetails, teamDetails }: Props) => {
@@ -15,7 +15,7 @@ const TagsCovered = ({ setTeamDetails, teamDetails }: Props) => {
     const removeTag = (id: number) => {
         setTeamDetails({
             ...teamDetails,
-            tags: teamDetails.tags.filter((ele: any) => ele !== id),
+            team_tags: teamDetails.tags.filter((ele: any) => ele !== id),
         })
     }
     const removeSkill = (index:any)=>{
@@ -55,7 +55,7 @@ const TagsCovered = ({ setTeamDetails, teamDetails }: Props) => {
                                 addSkill(tag.name);
                                 setTeamDetails({
                                     ...teamDetails,
-                                    tags: Array.from(new Set([...teamDetails.tags, tag.id]))
+                                    team_tags: Array.from(new Set([...teamDetails.team_tags, tag.id]))
                                 })
                             }}>{tag.name}</span>)
                         }

@@ -14,13 +14,11 @@ import { createTeam } from 'redux/actions/teams'
 import { useDispatch } from 'react-redux'
 
 const CreateTeam = (props: any) => {
-    const [teamDetails, setTeamDetails] = useState<ICreateTeam>({
-        name: '',
-        tags: [],
-        avatar: "",
-        looking_for_members: false,
-        looking_for_mentor: false,
-        roles: [],
+    const [teamDetails, setTeamDetails] = useState<any>({
+            name: "",
+            avatar: "",
+            team_tags: [],
+            team_members: [],
     })
 
     const addRoles = ({ roleId, skills }: Iroles) => {
@@ -63,7 +61,7 @@ const CreateTeam = (props: any) => {
                             setTeamDetails={setTeamDetails}
                             teamDetails={teamDetails}
                         />
-                        <TeamMembers />
+                        <TeamMembers teamDetails={teamDetails} setTeamDetails={setTeamDetails}/>
                     </div>
                     <div className="modal_part_two">
                         {/* <div className="modal_part_two-member-mentor">

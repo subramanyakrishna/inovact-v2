@@ -41,7 +41,7 @@ const LeftBottom = (props: any) => {
                             allTeams.map((team: any, index: number) => {
                                 return (
                                     <MDBListGroupItem className="left-right-nav__card__list__item">
-                                        <img src={team.avatar} alt={team.name} />
+                                        <img src={team.avatar!==""?team.avatar:"https://www.wallstreetpanel.com/wp-content/plugins/profilegrid-user-profiles-groups-and-communities/public/partials/images/default-group.jpg"} alt="img" />
                                         <div className="left-right-nav__card__list__item__info">
                                             <h2 className="text-style--bold text-align--left text-size--big">
                                                 {team.name}
