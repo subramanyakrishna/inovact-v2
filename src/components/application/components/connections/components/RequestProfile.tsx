@@ -14,7 +14,7 @@ function RequestProfile(props: any) {
                     {props.user.designation}
                 </span>
                 <span className="my-requests-profile-time">
-                    Connected 10 min ago
+                    Connected {props.user.connected_at_in_words} ago
                 </span>
             </div>
             <div className="my-requests-profile-btn-container">
