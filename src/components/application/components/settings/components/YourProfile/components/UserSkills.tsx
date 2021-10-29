@@ -1,3 +1,4 @@
+import SkillsTag from 'components/application/components/profile/components/LeftProfileContent/Components/SkillsTag'
 import React from 'react'
 import Skills from '../../../../profile/components/LeftProfileContent/Components/Skills'
 function UserSkills() {
@@ -5,29 +6,40 @@ function UserSkills() {
         {
             heading: 'Beginner',
             skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
+            allSkills: ['Spring', 'Blockchain', 'C'],
         },
         {
             heading: 'Intermediate',
             skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
+            allSkills: ['ExpressJs'],
         },
         {
             heading: 'Proficient',
             skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
+            allSkills: ['ReactJs', 'Redux'],
         },
         {
             heading: 'Advanced',
             skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
+            allSkills: ['Java', 'C++', 'C'],
         },
     ]
+
     return (
         <div>
             <span className="settings-my-profile-skills-heading">Skills</span>
             <div className="settings-my-profile-skills">
-                <Skills data={data} />
+                {data.map((skills: any, i: number) => {
+                    const { heading, skillNo, allSkills } = skills
+                    return (
+                        <SkillsTag
+                            key={i}
+                            heading={heading}
+                            skillNo={skillNo}
+                            skills={allSkills}
+                        />
+                    )
+                })}
             </div>
         </div>
     )
