@@ -40,7 +40,10 @@ const RightBottom = () => {
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {teams.map(({ name }, index) => {
                             return (
-                                <MDBListGroupItem className="left-right-nav__card__list__item--right">
+                                <MDBListGroupItem
+                                    className="left-right-nav__card__list__item--right"
+                                    key={index}
+                                >
                                     <div className="left-right-nav__card__list__item__info">
                                         <h2 className="text-style--bold text-align--left text-size--big">
                                             {name}{' '}
