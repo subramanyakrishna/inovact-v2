@@ -24,11 +24,12 @@ const LeftBottom = (props: any) => {
                 </MDBCardHeader>
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
-                        <MDBListGroupItem
-                            className="left-right-nav__card__list__item--create"
-                            onClick={props.openCreateTeam}
-                        >
-                            <img src={create} alt="create" />
+                        <MDBListGroupItem className="left-right-nav__card__list__item--create" onClick={props.openCreateTeam}>
+                            <img
+                                src={create}   
+                                alt="create"
+                               
+                            />
                             <div className="left-right-nav__card__list__item__info">
                                 <h6>
                                     <div className="title">
@@ -38,7 +39,7 @@ const LeftBottom = (props: any) => {
                             </div>
                         </MDBListGroupItem>
                         {allTeams &&
-                            allTeams.map((team: any, index: number) => {
+                            allTeams.slice(0,5).map((team: any, index: number) => {
                                 return (
                                     <MDBListGroupItem
                                         className="left-right-nav__card__list__item"

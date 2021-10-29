@@ -1,29 +1,45 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import search from 'images/feed/search.svg'
-const teamInfo =[
-    {
-        name:'Jane Doe',
-        image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-        role:'student'
-    },
-    {
-        name:'Jane Doe',
-        image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-        role:'student'
-    },
-    {
-        name:'Jane Doe',
-        image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-        role:'student'
-    },
-    {
-        name:'Jane Doe',
-        image:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-        role:'student'
+import link from 'images/teams/cc-link.svg'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'
+import MemberForInvite from 'components/application/components/teams/components/modals/FindMembers'
+import axios from 'axios';
+function InviteMembers(props:any) {
+    const allTeams = useSelector((state: any) => state.teams.teams)
+    const [inviteInfo, setInviteInfo] =useState({
+        team_id:0,
+        user_id:0,
+    })
+
+    const [buttonText, setButtonText] = useState("Invite"); 
+    const changeText = () => setButtonText("Invited");
+    const users =useSelector((state:any) => state.peopleYouMayKnow)
+    const userInfo =useSelector((state:any) => state.userInfo)
+    const handleShareModal=(e:any)=>{
+        props.closeModal();
+        props.viewShareModal();
+    }
+    const handleInviteTeamMember  = async (e:any) =>{
+        const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
+        const teamId = currentTeam.id;
+        const userId = e;
+       
+        // const addTeam = () => {
+        //     dispatch(inviteMembers({user_id:userId,team_id: teamId}))
+        // }
+        console.log("teamid,uderid",teamId,userId)
+        const response =  await axios( {
+            method:'post',
+            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
+            data: { team_id:teamId, user_id:userId},
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        })
+        
     }
 
-]
-function InviteMembers(props:any) {
     return (
         <div className="modal_main">
            
@@ -47,24 +63,18 @@ function InviteMembers(props:any) {
                                             type="search"
                                             className="input-component--invite-search"
                                         />
-                                         <img src={search} />
+                                         <img src={link} width="20"/>
                               </div>
                             </div>
                             
-                      <button className=" connect-button">Share Link</button>
+                      <button className="connect-button" onClick={handleShareModal}>Share Link</button>
                     </div>
                
                 
                 <div className="invite-members">
-                { teamInfo.map((item,index)=>{
-                return(
-                    <div className="invite-members__details">
-                        <div className="invite-members__details__text">
-                            <img src={item.image} alt="name"/>
-                            <h5 className="invite-members__details__title">{item.name}</h5>
-                        </div>
-                            <button className="connect-button--green">Invite</button>
-                    </div>
+                { users.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
+                return(                   
+                         <MemberForInvite item={item} handleInviteTeamMember={handleInviteTeamMember} />
                 );
             })}
             </div>

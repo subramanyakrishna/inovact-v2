@@ -6,12 +6,15 @@ export const createTeam = (team: ICreateTeam) => async (dispatch: any) => {
     try {
         //? this data is temporary and will be replaced by the real data according to the backend
         const data = {
-            name: team.name,
+            name: '',
+            tags: [],
             avatar: "",
-            team_tags: [],
-            team_members: [],
+            looking_for_members: false,
+            looking_for_mentor: false,
+            roles: [],
+            members: [],
         }
-        const res = await TeamsService.createTeam(data)
+        const res = await TeamsService.createTeam(team)
         console.log(res)
         dispatch({
             type: CREATE_TEAM,
@@ -33,3 +36,16 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
         throw error
     }
 }
+
+
+// export const inviteMembers =(bodyData :any) => async (dispatch: any) => {
+//     try {
+//         const res = await TeamsService.inviteMember(bodyData)
+//         dispatch({
+//             type:INVITE_MEMBERS,
+//             payload: res.data.insert_team_invitations.returning[0]
+//         })
+//     } catch (error) {
+//         throw error
+//     }
+// }

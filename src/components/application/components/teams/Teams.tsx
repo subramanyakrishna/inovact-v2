@@ -4,7 +4,7 @@ import {
   MDBTabsPane,
 } from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
-import SuggestionInvitation from 'components/application/components/teams/components/left/SuggestionInvitation';
+import Invitation from 'components/application/components/teams/components/left/Invitations';
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/right/teamDescription/TeamDescription'
@@ -14,99 +14,56 @@ import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
 import back from 'images/teams/back.svg'
 import add from 'images/teams/add.svg'
-
-//schema
-import {teamData }from 'components/application/components/teams/teamData';
+import { useDispatch } from 'react-redux'
+import { getTeams } from 'redux/actions/teams';
 
 //Modals
 import InviteMembers from 'components/application/components/teams/components/modals/InviteMembers';
 import DeleteMember from 'components/application/components/teams/components/modals/DeleteMember';
 import MakeAdmin from 'components/application/components/teams/components/modals/MakeAdmin';
+import ShareModal from 'components/application/components/teams/components/modals/ShareModal' 
 import UploadDocuments from 'components/application/components/teams/components/modals/UploadDocuments';
 
+import useRequests from 'useRequest/useRequest'
+
 function Teams() {
-    const [teams,setTeams] =useState<teamData[]>([
-        {
-            id: 1,
-            teamname: 'Team Name',
-            title: 'React Web dev',
-            description: 'rLorem ipsum dolor sit amet consectetu adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborunumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium',
-            tags: [
-                'OOPS',
-                'JavaScript',
-                'HTML',
-                'CSS',
-                'ReactJS',
-                'NodeJS',
-                'MongoDB',
-            ],
-            avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?    ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-            members: [
-                {
-                id:"1",
-                role:'student',
-                name:'Jane Doe',
-                designation:'Designation'
-              },
-              {
-                id:"2",
-                role:'student',
-                name:'Jane Doe',
-                designation:'Designation'
-              },
-            ],
-            documents: [pdf,pdf],
-            requests: [
-                {
-                id:"1",
-                role:'student',
-                name:'Jane Doe',
-                designation:'Designation'
-              },
-              {
-                id:"2",
-                role:'student',
-                name:'Jane Doe',
-                designation:'Designation'
-              },
-            ],
-            projects:[
-              {
-                title:'Project Title',
-                status :true
-              },
-              {
-                title:'Project Title',
-                status :true
-              },
-              {
-                title:'Project Title',
-                status :false
-              },
-            ],
-            ideas :[
-            {
-              title:'Idea Title',
-            },
-            {
-              title:'Idea Title',
-            },
-             ]
-        },
-    ])
-    
 
     const allTeams = useSelector((state: any) => state.teams.teams)
-   
-    const idc=parseInt(allTeams[0].id);
-    const [verticalActive, setVerticalActive] = useState(idc?idc:1);
+    const [isLoading,setLoading]=useState(true)
+    const dispatch = useDispatch()
+    const [initialTeam,setInitialTeam]=useState(0)
+
+    useEffect(() => {
+        dispatch(getTeams('user'))
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
+        }
+    }, []);
+
+    useEffect(() => {
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
+             console.log(initialTeam);
+        }
+    }, []);
+
+    const [verticalActive, setVerticalActive] = useState(initialTeam);
+
+    //Modals
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);
     const [showMakeAdmin, setShowMakeAdmin] = useState(false);
     const [showDeleteMember, setShowDeleteMember] = useState(false);
-
     const [showInviteMember, setShowInviteMember] = useState(false);
-
+    const [showShareModal, setShowShareModal] = useState(false);
+ 
+    //Responsive
     const [showLeft, setShowLeft] = useState(true);
     const [showRight, setShowRight] = useState(true);
    
@@ -131,7 +88,7 @@ function Teams() {
             }
     });
     
-  
+
   const toggleShowOptions = ()=>{
     if(window.innerWidth<768){
     setShowLeft(!showLeft);
@@ -168,12 +125,14 @@ function Teams() {
         openModal();
         setShowInviteMember(true);
     }
+    const viewShareModal = ()=>{
+      openModal();
+      setShowShareModal(true);
+  }
     const handleVerticalClick = (value: number) => {
       if (value === verticalActive) {
         return;
       }
-      console.log(allTeams[0].id);
-      console.log(verticalActive);
       setVerticalActive(value);
     };
     
@@ -193,8 +152,12 @@ function Teams() {
                          <MakeAdmin closeModal={closeModal}/>
                 }
                 {
+                  showShareModal &&
+                       <ShareModal closeModal={closeModal} />
+                }
+                {
                     showInviteMember && 
-                        <InviteMembers  closeModal={closeModal}/>
+                        <InviteMembers  team_id={verticalActive}  viewShareModal={viewShareModal} closeModal={closeModal}  />
                 }
                 {
                     showDeleteMember &&
@@ -222,7 +185,7 @@ function Teams() {
                         <UserTeam allTeams={allTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
                     </div>
                     <div className="teams__content__suggestions team-info__suggestion">
-                        <SuggestionInvitation />
+                        <Invitation allTeams={allTeams} active_id={verticalActive}/>
                     </div>
                 </div>
             }

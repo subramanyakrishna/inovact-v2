@@ -21,6 +21,7 @@ const CreateTeam = (props: any) => {
         looking_for_members: false,
         looking_for_mentor: false,
         roles: [],
+        members: [],
     })
 
     const addRoles = ({ roleId, skills }: Iroles) => {

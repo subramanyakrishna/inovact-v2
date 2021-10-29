@@ -810,6 +810,7 @@ body {
     .teams-description {
       padding: 0; } }
   .teams-description__info {
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -1287,6 +1288,9 @@ body {
   font-size: 18px;
   font-style: normal;
   font-weight: 500; }
+
+.share-button {
+  margin: 0.5rem; }
 
 .form-button {
   display: block;

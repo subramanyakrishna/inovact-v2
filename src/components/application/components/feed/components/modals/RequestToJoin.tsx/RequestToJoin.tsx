@@ -1,7 +1,11 @@
 import React from 'react'
 import RoleRequired from './components/RoleRequired';
+import {useSelector } from 'react-redux';
+import axios from 'axios';
 
 function RequestToJoin(props: any) {
+
+    const allTeams = useSelector((state: any) => state.teams.teams)
     const rolesRequired = [
         {
             role: "Front End Developer",
@@ -20,6 +24,19 @@ function RequestToJoin(props: any) {
             skills: ["Python", "Jupyter NoteBook"]
         },
     ];
+
+    const handleJoinMember  = async (e:any) =>{
+
+        const response =  await axios( {
+            method:'post',
+            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request",
+            data: { team_id:props.team_id},
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        })
+    }
+
     return (
         <div className="modal_main">
             <div className="modal_cover">
@@ -37,7 +54,7 @@ function RequestToJoin(props: any) {
                             })
                         }  
                     </div>
-                    <button className="roles-required-request-btn">Send Request</button>
+                    <button className="roles-required-request-btn" onClick={handleJoinMember}>Send Request</button>
                 </div>
                 
             </div>

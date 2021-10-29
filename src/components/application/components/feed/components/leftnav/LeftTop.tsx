@@ -30,6 +30,7 @@ const LeftTop = () => {
         state.connections.my_connections.slice(0.4)
     )
     useEffect(() => {
+        console.log(myConnections)
         ;(async () => {
             const response = await makeApiCall('get', 'user')
 
@@ -53,6 +54,7 @@ const LeftTop = () => {
             )
             setIsLoad(false)
             dispatch(updateMyConnections(filteredConnectedAccount))
+            console.log("myConnections",myConnections)
         })()
     }, [])
     return (
@@ -63,8 +65,7 @@ const LeftTop = () => {
                         Recent Connections
                     </MDBCardTitle>
                 </MDBCardHeader>
-
-                <MDBCardBody className="left-right-nav__card__body">
+             <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {isLoad && <SmallSpinner />}
                         {!isLoad && myConnections.length === 0 && (

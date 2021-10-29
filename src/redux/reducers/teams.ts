@@ -1,11 +1,12 @@
-import { CREATE_TEAM, GET_TEAMS } from './../actionTypes/teams'
+import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS } from './../actionTypes/teams'
 
 const initialState = {
     teams: [],
+    pendingInvitations:[]
 }
 
 const teamsReducer = (state = initialState, action: any) => {
-    console.log("action bleh",action.type, action.payload)
+    console.log("teams reducer",action.type, action.payload)
     switch (action.type) {
         case GET_TEAMS:
             return {
@@ -18,6 +19,11 @@ const teamsReducer = (state = initialState, action: any) => {
                 ...state,
                 teams: [...state.teams, action.payload.data.team],
             }
+        case INVITE_MEMBERS:
+             return {
+                 ...state,
+                 teams:[...state.teams , action.payload.data.team]
+             }
         default:
             return state
     }
