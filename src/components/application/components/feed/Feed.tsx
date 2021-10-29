@@ -114,6 +114,7 @@ function Feed() {
                 description: post.description,
                 role:post.user.role,
                 type: 1,
+                project_status: post.status,
                 avatar: post.user.avatar,
                 author: post.user.first_name+ " "+ post.user.last_name,
                 tags: post.project_tags.map((tag: any)=>{
@@ -338,7 +339,7 @@ function Feed() {
     useEffect(() => {
         dispatch(getTeams('user'))
     }, []);
-    
+
     const feedContainer: any = useRef();
     const goToTopFeed = ()=>{
         window.scrollTo(0,0);
