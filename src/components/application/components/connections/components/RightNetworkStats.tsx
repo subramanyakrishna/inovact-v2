@@ -15,7 +15,10 @@ function RightNetworkStats() {
     console.log('totalConnections', totalConnections)
     return (
         <div className="right-network-stats">
-            <div className="right-network-stats--img-container">
+            <div
+                className="right-network-stats--img-container"
+                style={{ margin: 'auto' }}
+            >
                 <img
                     src={userInfo.avatar}
                     className="right-network-stats--img"
