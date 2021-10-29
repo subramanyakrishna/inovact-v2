@@ -40,7 +40,7 @@ function TeamsPartOf(props:any) {
           );
         })}
       </div>
-      <button className="teams-part-of-view-all-btn">View All</button>
+      <a className="teams-part-of-view-all-btn" href="/app/otherteams">View All</a>
     </div>
       </div>
     

@@ -24,6 +24,13 @@ class TeamsService {
             },
         })
     }
+    public async inviteMember(bodyData: any): Promise<any> {
+        return await axios.post(`${baseUrl}/api/teams/invite`,bodyData,{
+            headers: {
+                Authorization: localStorage.getItem('user'),
+            },
+        })
+    }
 
     public async updateTeam(team: any): Promise<any> {
         return await axios.put(`${baseUrl}/api/teams/${team._id}`, team)

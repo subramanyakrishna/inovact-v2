@@ -21,6 +21,9 @@
 		font-weight: 500;
     }
 }
+.share-button {
+    margin:0.5rem;
+}
 .form-button {
     display: block;
     font-size: 1.5rem;
@@ -248,4 +251,10 @@
     @include respond(lg){
         font-size: small;
     }
+}
+.remove-member-create-team{
+    background-color: white;
+    border: none;
+    color: $color-primary-green;
+    margin: 0px 10px;
 }

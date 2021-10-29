@@ -65,61 +65,7 @@ const CreateTeam = (props: any) => {
                         />
                         <TeamMembers />
                     </div>
-                    <div className="modal_part_two">
-                        {/* <div className="modal_part_two-member-mentor">
-                            <div>
-                                <label>Looking for team members</label>
-                                <div
-                                    onClick={() => {
-                                        setTeamDetails({
-                                            ...teamDetails,
-                                            looking_for_members:
-                                                !teamDetails.looking_for_members,
-                                        })
-                                    }}
-                                >
-                                    <SwitchSlider />
-                                </div>
-                            </div>
-                            <div>
-                                <label>Looking for a mentor</label>
-                                <div
-                                    onClick={() => {
-                                        setTeamDetails({
-                                            ...teamDetails,
-                                            looking_for_mentor:
-                                                !teamDetails.looking_for_mentor,
-                                        })
-                                    }}
-                                >
-                                    <SwitchSlider />
-                                </div>
-                            </div>
-                        </div> */}
-                        {teamDetails.looking_for_members && (
-                            <div className="modal_part_two-roles-looking-for">
-                                <span>What roles are you looking for?</span>
-                                {teamDetails.roles.map(
-                                    (ele: any, index: any) => {
-                                        console.log(teamDetails.roles)
-                                        return (
-                                            <RolesLookingFor
-                                                role={ele.role}
-                                                skillSelected={ele.skillNeeded}
-                                                removeTheRole={removeRole}
-                                                id={index}
-                                            />
-                                        )
-                                    }
-                                )}
-                                <AddRolesLookingFor
-                                    addAnotherRole={addRoles}
-                                    setTeamDetails={setTeamDetails}
-                                    teamDetails={teamDetails}
-                                />
-                            </div>
-                        )}
-                    </div>
+                    
                     <div className="modal_cover-post-btn">
                         <button onClick={addTeam}>Create</button>
                     </div>

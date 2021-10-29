@@ -29,6 +29,7 @@ import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
 import OtherProfile from './components/otheruserprofile/OtherProfile'
+import OtherUserTeams from './components/otheruserteam/OtherUserTeam'
 import IdeaPage from './components/ideapage/IdeaPage'
 
 function Application() {
@@ -142,6 +143,11 @@ function Application() {
                         path={`${path}/otherprofile`}
                         isAuth={state.authentication.userAuthenticated}
                         component={OtherProfile}
+                    />
+                     <PrivateRoute
+                        path={`${path}/otherteams`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={OtherUserTeams}
                     />
                     <PrivateRoute
                         path={`/posts/:id`}
