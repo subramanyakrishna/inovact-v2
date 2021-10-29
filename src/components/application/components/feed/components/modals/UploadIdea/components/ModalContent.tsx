@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import SkillTags from '../../UploadProject/components/SkillTags';
 import SwitchSlider from '../../UploadProject/components/SwitchSlider';
 import RolesLookingFor from "../../UploadProject/components/RolesLookingFor";
@@ -60,8 +60,24 @@ function ModalContent() {
         });
     }
     const allTags = useSelector((state: any)=> state.allTags);
+    const userTeams = useSelector((state: any)=>state.teams.teams);
     // const addIdea = useSelector((state: any)=> state.addIdea);
     const [searchedTags, setSearchedTags] = useState<any>([]);
+    const teamMentionInput: any = useRef<HTMLInputElement>();
+    const [teamSearched, setTeamSearched] = useState<any[]>([]);
+    const searchTeam = (e: any)=>{
+        const value = e.target.value;
+        if(value===""){
+            setTeamSearched([]);
+            return;
+        } 
+        setTeamSearched(userTeams.filter((team: any)=>team.name.includes(e.target.value)));
+    }
+    const addTeamId = (id: any, name: any)=>{
+        handleAddIdeaChange("team_id",id);
+        teamMentionInput.current.value = name;
+        setTeamSearched([]);
+    }
     return (
         <div className="modal_part_one">
             <div className="modal_part_one-title">
@@ -105,7 +121,21 @@ function ModalContent() {
                     }
                 </div>
             </div>
+            <div className="modal_part_two-team-worked">
+                <label>Choose the team that worked on the project</label>
+                <div className="modal_part_two-team-worked-input">
+                    <input type="text" placeholder="Start typing team name" onChange={searchTeam} ref={teamMentionInput}/>
+                    <div className="modal_part_two-team-worked-dropdown">
+                        {
+                            teamSearched.map((team: any)=>{
+                                return <span onClick={addTeamId.bind(null,team.id, team.name)}>{team.name}</span>
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
             <div className="modal_part_two">
+
                 <div className="modal_part_two-member-mentor">
                     <div>
                         <label>Looking for team members</label>

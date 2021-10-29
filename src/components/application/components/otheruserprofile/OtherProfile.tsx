@@ -16,7 +16,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAllUserIdeas, handleAllUserProject, handleOtherUserInfoChange } from 'StateUpdateHelper';
+import { handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts, handleOtherUserInfoChange } from 'StateUpdateHelper';
 import axios from 'axios';
 import Spinner from 'components/application/Spinner';
 import { useHistory } from 'react-router';
@@ -35,6 +35,7 @@ function OtherProfile() {
     }
     const [showIdeas, setShowIdeas] = useState(false);
     const [showProjects, setShowProjects] = useState(true);
+    const [showThoughts, setShowThoughts] = useState(false);
     const [showRequestJoin, setShowRequestJoin] = useState(false)
     const history = useHistory();
     
@@ -47,7 +48,6 @@ function OtherProfile() {
                 headers: {
                     "Authorization": localStorage.getItem("user"),
                 }
-                
             }).then((resp: any)=>{
                 console.log(resp.data.data.user[0]);
                 handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
@@ -69,10 +69,12 @@ function OtherProfile() {
         }).then((resp: any)=>{
             console.log(resp);
             // resp.data.idea.reverse();
-            setPosts([...resp.data.data.idea.map((post:any)=>({
+            setIdeas([...resp.data.data.idea.map((post:any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 2,
                 avatar: post.user.avatar,
                 author:  post.user.first_name+ " "+ post.user.last_name,
@@ -80,17 +82,41 @@ function OtherProfile() {
                     return tag.hashtag.name;
                 }),
                 images: post.idea_documents.map((image: any)=>{
-                    console.log(image.url);
+                    // console.log(image.url);
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
+                created_at: post.created_at,
                 numLikes: 0,
                 numComments: 0,
-            }))]);
+                }))]);
         }).catch((err)=>{
             console.log(err);
         })
     }
+    const {doRequest: getTheUserThoughts, errors: thoughtErrors} = useRequests({
+        method: "get",
+        route: `user/thought?user_id=${localStorage.getItem("other-user")}`,
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("This is profile thoughts",data);
+            data.data.thoughts.reverse();
+            const finalData = data.data.thoughts.map((post: any)=>({
+                user_id: post.user.id,
+                id: post.id,
+                description: post.thought,
+                role:post.user.role,
+                type: 3,
+                avatar: post.user.avatar,
+                author: post.user.first_name+" "+post.user.last_name,
+                time: convertDate(post.created_at),
+                numLikes: 0,
+                numComments: 0,
+            }));
+            setThoughts([...finalData]);
+            
+        }   
+    }); 
     const getTheUserProjects = async()=>{
         const userId = localStorage.getItem("other-user");
         await axios({
@@ -102,9 +128,11 @@ function OtherProfile() {
         }).then((resp: any)=>{
             console.log(resp);
             setPosts([...resp.data.data.project.map((post: any)=>({
+                user_id: post.user.id,
                 id: post.id,
                 title: post.title,
                 description: post.description,
+                role:post.user.role,
                 type: 1,
                 avatar: post.user.avatar,
                 author: post.user.first_name+ " "+ post.user.last_name,
@@ -112,19 +140,20 @@ function OtherProfile() {
                     return tag.hashtag.name;
                 }),
                 images: post.project_documents.map((image: any)=>{
-                    console.log(image.url);
                     return image.url;
                 }),
                 time: convertDate(post.created_at),
-                numLikes: 250,
-                numComments: 250,
-            }))])
+                created_at: post.created_at,
+                numLikes: 0,
+                numComments: 0,
+                }))]);
         }).catch((err)=>{
             console.log(err);
         })
     }
     const [posts, setPosts] = useState<postData[]>([]);
     const [ideas, setIdeas] = useState<postData[]>([]);
+    const [thoughts, setThoughts] = useState<postData[]>([])
     const [showLeft, setShowLeft] = useState(true);
     const [showRight, setShowRight] = useState(true);
     const [showAbout, setShowAbout] = useState(false);
@@ -226,10 +255,19 @@ function OtherProfile() {
     const showOnlyProjects = ()=>{
         setShowIdeas(false);
         setShowProjects(true);
+        setShowThoughts(false);
     }
     const showOnlyIdeas = ()=>{
         setShowIdeas(true);
         setShowProjects(false);
+        setShowThoughts(false);
+
+    }
+    const showOnlyThoughts = ()=>{
+        setShowIdeas(false);
+        setShowProjects(false);
+        setShowThoughts(true);
+
     }
     const viewRequestJoin = () => {
         openModal()
@@ -242,6 +280,7 @@ function OtherProfile() {
             await getTheUserData();
             await getTheUserIdeas();
             await getTheUserProjects();
+            await getTheUserThoughts();
             setIsLoading(false);
         })();
         // setIsLoading(false);
@@ -288,6 +327,7 @@ function OtherProfile() {
                         userInfo = {otherUser}
                         showOnlyProjects = {showOnlyProjects}
                         showOnlyIdeas = {showOnlyIdeas}
+                        showOnlyThoughts = {showOnlyThoughts}
                         />
                 </div>
                 <div className="profile--content-bottom-container">
@@ -301,7 +341,6 @@ function OtherProfile() {
                     }
                     {
                         showRight &&
-                        
                         <div className="profile--content-right">
                             {
                                 isLoading &&
@@ -338,6 +377,23 @@ function OtherProfile() {
                                 ideas.length===0 &&
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="ideas" name={otherUser.first_name}/>
+                                    <PeopleYouMayKnow/>
+                                </div>
+                            }
+                            {
+                                showThoughts && 
+                                thoughts.length!==0 &&
+                                thoughts.map((post, idx) => {
+                                    return <Post key={idx} post={post} openTeamMember={viewTeamMembers}
+                                    openRequestJoin={viewRequestJoin}
+                                    />
+                                })
+                            }
+                            {
+                                showThoughts &&
+                                thoughts.length===0 &&
+                                <div className="profile--content-right">
+                                    <NoPostsYet postType="thoughts" name={otherUser.first_name}/>
                                     <PeopleYouMayKnow/>
                                 </div>
                             }

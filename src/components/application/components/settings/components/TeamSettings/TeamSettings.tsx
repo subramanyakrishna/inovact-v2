@@ -1,3 +1,5 @@
+import axios from 'axios'
+import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -53,9 +55,20 @@ const TeamSettings: React.FC<teamSettings> = ({
             console.log(filtetredTeamsWhereCurrentUserIsMember)
         })()
     }, [])
-    const team_with_admin_access_data = useSelector(
-        (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
-    )
+    // const team_with_admin_access_data = useSelector(
+    //     (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
+    // )
+    const teams = useSelector((state:any)=>{
+        return state.teams.teams;
+    })
+    const teams_with_admin_access_data = teams.filter((team: any)=>{
+        for(let i=0;i<team.team_members.length;i++){
+            if(team.team_members[i].admin){
+                return true;
+            }
+        }
+        return false;
+    })
     const handleAllowOthersToViewTeam = (event: any) => {
         handleUserInfoChange('team_public_visibility', event.target.checked)
     }
@@ -65,8 +78,17 @@ const TeamSettings: React.FC<teamSettings> = ({
     // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
     //     console.log('handleAllTeamMemberSendInvitation', checked)
     // }
-    const handleDeleteTeam = (id: number) => {
-        deleteTeam(id)
+    
+    const handleDeleteTeam = async(id: number) => {
+        await axios({
+            method: "delete",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${id}`,
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            } 
+        }).then((resp: any)=>{
+            console.log(resp);
+        })
     }
     return (
         <div className={'teamset'}>
@@ -122,13 +144,13 @@ const TeamSettings: React.FC<teamSettings> = ({
                         <Spinner />
                     </div>
                 )}
-                {!isLoading && team_with_admin_access_data.length == 0 && (
+                {!isLoading && teams_with_admin_access_data.length == 0 && (
                     <div style={{ margin: 'auto' }}>
                         Teams for which you have admin access will apear here
                     </div>
                 )}
                 {!isLoading &&
-                    team_with_admin_access_data.map((team: any) => (
+                    teams_with_admin_access_data.map((team: any) => (
                         <div className={'teamset-delete-team'} key={team.id}>
                             <div className={'teamset-delete-team-main'}>
                                 <div className="teamset-delete-team-main-left">

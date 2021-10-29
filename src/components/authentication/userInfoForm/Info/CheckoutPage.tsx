@@ -19,6 +19,7 @@ import { store } from 'redux/helpers/store';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
 import { useHistory } from 'react-router';
 import { handleUserInfoChange } from 'StateUpdateHelper';
+import SmallSpinner from 'components/application/SmallSpinner';
 
 
 const steps = ['Role', 'General Info', 'Role-Specific-Form','AreaOfInterest','Upload Form'];
@@ -53,11 +54,6 @@ export default function CheckoutPage() {
     setActiveStep(activeStep + 1);
   }
   
-  const updateProfileCompleteStatus = async()=>{
-    store.dispatch({
-      type: userInfoConstants.UPDATE_PROFILE_COMPLETE,
-    });
-  }
   const uploadAllDetails = ()=>{
     const currentUser: any = UserPool.getCurrentUser();
     axios.put("https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user",userInfo,{
@@ -72,6 +68,7 @@ export default function CheckoutPage() {
   const uploadDetails = async(e: any)=>{
     e.preventDefault();
     //
+    setUploading(true);
     const currentUser: any = UserPool.getCurrentUser();
     console.log(currentUser);
     // (async()=>{
@@ -119,7 +116,7 @@ export default function CheckoutPage() {
       setActiveStep(activeStep - 1);
     }
   }
-  // const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   return (
     <React.Fragment>
@@ -148,7 +145,13 @@ export default function CheckoutPage() {
                   type="submit"
                   className="form-button button--green"
                  style={{textAlign:'center',justifySelf:'center'}}>
-                  {isLastStep ? <a className="text-color--white" href="" onClick={uploadDetails}>Finish</a> : 'Next'}
+                  {isLastStep ? <a className="text-color--white" href="" onClick={uploadDetails}>
+                    {
+                      uploading ?
+                      <SmallSpinner/>:
+                      "Finish"
+                    }
+                    </a> : 'Next'}
                 </button>
                 
                 </div>

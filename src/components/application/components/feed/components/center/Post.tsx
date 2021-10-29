@@ -102,7 +102,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 { post.role &&
                                 post.role[0].toUpperCase()+post?.role.slice(1)}
                             </p>
-                            <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
+                            {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
                         </div>
                         {/* <p className="post__author__text__time  text-style--italic text-size--small ">
                             {post.time}
@@ -110,7 +110,11 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         
                     </div>
                     <div className="connect-button-container">
-                        <button className="connect-button">Connect</button>{
+                        {
+                            user_id!==post.user_id &&
+                            <button className="connect-button">Connect</button>
+                        }
+                        {
                             (post.type===1 || post.type===2) &&
                             <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
                                 <button className="view-more-button">View More <b>{">>"}</b>
@@ -120,8 +124,11 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     </div>
                 </div>
                 <div className="post__text">
+                    <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
                     {post.title ? (
-                        <h1 className="post__text__title">{post.title} {}</h1>
+                        <div>
+                            <h1 className="post__text__title">{post.title} {}</h1>
+                        </div>
                     ) : null}
                     <p className="post__text__desc">
                         {post.type === 1

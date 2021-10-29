@@ -50,6 +50,7 @@ function PeopleYouMayKnow(props: any) {
         //call the api to get all the people you may know
         ;(async () => {
             let PYMK_from_api: any = await makeApiCall('get', 'users')
+            PYMK_from_api.data.data.user.reverse()
             PYMK_from_api = PYMK_from_api.data.data.user
             //romove this when skills is added to api
             PYMK_from_api = PYMK_from_api.map((pymk: any) => ({

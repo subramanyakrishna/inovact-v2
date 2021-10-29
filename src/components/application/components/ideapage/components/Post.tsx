@@ -96,16 +96,24 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         }
                     <div className="post__author__text">
                         <h1 className="post__author__text__name">{post.author}</h1>
-                        <p className="post__author__text__time">
-                            {post.time}
-                        </p>
+                        <div className="post__author__text__bottom">
+                            <p className="post__author__text__time text-color--green text-size--small">
+                                { post.role &&
+                                post.role[0].toUpperCase()+post?.role.slice(1)}
+                            </p>
+                            {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
+                        </div>
                     </div>
                     <div className="connect-button-container">
-                        <button className="connect-button">Connect</button>
-                        <p style={{fontWeight: 600, cursor: "pointer", color: "#5579bd", fontSize: "small"}} onClick={openTeamMember}>View Team Members</p>
+                        {
+                            user_id!==post.user_id &&    
+                            <button className="connect-button">Connect</button>
+                        }
+                        <p className="view-team-members" onClick={openTeamMember}>View Team Members</p>
                     </div>
                 </div>
                 <div className="post__text">
+                    <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
                     {post.title ? (
                         <h1 className="post__text__title">{post.title}</h1>
                     ) : null}
@@ -120,18 +128,13 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     <div className="post__tags">
                         {post.tags?.map((tag: string, idx: number) => {
                             return post.type === 1 ? (
-                                idx < 4 ? (
                                     <p key={idx} className="post__tags__item">
                                         {tag}
                                     </p>
                                 ) : null
-                            ) : (
-                                <p key={idx} className="post__tags__item">
-                                    {tag}
-                                </p>
-                            )
                         })}
-                        {post.type === 1 ? (
+                        {(post.tags?.length>4) &&
+                        post.type === 1 ? (
                             <Link
                                 className="post__tags__item"
                                 to={`/posts/${post.id}`}

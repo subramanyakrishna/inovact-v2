@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import avatar from 'images/feed/user-avatar.png'
 import add from 'images/feed/add.svg'
 import { useSelector } from 'react-redux';
-
+import arrowUp from "../../../../../../images/feed/arrow-up.svg";
 function CreatePost(props:any) {
 
     const [showPopUp, setShowPopUp] = useState(false);
@@ -15,7 +15,10 @@ function CreatePost(props:any) {
         setShowPopUp(false);
     }
     const userInfo = useSelector((state: any)=>state.userInfo);
-
+    const goToTopFeed = ()=>{
+        window.scrollTo(0,0);
+        props.feedContainer?.current.scrollTo(0,0);
+    }
     return (
         <>
             <div className="create-post">
@@ -56,6 +59,7 @@ function CreatePost(props:any) {
                     </div>
                 }
                 <div className="floating-button-img-container" onClick={togglePopUp}>
+                    <button className="gotop-button" onClick={goToTopFeed}><img src={arrowUp} alt="^"/></button>
                     <img src={add} alt="" onClick={togglePopUp} />
                 </div>
                 

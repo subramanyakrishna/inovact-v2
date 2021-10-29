@@ -16,6 +16,7 @@ import { allTagsConstants } from 'redux/actionTypes/allTagsConstants'
 import { allSkillsConstants } from 'redux/actionTypes/allSkillsConstants'
 import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
 import { peopleYoumayKnowConstants } from 'redux/actionTypes/peopleYouMayKnowConstants'
+import { otherUserTeamsConstants } from 'redux/actionTypes/otherUserTeamsConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log('all posts value: ', value)
@@ -55,7 +56,6 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
-
         case 'last-name':
             store.dispatch({
                 type: userInfoConstants.UPDATE_LASTNAME,
@@ -278,6 +278,12 @@ const handleAddIdeaChange = (name: any, value: any) => {
                 payload: value,
             })
             break
+        case "team_id":
+            store.dispatch({
+                type: addIdeaConstants.IDEA_UPDATE_TEAM_ID,
+                payload: value,
+            })
+            break;
         case 'idea_tags':
             store.dispatch({
                 type: addIdeaConstants.IDEA_UPDATE_IDEA_TAGS,
@@ -349,7 +355,11 @@ const handleAddTeamChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-
+        case "team_avatar":
+            // store.dispatch({
+            //     type: addTeam
+            // })
+            break;
         case 'roles':
             store.dispatch({
                 type: addTeamConstants.TEAM_UPDATE_ROLE,
@@ -557,6 +567,24 @@ const handlePeopleYouMayKnow = (name: any, value: any) => {
     }
     console.log('people you may know: ', store.getState())
 }
+
+const handleOtherUserTeams = (name: any, value: any)=>{
+    switch(name){
+        case "other_user_teams_all":
+            store.dispatch({
+                type: otherUserTeamsConstants.OTHER_USER_TEAMS_UPDATE_ALL,
+                payload: value,
+            });
+            break;
+        case "other_user_teams_clear_all":
+            store.dispatch({
+                type: otherUserTeamsConstants.OTHER_USER_TEAMS_CLEAR_ALL,
+                payload: value,
+            });
+            break;
+    }
+    console.log(store.getState());
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -575,4 +603,5 @@ export {
     handleSkillsChange,
     handleRolesChange,
     handlePeopleYouMayKnow,
+    handleOtherUserTeams,
 }
