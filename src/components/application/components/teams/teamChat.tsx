@@ -4,7 +4,7 @@ import { ChatEngine, ChatList } from 'react-chat-engine'
 
 const TeamChat = () => {
     return (
-        <div style={{ marginTop: '2.5rem' }}>
+        <div style={{ marginTop: '5rem' }}>
             <ChatEngine
                 // height="100vh"
                 renderChatList={(chatAppState: any) => (
