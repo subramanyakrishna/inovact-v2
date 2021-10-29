@@ -7,6 +7,12 @@ function SkillsTag(props: any) {
     const toggleDropDown = () => {
         setShowDropDown(!showDropDown)
     }
+    const [state, setState] = useState<any>(props.skills)
+    const [skill, setSkill] = useState<string>()
+    const onPressEnter = () => {
+        setState([...state, skill])
+        setSkill('')
+    }
     return (
         <div className="skill-tag">
             <p className="skill-tag-heading">
@@ -22,13 +28,27 @@ function SkillsTag(props: any) {
             <p className="skill-tag-skillno">{props.skillNo} skill updated</p>
             <div className="skill-tag-skills">
                 {showDropDown &&
-                    props.skills.map((skill: any, i: number) => {
+                    state.map((skill: any, i: number) => {
                         return (
                             <span key={i} className="skill-tag-each-skill">
                                 {skill}
                             </span>
                         )
                     })}
+                {showDropDown && (
+                    <div className="settings-my-profile-area-of-interests-select">
+                        <input
+                            style={{ width: '90%' }}
+                            onChange={(e) => setSkill(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.keyCode == 13) {
+                                    onPressEnter()
+                                }
+                            }}
+                            placeholder={'Eg:Kotlin'}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     )
