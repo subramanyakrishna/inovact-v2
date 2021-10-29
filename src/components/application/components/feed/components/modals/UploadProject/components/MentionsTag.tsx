@@ -8,6 +8,7 @@ function MentionsTag(props: any) {
                 <img src={props.ppl.image} alt=""/>
             </div>
                 <span>{props.ppl.user_name}</span>
+                <button className="remove-member-create-team">&times;</button>
         </div>
     )
 }

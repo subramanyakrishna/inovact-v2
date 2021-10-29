@@ -7,11 +7,9 @@ export const createTeam = (team: ICreateTeam) => async (dispatch: any) => {
         //? this data is temporary and will be replaced by the real data according to the backend
         const data = {
             name: team.name,
-            looking_for_members: team.looking_for_members,
-            looking_for_mentor: team.looking_for_mentor,
-            roles: [],
-            tags: [],
-            members: [],
+            avatar: "",
+            team_tags: [],
+            team_members: [],
         }
         const res = await TeamsService.createTeam(data)
         console.log(res)
@@ -20,7 +18,7 @@ export const createTeam = (team: ICreateTeam) => async (dispatch: any) => {
             payload: res.data,
         })
     } catch (error) {
-        throw error
+        console.log(error);
     }
 }
 

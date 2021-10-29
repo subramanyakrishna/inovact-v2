@@ -9,15 +9,12 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link ,useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const LeftBottom = (props: any) => {
-       const allTeams = useSelector((state: any) => state.teams.teams)
-       const history = useHistory();
-       const getTheUserTeams =(e:any)=>{
-        history.push("/app/teams");
-    }
-        return (
+    const allTeams = useSelector((state: any) => state.teams.teams)
+    const history = useHistory()
+    return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
                 <MDBCardHeader>
@@ -44,9 +41,15 @@ const LeftBottom = (props: any) => {
                         {allTeams &&
                             allTeams.slice(0,5).map((team: any, index: number) => {
                                 return (
-                                    <MDBListGroupItem className="left-right-nav__card__list__item">
-                                        <img src={team.avatar} alt={team.name} />
-                                        <div className="left-right-nav__card__list__item__info" onClick={getTheUserTeams.bind(null,team.id)} style={{cursor: "pointer"}}>
+                                    <MDBListGroupItem
+                                        className="left-right-nav__card__list__item"
+                                        key={index}
+                                    >
+                                        <img
+                                            src={team.avatar!==""?team.avatar:"https://www.wallstreetpanel.com/wp-content/plugins/profilegrid-user-profiles-groups-and-communities/public/partials/images/default-group.jpg"}
+                                            alt={team.name}
+                                        />
+                                        <div className="left-right-nav__card__list__item__info">
                                             <h2 className="text-style--bold text-align--left text-size--big">
                                                 {team.name}
                                             </h2>
@@ -60,12 +63,12 @@ const LeftBottom = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <a
-                        href="/app/teams"
-                        className="text-style--bold text-align--center" 
+                    <div
+                        onClick={() => history.push('/app/teams')}
+                        className="text-style--bold text-align--center text-color--white"
                     >
                         View All
-                    </a>
+                    </div>
                 </MDBCardFooter>
             </MDBCard>
         </div>

@@ -238,11 +238,13 @@ function Feed() {
         })();
         console.log("The userProfile status: ", userInfo.profile_complete);
     }, [])
+
     useEffect(() => {
         if (!userInfo.profile_complete) {
             history.push('/app/userinfo')
         }
     },[userInfo.profile_complete]);
+    
     const [showFilter, setShowFilter] = useState(false)
 
     const [showOverlay, setShowOverlay] = useState(false)
@@ -267,6 +269,7 @@ function Feed() {
             setFilteredPosts([...sortedPosts]);
         }
     }, [posts, ideas, thoughts])
+
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
         if (type === 'All') {

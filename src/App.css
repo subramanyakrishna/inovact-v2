@@ -1488,6 +1488,12 @@ body {
     .view-team-members {
       font-size: small; } }
 
+.remove-member-create-team {
+  background-color: white;
+  border: none;
+  color: #02bd63;
+  margin: 0px 10px; }
+
 .input-component {
   display: block;
   padding: 0.35rem;
