@@ -16,6 +16,7 @@ import { allTagsConstants } from 'redux/actionTypes/allTagsConstants'
 import { allSkillsConstants } from 'redux/actionTypes/allSkillsConstants'
 import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
 import { peopleYoumayKnowConstants } from 'redux/actionTypes/peopleYouMayKnowConstants'
+import { otherUserTeamsConstants } from 'redux/actionTypes/otherUserTeamsConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log('all posts value: ', value)
@@ -566,6 +567,24 @@ const handlePeopleYouMayKnow = (name: any, value: any) => {
     }
     console.log('people you may know: ', store.getState())
 }
+
+const handleOtherUserTeams = (name: any, value: any)=>{
+    switch(name){
+        case "other_user_teams_all":
+            store.dispatch({
+                type: otherUserTeamsConstants.OTHER_USER_TEAMS_UPDATE_ALL,
+                payload: value,
+            });
+            break;
+        case "other_user_teams_clear_all":
+            store.dispatch({
+                type: otherUserTeamsConstants.OTHER_USER_TEAMS_CLEAR_ALL,
+                payload: value,
+            });
+            break;
+    }
+    console.log(store.getState());
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -584,4 +603,5 @@ export {
     handleSkillsChange,
     handleRolesChange,
     handlePeopleYouMayKnow,
+    handleOtherUserTeams,
 }
