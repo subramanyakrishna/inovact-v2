@@ -1,9 +1,20 @@
 import React from 'react'
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'
+import { useHistory } from 'react-router-dom'
 
 function ConnectionProfile(props: any) {
+    const history = useHistory()
+    const goToProfile = () => {
+        localStorage.setItem('other-user', props.user.id)
+        if (history.location.pathname === '/app/otherprofile') {
+            window.location.reload()
+            window.scrollTo(0, 0)
+            return
+        }
+        history.push('/app/otherprofile')
+    }
     return (
-        <div className="my-connection-profile">
+        <div className="my-connection-profile" onClick={() => goToProfile()}>
             <div className="my-connection-profile-img">
                 <img
                     src={props.user.avatar}

@@ -74,15 +74,9 @@ const getFilteredPendingRequestsAndConnectedAccount = (
             ? -1
             : 1
     }
-    filteredPendingRequest = filteredPendingRequest.sort(
-        ascendingOrderTimeSortCallback
-    )
-    filteredConnectedAccount = filteredConnectedAccount.sort(
-        ascendingOrderTimeSortCallback
-    )
-    filteredConnectReqAcceptPending = filteredConnectReqAcceptPending.sort(
-        ascendingOrderTimeSortCallback
-    )
+    filteredPendingRequest = filteredPendingRequest.reverse()
+    filteredConnectedAccount = filteredConnectedAccount.reverse()
+    filteredConnectReqAcceptPending = filteredConnectReqAcceptPending.reverse()
     return {
         filteredPendingRequest,
         filteredConnectedAccount,
