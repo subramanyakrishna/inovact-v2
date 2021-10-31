@@ -2,8 +2,6 @@
 import React, {useState} from 'react'
 import {Field } from 'formik';
 import avatar from 'images/user-info/avatar.png';
-import {Link} from 'react-router-dom';
-import configOptions from 'imageUpload/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants';
 import { handleUserInfoChange } from 'StateUpdateHelper';
@@ -12,13 +10,12 @@ export default function AreaOfInterest(props :any) {
     const {
       formField: {
          bio,
-         image   
+        
       }
     } = props;
     const [userBio, setUserBio] = useState("");
     const [imageURL, setImageURL] = useState(avatar);
     const dispatch = useDispatch();
-    const state = useSelector((state: any)=>state.userInfo);
     const handleChangeBio = (e: any)=>{
       setUserBio(e.target.value);
       props.handleChange("bio",e.target.value);

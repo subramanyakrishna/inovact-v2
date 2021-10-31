@@ -12,14 +12,18 @@
     }
     &__author {
         display: flex;
-
+        justify-content: space-between;
+        &__info{
+            display: flex;
+            flex-direction: row;
+        }
         &__avatar {
             margin-right: 1rem;
             width: 3.5rem;
             height: 3.5rem;
             object-fit: cover;
             border-radius: 50%;
-        }
+        } 
 
         &__text {
             display: flex;

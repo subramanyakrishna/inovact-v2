@@ -25,9 +25,7 @@ const RightTop = (props: any) => {
         const filteredpeopleYouMayKnow = peopleYouMayKnow.filter(
             (user: any) => user.user_id != id
         )
-
         handlePeopleYouMayKnow('pymk_update_all', filteredpeopleYouMayKnow)
-
         const res = await makeApiCall(
             'post',
             `connections/request?user_id=${id}`
@@ -41,21 +39,6 @@ const RightTop = (props: any) => {
         setImageLoading(true)
         localStorage.setItem('other-user', userId)
         history.push('/app/otherprofile')
-        // await axios({
-        //     method: "get",
-        //     url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
-        //     headers: {
-        //         "Authorization": localStorage.getItem("user"),
-        //     }
-
-        // }).then((resp: any)=>{
-        //     console.log(resp.data.data.user[0]);
-        //     handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
-        // }).then(()=>{
-        //     history.push("/app/otherprofile");
-        // }).catch((err)=>{
-        //     console.log(err);
-        // })
     }
     const [imageLoading, setImageLoading] = useState(false)
     return (
@@ -130,7 +113,7 @@ const RightTop = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <div onClick={() => history.push('/app/connections')}>
+                    <div style={{ cursor: 'pointer' }} className="text-color--white" onClick={() => history.push('/app/connections')}>
                         View All
                     </div>
                 </MDBCardFooter>

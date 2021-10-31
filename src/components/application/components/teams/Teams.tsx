@@ -8,7 +8,7 @@ import Invitation from 'components/application/components/teams/components/left/
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/right/teamDescription/TeamDescription'
-
+import axios from 'axios'
 //icons
 import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
@@ -29,30 +29,38 @@ import useRequests from 'useRequest/useRequest'
 function Teams() {
 
     const allTeams = useSelector((state: any) => state.teams.teams)
-    const [isLoading,setLoading]=useState(true)
-    const dispatch = useDispatch()
-    const [initialTeam,setInitialTeam]=useState(0)
+    const [myTeams,setMyTeams]=useState<any>([]);
+    const [activeTeamId,setActiveTeamId] = useState(0);
+    
+    const handleJoinMember  = async () =>{
+        const response =  await axios( {
+            method:'get',
+            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team",
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        }).catch((error)=> {console.log(error)})
+      if(!response){
+        alert("Cannot get team");
+      }
+      else{
+        console.log(response)
+        setMyTeams(response.data.data.team) 
+        setActiveTeamId(allTeams[0]["id"])
+        console.log(allTeams[0]["id"])
+         console.log("first id",activeTeamId)
+      }
+    }
 
+    const [verticalActive, setVerticalActive] = useState(activeTeamId);
+
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getTeams('user'))
-        if(allTeams.length !== 0){
-            const currentTeam= allTeams[0]
-             setInitialTeam(currentTeam.id);
-             console.log("initial team",initialTeam)
-             setLoading(false)
-        }
+        handleJoinMember();
     }, []);
 
-    useEffect(() => {
-        if(allTeams.length !== 0){
-            const currentTeam= allTeams[0]
-             setInitialTeam(currentTeam.id);
-             console.log("initial team",initialTeam)
-             setLoading(false)
-        }
-    }, []);
-
-    const [verticalActive, setVerticalActive] = useState(initialTeam);
+   
 
     //Modals
     const [showOverlay, setShowOverlay] = useState(false);

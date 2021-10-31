@@ -1494,6 +1494,11 @@ body {
   color: #02bd63;
   margin: 0px 10px; }
 
+.view-more-post {
+  background-color: transparent;
+  color: #001948;
+  border: none; }
+
 .input-component {
   display: block;
   padding: 0.35rem;
@@ -1823,7 +1828,11 @@ body {
     .post {
       padding: 20px; } }
   .post__author {
-    display: flex; }
+    display: flex;
+    justify-content: space-between; }
+    .post__author__info {
+      display: flex;
+      flex-direction: row; }
     .post__author__avatar {
       margin-right: 1rem;
       width: 3.5rem;

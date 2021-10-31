@@ -4,6 +4,7 @@ import { imageUploader } from 'imageUpload/imageUploader'
 import { useHistory } from 'react-router'
 
 function ProfileImage({ handleUserInfoChange, userInfo }: any) {
+    
     const loadFile = async (e: any) => {
         if(e.target.files){
             const data = await imageUploader(e.target.files)
