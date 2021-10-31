@@ -25,7 +25,8 @@ const TeamMembers = (props: any)=> {
                     <p className="post-dedicated-team-members-page-title" onClick={viewLikedBy}>Liked By</p>
                 }
                 {
-                    window.innerWidth >= 992 &&    
+                    window.innerWidth >= 992 &&  
+                    props.postData.type!==2 && 
                     <div className="post-dedicated-team-members-page-status">
                         <p>Project Status:</p>
                         <p style={{color: "#02bd63"}}>{props.postData.status}</p>
@@ -35,10 +36,17 @@ const TeamMembers = (props: any)=> {
             {
                 !showLikedBy &&
                 <div>
+                    {
+                        props.postData.team?
+                        props.postData.team.team_members.map((mem: any)=>{
+                            return <TeamMemberTag avatar={mem.user.avatar} name={mem.user.first_name+" "+mem.user.last_name} role={mem.user.role}/>
+                        }):
+                        <p>This is an individual project.</p>
+                    }
+                    {/* <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
                     <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
                     <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
-                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
-                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
+                    <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/> */}
                 </div>
             }
             {

@@ -1,7 +1,7 @@
 import { SkillI } from 'interfaces'
 
 export interface Iroles {
-    roleId: string
+    id: number
     skills: SkillI[]
 }
 interface Imembers {

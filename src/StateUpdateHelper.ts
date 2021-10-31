@@ -17,6 +17,7 @@ import { allSkillsConstants } from 'redux/actionTypes/allSkillsConstants'
 import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
 import { peopleYoumayKnowConstants } from 'redux/actionTypes/peopleYouMayKnowConstants'
 import { otherUserTeamsConstants } from 'redux/actionTypes/otherUserTeamsConstants'
+import { allInterestsConstants } from 'redux/actionTypes/allInterestsConstants'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log('all posts value: ', value)
@@ -145,6 +146,12 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
+        case "website":
+            store.dispatch({
+                type: userInfoConstants.UPDATE_USER_WEBSITE,
+                payload: value,
+            });
+            break;
         case 'area-of-interest':
             store.dispatch({
                 type: userInfoConstants.UPDATE_AOI,
@@ -240,6 +247,18 @@ const handleAddProjectChange = (name: any, value: any) => {
                 payload: value,
             })
             break
+        case "looking_for_members":
+            store.dispatch({
+                type: addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MEMBERS,
+                payload: value,
+            });
+            break;
+        case "looking_for_mentor":
+            store.dispatch({
+                type: addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MENTOR,
+                payload: value,
+            })
+            break;
         case 'documents':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_DOCUMENTS,
@@ -586,6 +605,23 @@ const handleOtherUserTeams = (name: any, value: any)=>{
     }
     console.log(store.getState());
 }
+const handleInterestsChange = (name: any, value: any)=>{
+    switch(name){
+        case "interests_update":
+            store.dispatch({
+                type: allInterestsConstants.INTEREST_UPDATE_ALL,
+                payload: value,
+            });
+            break;
+        case "interests_clear":
+            store.dispatch({
+                type: allInterestsConstants.INTEREST_CLEAR_ALL,
+                payload: value,
+            });
+            break;
+    }
+    console.log("All the interests are updated",store.getState());
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -605,4 +641,5 @@ export {
     handleRolesChange,
     handlePeopleYouMayKnow,
     handleOtherUserTeams,
+    handleInterestsChange,
 }

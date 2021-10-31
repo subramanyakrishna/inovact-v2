@@ -1,20 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
-import LeftNavBar from './components/leftnav/LeftNavBar'
-import CreatePost from './components/center/CreatePost'
-import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
-import Post from './components/center/Post'
-import { postData } from './components/center/postData'
-import UploadProject from './components/modals/UploadProject/UploadProject'
-import UploadIdea from './components/modals/UploadIdea/UploadIdea'
-import UploadThought from './components/modals/UploadThought/UploadThought'
-import CreateTeam from './components/modals/CreateTeam/CreateTeam'
-import ViewTeamMembers from './components/modals/ViewTeamMembers/ViewTeamMembers'
-import RequestToJoin from './components/modals/RequestToJoin.tsx/RequestToJoin'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import RightNavBar from 'components/application/components/feed/components/rightnav/RightNavBar'
 import SortByDropdown from 'components/application/components/feed/components/SortByDropdown'
 import useRequests from 'useRequest/useRequest'
 import Spinner from 'components/application/Spinner'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
+import { getTeams } from 'redux/actions/teams'
+import arrowUp from '../../../../images/feed/arrow-up.svg'
 import {
     handleAddIdeaChange,
     handleAddProjectChange,
@@ -24,19 +18,23 @@ import {
     handleAllThoughts,
     handleAllUserIdeas,
     handleAllUserProject,
+    handleInterestsChange,
     handlePeopleYouMayKnow,
     handleRolesChange,
     handleSkillsChange,
     handleTagsChange,
     handleUserInfoChange,
 } from '../../../../StateUpdateHelper'
-import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
-import SmallSpinner from 'components/application/SmallSpinner'
-import { useDispatch } from 'react-redux'
-import { getTeams } from 'redux/actions/teams';
-import arrowUp from "../../../../images/feed/arrow-up.svg"
-import { useObservable } from 'rxjs-hooks'
+import CreatePost from './components/center/CreatePost'
+import Post from './components/center/Post'
+import { postData } from './components/center/postData'
+import LeftNavBar from './components/leftnav/LeftNavBar'
+import CreateTeam from './components/modals/CreateTeam/CreateTeam'
+import RequestToJoin from './components/modals/RequestToJoin.tsx/RequestToJoin'
+import UploadIdea from './components/modals/UploadIdea/UploadIdea'
+import UploadProject from './components/modals/UploadProject/UploadProject'
+import UploadThought from './components/modals/UploadThought/UploadThought'
+import ViewTeamMembers from './components/modals/ViewTeamMembers/ViewTeamMembers'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -57,12 +55,16 @@ function Feed() {
         'October',
         'November',
         'December',
-    ];
-    const userInfo = useSelector((state: any) => state.userInfo);
-    const allPosts = useSelector((state: any) => state.allPosts);
-    const allIdeas = useSelector((state: any) => state.allIdeas);
-    const allThoughts = useSelector((state: any)=> state.allThoughts);
-    const history = useHistory();
+    ]
+    const userInfo = useSelector((state: any) => state.userInfo)
+    const allPosts = useSelector((state: any) => state.allPosts)
+    const allIdeas = useSelector((state: any) => state.allIdeas)
+    const allInterests = useSelector((state: any)=>state.allInterests);
+    const allTags = useSelector((state: any)=> state.allTags);
+    const allSkills = useSelector((state: any)=>state.allSkills);
+    const allRoles = useSelector((state: any)=> state.allRoles);
+    const allThoughts = useSelector((state: any) => state.allThoughts)
+    const history = useHistory()
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
         return `${date.getDate()} ${months[date.getMonth()]}`
@@ -72,7 +74,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            handleUserInfoChange("update_complete_user",data.data.user[0]);
+            handleUserInfoChange('update_complete_user', data.data.user[0])
         },
     })
     const { doRequest: getPeopleToKnow, errors: getPeopleErrors } = useRequests(
@@ -82,19 +84,24 @@ function Feed() {
             body: null,
             onSuccess: (data: any) => {
                 data.data.user.reverse()
-                const ptk: any = data.data.user.map((ele: any) => ({
-                    user_id: ele.id,
-                    name: ele.first_name,
-                    user_name: ele.user_name,
-                    image: ele.avatar,
-                    duration: '10 min',
-                    designation: ele.designation ? ele.designation : 'Student',
-                })).filter((ele: any)=>{
-                    // console.log(ele.user_id, userInfo.id);
-                    return ele.user_id!==userInfo.id});
+                const ptk: any = data.data.user
+                    .map((ele: any) => ({
+                        user_id: ele.id,
+                        name: ele.first_name,
+                        user_name: ele.user_name,
+                        image: ele.avatar,
+                        duration: '10 min',
+                        designation: ele.designation
+                            ? ele.designation
+                            : 'Student',
+                    }))
+                    .filter((ele: any) => {
+                        // console.log(ele.user_id, userInfo.id);
+                        return ele.user_id !== userInfo.id
+                    })
                 // console.log(ptk);
-                handlePeopleYouMayKnow("pymk_update_all",ptk);
-                setPeopleToKnow([...ptk.slice(0, 4)]);
+                handlePeopleYouMayKnow('pymk_update_all', ptk)
+                setPeopleToKnow([...ptk.slice(0, 4)])
             },
         }
     )
@@ -102,141 +109,167 @@ function Feed() {
         route: 'post',
         method: 'get',
         body: null,
-        onSuccess: (data: any)=>{
-            console.log(data);
-            data.data.project.reverse();
-            handleAllPosts("all-posts", [...data.data.project,...allPosts]);
-            setPosts([...data.data.project.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                team_id:post.team_id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                type: 1,
-                project_status: post.status,
-                avatar: post.user.avatar,
-                author: post.user.first_name+ " "+ post.user.last_name,
-                tags: post.project_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.project_documents.map((image: any)=>{
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                created_at: post.created_at,
-                numLikes: 0,
-                numComments: 0,
-                }))]);
-        }
-    });
-    const {doRequest: doRequestIdea, errors: errorsIdea} = useRequests({
-        route: "idea",
-        method: "get",
-        body: null,
-        onSuccess: (data: any)=>{
-            data.data.idea.reverse();
-            console.log("on success of ideas");
-            handleAllIdeas("all-ideas", [...data.data.idea,...allIdeas]);
-            setIdeas([...data.data.idea.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                team_id:post.team_id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                type: 2,
-
-                avatar: post.user.avatar,
-                author:  post.user.first_name+ " "+ post.user.last_name,
-                tags: post.idea_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.idea_documents.map((image: any)=>{
-                    
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                created_at: post.created_at,
-                numLikes: 0,
-                numComments: 0,
-                }))]);
-        }
-    });
-    const {doRequest: getAllThoughts, errors: allThoughtsErrors} = useRequests({
-        method: "get",
-        route: "thoughts",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log("The thoughts fetched are: ",data.data.thoughts);
-            const finalData = data.data.thoughts.map((thought: any)=>{
-                return {
-                    user_id: thought.user.id,
-                    id: thought.id,
-                    type: 3,
-                    avatar: thought.user.avatar,
-                    author: thought.user.first_name+" "+thought.user.last_name,
-                    time: convertDate(thought.created_at),
-                    created_at: thought.created_at,
-                    description: thought.thought,
+        onSuccess: (data: any) => {
+            console.log(data)
+            data.data.project.reverse()
+            handleAllPosts('all-posts', [...data.data.project, ...allPosts])
+            setPosts([
+                ...data.data.project.map((post: any) => ({
+                    user_id: post.user.id,
+                    id: post.id,
+                    team_id: post.team_id,
+                    title: post.title,
+                    description: post.description,
+                    role: post.user.role,
+                    type: 1,
+                    team: post.team,
+                    project_status: post.status,
+                    avatar: post.user.avatar,
+                    author: post.user.first_name + ' ' + post.user.last_name,
+                    tags: post.project_tags.map((tag: any) => {
+                        return tag.hashtag.name
+                    }),
+                    images: post.project_documents.map((image: any) => {
+                        return image.url
+                    }),
+                    time: convertDate(post.created_at),
+                    created_at: post.created_at,
                     numLikes: 0,
                     numComments: 0,
-                }
-            });
-            setThoughts([...finalData]);
-            handleAllThoughts("all-thoughts",finalData);
+                })),
+            ])
+        },
+    })
+    const { doRequest: doRequestIdea, errors: errorsIdea } = useRequests({
+        route: 'idea',
+        method: 'get',
+        body: null,
+        onSuccess: (data: any) => {
+            data.data.idea.reverse()
+            console.log('on success of ideas')
+            handleAllIdeas('all-ideas', [...data.data.idea, ...allIdeas])
+            setIdeas([
+                ...data.data.idea.map((post: any) => ({
+                    user_id: post.user.id,
+                    id: post.id,
+                    team_id: post.team_id,
+                    title: post.title,
+                    description: post.description,
+                    role: post.user.role,
+                    type: 2,
+
+                    avatar: post.user.avatar,
+                    author: post.user.first_name + ' ' + post.user.last_name,
+                    tags: post.idea_tags.map((tag: any) => {
+                        return tag.hashtag.name
+                    }),
+                    images: post.idea_documents.map((image: any) => {
+                        return image.url
+                    }),
+                    time: convertDate(post.created_at),
+                    created_at: post.created_at,
+                    numLikes: 0,
+                    numComments: 0,
+                })),
+            ])
+        },
+    })
+    const { doRequest: getAllThoughts, errors: allThoughtsErrors } =
+        useRequests({
+            method: 'get',
+            route: 'thoughts',
+            body: null,
+            onSuccess: (data: any) => {
+                console.log('The thoughts fetched are: ', data.data.thoughts)
+                const finalData = data.data.thoughts.map((thought: any) => {
+                    return {
+                        user_id: thought.user.id,
+                        id: thought.id,
+                        type: 3,
+                        avatar: thought.user.avatar,
+                        author:
+                            thought.user.first_name +
+                            ' ' +
+                            thought.user.last_name,
+                        time: convertDate(thought.created_at),
+                        created_at: thought.created_at,
+                        description: thought.thought,
+                        numLikes: 0,
+                        numComments: 0,
+                    }
+                })
+                setThoughts([...finalData])
+                handleAllThoughts('all-thoughts', finalData)
+            },
+        })
+    const { doRequest: getAllTags, errors: tagErrors } = useRequests({
+        route: 'token/tags',
+        method: 'get',
+        body: null,
+        onSuccess: (data: any) => {
+            console.log(data)
+            handleTagsChange('udpate_all_tags', data.data.hashtag)
+        },
+    })
+    const { doRequest: getAllSkills, errors: skillsErrors } = useRequests({
+        route: 'token/skills',
+        method: 'get',
+        body: null,
+        onSuccess: (data: any) => {
+            console.log(data)
+            handleSkillsChange('udpate_all_skills', data.data.skills)
+        },
+    })
+    const { doRequest: getAllRoles, errors: rolesErrors } = useRequests({
+        route: 'token/roles',
+        method: 'get',
+        body: null,
+        onSuccess: (data: any) => {
+            console.log(data)
+            handleRolesChange('udpate_all_roles', data.data.roles)
+        },
+    });
+    const {doRequest: getAllInterests, errors: interestsErrors} = useRequests({
+        route: "token/interests",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("The interests data received is :",data);
+            handleInterestsChange("interests_update",data.data.area_of_interests);
         }
     });
-    const {doRequest: getAllTags, errors: tagErrors} = useRequests({
-        route: "token/tags",
-        method: "get",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log(data);
-            handleTagsChange("udpate_all_tags", data.data.hashtag);
-        }
-    })
-    const {doRequest: getAllSkills, errors: skillsErrors} = useRequests({
-        route: "token/skills",
-        method: "get",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log(data);
-            handleSkillsChange("udpate_all_skills", data.data.skills);
-        }
-    })
-    const {doRequest: getAllRoles, errors: rolesErrors} = useRequests({
-        route: "token/roles",
-        method: "get",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log(data);
-            handleRolesChange("udpate_all_roles", data.data.roles);
-        }
-    })
-    useEffect(()=>{
-        (async ()=>{
-            if(userInfo.avatar===""){
-                await userGet();
+    useEffect(() => {
+        ;(async () => {
+            if (userInfo.avatar === '') {
+                await userGet()
             }
-            await doRequest();
-            await doRequestIdea();
-            await getAllThoughts();
-            await getPeopleToKnow();
-            await getAllTags();
-            await getAllSkills();
-            await getAllRoles();
+            if(allInterests.length===0){
+                await getAllInterests();
+            }
+            await doRequest()
+            await doRequestIdea()
+            await getAllThoughts()
+            await getPeopleToKnow()
+            if(allTags.length===0){
+                await getAllTags()
+            }
+            if(allSkills.length===0){
+                await getAllSkills()
+            }
+            if(allRoles.length===0){
+                await getAllRoles()
+            }
             // await getUserIdeas();
             // await getUserProjects();
-            if(errors || errorsIdea || getPeopleErrors || userErrors){
-                console.log(errors);
-                console.log(errorsIdea);
-                console.log(getPeopleErrors);
-                console.log(userErrors);
-                history.push("/login");
+            if (errors || errorsIdea || getPeopleErrors || userErrors) {
+                console.log(errors)
+                console.log(errorsIdea)
+                console.log(getPeopleErrors)
+                console.log(userErrors)
+                history.push('/login')
             }
-        })();
-        console.log("The userProfile status: ", userInfo.profile_complete);
+        })()
+        console.log('The userProfile status: ', userInfo.profile_complete)
     }, [])
 
     useEffect(() => {
@@ -244,6 +277,7 @@ function Feed() {
             history.push('/app/userinfo')
         }
     },[userInfo.profile_complete]);
+    
     const [showFilter, setShowFilter] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
     const [showUploadProject, setShowUploadProject] = useState(false)
@@ -256,27 +290,31 @@ function Feed() {
     const [filteredPosts, setFilteredPosts] = useState<postData[]>([])
 
     useEffect(() => {
-        const sortedPosts = [...posts,...ideas,...thoughts].sort((post1: any,post2: any)=>{
-            const post1Date: any = new Date(post1.created_at);
-            const post2Date: any = new Date(post2.created_at);
-            return post2Date.getTime()-post1Date.getTime();
-        });
+        const sortedPosts = [...posts, ...ideas, ...thoughts].sort(
+            (post1: any, post2: any) => {
+                const post1Date: any = new Date(post1.created_at)
+                const post2Date: any = new Date(post2.created_at)
+                return post2Date.getTime() - post1Date.getTime()
+            }
+        )
 
-        console.log("sorted based on date",sortedPosts);
+        console.log('sorted based on date', sortedPosts)
         if (posts.length && ideas.length) {
-            setFilteredPosts([...sortedPosts]);
+            setFilteredPosts([...sortedPosts])
         }
     }, [posts, ideas, thoughts])
 
     const filterOptionSelector = (type: string) => {
         setCurrentFilter(type)
         if (type === 'All') {
-            const sortedPosts = [...posts,...ideas,...thoughts].sort((post1: any,post2: any)=>{
-                const post1Date: any = new Date(post1.created_at);
-                const post2Date: any = new Date(post2.created_at);
-                return post2Date.getTime()-post1Date.getTime();
-            });
-            setFilteredPosts([...sortedPosts]);
+            const sortedPosts = [...posts, ...ideas, ...thoughts].sort(
+                (post1: any, post2: any) => {
+                    const post1Date: any = new Date(post1.created_at)
+                    const post2Date: any = new Date(post2.created_at)
+                    return post2Date.getTime() - post1Date.getTime()
+                }
+            )
+            setFilteredPosts([...sortedPosts])
             return
         }
         const filters: any = {
@@ -338,13 +376,14 @@ function Feed() {
 
     const dispatch = useDispatch()
     useEffect(() => {
+        console.log(userInfo)
         dispatch(getTeams('user'))
-    }, []);
+    }, [])
 
-    const feedContainer: any = useRef();
-    const goToTopFeed = ()=>{
-        window.scrollTo(0,0);
-        feedContainer?.current.scrollTo(0,0);
+    const feedContainer: any = useRef()
+    const goToTopFeed = () => {
+        window.scrollTo(0, 0)
+        feedContainer?.current.scrollTo(0, 0)
     }
     // const watchScroll = () =>
     // of(typeof window === 'undefined').pipe(
@@ -357,9 +396,9 @@ function Feed() {
     //     distinctUntilChanged()
     // )
     // const scrollDirection = useObservable(watchScroll, 'Down');
-    const [reqToJoinId, setReqToJoinId] = useState<any>(null);
+    const [reqToJoinId, setReqToJoinId] = useState<any>(null)
     const changeTheTeamID = (id: any) => {
-        setReqToJoinId(id);
+        setReqToJoinId(id)
     }
     return (
         <div>
@@ -395,7 +434,10 @@ function Feed() {
                     )}
                     {showRequestJoin && (
                         <div>
-                            <RequestToJoin closeModal={closeModal} team_id={reqToJoinId}/>
+                            <RequestToJoin
+                                closeModal={closeModal}
+                                team_id={reqToJoinId}
+                            />
                         </div>
                     )}
                 </div>
@@ -445,10 +487,18 @@ function Feed() {
                             </div>
                         </div>
                     </div>
-                    <div className="feed__content__center--container" ref={feedContainer}>
+                    <div
+                        className="feed__content__center--container"
+                        ref={feedContainer}
+                    >
                         {
-                            // scrollDirection === "Up" && 
-                            <button className="gotop-button" onClick={goToTopFeed}><img src={arrowUp} alt="^"/></button>
+                            // scrollDirection === "Up" &&
+                            <button
+                                className="gotop-button"
+                                onClick={goToTopFeed}
+                            >
+                                <img src={arrowUp} alt="^" />
+                            </button>
                         }
                         {filteredPosts.map((post, idx) => {
                             // console.log(post)

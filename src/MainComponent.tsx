@@ -18,6 +18,7 @@ import {
     handleUserCredsChange,
     handleUserInfoChange,
 } from './StateUpdateHelper'
+import TeamChat from 'components/application/components/teams/teamChat'
 
 function MainComponent() {
     const [userCreds, setUserCreds] = useState({

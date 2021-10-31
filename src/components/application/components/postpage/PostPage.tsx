@@ -61,6 +61,7 @@ function PostPage(props: any) {
                 role: ele.user.role,
                 time: convertDate(ele.created_at),
                 title: ele.title,
+                team: ele.team,
                 status: ele.status,
                 description: ele.description,
                 tags: ele.project_tags.map((tag: any)=>{

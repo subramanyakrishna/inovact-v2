@@ -9,10 +9,13 @@ const initialState = {
     project_status: "",
     required_roles: [],
     documents: [],
+    looking_for_members: false,
+    looking_for_mentor: false,
     user_id: null,
 }
 
 const updateProjectInfoReducer = (state = initialState, action: any)=>{
+    console.log(action.type,action.payload);
     switch(action.type){
         case addProjectConstants.PROJECT_UPDATE_TITLE:
             return {
@@ -66,6 +69,16 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
         case addProjectConstants.PROJECT_UPDATE_ALL_DATA:
             return {
                 ...action.payload,
+            }
+        case addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MEMBERS:
+            return {
+                ...state,
+                looking_for_members: action.payload,
+            }
+        case addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MENTOR:
+            return {
+                ...state,
+                looking_for_mentor: action.payload,
             }
         default: return state;
     }

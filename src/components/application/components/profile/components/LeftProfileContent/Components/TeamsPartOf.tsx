@@ -1,5 +1,6 @@
 import TeamTag from "./TeamTag";
 import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
+import { useSelector } from "react-redux";
 function TeamsPartOf(props:any) {
   const teamsData = [
     {
@@ -21,6 +22,7 @@ function TeamsPartOf(props:any) {
       membersCount: 122
     }
   ];
+  const userTeams = useSelector((state: any)=>state.teams.teams);
   return (
       <div className="dashboard-main">
             <div className="teams-part-of">

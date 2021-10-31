@@ -4,7 +4,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-
+import { useHistory } from 'react-router-dom'
 interface Props {
     team: any
 }
@@ -71,14 +71,26 @@ const TeamDescription = ({ team }: Props) => {
             setShowAll(false)
         }
     })
+    const history = useHistory()
+
     return (
         <div className="teams-description">
             <div className="teams-description__info">
                 <div className="teams-description__info__left">
-                    <img src={team.avatar} alt="teamImage" />
+                    <img
+                        src={
+                            'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
+                        }
+                        alt="teamImage"
+                    />
                     <div className="teams-description__info__left__text">
-                        <button className=" button--blue text-align--center sm-small">
-                            Group Chat{' '}
+                        <button
+                            className=" button--blue text-align--center sm-small"
+                            onClick={() => {
+                                history.push(`/app/chats`)
+                            }}
+                        >
+                            Group Chat
                         </button>
                     </div>
                 </div>

@@ -1,0 +1,4 @@
+export const allInterestsConstants = {
+    INTEREST_UPDATE_ALL: "INTEREST_UPDATE_ALL",
+    INTEREST_CLEAR_ALL: "INTEREST_CLEAR_ALL",
+}
