@@ -26,14 +26,18 @@ function RequestToJoin(props: any) {
     ];
 
     const handleJoinMember  = async (e:any) =>{
-
+        console.log(props.team_id);
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request",
-            data: { team_id:props.team_id},
+            data: { 
+                team_id: props.team_id
+            },
             headers: {
                 "Authorization": localStorage.getItem("user"),
             }
+        }).catch((err)=>{
+            console.log(err);
         })
     }
 

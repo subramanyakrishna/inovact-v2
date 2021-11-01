@@ -72,7 +72,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
         setShowComments(!showComments);
     }
     const user_id = useSelector((state: any)=> state.userInfo.id);
-    const [likes, setLikes] = useState(post.numLikes);
+    const [likes, setLikes] = useState(0);
     const [likedPost, setLikedPost] = useState(false);
     const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
     const likeThePost = async(postId: any)=>{
@@ -95,6 +95,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     useEffect(()=>{
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        setLikes(post.numLikes);
         if((post.likes.some((like: any)=>like.id!==user_id))){         
             setLikedPost(true);
         }

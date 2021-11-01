@@ -133,7 +133,7 @@ function PostPage(props: any) {
                         {
                             showRequestJoin && 
                             <div>
-                                <RequestToJoin closeModal={closeModal}/>
+                                <RequestToJoin closeModal={closeModal} team_id={postData.team_id}/>
                             </div>
                         }
                 </div>

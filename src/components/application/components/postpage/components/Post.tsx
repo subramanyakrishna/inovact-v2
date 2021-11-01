@@ -76,7 +76,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     }
     console.log(post);
     const user_id = useSelector((state: any)=> state.userInfo.id);
-    const [likes, setLikes] = useState(post["numLikes"]);
+    console.log(post.numLikes);
+    const [likes, setLikes] = useState(0);
     const [likedPost, setLikedPost] = useState(false);
     const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
     const likeThePost = async(postId: any)=>{
@@ -100,6 +101,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
         console.log(post);
+        setLikes(post.numLikes);
         if((post.likes?.some((like: any)=>like.id!==user_id))){         
             setLikedPost(true);
         }
@@ -268,7 +270,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             <img src={share} alt="" className="post__footer__share-img" />
                         </div>
                 </div>
-                {post.type === 1 ? (
+                { post.team && post.user_id!==user_id &&
+                post.type === 1 ? (
                     <>
                         <p className="post__footer__team__request" onClick={openRequestJoin}>Join Team</p>
                     </>

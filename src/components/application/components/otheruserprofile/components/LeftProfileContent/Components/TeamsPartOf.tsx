@@ -50,7 +50,7 @@ function TeamsPartOf(props:any) {
             // setotherUserId(firstTeam.id);
             
         }).then(()=>{
-            history.push("/app/otherteams");
+            // history.push("/app/otherteams");
         }).catch((err)=>{
             console.log(err);
         })
