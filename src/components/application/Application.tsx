@@ -1,36 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Connections from 'components/application/components/connections/Connections'
 import Feed from 'components/application/components/feed/Feed'
 import NavBar from 'components/application/components/NavBar'
+import CheckoutPage from 'components/authentication/userInfoForm/Info/CheckoutPage'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
-    Route,
     BrowserRouter as Router,
     Switch,
-    Redirect,
     useHistory,
     useRouteMatch,
 } from 'react-router-dom'
-import Connections from 'components/application/components/connections/Connections'
-import Profile from './components/profile/Profile'
-import Teams from './components/teams/Teams'
-import Notifications from './components/notifications/Notifications'
-import Settings from './components/settings/Settings'
-import Messages from './components/messages/Messages'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    handleUserCredsChange,
-    handleUserInfoChange,
-} from '../../StateUpdateHelper'
-import CheckoutPage from 'components/authentication/userInfoForm/Info/CheckoutPage'
 import { userConstants } from 'redux/actionTypes/userConstants'
-import axios from 'axios'
-import { userCredsConstants } from 'redux/actionTypes/userCredsConstants'
-import PrivateRoute from '../../PrivateRoute'
-import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import PostPage from './components/postpage/PostPage'
 import OtherProfile from './components/otheruserprofile/OtherProfile'
 import OtherUserTeams from './components/otheruserteam/OtherUserTeam'
+import PrivateRoute from '../../PrivateRoute'
+import { handleUserInfoChange } from '../../StateUpdateHelper'
 import IdeaPage from './components/ideapage/IdeaPage'
+import Messages from './components/messages/Messages'
+import Notifications from './components/notifications/Notifications'
+
+import Profile from './components/profile/Profile'
+import Settings from './components/settings/Settings'
+import TeamChat from './components/teams/teamChat'
+import Teams from './components/teams/Teams'
 
 function Application() {
     const state = useSelector((state: any) => state)
@@ -97,7 +92,7 @@ function Application() {
             <Router>
                 {/* {state.authentication.userAuthenticated &&
                     state.authentication.user.profile_complete && <NavBar />} */}
-                    <NavBar/>
+                <NavBar />
                 <Switch>
                     <PrivateRoute
                         path={`${path}/feed`}
@@ -144,7 +139,7 @@ function Application() {
                         isAuth={state.authentication.userAuthenticated}
                         component={OtherProfile}
                     />
-                     <PrivateRoute
+                    <PrivateRoute
                         path={`${path}/otherteams`}
                         isAuth={state.authentication.userAuthenticated}
                         component={OtherUserTeams}
@@ -158,6 +153,11 @@ function Application() {
                         path={`/ideas/:id`}
                         isAuth={state.authentication.userAuthenticated}
                         component={() => <IdeaPage />}
+                    />
+                    <PrivateRoute
+                        path={`${path}/chats`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={() => <TeamChat />}
                     />
                 </Switch>
             </Router>

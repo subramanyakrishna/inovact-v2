@@ -90,7 +90,7 @@ const PrivacySettings: React.FC<any> = ({
         if (rePswd === '' || newPswd === '') {
             setErrorMsg('please enter all fields')
             setIsPswdNotMathching(true)
-        } else if (rePswd != newPswd) {
+        } else if (rePswd !== newPswd) {
             setErrorMsg('passwords not matching')
             setIsPswdNotMathching(true)
         } else {
@@ -144,7 +144,7 @@ const PrivacySettings: React.FC<any> = ({
                 newPswd
             )
             console.log('res res', res)
-            if (res != 'SUCCESS') {
+            if (res !== 'SUCCESS') {
                 setVerificationCodeMessage('NOT_MATCHING')
             } else {
                 setVerificationCodeMessage('SUCCESS')

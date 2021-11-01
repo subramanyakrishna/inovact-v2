@@ -1,30 +1,24 @@
-import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS } from './../actionTypes/teams'
+import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS, UPDATE_TEAM_AVATAR } from './../actionTypes/teams'
 import TeamsService from '../services/teams.services'
-import { ICreateTeam } from 'redux/interfaces/teams.interface'
 
-export const createTeam = (team: ICreateTeam) => async (dispatch: any) => {
+export const createTeam = (team: any) => async (dispatch: any) => {
     try {
         //? this data is temporary and will be replaced by the real data according to the backend
-        const data = {
-            name: team.name,
-            avatar: "",
-            team_tags: [],
-            team_members: [],
-        }
-        const res = await TeamsService.createTeam(data)
+        const res = await TeamsService.createTeam(team)
         console.log(res)
         dispatch({
             type: CREATE_TEAM,
             payload: res.data,
         })
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 
 export const getTeams = (userId: string) => async (dispatch: any) => {
     try {
         const res = await TeamsService.getTeams(userId)
+        console.log('teams redux', res.data)
         dispatch({
             type: GET_TEAMS,
             payload: res.data,
@@ -34,13 +28,27 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
     }
 }
 
+export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =>{
+    try {
+        console.log("putreq in teams",teamUpdateImg)
+      const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
+      console.log('updated the image', res.data)
+      dispatch({
+          type:UPDATE_TEAM_AVATAR,
+          payload:res.data
+      })
+    }
+    catch(error){
+        throw error
+    }
+}
 
-export const inviteMembers =(bodyData :any) => async (dispatch: any) => {
+export const inviteMembers = (bodyData: any) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(bodyData)
         dispatch({
-            type:INVITE_MEMBERS,
-            payload: res.data.insert_team_invitations.returning[0]
+            type: INVITE_MEMBERS,
+            payload: res.data.insert_team_invitations.returning[0],
         })
     } catch (error) {
         throw error

@@ -12,12 +12,13 @@ function InviteMembers(props:any) {
         team_id:0,
         user_id:0,
     })
-
+   
     const [buttonText, setButtonText] = useState("Invite"); 
     const changeText = () => setButtonText("Invited");
     const users =useSelector((state:any) => state.peopleYouMayKnow)
     const userInfo =useSelector((state:any) => state.userInfo)
     const dispatch = useDispatch()
+    let filteredusers = users;
     const handleShareModal=(e:any)=>{
         props.closeModal();
         props.viewShareModal();
@@ -30,7 +31,10 @@ function InviteMembers(props:any) {
         // const addTeam = () => {
         //     dispatch(inviteMembers({user_id:userId,team_id: teamId}))
         // }
-        console.log("teamid,uderid",teamId,userId)
+            filteredusers = users.filter(
+            (user: any) => user.user_id != e
+        )
+       
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
@@ -74,7 +78,7 @@ function InviteMembers(props:any) {
                
                 
                 <div className="invite-members">
-                { users.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
+                { filteredusers.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
                 return(                   
                          <MemberForInvite item={item} handleInviteTeamMember={handleInviteTeamMember} />
                 );

@@ -1,4 +1,3 @@
-import MemberInfo from 'components/application/components/teams/components/teamInfo/MembersTab/MemberInfoTab';
 import React from 'react'
 import TeamMemberCard from './components/TeamMemberCard';
 

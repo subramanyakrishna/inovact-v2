@@ -1,8 +1,7 @@
-import React, { Ref, useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import AddRolesLookingFor from './AddRolesLookingFor';
 import RolesLookingFor from './RolesLookingFor';
 import SwitchSlider from './SwitchSlider';
-import MemberMentor from './MemberMentor';
 import { handleAddProjectChange, handleUserInfoChange } from 'StateUpdateHelper';
 import { useSelector } from 'react-redux';
 import SearchedPeople from './SearchedPeople';

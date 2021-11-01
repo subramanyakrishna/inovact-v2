@@ -83,7 +83,7 @@ const LeftTop = () => {
                             <span>No Recent Connections</span>
                         )}
                         {!isLoad &&
-                            myConnections.length != 0 &&
+                            myConnections.length !== 0 &&
                             myConnections.map((user: any) => {
                                 return (
                                     <MDBListGroupItem

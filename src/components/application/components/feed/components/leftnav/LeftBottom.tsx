@@ -10,7 +10,7 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import SmallSpinner from 'components/application/SmallSpinner'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 const LeftBottom = (props: any) => {
@@ -27,17 +27,14 @@ const LeftBottom = (props: any) => {
                 </MDBCardHeader>
                 <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
-                        <MDBListGroupItem className="left-right-nav__card__list__item--create" onClick={props.openCreateTeam}>
-                            <img
-                                src={create}   
-                                alt="create"
-                               
-                            />
+                        <MDBListGroupItem
+                            className="left-right-nav__card__list__item--create"
+                            onClick={props.openCreateTeam}
+                        >
+                            <img src={create} alt="create" />
                             <div className="left-right-nav__card__list__item__info">
                                 <h6>
-                                    <div className="title">
-                                        Create New Team{' '}
-                                    </div>
+                                    <div className="title">Create New Team</div>
                                 </h6>
                             </div>
                         </MDBListGroupItem>

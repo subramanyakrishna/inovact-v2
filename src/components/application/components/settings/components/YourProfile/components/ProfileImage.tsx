@@ -12,6 +12,7 @@ function ProfileImage({ handleUserInfoChange, userInfo }: any) {
         }
     }
     const history = useHistory();
+    
     const changeCompleteProfile = (e: any)=>{
         e.preventDefault();
         history.push("/app/userinfo");

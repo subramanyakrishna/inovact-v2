@@ -18,7 +18,8 @@ import { handlePeopleYouMayKnow } from 'StateUpdateHelper'
 const RightTop = (props: any) => {
     const peopleToKnow = useSelector(
         (state: any) => state.peopleYouMayKnow
-    ).slice(0, 4)
+    ).slice(0, 4);
+    
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {

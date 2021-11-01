@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import SkillTags from './SkillTags';
 import TeamNameDescription from './TeamNameDescription';
 function ModalPart1(props: any) {

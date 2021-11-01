@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
-import { handleAddIdeaChange, handleAddProjectChange } from 'StateUpdateHelper';
+import { handleAddIdeaChange,  } from 'StateUpdateHelper';
 import useRequests from 'useRequest/useRequest';
 import ModalContent from './components/ModalContent';
 

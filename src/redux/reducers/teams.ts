@@ -1,4 +1,4 @@
-import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS } from './../actionTypes/teams'
+import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS, UPDATE_TEAM_AVATAR } from './../actionTypes/teams'
 
 const initialState = {
     teams: [],
@@ -24,6 +24,11 @@ const teamsReducer = (state = initialState, action: any) => {
                  ...state,
                  teams:[...state.teams , action.payload.data.team]
              }
+        case UPDATE_TEAM_AVATAR:
+                return {
+                    // ...state,
+                    // teams:[...state.teams , action.payload.data.team]
+                }
         default:
             return state
     }

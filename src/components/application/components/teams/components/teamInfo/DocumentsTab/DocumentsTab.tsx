@@ -1,4 +1,6 @@
 import React from 'react'
+import pdf from 'images/teams/pdf.svg'
+
 const DocumentsTab =(props:any)=>{
     return(
         <>
@@ -9,7 +11,7 @@ const DocumentsTab =(props:any)=>{
             props.team.team_documents.map((item:any,index:number)=>{
                     return(
                             <div className="documents-info__document">
-                                <img src={item} alt="name"/>
+                                <img src={pdf} alt="name"/>
                                 <h5 className="text-size--small">file name</h5>  
                             </div>    
                     );

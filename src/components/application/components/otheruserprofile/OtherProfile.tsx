@@ -3,7 +3,7 @@ import LeftProfileContent from './components/LeftProfileContent/LeftProfileConte
 import TopProfileContent from './components/TopProfileContent/TopProfileContent';
 // import Post from "../feed/components/center/Post";
 import Post from "./components/RightProfileContent/Post";
-import Photos from "../feed/components/center/Photos";
+
 import {postData} from "../feed/components/center/postData";
 import BlockAccount from './components/BlockAccount';
 import RestrictAccount from './components/RestrictAccount';
@@ -13,7 +13,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import { handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts, handleOtherUserInfoChange } from 'StateUpdateHelper';
+import {  handleOtherUserInfoChange } from 'StateUpdateHelper';
 import axios from 'axios';
 import Spinner from 'components/application/Spinner';
 import { useHistory } from 'react-router';

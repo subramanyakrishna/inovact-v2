@@ -3,7 +3,7 @@ import SkillTags from '../../UploadProject/components/SkillTags';
 import SwitchSlider from '../../UploadProject/components/SwitchSlider';
 import RolesLookingFor from "../../UploadProject/components/RolesLookingFor";
 import AddRolesLookingFor from '../../UploadProject/components/AddRolesLookingFor';
-import { handleAddIdeaChange, handleAddProjectChange } from 'StateUpdateHelper';
+import { handleAddIdeaChange } from 'StateUpdateHelper';
 import { useSelector } from 'react-redux';
 import { imageUploader } from 'imageUpload/imageUploader';
 import ImageTag from '../../UploadProject/components/ImageTag';
