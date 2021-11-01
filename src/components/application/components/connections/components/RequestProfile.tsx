@@ -13,11 +13,17 @@ function RequestProfile(props: any) {
         history.push('/app/otherprofile')
     }
     return (
-        <div className="my-requests-profile" onClick={() => goToProfile()}>
-            <div className="my-requests-profile-img">
+        <div className="my-requests-profile">
+            <div
+                className="my-requests-profile-img"
+                onClick={() => goToProfile()}
+            >
                 <img src={props.user.avatar} />
             </div>
-            <div className="my-requests-profile-data">
+            <div
+                className="my-requests-profile-data"
+                onClick={() => goToProfile()}
+            >
                 <span className="my-requests-profile-name">
                     {props.user.name}
                 </span>

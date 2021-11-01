@@ -1,16 +1,46 @@
+import { TryRounded } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function RightNetworkStats() {
     const userInfo = useSelector((state: any) => state.userInfo)
     const [totalConnections, setTotalConnections] = useState<number>(0)
-    const totalConnectionsFromStore = useSelector(
-        (state: any) => state.connections.my_connections.length
+    const [NoOfmentors, setNoOfMentors] = useState<number>(0)
+    const [lastWeeksConnections, setLastWeeksConnections] = useState<number>(0)
+    const my_connections = useSelector(
+        (state: any) => state.connections.my_connections
     )
-    console.log()
+    const my_connnections_complete = useSelector(
+        (state: any) => state.connections.my_connnections_complete
+    )
     useEffect(() => {
-        setTotalConnections(totalConnectionsFromStore)
-    }, [totalConnectionsFromStore])
+        setTotalConnections(my_connections.length)
+        const mentorsCount = my_connections.filter(
+            (user: any) => user.role === 'mentor'
+        ).length
+        setNoOfMentors(mentorsCount)
+    }, [my_connections])
+
+    useEffect(() => {
+        const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24
+        const TODAYS_DATE: Date = new Date()
+        const lastWeekConnections = my_connnections_complete.filter(
+            (connection: any) => {
+                if (connection.status == 'connections') {
+                    const created_at: string = connection.created_at
+                    const cretedDate = new Date(created_at)
+                    const dateDifferenceInMs = Math.abs(
+                        TODAYS_DATE.valueOf() - cretedDate.valueOf()
+                    )
+                    const dateDifference: number =
+                        dateDifferenceInMs / ONE_DAY_IN_MS
+                    return dateDifference < 7
+                }
+            }
+        ).length
+        console.log(lastWeekConnections)
+        setLastWeeksConnections(lastWeekConnections)
+    }, [my_connnections_complete])
 
     console.log('totalConnections', totalConnections)
     return (
@@ -30,15 +60,15 @@ function RightNetworkStats() {
                 <div className="right-network-stats--content-titles">
                     <p>
                         <span>Total connections</span>
-                        <span>{totalConnectionsFromStore}</span>
+                        <span>{totalConnections}</span>
                     </p>
                     <p>
                         <span>Last week's connections</span>
-                        <span>18</span>
+                        <span>{lastWeeksConnections}</span>
                     </p>
                     <p>
                         <span>Your mentors</span>
-                        <span>4</span>
+                        <span>{NoOfmentors}</span>
                     </p>
                     <p>
                         <span>Appearances in People you may know</span>

@@ -14,14 +14,20 @@ function ConnectionProfile(props: any) {
         history.push('/app/otherprofile')
     }
     return (
-        <div className="my-connection-profile" onClick={() => goToProfile()}>
-            <div className="my-connection-profile-img">
+        <div className="my-connection-profile">
+            <div
+                className="my-connection-profile-img"
+                onClick={() => goToProfile()}
+            >
                 <img
                     src={props.user.avatar}
                     className="my-connection-profile-img"
                 />
             </div>
-            <div className="my-connection-profile-data">
+            <div
+                className="my-connection-profile-data"
+                onClick={() => goToProfile()}
+            >
                 <span className="my-connection-profile-name">
                     {props.user.name}
                 </span>

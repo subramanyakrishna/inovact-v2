@@ -4,13 +4,16 @@ import ConnectionProfile from './ConnectionProfile'
 import Spinner from '../../../Spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+    updateConnectedAccountId,
+    updateConnectionComplete,
+    updateConnectionData,
     updateConnectReqAcceptPending,
     updateMyConnections,
     updatePendingRequests,
-    updateTotalNumberOfConnections,
 } from 'redux/actions/connectionsAction'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import {
+    getConnectionsAllData,
     getFilteredPendingRequestsAndConnectedAccount,
     makeApiCall,
 } from './connectionsUtils'
@@ -29,45 +32,31 @@ function CenterRequests() {
     )
     const dispatch = useDispatch()
     const connections = useSelector((state: any) => state.connections)
-
+    const user_id = useSelector((state: any) => state.userInfo.id)
     useEffect(() => {
         console.log(connections)
     }, [connections])
 
     useEffect(() => {
         ;(async () => {
-            const response = await makeApiCall('get', 'user')
-
-            dispatch({
-                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
-                payload: response.data.data.user[0],
-            })
-            const { id: ownId } = response.data.data.user[0]
-            const dataFromConnectionApi = await makeApiCall(
-                'get',
-                'connections'
-            )
-
             const {
                 filteredPendingRequest,
                 filteredConnectedAccount,
                 filteredConnectReqAcceptPending,
-            } = getFilteredPendingRequestsAndConnectedAccount(
-                dataFromConnectionApi.data.data.connections,
-                ownId
-            )
+                filteredConnectedAccountComplete,
+                filteredConnectionId,
+            } = await getConnectionsAllData(user_id)
 
+            console.log(filteredConnectedAccountComplete)
             setPendingRequestLoad(false)
             setMyConnectionLoad(false)
             dispatch(updatePendingRequests(filteredPendingRequest))
             dispatch(updateMyConnections(filteredConnectedAccount))
-
-            dispatch(
-                updateTotalNumberOfConnections(filteredConnectedAccount.length)
-            )
+            dispatch(updateConnectionComplete(filteredConnectedAccountComplete))
             dispatch(
                 updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
             )
+            dispatch(updateConnectedAccountId(filteredConnectionId))
         })()
     }, [])
 
@@ -86,12 +75,12 @@ function CenterRequests() {
             (user: any) => user.id !== id
         )
         dispatch(updatePendingRequests(filteredPendingRequests))
+        dispatch(updateMyConnections([...myConnections, user]))
 
         const response = await makeApiCall(
             'post',
             `connections/accept?user_id=${id}`
         )
-        dispatch(updateMyConnections([...myConnections, user]))
         console.log(response)
     }
 
