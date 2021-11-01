@@ -101,7 +101,7 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                             <p className="post__author__text__time text-color--green text-size--small">
                                 {post.role[0].toUpperCase()+post.role.slice(1)}
                             </p>
-                            <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
+                            {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
                         </div>
                                 {/* <p className="post__author__text__time">
                                     {post.time} hrs ago
@@ -115,6 +115,13 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                             </div>
                         </div>
                 <div className="post__text">
+                <p className="post__author__text__type text-color--green text-size--small">
+                            {post.type === 1
+                                ? 'Project'
+                                : post.type === 2
+                                ? 'Idea'
+                                : 'Thought'}
+                        </p>
                     {post.title ? (
                         <h1 className="post__text__title">{post.title}</h1>
                     ) : null}

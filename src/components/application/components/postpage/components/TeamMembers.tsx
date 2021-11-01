@@ -41,7 +41,7 @@ const TeamMembers = (props: any)=> {
                         props.postData.team.team_members.map((mem: any)=>{
                             return <TeamMemberTag avatar={mem.user.avatar} name={mem.user.first_name+" "+mem.user.last_name} role={mem.user.role}/>
                         }):
-                        <p>This is an individual project.</p>
+                        <p>This is an individual {props.postData.type===1?"project": "idea"}.</p>
                     }
                     {/* <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>
                     <TeamMemberTag avatar={data.avatar} name={data.name} role={data.role}/>

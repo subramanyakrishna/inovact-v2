@@ -41,8 +41,13 @@ function Teams() {
         }
     }, [])
 
-    const [verticalActive, setVerticalActive] = useState(initialTeam)
-    const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>()
+    const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>(
+        allTeams[0]
+    )
+    const [verticalActive, setVerticalActive] = useState(allTeams[0]?.id)
+    useEffect(() => {
+        setVerticalActive(allTeams[0]?.id)
+    }, [allTeams])
     //Modals
     const [showOverlay, setShowOverlay] = useState(false)
     const [showUploadDocument, setShowUploadDocument] = useState(false)

@@ -74,19 +74,23 @@ $accept-btn: #02bd63;
         padding: 0;
     }
     &-profiles {
+        &-container-each{
+            width: 100%;
+        }
         overflow-y: scroll;
         height: 400px;
         display: flex;
-        width: 100%;
+        // width: 80%;
         flex-direction: column;
         align-items: center;
     }
     &-btn {
+        display: flex;
         button {
             background-color: $primary-background;
             border: none;
             text-align: center;
-            width: 50%;
+            width: 100%;
             padding: 10px;
         }
     }
@@ -99,6 +103,7 @@ $accept-btn: #02bd63;
     justify-content: space-between;
     border-bottom: 2px solid #c4c4c4;
     margin: 1rem 3rem;
+    width: 100%;
     &-img {
         border-radius: 50%;
         overflow: hidden;
@@ -167,6 +172,10 @@ $accept-btn: #02bd63;
     justify-content: space-between;
     border-bottom: 2px solid #c4c4c4;
     margin: 0 3rem;
+    &-container{
+        display: flex;
+        align-items: center;
+    }
     &-img {
         border-radius: 50%;
         overflow: hidden;

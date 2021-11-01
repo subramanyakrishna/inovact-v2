@@ -4,15 +4,12 @@ import ConnectionProfile from './ConnectionProfile'
 import Spinner from '../../../Spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-    updateConnectedAccountId,
-    updateConnectionComplete,
     updateConnectReqAcceptPending,
     updateMyConnections,
     updatePendingRequests,
 } from 'redux/actions/connectionsAction'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import {
-    getConnectionsAllData,
     getFilteredPendingRequestsAndConnectedAccount,
     makeApiCall,
 } from './connectionsUtils'
@@ -27,38 +24,49 @@ function CenterRequests() {
         (state: any) => state.connections.pending_requests
     )
     const myConnections = useSelector(
-        (state: any) => state.connections.my_connections
+        (state: any) => state.otherUserConnections
     )
     const dispatch = useDispatch()
     const connections = useSelector((state: any) => state.connections)
-    const user_id = useSelector((state: any) => state.userInfo.id)
+
     useEffect(() => {
         console.log(connections)
     }, [connections])
 
     useEffect(() => {
         ;(async () => {
+            const response = await makeApiCall('get', 'user')
+
+            dispatch({
+                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
+                payload: response.data.data.user[0],
+            })
+            const { id: ownId } = response.data.data.user[0]
+            const dataFromConnectionApi = await makeApiCall(
+                'get',
+                'connections'
+            )
+
             const {
                 filteredPendingRequest,
                 filteredConnectedAccount,
                 filteredConnectReqAcceptPending,
-                filteredConnectedAccountComplete,
-                filteredConnectionId,
-            } = await getConnectionsAllData(user_id)
+            } = getFilteredPendingRequestsAndConnectedAccount(
+                dataFromConnectionApi.data.data.connections,
+                ownId
+            )
 
-            console.log(filteredConnectedAccountComplete)
             setPendingRequestLoad(false)
             setMyConnectionLoad(false)
             dispatch(updatePendingRequests(filteredPendingRequest))
             dispatch(updateMyConnections(filteredConnectedAccount))
-            dispatch(updateConnectionComplete(filteredConnectedAccountComplete))
+
             dispatch(
                 updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
             )
-            dispatch(updateConnectedAccountId(filteredConnectionId))
         })()
     }, [])
-
+    const otherUser = useSelector((state: any) => state.otherUser)
     const handleRequestButton = (event: any) => {
         setShowRequest(true)
         setShowConnection(false)
@@ -69,34 +77,34 @@ function CenterRequests() {
         setShowConnection(true)
     }
 
-    const acceptConnectRequest = async (id: number, user: any) => {
-        const filteredPendingRequests = pendingRequests.filter(
-            (user: any) => user.id !== id
-        )
-        dispatch(updatePendingRequests(filteredPendingRequests))
-        dispatch(updateMyConnections([...myConnections, user]))
+    // const acceptConnectRequest = async (id: number, user: any) => {
+    //     const filteredPendingRequests = pendingRequests.filter(
+    //         (user: any) => user.id !== id
+    //     )
+    //     dispatch(updatePendingRequests(filteredPendingRequests))
 
-        const response = await makeApiCall(
-            'post',
-            `connections/accept?user_id=${id}`
-        )
-        console.log(response)
-    }
+    //     const response = await makeApiCall(
+    //         'post',
+    //         `connections/accept?user_id=${id}`
+    //     )
+    //     dispatch(updateMyConnections([...myConnections, user]))
+    //     console.log(response)
+    // }
 
-    const rejectConnectRequest = async (id: number) => {
-        //call api to connect
-        console.log(id)
-        const filteredPendingRequest = pendingRequests.filter(
-            (user: any) => user.id !== id
-        )
+    // const rejectConnectRequest = async (id: number) => {
+    //     //call api to connect
+    //     console.log(id)
+    //     const filteredPendingRequest = pendingRequests.filter(
+    //         (user: any) => user.id !== id
+    //     )
 
-        dispatch(updatePendingRequests(filteredPendingRequest))
-        const response = await makeApiCall(
-            'post',
-            `connections/reject?user_id=${id}`
-        )
-        console.log(response)
-    }
+    //     dispatch(updatePendingRequests(filteredPendingRequest))
+    //     const response = await makeApiCall(
+    //         'post',
+    //         `connections/reject?user_id=${id}`
+    //     )
+    //     console.log(response)
+    // }
 
     const handleRemoveConnection = async (id: number) => {
         const filteredMyConnections = myConnections.filter(
@@ -112,7 +120,7 @@ function CenterRequests() {
     return (
         <div className="requests-connections">
             <div className="requests-connections-btn">
-                <button
+                {/* <button
                     onClick={handleRequestButton}
                     style={{
                         borderBottom: showRequest
@@ -121,19 +129,18 @@ function CenterRequests() {
                     }}
                 >
                     Requests ({pendingRequests.length})
-                </button>
+                </button> */}
                 <button
                     onClick={handleConnectionButton}
                     style={{
-                        borderBottom: showConnection
-                            ? '5px solid #5579BD'
-                            : 'none',
+                        borderBottom: '5px solid #5579BD',
                     }}
                 >
-                    My Connections ({myConnections.length})
+                    {otherUser.first_name}'s Connections ({myConnections.length}
+                    )
                 </button>
             </div>
-            {showRequest && (
+            {/* {showRequest && (
                 <div className="requests-connections-profiles">
                     {pendingRequesLoad && <Spinner />}
                     {pendingRequests.length == 0 && !pendingRequesLoad && (
@@ -158,35 +165,32 @@ function CenterRequests() {
                             ))}
                     </div>
                 </div>
-            )}
-            {showConnection && (
-                <div className="requests-connections-profiles">
-                    {myConnectionsLoad && <Spinner />}
-                    {!myConnectionsLoad && myConnections.length === 0 && (
-                        <span
-                            style={{
-                                marginTop: '10rem',
-                            }}
-                        >
-                            Your connections will be shown here{' '}
-                        </span>
-                    )}
+            )} */}
+            <div className="requests-connections-profiles">
+                {myConnectionsLoad && <Spinner />}
+                {!myConnectionsLoad && myConnections.length === 0 && (
+                    <span
+                        style={{
+                            marginTop: '10rem',
+                        }}
+                    >
+                        {otherUser.first_name ? otherUser.first_name : 'User'}'s
+                        connections will be shown here{' '}
+                    </span>
+                )}
 
-                    <div>
-                        {!myConnectionsLoad &&
-                            myConnections.length !== 0 &&
-                            myConnections.map((user: any, i: number) => (
-                                <ConnectionProfile
-                                    key={i}
-                                    user={user}
-                                    handleRemoveConnection={
-                                        handleRemoveConnection
-                                    }
-                                />
-                            ))}
-                    </div>
+                <div className="requests-connections-profiles-container-each">
+                    {!myConnectionsLoad &&
+                        myConnections.length !== 0 &&
+                        myConnections.map((user: any, i: number) => (
+                            <ConnectionProfile
+                                key={i}
+                                user={user.user}
+                                handleRemoveConnection={handleRemoveConnection}
+                            />
+                        ))}
                 </div>
-            )}
+            </div>
         </div>
     )
 }
