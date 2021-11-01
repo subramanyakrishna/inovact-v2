@@ -27,31 +27,16 @@ function Teams() {
     const allTeams = useSelector((state: any) => state.teams.teams)
     const [isLoading, setLoading] = useState(true)
     const dispatch = useDispatch()
-    const [initialTeam, setInitialTeam] = useState(0)
 
     useEffect(() => {
         dispatch(getTeams('user'))
-        if (allTeams.length !== 0) {
-            const currentTeam = allTeams[0]
-            setInitialTeam(currentTeam.id)
-            console.log('initial team', initialTeam)
-            setLoading(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (allTeams.length !== 0) {
-            const currentTeam = allTeams[0]
-            setInitialTeam(currentTeam.id)
-            console.log('initial team', initialTeam)
-            setLoading(false)
-            console.log(initialTeam)
-        }
     }, [])
 
     const [verticalActive, setVerticalActive] = useState(allTeams[0]?.id)
+    const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>()
     useEffect(() => {
         setVerticalActive(allTeams[0]?.id)
+        setVerticalActiveTeam(allTeams[0])
     }, [allTeams])
     //Modals
     const [showOverlay, setShowOverlay] = useState(false)
@@ -125,13 +110,14 @@ function Teams() {
         openModal()
         setShowShareModal(true)
     }
-    const handleVerticalClick = (value: number) => {
+    const handleVerticalClick = (value: number, team: any) => {
         if (value === verticalActive) {
             return
         }
         setVerticalActive(value)
+        setVerticalActiveTeam(team)
     }
-
+    const handlePostProcessInoviteTeamMember = () => {}
     return (
         <div>
             {showOverlay && (
@@ -147,6 +133,7 @@ function Teams() {
                             team_id={verticalActive}
                             viewShareModal={viewShareModal}
                             closeModal={closeModal}
+                            team={verticalActiveTeam}
                         />
                     )}
                     {showDeleteMember && (
@@ -187,6 +174,7 @@ function Teams() {
                                 <Invitation
                                     allTeams={allTeams}
                                     active_id={verticalActive}
+                                    active_team={verticalActiveTeam}
                                 />
                             </div>
                         </div>
