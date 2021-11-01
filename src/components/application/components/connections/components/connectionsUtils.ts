@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
+import { store } from 'redux/helpers/store'
 
 const findTimeDiffString = (connectedDateString: string) => {
     const ONE_SECONDS_IN_MS = 1000
@@ -33,6 +35,8 @@ const getFilteredPendingRequestsAndConnectedAccount = (
     let filteredPendingRequest: any = []
     let filteredConnectedAccount: any = []
     let filteredConnectReqAcceptPending: any = []
+    let filteredConnectedAccountComplete: any = []
+    let filteredConnectionId: number[] = []
     allConnectionsFromApi.forEach((connection: any) => {
         console.log('ownId', ownId)
 
@@ -47,6 +51,7 @@ const getFilteredPendingRequestsAndConnectedAccount = (
             designation: 'inovact', //otherUser.designation,
             connected_at: connection.created_at,
             connected_at_in_words: findTimeDiffString(connection.created_at),
+            role: otherUser.role,
         }
         if (otherUser.id !== ownId) {
             //user1 is connection sender user2 is receiver
@@ -59,21 +64,12 @@ const getFilteredPendingRequestsAndConnectedAccount = (
                 filteredConnectReqAcceptPending.push(otherUserDisplayData)
             } else {
                 filteredConnectedAccount.push(otherUserDisplayData)
+                filteredConnectedAccountComplete.push(connection)
+                filteredConnectionId.push(otherUser.id)
             }
         }
     })
-    const ascendingOrderTimeSortCallback = (
-        connection1: any,
-        connection2: any
-    ) => {
-        const connection1Date: Date = new Date(connection1.created_at)
-        const connection2Date: Date = new Date(connection2.created_at)
-        return connection2Date === connection1Date
-            ? 0
-            : connection2Date > connection1Date
-            ? -1
-            : 1
-    }
+
     filteredPendingRequest = filteredPendingRequest.reverse()
     filteredConnectedAccount = filteredConnectedAccount.reverse()
     filteredConnectReqAcceptPending = filteredConnectReqAcceptPending.reverse()
@@ -81,6 +77,8 @@ const getFilteredPendingRequestsAndConnectedAccount = (
         filteredPendingRequest,
         filteredConnectedAccount,
         filteredConnectReqAcceptPending,
+        filteredConnectedAccountComplete,
+        filteredConnectionId,
     }
 }
 const makeApiCall = async (method: any, route: string) => {
@@ -97,8 +95,47 @@ const makeApiCall = async (method: any, route: string) => {
     return response
 }
 
+const getConnectionsAllData = async (user_id: any) => {
+    if (user_id === null || user_id === undefined) {
+        try {
+            const response = await makeApiCall('get', 'user')
+            store.dispatch({
+                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
+                payload: response.data.data.user[0],
+            })
+            user_id = response.data.data.user[0].id
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const ownId = user_id
+    const dataFromConnectionApi = await makeApiCall('get', 'connections')
+    console.log(dataFromConnectionApi)
+    const all_connection_data = dataFromConnectionApi.data.data.connections
+
+    const {
+        filteredPendingRequest,
+        filteredConnectedAccount,
+        filteredConnectReqAcceptPending,
+        filteredConnectedAccountComplete,
+        filteredConnectionId,
+    } = getFilteredPendingRequestsAndConnectedAccount(
+        all_connection_data,
+        ownId
+    )
+    console.log(filteredConnectedAccountComplete)
+    return {
+        filteredPendingRequest,
+        filteredConnectedAccount,
+        filteredConnectReqAcceptPending,
+        filteredConnectedAccountComplete,
+        filteredConnectionId,
+    }
+}
 export {
     getFilteredPendingRequestsAndConnectedAccount,
     findTimeDiffString,
     makeApiCall,
+    getConnectionsAllData,
 }

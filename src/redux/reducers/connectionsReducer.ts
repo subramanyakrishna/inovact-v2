@@ -6,6 +6,8 @@ const initialState = {
     people_you_may_know: [],
     connect_req_accept_pending: [],
     my_connection_length: 0,
+    connection_data: [],
+    my_connnections_complete: [],
 }
 
 const connectionsReducer = (state = initialState, action: any) => {
@@ -18,8 +20,10 @@ const connectionsReducer = (state = initialState, action: any) => {
             return { ...state, people_you_may_know: action.payload }
         case connectionActionTypes.CONNECT_REQUEST_ACCEPT_PENDING:
             return { ...state, connect_req_accept_pending: action.payload }
-        case connectionActionTypes.MY_CONNECTION_LENGTH:
-            return { ...state, my_connection_length: action.payload }
+        case connectionActionTypes.CONNECTION_DATA:
+            return { ...state, connection_data: action.payload }
+        case connectionActionTypes.MY_CONNECTIONS_COMPLETE:
+            return { ...state, my_connnections_complete: action.payload }
         default:
             return state
     }
