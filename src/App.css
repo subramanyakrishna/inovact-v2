@@ -1182,9 +1182,13 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  max-height: 20%;
-  overflow: hidden;
   overflow-y: scroll; }
+  @media screen and (max-width: 150rem) {
+    .invite-members {
+      height: 250px; } }
+  @media screen and (max-width: 62em) {
+    .invite-members {
+      height: 350px; } }
   .invite-members__details {
     padding: 0.5rem 1rem;
     display: flex;
