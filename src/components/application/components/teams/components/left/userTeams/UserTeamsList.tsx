@@ -26,7 +26,7 @@ const UserTeamsList = (props: any) => {
                         <MDBTabsItem>
                             <MDBTabsLink
                                 onClick={() =>
-                                    props.handleVerticalClick(team.id)
+                                    props.handleVerticalClick(team.id, team)
                                 }
                                 active={props.idx === team.id}
                             >
