@@ -1,29 +1,14 @@
+import { useSelector } from 'react-redux'
+
 function AreaOfInterest() {
-    const data = [
-      "Java",
-      "API",
-      "Java",
-      "Problem Solving",
-      "OOP Concepts",
-      "OOP Concepts",
-      "API",
-      "API",
-      "AOI 1",
-      "API",
-      "API",
-      "API",
-      "Problem Solving",
-      "API",
-      "API",
-      "AOI 1"
-    ];
+    const aoi = useSelector((state: any) => state.userInfo['user_interests'])
+
     return (
-      <div className="interests-tags">
-        {data.map((ele: any) => {
-          return <span>{ele}</span>;
-        })}
-      </div>
-    );
-  }
-  export default AreaOfInterest;
-  
+        <div className="interests-tags">
+            {aoi.map((ele: any) => {
+                return <span>{ele.interest}</span>
+            })}
+        </div>
+    )
+}
+export default AreaOfInterest
