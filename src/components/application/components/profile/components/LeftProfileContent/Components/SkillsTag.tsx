@@ -3,8 +3,10 @@ import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded'
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded'
 import { handleUserInfoChange } from 'StateUpdateHelper'
 import { useSelector } from 'react-redux'
+import { useRef } from 'react'
 
 function SkillsTag(props: any) {
+    const skillInputField = useRef<any>()
     const [showDropDown, setShowDropDown] = useState(false)
     const toggleDropDown = () => {
         setShowDropDown(!showDropDown)
@@ -13,10 +15,12 @@ function SkillsTag(props: any) {
     const [matchedRes, setMatchedRes] = useState<any>([])
     const [state, setState] = useState<any>(props.skills)
     const [skill, setSkill] = useState<string>()
+
     const onPressEnter = () => {
         if (matchedRes.length) {
             setMatchedRes([])
             setSkill('')
+            skillInputField.current.value = ''
             setState([...state, matchedRes[0]])
             handleUserInfoChange('user_skills', [
                 ...user_skills,
@@ -27,6 +31,7 @@ function SkillsTag(props: any) {
     const onSkillSelect = (skill: any) => {
         setMatchedRes([])
         setSkill('')
+        skillInputField.current.value = ''
         handleUserInfoChange('user_skills', [
             ...user_skills,
             { skill: skill, level: props.heading },
@@ -87,7 +92,7 @@ function SkillsTag(props: any) {
                                     onPressEnter()
                                 }
                             }}
-                            value={skill}
+                            ref={skillInputField}
                             placeholder={'Eg:Kotlin'}
                         />
                         {

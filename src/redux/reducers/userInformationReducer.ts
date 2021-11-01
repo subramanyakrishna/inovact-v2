@@ -50,7 +50,6 @@ const initialState = {
     thoughts: [],
     is_public: false,
     teams: [],
-    team_with_admin_access: [4, 5, 6, 7, 8],
     team_public_visibility: true,
     user_skills: [
         {
