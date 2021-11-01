@@ -2734,15 +2734,18 @@ body {
     overflow-y: scroll;
     height: 400px;
     display: flex;
-    width: 100%;
     flex-direction: column;
     align-items: center; }
-  .requests-connections-btn button {
-    background-color: #ffffff;
-    border: none;
-    text-align: center;
-    width: 50%;
-    padding: 10px; }
+    .requests-connections-profiles-container-each {
+      width: 100%; }
+  .requests-connections-btn {
+    display: flex; }
+    .requests-connections-btn button {
+      background-color: #ffffff;
+      border: none;
+      text-align: center;
+      width: 100%;
+      padding: 10px; }
 
 .my-requests-profile {
   display: flex;
@@ -2750,7 +2753,8 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #c4c4c4;
-  margin: 1rem 3rem; }
+  margin: 1rem 3rem;
+  width: 100%; }
   .my-requests-profile-img {
     border-radius: 50%;
     overflow: hidden;
@@ -2808,6 +2812,9 @@ body {
   justify-content: space-between;
   border-bottom: 2px solid #c4c4c4;
   margin: 0 3rem; }
+  .my-connection-profile-container {
+    display: flex;
+    align-items: center; }
   .my-connection-profile-img {
     border-radius: 50%;
     overflow: hidden; }
@@ -3863,6 +3870,8 @@ input, textarea:focus {
       align-items: center;
       justify-content: space-around;
       margin: 10px; }
+      .dashboard-main-content div:hover {
+        cursor: pointer; }
     .dashboard-main-content-description {
       color: #02bd63;
       font-weight: 600; }

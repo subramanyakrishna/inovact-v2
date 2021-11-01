@@ -1,26 +1,30 @@
 import React from 'react'
 import PercentageGrowth from './PercentageGrowth';
 import ConnectMessageBtn from 'components/application/components/otheruserprofile/components/LeftProfileContent/Components/ConnectMessageBtn';
+import { useHistory } from 'react-router';
 
-function DashboardContent() {
+function DashboardContent(props: any) {
+    const history = useHistory();
     return (
         <div className="dashboard-main">
             <p className="dashboard-main-title">Dashboard</p>
             <div className="dashboard-main-content">
                 <div>
-                    <span className="dashboard-main-content-number">12</span>
+                    <span className="dashboard-main-content-number">{props.postsCount}</span>
                     <span className="dashboard-main-content-description">Posts</span>
                 </div>
-                <div>
-                    <span className="dashboard-main-content-number">540</span>
+                <div onClick={()=>{
+                    history.push("/app/otheruser-connections");
+                }}>
+                    <span className="dashboard-main-content-number">{props.connectionsCount}</span>
                     <span className="dashboard-main-content-description">
                     Connections
                     </span>
                 </div>
-                <div>
+                {/* <div>
                     <span className="dashboard-main-content-number">50</span>
                     <span className="dashboard-main-content-description">Requests</span>
-                </div>
+                </div> */}
                 
             </div>
             <div>

@@ -26,6 +26,7 @@ import Profile from './components/profile/Profile'
 import Settings from './components/settings/Settings'
 import TeamChat from './components/teams/teamChat'
 import Teams from './components/teams/Teams'
+import OtherUserConnections from './components/otheruser-connections/OtherUserConnection'
 
 function Application() {
     const state = useSelector((state: any) => state)
@@ -138,6 +139,11 @@ function Application() {
                         path={`${path}/otherprofile`}
                         isAuth={state.authentication.userAuthenticated}
                         component={OtherProfile}
+                    />
+                    <PrivateRoute
+                        path={`${path}/otheruser-connections`}
+                        isAuth={state.authentication.userAuthenticated}
+                        component={OtherUserConnections}
                     />
                     <PrivateRoute
                         path={`${path}/otherteams`}

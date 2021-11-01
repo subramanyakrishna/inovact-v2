@@ -7,7 +7,7 @@ function TeamTag(props: any) {
         <div className="team-tag-content">
           <span className="team-tag-content-name">{props.teamName}</span>
           <span className="team-tag-content-members">
-            {props.membersCount} members
+            {props.membersCount} member{props.membersCount===1?"":"s"}
           </span>
         </div>
       </div>
