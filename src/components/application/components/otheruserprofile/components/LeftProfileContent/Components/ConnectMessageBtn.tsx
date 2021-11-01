@@ -20,13 +20,14 @@ function ConnectMessageBtn() {
                 )
                 dispatch(updateConnectedAccountId(filteredConnectionId))
                 setIsLoad(false)
-
-                const other_user_id = Number(localStorage.getItem('other-user'))
-
-                setIsConnectedShow(
-                    filteredConnectionId.indexOf(other_user_id) !== -1
-                )
             })()
+        } else {
+            setIsLoad(false)
+            const other_user_id = Number(localStorage.getItem('other-user'))
+
+            setIsConnectedShow(
+                connected_account_ids.indexOf(other_user_id) !== -1
+            )
         }
     }, [])
     return (
