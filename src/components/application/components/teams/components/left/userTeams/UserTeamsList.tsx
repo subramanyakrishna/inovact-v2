@@ -32,7 +32,7 @@ const UserTeamsList = (props: any) => {
                             >
                                 <UserTeam
                                     teamname={team.name}
-                                    avatar={
+                                    avatar={ team.avatar ? team.avatar:
                                         'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
                                     }
                                 />

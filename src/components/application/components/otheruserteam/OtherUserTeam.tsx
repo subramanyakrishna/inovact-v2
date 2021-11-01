@@ -21,14 +21,10 @@ import Spinner from 'components/application/Spinner';
 import { useHistory } from 'react-router';
 
 function Teams() {
-    
-   
     const history = useHistory();   
     const [myTeams,setMyTeams]=useState([]);
     const [otherUserId,setotherUserId] = useState(33);
-  
     
-
     const getTheUserTeam = async()=>{
         if(localStorage.getItem("other-user")){
             const userId = localStorage.getItem("other-user");
@@ -42,9 +38,7 @@ function Teams() {
                 console.log("other user id",userId)
                 console.log("result of api call",resp.data.data.team)
                 setMyTeams(resp.data.data.team);
-               
-                console.log("first team",resp.data.data.team)
-                
+                console.log(resp.data.data.team[0].id)
                 
             }).then(()=>{
                 history.push("/app/otherteams");
@@ -53,11 +47,12 @@ function Teams() {
             })
         }
     }
-    const [verticalActive, setVerticalActive] = useState(32);
+    const [verticalActive, setVerticalActive] = useState(0);
 
     useEffect(()=>{
       (async ()=>{
           await getTheUserTeam();
+         
       })();
     }, [])
 

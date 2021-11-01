@@ -111,6 +111,9 @@
         color:$color-white;
         padding: 0.5rem;
         border: none;
+        &--round{
+            border-radius: 25px;
+        }
         @include respond (xs){
             padding: 0.1rem;
           
@@ -169,7 +172,7 @@
         background-color: $color-primary-green;
     }
 }
-.view-more-button{
+.props.member.user{
     width: 7rem;
     border: none;
     border-radius: 1rem;

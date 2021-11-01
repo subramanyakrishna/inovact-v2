@@ -101,33 +101,27 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                             </Link>
                             <div className="post__author__text">
                             <h1 className="post__author__text__name">{post.author}</h1>
-                        <div className="post__author__text__bottom">
-                            <p className="post__author__text__time text-color--green text-size--small">
-                                {post.role[0].toUpperCase()+post.role.slice(1)}
-                            </p>
-                            {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
-                        </div>
-                                {/* <p className="post__author__text__time">
-                                    {post.time} hrs ago
-                                </p> */}
+                                <div className="post__author__text__bottom">
+                                    <p className="post__author__text__time text-color--green text-size--small">
+                                        {post.role[0].toUpperCase()+post.role.slice(1)}
+                                    </p>
+                                </div>
+                                
                             </div>
                             <div className="connect-button-container">
                             <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
-                                <button className="view-more-button">View More <b>{">>"}</b>
+                                <button className="view-more-button connect-button">View More <b>{">>"}</b>
                                 </button>
                             </Link>
                             </div>
                         </div>
                 <div className="post__text">
-                <p className="post__author__text__type text-color--green text-size--small">
-                            {post.type === 1
-                                ? 'Project'
-                                : post.type === 2
-                                ? 'Idea'
-                                : 'Thought'}
-                        </p>
-                    {post.title ? (
-                        <h1 className="post__text__title">{post.title}</h1>
+                
+                        {post.title ? (
+                        <div style={{display:'flex',flexDirection:'row'}}>
+                            <h1 className="post__text__title">{post.title} {}</h1>
+                            {post.type===1?<img src={project_badge} alt="" width="25"/>:post.type===2?<img src={idea_badge} alt="" />:<img src={thoughts_badge} alt="" />}   
+                        </div> 
                     ) : null}
                     <p className="post__text__desc">
                         {post.type === 1

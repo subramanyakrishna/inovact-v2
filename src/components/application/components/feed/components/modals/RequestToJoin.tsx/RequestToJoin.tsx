@@ -27,6 +27,7 @@ function RequestToJoin(props: any) {
 
     const handleJoinMember  = async (e:any) =>{
 
+        console.log(props.team_id)
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request",

@@ -3,11 +3,7 @@ import React from 'react'
 import pdf from 'images/teams/pdf.svg'
 
 const DocumentsTab =(props:any)=>{
-    // const loadFile = (e: any)=>{
-    //     if(e.target.files)[
-    //         documentUploader
-    //     ]
-    // }
+  
     return(
         <>
          <div className="documents-info">
@@ -16,10 +12,10 @@ const DocumentsTab =(props:any)=>{
                 
             props.team.team_documents.map((item:any,index:number)=>{
                     return(
-                            <div className="documents-info__document">
+                            <a href={item.url} className="documents-info__document">
                                 <img src={pdf} alt="name"/>
-                                <h5 className="text-size--small">file name</h5>  
-                            </div>    
+                                <h5 className="text-size--small">{item.name}</h5>  
+                            </a>    
                     );
             })}
                 <button className="text-style--bold text-color--green documents-info__addFile" onClick={props.viewUploadDocument}>

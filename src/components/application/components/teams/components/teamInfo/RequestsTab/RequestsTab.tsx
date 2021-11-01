@@ -6,8 +6,8 @@ const RequestsTab =(props:any)=>{
     const allTeams = useSelector((state: any) => state.teams.teams)
 
     const handleAcceptTeamMember  = async (e:any) =>{
-        const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
-        const teamId = currentTeam.id;
+          
+        console.log("accept",e)
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/accept",
@@ -16,12 +16,12 @@ const RequestsTab =(props:any)=>{
                 "Authorization": localStorage.getItem("user"),
             }
         })
+        console.log(response)
     }
 
     const handleRejectTeamMember  = async (e:any) =>{
-        const currentTeam= allTeams.filter((ele:any)=>ele.id === props.team_id )[0]
-        const teamId = currentTeam.id;
-        const userId = e;
+      
+        console.log("reject",e)
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/reject",
@@ -30,6 +30,7 @@ const RequestsTab =(props:any)=>{
                 "Authorization": localStorage.getItem("user"),
             }
         })
+        
     }
 
     return(
@@ -48,8 +49,8 @@ const RequestsTab =(props:any)=>{
                     </div>
                                
                     <div className="requests-info__details__buttons">
-                         <button className="requests-info__details__buttons--accept" onClick={handleAcceptTeamMember.bind(request.user.id)} >Accept</button>
-                         <button className="requests-info__details__buttons--white" onClick={handleRejectTeamMember.bind(request.user.id)} >Remove</button>
+                         <button className="requests-info__details__buttons--accept" id="accept-request" onClick={handleAcceptTeamMember.bind(null,request.id)} >Accept</button>
+                         <button className="requests-info__details__buttons--white" onClick={handleRejectTeamMember.bind(null,request.id)} >Remove</button>
                     </div>
                     
                 </div>

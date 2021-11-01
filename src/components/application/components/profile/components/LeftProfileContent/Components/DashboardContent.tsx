@@ -1,8 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import PercentageGrowth from './PercentageGrowth';
+import { useHistory } from 'react-router';
 
 function DashboardContent() {
+    const history = useHistory();
     const allPosts = useSelector((state: any) => state.userAllProjects);
     // const userPosts = useSelector((state: any)=>state.userAllPosts);
     // console.log(userPosts)
@@ -21,13 +23,17 @@ function DashboardContent() {
                      
                     <span className="dashboard-main-content-description">Posts</span>
                 </div>
-                <div>
+                <div onClick={()=>{
+                    history.push("/app/connections");
+                }}>
                     <span className="dashboard-main-content-number">{connections.my_connections.length}</span>
                     <span className="dashboard-main-content-description">
                     Connections
                     </span>
                 </div>
-                <div>
+                <div onClick={()=>{
+                    history.push("/app/connections");
+                }}>
                     <span className="dashboard-main-content-number">{connections.pending_requests.length}</span>
                     <span className="dashboard-main-content-description">Requests</span>
                 </div>
