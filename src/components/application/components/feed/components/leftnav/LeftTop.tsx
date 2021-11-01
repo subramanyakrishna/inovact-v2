@@ -1,4 +1,5 @@
 import {
+    getConnectionsAllData,
     getFilteredPendingRequestsAndConnectedAccount,
     makeApiCall,
 } from 'components/application/components/connections/components/connectionsUtils'
@@ -14,7 +15,6 @@ import {
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateMyConnections } from 'redux/actions/connectionsAction'
-import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 interface Connection {
     name: string
@@ -24,6 +24,8 @@ interface Connection {
 }
 
 const LeftTop = () => {
+    const user_id = useSelector((state: any) => state.userInfo.id)
+
     const [isLoad, setIsLoad] = useState<boolean>(true)
     const dispatch = useDispatch()
     const myConnections = useSelector((state: any) =>
@@ -32,29 +34,13 @@ const LeftTop = () => {
     useEffect(() => {
         console.log(myConnections)
         ;(async () => {
-            const response = await makeApiCall('get', 'user')
-
-            dispatch({
-                type: userInfoConstants.UPDATE_WHOLE_PROFILE,
-                payload: response.data.data.user[0],
-            })
-            const { id: ownId } = response.data.data.user[0]
-            const dataFromConnectionApi = await makeApiCall(
-                'get',
-                'connections'
+            const { filteredConnectedAccount } = await getConnectionsAllData(
+                user_id
             )
 
-            const {
-                filteredPendingRequest,
-                filteredConnectedAccount,
-                filteredConnectReqAcceptPending,
-            } = getFilteredPendingRequestsAndConnectedAccount(
-                dataFromConnectionApi.data.data.connections,
-                ownId
-            )
             setIsLoad(false)
             dispatch(updateMyConnections(filteredConnectedAccount))
-            console.log("myConnections",myConnections)
+            console.log('myConnections', myConnections)
         })()
     }, [])
     return (
@@ -65,7 +51,7 @@ const LeftTop = () => {
                         Recent Connections
                     </MDBCardTitle>
                 </MDBCardHeader>
-             <MDBCardBody className="left-right-nav__card__body">
+                <MDBCardBody className="left-right-nav__card__body">
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {isLoad && <SmallSpinner />}
                         {!isLoad && myConnections.length === 0 && (

@@ -25,11 +25,23 @@ const updateConnectReqAcceptPending = (connect_req_accept_pending: any) => {
         payload: connect_req_accept_pending,
     }
 }
-const updateTotalNumberOfConnections = (connectionLength: number) => {
-    console.log('connectionLength', connectionLength)
+const updateConnectedAccountId = (connectedAccountId: number[]) => {
     return {
-        type: connectionActionTypes.MY_CONNECTION_LENGTH,
-        payload: connectionLength,
+        type: connectionActionTypes.CONNECTED_ACCOUNT_ID,
+        payload: connectedAccountId,
+    }
+}
+
+const updateConnectionData = (connectionData: any) => {
+    return {
+        type: connectionActionTypes.CONNECTION_DATA,
+        payload: connectionData,
+    }
+}
+const updateConnectionComplete = (data: any) => {
+    return {
+        type: connectionActionTypes.MY_CONNECTIONS_COMPLETE,
+        payload: data,
     }
 }
 export {
@@ -37,5 +49,7 @@ export {
     updatePeopleYouMayKnow,
     updatePendingRequests,
     updateConnectReqAcceptPending,
-    updateTotalNumberOfConnections,
+    updateConnectionData,
+    updateConnectionComplete,
+    updateConnectedAccountId,
 }

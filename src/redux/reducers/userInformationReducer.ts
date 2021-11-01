@@ -18,7 +18,7 @@ const initialState = {
     degree: 'BE',
     area_of_interests: [1, 2, 3, 4],
     profile_complete: true,
-    id: 0,
+    id: null,
     cognito_sub: '',
     appearance: 0,
     percentage_growth: 0,

@@ -9,6 +9,7 @@ import UserTag from 'components/application/components/profile/components/RightP
 import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
 import { useSelector } from 'react-redux'
 import playButton from '../../../../../../images/feed/play-button.svg'
+import { makeApiCall } from 'components/application/components/connections/components/connectionsUtils'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true)
@@ -19,6 +20,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const backToPost = () => {
         setShowComments(false)
     }
+    const [isRequestedUser, setIsRequestedUser] = useState<number>()
     const teamsData = [
         {
             img: 'https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg',
@@ -67,6 +69,12 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = () => {
         setShowComments(!showComments)
     }
+    const handleConnect = async (user_id: number) => {
+        const res = await makeApiCall(
+            'post',
+            `connections/request?user_id=${user_id}`
+        )
+    }
     const user_id = useSelector((state: any) => state.userInfo.id)
     return (
         <div className="post">
@@ -101,13 +109,21 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         <div className="post__author__text">
                             <div className="post__author__text__name-container">
                                 <h1 className="post__author__text__name">
-                                    {post.author} 
+                                    {post.author}
                                 </h1>
                                 {user_id !== post.user_id && (
-                                <button className="connect-button">
-                                    Connect
-                                </button>
-                            )}
+                                    <button
+                                        className="connect-button"
+                                        onClick={() => {
+                                            handleConnect(post.user_id)
+                                            setIsRequestedUser(post.user_id)
+                                        }}
+                                    >
+                                        {isRequestedUser
+                                            ? 'Requested'
+                                            : 'Connect'}
+                                    </button>
+                                )}
                             </div>
                             <div className="post__author__text__bottom">
                                 <p className="post__author__text__time text-color--green text-size--small">
@@ -122,11 +138,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </p> */}
                         </div>
                         <div className="connect-button-container">
-                            {/* {user_id !== post.user_id && (
-                                <button className="connect-button">
-                                    Connect
-                                </button>
-                            )} */}
                             {(post.type === 1 || post.type === 2) && (
                                 <Link
                                     to={
@@ -312,9 +323,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         >
                             Team Members
                         </p>
-                        {
-                            post.team &&
-                            post.team.looking_for_members &&
+                        {post.team && post.team.looking_for_members && (
                             <p
                                 className="post__footer__team__request"
                                 onClick={(e: any) => {
@@ -324,7 +333,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             >
                                 Join Team
                             </p>
-                        }
+                        )}
                     </>
                 ) : (
                     <div className="post__footer__team__empty"></div>
@@ -335,25 +344,3 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
 }
 
 export default Post
-
-/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
- molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
- numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
- optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
- obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
- nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
- tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
- quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
- sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
- recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
- minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
- quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
- fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
- consequuntur! Commodi minima excepturi repudiandae velit hic maxime
- doloremque. Quaerat provident commodi consectetur veniam similique ad 
- earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
- fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores enlabore 
- suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
- modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
- totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
- quasi aliquam eligendi, placeat qui corporis! */
