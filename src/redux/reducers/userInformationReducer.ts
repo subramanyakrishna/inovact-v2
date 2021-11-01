@@ -16,7 +16,6 @@ const initialState = {
     journey_start_date: new Date(),
     years_of_professional_experience: 0,
     degree: 'BE',
-    area_of_interests: [1, 2, 3, 4],
     profile_complete: true,
     id: null,
     cognito_sub: '',
@@ -52,6 +51,30 @@ const initialState = {
     teams: [],
     team_with_admin_access: [4, 5, 6, 7, 8],
     team_public_visibility: true,
+    user_skills: [
+        {
+            skill: {
+                id: 1,
+                name: 'test skill',
+            },
+            level: 'beginner',
+        },
+        {
+            skill: {
+                id: 2,
+                name: 'leadership',
+            },
+            level: 'intermediate',
+        },
+        {
+            skill: {
+                id: 3,
+                name: 'communication',
+            },
+            level: 'advanced',
+        },
+    ],
+    user_interests: [],
 }
 
 const updateUserInfo = (state = initialState, action: any) => {
@@ -207,6 +230,16 @@ const updateUserInfo = (state = initialState, action: any) => {
             return {
                 ...state,
                 website: action.payload,
+            }
+        case userInfoConstants.UPDATE_USER_SKILLS:
+            return {
+                ...state,
+                user_skills: action.payload,
+            }
+        case userInfoConstants.UPDATE_USER_INTERESTS:
+            return {
+                ...state,
+                user_interests: action.payload,
             }
         default:
             return state

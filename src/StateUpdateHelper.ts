@@ -147,12 +147,12 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 payload: value,
             })
             break
-        case "website":
+        case 'website':
             store.dispatch({
                 type: userInfoConstants.UPDATE_USER_WEBSITE,
                 payload: value,
-            });
-            break;
+            })
+            break
         case 'area-of-interest':
             store.dispatch({
                 type: userInfoConstants.UPDATE_AOI,
@@ -194,6 +194,19 @@ const handleUserInfoChange = async (name: any, value: any) => {
                 type: userInfoConstants.UPDATE_WHOLE_PROFILE,
                 payload: value,
             })
+            break
+        case 'user_skills':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_USER_SKILLS,
+                payload: value,
+            })
+            break
+        case 'user_interests':
+            store.dispatch({
+                type: userInfoConstants.UPDATE_USER_INTERESTS,
+                payload: value,
+            })
+            break
     }
     console.log(store.getState())
 }
@@ -248,18 +261,18 @@ const handleAddProjectChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-        case "looking_for_members":
+        case 'looking_for_members':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MEMBERS,
                 payload: value,
-            });
-            break;
-        case "looking_for_mentor":
+            })
+            break
+        case 'looking_for_mentor':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_MENTOR,
                 payload: value,
             })
-            break;
+            break
         case 'documents':
             store.dispatch({
                 type: addProjectConstants.PROJECT_UPDATE_DOCUMENTS,
@@ -298,12 +311,12 @@ const handleAddIdeaChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-        case "team_id":
+        case 'team_id':
             store.dispatch({
                 type: addIdeaConstants.IDEA_UPDATE_TEAM_ID,
                 payload: value,
             })
-            break;
+            break
         case 'idea_tags':
             store.dispatch({
                 type: addIdeaConstants.IDEA_UPDATE_IDEA_TAGS,
@@ -375,11 +388,11 @@ const handleAddTeamChange = (name: any, value: any) => {
                 payload: value,
             })
             break
-        case "team_avatar":
+        case 'team_avatar':
             // store.dispatch({
             //     type: addTeam
             // })
-            break;
+            break
         case 'roles':
             store.dispatch({
                 type: addTeamConstants.TEAM_UPDATE_ROLE,
@@ -589,56 +602,56 @@ const handlePeopleYouMayKnow = (name: any, value: any) => {
     console.log('people you may know: ', store.getState())
 }
 
-const handleOtherUserTeams = (name: any, value: any)=>{
-    switch(name){
-        case "other_user_teams_all":
+const handleOtherUserTeams = (name: any, value: any) => {
+    switch (name) {
+        case 'other_user_teams_all':
             store.dispatch({
                 type: otherUserTeamsConstants.OTHER_USER_TEAMS_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "other_user_teams_clear_all":
+            })
+            break
+        case 'other_user_teams_clear_all':
             store.dispatch({
                 type: otherUserTeamsConstants.OTHER_USER_TEAMS_CLEAR_ALL,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
-const handleInterestsChange = (name: any, value: any)=>{
-    switch(name){
-        case "interests_update":
+const handleInterestsChange = (name: any, value: any) => {
+    switch (name) {
+        case 'interests_update':
             store.dispatch({
                 type: allInterestsConstants.INTEREST_UPDATE_ALL,
                 payload: value,
-            });
-            break;
-        case "interests_clear":
+            })
+            break
+        case 'interests_clear':
             store.dispatch({
                 type: allInterestsConstants.INTEREST_CLEAR_ALL,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log("All the interests are updated",store.getState());
+    console.log('All the interests are updated', store.getState())
 }
-const handleOtherUserConnections = (name: any, value: any)=>{
-    switch(name){
-        case "other-connections-all":
+const handleOtherUserConnections = (name: any, value: any) => {
+    switch (name) {
+        case 'other-connections-all':
             store.dispatch({
                 type: otherUserConnectionsConstants.OTHER_USER_CONNECTIONS_ALL,
                 payload: value,
-            });
-            break;
-        case "other-connections-clear":
+            })
+            break
+        case 'other-connections-clear':
             store.dispatch({
                 type: otherUserConnectionsConstants.OTHER_USER_CONNECTIONS_CLEAR,
                 payload: value,
-            });
-            break;
+            })
+            break
     }
-    console.log(store.getState());
+    console.log(store.getState())
 }
 export {
     handleUserCredsChange,
