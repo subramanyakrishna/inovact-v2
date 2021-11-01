@@ -61,6 +61,8 @@ function PostPage(props: any) {
                 role: ele.user.role,
                 time: convertDate(ele.created_at),
                 title: ele.title,
+                team: ele.team,
+                status: ele.status,
                 description: ele.description,
                 tags: ele.project_tags.map((tag: any)=>{
                     return tag.hashtag.name;
@@ -138,7 +140,7 @@ function PostPage(props: any) {
                 }
                 <div className="post-dedicated-page-post-container">
                     <Post post={postData} openTeamMember={handleViewTeamMembers} openRequestJoin={viewRequestJoin} />
-                    <TeamMembers/>
+                    <TeamMembers postData={postData}/>
                 </div>
             </div>
             <div className="post-dedicated-page-comments">

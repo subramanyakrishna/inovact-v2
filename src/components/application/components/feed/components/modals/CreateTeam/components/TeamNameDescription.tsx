@@ -26,7 +26,7 @@ const TeamNameDescription = ({ setTeamDetails, teamDetails }: Props) => {
                 <label>Team Title</label>
                 <input
                     type="text"
-                    placeholder="Give your project a suitable title"
+                    placeholder="Give your idea a suitable title"
                     onChange={(e: any) => {
                         setTeamDetails({
                             ...teamDetails,

@@ -203,6 +203,11 @@ const updateUserInfo = (state = initialState, action: any) => {
                 ...state,
                 ...action.payload,
             }
+        case userInfoConstants.UPDATE_USER_WEBSITE:
+            return {
+                ...state,
+                website: action.payload,
+            }
         default:
             return state
     }

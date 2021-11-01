@@ -99,9 +99,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             </Link>
                         )}
                         <div className="post__author__text">
-                            <h1 className="post__author__text__name">
-                                {post.author}
-                            </h1>
+                            <div className="post__author__text__name-container">
+                                <h1 className="post__author__text__name">
+                                    {post.author} 
+                                </h1>
+                                {user_id !== post.user_id && (
+                                <button className="connect-button">
+                                    Connect
+                                </button>
+                            )}
+                            </div>
                             <div className="post__author__text__bottom">
                                 <p className="post__author__text__time text-color--green text-size--small">
                                     {post.role &&
@@ -115,11 +122,11 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </p> */}
                         </div>
                         <div className="connect-button-container">
-                            {user_id !== post.user_id && (
+                            {/* {user_id !== post.user_id && (
                                 <button className="connect-button">
                                     Connect
                                 </button>
-                            )}
+                            )} */}
                             {(post.type === 1 || post.type === 2) && (
                                 <Link
                                     to={
@@ -305,15 +312,19 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         >
                             Team Members
                         </p>
-                        <p
-                            className="post__footer__team__request"
-                            onClick={(e: any) => {
-                                openRequestJoin()
-                                setReqToJoinId(post.team_id)
-                            }}
-                        >
-                            Join Team
-                        </p>
+                        {
+                            post.team &&
+                            post.team.looking_for_members &&
+                            <p
+                                className="post__footer__team__request"
+                                onClick={(e: any) => {
+                                    openRequestJoin()
+                                    setReqToJoinId(post.team_id)
+                                }}
+                            >
+                                Join Team
+                            </p>
+                        }
                     </>
                 ) : (
                     <div className="post__footer__team__empty"></div>

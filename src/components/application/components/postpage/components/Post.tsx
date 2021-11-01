@@ -97,7 +97,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             </Link>
                         }
                     <div className="post__author__text">
-                    <h1 className="post__author__text__name">{post.author}</h1>
+                    <div className="post__author__text__name-container">
+                                <h1 className="post__author__text__name">
+                                    {post.author} 
+                                </h1>
+                                {user_id !== post.user_id && (
+                                <button className="connect-button">
+                                    Connect
+                                </button>
+                            )}
+                            </div>
                     <div className="post__author__text__bottom">
                             <p className="post__author__text__time text-color--green text-size--small">
                                 { post.role &&
@@ -107,11 +116,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </div>
                     </div>
                     <div className="connect-button-container">
-                        {
-
-                            user_id!==post.user_id &&
-                            <button className="connect-button">Connect</button>
-                        }
                         <p className="view-team-members">View Team Members</p>
                     </div>
                 </div>

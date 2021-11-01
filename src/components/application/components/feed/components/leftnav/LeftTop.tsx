@@ -69,7 +69,7 @@ const LeftTop = () => {
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {isLoad && <SmallSpinner />}
                         {!isLoad && myConnections.length === 0 && (
-                            <span>No Recent Connections</span>
+                            <span className="text-align--center">No Recent Connections</span>
                         )}
                         {!isLoad &&
                             myConnections.length != 0 &&

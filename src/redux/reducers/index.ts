@@ -22,6 +22,7 @@ import { allSkillsReducer } from './allSkillsReducer'
 import { allRolesReducer } from './allRolesReducer'
 import { peopleYouMayKnowReducer } from './peopleYouMayKnowReducer'
 import { otherUserTeamsReducer } from './otherUserTeamsReducer'
+import { allInterestsReducer } from './allInterestsReducer'
 
 const rootReducer = combineReducers({
     authentication: authentication,
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
     allRoles: allRolesReducer,
     peopleYouMayKnow: peopleYouMayKnowReducer,
     otherUserTeams: otherUserTeamsReducer,
+    allInterests: allInterestsReducer, 
 });
 
 export default rootReducer;

@@ -49,6 +49,7 @@ function Teams() {
              setInitialTeam(currentTeam.id);
              console.log("initial team",initialTeam)
              setLoading(false)
+             console.log(initialTeam);
         }
     }, []);
 
