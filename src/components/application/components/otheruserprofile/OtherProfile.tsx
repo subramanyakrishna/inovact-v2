@@ -3,7 +3,7 @@ import LeftProfileContent from './components/LeftProfileContent/LeftProfileConte
 import TopProfileContent from './components/TopProfileContent/TopProfileContent';
 // import Post from "../feed/components/center/Post";
 import Post from "./components/RightProfileContent/Post";
-import Photos from "../feed/components/center/Photos";
+
 import {postData} from "../feed/components/center/postData";
 import BlockAccount from './components/BlockAccount';
 import RestrictAccount from './components/RestrictAccount';

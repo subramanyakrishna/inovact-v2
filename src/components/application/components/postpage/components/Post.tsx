@@ -2,6 +2,9 @@ import React,{useState} from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
+import project_badge from 'images/feed/post/project_badge.svg'
+import idea_badge from 'images/feed/post/idea_badge.svg'
+import thoughts_badge from 'images/feed/post/thoughts_badge.svg'
 import { Link } from 'react-router-dom'
 import Photos from '../../feed/components/center/Photos';
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag';
@@ -79,6 +82,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 !showComments && 
                 <div>
                     <div className="post__author">
+                    <div className="post__author__info">
                     {
                             user_id===post.user_id?
                             <Link to="/app/profile">
@@ -96,6 +100,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 />
                             </Link>
                         }
+                      
                     <div className="post__author__text">
                     <div className="post__author__text__name-container">
                                 <h1 className="post__author__text__name">
@@ -115,15 +120,19 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
                         </div>
                     </div>
+                    </div>
                     <div className="connect-button-container">
                         <p className="view-team-members">View Team Members</p>
                     </div>
                 </div>
                 <div className="post__text">
-                    <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p>
                     {post.title ? (
-                        <h1 className="post__text__title">{post.title}</h1>
+                        <div style={{display:'flex',flexDirection:'row'}}>
+                            <h1 className="post__text__title">{post.title} {}</h1>
+                            {post.type===1?<img src={project_badge} alt="" width="25"/>:post.type===2?<img src={idea_badge} alt="" />:<img src={thoughts_badge} alt="" />}   
+                        </div> 
                     ) : null}
+
                     <p className="post__text__desc">
                         {post.type === 1
                             ? post.description.substring(0, 150)
@@ -166,7 +175,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             <div className="post__footer">
                 <div className="post__footer__likes">
                     <img src={like} alt="" />
-                    <p className="post__footer__likes__num">{post.numLikes}</p>
+                    <p className="post__footer__likes__num" onClick={()=> post.numLikes +1}>{post.numLikes}</p>
                 </div>
                 <div className="post__footer__comments" onClick={(e)=>{
                         if(window.innerWidth<768)
@@ -235,24 +244,3 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
 
 export default Post
 
-/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
- molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
- numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
- optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
- obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
- nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
- tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
- quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
- sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
- recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
- minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
- quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
- fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
- consequuntur! Commodi minima excepturi repudiandae velit hic maxime
- doloremque. Quaerat provident commodi consectetur veniam similique ad 
- earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
- fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
- suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
- modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
- totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
- quasi aliquam eligendi, placeat qui corporis! */

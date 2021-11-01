@@ -14,6 +14,7 @@ import {
 } from 'mdb-react-ui-kit'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { updateMyConnections } from 'redux/actions/connectionsAction'
 
 interface Connection {
@@ -31,6 +32,7 @@ const LeftTop = () => {
     const myConnections = useSelector((state: any) =>
         state.connections.my_connections.slice(0.4)
     )
+
     useEffect(() => {
         console.log(myConnections)
         ;(async () => {
@@ -43,6 +45,15 @@ const LeftTop = () => {
             console.log('myConnections', myConnections)
         })()
     }, [])
+    const history = useHistory();
+
+    const getTheOtherUser = async (userId: any) => {
+        console.log('the user id is of other: ', userId)
+        localStorage.setItem('other-user', userId)
+        history.push('/app/otherprofile')
+ 
+    }
+    
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -58,12 +69,17 @@ const LeftTop = () => {
                             <span className="text-align--center">No Recent Connections</span>
                         )}
                         {!isLoad &&
-                            myConnections.length != 0 &&
+                            myConnections.length !== 0 &&
                             myConnections.map((user: any) => {
                                 return (
                                     <MDBListGroupItem
                                         className="left-right-nav__card__list__item"
                                         key={user.id}
+                                        onClick={getTheOtherUser.bind(
+                                            null,
+                                            user.id
+                                        )}
+                                        style={{ cursor: 'pointer' }}
                                     >
                                         <img
                                             src={user.avatar}

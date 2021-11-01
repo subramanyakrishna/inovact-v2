@@ -184,6 +184,7 @@ function Teams() {
               showLeft && 
                   <div className="teams__content__left" >         
                     <div className="teams__content__user-teams" onClick={toggleShowOptions}>
+                        
                         <UserTeam allTeams={allTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
                     </div>
                     <div className="teams__content__suggestions team-info__suggestion">
@@ -194,6 +195,7 @@ function Teams() {
                       
             {
               showRight && <MDBTabsContent className="teams__content__right" >
+                    {allTeams.length ==0 ? <div className="">No Teams Yet</div>: null}
               { allTeams && allTeams.map((team :any,key:any)=>{
               return(
                   <MDBTabsPane show={verticalActive ===  team.id }>
