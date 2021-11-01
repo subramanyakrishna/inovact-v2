@@ -64,7 +64,9 @@ const TeamTags = ({ team }: Props) => {
 
 const TeamDescription = ({ team }: Props) => {
     const [showAll, setShowAll] = useState(true)
+
     const dispatch= useDispatch();
+    
     const loadFile = async (e: any) => { 
         if(e.target.files){
             const data = await imageUploader(e.target.files)

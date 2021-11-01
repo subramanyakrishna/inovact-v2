@@ -29,7 +29,7 @@ function ModalPart2(props: any) {
 
     const toggleTeamMemberNeeded = ()=>{
         setTeamMembersNeeded(!teamMembersNeeded);
-        // handleAddProjectChange("")
+        handleAddProjectChange("looking_for_members",!teamMembersNeeded);
     }
     const toggleTeamNotOnInovact = ()=>{
         setTeamNotOnInovact(!teamNotOnInovact);
@@ -148,16 +148,24 @@ function ModalPart2(props: any) {
                 {
                 !props.projectCompleted &&
                 <div>
-                    {/* <div className="modal_part_two-member-mentor">
+                    <div className="modal_part_two-member-mentor">
                         <div>
                             <label>Looking for team members</label>
-                            <Switch_slider/>
+                            <div onClick={()=>{
+                                toggleTeamMemberNeeded()
+                            }}>
+                                <SwitchSlider/>
+                            </div>
                         </div>
                         <div>
                             <label>Looking for a mentor</label>
-                            <Switch_slider/>
+                            <div onClick={()=>{
+                                handleAddProjectChange("looking_for_mentor",!addProject.looking_for_mentor);
+                            }}>
+                                <SwitchSlider/>
+                            </div>
                         </div>
-                    </div> */}
+                    </div>
                     <div className="modal_part_two-project-status">
                         <span>Project Status</span>
                         <div>

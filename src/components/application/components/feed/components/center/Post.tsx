@@ -10,7 +10,9 @@ import Photos from './Photos'
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag'
 import UserTag from 'components/application/components/profile/components/RightProfileContent/UserTag'
 import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
+import playButton from '../../../../../../images/feed/play-button.svg'
+import { makeApiCall } from 'components/application/components/connections/components/connectionsUtils'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true)
@@ -21,6 +23,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const backToPost = () => {
         setShowComments(false)
     }
+    const [isRequestedUser, setIsRequestedUser] = useState<number>()
     const teamsData = [
         {
             img: 'https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg',
@@ -69,6 +72,12 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = () => {
         setShowComments(!showComments)
     }
+    const handleConnect = async (user_id: number) => {
+        const res = await makeApiCall(
+            'post',
+            `connections/request?user_id=${user_id}`
+        )
+    }
     const user_id = useSelector((state: any) => state.userInfo.id)
     return (
         <div className="post">
@@ -105,10 +114,17 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                     </div>
                 </div>
                     <div className="connect-button-container">
-                        {
-                            user_id!==post.user_id &&
-                            <button className="connect-button">Connect</button>
-                        }
+                                   <button
+                                        className="connect-button"
+                                        onClick={() => {
+                                            handleConnect(post.user_id)
+                                            setIsRequestedUser(post.user_id)
+                                        }}
+                                    >
+                                        {isRequestedUser
+                                            ? 'Requested'
+                                            : 'Connect'}
+                                    </button>
                         {
                             (post.type===1 || post.type===2) &&
                             <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
@@ -282,15 +298,17 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         >
                             Team Members
                         </p>
-                        <p
-                            className="post__footer__team__request"
-                            onClick={(e: any) => {
-                                openRequestJoin()
-                                setReqToJoinId(post.team_id)
-                            }}
-                        >
-                            Join Team
-                        </p>
+                        {post.team && post.team.looking_for_members && (
+                            <p
+                                className="post__footer__team__request"
+                                onClick={(e: any) => {
+                                    openRequestJoin()
+                                    setReqToJoinId(post.team_id)
+                                }}
+                            >
+                                Join Team
+                            </p>
+                        )}
                     </>
                 ) : (
                     <div className="post__footer__team__empty"></div>

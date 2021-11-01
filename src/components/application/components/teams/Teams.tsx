@@ -8,7 +8,7 @@ import Invitation from 'components/application/components/teams/components/left/
 import UserTeam from 'components/application/components/teams/components/left/userTeams/UserTeamsList'
 import TeamInfo from 'components/application/components/teams/components/teamInfo/TeamInfo'
 import TeamDescription from 'components/application/components/teams/components/right/teamDescription/TeamDescription'
-import axios from 'axios'
+
 //icons
 import MenuIcon from '@material-ui/icons/Menu';
 import pdf from 'images/teams/pdf.svg'
@@ -29,39 +29,34 @@ import useRequests from 'useRequest/useRequest'
 function Teams() {
 
     const allTeams = useSelector((state: any) => state.teams.teams)
-    const [myTeams,setMyTeams]=useState<any>([]);
-    const [activeTeamId,setActiveTeamId] = useState(0);
-    
-    const handleJoinMember  = async () =>{
-        const response =  await axios( {
-            method:'get',
-            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team",
-            headers: {
-                "Authorization": localStorage.getItem("user"),
-            }
-        }).catch((error)=> {console.log(error)})
-      if(!response){
-        alert("Cannot get team");
-      }
-      else{
-        console.log(response)
-        setMyTeams(response.data.data.team) 
-        setActiveTeamId(allTeams[0]["id"])
-        console.log(allTeams[0]["id"])
-         console.log("first id",activeTeamId)
-      }
-    }
-
-    const [verticalActive, setVerticalActive] = useState(activeTeamId);
-
+    const [isLoading,setLoading]=useState(true)
     const dispatch = useDispatch()
+    const [initialTeam,setInitialTeam]=useState(0)
+
     useEffect(() => {
         dispatch(getTeams('user'))
-        handleJoinMember();
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
+        }
     }, []);
 
-   
+    useEffect(() => {
+        if(allTeams.length !== 0){
+            const currentTeam= allTeams[0]
+             setInitialTeam(currentTeam.id);
+             console.log("initial team",initialTeam)
+             setLoading(false)
+             console.log(initialTeam);
+        }
+    }, []);
 
+    const [verticalActive, setVerticalActive] = useState(allTeams[0]?.id);
+    useEffect(()=>{
+        setVerticalActive(allTeams[0]?.id);
+    },[allTeams]);
     //Modals
     const [showOverlay, setShowOverlay] = useState(false);
     const [showUploadDocument, setShowUploadDocument] = useState(false);
@@ -189,7 +184,7 @@ function Teams() {
               showLeft && 
                   <div className="teams__content__left" >         
                     <div className="teams__content__user-teams" onClick={toggleShowOptions}>
-                      {allTeams.length ==0 ? <div className="">No Teams Yet</div>: null}
+                        
                         <UserTeam allTeams={allTeams} handleVerticalClick={handleVerticalClick} idx={verticalActive} />
                     </div>
                     <div className="teams__content__suggestions team-info__suggestion">
@@ -200,7 +195,7 @@ function Teams() {
                       
             {
               showRight && <MDBTabsContent className="teams__content__right" >
-              {allTeams.length ==0 ? <div className="">No Teams Yet</div>: null}
+                    {allTeams.length ==0 ? <div className="">No Teams Yet</div>: null}
               { allTeams && allTeams.map((team :any,key:any)=>{
               return(
                   <MDBTabsPane show={verticalActive ===  team.id }>

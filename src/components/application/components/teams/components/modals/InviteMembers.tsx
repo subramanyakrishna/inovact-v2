@@ -3,7 +3,6 @@ import search from 'images/feed/search.svg'
 import link from 'images/teams/cc-link.svg'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
-import { inviteMembers } from 'redux/actions/teams'
 import MemberForInvite from 'components/application/components/teams/components/modals/FindMembers'
 import axios from 'axios';
 function InviteMembers(props:any) {
@@ -17,8 +16,6 @@ function InviteMembers(props:any) {
     const changeText = () => setButtonText("Invited");
     const users =useSelector((state:any) => state.peopleYouMayKnow)
     const userInfo =useSelector((state:any) => state.userInfo)
-    const dispatch = useDispatch()
-    let filteredusers = users;
     const handleShareModal=(e:any)=>{
         props.closeModal();
         props.viewShareModal();
@@ -31,10 +28,7 @@ function InviteMembers(props:any) {
         // const addTeam = () => {
         //     dispatch(inviteMembers({user_id:userId,team_id: teamId}))
         // }
-            filteredusers = users.filter(
-            (user: any) => user.user_id != e
-        )
-       
+     
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",
@@ -78,7 +72,7 @@ function InviteMembers(props:any) {
                
                 
                 <div className="invite-members">
-                { filteredusers.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
+                { users.filter((item :any)=>item.user_id !== userInfo.id ).slice(0,5).map((item :any,index :number)=>{
                 return(                   
                          <MemberForInvite item={item} handleInviteTeamMember={handleInviteTeamMember} />
                 );

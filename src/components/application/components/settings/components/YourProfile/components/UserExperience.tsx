@@ -40,17 +40,21 @@ function UserExperience({ handleUserInfoChange, userInfo }: any) {
                             type="text"
                             placeholder="Eg .   2011"
                             maxLength={4}
-                            defaultValue={new Date(userInfo['journey_start_date']).getFullYear()}
-                            onChange={(e) =>
-                                {
-                                    if(e.target.value.length<4 || e.target.value.length>4){
-                                        return;
-                                    }
-                                    handleUserInfoChange(
+                            defaultValue={new Date(
+                                userInfo['years_of_professional_experience']
+                            ).getFullYear()}
+                            onChange={(e) => {
+                                if (
+                                    e.target.value.length < 4 ||
+                                    e.target.value.length > 4
+                                ) {
+                                    return
+                                }
+                                handleUserInfoChange(
                                     'journey_start_date',
                                     new Date(e.target.value).toISOString()
-                                )}
-                            }
+                                )
+                            }}
                         />
                     </div>
                 </div>

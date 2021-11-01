@@ -16,6 +16,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { handlePeopleYouMayKnow } from 'StateUpdateHelper'
 
 const RightTop = (props: any) => {
+    const [isRequested, setIsRequested] = useState<number>()
     const peopleToKnow = useSelector(
         (state: any) => state.peopleYouMayKnow
     ).slice(0, 4);
@@ -23,10 +24,13 @@ const RightTop = (props: any) => {
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {
-        const filteredpeopleYouMayKnow = peopleYouMayKnow.filter(
-            (user: any) => user.user_id != id
-        )
-        handlePeopleYouMayKnow('pymk_update_all', filteredpeopleYouMayKnow)
+        setTimeout(() => {
+            const filteredpeopleYouMayKnow = peopleYouMayKnow.filter(
+                (user: any) => user.user_id != id
+            )
+
+            handlePeopleYouMayKnow('pymk_update_all', filteredpeopleYouMayKnow)
+        }, 1500)
         const res = await makeApiCall(
             'post',
             `connections/request?user_id=${id}`
@@ -96,12 +100,16 @@ const RightTop = (props: any) => {
                                             </div>
                                             <div className="left-right-nav__card__list__item__button__box">
                                                 <button
+                                                    id={`rightTop-Button-${user_id}`}
                                                     className="left-right-nav__card__list__item__button"
-                                                    onClick={() =>
+                                                    onClick={() => {
                                                         handleConnect(user_id)
-                                                    }
+                                                        setIsRequested(user_id)
+                                                    }}
                                                 >
-                                                    Connect
+                                                    {isRequested === user_id
+                                                        ? 'Requested '
+                                                        : 'Connect'}
                                                 </button>
                                             </div>
                                         </MDBListGroupItem>

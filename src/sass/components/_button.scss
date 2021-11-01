@@ -137,15 +137,15 @@
    &-container{
        display: flex;
        align-items: center;
-       justify-content: space-around;
+       justify-content: flex-end;
        width: 50%;
        p{
            margin: 0px;
        }
-       @include respond(lg){
-           flex-direction: column;
-           justify-content: space-between;
-        }
+    //    @include respond(lg){
+    //        flex-direction: column;
+    //        justify-content: space-between;
+    //     }
     }
     background-color:$color-secondary-blue;
     margin-top: 0.3rem;
@@ -262,8 +262,11 @@
 }
 
 .view-more-post{
-// margin-left: 0rem;
+ margin-left: 1rem;
 background-color: transparent;
 color: $color-primary-blue;
 border: none;
+}
+.ce-chat-form-container>div>div>{
+    min-height: 60px !important;
 }

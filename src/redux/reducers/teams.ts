@@ -2,11 +2,9 @@ import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS, UPDATE_TEAM_AVATAR } from './..
 
 const initialState = {
     teams: [],
-    pendingInvitations:[]
 }
 
 const teamsReducer = (state = initialState, action: any) => {
-    console.log("teams reducer",action.type, action.payload)
     switch (action.type) {
         case GET_TEAMS:
             return {

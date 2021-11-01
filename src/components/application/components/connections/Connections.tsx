@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import RightNetworkStats from './components/RightNetworkStats'
 import CenterRequests from './components/CenterRequests'
 import PeopleYouMayKnow from './components/PeopleYouMayKnow'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
 
 function Connections() {
     const [width, setWidth] = useState(window.innerWidth)
