@@ -112,8 +112,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                     {post.author}
                                 </h1>
                                 {user_id !== post.user_id && (
-                                    <button className="connect-button">
-                                        Connect
+                                    <button
+                                        className="connect-button"
+                                        onClick={() => {
+                                            handleConnect(post.user_id)
+                                            setIsRequestedUser(post.user_id)
+                                        }}
+                                    >
+                                        {isRequestedUser
+                                            ? 'Requested'
+                                            : 'Connect'}
                                     </button>
                                 )}
                             </div>
@@ -130,17 +138,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </p> */}
                         </div>
                         <div className="connect-button-container">
-                            {user_id !== post.user_id && (
-                                <button
-                                    className="connect-button"
-                                    onClick={() => {
-                                        handleConnect(post.user_id)
-                                        setIsRequestedUser(post.user_id)
-                                    }}
-                                >
-                                    {isRequestedUser ? 'Requested' : 'Connect'}
-                                </button>
-                            )}
                             {(post.type === 1 || post.type === 2) && (
                                 <Link
                                     to={
