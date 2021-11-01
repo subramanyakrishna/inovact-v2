@@ -3,20 +3,20 @@ import { useSelector } from 'react-redux'
 
 interface interestI {
     id: number
-    area: string
+    interest: string
 }
 
 const interestData: interestI[] = [
-    { id: 0, area: 'Java' },
-    { id: 1, area: 'Java core' },
-    { id: 2, area: 'Problem Solving' },
-    { id: 3, area: 'OOP Concepts' },
-    { id: 4, area: 'Problem Solving c++' },
-    { id: 5, area: 'API dev' },
-    { id: 6, area: 'react' },
-    { id: 7, area: 'spring boot' },
-    { id: 8, area: 'spring' },
-    { id: 9, area: 'JEE' },
+    { id: 0, interest: 'Java' },
+    { id: 1, interest: 'Java core' },
+    { id: 2, interest: 'Problem Solving' },
+    { id: 3, interest: 'OOP Concepts' },
+    { id: 4, interest: 'Problem Solving c++' },
+    { id: 5, interest: 'API dev' },
+    { id: 6, interest: 'react' },
+    { id: 7, interest: 'spring boot' },
+    { id: 8, interest: 'spring' },
+    { id: 9, interest: 'JEE' },
 ]
 
 function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
@@ -24,6 +24,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
     const [interests, setInterests] = useState<any>([])
     const [searchRes, setSearchRes] = useState<any>([])
     const [aoiData, setAoiData] = useState<any>([])
+    const allInterests = useSelector((state: any)=>state.allInterests);
     const aoi = useSelector((state: any) => state.userInfo['area_of_interests'])
 
     useEffect(() => {
@@ -34,10 +35,12 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
         let aoiDataTemp = aoi.map((interestId: number) =>
             interestData.find((interest: any) => interest.id === interestId)
         )
+
         aoiDataTemp = aoiDataTemp.filter(
             (interest: interestI) => interest !== undefined
         )
         setAoiData(aoiDataTemp)
+        setAoiData(userInfo.area_of_interests);
     }, [])
 
     const handleClickDelete = (index: number) => {
@@ -58,8 +61,8 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
         }
 
         const pattern = new RegExp(currentInterest, 'i')
-        const matchedInterest = interests.filter(
-            (interest: any) => interest.area.match(pattern) !== null
+        const matchedInterest = allInterests.filter(
+            (interest: any) => interest.interest.match(pattern) !== null
         )
         setSearchRes(matchedInterest)
     }
@@ -97,7 +100,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                                         onClick={() => addTheSkill(res)}
                                         data-value={res.id}
                                     >
-                                        {res.area}
+                                        {res.interest}
                                     </span>
                                 )
                             })}
@@ -114,7 +117,7 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                                     className="settings-my-profile-area-of-interests-skills"
                                     key={interest.id}
                                 >
-                                    <span>{interest.area}</span>
+                                    <span>{interest.interest}</span>
                                     <button
                                         onClick={() =>
                                             handleClickDelete(interest.id)

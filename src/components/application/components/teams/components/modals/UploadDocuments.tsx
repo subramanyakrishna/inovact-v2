@@ -1,6 +1,15 @@
+import { documentUploader } from 'imageUpload/docsUploader';
 import React from 'react'
 
 function UploadDocuments(props:any) {
+    const loadFile = (e: any)=>{
+        props.closeModal();
+        if(e.target.files){
+            documentUploader(e.target.files).then((data: any)=>{
+                console.log(data);
+            })
+        }
+    }
     return (
         <div className="modal_main">
         <div className="modal_cover">
@@ -11,7 +20,7 @@ function UploadDocuments(props:any) {
                     <label >Title</label>    
                      <input type="text" placeholder="Give your project a suitable title"/>
                     <div>
-                        <input type="file" id="upload-media-input" hidden/>
+                        <input type="file" id="upload-media-input" hidden onChange={loadFile}/>
                         <div className="upload-media-div">
                              <label className="text-color-green upload-media-text text-align-center" htmlFor="upload-media-input">Browse For Files</label>
                         </div>

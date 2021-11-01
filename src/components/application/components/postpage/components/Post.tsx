@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
@@ -8,6 +8,7 @@ import TeamTag from 'components/application/components/profile/components/LeftPr
 import UserTag from 'components/application/components/profile/components/RightProfileContent/UserTag';
 import CommentsOnPost from 'components/application/components/profile/components/RightProfileContent/CommentsOnPost'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true);
@@ -70,7 +71,36 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = ()=>{
         setShowComments(!showComments);
     }
+    console.log(post);
     const user_id = useSelector((state: any)=> state.userInfo.id);
+    const [likes, setLikes] = useState(post["numLikes"]);
+    const [likedPost, setLikedPost] = useState(false);
+    const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
+    const likeThePost = async(postId: any)=>{
+        setLikedPost(true);
+        setLikes(likes+1);
+        const route = `${post.type===1?"post":post.type===2?"idea":"thought"}`;
+        await axios({
+            method: "POST",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}/like?${route==="post"?"project":route}_id=${postId}`,
+            headers: {
+                Authorization: localStorage.getItem('user'),
+                'Content-Type': 'application/json',
+            },
+        }).then(()=>{
+            console.log("The like was a success");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    useEffect(()=>{
+        // console.log(post.likes);
+        // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        console.log(post);
+        if((post.likes?.some((like: any)=>like.id!==user_id))){         
+            setLikedPost(true);
+        }
+    },[post])
     console.log(user_id)
     console.log(post.user_id)
     return (
@@ -165,8 +195,16 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             </div>
             <div className="post__footer">
                 <div className="post__footer__likes">
-                    <img src={like} alt="" />
-                    <p className="post__footer__likes__num">{post.numLikes}</p>
+                <img
+                        src={likedPost?likedImg:like}
+                        alt=""
+                        onClick={() => {
+                            if(!likedPost){
+                                likeThePost(post.id);
+                            }
+                        }}
+                    />
+                    <p className="post__footer__likes__num">{likes}</p>
                 </div>
                 <div className="post__footer__comments" onClick={(e)=>{
                         if(window.innerWidth<768)

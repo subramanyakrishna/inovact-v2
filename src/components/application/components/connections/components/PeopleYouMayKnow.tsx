@@ -49,19 +49,23 @@ function PeopleYouMayKnow(props: any) {
     useEffect(() => {
         //call the api to get all the people you may know
         ;(async () => {
-            let PYMK_from_api: any = await makeApiCall('get', 'users')
-            PYMK_from_api.data.data.user.reverse()
-            PYMK_from_api = PYMK_from_api.data.data.user
-            //romove this when skills is added to api
-            PYMK_from_api = PYMK_from_api.map((pymk: any) => ({
-                ...pymk,
-                skills: Array.from(
-                    {
-                        length: 4,
-                    },
-                    () => Math.floor(Math.random() * 10)
-                ),
-            }))
+            let PYMK_from_api: any = [];
+            await makeApiCall('get', 'users').then((data:any)=>{
+                PYMK_from_api = data;
+                console.log(PYMK_from_api);
+                PYMK_from_api.data.data.user.reverse()
+                PYMK_from_api = PYMK_from_api.data.data.user
+                //romove this when skills is added to api
+                PYMK_from_api = PYMK_from_api.map((pymk: any) => ({
+                    ...pymk,
+                    skills: Array.from(
+                        {
+                            length: 4,
+                        },
+                        () => Math.floor(Math.random() * 10)
+                    ),
+                }))
+            })
 
             dispatch(updatePeopleYouMayKnow(PYMK_from_api))
 

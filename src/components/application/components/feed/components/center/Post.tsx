@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
@@ -10,13 +10,15 @@ import CommentsOnPost from 'components/application/components/profile/components
 import { useSelector } from 'react-redux'
 import playButton from '../../../../../../images/feed/play-button.svg'
 import { makeApiCall } from 'components/application/components/connections/components/connectionsUtils'
+import axios from 'axios'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true)
     const [showShareOption, setShowShareOption] = useState(false)
     const [showComments, setShowComments] = useState(false)
-    const [likes, setLikes] = useState(0)
+    const [likes, setLikes] = useState(post.numLikes);
     const [reqToJoinId, setReqToJoinId] = useState<number>()
+    const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
     const backToPost = () => {
         setShowComments(false)
     }
@@ -75,7 +77,33 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             `connections/request?user_id=${user_id}`
         )
     }
+    const [likedPost, setLikedPost] = useState(false);
+    const likeThePost = async(postId: any)=>{
+        setLikedPost(true);
+        setLikes(likes+1);
+        const route = `${post.type===1?"post":post.type===2?"idea":"thought"}`;
+        await axios({
+            method: "POST",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}/like?${route==="post"?"project":route}_id=${postId}`,
+            headers: {
+                Authorization: localStorage.getItem('user'),
+                'Content-Type': 'application/json',
+            },
+        }).then(()=>{
+            console.log("The like was a success");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
     const user_id = useSelector((state: any) => state.userInfo.id)
+    const numOfLikes = useState(post.numLikes);
+    useEffect(()=>{
+        // console.log(post.likes);
+        // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        if((post.likes.some((like: any)=>like.id!==user_id))){         
+            setLikedPost(true);
+        }
+    },[])
     return (
         <div className="post">
             {!showComments && (
@@ -147,7 +175,12 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                     }
                                 >
                                     <button className="view-more-button">
-                                        View More <b>{'>>'}</b>
+                                        {
+                                            post.type!==3 &&
+                                            <p>
+                                                View More <b>{'>>'}</b>
+                                            </p>
+                                        }
                                     </button>
                                 </Link>
                             )}
@@ -228,9 +261,13 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             <div className="post__footer">
                 <div className="post__footer__likes">
                     <img
-                        src={like}
+                        src={likedPost?likedImg:like}
                         alt=""
-                        onClick={() => setLikes(likes + 1)}
+                        onClick={() => {
+                            if(!likedPost){
+                                likeThePost(post.id);
+                            }
+                        }}
                     />
                     <p className="post__footer__likes__num">{likes}</p>
                 </div>

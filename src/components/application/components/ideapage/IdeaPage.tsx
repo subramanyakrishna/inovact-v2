@@ -20,22 +20,26 @@ function PostPage(props: any) {
         body: null,
         onSuccess: (data: any)=>{
             postData = {
-                id: data.data.project.id,
-                type: 1,
-                avatar: data.data.project.user.avatar,
-                author: data.data.project.user.first_name+ " " +data.data.project.user.last_name,
-                title: data.data.project.title,
-                team: data.team,
-                description: data.data.project.description,
-                tags: data.data.project.project_tags.map((tags: any)=>{
-                    return tags.hashtag.name;
+                user_id: data.data.idea.user.id,
+                id: data.data.idea.id,
+                team_id: data.data.idea.team_id,
+                title: data.data.idea.title,
+                description: data.data.idea.description,
+                role: data.data.idea.user.role,
+                type: 2,
+                likes: data.data.idea.idea_likes,
+                avatar: data.data.idea.user.avatar,
+                author: data.data.idea.user.first_name + ' ' + data.data.idea.user.last_name,
+                tags: data.data.idea.idea_tags.map((tag: any) => {
+                    return tag.hashtag.name
                 }),
-                images: data.data.project.project_documents.map((image: any)=>{
-                    return image.url;
+                images: data.data.idea.idea_documents.map((image: any) => {
+                    return image.url
                 }),
-                time: convertDate(data.data.project.created_at),
-                numLikes: 0,
-                numComments: 0,
+                time: convertDate(data.data.idea.created_at),
+                created_at: data.data.idea.created_at,
+                numLikes: data.data.idea.idea_likes.length,
+                numComments: data.data.idea.idea_comments.length,
             };
             }
         });
@@ -50,28 +54,30 @@ function PostPage(props: any) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let { id }: any = useParams();
     let params = useParams();
-    allIdeas.forEach((ele: any)=>{
-        if(ele.id===Number(id)){
+    allIdeas.forEach((post: any)=>{
+        if(post.id===Number(id)){
+            console.log(post);
             postData={
-                user_id: ele.user_id,
-                id: ele.id,
+                user_id: post.user.id,
+                id: post.id,
+                team_id: post.team_id,
+                title: post.title,
+                description: post.description,
+                role: post.user.role,
                 type: 2,
-                avatar: ele.user.avatar,
-                role: ele.user.role,
-                author: ele.user.first_name+ " " +ele.user.last_name,
-                time: convertDate(ele.created_at),
-                title: ele.title,
-                team: ele.team,
-                description: ele.description,
-                tags: ele.idea_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
+                likes: post.idea_likes,
+                avatar: post.user.avatar,
+                author: post.user.first_name + ' ' + post.user.last_name,
+                tags: post.idea_tags.map((tag: any) => {
+                    return tag.hashtag.name
                 }),
-                images: ele.idea_documents.map((image: any)=>{
-                    console.log(image.url);
-                    return image.url;
+                images: post.idea_documents.map((image: any) => {
+                    return image.url
                 }),
-                numLikes: 250,
-                numComments: 250,
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: post.idea_likes.length,
+                numComments: post.idea_comments.length,
             }
         }
     });

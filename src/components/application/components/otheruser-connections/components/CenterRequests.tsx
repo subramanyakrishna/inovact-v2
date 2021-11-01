@@ -7,7 +7,7 @@ import {
     updateConnectReqAcceptPending,
     updateMyConnections,
     updatePendingRequests,
-    updateTotalNumberOfConnections,
+    // updateTotalNumberOfConnections,
 } from 'redux/actions/connectionsAction'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import {
@@ -62,9 +62,9 @@ function CenterRequests() {
             dispatch(updatePendingRequests(filteredPendingRequest))
             dispatch(updateMyConnections(filteredConnectedAccount))
 
-            dispatch(
-                updateTotalNumberOfConnections(filteredConnectedAccount.length)
-            )
+            // dispatch(
+            //     updateTotalNumberOfConnections(filteredConnectedAccount.length)
+            // )
             dispatch(
                 updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
             )

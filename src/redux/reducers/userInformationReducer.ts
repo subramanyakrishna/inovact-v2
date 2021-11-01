@@ -16,7 +16,7 @@ const initialState = {
     journey_start_date: new Date(),
     years_of_professional_experience: 0,
     degree: 'BE',
-    area_of_interests: [1, 2, 3, 4],
+    area_of_interests: [],
     profile_complete: true,
     id: null,
     cognito_sub: '',

@@ -128,7 +128,7 @@ function AreaOfInterest(props: any) {
                                             value={item.name}
                                             onClick={addAOI.bind(
                                                 null,
-                                                item.name
+                                                item.id
                                             )}
                                             hidden
                                         />
