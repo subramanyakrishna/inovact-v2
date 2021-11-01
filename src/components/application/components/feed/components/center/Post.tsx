@@ -256,7 +256,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 </div>
             )}
             <div>
-                {showComments && <CommentsOnPost backToPost={backToPost} />}
+                {showComments && <CommentsOnPost backToPost={backToPost} commentsData={post.comments} postData={post}/>}
             </div>
             <div className="post__footer">
                 <div className="post__footer__likes">

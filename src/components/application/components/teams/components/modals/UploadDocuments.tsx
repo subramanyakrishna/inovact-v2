@@ -17,6 +17,9 @@ function UploadDocuments(props:any) {
                     method: "POST",
                     url: "https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/documents",
                     data: docData,
+                    headers: {
+                        Authorization: localStorage.getItem("user"),
+                    }
                 }).then((data: any)=>{
                     console.log("The image uploaded",data);
                 }).catch((err)=>{

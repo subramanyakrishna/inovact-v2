@@ -60,6 +60,7 @@ function Profile() {
                     type: 2,
                     likes: post.idea_likes,
                     avatar: post.user.avatar,
+                    comments: post.idea_comments,
                     author: post.user.first_name + ' ' + post.user.last_name,
                     tags: post.idea_tags.map((tag: any) => {
                         return tag.hashtag.name
@@ -98,6 +99,7 @@ function Profile() {
                     role: post.user.role,
                     type: 1,
                     likes: post.project_likes,
+                    comments: post.project_comments,
                     team: post.team,
                     project_status: post.status,
                     avatar: post.user.avatar,
@@ -134,6 +136,7 @@ function Profile() {
                     ' ' +
                     thought.user.last_name,
                 likes: thought.thought_likes,
+                comments: thought.thought_comments,
                 role: thought.user.role,
                 time: convertDate(thought.created_at),
                 created_at: thought.created_at,

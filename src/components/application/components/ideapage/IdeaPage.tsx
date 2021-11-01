@@ -29,6 +29,7 @@ function PostPage(props: any) {
                 type: 2,
                 likes: data.data.idea.idea_likes,
                 avatar: data.data.idea.user.avatar,
+                comments: data.data.idea.idea_comments,
                 author: data.data.idea.user.first_name + ' ' + data.data.idea.user.last_name,
                 tags: data.data.idea.idea_tags.map((tag: any) => {
                     return tag.hashtag.name
@@ -66,6 +67,7 @@ function PostPage(props: any) {
                 role: post.user.role,
                 type: 2,
                 likes: post.idea_likes,
+                comments: post.idea_comments,
                 avatar: post.user.avatar,
                 author: post.user.first_name + ' ' + post.user.last_name,
                 tags: post.idea_tags.map((tag: any) => {
@@ -144,8 +146,8 @@ function PostPage(props: any) {
             </div>
             <div className="post-dedicated-page-comments">
                 <div className="post-dedicated-page-comments-container">
-                    <CommentsContainer/>
-                    <LikedBy/>
+                    <CommentsOnPost postData={postData} commentsData={postData.comments}/>
+                    <LikedBy postData={postData}/>
                 </div>
             </div>
         </div>

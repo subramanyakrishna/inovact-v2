@@ -46,6 +46,7 @@ export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =
 export const inviteMembers = (bodyData: any) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(bodyData)
+        console.log(res.data.insert_team_invitations.returning[0]);
         dispatch({
             type: INVITE_MEMBERS,
             payload: res.data.insert_team_invitations.returning[0],

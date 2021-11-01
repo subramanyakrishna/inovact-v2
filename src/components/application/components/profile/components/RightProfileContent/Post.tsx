@@ -226,7 +226,7 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
             <div>
                 {
                     showComments && 
-                    <CommentsOnPost backToPost={backToPost}/>
+                    <CommentsOnPost backToPost={backToPost} postData={post} commentsData={post.comments}/>
                 }
             </div>
             <div className="post__footer">

@@ -29,6 +29,7 @@ function PostPage(props: any) {
                 role: data.data.project.user.role,
                 type: 1,
                 likes: data.data.project.project_likes,
+                comments: data.data.project.project_comments,
                 team: data.data.project.team,
                 project_status: data.data.project.status,
                 avatar: data.data.project.user.avatar,
@@ -101,6 +102,7 @@ function PostPage(props: any) {
                     likes: post.project_likes,
                     team: post.team,
                     project_status: post.status,
+                    comments: post.project_comments,
                     avatar: post.user.avatar,
                     author: post.user.first_name + ' ' + post.user.last_name,
                     tags: post.project_tags.map((tag: any) => {
@@ -114,6 +116,7 @@ function PostPage(props: any) {
                     numLikes: post.project_likes.length,
                     numComments: post.project_comments.length,
                 })
+                console.log(postData);
             }
         });
         doRequest();
@@ -151,8 +154,8 @@ function PostPage(props: any) {
             </div>
             <div className="post-dedicated-page-comments">
                 <div className="post-dedicated-page-comments-container">
-                    <CommentsContainer/>
-                    <LikedBy/>
+                    <CommentsOnPost commentsData={postData.comments} postData={postData}/>
+                    <LikedBy postData={postData}/>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';
-import CommentsOnPost from './CommentsOnPost'
+import CommentsOnPost from '../../../profile/components/RightProfileContent/CommentsOnPost'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 
@@ -189,7 +189,7 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
             <div>
                 {
                     showComments && 
-                    <CommentsOnPost backToPost={backToPost}/>
+                    <CommentsOnPost backToPost={backToPost} postData={post} commentsData={post.comments}/>
                 }
             </div>
             <div className="post__footer">
