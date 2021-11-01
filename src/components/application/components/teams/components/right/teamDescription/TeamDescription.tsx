@@ -82,7 +82,6 @@ const TeamDescription = ({ team }: Props) => {
         }
     })
     const history = useHistory()
-
     return (
         <div className="teams-description">
             <div className="teams-description__info">

@@ -4273,7 +4273,8 @@ input, textarea:focus {
   display: flex;
   flex-direction: column; }
   .settings-left-main-container {
-    width: 100%; }
+    width: 100%;
+    cursor: pointer; }
   .settings-left-heading {
     height: 87px;
     display: flex;
