@@ -11,7 +11,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
     const [currentInterest, setCurrentInterest] = useState('')
     const [interests, setInterests] = useState<any>([])
     const [searchRes, setSearchRes] = useState<any>([])
-    const [aoiData, setAoiData] = useState<any>([])
     const aoi = useSelector((state: any) => state.userInfo['user_interests'])
 
     useEffect(() => {
@@ -21,13 +20,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
             const response = await makeApiCall('get', 'token/interests')
             const interestData = response.data.data.area_of_interests
             setInterests(interestData)
-            let aoiDataTemp = aoi.map((interestId: number) =>
-                interestData.find((interest: any) => interest.id === interestId)
-            )
-            aoiDataTemp = aoiDataTemp.filter(
-                (interest: interestI) => interest !== undefined
-            )
-            setAoiData(aoiDataTemp)
         })()
     }, [])
 
@@ -36,7 +28,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
             'user_interests',
             aoi.filter((interest: interestI) => interest.id !== id)
         )
-        setAoiData([...aoiData.filter((interest: any) => interest.id !== id)])
     }
 
     const handleInputChange = (e: any) => {
@@ -47,7 +38,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
         }
 
         const pattern = new RegExp(e.target.value, 'i')
-        console.log('interests', interests)
         const matchedInterest = interests.filter(
             (interest: any) => interest.interest.match(pattern) !== null
         )
@@ -57,8 +47,6 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
     const addTheSkill = (res: any) => {
         if (!aoi.includes(res)) {
             handleUserInfoChange('user_interests', [...aoi, res])
-
-            setAoiData([...aoiData, res])
         }
 
         setSearchRes([])
@@ -96,27 +84,20 @@ function AreasOfInterests({ handleUserInfoChange, userInfo }: any) {
                 )}
             </div>
             <div className="settings-my-profile-area-of-interests-allskills">
-                {aoiData &&
-                    aoiData.map((interest: interestI) => {
-                        if (interest) {
-                            return (
-                                <div
-                                    className="settings-my-profile-area-of-interests-skills"
-                                    key={interest.id}
-                                >
-                                    <span>{interest.interest}</span>
-                                    <button
-                                        onClick={() =>
-                                            handleClickDelete(interest.id)
-                                        }
-                                    >
-                                        &#8213;
-                                    </button>
-                                </div>
-                            )
-                        }
-                        return undefined
-                    })}
+                {aoi.length !== 0 &&
+                    aoi.map((interest: interestI) => (
+                        <div
+                            className="settings-my-profile-area-of-interests-skills"
+                            key={interest.id}
+                        >
+                            <span>{interest.interest}</span>
+                            <button
+                                onClick={() => handleClickDelete(interest.id)}
+                            >
+                                &#8213;
+                            </button>
+                        </div>
+                    ))}
             </div>
         </div>
     )

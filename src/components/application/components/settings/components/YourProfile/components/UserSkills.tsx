@@ -14,24 +14,37 @@ interface data_modelI {
     heading: string
     allSkills: skillI[]
 }
-let data_model: data_modelI[] = [
-    {
-        heading: 'beginner',
-        allSkills: [],
-    },
-    {
-        heading: 'intermediate',
-        allSkills: [],
-    },
-    {
-        heading: 'proficient',
-        allSkills: [],
-    },
-    {
-        heading: 'advanced',
-        allSkills: [],
-    },
-]
+export const mapApiDataToUiData = (user_skills: any) => {
+    let data_model: data_modelI[] = [
+        {
+            heading: 'beginner',
+            allSkills: [],
+        },
+        {
+            heading: 'intermediate',
+            allSkills: [],
+        },
+        {
+            heading: 'proficient',
+            allSkills: [],
+        },
+        {
+            heading: 'advanced',
+            allSkills: [],
+        },
+    ]
+    user_skills.forEach((user_skill: user_skillI) => {
+        if (user_skill.level === 'beginner')
+            data_model[0].allSkills.push(user_skill.skill)
+        if (user_skill.level === 'intermediate')
+            data_model[1].allSkills.push(user_skill.skill)
+        if (user_skill.level === 'proficient')
+            data_model[2].allSkills.push(user_skill.skill)
+        if (user_skill.level === 'advanced')
+            data_model[3].allSkills.push(user_skill.skill)
+    })
+    return data_model
+}
 
 function UserSkills() {
     const user_skills = useSelector((state: any) => state.userInfo.user_skills)
@@ -46,19 +59,7 @@ function UserSkills() {
     }, [])
     useEffect(() => {
         console.log('user_skills', user_skills)
-        user_skills.forEach(
-            (user_skill: user_skillI) => {
-                if (user_skill.level === 'beginner')
-                    data_model[0].allSkills.push(user_skill.skill)
-                if (user_skill.level === 'intermediate')
-                    data_model[1].allSkills.push(user_skill.skill)
-                if (user_skill.level === 'proficient')
-                    data_model[2].allSkills.push(user_skill.skill)
-                if (user_skill.level === 'advanced')
-                    data_model[3].allSkills.push(user_skill.skill)
-            },
-            [user_skills]
-        )
+        const data_model = mapApiDataToUiData(user_skills)
         setFilteredData(data_model)
     }, [])
     return (
