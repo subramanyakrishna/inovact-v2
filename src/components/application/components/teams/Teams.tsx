@@ -28,22 +28,27 @@ function Teams() {
     const [isLoading, setLoading] = useState(true)
     const dispatch = useDispatch()
     const [initialTeam, setInitialTeam] = useState(0)
-    console.log('allTeams allTeams allTeams allTeams', allTeams)
+
     useEffect(() => {
-        // dispatch(getTeams('user'))
-        console.log('allTeams allTeams allTeams allTeams', allTeams)
+        dispatch(getTeams('user'))
         if (allTeams.length !== 0) {
             const currentTeam = allTeams[0]
-            console.log('currentTeam', currentTeam)
             setInitialTeam(currentTeam.id)
             console.log('initial team', initialTeam)
             setLoading(false)
         }
     }, [])
 
-    const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>(
-        allTeams[0]
-    )
+    useEffect(() => {
+        if (allTeams.length !== 0) {
+            const currentTeam = allTeams[0]
+            setInitialTeam(currentTeam.id)
+            console.log('initial team', initialTeam)
+            setLoading(false)
+            console.log(initialTeam)
+        }
+    }, [])
+
     const [verticalActive, setVerticalActive] = useState(allTeams[0]?.id)
     useEffect(() => {
         setVerticalActive(allTeams[0]?.id)
@@ -120,12 +125,11 @@ function Teams() {
         openModal()
         setShowShareModal(true)
     }
-    const handleVerticalClick = (value: number, team: any) => {
+    const handleVerticalClick = (value: number) => {
         if (value === verticalActive) {
             return
         }
         setVerticalActive(value)
-        setVerticalActiveTeam(team)
     }
 
     return (
@@ -190,6 +194,9 @@ function Teams() {
 
                     {showRight && (
                         <MDBTabsContent className="teams__content__right">
+                            {allTeams.length == 0 ? (
+                                <div className="">No Teams Yet</div>
+                            ) : null}
                             {allTeams &&
                                 allTeams.map((team: any, key: any) => {
                                     return (

@@ -19,7 +19,8 @@ const RightTop = (props: any) => {
     const [isRequested, setIsRequested] = useState<number>()
     const peopleToKnow = useSelector(
         (state: any) => state.peopleYouMayKnow
-    ).slice(0, 4)
+    ).slice(0, 4);
+    
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {
@@ -43,21 +44,6 @@ const RightTop = (props: any) => {
         setImageLoading(true)
         localStorage.setItem('other-user', userId)
         history.push('/app/otherprofile')
-        // await axios({
-        //     method: "get",
-        //     url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user?id=${userId}`,
-        //     headers: {
-        //         "Authorization": localStorage.getItem("user"),
-        //     }
-
-        // }).then((resp: any)=>{
-        //     console.log(resp.data.data.user[0]);
-        //     handleOtherUserInfoChange("other-user-update",resp.data.data.user[0]);
-        // }).then(()=>{
-        //     history.push("/app/otherprofile");
-        // }).catch((err)=>{
-        //     console.log(err);
-        // })
     }
     const [imageLoading, setImageLoading] = useState(false)
     return (
@@ -136,7 +122,7 @@ const RightTop = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <div onClick={() => history.push('/app/connections')}>
+                    <div style={{ cursor: 'pointer' }} className="text-color--white" onClick={() => history.push('/app/connections')}>
                         View All
                     </div>
                 </MDBCardFooter>

@@ -24,6 +24,14 @@ class TeamsService {
             },
         })
     }
+    public async updateTeamAvatar(teamUpdateImg:any) :Promise<any> {
+        return await axios.put(`${baseUrl}/team`, teamUpdateImg, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('user'),
+            },
+        }) 
+    }
     public async inviteMember(bodyData: any): Promise<any> {
         return await axios.post(`${baseUrl}/api/teams/invite`,bodyData,{
             headers: {

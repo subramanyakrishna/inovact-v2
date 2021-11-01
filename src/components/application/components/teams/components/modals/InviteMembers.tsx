@@ -11,18 +11,15 @@ function InviteMembers(props: any) {
         team_id: 0,
         user_id: 0,
     })
-    const [users, setUsers] = useState<any[]>([])
+
     const [buttonText, setButtonText] = useState('Invite')
     const changeText = () => setButtonText('Invited')
-    const users_from_api = useSelector((state: any) => state.peopleYouMayKnow)
+    const users = useSelector((state: any) => state.peopleYouMayKnow)
     const userInfo = useSelector((state: any) => state.userInfo)
     const handleShareModal = (e: any) => {
         props.closeModal()
         props.viewShareModal()
     }
-    useEffect(() => {
-        setUsers(users_from_api)
-    }, [users_from_api])
     const handleInviteTeamMember = async (e: any) => {
         const currentTeam = allTeams.filter(
             (ele: any) => ele.id === props.team_id

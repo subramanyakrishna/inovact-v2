@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
+import project_badge from 'images/feed/post/project_badge.svg'
+import idea_badge from 'images/feed/post/idea_badge.svg'
+import thoughts_badge from 'images/feed/post/thoughts_badge.svg'
 import { Link } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag'
@@ -78,41 +81,40 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const user_id = useSelector((state: any) => state.userInfo.id)
     return (
         <div className="post">
-            {!showComments && (
+            {  !showComments && 
                 <div>
                     <div className="post__author">
-                        {user_id === post.user_id ? (
+                    <div className="post__author__info">
+                    {
+                            user_id===post.user_id?
                             <Link to="/app/profile">
                                 <img
                                     className="post__author__avatar"
                                     src={post.avatar}
                                     alt=""
                                 />
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/app/otherprofile"
-                                onClick={() =>
-                                    localStorage.setItem(
-                                        'other-user',
-                                        post.user_id
-                                    )
-                                }
-                            >
+                            </Link>:
+                            <Link to="/app/otherprofile" onClick={()=>localStorage.setItem("other-user",post.user_id)}>
                                 <img
                                     className="post__author__avatar"
                                     src={post.avatar}
                                     alt=""
                                 />
                             </Link>
-                        )}
-                        <div className="post__author__text">
-                            <div className="post__author__text__name-container">
-                                <h1 className="post__author__text__name">
-                                    {post.author}
-                                </h1>
-                                {user_id !== post.user_id && (
-                                    <button
+                        }
+                      
+                    <div className="post__author__text">
+                        <h1 className="post__author__text__name">{post.author}</h1>
+                        <div className="post__author__text__bottom">
+                            <p className="post__author__text__time text-color--green text-size--small" style={{margin:'0',padding:'0'}} >
+                                { post.role &&
+                                post.role[0].toUpperCase()+post?.role.slice(1)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                    <div className="connect-button-container">
+                                   <button
                                         className="connect-button"
                                         onClick={() => {
                                             handleConnect(post.user_id)
@@ -123,56 +125,29 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                             ? 'Requested'
                                             : 'Connect'}
                                     </button>
-                                )}
-                            </div>
-                            <div className="post__author__text__bottom">
-                                <p className="post__author__text__time text-color--green text-size--small">
-                                    {post.role &&
-                                        post.role[0].toUpperCase() +
-                                            post?.role.slice(1)}
-                                </p>
-                                {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
-                            </div>
-                            {/* <p className="post__author__text__time  text-style--italic text-size--small ">
-                            {post.time}
-                        </p> */}
-                        </div>
-                        <div className="connect-button-container">
-                            {(post.type === 1 || post.type === 2) && (
-                                <Link
-                                    to={
-                                        post.type === 1
-                                            ? `/posts/${post.id}`
-                                            : `/ideas/${post.id}`
-                                    }
-                                >
-                                    <button className="view-more-button">
-                                        View More <b>{'>>'}</b>
-                                    </button>
-                                </Link>
-                            )}
-                        </div>
+                        {
+                            (post.type===1 || post.type===2) &&
+                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
+                                <button className="view-more-post">View More <b>{">>"}</b>
+                                </button>
+                            </Link>
+                        }
                     </div>
-                    <div className="post__text">
-                        <p className="post__author__text__type text-color--green text-size--small">
-                            {post.type === 1
-                                ? 'Project'
-                                : post.type === 2
-                                ? 'Idea'
-                                : 'Thought'}
-                        </p>
-                        {post.title ? (
-                            <div>
-                                <h1 className="post__text__title">
-                                    {post.title} {}
-                                </h1>
-                            </div>
-                        ) : null}
-                        <p className="post__text__desc">
-                            {post.type === 1
-                                ? post.description.substring(0, 150)
-                                : post.description}{' '}
-                            {/* {post.type === 1 ? (
+
+                </div>
+                <div className="post__text">
+                 
+                    {post.title ? (
+                        <div style={{display:'flex',flexDirection:'row'}}>
+                            <h1 className="post__text__title">{post.title} {}</h1>
+                            {post.type===1?<img src={project_badge} alt="" width="25"/>:post.type===2?<img src={idea_badge} alt="" />:<img src={thoughts_badge} alt="" />}   
+                        </div> 
+                    ) : null}
+                    <p className="post__text__desc">
+                        {post.type === 1
+                            ? post.description.substring(0, 150)
+                            : post.description}{' '}
+                        {/* {post.type === 1 ? (
                             <Link to={{
                                 pathname: `/posts/${post.id}`,
                                 state: {
@@ -221,7 +196,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </div>
                     ) : null}
                 </div>
-            )}
+            }
             <div>
                 {showComments && <CommentsOnPost backToPost={backToPost} />}
             </div>

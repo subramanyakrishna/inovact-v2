@@ -44,7 +44,7 @@ function Teams() {
                 setMyTeams(resp.data.data.team);
                
                 console.log("first team",resp.data.data.team)
-                // setotherUserId(firstTeam.id);
+                
                 
             }).then(()=>{
                 history.push("/app/otherteams");

@@ -10,7 +10,7 @@ function RoleRequired(props: any) {
                 <span className="roles-required-all-role">{props.role}</span>
                 <div className="roles-required-all-skills">
                     {props.skills.map((skill:any, i:Number, arr: Array<String>)=>{
-                        if(i==arr.length-1){
+                        if(i===arr.length-1){
                             return <span>{skill}</span>
                         }
                         return <span>{skill}, </span>

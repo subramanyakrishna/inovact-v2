@@ -40,17 +40,16 @@ const RequestsTab =(props:any)=>{
                 return(
                     <div className="requests-info">
                      <div className="requests-info__details">
-                        <img src={request.image} alt="name"/>
+                        <img src={request.user.avatar} alt="name"/>
                         <div className="requests-info__details__text">
-                        <h5 className="text-style--bold text-align--left text-size--big">{request.name}</h5>
-                            <p className="text-style--light text-align--left text-size--small">{request.designation}</p>
-                            <p className="text-style--italic text-align--left text-color--gray text-size--small">{request.role}</p>
+                        <h5 className="text-style--bold text-align--left text-size--big">{request.user.first_name}</h5>
+                            <p className="text-style--light text-align--left text-size--small">{request.user.role}</p>
                         </div>
                     </div>
                                
                     <div className="requests-info__details__buttons">
-                         <button className="requests-info__details__buttons--accept" onClick={handleAcceptTeamMember.bind(request.request_id)} >Accept</button>
-                         <button className="requests-info__details__buttons--white" onClick={handleRejectTeamMember.bind(request.request_id)} >Remove</button>
+                         <button className="requests-info__details__buttons--accept" onClick={handleAcceptTeamMember.bind(request.user.id)} >Accept</button>
+                         <button className="requests-info__details__buttons--white" onClick={handleRejectTeamMember.bind(request.user.id)} >Remove</button>
                     </div>
                     
                 </div>

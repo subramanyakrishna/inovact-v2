@@ -3,7 +3,7 @@ import Skills from "./Skills";
 import AreaOfInterests from "./AreaOfInterests";
 import ArrowForwardIosRounded from '@material-ui/icons/ArrowForwardIosRounded';
 import ArrowBackIosRounded from '@material-ui/icons/ArrowBackIosRounded';
-import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
+
 
 function SkillsAndInterests() {
   const data = [

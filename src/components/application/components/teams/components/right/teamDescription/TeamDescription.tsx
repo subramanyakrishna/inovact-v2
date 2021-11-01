@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { isMobile } from 'react-device-detect'
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import 'react-circular-progressbar/dist/styles.css'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import EditIcon from '@material-ui/icons/Edit'
+import { imageUploader } from 'imageUpload/imageUploader'
+import { useDispatch ,useSelector} from 'react-redux'
+import { updateTeamAvatar } from 'redux/actions/teams'
 import { useHistory } from 'react-router-dom'
 interface Props {
     team: any
@@ -63,6 +64,15 @@ const TeamTags = ({ team }: Props) => {
 
 const TeamDescription = ({ team }: Props) => {
     const [showAll, setShowAll] = useState(true)
+
+    const dispatch= useDispatch();
+    
+    const loadFile = async (e: any) => { 
+        if(e.target.files){
+            const data = await imageUploader(e.target.files)
+           dispatch(updateTeamAvatar({team_id: team.id,avatar:data[0].url}))
+        }
+    }
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             setShowAll(true)
@@ -77,12 +87,36 @@ const TeamDescription = ({ team }: Props) => {
         <div className="teams-description">
             <div className="teams-description__info">
                 <div className="teams-description__info__left">
-                    <img
+                <input
+                type="file"
+                id="upload-media-input"
+                hidden
+                onChange={loadFile}
+            />
+            <label
+                htmlFor="upload-media-input"
+                className={'settings-my-profile-nametag-imageAndEditContainer'}
+            >
+                <div className="settings-my-profile-nametag-img-container">
+                    <img src={team.avatar} alt="teamImage" />
+                </div>
+                <div className="settings-my-profile-nametag-editcontainer">
+                    {' '}
+                    <button>
+                        <EditIcon
+                            fontSize="small"
+                            style={{ color: 'white' }}
+                        ></EditIcon>
+                    </button>
+                </div>
+            </label>
+
+                    {/* <img
                         src={
                             'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
                         }
                         alt="teamImage"
-                    />
+                    /> */}
                     <div className="teams-description__info__left__text">
                         <button
                             className=" button--blue text-align--center sm-small"
@@ -118,7 +152,7 @@ const TeamDescription = ({ team }: Props) => {
                             className="text-style--bold text-align--left text-color--green text-size--big sm-small"
                             style={{ marginLeft: '1rem' }}
                         >
-                            21{' '}
+                            {team.ideas.length}{' '}
                         </span>{' '}
                     </span>
                     <span
@@ -127,7 +161,7 @@ const TeamDescription = ({ team }: Props) => {
                     >
                         Team Tags{' '}
                     </span>
-                    {showAll ? (
+                    { team.tags !== 0 ?(   showAll ? (
                         <ul className="teams-description__info__right__tags">
                             {team.tags?.map((tag: string, index: any) => {
                                 return (
@@ -143,7 +177,10 @@ const TeamDescription = ({ team }: Props) => {
                         </ul>
                     ) : (
                         <TeamTags team={team} />
-                    )}
+                    )):(
+                        <div className="text-align--left">No Tags Yet </div>
+                    ) }
+                
                 </div>
             </div>
         </div>
