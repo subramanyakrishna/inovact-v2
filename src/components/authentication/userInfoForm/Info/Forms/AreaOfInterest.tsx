@@ -89,8 +89,8 @@ const areas = [
         image: stock,
     },
 ]
-
 function AreaOfInterest(props: any) {
+    const allInterests = useSelector((state: any)=>state.allInterests);
     const {
         formField: { aoi },
     } = props
@@ -103,6 +103,7 @@ function AreaOfInterest(props: any) {
         setUserAOI([...aoi])
         props.handleChange('area-of-interest', aoi)
     }
+    console.log(allInterests);
     return (
         <section className="area-of-interest">
             <div className="area-of-interest__text">
@@ -116,7 +117,7 @@ function AreaOfInterest(props: any) {
             <div className="area-of-interest__form">
                 <form>
                     <ul className="area-of-interest__form__list">
-                        {areas.map((item: any, index: number) => {
+                        {allInterests.map((item: any, index: number) => {
                             return (
                                 <li key={index}>
                                     <div className="area-of-interest__form__list__item">
@@ -135,8 +136,8 @@ function AreaOfInterest(props: any) {
                                             className="checkbox-label"
                                             htmlFor={`aoi-${index}`}
                                         >
-                                            <img src={item.image} alt="" />
-                                            {item.name}
+                                            {/* <img src={item.image} alt="" /> */}
+                                            {item.interest}
                                         </label>
                                     </div>
                                 </li>

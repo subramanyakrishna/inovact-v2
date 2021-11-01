@@ -14,7 +14,7 @@ function TeamMemberTag(props: any) {
                 <p className="post-dedicated-team-members-user-name">{props.name}</p>
             </div>
             <button className="post-dedicated-team-members-btn" style={{color: isRequested?"#5579bd": "grey"}} onClick={toggleIsRequested}>{isRequested?"Requested": "Connect"}</button>
-            <p className="post-dedicated-team-members-role">{props.role}</p>
+            <p className="post-dedicated-team-members-role">{props.role?props.role:"Role"}</p>
         </div>
     )
 }

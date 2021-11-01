@@ -18,6 +18,7 @@ import {
     handleAllThoughts,
     handleAllUserIdeas,
     handleAllUserProject,
+    handleInterestsChange,
     handlePeopleYouMayKnow,
     handleRolesChange,
     handleSkillsChange,
@@ -58,6 +59,10 @@ function Feed() {
     const userInfo = useSelector((state: any) => state.userInfo)
     const allPosts = useSelector((state: any) => state.allPosts)
     const allIdeas = useSelector((state: any) => state.allIdeas)
+    const allInterests = useSelector((state: any)=>state.allInterests);
+    const allTags = useSelector((state: any)=> state.allTags);
+    const allSkills = useSelector((state: any)=>state.allSkills);
+    const allRoles = useSelector((state: any)=> state.allRoles);
     const allThoughts = useSelector((state: any) => state.allThoughts)
     const history = useHistory()
     const convertDate = (dateISO: any) => {
@@ -117,6 +122,7 @@ function Feed() {
                     description: post.description,
                     role: post.user.role,
                     type: 1,
+                    team: post.team,
                     project_status: post.status,
                     avatar: post.user.avatar,
                     author: post.user.first_name + ' ' + post.user.last_name,
@@ -222,19 +228,37 @@ function Feed() {
             console.log(data)
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
-    })
+    });
+    const {doRequest: getAllInterests, errors: interestsErrors} = useRequests({
+        route: "token/interests",
+        method: "get",
+        body: null,
+        onSuccess: (data: any)=>{
+            console.log("The interests data received is :",data);
+            handleInterestsChange("interests_update",data.data.area_of_interests);
+        }
+    });
     useEffect(() => {
         ;(async () => {
             if (userInfo.avatar === '') {
                 await userGet()
             }
+            if(allInterests.length===0){
+                await getAllInterests();
+            }
             await doRequest()
             await doRequestIdea()
             await getAllThoughts()
             await getPeopleToKnow()
-            await getAllTags()
-            await getAllSkills()
-            await getAllRoles()
+            if(allTags.length===0){
+                await getAllTags()
+            }
+            if(allSkills.length===0){
+                await getAllSkills()
+            }
+            if(allRoles.length===0){
+                await getAllRoles()
+            }
             // await getUserIdeas();
             // await getUserProjects();
             if (errors || errorsIdea || getPeopleErrors || userErrors) {
@@ -252,10 +276,9 @@ function Feed() {
         if (!userInfo.profile_complete) {
             history.push('/app/userinfo')
         }
-    }, [])
-
+    },[userInfo.profile_complete]);
+    
     const [showFilter, setShowFilter] = useState(false)
-
     const [showOverlay, setShowOverlay] = useState(false)
     const [showUploadProject, setShowUploadProject] = useState(false)
     const [showUploadIdea, setShowUploadIdea] = useState(false)

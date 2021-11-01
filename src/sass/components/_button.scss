@@ -137,15 +137,15 @@
    &-container{
        display: flex;
        align-items: center;
-       justify-content: space-around;
+       justify-content: flex-end;
        width: 50%;
        p{
            margin: 0px;
        }
-       @include respond(lg){
-           flex-direction: column;
-           justify-content: space-between;
-        }
+    //    @include respond(lg){
+    //        flex-direction: column;
+    //        justify-content: space-between;
+    //     }
     }
     background-color:$color-secondary-blue;
     margin-top: 0.3rem;
@@ -257,4 +257,7 @@
     border: none;
     color: $color-primary-green;
     margin: 0px 10px;
+}
+.ce-chat-form-container>div>div>{
+    min-height: 60px !important;
 }

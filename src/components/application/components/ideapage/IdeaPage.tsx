@@ -25,6 +25,7 @@ function PostPage(props: any) {
                 avatar: data.data.project.user.avatar,
                 author: data.data.project.user.first_name+ " " +data.data.project.user.last_name,
                 title: data.data.project.title,
+                team: data.team,
                 description: data.data.project.description,
                 tags: data.data.project.project_tags.map((tags: any)=>{
                     return tags.hashtag.name;
@@ -60,6 +61,7 @@ function PostPage(props: any) {
                 author: ele.user.first_name+ " " +ele.user.last_name,
                 time: convertDate(ele.created_at),
                 title: ele.title,
+                team: ele.team,
                 description: ele.description,
                 tags: ele.idea_tags.map((tag: any)=>{
                     return tag.hashtag.name;
@@ -131,7 +133,7 @@ function PostPage(props: any) {
                 }
                 <div className="post-dedicated-page-post-container">
                     <Post post={postData} openTeamMember={handleViewTeamMembers} openRequestJoin={viewRequestJoin} />
-                    <TeamMembers/>
+                    <TeamMembers postData={postData}/>
                 </div>
             </div>
             <div className="post-dedicated-page-comments">

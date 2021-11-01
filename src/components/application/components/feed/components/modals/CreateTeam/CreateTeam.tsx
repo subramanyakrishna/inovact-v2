@@ -22,6 +22,7 @@ const CreateTeam = (props: any) => {
         looking_for_members: false,
         looking_for_mentor: false,
         roles: [],
+        members: [],
     })
 
     const addRoles = ({ id, skills }: Iroles) => {
@@ -99,7 +100,7 @@ const CreateTeam = (props: any) => {
                         />
                         <TeamMembers />
                     </div>
-                    <div className="modal_part_two">
+                    {/* <div className="modal_part_two">
                         <div className="modal_part_two-member-mentor">
                             <div>
                                 <label>Looking for team members</label>
@@ -153,7 +154,7 @@ const CreateTeam = (props: any) => {
                                 />
                             </div>
                         )}
-                    </div>
+                    </div> */}
                     <div className="modal_cover-post-btn">
                         <button onClick={() => addTeam()}>Create</button>
                     </div>
