@@ -1,9 +1,7 @@
-import { documentUploader } from 'imageUpload/docsUploader'
 import { imageUploader } from 'imageUpload/imageUploader'
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { ICreateTeam } from 'redux/interfaces/teams.interface'
-import { handleAddProjectChange, handleAddTeamChange } from 'StateUpdateHelper'
+
 
 type Props = {
     teamDetails: ICreateTeam

@@ -11,7 +11,7 @@ function InviteMembers(props:any) {
         team_id:0,
         user_id:0,
     })
-
+   
     const [buttonText, setButtonText] = useState("Invite"); 
     const changeText = () => setButtonText("Invited");
     const users =useSelector((state:any) => state.peopleYouMayKnow)
@@ -28,7 +28,7 @@ function InviteMembers(props:any) {
         // const addTeam = () => {
         //     dispatch(inviteMembers({user_id:userId,team_id: teamId}))
         // }
-        console.log("teamid,uderid",teamId,userId)
+     
         const response =  await axios( {
             method:'post',
             url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite",

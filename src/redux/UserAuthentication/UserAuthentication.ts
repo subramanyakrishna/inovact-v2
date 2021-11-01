@@ -2,10 +2,8 @@ import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js'
 
 import UserPool from './UserPool'
 import { store } from 'redux/helpers/store'
-import { userActions } from 'redux/actions/user.actions'
 import { userConstants } from 'redux/actionTypes/userConstants'
 import axios from 'axios'
-import userDataConstants from 'redux/actionTypes/userDataConstants'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 
 const userAuthentication = async (email: any, password: any, setIsLoading: Function, setErrors: Function) => {

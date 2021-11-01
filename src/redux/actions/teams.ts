@@ -1,6 +1,5 @@
-import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS } from './../actionTypes/teams'
+import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS, UPDATE_TEAM_AVATAR } from './../actionTypes/teams'
 import TeamsService from '../services/teams.services'
-import { ICreateTeam } from 'redux/interfaces/teams.interface'
 
 export const createTeam = (team: any) => async (dispatch: any) => {
     try {
@@ -25,6 +24,21 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
             payload: res.data,
         })
     } catch (error) {
+        throw error
+    }
+}
+
+export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =>{
+    try {
+        console.log("putreq in teams",teamUpdateImg)
+      const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
+      console.log('updated the image', res.data)
+      dispatch({
+          type:UPDATE_TEAM_AVATAR,
+          payload:res.data
+      })
+    }
+    catch(error){
         throw error
     }
 }

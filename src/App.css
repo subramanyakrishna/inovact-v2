@@ -1490,6 +1490,12 @@ body {
   color: #02bd63;
   margin: 0px 10px; }
 
+.view-more-post {
+  margin-left: 1rem;
+  background-color: transparent;
+  color: #001948;
+  border: none; }
+
 .ce-chat-form-container > div > div > {
   min-height: 60px !important; }
 
@@ -1823,7 +1829,10 @@ body {
       padding: 20px; } }
   .post__author {
     display: flex;
-    align-items: flex-start; }
+    justify-content: space-between; }
+    .post__author__info {
+      display: flex;
+      flex-direction: row; }
     .post__author__avatar {
       margin-right: 1rem;
       width: 3.5rem;

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
+import project_badge from 'images/feed/post/project_badge.svg'
+import idea_badge from 'images/feed/post/idea_badge.svg'
+import thoughts_badge from 'images/feed/post/thoughts_badge.svg'
 import { Link, useHistory } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from '../LeftProfileContent/Components/TeamTag';
@@ -11,6 +14,7 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 
 function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
+   
     const [showShareOption, setShowShareOption] = useState(false);
     
     const teamsData = [
