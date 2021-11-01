@@ -20,7 +20,7 @@ const UserTeamsList = (props: any) => {
                     Teams
                 </h6>
             </div>
-            {props.allTeams.map((team: any) => {
+            {props.allTeams?.map((team: any) => {
                 return (
                     <MDBTabs className="flex-column text-center user-team__list">
                         <MDBTabsItem>

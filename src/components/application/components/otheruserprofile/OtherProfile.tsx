@@ -13,7 +13,7 @@ import NoPostsYet from './components/LeftProfileContent/Components/NoPostsYet';
 import PeopleYouMayKnow from '../connections/components/PeopleYouMayKnow';
 import { useSelector } from 'react-redux';
 import useRequests from 'useRequest/useRequest';
-import {  handleOtherUserInfoChange } from 'StateUpdateHelper';
+import { handleAllUserIdeas, handleAllUserProject, handleAllUserThoughts, handleOtherUserConnections, handleOtherUserInfoChange } from 'StateUpdateHelper';
 import axios from 'axios';
 import Spinner from 'components/application/Spinner';
 import { useHistory } from 'react-router';
@@ -54,6 +54,19 @@ function OtherProfile() {
                 console.log(err);
             })
         }
+    }
+    const getTheUserConnections = async()=>{
+        const userId = localStorage.getItem("other-user");
+        await axios({
+            method: "get",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/connections/?user_id=${userId}`,
+            headers: {
+                "Authorization": localStorage.getItem("user"),
+            }
+        }).then((resp:any)=>{
+            handleOtherUserConnections("other-connections-all",resp.data.data.connections);
+            console.log(resp.data.data.connections);
+        });
     }
     const getTheUserIdeas = async()=>{
         const userId = localStorage.getItem("other-user");
@@ -249,6 +262,7 @@ function OtherProfile() {
         setShowTeamMembers(true);
     }
     const otherUser = useSelector((state: any)=>state.otherUser);
+    const otherUserConnections = useSelector((state: any)=>state.otherUserConnections);
     const showOnlyProjects = ()=>{
         setShowIdeas(false);
         setShowProjects(true);
@@ -275,6 +289,7 @@ function OtherProfile() {
         setIsLoading(true);
         (async()=>{
             await getTheUserData();
+            await getTheUserConnections();
             await getTheUserIdeas();
             await getTheUserProjects();
             await getTheUserThoughts();
@@ -333,7 +348,7 @@ function OtherProfile() {
                             otherUser.avatar==="" ?
                             <Spinner/> :
                             <div className="profile--content-left">
-                                <LeftProfileContent userInfo = {otherUser}/>
+                                <LeftProfileContent userInfo = {otherUser} postsCount={ideas.length+thoughts.length+posts.length} connectionsCount={otherUserConnections.length}/>
                             </div>
                     }
                     {

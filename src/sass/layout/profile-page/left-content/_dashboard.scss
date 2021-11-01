@@ -33,6 +33,9 @@ $color-red: red;
       align-items: center;
       justify-content: space-around;
       margin: 10px;
+      &:hover{
+        cursor: pointer;
+      }
     }
     &-description{
       color: $color-primary-green;

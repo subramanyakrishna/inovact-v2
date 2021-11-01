@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 
-const useRequests = ({route, method, body, id, onSuccess} : any) =>{
+const useRequests = ({route, method, body, id, onSuccess, onFailure = null} : any) =>{
     const [errors, setErrors] = useState(null);
     const baseUrl = "https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/";
     const doRequest = async (props = {})=>{
@@ -26,6 +26,9 @@ const useRequests = ({route, method, body, id, onSuccess} : any) =>{
             }
             return response.data;
         }catch(err: any){
+            if(onFailure){
+                onFailure();
+            }
             console.log(err.message);
             setErrors(err.message);
         }

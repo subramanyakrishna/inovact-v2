@@ -103,6 +103,9 @@ function Feed() {
                 handlePeopleYouMayKnow('pymk_update_all', ptk)
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
+            onFailure: ()=>{
+                history.push("/login");
+            }
         }
     )
     const { doRequest, errors } = useRequests({
@@ -246,10 +249,18 @@ function Feed() {
             if(allInterests.length===0){
                 await getAllInterests();
             }
-            await doRequest()
-            await doRequestIdea()
-            await getAllThoughts()
-            await getPeopleToKnow()
+            if(allPosts.length===0){
+                await doRequest()
+            }
+            if(allIdeas.length===0){
+                await doRequestIdea();
+            }
+            if(allThoughts.length===0){
+                await getAllThoughts()
+            }
+            if(peopleToKnow.length===0){
+                await getPeopleToKnow()
+            }
             if(allTags.length===0){
                 await getAllTags()
             }
@@ -400,6 +411,7 @@ function Feed() {
     const changeTheTeamID = (id: any) => {
         setReqToJoinId(id)
     }
+    const [uploadingPost, setUploadingPost] = useState(false);
     return (
         <div>
             {showOverlay && (
@@ -491,6 +503,10 @@ function Feed() {
                         className="feed__content__center--container"
                         ref={feedContainer}
                     >
+                        {
+                            uploadingPost &&
+                            <Spinner/>
+                        }
                         {
                             // scrollDirection === "Up" &&
                             <button

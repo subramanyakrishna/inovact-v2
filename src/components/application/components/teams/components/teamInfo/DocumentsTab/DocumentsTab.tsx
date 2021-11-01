@@ -1,7 +1,13 @@
+import { documentUploader } from 'imageUpload/docsUploader'
 import React from 'react'
 import pdf from 'images/teams/pdf.svg'
 
 const DocumentsTab =(props:any)=>{
+    // const loadFile = (e: any)=>{
+    //     if(e.target.files)[
+    //         documentUploader
+    //     ]
+    // }
     return(
         <>
          <div className="documents-info">

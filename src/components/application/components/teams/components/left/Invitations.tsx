@@ -3,12 +3,12 @@ import React, { useState ,useEffect} from 'react'
 const SuggestionInvitation = (props :any) => {
 const [currTeam , setCurrTeam]=useState();
     useEffect(() => {
-        if(props.allTeams.length !== 0){
-            setCurrTeam(props.allTeams.filter((ele:any)=>ele.id === props.active_id )[0]);
+        if(props.allTeams?.length !== 0){
+            setCurrTeam(props.allTeams?.filter((ele:any)=>ele.id === props.active_id )[0]);
             console.log(currTeam)
         }
     }, []);
-    const currentTeam= props.allTeams.filter((ele:any)=>ele.id === props.active_id )[0]
+    const currentTeam= props.allTeams?.filter((ele:any)=>ele.id === props.active_id )[0]
 
     // const teamId = currentTeam.id;
     return (
