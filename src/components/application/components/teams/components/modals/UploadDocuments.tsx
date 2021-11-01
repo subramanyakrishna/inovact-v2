@@ -1,12 +1,28 @@
+import axios from 'axios';
 import { documentUploader } from 'imageUpload/docsUploader';
 import React from 'react'
 
 function UploadDocuments(props:any) {
+
     const loadFile = (e: any)=>{
         props.closeModal();
         if(e.target.files){
-            documentUploader(e.target.files).then((data: any)=>{
+            documentUploader(e.target.files).then(async(data: any)=>{
                 console.log(data);
+                const docData = {
+                    ...data[0],
+                    team_id: props.team_id,
+                }
+                await axios({
+                    method: "POST",
+                    url: "https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/documents",
+                    data: docData,
+                }).then((data: any)=>{
+                    console.log("The image uploaded",data);
+                }).catch((err)=>{
+                    console.log(err);
+                })
+                console.log(docData);
             })
         }
     }

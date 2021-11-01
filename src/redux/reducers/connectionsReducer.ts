@@ -5,7 +5,6 @@ const initialState = {
     my_connections: [],
     people_you_may_know: [],
     connect_req_accept_pending: [],
-    my_connection_length: 0,
     connection_data: [],
     my_connnections_complete: [],
     connected_account_ids: [],

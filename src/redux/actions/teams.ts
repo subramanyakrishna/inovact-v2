@@ -33,10 +33,10 @@ export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =
         console.log("putreq in teams",teamUpdateImg)
       const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
       console.log('updated the image', res.data)
-      dispatch({
-          type:UPDATE_TEAM_AVATAR,
-          payload:res.data
-      })
+    //   dispatch({
+    //       type: UPDATE_TEAM_AVATAR,
+    //       payload: res.data
+    //   })
     }
     catch(error){
         throw error

@@ -62,15 +62,12 @@ function CenterRequests() {
             dispatch(updatePendingRequests(filteredPendingRequest))
             dispatch(updateMyConnections(filteredConnectedAccount))
 
-            // dispatch(
-            //     updateTotalNumberOfConnections(filteredConnectedAccount.length)
-            // )
             dispatch(
                 updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
             )
         })()
     }, [])
-    const otherUser = useSelector((state: any)=>state.otherUser);
+    const otherUser = useSelector((state: any) => state.otherUser)
     const handleRequestButton = (event: any) => {
         setShowRequest(true)
         setShowConnection(false)
@@ -137,10 +134,11 @@ function CenterRequests() {
                 <button
                     onClick={handleConnectionButton}
                     style={{
-                        borderBottom: '5px solid #5579BD'
+                        borderBottom: '5px solid #5579BD',
                     }}
                 >
-                   {otherUser.first_name}'s Connections ({myConnections.length})
+                    {otherUser.first_name}'s Connections ({myConnections.length}
+                    )
                 </button>
             </div>
             {/* {showRequest && (
@@ -177,7 +175,8 @@ function CenterRequests() {
                             marginTop: '10rem',
                         }}
                     >
-                        {otherUser.first_name?otherUser.first_name:"User"}'s connections will be shown here{' '}
+                        {otherUser.first_name ? otherUser.first_name : 'User'}'s
+                        connections will be shown here{' '}
                     </span>
                 )}
 
@@ -188,9 +187,7 @@ function CenterRequests() {
                             <ConnectionProfile
                                 key={i}
                                 user={user.user}
-                                handleRemoveConnection={
-                                    handleRemoveConnection
-                                }
+                                handleRemoveConnection={handleRemoveConnection}
                             />
                         ))}
                 </div>

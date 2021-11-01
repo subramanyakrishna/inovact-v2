@@ -275,13 +275,13 @@ function Feed() {
             }
             // await getUserIdeas();
             // await getUserProjects();
-            if (errors || errorsIdea || getPeopleErrors || userErrors) {
-                console.log(errors)
-                console.log(errorsIdea)
-                console.log(getPeopleErrors)
-                console.log(userErrors)
-                history.push('/login')
-            }
+            // if (errors || errorsIdea || getPeopleErrors || userErrors) {
+            //     console.log(errors)
+            //     console.log(errorsIdea)
+            //     console.log(getPeopleErrors)
+            //     console.log(userErrors)
+            //     history.push('/login')
+            // }
         })()
         console.log('The userProfile status: ', userInfo.profile_complete)
     }, [])

@@ -4,6 +4,7 @@ import AreaOfInterests from "./AreaOfInterests";
 import ArrowForwardIosRounded from '@material-ui/icons/ArrowForwardIosRounded';
 import ArrowBackIosRounded from '@material-ui/icons/ArrowBackIosRounded';
 import AddCircleSharp from "@material-ui/icons/AddCircleSharp";
+import { useSelector } from "react-redux";
 
 function SkillsAndInterests() {
   const data = [
@@ -85,7 +86,7 @@ function SkillsAndInterests() {
               </span>
             </div>
             <div>
-              <AreaOfInterests />
+              <AreaOfInterests/>
             </div>
           </div>
         )}
