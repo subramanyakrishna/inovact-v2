@@ -31,12 +31,12 @@ function TeamsPartOf(props:any) {
         <AddCircleSharp style={{color:"#02bd63", cursor:"pointer"}} onClick={props.createTeam}/>
       </div>
       <div className="teams-part-of-all-teams">
-        {teamsData.map((team: any) => {
+        {userTeams.map((team: any) => {
           return (
             <TeamTag
-              img={team.img}
+              img={team.avatar?team.avatar:"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
               teamName={team.name}
-              membersCount={team.membersCount}
+              membersCount={team.team_members.length}
             />
           );
         })}

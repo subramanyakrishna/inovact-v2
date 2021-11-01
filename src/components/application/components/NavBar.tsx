@@ -102,13 +102,13 @@ const NavBar = () => {
                                     alt="Notifications"
                                 />
                             </Link>
-                            <Link to="/app/messages">
+                            {/* <Link to="/app/messages">
                                 <img
                                     className="nav-component__items__item__icons"
                                     src={messages}
                                     alt="messages"
                                 />
-                            </Link>
+                            </Link> */}
                             <Link to="/app/settings">
                                 <img
                                     className="nav-component__items__item__icons--hidden"

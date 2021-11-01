@@ -6,7 +6,7 @@ const initialState = {
     project_tags: [],
     mentions: [],
     team_id: null,
-    project_status: "",
+    status: "",
     required_roles: [],
     documents: [],
     looking_for_members: false,
@@ -45,7 +45,7 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
         case addProjectConstants.PROJECT_UPDATE_PROJECT_STATUS:
             return {
                 ...state,
-                project_status: action.payload,
+                status: action.payload,
             }
         case addProjectConstants.PROJECT_UPDATE_LOOKING_FOR_ROLES:
             return {

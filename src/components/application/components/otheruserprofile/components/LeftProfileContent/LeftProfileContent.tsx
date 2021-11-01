@@ -7,7 +7,7 @@ import TeamsPartOf from './Components/TeamsPartOf';
 function LeftProfileContent(props: any) {
     return (
         <div className="left_profile_content">
-            <DashboardContent/>
+            <DashboardContent postsCount={props.postsCount} connectionsCount={props.connectionsCount}/>
             <BioDescription viewEditBio={props.viewEditBio} userInfo = {props.userInfo}/>
             <SkillsAndInterests/>
             <TeamsPartOf/>

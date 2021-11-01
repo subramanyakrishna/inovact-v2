@@ -18,6 +18,7 @@ import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
 import { peopleYoumayKnowConstants } from 'redux/actionTypes/peopleYouMayKnowConstants'
 import { otherUserTeamsConstants } from 'redux/actionTypes/otherUserTeamsConstants'
 import { allInterestsConstants } from 'redux/actionTypes/allInterestsConstants'
+import { otherUserConnectionsConstants } from 'redux/actionTypes/otherUserConnections'
 
 const handleUserCredsChange = (name: any, value: any) => {
     console.log('all posts value: ', value)
@@ -622,6 +623,23 @@ const handleInterestsChange = (name: any, value: any)=>{
     }
     console.log("All the interests are updated",store.getState());
 }
+const handleOtherUserConnections = (name: any, value: any)=>{
+    switch(name){
+        case "other-connections-all":
+            store.dispatch({
+                type: otherUserConnectionsConstants.OTHER_USER_CONNECTIONS_ALL,
+                payload: value,
+            });
+            break;
+        case "other-connections-clear":
+            store.dispatch({
+                type: otherUserConnectionsConstants.OTHER_USER_CONNECTIONS_CLEAR,
+                payload: value,
+            });
+            break;
+    }
+    console.log(store.getState());
+}
 export {
     handleUserCredsChange,
     handleUserInfoChange,
@@ -642,4 +660,5 @@ export {
     handlePeopleYouMayKnow,
     handleOtherUserTeams,
     handleInterestsChange,
+    handleOtherUserConnections,
 }
