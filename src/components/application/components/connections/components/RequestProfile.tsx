@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 function RequestProfile(props: any) {
     const history = useHistory()
     const goToProfile = () => {
+        console.log('RequestProfile', props.user.id)
         localStorage.setItem('other-user', props.user.id)
         if (history.location.pathname === '/app/otherprofile') {
             window.location.reload()
