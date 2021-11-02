@@ -182,7 +182,9 @@ const Settings: React.FC = () => {
                 <div className={'settings-breadcrumb'}>
                     {width > SIZE_LIMIT && (
                         <div className={'settings-breadcrumb-pc'}>
-                            &lt;&lt;Back to Profile
+                            <span onClick={() => history.push('/app/profile')}>
+                                &lt;&lt;Back to Profile
+                            </span>
                         </div>
                     )}
                     {width < SIZE_LIMIT && (
