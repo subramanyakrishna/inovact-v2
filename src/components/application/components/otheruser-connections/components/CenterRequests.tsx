@@ -7,6 +7,7 @@ import {
     updateConnectReqAcceptPending,
     updateMyConnections,
     updatePendingRequests,
+    // updateTotalNumberOfConnections,
 } from 'redux/actions/connectionsAction'
 import { userInfoConstants } from 'redux/actionTypes/userInfoConstants'
 import {

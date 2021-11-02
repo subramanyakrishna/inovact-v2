@@ -29,7 +29,7 @@ const TeamMembers = (props: any)=> {
                     props.postData.type!==2 && 
                     <div className="post-dedicated-team-members-page-status">
                         <p>Project Status:</p>
-                        <p style={{color: "#02bd63"}}>{props.postData.status}</p>
+                        <p style={{color: "#02bd63"}}>{props.postData.project_status}</p>
                     </div>
                 }
             </div>

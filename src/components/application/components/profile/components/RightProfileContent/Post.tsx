@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
@@ -11,10 +11,12 @@ import TeamTag from '../LeftProfileContent/Components/TeamTag';
 import UserTag from './UserTag';
 import CommentsOnPost from './CommentsOnPost'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
    
     const [showShareOption, setShowShareOption] = useState(false);
+    
     const teamsData = [
         {
           img:
@@ -55,6 +57,9 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
     const [showTeams, setShowTeams] = useState(true);
     const [showComments, setShowComments] = useState(false);
     const [showPostOptions, setShowPostOptions] = useState(false);
+    
+    
+    
     const sharePost =()=>{
         setShowShareOption(!showShareOption);
     }
@@ -83,8 +88,36 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
             setShowPostOptions(false);
         },1000);
     }
-    const user_id = useSelector((state: any)=> state.userInfo.id);
     const history = useHistory();
+    const user_id = useSelector((state: any)=> state.userInfo.id);
+    const numOfLikes = useState(post.numLikes);
+    const [likes, setLikes] = useState(post.numLikes);
+    const [likedPost, setLikedPost] = useState(false);
+    const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
+    const likeThePost = async(postId: any)=>{
+        setLikedPost(true);
+        setLikes(likes+1);
+        const route = `${post.type===1?"post":post.type===2?"idea":"thought"}`;
+        await axios({
+            method: "POST",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}/like?${route==="post"?"project":route}_id=${postId}`,
+            headers: {
+                Authorization: localStorage.getItem('user'),
+                'Content-Type': 'application/json',
+            },
+        }).then(()=>{
+            console.log("The like was a success");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    useEffect(()=>{
+        // console.log(post.likes);
+        // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        if((post.likes.some((like: any)=>like.id!==user_id))){         
+            setLikedPost(true);
+        }
+    },[])
     return (
         <div className="post">
             <div>
@@ -103,7 +136,9 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                             <h1 className="post__author__text__name">{post.author}</h1>
                         <div className="post__author__text__bottom">
                             <p className="post__author__text__time text-color--green text-size--small">
-                                {post.role[0].toUpperCase()+post.role.slice(1)}
+                                {   post.role &&
+                                    post.role[0].toUpperCase()+post.role.slice(1)
+                                }
                             </p>
                             {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
                         </div>
@@ -112,10 +147,24 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                                 </p> */}
                             </div>
                             <div className="connect-button-container">
-                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
-                                <button className="view-more-button">View More <b>{">>"}</b>
-                                </button>
-                            </Link>
+                            {(post.type === 1 || post.type === 2) && (
+                                <Link
+                                    to={
+                                        post.type === 1
+                                            ? `/posts/${post.id}`
+                                            : `/ideas/${post.id}`
+                                    }
+                                >
+                                    <button className="view-more-button">
+                                        {
+                                            post.type!==3 &&
+                                            <p>
+                                                View More <b>{'>>'}</b>
+                                            </p>
+                                        }
+                                    </button>
+                                </Link>
+                            )}
                             </div>
                         </div>
                 <div className="post__text">
@@ -177,12 +226,20 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
             <div>
                 {
                     showComments && 
-                    <CommentsOnPost backToPost={backToPost}/>
+                    <CommentsOnPost backToPost={backToPost} postData={post} commentsData={post.comments}/>
                 }
             </div>
             <div className="post__footer">
                     <div className="post__footer__likes">
-                        <img src={like} alt="" />
+                    <img
+                        src={likedPost?likedImg:like}
+                        alt=""
+                        onClick={() => {
+                            if(!likedPost){
+                                likeThePost(post.id);
+                            }
+                        }}
+                    />
                         <p className="post__footer__likes__num">{post.numLikes}</p>
                     </div>
                     <div className="post__footer__comments">

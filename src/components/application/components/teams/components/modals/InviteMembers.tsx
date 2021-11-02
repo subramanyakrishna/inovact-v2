@@ -46,6 +46,8 @@ function InviteMembers(props: any) {
             headers: {
                 Authorization: localStorage.getItem('user'),
             },
+        }).then((res: any)=>{
+            console.log(res);
         })
         var resp = await axios({
             method: 'get',

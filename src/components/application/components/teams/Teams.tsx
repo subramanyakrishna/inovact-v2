@@ -32,7 +32,7 @@ function Teams() {
         dispatch(getTeams('user'))
     }, [])
 
-    const [verticalActive, setVerticalActive] = useState(allTeams[0]?.id)
+    const [verticalActive, setVerticalActive] = useState(0)
     const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>()
     useEffect(() => {
         setVerticalActive(allTeams[0]?.id)
@@ -124,7 +124,7 @@ function Teams() {
                 <div>
                     <div className="modal_overlay" onClick={closeModal}></div>
                     {showUploadDocument && (
-                        <UploadDocuments closeModal={closeModal} />
+                        <UploadDocuments closeModal={closeModal} team_id={verticalActive}/>
                     )}
                     {showMakeAdmin && <MakeAdmin closeModal={closeModal} />}
                     {showShareModal && <ShareModal closeModal={closeModal} />}

@@ -38,21 +38,22 @@ function CommentMainContent(props: any) {
             comment: "Project dA fermentum posuere tellus leo bibendum nibh. sed Sed commodo ",
         },
     ]
+    console.log(props);
     return (
         <div className="comments-on-posts-contents">
                     <div className="comments-on-posts-img-container">
-                        <img src={image}/>
+                        <img src={props.comment?.user?.avatar} alt="user"/>
                     </div>
                     <div className="comments-on-posts-main-comment-container">
                         <div>
-                            <p className="comments-on-posts-user-name">Jane Doe</p>
+                            <p className="comments-on-posts-user-name">{props.comment?.user?.first_name} {props.comment?.user?.last_name}</p>
                             <p className="comments-on-posts-comment-time">10:20 pm</p>
                         </div>
                         <div className="comments-on-posts-comment-contents">
                             <div className="comments-on-posts-comment">
-                                Project dA fermentum posuere tellus leo bibendum nibh. sed Sed commodo sit volutpat pellentesque nisl 
+                                {props.comment?.text} 
                             </div>
-                            {
+                            {/* {
                                 <div className="comments-on-posts-replies-container">
                                     <div className="comments-on-posts-replies-view">
                                         <hr className="comments-on-posts-replies-view-separator"/>
@@ -81,7 +82,7 @@ function CommentMainContent(props: any) {
                                             </div>
                                     
                                 </div>
-                            }
+                            } */}
                         </div>
                         
                     </div>

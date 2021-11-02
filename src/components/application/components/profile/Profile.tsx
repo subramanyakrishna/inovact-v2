@@ -51,24 +51,27 @@ function Profile() {
             console.log("This is profile ideas",data);
             data.data.idea.reverse();
             handleAllUserIdeas("all-user-ideas",[...data.data.idea.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                type: 2,
-                avatar: post.user.avatar,
-                author:  post.user.first_name+ " "+ post.user.last_name,
-                tags: post.idea_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.idea_documents.map((image: any)=>{
-                    console.log(image.url);
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                numLikes: 0,
-                numComments: 0,
+                    user_id: post.user.id,
+                    id: post.id,
+                    team_id: post.team_id,
+                    title: post.title,
+                    description: post.description,
+                    role: post.user.role,
+                    type: 2,
+                    likes: post.idea_likes,
+                    avatar: post.user.avatar,
+                    comments: post.idea_comments,
+                    author: post.user.first_name + ' ' + post.user.last_name,
+                    tags: post.idea_tags.map((tag: any) => {
+                        return tag.hashtag.name
+                    }),
+                    images: post.idea_documents.map((image: any) => {
+                        return image.url
+                    }),
+                    time: convertDate(post.created_at),
+                    created_at: post.created_at,
+                    numLikes: post.idea_likes.length,
+                    numComments: post.idea_comments.length,
                 }))]);
         }   
     });
@@ -88,24 +91,29 @@ function Profile() {
             console.log("This is profile projects",data);
             data.data.project.reverse();
             const finalData = data.data.project.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                title: post.title,
-                description: post.description,
-                role:post.user.role,
-                project_status: post.status,
-                type: 1,
-                avatar: post.user.avatar,
-                author: post.user.first_name+ " "+ post.user.last_name,
-                tags: post.project_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: post.project_documents.map((image: any)=>{
-                    return image.url;
-                }),
-                time: convertDate(post.created_at),
-                numLikes: 0,
-                numComments: 0,
+                    user_id: post.user.id,
+                    id: post.id,
+                    team_id: post.team_id,
+                    title: post.title,
+                    description: post.description,
+                    role: post.user.role,
+                    type: 1,
+                    likes: post.project_likes,
+                    comments: post.project_comments,
+                    team: post.team,
+                    project_status: post.status,
+                    avatar: post.user.avatar,
+                    author: post.user.first_name + ' ' + post.user.last_name,
+                    tags: post.project_tags.map((tag: any) => {
+                        return tag.hashtag.name
+                    }),
+                    images: post.project_documents.map((image: any) => {
+                        return image.url
+                    }),
+                    time: convertDate(post.created_at),
+                    created_at: post.created_at,
+                    numLikes: post.project_likes.length,
+                    numComments: post.project_comments.length,
                 }));
             console.log("This is the final user projects: ", finalData);    
             handleAllUserProject("all-user-projects",finalData);
@@ -118,17 +126,23 @@ function Profile() {
         onSuccess: (data: any)=>{
             console.log("This is profile thoughts",data);
             data.data.thoughts.reverse();
-            const finalData = data.data.thoughts.map((post: any)=>({
-                user_id: post.user.id,
-                id: post.id,
-                description: post.thought,
-                role:post.user.role,
+            const finalData = data.data.thoughts.map((thought: any)=>({
+                user_id: thought.user.id,
+                id: thought.id,
                 type: 3,
-                avatar: post.user.avatar,
-                author: post.user.first_name+" "+post.user.last_name,
-                time: convertDate(post.created_at),
-                numLikes: 0,
-                numComments: 0,
+                avatar: thought.user.avatar,
+                author:
+                    thought.user.first_name +
+                    ' ' +
+                    thought.user.last_name,
+                likes: thought.thought_likes,
+                comments: thought.thought_comments,
+                role: thought.user.role,
+                time: convertDate(thought.created_at),
+                created_at: thought.created_at,
+                description: thought.thought,
+                numLikes: thought.thought_likes.length,
+                numComments: thought.thought_comments.length,
             }));
             console.log("This is the final user thoughts: ", finalData);    
             handleAllUserThoughts("all-user-thoughts",finalData);

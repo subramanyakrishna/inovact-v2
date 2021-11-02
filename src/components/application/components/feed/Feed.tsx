@@ -77,6 +77,7 @@ function Feed() {
             handleUserInfoChange('update_complete_user', data.data.user[0])
         },
     })
+
     const { doRequest: getPeopleToKnow, errors: getPeopleErrors } = useRequests(
         {
             route: 'users',
@@ -125,8 +126,10 @@ function Feed() {
                     description: post.description,
                     role: post.user.role,
                     type: 1,
+                    likes: post.project_likes,
                     team: post.team,
                     project_status: post.status,
+                    comments: post.project_comments,
                     avatar: post.user.avatar,
                     author: post.user.first_name + ' ' + post.user.last_name,
                     tags: post.project_tags.map((tag: any) => {
@@ -137,8 +140,8 @@ function Feed() {
                     }),
                     time: convertDate(post.created_at),
                     created_at: post.created_at,
-                    numLikes: 0,
-                    numComments: 0,
+                    numLikes: post.project_likes.length,
+                    numComments: post.project_comments.length,
                 })),
             ])
         },
@@ -160,7 +163,8 @@ function Feed() {
                     description: post.description,
                     role: post.user.role,
                     type: 2,
-
+                    likes: post.idea_likes,
+                    comments: post.idea_comments,
                     avatar: post.user.avatar,
                     author: post.user.first_name + ' ' + post.user.last_name,
                     tags: post.idea_tags.map((tag: any) => {
@@ -171,8 +175,8 @@ function Feed() {
                     }),
                     time: convertDate(post.created_at),
                     created_at: post.created_at,
-                    numLikes: 0,
-                    numComments: 0,
+                    numLikes: post.idea_likes.length,
+                    numComments: post.idea_comments.length,
                 })),
             ])
         },
@@ -190,15 +194,17 @@ function Feed() {
                         id: thought.id,
                         type: 3,
                         avatar: thought.user.avatar,
+                        comments: thought.thought_comments,
                         author:
                             thought.user.first_name +
                             ' ' +
                             thought.user.last_name,
+                        likes: thought.thought_likes,
                         time: convertDate(thought.created_at),
                         created_at: thought.created_at,
                         description: thought.thought,
-                        numLikes: 0,
-                        numComments: 0,
+                        numLikes: thought.thought_likes.length,
+                        numComments: thought.thought_comments.length,
                     }
                 })
                 setThoughts([...finalData])
@@ -272,13 +278,13 @@ function Feed() {
             }
             // await getUserIdeas();
             // await getUserProjects();
-            if (errors || errorsIdea || getPeopleErrors || userErrors) {
-                console.log(errors)
-                console.log(errorsIdea)
-                console.log(getPeopleErrors)
-                console.log(userErrors)
-                history.push('/login')
-            }
+            // if (errors || errorsIdea || getPeopleErrors || userErrors) {
+            //     console.log(errors)
+            //     console.log(errorsIdea)
+            //     console.log(getPeopleErrors)
+            //     console.log(userErrors)
+            //     history.push('/login')
+            // }
         })()
         console.log('The userProfile status: ', userInfo.profile_complete)
     }, [])
@@ -412,6 +418,77 @@ function Feed() {
         setReqToJoinId(id)
     }
     const [uploadingPost, setUploadingPost] = useState(false);
+    useEffect(()=>{
+        // setPosts([
+        //     ...allPosts?.map((post: any) => ({
+        //         user_id: post.user?.id,
+        //         id: post.id,
+        //         team_id: post.team_id,
+        //         title: post.title,
+        //         description: post.description,
+        //         role: post.user.role,
+        //         type: 1,
+        //         likes: post.project_likes,
+        //         team: post.team,
+        //         project_status: post.status,
+        //         avatar: post.user.avatar,
+        //         author: post.user.first_name + ' ' + post.user.last_name,
+        //         tags: post.project_tags.map((tag: any) => {
+        //             return tag.hashtag.name
+        //         }),
+        //         images: post.project_documents.map((image: any) => {
+        //             return image.url
+        //         }),
+        //         time: convertDate(post.created_at),
+        //         created_at: post.created_at,
+        //         numLikes: post.project_likes.length,
+        //         numComments: post.project_comments.length,
+        //     })),
+        // ])
+        // setIdeas([
+        //     ...allIdeas?.map((post: any) => ({
+        //         user_id: post.user.id,
+        //         id: post.id,
+        //         team_id: post.team_id,
+        //         title: post.title,
+        //         description: post.description,
+        //         role: post.user.role,
+        //         type: 2,
+        //         likes: post.idea_likes,
+        //         avatar: post.user.avatar,
+        //         author: post.user.first_name + ' ' + post.user.last_name,
+        //         tags: post.idea_tags.map((tag: any) => {
+        //             return tag.hashtag.name
+        //         }),
+        //         images: post.idea_documents.map((image: any) => {
+        //             return image.url
+        //         }),
+        //         time: convertDate(post.created_at),
+        //         created_at: post.created_at,
+        //         numLikes: post.idea_likes.length,
+        //         numComments: post.idea_comments.length,
+        //     })),
+        // ])
+        // const finalData = allThoughts?.map((thought: any) => {
+        //     return {
+        //         user_id: thought.user?.id,
+        //         id: thought.id,
+        //         type: 3,
+        //         avatar: thought.user.avatar,
+        //         author:
+        //             thought.user.first_name +
+        //             ' ' +
+        //             thought.user.last_name,
+        //         likes: thought.thought_likes,
+        //         time: convertDate(thought.created_at),
+        //         created_at: thought.created_at,
+        //         description: thought.thought,
+        //         numLikes: thought.thought_likes.length,
+        //         numComments: thought.thought_comments.length,
+        //     }
+        // })
+        // setThoughts([...finalData])
+    },[allPosts,allIdeas,allThoughts])
     return (
         <div>
             {showOverlay && (
