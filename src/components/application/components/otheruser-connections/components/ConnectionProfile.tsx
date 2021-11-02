@@ -16,9 +16,9 @@ function ConnectionProfile(props: any) {
         history.push('/app/otherprofile')
     }
     return (
-        <div className="my-connection-profile" onClick={() => goToProfile()}>
+        <div className="my-connection-profile" >
             <div className="my-connection-profile-container">
-                <div className="my-connection-profile-img">
+                <div className="my-connection-profile-img" onClick={() => goToProfile()}>
                     <img
                         src={props.user.avatar}
                         alt="user"

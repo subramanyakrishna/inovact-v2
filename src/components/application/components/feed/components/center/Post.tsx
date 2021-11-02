@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import like from 'images/feed/post/like.svg'
 import comment from 'images/feed/post/comment.svg'
 import share from 'images/feed/post/share.svg'
-import project_badge from 'images/feed/post/project_badge.svg'
-import idea_badge from 'images/feed/post/idea_badge.svg'
-import thoughts_badge from 'images/feed/post/thoughts_badge.svg'
 import { Link } from 'react-router-dom'
 import Photos from './Photos'
 import TeamTag from 'components/application/components/profile/components/LeftProfileContent/Components/TeamTag'
@@ -13,13 +10,15 @@ import CommentsOnPost from 'components/application/components/profile/components
 import { useSelector } from 'react-redux'
 import playButton from '../../../../../../images/feed/play-button.svg'
 import { makeApiCall } from 'components/application/components/connections/components/connectionsUtils'
+import axios from 'axios'
 
 function Post({ post, openTeamMember, openRequestJoin }: any) {
     const [showTeams, setShowTeams] = useState(true)
     const [showShareOption, setShowShareOption] = useState(false)
     const [showComments, setShowComments] = useState(false)
-    const [likes, setLikes] = useState(0)
+    const [likes, setLikes] = useState(post.numLikes);
     const [reqToJoinId, setReqToJoinId] = useState<number>()
+    const likedImg = "https://svg-clipart.com/svg/heart/RgoENWE-white-heart-vector.svg"; 
     const backToPost = () => {
         setShowComments(false)
     }
@@ -78,43 +77,70 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             `connections/request?user_id=${user_id}`
         )
     }
+    const [likedPost, setLikedPost] = useState(false);
+    const likeThePost = async(postId: any)=>{
+        setLikedPost(true);
+        setLikes(likes+1);
+        const route = `${post.type===1?"post":post.type===2?"idea":"thought"}`;
+        await axios({
+            method: "POST",
+            url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}/like?${route==="post"?"project":route}_id=${postId}`,
+            headers: {
+                Authorization: localStorage.getItem('user'),
+                'Content-Type': 'application/json',
+            },
+        }).then(()=>{
+            console.log("The like was a success");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
     const user_id = useSelector((state: any) => state.userInfo.id)
+    const numOfLikes = useState(post.numLikes);
+    useEffect(()=>{
+        // console.log(post.likes);
+        // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        if((post.likes.some((like: any)=>like.id!==user_id))){         
+            setLikedPost(true);
+        }
+    },[])
     return (
         <div className="post">
-            {  !showComments && 
+            {!showComments && (
                 <div>
                     <div className="post__author">
-                    <div className="post__author__info">
-                    {
-                            user_id===post.user_id?
+                        {user_id === post.user_id ? (
                             <Link to="/app/profile">
                                 <img
                                     className="post__author__avatar"
                                     src={post.avatar}
                                     alt=""
                                 />
-                            </Link>:
-                            <Link to="/app/otherprofile" onClick={()=>localStorage.setItem("other-user",post.user_id)}>
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/app/otherprofile"
+                                onClick={() =>
+                                    localStorage.setItem(
+                                        'other-user',
+                                        post.user_id
+                                    )
+                                }
+                            >
                                 <img
                                     className="post__author__avatar"
                                     src={post.avatar}
                                     alt=""
                                 />
                             </Link>
-                        }
-                      
-                    <div className="post__author__text">
-                        <h1 className="post__author__text__name">{post.author}</h1>
-                        <div className="post__author__text__bottom">
-                            <p className="post__author__text__time text-color--green text-size--small" style={{margin:'0',padding:'0'}} >
-                                { post.role &&
-                                post.role[0].toUpperCase()+post?.role.slice(1)}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                    <div className="connect-button-container">
-                                   <button
+                        )}
+                        <div className="post__author__text">
+                            <div className="post__author__text__name-container">
+                                <h1 className="post__author__text__name">
+                                    {post.author}
+                                </h1>
+                                {user_id !== post.user_id && (
+                                    <button
                                         className="connect-button"
                                         onClick={() => {
                                             handleConnect(post.user_id)
@@ -125,29 +151,61 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                             ? 'Requested'
                                             : 'Connect'}
                                     </button>
-                        {
-                            (post.type===1 || post.type===2) &&
-                            <Link to={post.type===1?`/posts/${post.id}`: `/ideas/${post.id}`}>
-                                <button className="view-more-post">View More <b>{">>"}</b>
-                                </button>
-                            </Link>
-                        }
+                                )}
+                            </div>
+                            <div className="post__author__text__bottom">
+                                <p className="post__author__text__time text-color--green text-size--small">
+                                    {post.role &&
+                                        post.role[0].toUpperCase() +
+                                            post?.role.slice(1)}
+                                </p>
+                                {/* <p className="post__author__text__type text-color--green text-size--small">{post.type===1?"Project":post.type===2?"Idea":"Thought"}</p> */}
+                            </div>
+                            {/* <p className="post__author__text__time  text-style--italic text-size--small ">
+                            {post.time}
+                        </p> */}
+                        </div>
+                        <div className="connect-button-container">
+                            {(post.type === 1 || post.type === 2) && (
+                                <Link
+                                    to={
+                                        post.type === 1
+                                            ? `/posts/${post.id}`
+                                            : `/ideas/${post.id}`
+                                    }
+                                >
+                                    <button className="view-more-button">
+                                        {
+                                            post.type!==3 &&
+                                            <p>
+                                                View More <b>{'>>'}</b>
+                                            </p>
+                                        }
+                                    </button>
+                                </Link>
+                            )}
+                        </div>
                     </div>
-
-                </div>
-                <div className="post__text">
-                 
-                    {post.title ? (
-                        <div style={{display:'flex',flexDirection:'row'}}>
-                            <h1 className="post__text__title">{post.title} {}</h1>
-                            {post.type===1?<img src={project_badge} alt="" width="25"/>:post.type===2?<img src={idea_badge} alt="" />:<img src={thoughts_badge} alt="" />}   
-                        </div> 
-                    ) : null}
-                    <p className="post__text__desc">
-                        {post.type === 1
-                            ? post.description.substring(0, 150)
-                            : post.description}{' '}
-                        {/* {post.type === 1 ? (
+                    <div className="post__text">
+                        <p className="post__author__text__type text-color--green text-size--small">
+                            {post.type === 1
+                                ? 'Project'
+                                : post.type === 2
+                                ? 'Idea'
+                                : 'Thought'}
+                        </p>
+                        {post.title ? (
+                            <div>
+                                <h1 className="post__text__title">
+                                    {post.title} {}
+                                </h1>
+                            </div>
+                        ) : null}
+                        <p className="post__text__desc">
+                            {post.type === 1
+                                ? post.description.substring(0, 150)
+                                : post.description}{' '}
+                            {/* {post.type === 1 ? (
                             <Link to={{
                                 pathname: `/posts/${post.id}`,
                                 state: {
@@ -196,16 +254,20 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                         </div>
                     ) : null}
                 </div>
-            }
+            )}
             <div>
-                {showComments && <CommentsOnPost backToPost={backToPost} />}
+                {showComments && <CommentsOnPost backToPost={backToPost} commentsData={post.comments} postData={post}/>}
             </div>
             <div className="post__footer">
                 <div className="post__footer__likes">
                     <img
-                        src={like}
+                        src={likedPost?likedImg:like}
                         alt=""
-                        onClick={() => setLikes(likes + 1)}
+                        onClick={() => {
+                            if(!likedPost){
+                                likeThePost(post.id);
+                            }
+                        }}
                     />
                     <p className="post__footer__likes__num">{likes}</p>
                 </div>

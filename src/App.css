@@ -5031,13 +5031,12 @@ input, textarea:focus {
 
 .comments-on-posts-contents {
   padding: 10px;
-  display: flex;
-  justify-content: space-between; }
+  display: flex; }
 
 .comments-on-posts-img-container {
   margin: 0px 20px 0px 0px;
   overflow: hidden;
-  min-width: 50px;
+  width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
@@ -5046,6 +5045,7 @@ input, textarea:focus {
   justify-content: center; }
   .comments-on-posts-img-container img {
     height: 100%;
+    width: 100%;
     object-fit: cover; }
   @media only screen and (max-width: 62em) {
     .comments-on-posts-img-container {
@@ -5472,7 +5472,8 @@ input, textarea:focus {
       margin-top: 0.5rem;
       border-radius: 10px;
       background-color: white;
-      padding: 30px; }
+      padding: 30px;
+      width: 100%; }
     @media only screen and (max-width: 48em) {
       .post-dedicated-page-comments {
         display: none; } }

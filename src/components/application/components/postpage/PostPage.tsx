@@ -13,36 +13,44 @@ import Post from './components/Post';
 import TeamMembers from './components/TeamMembers';
 
 function PostPage(props: any) {
-    let postData: any = {};
+    // let postData: any = {};
     const {doRequest, errors} = useRequests({
         method: "get",
         route: "post",
         body: null,
         id: props.id,
         onSuccess: (data: any)=>{
-            postData = {
+            setPostData({
+                user_id: data.data.project.user.id,
                 id: data.data.project.id,
-                type: 1,
-                avatar: data.data.project.user.avatar,
-                author: data.data.project.user.first_name+ " " +data.data.project.user.last_name,
+                team_id: data.data.project.team_id,
                 title: data.data.project.title,
                 description: data.data.project.description,
-                tags: data.data.project.project_tags.map((tags: any)=>{
-                    return tags.hashtag.name;
+                role: data.data.project.user.role,
+                type: 1,
+                likes: data.data.project.project_likes,
+                comments: data.data.project.project_comments,
+                team: data.data.project.team,
+                project_status: data.data.project.status,
+                avatar: data.data.project.user.avatar,
+                author: data.data.project.user.first_name + ' ' + data.data.project.user.last_name,
+                tags: data.data.project.project_tags.map((tag: any) => {
+                    return tag.hashtag.name
                 }),
-                images: data.data.project.project_documents.map((image: any)=>{
-                    return image.url;
+                images: data.data.project.project_documents.map((image: any) => {
+                    return image.url
                 }),
                 time: convertDate(data.data.project.created_at),
-                numLikes: 0,
-                numComments: 0,
-            };
+                created_at: data.data.project.created_at,
+                numLikes: data.data.project.project_likes.length,
+                numComments: data.data.project.project_comments.length,
+            });
             }
         });
     const allPosts = useSelector((state: any)=> state.allPosts);
     const allIdeas = useSelector((state: any)=> state.allIdeas);
 
-    
+    const [postData, setPostData] = useState<any>({});
     const user_id = useSelector((state: any)=> state.userInfo.id);
     const convertDate = (dateISO: any)=>{
         const date = new Date(dateISO);
@@ -50,38 +58,8 @@ function PostPage(props: any) {
     }
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let { id }: any = useParams();
-    allPosts.forEach((ele: any)=>{
-        if(ele.id===Number(id)){
-            postData={
-                user_id: ele.user.id,
-                id: ele.id,
-                type: 1,
-                avatar: ele.user.avatar,
-                author: ele.user.first_name+ " " +ele.user.last_name,
-                role: ele.user.role,
-                time: convertDate(ele.created_at),
-                title: ele.title,
-                team: ele.team,
-                status: ele.status,
-                description: ele.description,
-                tags: ele.project_tags.map((tag: any)=>{
-                    return tag.hashtag.name;
-                }),
-                images: ele.project_documents.map((image: any)=>{
-                    console.log(image.url);
-                    return image.url;
-                }),
-                numLikes: 250,
-                numComments: 250,
-                completion: 80,
-            }
-        }
-    });
+    
     console.log(postData);
-    if(postData==={}){
-        console.log("here post page");
-        doRequest();
-    }
     // allIdeas.
     const [showOverlay, setShowOverlay] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
@@ -110,6 +88,37 @@ function PostPage(props: any) {
         document.getElementById("team-members")?.scrollIntoView({behavior: "smooth"});
     }
     useEffect(()=>{
+        allPosts.forEach((post: any)=>{
+            if(post.id===Number(id)){
+                console.log(post);
+                setPostData({
+                    user_id: post.user.id,
+                    id: post.id,
+                    team_id: post.team_id,
+                    title: post.title,
+                    description: post.description,
+                    role: post.user.role,
+                    type: 1,
+                    likes: post.project_likes,
+                    team: post.team,
+                    project_status: post.status,
+                    comments: post.project_comments,
+                    avatar: post.user.avatar,
+                    author: post.user.first_name + ' ' + post.user.last_name,
+                    tags: post.project_tags.map((tag: any) => {
+                        return tag.hashtag.name
+                    }),
+                    images: post.project_documents.map((image: any) => {
+                        return image.url
+                    }),
+                    time: convertDate(post.created_at),
+                    created_at: post.created_at,
+                    numLikes: post.project_likes.length,
+                    numComments: post.project_comments.length,
+                })
+                console.log(postData);
+            }
+        });
         doRequest();
     },[]);
     return (
@@ -127,7 +136,7 @@ function PostPage(props: any) {
                         {
                             showRequestJoin && 
                             <div>
-                                <RequestToJoin closeModal={closeModal}/>
+                                <RequestToJoin closeModal={closeModal} team_id={postData.team_id}/>
                             </div>
                         }
                 </div>
@@ -145,8 +154,8 @@ function PostPage(props: any) {
             </div>
             <div className="post-dedicated-page-comments">
                 <div className="post-dedicated-page-comments-container">
-                    <CommentsContainer/>
-                    <LikedBy/>
+                    <CommentsOnPost commentsData={postData.comments} postData={postData}/>
+                    <LikedBy postData={postData}/>
                 </div>
             </div>
         </div>

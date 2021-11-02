@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import EditIcon from '@material-ui/icons/Edit'
@@ -64,15 +64,19 @@ const TeamTags = ({ team }: Props) => {
 
 const TeamDescription = ({ team }: Props) => {
     const [showAll, setShowAll] = useState(true)
-
+    const [teamAvatar, setTeamAvatar] = useState("");
     const dispatch= useDispatch();
     
     const loadFile = async (e: any) => { 
         if(e.target.files){
             const data = await imageUploader(e.target.files)
+            setTeamAvatar(data[0].url);
            dispatch(updateTeamAvatar({team_id: team.id,avatar:data[0].url}))
         }
     }
+    useEffect(()=>{
+        setTeamAvatar(team.avatar);
+    },[team])
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             setShowAll(true)
@@ -96,8 +100,8 @@ const TeamDescription = ({ team }: Props) => {
                 htmlFor="upload-media-input"
                 className={'settings-my-profile-nametag-imageAndEditContainer'}
             >
-                <div >
-                    <img src={team.avatar} alt="teamImage" style={{position:'relative'}}/>
+                <div className="settings-my-profile-nametag-img-container">
+                    <img src={teamAvatar} alt="teamImage" />
                 </div>
                 <div className="settings-my-profile-nametag-editcontainer" style={{marginLeft:'1rem'}}>
                     {' '}

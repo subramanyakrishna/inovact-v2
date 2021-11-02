@@ -33,10 +33,10 @@ export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =
         console.log("putreq in teams",teamUpdateImg)
       const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
       console.log('updated the image', res.data)
-      dispatch({
-          type:UPDATE_TEAM_AVATAR,
-          payload:res.data
-      })
+    //   dispatch({
+    //       type: UPDATE_TEAM_AVATAR,
+    //       payload: res.data
+    //   })
     }
     catch(error){
         throw error
@@ -46,6 +46,7 @@ export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =
 export const inviteMembers = (bodyData: any) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(bodyData)
+        console.log(res.data.insert_team_invitations.returning[0]);
         dispatch({
             type: INVITE_MEMBERS,
             payload: res.data.insert_team_invitations.returning[0],
