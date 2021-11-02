@@ -1,5 +1,5 @@
 import React from 'react'
-import ProjectInfo from 'components/application/components/teams/components/teamInfo/ProjectsTab/ProjectInfo'
+import ProjectInfo from 'components/application/components/otheruserteam/components/teamInfo/ProjectsTab/ProjectInfo'
 
     
 const ProjectInfoTab =(props: any)=>{

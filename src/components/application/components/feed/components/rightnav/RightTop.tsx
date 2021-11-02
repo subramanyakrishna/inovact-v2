@@ -22,6 +22,7 @@ const RightTop = (props: any) => {
     ).slice(0, 4);
     
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
+    console.log("pymk",peopleYouMayKnow)
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {
         setTimeout(() => {
@@ -39,6 +40,7 @@ const RightTop = (props: any) => {
     const [otherUserId, setOtherUserId] = useState(0)
 
     const history = useHistory()
+
     const getTheOtherUser = async (userId: any) => {
         console.log('the user id is of other: ', userId)
         setImageLoading(true)
@@ -72,10 +74,7 @@ const RightTop = (props: any) => {
                                         >
                                             <div
                                                 className="left-right-nav__card__list__item__rightTop--row"
-                                                onClick={getTheOtherUser.bind(
-                                                    null,
-                                                    user_id
-                                                )}
+                                                onClick={() => getTheOtherUser(user_id)}
                                                 style={{ cursor: 'pointer' }}
                                             >
                                                 {imageLoading ? (

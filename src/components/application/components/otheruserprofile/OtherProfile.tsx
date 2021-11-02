@@ -35,7 +35,7 @@ function OtherProfile() {
     const [showThoughts, setShowThoughts] = useState(false);
     const [showRequestJoin, setShowRequestJoin] = useState(false)
     const history = useHistory();
-    
+    console.log( "Other User ID",localStorage.getItem("other-user"))
     const getTheUserData = async()=>{
         if(localStorage.getItem("other-user")){
             const userId = localStorage.getItem("other-user");

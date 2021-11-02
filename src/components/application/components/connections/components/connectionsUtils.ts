@@ -92,6 +92,7 @@ const makeApiCall = async (method: any, route: string) => {
             'Content-Type': 'application/json',
         },
     })
+    
     return response
 }
 
