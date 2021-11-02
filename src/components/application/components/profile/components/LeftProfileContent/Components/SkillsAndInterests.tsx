@@ -1,34 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Skills from './Skills'
 import AreaOfInterests from './AreaOfInterests'
 import ArrowForwardIosRounded from '@material-ui/icons/ArrowForwardIosRounded'
 import ArrowBackIosRounded from '@material-ui/icons/ArrowBackIosRounded'
 import AddCircleSharp from '@material-ui/icons/AddCircleSharp'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { mapApiDataToUiData } from 'components/application/components/settings/components/YourProfile/components/UserSkills'
 
 function SkillsAndInterests() {
-    const data = [
-        {
-            heading: 'Beginner',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Intermediate',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Proficient',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Advanced',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-    ]
     const [showSkills, setShowSkills] = useState(true)
     const toggleShowSkills = () => {
         setShowSkills(!showSkills)
@@ -40,6 +20,7 @@ function SkillsAndInterests() {
         setShowSkills(false)
     }
     const history = useHistory()
+
     return (
         <div className="dashboard-main">
             <div className="skills-and-interests">
@@ -70,7 +51,7 @@ function SkillsAndInterests() {
                     {showSkills && (
                         <div className="skills-and-interests-container">
                             <div className="skill-tag-container">
-                                <Skills data={data} />
+                                <Skills />
                             </div>
                             <div>
                                 <span

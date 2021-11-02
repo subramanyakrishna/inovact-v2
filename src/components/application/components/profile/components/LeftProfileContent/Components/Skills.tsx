@@ -11,17 +11,19 @@ function Skills(props: any) {
         ;(async () => {
             const res = await makeApiCall('get', 'token/skills')
             const skillsFromApi = res.data.data.skills
+
             setAllSkillsFromApi(skillsFromApi)
         })()
     }, [])
     useEffect(() => {
         console.log('user_skills', user_skills)
         const data_model = mapApiDataToUiData(user_skills)
+
         setFilteredData(data_model)
     }, [])
     return (
         <div>
-            {props.data.map((skills: any, i: number) => {
+            {filteredData.map((skills: any, i: number) => {
                 const { heading, allSkills } = skills
                 return (
                     <SkillsTag

@@ -185,7 +185,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                             : `/ideas/${post.id}`
                                     }
                                 >
-                                    <button className="view-more-button">
+                                    <button className="view-more-button  connect-button">
                                         {post.type !== 3 && (
                                             <p>
                                                 View More <b>{'>>'}</b>

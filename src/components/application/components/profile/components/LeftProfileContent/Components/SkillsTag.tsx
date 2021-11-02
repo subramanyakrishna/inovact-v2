@@ -14,13 +14,16 @@ function SkillsTag(props: any) {
     const user_skills = useSelector((state: any) => state.userInfo.user_skills)
     const [matchedRes, setMatchedRes] = useState<any>([])
     const [state, setState] = useState<any>(props.skills)
-    const [skill, setSkill] = useState<string>()
-
+    const isSkillAlreadyPresent = (user_skills: any, skill: any): boolean => {
+        return user_skills.some(
+            (curr_skill: any) => curr_skill.skill.id === skill.id
+        )
+    }
     const onPressEnter = () => {
         if (matchedRes.length) {
             setMatchedRes([])
-            setSkill('')
             skillInputField.current.value = ''
+            if (isSkillAlreadyPresent(user_skills, matchedRes[0])) return
             setState([...state, matchedRes[0]])
             handleUserInfoChange('user_skills', [
                 ...user_skills,
@@ -30,8 +33,10 @@ function SkillsTag(props: any) {
     }
     const onSkillSelect = (skill: any) => {
         setMatchedRes([])
-        setSkill('')
         skillInputField.current.value = ''
+
+        if (isSkillAlreadyPresent(user_skills, skill)) return
+
         handleUserInfoChange('user_skills', [
             ...user_skills,
             { skill: skill, level: props.heading },
@@ -43,7 +48,6 @@ function SkillsTag(props: any) {
             setMatchedRes([])
             return
         }
-        setSkill(input)
         const pattern = new RegExp(input, 'i')
         const matchedSkills = props.allSkillsFromApi.filter(
             (skill: any) => skill.name.match(pattern) !== null
@@ -65,10 +69,10 @@ function SkillsTag(props: any) {
             <p className="skill-tag-skillno">{state.length} skill updated</p>
             <div className="skill-tag-skills">
                 {showDropDown &&
-                    state.map((skill: any, i: number) => {
+                    state.map((skill: any) => {
                         return (
                             <span
-                                key={i}
+                                key={skill.id}
                                 className="skill-tag-each-skill"
                                 style={{
                                     backgroundColor: 'lightgrey',

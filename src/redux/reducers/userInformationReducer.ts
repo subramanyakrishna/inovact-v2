@@ -23,28 +23,7 @@ const initialState = {
     appearance: 0,
     percentage_growth: 0,
     website: '',
-    skills: [
-        {
-            heading: 'Beginner',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Intermediate',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Proficient',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-        {
-            heading: 'Advanced',
-            skillNo: 3,
-            allSkills: ['Java', 'Blockchain', 'C'],
-        },
-    ],
+
     projects: [],
     ideas: [],
     thoughts: [],
