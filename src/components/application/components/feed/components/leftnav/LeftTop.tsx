@@ -45,15 +45,14 @@ const LeftTop = () => {
             console.log('myConnections', myConnections)
         })()
     }, [])
-    const history = useHistory();
+    const history = useHistory()
 
     const getTheOtherUser = async (userId: any) => {
-        console.log('the user id is of other: ', userId)
+        console.log('LeftTop the user id is of other: ', userId)
         localStorage.setItem('other-user', userId)
         history.push('/app/otherprofile')
- 
     }
-    
+
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -66,7 +65,9 @@ const LeftTop = () => {
                     <MDBListGroup flush className="left-right-nav__card__list">
                         {isLoad && <SmallSpinner />}
                         {!isLoad && myConnections.length === 0 && (
-                            <span className="text-align--center">No Recent Connections</span>
+                            <span className="text-align--center">
+                                No Recent Connections
+                            </span>
                         )}
                         {!isLoad &&
                             myConnections.length !== 0 &&
@@ -75,10 +76,7 @@ const LeftTop = () => {
                                     <MDBListGroupItem
                                         className="left-right-nav__card__list__item"
                                         key={user.id}
-                                        onClick={getTheOtherUser.bind(
-                                            null,
-                                            user.id
-                                        )}
+                                        onClick={() => getTheOtherUser(user.id)}
                                         style={{ cursor: 'pointer' }}
                                     >
                                         <img

@@ -19,10 +19,10 @@ const RightTop = (props: any) => {
     const [isRequested, setIsRequested] = useState<number>()
     const peopleToKnow = useSelector(
         (state: any) => state.peopleYouMayKnow
-    ).slice(0, 4);
-    
+    ).slice(0, 4)
+
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
-    console.log("pymk",peopleYouMayKnow)
+    console.log('pymk', peopleYouMayKnow)
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {
         setTimeout(() => {
@@ -42,12 +42,16 @@ const RightTop = (props: any) => {
     const history = useHistory()
 
     const getTheOtherUser = async (userId: any) => {
-        console.log('the user id is of other: ', userId)
-        setImageLoading(true)
+        console.log(' RightTop the user id is of other: ', userId)
         localStorage.setItem('other-user', userId)
-        history.push('/app/otherprofile')
+        console.log(
+            'getTheOtherUser localStorage.getItem("other-user")',
+            localStorage.getItem('other-user')
+        )
+        setTimeout(() => {
+            history.push('/app/otherprofile')
+        }, 1000)
     }
-    const [imageLoading, setImageLoading] = useState(false)
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -74,17 +78,13 @@ const RightTop = (props: any) => {
                                         >
                                             <div
                                                 className="left-right-nav__card__list__item__rightTop--row"
-                                                onClick={() => getTheOtherUser(user_id)}
+                                                onClick={() =>
+                                                    getTheOtherUser(user_id)
+                                                }
                                                 style={{ cursor: 'pointer' }}
                                             >
-                                                {imageLoading ? (
-                                                    <SmallSpinner />
-                                                ) : (
-                                                    <img
-                                                        src={image}
-                                                        alt="conn"
-                                                    />
-                                                )}
+                                                <img src={image} alt="conn" />
+
                                                 <div className="left-right-nav__card__list__item__info">
                                                     <h2 className="text-style--bold text-align--left text-size--big">
                                                         {name}{' '}
@@ -121,7 +121,11 @@ const RightTop = (props: any) => {
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                    <div style={{ cursor: 'pointer' }} className="text-color--white" onClick={() => history.push('/app/connections')}>
+                    <div
+                        style={{ cursor: 'pointer' }}
+                        className="text-color--white"
+                        onClick={() => history.push('/app/connections')}
+                    >
                         View All
                     </div>
                 </MDBCardFooter>

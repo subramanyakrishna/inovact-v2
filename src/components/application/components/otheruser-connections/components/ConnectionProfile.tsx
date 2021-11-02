@@ -1,12 +1,13 @@
 import React from 'react'
 import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined'
 import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 function ConnectionProfile(props: any) {
-    const history = useHistory();
-    const userInfo = useSelector((state: any)=>state.userInfo);
+    const history = useHistory()
+    const userInfo = useSelector((state: any) => state.userInfo)
     const goToProfile = () => {
+        console.log('ConnectionProfile,', props.user.id)
         localStorage.setItem('other-user', props.user.id)
         if (history.location.pathname === '/app/otherprofile') {
             window.location.reload()
@@ -16,9 +17,12 @@ function ConnectionProfile(props: any) {
         history.push('/app/otherprofile')
     }
     return (
-        <div className="my-connection-profile" >
+        <div className="my-connection-profile">
             <div className="my-connection-profile-container">
-                <div className="my-connection-profile-img" onClick={() => goToProfile()}>
+                <div
+                    className="my-connection-profile-img"
+                    onClick={() => goToProfile()}
+                >
                     <img
                         src={props.user.avatar}
                         alt="user"
@@ -27,7 +31,7 @@ function ConnectionProfile(props: any) {
                 </div>
                 <div className="my-connection-profile-data">
                     <span className="my-connection-profile-name">
-                        {props.user.first_name+" "+props.user.last_name}
+                        {props.user.first_name + ' ' + props.user.last_name}
                     </span>
                     <span className="my-connection-profile-designation">
                         {props.user.role}
@@ -35,10 +39,9 @@ function ConnectionProfile(props: any) {
                 </div>
             </div>
             <div className="my-connection-profile-btn-container">
-                {
-                    props.user.id!==userInfo.id &&
+                {props.user.id !== userInfo.id && (
                     <button className="connect-button">Connect</button>
-                }
+                )}
                 {/* <button className="my-connection-profile-msg-btn">
                     <QuestionAnswerOutlinedIcon
                         fontSize="medium"

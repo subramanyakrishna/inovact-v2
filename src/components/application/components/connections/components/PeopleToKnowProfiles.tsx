@@ -1,21 +1,24 @@
 import React from 'react'
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router'
 
 function PeopleToKnowProfiles(props: any) {
-    const history = useHistory();
-    const goToProfile = ()=>{
-        localStorage.setItem("other-user",props.user.id);
-        if(history.location.pathname==="/app/otherprofile"){
-            window.location.reload();
-            window.scrollTo(0,0);
-            return;
+    const history = useHistory()
+    const goToProfile = () => {
+        console.log('PeopleToKnowProfiles', props.user.id)
+        localStorage.setItem('other-user', props.user.id)
+        if (history.location.pathname === '/app/otherprofile') {
+            window.location.reload()
+            window.scrollTo(0, 0)
+            return
         }
-        history.push("/app/otherprofile");
-        
+        history.push('/app/otherprofile')
     }
     return (
         <div className="people-profile-card">
-            <div className="people-profile-card-img-container" onClick={goToProfile}>
+            <div
+                className="people-profile-card-img-container"
+                onClick={() => goToProfile()}
+            >
                 <img
                     src={props.user.avatar}
                     alt=""
