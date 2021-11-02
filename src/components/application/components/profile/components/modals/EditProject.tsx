@@ -18,11 +18,11 @@ function EditProject(props: any) {
         },
         onSuccess: (data: any)=>{
             console.log("The project has been updated: ", data);
-            alert("project updated");
             window.location.reload();
         }
     })
     const editTheProject = ()=>{
+        props.closeModal();
         doRequest();
     }
     const toggleProjectCompletion = () =>{

@@ -182,39 +182,40 @@ function Teams() {
 
                     {showRight && (
                         <MDBTabsContent className="teams__content__right">
-                            {allTeams.length == 0 ? (
-                                <div className="">No Teams Yet</div>
-                            ) : null}
+                          
                             {allTeams &&
                                 allTeams.map((team: any, key: any) => {
                                     return (
                                         <MDBTabsPane
                                             show={verticalActive === team.id}
                                         >
-                                            <div className="teams__content__info">
-                                                <div className="teams__content__team-description">
-                                                    <TeamDescription
-                                                        team={team}
-                                                    />
-                                                </div>
-                                                <div className="teams__content__team-info">
-                                                    <TeamInfo
-                                                        team={team}
-                                                        viewInviteMember={
-                                                            viewInviteMember
-                                                        }
-                                                        viewUploadDocument={
-                                                            viewUploadDocument
-                                                        }
-                                                        viewDeleteMember={
-                                                            viewDeleteMember
-                                                        }
-                                                        viewMakeAdmin={
-                                                            viewMakeAdmin
-                                                        }
-                                                    />
-                                                </div>
-                                            </div>
+                                              {allTeams.length == 0 ? (
+                                <div className="">No Teams Yet</div>
+                            ) : (   <div className="teams__content__info">
+                            <div className="teams__content__team-description">
+                                <TeamDescription
+                                    team={team}
+                                />
+                            </div>
+                            <div className="teams__content__team-info">
+                                <TeamInfo
+                                    team={team}
+                                    viewInviteMember={
+                                        viewInviteMember
+                                    }
+                                    viewUploadDocument={
+                                        viewUploadDocument
+                                    }
+                                    viewDeleteMember={
+                                        viewDeleteMember
+                                    }
+                                    viewMakeAdmin={
+                                        viewMakeAdmin
+                                    }
+                                />
+                            </div>
+                        </div>)}
+                                         
                                         </MDBTabsPane>
                                     )
                                 })}

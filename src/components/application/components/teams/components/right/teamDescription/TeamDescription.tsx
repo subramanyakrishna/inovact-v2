@@ -86,7 +86,6 @@ const TeamDescription = ({ team }: Props) => {
         }
     })
     const history = useHistory()
-
     return (
         <div className="teams-description">
             <div className="teams-description__info">
@@ -104,12 +103,12 @@ const TeamDescription = ({ team }: Props) => {
                 <div className="settings-my-profile-nametag-img-container">
                     <img src={teamAvatar} alt="teamImage" />
                 </div>
-                <div className="settings-my-profile-nametag-editcontainer">
+                <div className="settings-my-profile-nametag-editcontainer" style={{marginLeft:'1rem'}}>
                     {' '}
                     <button>
                         <EditIcon
                             fontSize="small"
-                            style={{ color: 'white' }}
+                            style={{ color: 'white', }}
                         ></EditIcon>
                     </button>
                 </div>
@@ -163,16 +162,16 @@ const TeamDescription = ({ team }: Props) => {
                         className="text-style--bold text-align--left text-size--big sm-small"
                         style={{ marginTop: '15px' }}
                     >
-                        Team Tags{' '}
+                        Team Tags{' '} 
                     </span>
-                    { team.tags !== 0 ?(   showAll ? (
+                    { team.team_tags !== 0 ?(   showAll ? (
                         <ul className="teams-description__info__right__tags">
-                            {team.tags?.map((tag: string, index: any) => {
+                            {team.team_tags?.map((tag: any, index: any) => {
                                 return (
                                     <li key={index}>
                                         <div>
                                             <h6 className="teams-description__info__right__tags__tag sm-small">
-                                                {tag}
+                                                {tag.hashtag.name}
                                             </h6>
                                         </div>
                                     </li>

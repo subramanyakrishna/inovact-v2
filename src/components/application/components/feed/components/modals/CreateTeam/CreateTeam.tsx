@@ -14,15 +14,15 @@ import { createTeam } from 'redux/actions/teams'
 import { useDispatch } from 'react-redux'
 
 const CreateTeam = (props: any) => {
-    const [teamDetails, setTeamDetails] = useState<ICreateTeam>({
-        name: '',
-        tags: [],
-        // @ts-ignore
-        avatar: '',
+    const [teamDetails, setTeamDetails] = useState<any>({
+        name: 'New team',
         looking_for_members: false,
         looking_for_mentor: false,
-        roles: [],
+        tags: [],
+        avatar: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
+        roles: [ ],
         members: [],
+        // projects:[],
     })
 
     const addRoles = ({ id, skills }: Iroles) => {
@@ -46,39 +46,40 @@ const CreateTeam = (props: any) => {
     const dispatch = useDispatch()
     const addTeam = () => {
         // console.log('teamDetails', teamDetails)
-        const newTeam = {
-            name: 'New team',
-            looking_for_members: false,
-            looking_for_mentor: false,
-            tags: [1, 2, 3],
-            avatar: 'https://www.google.com',
-            roles: [
-                {
-                    id: 1,
-                    skills: [
-                        {
-                            id: 1,
-                            proficiency: 'expert',
-                        },
-                    ],
-                },
-                {
-                    id: 1,
-                    skills: [
-                        {
-                            id: 1,
-                            proficiency: 'beginner',
-                        },
-                    ],
-                },
-            ],
-            members: [
-                { email: 'khushilms.cs19@bmsce.ac.in', role: 1 },
-                { email: 'khushilsindhwad@gmail.com', role: 1 },
-            ],
-        }
+        // const newTeam = {
+        //     name: 'New team',
+        //     looking_for_members: false,
+        //     looking_for_mentor: false,
+        //     tags: [1, 2, 3],
+        //     avatar: 'https://www.google.com',
+        //     roles: [
+        //         {
+        //             id: 1,
+        //             skills: [
+        //                 {
+        //                     id: 1,
+        //                     proficiency: 'expert',
+        //                 },
+        //             ],
+        //         },
+        //         {
+        //             id: 1,
+        //             skills: [
+        //                 {
+        //                     id: 1,
+        //                     proficiency: 'beginner',
+        //                 },
+        //             ],
+        //         },
+        //     ],
+        //     members: [
+        //         { email: 'khushilms.cs19@bmsce.ac.in', role: 1 },
+        //         { email: 'khushilsindhwad@gmail.com', role: 1 },
+        //     ],
+        // }
         // @ts-ignore
-        dispatch(createTeam(newTeam))
+        dispatch(createTeam(teamDetails))
+        props.closeModal()
     }
 
     return (

@@ -1372,6 +1372,8 @@ body {
     color: #ffffff;
     padding: 0.5rem;
     border: none; }
+    .button--blue--round {
+      border-radius: 25px; }
     @media only screen and (max-width: 36em) {
       .button--blue {
         padding: 0.1rem; } }
@@ -1417,7 +1419,7 @@ body {
     margin-left: 1rem;
     background-color: #02bd63; }
 
-.view-more-button {
+.props.member.user {
   width: 7rem;
   border: none;
   border-radius: 1rem;
@@ -1426,21 +1428,21 @@ body {
   color: white;
   max-height: 26px;
   margin-left: 1rem; }
-  .view-more-button-container {
+  .props.member.user-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 60%; }
-    .view-more-button-container p {
+    .props.member.user-container p {
       margin: 0px; }
     @media only screen and (max-width: 48em) {
-      .view-more-button-container {
+      .props.member.user-container {
         flex-direction: column;
         justify-content: space-around; } }
   @media only screen and (max-width: 36em) {
-    .view-more-button {
+    .props.member.user {
       font-size: small; } }
-  .view-more-button--green {
+  .props.member.user--green {
     width: 5.5rem;
     border: none;
     border-radius: 1rem;
@@ -1449,7 +1451,7 @@ body {
     max-height: 26px;
     margin-left: 1rem;
     background-color: #02bd63; }
-  .view-more-button img {
+  .props.member.user img {
     width: 20px;
     color: white; }
 

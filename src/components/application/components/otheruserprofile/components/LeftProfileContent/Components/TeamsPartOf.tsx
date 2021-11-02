@@ -10,29 +10,17 @@ import { useHistory } from 'react-router';
 function TeamsPartOf(props:any) {
   const [myTeams,setMyTeams]=useState([]);
   const history=useHistory();
-  const teamsData = [
-    {
-      img:
-        "https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg",
-      name: "Team Name",
-      membersCount: 122
-    },
-    {
-      img:
-        "https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg",
-      name: "Team Name",
-      membersCount: 122
-    },
-    {
-      img:
-        "https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg",
-      name: "Team Name",
-      membersCount: 122
-    }
-  ];
+
   const userInfo = useSelector((state: any)=> state.otherUser);
 
+  const getTheOtherUserTeam = async (userId: any) => {
+    console.log('the user id is of other: ', userId)
+    localStorage.setItem('other-user', userId)
+    history.push('/app/otherprofile')
+}
+
   const getTheUserTeam = async()=>{
+    localStorage.setItem('other-user', userInfo.id)
     if(localStorage.getItem("other-user")){
         const userId = localStorage.getItem("other-user");
         await axios({
@@ -44,11 +32,7 @@ function TeamsPartOf(props:any) {
         }).then((resp: any)=>{
             console.log("other user id",userId)
             console.log("result of api call",resp.data.data.team)
-            setMyTeams(resp.data.data.team);
-           
-            console.log("first team",resp.data.data.team)
-            // setotherUserId(firstTeam.id);
-            
+            setMyTeams(resp.data.data.team)
         }).then(()=>{
             // history.push("/app/otherteams");
         }).catch((err)=>{
@@ -62,6 +46,7 @@ useEffect(()=>{
       await getTheUserTeam();
   })();
 }, [])
+
   return (
       <div className="dashboard-main">
             <div className="teams-part-of">
@@ -69,7 +54,7 @@ useEffect(()=>{
         <p>{userInfo.first_name}'s Team</p>
       </div>
      
-        {myTeams.length >0?  <div className="teams-part-of-all-teams"> {myTeams.slice(0,3).map((team: any) => {
+        {myTeams.length !==0?  <div className="teams-part-of-all-teams"> {myTeams.slice(0,3).map((team: any) => {
           return (
             <TeamTag
               img={team.avatar}
@@ -78,11 +63,9 @@ useEffect(()=>{
             />
           );
         })}
-         <a className="teams-part-of-view-all-btn" href="/app/otherteams">View All</a>
+        <button className="teams-part-of-view-all-btn" onClick={getTheOtherUserTeam.bind(null,userInfo.id)}>View All</button>
         </div>:<div className="text-align--center">{userInfo.first_name} is not a part of any team yet </div>
         }
-     
-     
     </div>
       </div>
     
