@@ -1,16 +1,20 @@
 import Spinner from 'components/application/Spinner'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import makeApiCall from '../settings/makeApiCall'
 import NotificationTag from './NotificationTag'
 
 function Notifications() {
     const [allNotisfication, setAllNotisfication] = useState<any>({})
     const [isLoad, setIsLoad] = useState<boolean>(true)
+
+    const ownId = useSelector((state: any) => state.userInfo.id)
     useEffect(() => {
         ;(async () => {
             try {
                 const res = await makeApiCall('get', 'notifications')
                 setAllNotisfication(res.data.data.user[0])
+                console.log(res.data.data.user[0])
                 setIsLoad(false)
             } catch (err) {
                 console.log(err)
@@ -37,6 +41,7 @@ function Notifications() {
                                     key={Math.round(Math.random() * 10000)}
                                     notisfication={notisfication}
                                     notisfication_type={notisfication_type}
+                                    ownId={ownId}
                                 />
                             )
                         })

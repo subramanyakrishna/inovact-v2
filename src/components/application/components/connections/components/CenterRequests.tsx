@@ -32,9 +32,6 @@ function CenterRequests() {
     const dispatch = useDispatch()
     const connections = useSelector((state: any) => state.connections)
     const user_id = useSelector((state: any) => state.userInfo.id)
-    useEffect(() => {
-        console.log(connections)
-    }, [connections])
 
     useEffect(() => {
         ;(async () => {

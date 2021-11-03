@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { findTimeDiffString } from '../connections/components/connectionsUtils'
 
 function NotificationTag(props: any) {
     const [showOptions, setShowOptions] = useState(false)
@@ -12,23 +14,31 @@ function NotificationTag(props: any) {
             setShowOptions(false)
         }, 500)
     }
+
     const mapApiNotisficationDataToUiData = (
         notisficationFromApi: any,
-        notisfiation_type: string
+        notisfiation_type: string,
+        ownId: number,
+        Link: any
     ) => {
         switch (notisfiation_type) {
             case 'connectionsByUser2': {
                 return {
                     id: notisficationFromApi.user1,
-                    img: 'yet to be added',
+                    img: notisficationFromApi.user.avatar,
                     type: 'connectionsByUser2',
+                    isCurrUserNotisfication: false,
                     comment: (
                         <p className="notifications-tag-comment">
-                            <b>{notisficationFromApi.user1}</b> want to connect
-                            with you
+                            <b>
+                                {notisficationFromApi.user.first_name +
+                                    ' ' +
+                                    notisficationFromApi.user.last_name}
+                            </b>{' '}
+                            want to connect with you
                         </p>
                     ),
-                    time: 'yes to be added',
+                    time: findTimeDiffString(notisficationFromApi.created_at),
                 }
             }
             case 'ideas':
@@ -36,6 +46,7 @@ function NotificationTag(props: any) {
                     id: -1,
                     img: 'yet to be added',
                     type: 'ideas',
+                    isCurrUserNotisfication: false,
                     comment: (
                         <p className="notifications-tag-comment">
                             Yet to be added ideas
@@ -48,6 +59,7 @@ function NotificationTag(props: any) {
                     id: -1,
                     img: 'yet to be added',
                     type: 'thoughts',
+                    isCurrUserNotisfication: false,
                     comment: (
                         <p className="notifications-tag-comment">
                             Yet to be added thoughts
@@ -56,40 +68,58 @@ function NotificationTag(props: any) {
                     time: 'yes to be added',
                 }
             case 'projects': {
+                const isCurrUserLike =
+                    notisficationFromApi.project_likes[0].user.id === ownId &&
+                    notisficationFromApi.project_likes.length === 1
+                let otherUserLike = notisficationFromApi.project_likes.find(
+                    (like: any) => like.user.id !== ownId
+                )
+                if (!otherUserLike) {
+                    otherUserLike = notisficationFromApi.project_likes[0]
+                }
                 return {
                     id: notisficationFromApi.id,
-                    img: notisficationFromApi.project_likes[0].user.avatar,
+                    img: otherUserLike.user.avatar,
                     type: 'projects',
+                    isCurrUserNotisfication: isCurrUserLike,
                     comment: (
                         <p className="notifications-tag-comment">
                             <b>
-                                {notisficationFromApi.project_likes[0].user
-                                    .first_name +
+                                {otherUserLike.user.first_name +
                                     ' ' +
-                                    notisficationFromApi.project_likes[0].user
-                                        .last_name}
+                                    otherUserLike.user.last_name}
                             </b>{' '}
                             liked the project{' '}
-                            <Link to={`/posts/${notisficationFromApi.id}`}>
+                            <Link
+                                to={`/posts/${notisficationFromApi.id}`}
+                                style={{ color: '#4F4F4F' }}
+                            >
                                 <b>{notisficationFromApi.title}</b>
                             </Link>
                         </p>
                     ),
-                    time: 'yes to be added',
+                    time: findTimeDiffString(otherUserLike.liked_at),
                 }
             }
             case 'team_invitations': {
                 return {
                     id: notisficationFromApi.team.id,
-                    img: 'yet to be added',
+                    img: notisficationFromApi.team.team_members[0].user.avatar,
                     type: 'team_invitations',
                     comment: (
                         <p className="notifications-tag-comment">
-                            you are invited to team{' '}
+                            <b>
+                                {notisficationFromApi.team.team_members[0].user
+                                    .first_name +
+                                    ' ' +
+                                    notisficationFromApi.team.team_members[0]
+                                        .user.last_name}
+                            </b>{' '}
+                            invited you to team{' '}
                             <b>{notisficationFromApi.team.name}</b>
                         </p>
                     ),
-                    time: 'yes to be added',
+                    time: findTimeDiffString(notisficationFromApi.invited_at),
                 }
             }
         }
@@ -99,7 +129,9 @@ function NotificationTag(props: any) {
     useEffect(() => {
         const uiMappedNotisficationData = mapApiNotisficationDataToUiData(
             props.notisfication,
-            props.notisfication_type
+            props.notisfication_type,
+            props.ownId,
+            Link
         )
         setState(uiMappedNotisficationData)
     }, [])
