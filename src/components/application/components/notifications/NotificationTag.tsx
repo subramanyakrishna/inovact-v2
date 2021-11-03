@@ -27,7 +27,6 @@ function NotificationTag(props: any) {
                     id: notisficationFromApi.user1,
                     img: notisficationFromApi.user.avatar,
                     type: 'connectionsByUser2',
-                    isCurrUserNotisfication: false,
                     comment: (
                         <p className="notifications-tag-comment">
                             <b>
@@ -59,7 +58,6 @@ function NotificationTag(props: any) {
                     id: -1,
                     img: 'yet to be added',
                     type: 'thoughts',
-                    isCurrUserNotisfication: false,
                     comment: (
                         <p className="notifications-tag-comment">
                             Yet to be added thoughts
@@ -68,27 +66,21 @@ function NotificationTag(props: any) {
                     time: 'yes to be added',
                 }
             case 'projects': {
-                const isCurrUserLike =
-                    notisficationFromApi.project_likes[0].user.id === ownId &&
-                    notisficationFromApi.project_likes.length === 1
-                let otherUserLike = notisficationFromApi.project_likes.find(
-                    (like: any) => like.user.id !== ownId
-                )
-                if (!otherUserLike) {
-                    otherUserLike = notisficationFromApi.project_likes[0]
-                }
                 return {
                     id: notisficationFromApi.id,
-                    img: otherUserLike.user.avatar,
+                    img: notisficationFromApi.project_likes[0].user.avatar,
                     type: 'projects',
-                    isCurrUserNotisfication: isCurrUserLike,
                     comment: (
                         <p className="notifications-tag-comment">
                             <b>
-                                {otherUserLike.user.first_name +
+                                {notisficationFromApi.project_likes[0].user
+                                    .first_name +
                                     ' ' +
-                                    otherUserLike.user.last_name}
+                                    notisficationFromApi.project_likes[0].user
+                                        .last_name}
                             </b>{' '}
+                            {notisficationFromApi.project_likes.length > 1 &&
+                                `other ${notisficationFromApi.project_likes.length}`}
                             liked the project{' '}
                             <Link
                                 to={`/posts/${notisficationFromApi.id}`}
@@ -98,7 +90,9 @@ function NotificationTag(props: any) {
                             </Link>
                         </p>
                     ),
-                    time: findTimeDiffString(otherUserLike.liked_at),
+                    time: findTimeDiffString(
+                        notisficationFromApi.project_likes[0].liked_at
+                    ),
                 }
             }
             case 'team_invitations': {
