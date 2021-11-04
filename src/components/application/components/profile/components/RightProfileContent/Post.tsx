@@ -58,7 +58,7 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
     const [showComments, setShowComments] = useState(false);
     const [showPostOptions, setShowPostOptions] = useState(false);
     
-    
+
     
     const sharePost =()=>{
         setShowShareOption(!showShareOption);
@@ -114,8 +114,9 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
     useEffect(()=>{
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        if((post.likes.some((like: any)=>like.id!==user_id))){         
-            setLikedPost(true);
+        console.log(post.likes);
+        if (post.likes?.some((like: any) => like.user?.id === user_id)) {
+            setLikedPost(true)
         }
     },[])
     return (
@@ -136,7 +137,8 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                             <h1 className="post__author__text__name">{post.author}</h1>
                                 <div className="post__author__text__bottom">
                                     <p className="post__author__text__time text-color--green text-size--small">
-                                        {post.role[0].toUpperCase()+post.role.slice(1)}
+                                        {post.role &&
+                                        post.role[0].toUpperCase()+post.role.slice(1)}
                                     </p>
                                 </div>
                                 

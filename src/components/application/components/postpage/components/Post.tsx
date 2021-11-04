@@ -103,7 +103,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
         console.log(post)
         setLikes(post.numLikes)
-        if (post.likes?.some((like: any) => like.id !== user_id)) {
+        if (post.likes?.some((like: any) => like.user.id === user_id)) {
             setLikedPost(true)
         }
     }, [post])

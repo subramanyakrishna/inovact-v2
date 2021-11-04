@@ -107,7 +107,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     useEffect(() => {
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        if (post.likes.some((like: any) => like.id !== user_id)) {
+        console.log(post.likes);
+        if (post.likes.some((like: any) => like.user.id === user_id)) {
             setLikedPost(true)
         }
     }, [])

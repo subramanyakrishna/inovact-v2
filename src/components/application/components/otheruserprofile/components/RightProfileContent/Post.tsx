@@ -104,8 +104,8 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
     useEffect(()=>{
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        if((post.likes?.some((like: any)=>like.id!==user_id))){         
-            setLikedPost(true);
+        if (post.likes?.some((like: any) => like.user?.id === user_id)) {
+            setLikedPost(true)
         }
     },[])
     return (
@@ -203,7 +203,7 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
                             }
                         }}
                     />
-                        <p className="post__footer__likes__num">{post.numLikes}</p>
+                        <p className="post__footer__likes__num">{likes}</p>
                     </div>
                     <div className="post__footer__comments">
                         <img src={comment} alt="" onClick={toggleShowComments}/>
