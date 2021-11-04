@@ -193,11 +193,13 @@
                 background-color: $color-white;
                 transform: translateY(-100%);
                 width: 300px;
+                // height: 300px;
                 padding: 20px;
-                z-index: 800;
+                overflow-y: scroll;
+                z-index: 900;
                 border-radius: 10px;
+                transform: translate(-70%,-100%);
                 @include respond(md){
-                    transform: translate(-70%,-100%);
                     box-shadow: 1px 5px 26px -7px rgba(0,0,0,0.75);
                 }
                 &-heading{
@@ -216,6 +218,7 @@
                 &-teams-and-users{
                     display: flex;
                     flex-direction: column;
+                    height: 300px;
                     overflow-y: scroll;
                 }
                 &-sharebtn{

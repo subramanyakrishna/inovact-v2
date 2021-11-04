@@ -431,6 +431,7 @@ function Feed() {
                 likes: post.project_likes,
                 team: post.team,
                 project_status: post.status,
+                comments: post.project_comments,
                 avatar: post.user.avatar,
                 author: post.user.first_name + ' ' + post.user.last_name,
                 tags: post.project_tags.map((tag: any) => {
@@ -456,6 +457,7 @@ function Feed() {
                 type: 2,
                 likes: post.idea_likes,
                 avatar: post.user.avatar,
+                comments: post.idea_comments,
                 author: post.user.first_name + ' ' + post.user.last_name,
                 tags: post.idea_tags.map((tag: any) => {
                     return tag.hashtag.name
@@ -483,6 +485,7 @@ function Feed() {
                 likes: thought.thought_likes,
                 time: convertDate(thought.created_at),
                 created_at: thought.created_at,
+                comments: thought.thought_comments,
                 description: thought.thought,
                 numLikes: thought.thought_likes.length,
                 numComments: thought.thought_comments.length,
