@@ -7,6 +7,58 @@ import NotificationTag from './NotificationTag'
 function Notifications() {
     const [allNotisfication, setAllNotisfication] = useState<any>({})
     const [isLoad, setIsLoad] = useState<boolean>(true)
+    const [allnotisfication, setallnotisfication] = useState<any>({})
+
+    const getRemovedCurrentUserFromLikeProperty = (
+        notif: any,
+        like_type: string,
+        ownId: number
+    ) => {
+        let likes = notif[like_type]
+        let likesWithoutCurrUser = likes.filter(
+            (like: any) => like.user.id !== ownId
+        )
+        return likesWithoutCurrUser
+    }
+
+    const getNotificationTypePropertyAdded = (allnotifications: any) => {
+        let newNotisfications: any = []
+        ;[
+            'connectionsByUser2',
+            'ideas',
+            'projects',
+            'team_invitations',
+            'thoughts',
+        ].forEach((notif_type: string) => {
+            newNotisfications[notif_type] = allnotifications[notif_type].map(
+                (notif: any) => ({ type: notif_type, ...notif })
+            )
+        })
+        return newNotisfications
+    }
+
+    const getRemovedCurrentUserNotifications = (
+        post_notifs: any,
+        post_type: string
+    ) => {
+        let like_type: any = { projects: 'project_likes', ideas: 'idea_likes' }
+        let newPostNotifs: any = []
+        post_notifs.forEach((notif: any) => {
+            let post_notifs_without_curruser =
+                getRemovedCurrentUserFromLikeProperty(
+                    notif,
+                    like_type[post_type],
+                    ownId
+                )
+            if (post_notifs_without_curruser.length !== 0) {
+                newPostNotifs.push({
+                    ...notif,
+                    project_likes: post_notifs_without_curruser,
+                })
+            }
+        })
+        return newPostNotifs
+    }
 
     const ownId = useSelector((state: any) => state.userInfo.id)
     useEffect(() => {
@@ -14,30 +66,38 @@ function Notifications() {
             try {
                 const res = await makeApiCall('get', 'notifications')
                 var responseWihtoutRemovingCurrentUser = res.data.data.user[0]
-                var project_notifs =
-                    responseWihtoutRemovingCurrentUser['projects']
-                let newProjectNotif: any = []
-                project_notifs.forEach((notif: any) => {
-                    let project_likes = notif.project_likes
-                    let project_likes_without_curruser = project_likes.filter(
-                        (like: any) => like.user.id !== ownId
+
+                responseWihtoutRemovingCurrentUser['projects'] =
+                    getRemovedCurrentUserNotifications(
+                        responseWihtoutRemovingCurrentUser['projects'],
+                        'projects'
                     )
-                    console.log(
-                        'project_likes_without_curruser',
-                        project_likes_without_curruser
+                responseWihtoutRemovingCurrentUser['ideas'] =
+                    getRemovedCurrentUserNotifications(
+                        responseWihtoutRemovingCurrentUser['ideas'],
+                        'ideas'
                     )
-                    console.log('ownId', ownId)
-                    if (project_likes_without_curruser.length !== 0) {
-                        newProjectNotif.push({
-                            ...notif,
-                            project_likes: project_likes_without_curruser,
-                        })
-                    }
-                })
-                responseWihtoutRemovingCurrentUser['projects'] = newProjectNotif
                 setAllNotisfication(responseWihtoutRemovingCurrentUser)
                 console.log(responseWihtoutRemovingCurrentUser)
-
+                let filteredAllNotisfications =
+                    getNotificationTypePropertyAdded(
+                        responseWihtoutRemovingCurrentUser
+                    )
+                console.log(
+                    'responseWihtoutRemovingCurrentUser',
+                    responseWihtoutRemovingCurrentUser
+                )
+                console.log(
+                    'filteredAllNotisfications',
+                    filteredAllNotisfications
+                )
+                setallnotisfication([
+                    ...filteredAllNotisfications['connectionsByUser2'],
+                    ...filteredAllNotisfications['ideas'],
+                    ...filteredAllNotisfications['projects'],
+                    ...filteredAllNotisfications['team_invitations'],
+                    ...filteredAllNotisfications['thoughts'],
+                ])
                 setIsLoad(false)
             } catch (err) {
                 console.log(err)
@@ -48,7 +108,7 @@ function Notifications() {
     return (
         <div className="notifications-main">
             {isLoad && <Spinner />}
-            {!isLoad &&
+            {/* {!isLoad &&
                 [
                     'connectionsByUser2',
                     'ideas',
@@ -70,6 +130,17 @@ function Notifications() {
                             )
                         })
                     }
+                })} */}
+            {!isLoad &&
+                allnotisfication.map((notisfication: any) => {
+                    return (
+                        <NotificationTag
+                            key={Math.round(Math.random() * 10000)}
+                            notisfication={notisfication}
+                            notisfication_type={notisfication.type}
+                            ownId={ownId}
+                        />
+                    )
                 })}
         </div>
     )
