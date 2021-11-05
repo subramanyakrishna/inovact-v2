@@ -32,6 +32,8 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
           membersCount: 122
         }
       ];
+      const userTeams = useSelector((state: any)=>state.teams.teams);
+    const peopleYouMayKnow = useSelector((state: any)=>state.peopleYouMayKnow);
       const usersData = [
         {
             img:
@@ -104,8 +106,8 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
     useEffect(()=>{
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        if((post.likes?.some((like: any)=>like.id!==user_id))){         
-            setLikedPost(true);
+        if (post.likes?.some((like: any) => like.user?.id === user_id)) {
+            setLikedPost(true)
         }
     },[])
     return (
@@ -203,7 +205,7 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
                             }
                         }}
                     />
-                        <p className="post__footer__likes__num">{post.numLikes}</p>
+                        <p className="post__footer__likes__num">{likes}</p>
                     </div>
                     <div className="post__footer__comments">
                         <img src={comment} alt="" onClick={toggleShowComments}/>
@@ -222,30 +224,25 @@ function Post({ post, openTeamMember, viewEditProject, openRequestJoin }: any) {
                                     onClick={toggleShowUsers}>Users</span>
                                 </div>
                                 <div className="post__footer__share_to-teams-and-users">
-                                {
-                                    showTeams &&
-                                    teamsData.map((team: any) =>    {
+                                {showTeams &&
+                                    userTeams.map((team: any) => {
                                         return (
                                             <TeamTag
-                                            img={team.img}
-                                            teamName={team.name}
-                                            membersCount={team.membersCount}
+                                                img={team.avatar}
+                                                teamName={team.name}
+                                                membersCount={team.team_members.length}
                                             />
-                                        );
-                                    })
-                                }
-                                {
-                                    !showTeams &&
-                                    usersData.map((user:any)=>{
+                                        )
+                                    })}
+                                {!showTeams &&
+                                    peopleYouMayKnow.map((user: any) => {
                                         return (
                                             <UserTag
-                                                img={user.img}
+                                                img={user.image}
                                                 name={user.name}
                                             />
-                                        );
-                                    })
-                                    
-                                }
+                                        )
+                                    })}
                                 </div>
                                 <button className="post__footer__share_to-sharebtn">Send</button>
                             </div>

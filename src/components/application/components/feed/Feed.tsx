@@ -188,6 +188,7 @@ function Feed() {
             body: null,
             onSuccess: (data: any) => {
                 console.log('The thoughts fetched are: ', data.data.thoughts)
+                handleAllThoughts("all-thoughts", data.data.thoughts);
                 const finalData = data.data.thoughts.map((thought: any) => {
                     return {
                         user_id: thought.user.id,
@@ -208,7 +209,6 @@ function Feed() {
                     }
                 })
                 setThoughts([...finalData])
-                handleAllThoughts('all-thoughts', finalData)
             },
         })
     const { doRequest: getAllTags, errors: tagErrors } = useRequests({
@@ -419,75 +419,79 @@ function Feed() {
     }
     const [uploadingPost, setUploadingPost] = useState(false);
     useEffect(()=>{
-        // setPosts([
-        //     ...allPosts?.map((post: any) => ({
-        //         user_id: post.user?.id,
-        //         id: post.id,
-        //         team_id: post.team_id,
-        //         title: post.title,
-        //         description: post.description,
-        //         role: post.user.role,
-        //         type: 1,
-        //         likes: post.project_likes,
-        //         team: post.team,
-        //         project_status: post.status,
-        //         avatar: post.user.avatar,
-        //         author: post.user.first_name + ' ' + post.user.last_name,
-        //         tags: post.project_tags.map((tag: any) => {
-        //             return tag.hashtag.name
-        //         }),
-        //         images: post.project_documents.map((image: any) => {
-        //             return image.url
-        //         }),
-        //         time: convertDate(post.created_at),
-        //         created_at: post.created_at,
-        //         numLikes: post.project_likes.length,
-        //         numComments: post.project_comments.length,
-        //     })),
-        // ])
-        // setIdeas([
-        //     ...allIdeas?.map((post: any) => ({
-        //         user_id: post.user.id,
-        //         id: post.id,
-        //         team_id: post.team_id,
-        //         title: post.title,
-        //         description: post.description,
-        //         role: post.user.role,
-        //         type: 2,
-        //         likes: post.idea_likes,
-        //         avatar: post.user.avatar,
-        //         author: post.user.first_name + ' ' + post.user.last_name,
-        //         tags: post.idea_tags.map((tag: any) => {
-        //             return tag.hashtag.name
-        //         }),
-        //         images: post.idea_documents.map((image: any) => {
-        //             return image.url
-        //         }),
-        //         time: convertDate(post.created_at),
-        //         created_at: post.created_at,
-        //         numLikes: post.idea_likes.length,
-        //         numComments: post.idea_comments.length,
-        //     })),
-        // ])
-        // const finalData = allThoughts?.map((thought: any) => {
-        //     return {
-        //         user_id: thought.user?.id,
-        //         id: thought.id,
-        //         type: 3,
-        //         avatar: thought.user.avatar,
-        //         author:
-        //             thought.user.first_name +
-        //             ' ' +
-        //             thought.user.last_name,
-        //         likes: thought.thought_likes,
-        //         time: convertDate(thought.created_at),
-        //         created_at: thought.created_at,
-        //         description: thought.thought,
-        //         numLikes: thought.thought_likes.length,
-        //         numComments: thought.thought_comments.length,
-        //     }
-        // })
-        // setThoughts([...finalData])
+        setPosts([
+            ...allPosts?.map((post: any) => ({
+                user_id: post.user?.id,
+                id: post.id,
+                team_id: post.team_id,
+                title: post.title,
+                description: post.description,
+                role: post.user.role,
+                type: 1,
+                likes: post.project_likes,
+                team: post.team,
+                project_status: post.status,
+                comments: post.project_comments,
+                avatar: post.user.avatar,
+                author: post.user.first_name + ' ' + post.user.last_name,
+                tags: post.project_tags.map((tag: any) => {
+                    return tag.hashtag.name
+                }),
+                images: post.project_documents.map((image: any) => {
+                    return image.url
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: post.project_likes.length,
+                numComments: post.project_comments.length,
+            })),
+        ])
+        setIdeas([
+            ...allIdeas?.map((post: any) => ({
+                user_id: post.user.id,
+                id: post.id,
+                team_id: post.team_id,
+                title: post.title,
+                description: post.description,
+                role: post.user.role,
+                type: 2,
+                likes: post.idea_likes,
+                avatar: post.user.avatar,
+                comments: post.idea_comments,
+                author: post.user.first_name + ' ' + post.user.last_name,
+                tags: post.idea_tags.map((tag: any) => {
+                    return tag.hashtag.name
+                }),
+                images: post.idea_documents.map((image: any) => {
+                    return image.url
+                }),
+                time: convertDate(post.created_at),
+                created_at: post.created_at,
+                numLikes: post.idea_likes.length,
+                numComments: post.idea_comments.length,
+            })),
+        ])
+        const finalData = allThoughts?.map((thought: any) => {
+            console.log("this is a single thought: ", thought);
+            return {
+                user_id: thought.user?.id,
+                id: thought.id,
+                type: 3,
+                avatar: thought.user?.avatar,
+                author:
+                    thought.user.first_name +
+                    ' ' +
+                    thought.user.last_name,
+                likes: thought.thought_likes,
+                time: convertDate(thought.created_at),
+                created_at: thought.created_at,
+                comments: thought.thought_comments,
+                description: thought.thought,
+                numLikes: thought.thought_likes.length,
+                numComments: thought.thought_comments.length,
+            }
+        })
+        setThoughts([...finalData])
     },[allPosts,allIdeas,allThoughts])
     return (
         <div>
