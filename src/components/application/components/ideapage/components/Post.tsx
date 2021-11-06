@@ -34,6 +34,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             membersCount: 122,
         },
     ]
+    const userTeams = useSelector((state: any)=>state.teams.teams);
+    const peopleYouMayKnow = useSelector((state: any)=>state.peopleYouMayKnow);
     const usersData = [
         {
             img: 'https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg',
@@ -97,7 +99,7 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
         // console.log(post.likes);
         // console.log(post.likes.some((like: any)=>like.id!==user_id));
         setLikes(post.numLikes)
-        if (post.likes.some((like: any) => like.id !== user_id)) {
+        if (post.likes?.some((like: any) => like.user.id === user_id)) {
             setLikedPost(true)
         }
     }, [])
@@ -267,21 +269,21 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 </span>
                             </div>
                             <div className="post__footer__share_to-teams-and-users">
-                                {showTeams &&
-                                    teamsData.map((team: any) => {
+                            {showTeams &&
+                                    userTeams.map((team: any) => {
                                         return (
                                             <TeamTag
-                                                img={team.img}
+                                                img={team.avatar}
                                                 teamName={team.name}
-                                                membersCount={team.membersCount}
+                                                membersCount={team.team_members.length}
                                             />
                                         )
                                     })}
                                 {!showTeams &&
-                                    usersData.map((user: any) => {
+                                    peopleYouMayKnow.map((user: any) => {
                                         return (
                                             <UserTag
-                                                img={user.img}
+                                                img={user.image}
                                                 name={user.name}
                                             />
                                         )

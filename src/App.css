@@ -1973,11 +1973,12 @@ body {
         transform: translateY(-100%);
         width: 300px;
         padding: 20px;
-        z-index: 800;
-        border-radius: 10px; }
+        overflow-y: scroll;
+        z-index: 900;
+        border-radius: 10px;
+        transform: translate(-70%, -100%); }
         @media only screen and (max-width: 62em) {
           .post__footer__share_to {
-            transform: translate(-70%, -100%);
             box-shadow: 1px 5px 26px -7px rgba(0, 0, 0, 0.75); } }
         .post__footer__share_to-heading {
           font-size: larger;
@@ -1992,6 +1993,7 @@ body {
         .post__footer__share_to-teams-and-users {
           display: flex;
           flex-direction: column;
+          height: 300px;
           overflow-y: scroll; }
         .post__footer__share_to-sharebtn {
           float: right;
@@ -4016,6 +4018,10 @@ input, textarea:focus {
     overflow: hidden;
     margin: 10px;
     border-radius: 50%; }
+    .team-tag-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
   .team-tag-content {
     display: flex;
     flex-direction: column;

@@ -56,7 +56,8 @@ function Profile() {
         onSuccess: (data: any) => {
             console.log('This is profile ideas', data)
             data.data.idea.reverse()
-            handleAllUserIdeas('all-user-ideas', [
+            handleAllUserIdeas('all-user-ideas', data.data.idea)
+            const finalData = [
                 ...data.data.idea.map((post: any) => ({
                     user_id: post.user.id,
                     id: post.id,
@@ -80,7 +81,8 @@ function Profile() {
                     numLikes: post.idea_likes.length,
                     numComments: post.idea_comments.length,
                 })),
-            ])
+            ]
+            setUserIdeas([...finalData])
         },
     })
     const { doRequest: getUserInfo, errors: userInfoErrors } = useRequests({
@@ -98,6 +100,7 @@ function Profile() {
         onSuccess: (data: any) => {
             console.log('This is profile projects', data)
             data.data.project.reverse()
+            handleAllUserProject('all-user-projects', data.data.project)
             const finalData = data.data.project.map((post: any) => ({
                 user_id: post.user.id,
                 id: post.id,
@@ -124,7 +127,7 @@ function Profile() {
                 numComments: post.project_comments.length,
             }))
             console.log('This is the final user projects: ', finalData)
-            handleAllUserProject('all-user-projects', finalData)
+            setUserProjects([...finalData])
         },
     })
     const { doRequest: getUserThoughts, errors: thoughtErrors } = useRequests({
@@ -133,6 +136,7 @@ function Profile() {
         body: null,
         onSuccess: (data: any) => {
             console.log('This is profile thoughts', data)
+            handleAllUserThoughts('all-user-thoughts', data.data.thoughts)
             data.data.thoughts.reverse()
             const finalData = data.data.thoughts.map((thought: any) => ({
                 user_id: thought.user.id,
@@ -150,10 +154,9 @@ function Profile() {
                 numComments: thought.thought_comments.length,
             }))
             console.log('This is the final user thoughts: ', finalData)
-            handleAllUserThoughts('all-user-thoughts', finalData)
+            setUserThoughts([...finalData])
         },
     })
-
     const [showLeft, setShowLeft] = useState(true)
     const [showRight, setShowRight] = useState(true)
     const [showAbout, setShowAbout] = useState(false)
@@ -353,8 +356,8 @@ function Profile() {
                         <div className="profile--content-right">
                             {isLoading && <Spinner />}
                             {showIdeas &&
-                                userAllIdeas.length !== 0 &&
-                                userAllIdeas.map((post: any, idx: any) => {
+                                userIdeas.length !== 0 &&
+                                userIdeas.map((post: any, idx: any) => {
                                     return (
                                         <Post
                                             key={idx}
@@ -364,15 +367,15 @@ function Profile() {
                                         />
                                     )
                                 })}
-                            {showIdeas && userAllIdeas.length === 0 && (
+                            {showIdeas && userIdeas.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="ideas" />
                                     <PeopleYouMayKnow />
                                 </div>
                             )}
                             {showProjects &&
-                                userAllProjects.length !== 0 &&
-                                userAllProjects.map((post: any, idx: any) => {
+                                userProjects.length !== 0 &&
+                                userProjects.map((post: any, idx: any) => {
                                     return (
                                         <Post
                                             key={idx}
@@ -383,15 +386,15 @@ function Profile() {
                                         />
                                     )
                                 })}
-                            {showProjects && userAllProjects.length === 0 && (
+                            {showProjects && userProjects.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="projects" />
                                     <PeopleYouMayKnow />
                                 </div>
                             )}
                             {showThoughts &&
-                                userAllThoughts.length !== 0 &&
-                                userAllThoughts.map((post: any, idx: any) => {
+                                userThoughts.length !== 0 &&
+                                userThoughts.map((post: any, idx: any) => {
                                     return (
                                         <Post
                                             key={idx}
@@ -401,7 +404,7 @@ function Profile() {
                                         />
                                     )
                                 })}
-                            {showThoughts && userAllThoughts.length === 0 && (
+                            {showThoughts && userThoughts.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="thoughts" />
                                     <PeopleYouMayKnow />
@@ -414,5 +417,4 @@ function Profile() {
         </div>
     )
 }
-
 export default Profile

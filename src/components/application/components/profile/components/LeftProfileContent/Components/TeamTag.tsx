@@ -2,7 +2,7 @@ function TeamTag(props: any) {
     return (
       <div className="team-tag">
         <div className="team-tag-img-container">
-          <img src={props.image} alt="img" />
+          <img src={props.img} alt="img" />
         </div>
         <div className="team-tag-content">
           <span className="team-tag-content-name">{props.teamName}</span>
