@@ -122,6 +122,7 @@ const mapApiNotisficationDataToUiData = (
                 id: notisficationFromApi.team.id,
                 img: notisficationFromApi.team.team_members[0].user.avatar,
                 type: 'team_invitations',
+                invitation_id: notisficationFromApi.id,
                 comment: (
                     <p className="notifications-tag-comment">
                         <b>

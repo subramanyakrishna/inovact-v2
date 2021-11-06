@@ -74,8 +74,8 @@ function Notifications() {
         ;(async () => {
             try {
                 const res = await makeApiCall('get', 'notifications')
-                var responseWihtoutRemovingCurrentUser = res.data.data.user[0]
 
+                var responseWihtoutRemovingCurrentUser = res.data.data.user[0]
                 responseWihtoutRemovingCurrentUser['projects'] =
                     getRemovedCurrentUserNotifications(
                         responseWihtoutRemovingCurrentUser['projects'],
@@ -86,8 +86,11 @@ function Notifications() {
                         responseWihtoutRemovingCurrentUser['ideas'],
                         'ideas'
                     )
+                console.log(
+                    'responseWihtoutRemovingCurrentUser',
+                    responseWihtoutRemovingCurrentUser
+                )
                 setAllNotisfication(responseWihtoutRemovingCurrentUser)
-                console.log(responseWihtoutRemovingCurrentUser)
                 let filteredAllNotisfications =
                     getNotificationTypePropertyAdded(
                         responseWihtoutRemovingCurrentUser
@@ -143,6 +146,7 @@ function Notifications() {
             {isLoad && <Spinner />}
 
             {!isLoad &&
+                allnotification.length &&
                 allnotification.map((notification: any) => {
                     return (
                         <NotificationTag
@@ -152,6 +156,7 @@ function Notifications() {
                         />
                     )
                 })}
+            {!isLoad && allnotification.length === 0 && 'No Notifications'}
         </div>
     )
 }

@@ -13,6 +13,7 @@ function RightNetworkStats() {
     const my_connnections_complete = useSelector(
         (state: any) => state.connections.my_connnections_complete
     )
+
     useEffect(() => {
         setTotalConnections(my_connections.length)
         const mentorsCount = my_connections.filter(
