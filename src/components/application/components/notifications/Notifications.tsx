@@ -3,11 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import makeApiCall from '../settings/makeApiCall'
 import NotificationTag from './NotificationTag'
+import { mapApiNotisficationDataToUiData } from './NotisficationUtils'
+import { Link, useHistory } from 'react-router-dom'
 
 function Notifications() {
     const [allNotisfication, setAllNotisfication] = useState<any>({})
     const [isLoad, setIsLoad] = useState<boolean>(true)
-    const [allnotisfication, setallnotisfication] = useState<any>({})
+    const [allnotification, setallnotification] = useState<any>({})
+    const history = useHistory()
+    const ownId = useSelector((state: any) => state.userInfo.id)
 
     const getRemovedCurrentUserFromLikeProperty = (
         notif: any,
@@ -36,7 +40,13 @@ function Notifications() {
         })
         return newNotisfications
     }
-
+    const deleteNotisfication = (id: number, type: string) => {
+        setallnotification(
+            allnotification.filter(
+                (notif: any) => notif.id !== id || notif.type !== type
+            )
+        )
+    }
     const getRemovedCurrentUserNotifications = (
         post_notifs: any,
         post_type: string
@@ -60,7 +70,6 @@ function Notifications() {
         return newPostNotifs
     }
 
-    const ownId = useSelector((state: any) => state.userInfo.id)
     useEffect(() => {
         ;(async () => {
             try {
@@ -91,13 +100,24 @@ function Notifications() {
                     'filteredAllNotisfications',
                     filteredAllNotisfications
                 )
-                setallnotisfication([
+                const notificationsWithoutUiMappedData = [
                     ...filteredAllNotisfications['connectionsByUser2'],
                     ...filteredAllNotisfications['ideas'],
                     ...filteredAllNotisfications['projects'],
                     ...filteredAllNotisfications['team_invitations'],
                     ...filteredAllNotisfications['thoughts'],
-                ])
+                ]
+                const uiMappedNotification =
+                    notificationsWithoutUiMappedData.map((notif: any) =>
+                        mapApiNotisficationDataToUiData(
+                            notif,
+                            notif.type,
+                            Link,
+                            goToProfile,
+                            goToTeam
+                        )
+                    )
+                setallnotification(uiMappedNotification)
                 setIsLoad(false)
             } catch (err) {
                 console.log(err)
@@ -105,40 +125,30 @@ function Notifications() {
         })()
     }, [])
 
+    const goToProfile = (id: string) => {
+        localStorage.setItem('other-user', id)
+        console.log('other-user', id)
+
+        history.push('/app/otherprofile')
+    }
+    const goToTeam = (teamid: string, userId: string) => {
+        console.log('teamid:', teamid, 'userId:', userId)
+        localStorage.setItem('other-user-selected-team-id', teamid)
+        localStorage.setItem('other-user', userId)
+
+        history.push('/app/otherteams')
+    }
     return (
         <div className="notifications-main">
             {isLoad && <Spinner />}
-            {/* {!isLoad &&
-                [
-                    'connectionsByUser2',
-                    'ideas',
-                    'projects',
-                    'team_invitations',
-                    'thoughts',
-                ].map((notisfication_type: string) => {
-                    const eachNotification =
-                        allNotisfication[notisfication_type]
-                    if (eachNotification) {
-                        return eachNotification.map((notisfication: any) => {
-                            return (
-                                <NotificationTag
-                                    key={Math.round(Math.random() * 10000)}
-                                    notisfication={notisfication}
-                                    notisfication_type={notisfication_type}
-                                    ownId={ownId}
-                                />
-                            )
-                        })
-                    }
-                })} */}
+
             {!isLoad &&
-                allnotisfication.map((notisfication: any) => {
+                allnotification.map((notification: any) => {
                     return (
                         <NotificationTag
                             key={Math.round(Math.random() * 10000)}
-                            notisfication={notisfication}
-                            notisfication_type={notisfication.type}
-                            ownId={ownId}
+                            notification={notification}
+                            deleteNotisfication={deleteNotisfication}
                         />
                     )
                 })}

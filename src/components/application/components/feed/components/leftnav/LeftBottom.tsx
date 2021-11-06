@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     MDBCard,
     MDBCardBody,
@@ -10,13 +10,14 @@ import {
 } from 'mdb-react-ui-kit'
 import create from 'images/feed/create.svg'
 import SmallSpinner from 'components/application/SmallSpinner'
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import Spinner from 'components/application/Spinner'
 
 const LeftBottom = (props: any) => {
     const allTeams = useSelector((state: any) => state.teams.teams)
-    const [imageLoading, setImageLoading] = useState(false)
     const history = useHistory()
+
     return (
         <div className="left-right-nav">
             <MDBCard className="left-right-nav__card">
@@ -38,18 +39,28 @@ const LeftBottom = (props: any) => {
                                 </h6>
                             </div>
                         </MDBListGroupItem>
-                        
-                        {allTeams.length == 0 ? <div className="text-align--center">No Teams Yet  </div>:null}
-                        
-                        {allTeams.length > 0 ? (
-                                allTeams.slice(0,5).map((team: any, index: number) => {
+
+                        {allTeams.length == 0 && (
+                            <div className="text-align--center">
+                                No Teams Yet{' '}
+                            </div>
+                        )}
+
+                        {allTeams.length > 0 &&
+                            allTeams
+                                .slice(0, 5)
+                                .map((team: any, index: number) => {
                                     return (
                                         <MDBListGroupItem
                                             className="left-right-nav__card__list__item"
                                             key={index}
                                         >
                                             <img
-                                                src={team.avatar!==""?team.avatar:"https://www.wallstreetpanel.com/wp-content/plugins/profilegrid-user-profiles-groups-and-communities/public/partials/images/default-group.jpg"}
+                                                src={
+                                                    team.avatar !== ''
+                                                        ? team.avatar
+                                                        : 'https://www.wallstreetpanel.com/wp-content/plugins/profilegrid-user-profiles-groups-and-communities/public/partials/images/default-group.jpg'
+                                                }
                                                 alt={team.name}
                                             />
                                             <div className="left-right-nav__card__list__item__info">
@@ -62,14 +73,15 @@ const LeftBottom = (props: any) => {
                                             </div>
                                         </MDBListGroupItem>
                                     )
-                                })
-                        ) : (
-                            <SmallSpinner />
-                        )}
+                                })}
                     </MDBListGroup>
                 </MDBCardBody>
                 <MDBCardFooter className="left-right-nav__card__footer ">
-                <div className="text-color--white" onClick={() => history.push('/app/teams')} style={{ cursor: 'pointer' }} >
+                    <div
+                        className="text-color--white"
+                        onClick={() => history.push('/app/teams')}
+                        style={{ cursor: 'pointer' }}
+                    >
                         View All
                     </div>
                 </MDBCardFooter>

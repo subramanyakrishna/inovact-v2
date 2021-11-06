@@ -43,6 +43,9 @@ function TeamsPartOf(props: any) {
         })()
     }, [userInfo.id])
 
+    const goToOtherTeam = () => {
+        history.push('/app/otherteams')
+    }
     return (
         <div className="dashboard-main">
             <div className="teams-part-of">
@@ -53,16 +56,20 @@ function TeamsPartOf(props: any) {
                 {myTeams.length !== 0 ? (
                     <div className="teams-part-of-all-teams">
                         {' '}
-                        {myTeams.slice(0, 3).map((team: any) => {
+                        {myTeams.slice(0, 3).map((team: any, i: number) => {
                             return (
                                 <TeamTag
+                                    key={i}
                                     img={team.avatar}
                                     teamName={team.name}
                                     membersCount={team.team_members.length}
                                 />
                             )
                         })}
-                        <button className="teams-part-of-view-all-btn">
+                        <button
+                            className="teams-part-of-view-all-btn"
+                            onClick={() => goToOtherTeam()}
+                        >
                             View All
                         </button>
                     </div>

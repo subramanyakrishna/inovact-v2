@@ -20,9 +20,12 @@ const UserTeamsList = (props: any) => {
                     Teams
                 </h6>
             </div>
-            {props.allTeams?.map((team: any) => {
+            {props.allTeams?.map((team: any, i: number) => {
                 return (
-                    <MDBTabs className="flex-column text-center user-team__list">
+                    <MDBTabs
+                        className="flex-column text-center user-team__list"
+                        key={i}
+                    >
                         <MDBTabsItem>
                             <MDBTabsLink
                                 onClick={() =>
@@ -32,8 +35,10 @@ const UserTeamsList = (props: any) => {
                             >
                                 <UserTeam
                                     teamname={team.name}
-                                    avatar={ team.avatar ? team.avatar:
-                                        'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
+                                    avatar={
+                                        team.avatar
+                                            ? team.avatar
+                                            : 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
                                     }
                                 />
                             </MDBTabsLink>
