@@ -32,7 +32,7 @@ function Teams() {
             const userId = localStorage.getItem('other-user')
             await axios({
                 method: 'get',
-                url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/team?user_id=36`,
+                url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/team?user_id=${userId}`,
                 headers: {
                     Authorization: localStorage.getItem('user'),
                 },
@@ -41,7 +41,27 @@ function Teams() {
                     console.log('other user id', userId)
                     console.log('result of api call', resp.data.data.team)
                     setMyTeams(resp.data.data.team)
-                    setVerticalActive(resp.data.data.team[0].id)
+                    console.log(resp.data.data.team)
+                    const teamid = localStorage.getItem(
+                        'other-user-selected-team-id'
+                    )
+                    console.log('teamid', teamid)
+                    console.log(
+                        localStorage.getItem('other-user-selected-team-id')
+                    )
+                    if (teamid !== 'not-assigned') {
+                        console.log(
+                            'setVerticalActive(Number(teamid))',
+                            Number(teamid)
+                        )
+                        setVerticalActive(Number(teamid))
+                    } else {
+                        console.log(
+                            'resp.data.data.team[0].id',
+                            resp.data.data.team[0].id
+                        )
+                        setVerticalActive(resp.data.data.team[0].id)
+                    }
                     setIsload(false)
                 })
                 .catch((err) => {
@@ -54,6 +74,9 @@ function Teams() {
         ;(async () => {
             await getTheUserTeam()
         })()
+        return () => {
+            localStorage.setItem('other-user-selected-team-id', 'not-assigned')
+        }
     }, [])
 
     //Responsive
@@ -117,12 +140,12 @@ function Teams() {
                     </div>
                     {showLeft && (
                         <div className="teams__content__left">
-                            {isLoad && <Spinner />}
-                            {!isLoad && (
-                                <div
-                                    className="teams__content__user-teams"
-                                    onClick={toggleShowOptions}
-                                >
+                            <div
+                                className="teams__content__user-teams"
+                                onClick={toggleShowOptions}
+                            >
+                                {isLoad && <Spinner />}
+                                {!isLoad && (
                                     <UserTeam
                                         allTeams={myTeams}
                                         handleVerticalClick={
@@ -130,8 +153,8 @@ function Teams() {
                                         }
                                         idx={verticalActive}
                                     />
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     )}
 

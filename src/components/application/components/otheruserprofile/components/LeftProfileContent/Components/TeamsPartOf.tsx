@@ -56,9 +56,10 @@ function TeamsPartOf(props: any) {
                 {myTeams.length !== 0 ? (
                     <div className="teams-part-of-all-teams">
                         {' '}
-                        {myTeams.slice(0, 3).map((team: any) => {
+                        {myTeams.slice(0, 3).map((team: any, i: number) => {
                             return (
                                 <TeamTag
+                                    key={i}
                                     img={team.avatar}
                                     teamName={team.name}
                                     membersCount={team.team_members.length}

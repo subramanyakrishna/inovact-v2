@@ -34,6 +34,7 @@ function Teams() {
 
     const [verticalActive, setVerticalActive] = useState(0)
     const [verticalActiveTeam, setVerticalActiveTeam] = useState<any>()
+
     useEffect(() => {
         setVerticalActive(allTeams[0]?.id)
         setVerticalActiveTeam(allTeams[0])
