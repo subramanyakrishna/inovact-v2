@@ -124,7 +124,10 @@ function Teams() {
                 <div>
                     <div className="modal_overlay" onClick={closeModal}></div>
                     {showUploadDocument && (
-                        <UploadDocuments closeModal={closeModal} team_id={verticalActive}/>
+                        <UploadDocuments
+                            closeModal={closeModal}
+                            team_id={verticalActive}
+                        />
                     )}
                     {showMakeAdmin && <MakeAdmin closeModal={closeModal} />}
                     {showShareModal && <ShareModal closeModal={closeModal} />}
@@ -182,40 +185,43 @@ function Teams() {
 
                     {showRight && (
                         <MDBTabsContent className="teams__content__right">
-                          
                             {allTeams &&
                                 allTeams.map((team: any, key: any) => {
                                     return (
                                         <MDBTabsPane
+                                            key={key}
                                             show={verticalActive === team.id}
                                         >
-                                              {allTeams.length == 0 ? (
-                                <div className="">No Teams Yet</div>
-                            ) : (   <div className="teams__content__info">
-                            <div className="teams__content__team-description">
-                                <TeamDescription
-                                    team={team}
-                                />
-                            </div>
-                            <div className="teams__content__team-info">
-                                <TeamInfo
-                                    team={team}
-                                    viewInviteMember={
-                                        viewInviteMember
-                                    }
-                                    viewUploadDocument={
-                                        viewUploadDocument
-                                    }
-                                    viewDeleteMember={
-                                        viewDeleteMember
-                                    }
-                                    viewMakeAdmin={
-                                        viewMakeAdmin
-                                    }
-                                />
-                            </div>
-                        </div>)}
-                                         
+                                            {allTeams.length == 0 ? (
+                                                <div className="">
+                                                    No Teams Yet
+                                                </div>
+                                            ) : (
+                                                <div className="teams__content__info">
+                                                    <div className="teams__content__team-description">
+                                                        <TeamDescription
+                                                            team={team}
+                                                        />
+                                                    </div>
+                                                    <div className="teams__content__team-info">
+                                                        <TeamInfo
+                                                            team={team}
+                                                            viewInviteMember={
+                                                                viewInviteMember
+                                                            }
+                                                            viewUploadDocument={
+                                                                viewUploadDocument
+                                                            }
+                                                            viewDeleteMember={
+                                                                viewDeleteMember
+                                                            }
+                                                            viewMakeAdmin={
+                                                                viewMakeAdmin
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
                                         </MDBTabsPane>
                                     )
                                 })}

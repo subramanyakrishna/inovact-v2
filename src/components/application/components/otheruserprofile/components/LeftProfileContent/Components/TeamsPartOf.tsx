@@ -43,6 +43,9 @@ function TeamsPartOf(props: any) {
         })()
     }, [userInfo.id])
 
+    const goToOtherTeam = () => {
+        history.push('/app/otherteams')
+    }
     return (
         <div className="dashboard-main">
             <div className="teams-part-of">
@@ -62,7 +65,10 @@ function TeamsPartOf(props: any) {
                                 />
                             )
                         })}
-                        <button className="teams-part-of-view-all-btn">
+                        <button
+                            className="teams-part-of-view-all-btn"
+                            onClick={() => goToOtherTeam()}
+                        >
                             View All
                         </button>
                     </div>

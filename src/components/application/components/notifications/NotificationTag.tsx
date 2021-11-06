@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { findTimeDiffString } from '../connections/components/connectionsUtils'
 
 function NotificationTag(props: any) {
@@ -13,11 +13,12 @@ function NotificationTag(props: any) {
             setShowOptions(false)
         }, 500)
     }
-
+    const history = useHistory()
     const mapApiNotisficationDataToUiData = (
         notisficationFromApi: any,
         notisfiation_type: string,
-        Link: any
+        Link: any,
+        goToProfile: any
     ) => {
         switch (notisfiation_type) {
             case 'connectionsByUser2': {
@@ -27,7 +28,11 @@ function NotificationTag(props: any) {
                     type: 'connectionsByUser2',
                     comment: (
                         <p className="notifications-tag-comment">
-                            <b>
+                            <b
+                                onClick={() =>
+                                    goToProfile(notisficationFromApi.user1)
+                                }
+                            >
                                 {notisficationFromApi.user.first_name +
                                     ' ' +
                                     notisficationFromApi.user.last_name}
@@ -148,11 +153,18 @@ function NotificationTag(props: any) {
             }
         }
     }
+    const goToProfile = (id: string) => {
+        localStorage.setItem('other-user', id)
+        console.log('other-user', id)
+
+        history.push('/app/otherprofile')
+    }
     useEffect(() => {
         const uiMappedNotisficationData = mapApiNotisficationDataToUiData(
             props.notisfication,
             props.notisfication_type,
-            Link
+            Link,
+            goToProfile
         )
         setState(uiMappedNotisficationData)
     }, [])
