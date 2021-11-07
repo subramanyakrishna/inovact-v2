@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit'
 import { Field } from 'formik'
 
 //remove this
-const yearOptions = [
-    { value: '1960', label: '1960' },
-    { value: '1961', label: '1961' },
-    { value: '1962', label: '1962' },
-    { value: '1963', label: '1963' },
-    { value: '1964', label: '1964' },
-    { value: '1965', label: '1965' },
-]
+// const yearOptions = [
+//     { value: '1960', label: '1960' },
+//     { value: '1961', label: '1961' },
+//     { value: '1962', label: '1962' },
+//     { value: '1963', label: '1963' },
+//     { value: '1964', label: '1964' },
+//     { value: '1965', label: '1965' },
+// ]
 
 const degrees = [
     { value: '1', label: 'B.E' },
@@ -25,12 +25,37 @@ export default function GeneralForm(props: any) {
     } = props
     const [userDegree, setUserDegree] = useState('')
     const [userYOG, setUserYOG] = useState('')
+    const [yearOptions, setYearOptions] = useState<
+        {
+            value: string
+            label: string
+        }[]
+    >([])
     const handleDegreeChange = (deg: any) => {
         setUserDegree(deg)
+    }
+    const getYearData = () => {
+        let yearData: {
+            value: string
+            label: string
+        }[] = []
+
+        let currentYear = new Date().getFullYear()
+        let earliestYear = 1970
+
+        while (currentYear >= earliestYear) {
+            const currentYearStr = currentYear.toString()
+            yearData.push({ value: currentYearStr, label: currentYearStr })
+            currentYear -= 1
+        }
+        return yearData
     }
     const handleYOGChange = (yog: any) => {
         setUserYOG(yog)
     }
+    useEffect(() => {
+        setYearOptions(getYearData())
+    }, [])
     return (
         <React.Fragment>
             <section className="user-details">
@@ -161,6 +186,7 @@ export default function GeneralForm(props: any) {
                                 </span>
                             </label>
                             <br />
+
                             <Field
                                 className="input-formComponent"
                                 value={userYOG}
