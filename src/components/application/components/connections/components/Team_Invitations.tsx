@@ -1,26 +1,21 @@
 import Spinner from 'components/application/Spinner'
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { makeApiCall } from './connectionsUtils'
 
 const Buttons = (props: any) => {
     const [isAcceptShow, setisAcceptShow] = useState<boolean>(true)
     const [isRejectShow, setisRejectShow] = useState<boolean>(true)
-    const acceptTeamInvitation = async (id: number) => {
+    const acceptTeamInvi = async (id: number) => {
         setisAcceptShow(true)
         setisRejectShow(false)
-        const response = await makeApiCall('post', `team/invite/accept`, {
-            invitation_id: id,
-        })
-        console.log(response)
+        props.acceptTeamInvitation(id)
     }
 
-    const rejectTeamInvitation = async (id: number) => {
+    const rejectTeamInvi = async (id: number) => {
         setisAcceptShow(false)
         setisRejectShow(true)
-        const response = await makeApiCall('post', `team/invite/reject`, {
-            invitation_id: id,
-        })
-        console.log(response)
+        props.rejectTeamInvitation(id)
     }
 
     return (
@@ -29,9 +24,7 @@ const Buttons = (props: any) => {
                 {isAcceptShow && (
                     <button
                         className="connect-button"
-                        onClick={() =>
-                            acceptTeamInvitation(props.invitation.id)
-                        }
+                        onClick={() => acceptTeamInvi(props.invitation.id)}
                     >
                         {isAcceptShow && isRejectShow && 'Accept'}
                         {isAcceptShow && !isRejectShow && 'Accepted'}
@@ -40,9 +33,7 @@ const Buttons = (props: any) => {
                 {isRejectShow && (
                     <button
                         className="connect-button"
-                        onClick={() =>
-                            rejectTeamInvitation(props.invitation.id)
-                        }
+                        onClick={() => rejectTeamInvi(props.invitation.id)}
                     >
                         {isAcceptShow && isRejectShow && 'Reject'}
                         {!isAcceptShow && isRejectShow && 'Rejected'}
@@ -56,7 +47,38 @@ const Buttons = (props: any) => {
 const Team_Invitations = () => {
     const [isLoad, setIsload] = useState<boolean>(true)
     const [allInvitations, setAllInvitations] = useState<any>([])
+    const history = useHistory()
 
+    const goToTeam = (teamid: string, userId: string) => {
+        console.log('teamid:', teamid, 'userId:', userId)
+        localStorage.setItem('other-user-selected-team-id', teamid)
+        localStorage.setItem('other-user', userId)
+
+        history.push('/app/otherteams')
+    }
+    const acceptTeamInvitation = async (id: number) => {
+        const response = await makeApiCall('post', `team/invite/accept`, {
+            invitation_id: id,
+        })
+        console.log(response)
+        setTimeout(() => {
+            setAllInvitations(
+                allInvitations.filter((invitation: any) => invitation.id != id)
+            )
+        }, 1000)
+    }
+
+    const rejectTeamInvitation = async (id: number) => {
+        const response = await makeApiCall('post', `team/invite/reject`, {
+            invitation_id: id,
+        })
+        console.log(response)
+        setTimeout(() => {
+            setAllInvitations(
+                allInvitations.filter((invitation: any) => invitation.id != id)
+            )
+        }, 1000)
+    }
     useEffect(() => {
         ;(async () => {
             const res = await makeApiCall('get', 'notifications')
@@ -105,6 +127,13 @@ const Team_Invitations = () => {
                                     style={{
                                         display: 'flex',
                                     }}
+                                    onClick={() =>
+                                        goToTeam(
+                                            invitation.team.id,
+                                            invitation.team.team_members[0].user
+                                                .id
+                                        )
+                                    }
                                 >
                                     <img
                                         src={
@@ -123,7 +152,11 @@ const Team_Invitations = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Buttons invitation={invitation} />
+                            <Buttons
+                                invitation={invitation}
+                                acceptTeamInvitation={acceptTeamInvitation}
+                                rejectTeamInvitation={rejectTeamInvitation}
+                            />
                         </div>
                     )
                 })}
