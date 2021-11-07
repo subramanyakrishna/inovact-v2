@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CommentReplyTag from './CommentReplyTag';
 
 function CommentMainContent(props: any) {
@@ -38,16 +40,36 @@ function CommentMainContent(props: any) {
             comment: "Project dA fermentum posuere tellus leo bibendum nibh. sed Sed commodo ",
         },
     ]
+    const commentDate = new Date(props.comment?.created_at);
+    const user_id = useSelector((state: any)=> state.userInfo.id);
     console.log(props);
     return (
         <div className="comments-on-posts-contents">
                     <div className="comments-on-posts-img-container">
-                        <img src={props.comment?.user?.avatar} alt="user"/>
+                        {
+                            props.comment?.user?.id === user_id ?
+                            <img src={props.comment?.user?.avatar} alt="user"/>:
+                            <Link
+                                    to="/app/otherprofile"
+                                    onClick={() => {
+                                        console.log(
+                                            'to="/app/otherprofile"',
+                                            props.comment.user.id
+                                        )
+                                        localStorage.setItem(
+                                            'other-user',
+                                            props.comment.user.id
+                                        )
+                                    }}
+                            >
+                                <img src={props.comment?.user?.avatar} alt="user"/>
+                            </Link>
+                        }
                     </div>
                     <div className="comments-on-posts-main-comment-container">
                         <div>
                             <p className="comments-on-posts-user-name">{props.comment?.user?.first_name} {props.comment?.user?.last_name}</p>
-                            <p className="comments-on-posts-comment-time">10:20 pm</p>
+                            <p className="comments-on-posts-comment-time">{commentDate.getDate()+"-"+commentDate.getMonth()+"-"+commentDate.getFullYear()}</p>
                         </div>
                         <div className="comments-on-posts-comment-contents">
                             <div className="comments-on-posts-comment">

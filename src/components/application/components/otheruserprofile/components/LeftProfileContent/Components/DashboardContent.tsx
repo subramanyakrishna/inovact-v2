@@ -2,9 +2,12 @@ import React from 'react'
 import PercentageGrowth from './PercentageGrowth';
 import ConnectMessageBtn from 'components/application/components/otheruserprofile/components/LeftProfileContent/Components/ConnectMessageBtn';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
 function DashboardContent(props: any) {
     const history = useHistory();
+    const otherUserId = useSelector((state: any)=>state.otherUser.id);
+    const connectedAccountsId = useSelector((state: any)=> state.connections.connected_account_ids);
     return (
         <div className="dashboard-main">
             <p className="dashboard-main-title">Dashboard</p>
@@ -28,8 +31,11 @@ function DashboardContent(props: any) {
                 
             </div>
             <div>
+                {
+                    !connectedAccountsId?.includes(otherUserId) && 
+                    <ConnectMessageBtn/>
+                }   
                 <PercentageGrowth/>
-                <ConnectMessageBtn/>
             </div>
         </div>
     )
