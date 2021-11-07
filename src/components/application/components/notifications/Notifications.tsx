@@ -120,7 +120,14 @@ function Notifications() {
                             goToTeam
                         )
                     )
-                setallnotification(uiMappedNotification)
+                const sortedNotification = uiMappedNotification.sort(
+                    (notif1: any, notif2: any) => {
+                        const post1Date: any = new Date(notif1.time_string)
+                        const post2Date: any = new Date(notif2.time_string)
+                        return post2Date.getTime() - post1Date.getTime()
+                    }
+                )
+                setallnotification(sortedNotification)
                 setIsLoad(false)
             } catch (err) {
                 console.log(err)
