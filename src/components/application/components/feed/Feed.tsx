@@ -35,6 +35,14 @@ import UploadIdea from './components/modals/UploadIdea/UploadIdea'
 import UploadProject from './components/modals/UploadProject/UploadProject'
 import UploadThought from './components/modals/UploadThought/UploadThought'
 import ViewTeamMembers from './components/modals/ViewTeamMembers/ViewTeamMembers'
+import {
+    updateConnectedAccountId,
+    updateConnectionComplete,
+    updateConnectReqAcceptPending,
+    updateMyConnections,
+    updatePendingRequests,
+} from 'redux/actions/connectionsAction'
+import { getConnectionsAllData } from '../connections/components/connectionsUtils'
 
 function Feed() {
     //userPool.getCurrentUser(); console log to see the idtoken
@@ -59,11 +67,13 @@ function Feed() {
     const userInfo = useSelector((state: any) => state.userInfo)
     const allPosts = useSelector((state: any) => state.allPosts)
     const allIdeas = useSelector((state: any) => state.allIdeas)
-    const allInterests = useSelector((state: any)=>state.allInterests);
-    const allTags = useSelector((state: any)=> state.allTags);
-    const allSkills = useSelector((state: any)=>state.allSkills);
-    const allRoles = useSelector((state: any)=> state.allRoles);
-    const allThoughts = useSelector((state: any) => state.allThoughts)
+    const allInterests = useSelector((state: any) => state.allInterests);
+    const allTags = useSelector((state: any) => state.allTags);
+    const allSkills = useSelector((state: any) => state.allSkills);
+    const allRoles = useSelector((state: any) => state.allRoles);
+    const allThoughts = useSelector((state: any) => state.allThoughts);
+    const peopleYouMayKnow = useSelector((state: any)=> state.peopleYouMayKnow);
+    const connectedAccountsId = useSelector((state: any) => state.connections.connected_account_ids);
     const history = useHistory()
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
@@ -98,17 +108,32 @@ function Feed() {
                     }))
                     .filter((ele: any) => {
                         // console.log(ele.user_id, userInfo.id);
+                        if(connectedAccountsId.includes(ele.user_id)){
+                            return false;
+                        }
                         return ele.user_id !== userInfo.id
                     })
                 // console.log(ptk);
                 handlePeopleYouMayKnow('pymk_update_all', ptk)
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
-            onFailure: ()=>{
+            onFailure: () => {
                 history.push("/login");
             }
         }
     )
+    
+    useEffect(()=>{
+        console.log(connectedAccountsId);
+        const pymk = peopleYouMayKnow.filter((ppl: any)=>{
+            if(connectedAccountsId.includes(ppl.user_id)){
+                return false;
+            }
+            return ppl.user_id!== userInfo.id;
+        })
+        console.log("filtering all the pymk");
+        handlePeopleYouMayKnow("pymk_update_all", pymk);
+    },[connectedAccountsId])
     const { doRequest, errors } = useRequests({
         route: 'post',
         method: 'get',
@@ -238,42 +263,44 @@ function Feed() {
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
     });
-    const {doRequest: getAllInterests, errors: interestsErrors} = useRequests({
+    const { doRequest: getAllInterests, errors: interestsErrors } = useRequests({
         route: "token/interests",
         method: "get",
         body: null,
-        onSuccess: (data: any)=>{
-            console.log("The interests data received is :",data);
-            handleInterestsChange("interests_update",data.data.area_of_interests);
+        onSuccess: (data: any) => {
+            console.log("The interests data received is :", data);
+            handleInterestsChange("interests_update", data.data.area_of_interests);
         }
     });
+    const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
+    const [myConnectionsLoad, setMyConnectionLoad] = useState<boolean>(true)
     useEffect(() => {
-        ;(async () => {
+        ; (async () => {
             if (userInfo.avatar === '') {
                 await userGet()
             }
-            if(allInterests.length===0){
-                await getAllInterests();
-            }
-            if(allPosts.length===0){
-                await doRequest()
-            }
-            if(allIdeas.length===0){
-                await doRequestIdea();
-            }
-            if(allThoughts.length===0){
-                await getAllThoughts()
-            }
-            if(peopleToKnow.length===0){
+            if (peopleToKnow.length === 0) {
                 await getPeopleToKnow()
             }
-            if(allTags.length===0){
+            if (allInterests.length === 0) {
+                await getAllInterests();
+            }
+            if (allPosts.length === 0) {
+                await doRequest()
+            }
+            if (allIdeas.length === 0) {
+                await doRequestIdea();
+            }
+            if (allThoughts.length === 0) {
+                await getAllThoughts()
+            }
+            if (allTags.length === 0) {
                 await getAllTags()
             }
-            if(allSkills.length===0){
+            if (allSkills.length === 0) {
                 await getAllSkills()
             }
-            if(allRoles.length===0){
+            if (allRoles.length === 0) {
                 await getAllRoles()
             }
             // await getUserIdeas();
@@ -285,6 +312,28 @@ function Feed() {
             //     console.log(userErrors)
             //     history.push('/login')
             // }
+        })();
+        (async () => {
+            const {
+                filteredPendingRequest,
+                filteredConnectedAccount,
+                filteredConnectReqAcceptPending,
+                filteredConnectedAccountComplete,
+                filteredConnectionId,
+            } = await getConnectionsAllData(userInfo.id);
+
+            // console.log(filteredConnectedAccountComplete)
+            console.log(filteredConnectionId);
+            setPendingRequestLoad(false)
+            setMyConnectionLoad(false)
+            dispatch(updatePendingRequests(filteredPendingRequest))
+            dispatch(updateMyConnections(filteredConnectedAccount))
+            dispatch(updateConnectionComplete(filteredConnectedAccountComplete))
+            dispatch(
+                updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
+            )
+            dispatch(updateConnectedAccountId(filteredConnectionId))
+            
         })()
         console.log('The userProfile status: ', userInfo.profile_complete)
     }, [])
@@ -293,8 +342,8 @@ function Feed() {
         if (!userInfo.profile_complete) {
             history.push('/app/userinfo')
         }
-    },[userInfo.profile_complete]);
-    
+    }, [userInfo.profile_complete]);
+
     const [showFilter, setShowFilter] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
     const [showUploadProject, setShowUploadProject] = useState(false)
@@ -418,7 +467,7 @@ function Feed() {
         setReqToJoinId(id)
     }
     const [uploadingPost, setUploadingPost] = useState(false);
-    useEffect(()=>{
+    useEffect(() => {
         setPosts([
             ...allPosts?.map((post: any) => ({
                 user_id: post.user?.id,
@@ -492,7 +541,7 @@ function Feed() {
             }
         })
         setThoughts([...finalData])
-    },[allPosts,allIdeas,allThoughts])
+    }, [allPosts, allIdeas, allThoughts])
     return (
         <div>
             {showOverlay && (
@@ -586,7 +635,7 @@ function Feed() {
                     >
                         {
                             uploadingPost &&
-                            <Spinner/>
+                            <Spinner />
                         }
                         {
                             // scrollDirection === "Up" &&
