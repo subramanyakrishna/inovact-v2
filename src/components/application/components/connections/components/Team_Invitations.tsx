@@ -19,27 +19,32 @@ const Buttons = (props: any) => {
     }
 
     return (
-        <div className="suggestions__row__buttons">
-            <div>
-                {isAcceptShow && (
-                    <button
-                        className="connect-button"
-                        onClick={() => acceptTeamInvi(props.invitation.id)}
-                    >
-                        {isAcceptShow && isRejectShow && 'Accept'}
-                        {isAcceptShow && !isRejectShow && 'Accepted'}
-                    </button>
-                )}
-                {isRejectShow && (
-                    <button
-                        className="connect-button"
-                        onClick={() => rejectTeamInvi(props.invitation.id)}
-                    >
-                        {isAcceptShow && isRejectShow && 'Reject'}
-                        {!isAcceptShow && isRejectShow && 'Rejected'}
-                    </button>
-                )}
-            </div>
+        <div
+            style={{
+                margin: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+            }}
+        >
+            {isAcceptShow && (
+                <button
+                    className="connect-button"
+                    onClick={() => acceptTeamInvi(props.invitation.id)}
+                >
+                    {isAcceptShow && isRejectShow && 'Accept'}
+                    {isAcceptShow && !isRejectShow && 'Accepted'}
+                </button>
+            )}
+            {isRejectShow && (
+                <button
+                    className="connect-button"
+                    onClick={() => rejectTeamInvi(props.invitation.id)}
+                >
+                    {isAcceptShow && isRejectShow && 'Reject'}
+                    {!isAcceptShow && isRejectShow && 'Rejected'}
+                </button>
+            )}
         </div>
     )
 }
@@ -90,77 +95,66 @@ const Team_Invitations = () => {
         })()
     }, [])
     return (
-        <div
-            className="suggestions"
-            style={{
-                marginTop: '30px',
-                borderRadius: '10px',
-                height: '400px',
-                overflowY: 'scroll',
-            }}
-        >
-            <h6 className="suggestions__title">Team Invitations</h6>
-            {isLoad && <Spinner />}
-            {!isLoad && allInvitations.length === 0 && (
-                <div className="text-align--center">No Team Invitations</div>
-            )}
-            {!isLoad &&
-                allInvitations.length !== 0 &&
-                allInvitations.map((invitation: any) => {
-                    return (
-                        <div
-                            className="suggestions__row"
-                            key={Number(Math.random() * 1000)}
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                            }}
-                        >
+        <div className="team_invitation">
+            <h6 className="team_invitation__title">Team Invitations</h6>
+            <div className="team_invitation__body">
+                {isLoad && <Spinner />}
+                {!isLoad && allInvitations.length === 0 && (
+                    <div className="text-align--center">
+                        No Team Invitations
+                    </div>
+                )}
+                {!isLoad &&
+                    allInvitations.length !== 0 &&
+                    allInvitations.map((invitation: any) => {
+                        return (
                             <div
-                                className="suggestions__row__rowInfo"
-                                style={{
-                                    display: 'flex',
-                                    marginRight: 'auto',
-                                }}
+                                className="team_invitation__row"
+                                key={Number(Math.random() * 1000)}
                             >
                                 <div
                                     style={{
+                                        width: '100%',
                                         display: 'flex',
+                                        justifyContent: 'space-between',
                                     }}
-                                    onClick={() =>
-                                        goToTeam(
-                                            invitation.team.id,
-                                            invitation.team.team_members[0].user
-                                                .id
-                                        )
-                                    }
                                 >
-                                    <img
-                                        src={
-                                            invitation.team.img
-                                                ? invitation.team.img
-                                                : 'image'
+                                    <div
+                                        className="team_invitation__row__rowInfo"
+                                        onClick={() =>
+                                            goToTeam(
+                                                invitation.team.id,
+                                                invitation.team.team_members[0]
+                                                    .user.id
+                                            )
                                         }
-                                        alt="Team Image"
-                                    />
+                                    >
+                                        <img
+                                            src={
+                                                invitation.team.img
+                                                    ? invitation.team.img
+                                                    : 'image'
+                                            }
+                                            alt="Team Image"
+                                        />
 
-                                    <div className="suggestions__row__text">
-                                        <h5 className="text-style--bold text-align--left text-size--big">
-                                            {invitation.team.name}
-                                        </h5>
-                                        <p className="text-style--light text-align--left text-size--small"></p>
+                                        <div className="team_invitation__row__text">
+                                            <h5 className="text-style--bold text-align--left text-size--big">
+                                                {invitation.team.name}
+                                            </h5>
+                                            <p className="text-style--light text-align--left text-size--small"></p>
+                                        </div>
                                     </div>
                                 </div>
+                                <Buttons
+                                    invitation={invitation}
+                                    acceptTeamInvitation={acceptTeamInvitation}
+                                    rejectTeamInvitation={rejectTeamInvitation}
+                                />
                             </div>
-                            <Buttons
-                                invitation={invitation}
-                                acceptTeamInvitation={acceptTeamInvitation}
-                                rejectTeamInvitation={rejectTeamInvitation}
-                            />
-                        </div>
-                    )
-                })}
-            )
+                        )
+                    })}
+            </div>
         </div>
     )
 }
