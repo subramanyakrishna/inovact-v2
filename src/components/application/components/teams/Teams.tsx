@@ -25,7 +25,7 @@ import useRequests from 'useRequest/useRequest'
 
 function Teams() {
     const allTeams = useSelector((state: any) => state.teams.teams)
-    const [isLoading, setLoading] = useState(true)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
