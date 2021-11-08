@@ -6,7 +6,7 @@ const LeftNavBar = (props: any) => {
     return (
         <div>
             <LeftTop />
-            <LeftBottom openCreateTeam={props.openCreateTeam}/>
+            <LeftBottom openCreateTeam={props.openCreateTeam} />
         </div>
     )
 }

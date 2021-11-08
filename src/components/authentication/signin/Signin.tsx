@@ -3,9 +3,9 @@ import logo from 'images/logo/inovactlogo.png'
 import Card from 'components/authentication/signin/Card'
 
 const Signup: React.FC = () => {
-    useEffect(()=>{
-        localStorage.clear();
-    },[]);
+    useEffect(() => {
+        localStorage.clear()
+    }, [])
     return (
         <div className="signin">
             <div className="signin__flex-container">

@@ -35,7 +35,7 @@ function CenterRequests() {
     }, [connections])
 
     useEffect(() => {
-        (async () => {
+        ;(async () => {
             const response = await makeApiCall('get', 'user')
 
             dispatch({

@@ -1,23 +1,21 @@
-.delete-member{
-  
-  &-buttons {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
-  &-btn-accept{
-      margin: 0 2rem;
-      background-color: $color-primary-green;
-     border-radius: 10px;
-     min-width: 4rem;
-     border: 1px solid $color-primary-green;
-  }
-  &-btn-cancel{
-      background-color: $color-white;
-      min-width: 4rem;
-      border: 1px solid $color-primary-green;
-      border-radius: 10px;
-  }
- 
+.delete-member {
+    &-buttons {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &-btn-accept {
+        margin: 0 2rem;
+        background-color: $color-primary-green;
+        border-radius: 10px;
+        min-width: 4rem;
+        border: 1px solid $color-primary-green;
+    }
+    &-btn-cancel {
+        background-color: $color-white;
+        min-width: 4rem;
+        border: 1px solid $color-primary-green;
+        border-radius: 10px;
+    }
 }

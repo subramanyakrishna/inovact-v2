@@ -49,8 +49,8 @@ const rootReducer = combineReducers({
     allRoles: allRolesReducer,
     peopleYouMayKnow: peopleYouMayKnowReducer,
     otherUserTeams: otherUserTeamsReducer,
-    allInterests: allInterestsReducer, 
+    allInterests: allInterestsReducer,
     otherUserConnections: otherUserConnectionsReducer,
-});
+})
 
-export default rootReducer;
+export default rootReducer

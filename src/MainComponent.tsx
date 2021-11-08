@@ -19,6 +19,7 @@ import {
     handleUserInfoChange,
 } from './StateUpdateHelper'
 import TeamChat from 'components/application/components/teams/teamChat'
+import Auth from 'components/authentication/social/Auth'
 
 function MainComponent() {
     const [userCreds, setUserCreds] = useState({
@@ -44,6 +45,7 @@ function MainComponent() {
                         )}
                     />
                     <Route path="/login" exact component={Signin} />
+                    <Route path="/socialauth" exact component={Auth} />
                     <Route
                         path="/forgotpassword"
                         exact

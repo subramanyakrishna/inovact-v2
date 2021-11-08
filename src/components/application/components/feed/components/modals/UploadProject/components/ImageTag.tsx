@@ -8,4 +8,4 @@ function ImageTag(props: any) {
     )
 }
 
-export default ImageTag;
+export default ImageTag

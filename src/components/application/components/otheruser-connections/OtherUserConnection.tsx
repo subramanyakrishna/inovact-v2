@@ -33,4 +33,4 @@ function OtherUserConnections() {
     )
 }
 
-export default OtherUserConnections;
+export default OtherUserConnections

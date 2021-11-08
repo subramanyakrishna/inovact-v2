@@ -65,20 +65,96 @@ function Feed() {
         'December',
     ]
     const userInfo = useSelector((state: any) => state.userInfo)
+
     const allPosts = useSelector((state: any) => state.allPosts)
     const allIdeas = useSelector((state: any) => state.allIdeas)
-    const allInterests = useSelector((state: any) => state.allInterests);
-    const allTags = useSelector((state: any) => state.allTags);
-    const allSkills = useSelector((state: any) => state.allSkills);
-    const allRoles = useSelector((state: any) => state.allRoles);
-    const allThoughts = useSelector((state: any) => state.allThoughts);
-    const peopleYouMayKnow = useSelector((state: any)=> state.peopleYouMayKnow);
-    const connectedAccountsId = useSelector((state: any) => state.connections.connected_account_ids);
+    const allInterests = useSelector((state: any) => state.allInterests)
+    const allTags = useSelector((state: any) => state.allTags)
+    const allSkills = useSelector((state: any) => state.allSkills)
+    const allRoles = useSelector((state: any) => state.allRoles)
+    const allThoughts = useSelector((state: any) => state.allThoughts)
+    const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
+    const connectedAccountsId = useSelector(
+        (state: any) => state.connections.connected_account_ids
+    )
     const history = useHistory()
     const convertDate = (dateISO: any) => {
         const date = new Date(dateISO)
         return `${date.getDate()} ${months[date.getMonth()]}`
     }
+
+    useEffect(() => {
+        ;(async () => {
+            if (userInfo.avatar === '') {
+                await userGet().then(() => {
+                    if (userInfo.profile_complete === false) {
+                        history.push('/app/userinfo')
+                    }
+                })
+            }
+            if (peopleToKnow.length === 0) {
+                await getPeopleToKnow()
+            }
+            if (allInterests.length === 0) {
+                await getAllInterests()
+            }
+            if (allPosts.length === 0) {
+                await doRequest()
+            }
+            if (allIdeas.length === 0) {
+                await doRequestIdea()
+            }
+            if (allThoughts.length === 0) {
+                await getAllThoughts()
+            }
+            if (allTags.length === 0) {
+                await getAllTags()
+            }
+            if (allSkills.length === 0) {
+                await getAllSkills()
+            }
+            if (allRoles.length === 0) {
+                await getAllRoles()
+            }
+            // await getUserIdeas();
+            // await getUserProjects();
+            // if (errors || errorsIdea || getPeopleErrors || userErrors) {
+            //     console.log(errors)
+            //     console.log(errorsIdea)
+            //     console.log(getPeopleErrors)
+            //     console.log(userErrors)
+            //     history.push('/login')
+            // }
+        })()
+        ;(async () => {
+            const {
+                filteredPendingRequest,
+                filteredConnectedAccount,
+                filteredConnectReqAcceptPending,
+                filteredConnectedAccountComplete,
+                filteredConnectionId,
+            } = await getConnectionsAllData(userInfo.id)
+
+            // console.log(filteredConnectedAccountComplete)
+            // console.log(filteredConnectionId)
+            setPendingRequestLoad(false)
+            setMyConnectionLoad(false)
+            dispatch(updatePendingRequests(filteredPendingRequest))
+            dispatch(updateMyConnections(filteredConnectedAccount))
+            dispatch(updateConnectionComplete(filteredConnectedAccountComplete))
+            dispatch(
+                updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
+            )
+            dispatch(updateConnectedAccountId(filteredConnectionId))
+        })()
+        // console.log('The userProfile status: ', userInfo.profile_complete)
+    }, [])
+    // useEffect(() => {
+    //     if (!userInfo.profile_complete) {
+    //         history.push('/app/userinfo')
+    //     }
+    // }, [userInfo.profile_complete])
+
     const { doRequest: userGet, errors: userErrors } = useRequests({
         route: 'user',
         method: 'get',
@@ -108,8 +184,8 @@ function Feed() {
                     }))
                     .filter((ele: any) => {
                         // console.log(ele.user_id, userInfo.id);
-                        if(connectedAccountsId.includes(ele.user_id)){
-                            return false;
+                        if (connectedAccountsId.includes(ele.user_id)) {
+                            return false
                         }
                         return ele.user_id !== userInfo.id
                     })
@@ -118,28 +194,28 @@ function Feed() {
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
             onFailure: () => {
-                history.push("/login");
-            }
+                history.push('/login')
+            },
         }
     )
-    
-    useEffect(()=>{
-        console.log(connectedAccountsId);
-        const pymk = peopleYouMayKnow.filter((ppl: any)=>{
-            if(connectedAccountsId.includes(ppl.user_id)){
-                return false;
+
+    useEffect(() => {
+        // console.log(connectedAccountsId)
+        const pymk = peopleYouMayKnow.filter((ppl: any) => {
+            if (connectedAccountsId.includes(ppl.user_id)) {
+                return false
             }
-            return ppl.user_id!== userInfo.id;
+            return ppl.user_id !== userInfo.id
         })
-        console.log("filtering all the pymk");
-        handlePeopleYouMayKnow("pymk_update_all", pymk);
-    },[connectedAccountsId])
+        // console.log('filtering all the pymk')
+        handlePeopleYouMayKnow('pymk_update_all', pymk)
+    }, [connectedAccountsId])
     const { doRequest, errors } = useRequests({
         route: 'post',
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
+            // console.log(data)
             data.data.project.reverse()
             handleAllPosts('all-posts', [...data.data.project, ...allPosts])
             setPosts([
@@ -177,7 +253,7 @@ function Feed() {
         body: null,
         onSuccess: (data: any) => {
             data.data.idea.reverse()
-            console.log('on success of ideas')
+            // console.log('on success of ideas')
             handleAllIdeas('all-ideas', [...data.data.idea, ...allIdeas])
             setIdeas([
                 ...data.data.idea.map((post: any) => ({
@@ -212,8 +288,8 @@ function Feed() {
             route: 'thoughts',
             body: null,
             onSuccess: (data: any) => {
-                console.log('The thoughts fetched are: ', data.data.thoughts)
-                handleAllThoughts("all-thoughts", data.data.thoughts);
+                // console.log('The thoughts fetched are: ', data.data.thoughts)
+                handleAllThoughts('all-thoughts', data.data.thoughts)
                 const finalData = data.data.thoughts.map((thought: any) => {
                     return {
                         user_id: thought.user.id,
@@ -241,7 +317,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
+            // console.log(data)
             handleTagsChange('udpate_all_tags', data.data.hashtag)
         },
     })
@@ -250,7 +326,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
+            // console.log(data)
             handleSkillsChange('udpate_all_skills', data.data.skills)
         },
     })
@@ -259,90 +335,26 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
+            // console.log(data)
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
-    });
-    const { doRequest: getAllInterests, errors: interestsErrors } = useRequests({
-        route: "token/interests",
-        method: "get",
-        body: null,
-        onSuccess: (data: any) => {
-            console.log("The interests data received is :", data);
-            handleInterestsChange("interests_update", data.data.area_of_interests);
+    })
+    const { doRequest: getAllInterests, errors: interestsErrors } = useRequests(
+        {
+            route: 'token/interests',
+            method: 'get',
+            body: null,
+            onSuccess: (data: any) => {
+                // console.log('The interests data received is :', data)
+                handleInterestsChange(
+                    'interests_update',
+                    data.data.area_of_interests
+                )
+            },
         }
-    });
+    )
     const [pendingRequesLoad, setPendingRequestLoad] = useState<boolean>(true)
     const [myConnectionsLoad, setMyConnectionLoad] = useState<boolean>(true)
-    useEffect(() => {
-        ; (async () => {
-            if (userInfo.avatar === '') {
-                await userGet()
-            }
-            if (peopleToKnow.length === 0) {
-                await getPeopleToKnow()
-            }
-            if (allInterests.length === 0) {
-                await getAllInterests();
-            }
-            if (allPosts.length === 0) {
-                await doRequest()
-            }
-            if (allIdeas.length === 0) {
-                await doRequestIdea();
-            }
-            if (allThoughts.length === 0) {
-                await getAllThoughts()
-            }
-            if (allTags.length === 0) {
-                await getAllTags()
-            }
-            if (allSkills.length === 0) {
-                await getAllSkills()
-            }
-            if (allRoles.length === 0) {
-                await getAllRoles()
-            }
-            // await getUserIdeas();
-            // await getUserProjects();
-            // if (errors || errorsIdea || getPeopleErrors || userErrors) {
-            //     console.log(errors)
-            //     console.log(errorsIdea)
-            //     console.log(getPeopleErrors)
-            //     console.log(userErrors)
-            //     history.push('/login')
-            // }
-        })();
-        (async () => {
-            const {
-                filteredPendingRequest,
-                filteredConnectedAccount,
-                filteredConnectReqAcceptPending,
-                filteredConnectedAccountComplete,
-                filteredConnectionId,
-            } = await getConnectionsAllData(userInfo.id);
-
-            // console.log(filteredConnectedAccountComplete)
-            console.log(filteredConnectionId);
-            setPendingRequestLoad(false)
-            setMyConnectionLoad(false)
-            dispatch(updatePendingRequests(filteredPendingRequest))
-            dispatch(updateMyConnections(filteredConnectedAccount))
-            dispatch(updateConnectionComplete(filteredConnectedAccountComplete))
-            dispatch(
-                updateConnectReqAcceptPending(filteredConnectReqAcceptPending)
-            )
-            dispatch(updateConnectedAccountId(filteredConnectionId))
-            
-        })()
-        console.log('The userProfile status: ', userInfo.profile_complete)
-    }, [])
-
-    useEffect(() => {
-        if (!userInfo.profile_complete) {
-            history.push('/app/userinfo')
-        }
-    }, [userInfo.profile_complete]);
 
     const [showFilter, setShowFilter] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
@@ -364,7 +376,7 @@ function Feed() {
             }
         )
 
-        console.log('sorted based on date', sortedPosts)
+        // console.log('sorted based on date', sortedPosts)
         if (posts.length && ideas.length) {
             setFilteredPosts([...sortedPosts])
         }
@@ -442,7 +454,7 @@ function Feed() {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        console.log(userInfo)
+        // console.log(userInfo)
         dispatch(getTeams('user'))
     }, [])
 
@@ -466,7 +478,7 @@ function Feed() {
     const changeTheTeamID = (id: any) => {
         setReqToJoinId(id)
     }
-    const [uploadingPost, setUploadingPost] = useState(false);
+    const [uploadingPost, setUploadingPost] = useState(false)
     useEffect(() => {
         setPosts([
             ...allPosts?.map((post: any) => ({
@@ -521,16 +533,13 @@ function Feed() {
             })),
         ])
         const finalData = allThoughts?.map((thought: any) => {
-            console.log("this is a single thought: ", thought);
+            // console.log('this is a single thought: ', thought)
             return {
                 user_id: thought.user?.id,
                 id: thought.id,
                 type: 3,
                 avatar: thought.user?.avatar,
-                author:
-                    thought.user.first_name +
-                    ' ' +
-                    thought.user.last_name,
+                author: thought.user.first_name + ' ' + thought.user.last_name,
                 likes: thought.thought_likes,
                 time: convertDate(thought.created_at),
                 created_at: thought.created_at,
@@ -633,10 +642,7 @@ function Feed() {
                         className="feed__content__center--container"
                         ref={feedContainer}
                     >
-                        {
-                            uploadingPost &&
-                            <Spinner />
-                        }
+                        {uploadingPost && <Spinner />}
                         {
                             // scrollDirection === "Up" &&
                             <button

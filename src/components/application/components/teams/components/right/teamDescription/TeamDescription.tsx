@@ -3,7 +3,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import EditIcon from '@material-ui/icons/Edit'
 import { imageUploader } from 'imageUpload/imageUploader'
-import { useDispatch ,useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateTeamAvatar } from 'redux/actions/teams'
 import { useHistory } from 'react-router-dom'
 interface Props {
@@ -64,19 +64,21 @@ const TeamTags = ({ team }: Props) => {
 
 const TeamDescription = ({ team }: Props) => {
     const [showAll, setShowAll] = useState(true)
-    const [teamAvatar, setTeamAvatar] = useState("");
-    const dispatch= useDispatch();
-    
-    const loadFile = async (e: any) => { 
-        if(e.target.files){
+    const [teamAvatar, setTeamAvatar] = useState('')
+    const dispatch = useDispatch()
+
+    const loadFile = async (e: any) => {
+        if (e.target.files) {
             const data = await imageUploader(e.target.files)
-            setTeamAvatar(data[0].url);
-           dispatch(updateTeamAvatar({team_id: team.id,avatar:data[0].url}))
+            setTeamAvatar(data[0].url)
+            dispatch(
+                updateTeamAvatar({ team_id: team.id, avatar: data[0].url })
+            )
         }
     }
-    useEffect(()=>{
-        setTeamAvatar(team.avatar);
-    },[team])
+    useEffect(() => {
+        setTeamAvatar(team.avatar)
+    }, [team])
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
             setShowAll(true)
@@ -90,29 +92,34 @@ const TeamDescription = ({ team }: Props) => {
         <div className="teams-description">
             <div className="teams-description__info">
                 <div className="teams-description__info__left">
-                <input
-                type="file"
-                id="upload-media-input"
-                hidden
-                onChange={loadFile}
-            />
-            <label
-                htmlFor="upload-media-input"
-                className={'settings-my-profile-nametag-imageAndEditContainer'}
-            >
-                <div className="settings-my-profile-nametag-img-container">
-                    <img src={teamAvatar} alt="teamImage" />
-                </div>
-                <div className="settings-my-profile-nametag-editcontainer" style={{marginLeft:'1rem'}}>
-                    {' '}
-                    <button>
-                        <EditIcon
-                            fontSize="small"
-                            style={{ color: 'white', }}
-                        ></EditIcon>
-                    </button>
-                </div>
-            </label>
+                    <input
+                        type="file"
+                        id="upload-media-input"
+                        hidden
+                        onChange={loadFile}
+                    />
+                    <label
+                        htmlFor="upload-media-input"
+                        className={
+                            'settings-my-profile-nametag-imageAndEditContainer'
+                        }
+                    >
+                        <div className="settings-my-profile-nametag-img-container">
+                            <img src={teamAvatar} alt="teamImage" />
+                        </div>
+                        <div
+                            className="settings-my-profile-nametag-editcontainer"
+                            style={{ marginLeft: '1rem' }}
+                        >
+                            {' '}
+                            <button>
+                                <EditIcon
+                                    fontSize="small"
+                                    style={{ color: 'white' }}
+                                ></EditIcon>
+                            </button>
+                        </div>
+                    </label>
 
                     {/* <img
                         src={
@@ -162,28 +169,29 @@ const TeamDescription = ({ team }: Props) => {
                         className="text-style--bold text-align--left text-size--big sm-small"
                         style={{ marginTop: '15px' }}
                     >
-                        Team Tags{' '} 
+                        Team Tags{' '}
                     </span>
-                    { team.team_tags !== 0 ?(   showAll ? (
-                        <ul className="teams-description__info__right__tags">
-                            {team.team_tags?.map((tag: any, index: any) => {
-                                return (
-                                    <li key={index}>
-                                        <div>
-                                            <h6 className="teams-description__info__right__tags__tag sm-small">
-                                                {tag.hashtag.name}
-                                            </h6>
-                                        </div>
-                                    </li>
-                                )
-                            })}
-                        </ul>
+                    {team.team_tags !== 0 ? (
+                        showAll ? (
+                            <ul className="teams-description__info__right__tags">
+                                {team.team_tags?.map((tag: any, index: any) => {
+                                    return (
+                                        <li key={index}>
+                                            <div>
+                                                <h6 className="teams-description__info__right__tags__tag sm-small">
+                                                    {tag.hashtag.name}
+                                                </h6>
+                                            </div>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        ) : (
+                            <TeamTags team={team} />
+                        )
                     ) : (
-                        <TeamTags team={team} />
-                    )):(
                         <div className="text-align--left">No Tags Yet </div>
-                    ) }
-                
+                    )}
                 </div>
             </div>
         </div>

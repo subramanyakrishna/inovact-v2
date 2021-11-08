@@ -1,64 +1,63 @@
-.upload{
+.upload {
     padding: 2rem 4rem 1rem;
-    @include respond(sm){
+    @include respond(sm) {
         padding: 1rem;
     }
-    a{
+    a {
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-     &:hover{
-         color: white;
-     }
+        &:hover {
+            color: white;
+        }
     }
-    &__text{
+    &__text {
         display: block;
-        justify-content: center;        
+        justify-content: center;
         text-align: center;
     }
-    .buttons{
-            padding: 0 4rem;
-            margin-top: 0;
-            @include respond(sm){
-                padding: 0;
-            }
+    .buttons {
+        padding: 0 4rem;
+        margin-top: 0;
+        @include respond(sm) {
+            padding: 0;
         }
+    }
     &__form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        &__bio{
+        &__bio {
             padding: 1rem 4rem 0rem;
             margin: 0 0;
             @include respond(sm) {
                 padding: 1.5rem 1rem 1rem;
             }
-          
         }
-        &__image{
+        &__image {
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
             overflow: hidden;
         }
-        & img{
+        & img {
             width: 5rem;
             object-fit: cover;
             @include respond(sm) {
-               margin: 0 6rem ;
+                margin: 0 6rem;
             }
         }
     }
-    .skip{
+    .skip {
         display: flex;
         justify-content: center;
         align-self: center;
         align-items: center;
         position: relative;
         bottom: 10px;
-        &:hover{
+        &:hover {
             color: blue;
         }
     }

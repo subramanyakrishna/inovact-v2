@@ -1,11 +1,15 @@
-import { CREATE_TEAM, GET_TEAMS, INVITE_MEMBERS, UPDATE_TEAM_AVATAR } from './../actionTypes/teams'
+import {
+    CREATE_TEAM,
+    GET_TEAMS,
+    INVITE_MEMBERS,
+    UPDATE_TEAM_AVATAR,
+} from './../actionTypes/teams'
 import TeamsService from '../services/teams.services'
 
 export const createTeam = (team: any) => async (dispatch: any) => {
     try {
         //? this data is temporary and will be replaced by the real data according to the backend
         const res = await TeamsService.createTeam(team)
-        console.log(res)
         dispatch({
             type: CREATE_TEAM,
             payload: res.data,
@@ -28,25 +32,25 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
     }
 }
 
-export const updateTeamAvatar =( teamUpdateImg:any, ) => async (dispatch :any) =>{
-    try {
-        console.log("putreq in teams",teamUpdateImg)
-      const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
-      console.log('updated the image', res.data)
-    //   dispatch({
-    //       type: UPDATE_TEAM_AVATAR,
-    //       payload: res.data
-    //   })
+export const updateTeamAvatar =
+    (teamUpdateImg: any) => async (dispatch: any) => {
+        try {
+            console.log('putreq in teams', teamUpdateImg)
+            const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
+            console.log('updated the image', res.data)
+            //   dispatch({
+            //       type: UPDATE_TEAM_AVATAR,
+            //       payload: res.data
+            //   })
+        } catch (error) {
+            throw error
+        }
     }
-    catch(error){
-        throw error
-    }
-}
 
 export const inviteMembers = (bodyData: any) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(bodyData)
-        console.log(res.data.insert_team_invitations.returning[0]);
+        console.log(res.data.insert_team_invitations.returning[0])
         dispatch({
             type: INVITE_MEMBERS,
             payload: res.data.insert_team_invitations.returning[0],

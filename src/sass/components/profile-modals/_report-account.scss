@@ -1,44 +1,42 @@
-
-.report-account{
-  background-color: $color-white;
-  z-index: 105;
-  border-radius: 10px;
-  width: 40%;
-  @include respond(md){
-    width: 60%;
-  }
-  @include respond(md){
-    width: 80%;
-  }
+.report-account {
+    background-color: $color-white;
+    z-index: 105;
+    border-radius: 10px;
+    width: 40%;
+    @include respond(md) {
+        width: 60%;
+    }
+    @include respond(md) {
+        width: 80%;
+    }
     padding: 20px 40px;
     text-align: left;
-    &-content{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      &-heading{
-        font-size: larger;
-        font-weight: 600;
-  
-      }
-      &-reasons{
-        padding: 0px 20px;
-        input{
-          margin-right: 20px;
+    &-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &-heading {
+            font-size: larger;
+            font-weight: 600;
         }
-      }
+        &-reasons {
+            padding: 0px 20px;
+            input {
+                margin-right: 20px;
+            }
+        }
     }
-    &-bottom{
+    &-bottom {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
         height: auto;
-        &-just-block{
-          font-size: small;
-          font-weight: 600;
-          color: #ba0047;
-          text-decoration: underline;
-          cursor: pointer;
+        &-just-block {
+            font-size: small;
+            font-weight: 600;
+            color: #ba0047;
+            text-decoration: underline;
+            cursor: pointer;
         }
     }
-  }
+}

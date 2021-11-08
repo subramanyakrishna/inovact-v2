@@ -1,51 +1,51 @@
-.roles-required-heading{
+.roles-required-heading {
     display: flex;
     flex-direction: column;
-    &-main{
+    &-main {
         font-size: larger;
         font-weight: 600;
-        @include respond(lg){
+        @include respond(lg) {
             font-size: medium;
         }
     }
-    &-description{
-        color: #02BD63;
-        @include respond(lg){
+    &-description {
+        color: #02bd63;
+        @include respond(lg) {
             font-size: small;
         }
     }
 }
-.roles-required-container{
+.roles-required-container {
     display: flex;
     flex-wrap: wrap;
-    @include respond(xs){
+    @include respond(xs) {
         flex-direction: column;
         width: 100%;
     }
 }
-.roles-required-all{
+.roles-required-all {
     display: flex;
     font-size: small;
     padding: 10px;
-    &-main{
+    &-main {
         display: flex;
         flex-direction: column;
     }
-    &-skills{
-        color:#02BD63;
+    &-skills {
+        color: #02bd63;
     }
-    &-checkbox{
+    &-checkbox {
         margin: 5px;
     }
-    @include respond(lg){
+    @include respond(lg) {
         width: 50%;
     }
-    @include respond(xs){
+    @include respond(xs) {
         width: 100%;
     }
 }
-.roles-required-request-btn{
-    color:#02BD63;
+.roles-required-request-btn {
+    color: #02bd63;
     font-size: 15px;
     height: 2rem;
     width: 120px;

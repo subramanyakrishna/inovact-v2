@@ -20,7 +20,7 @@ const CreateTeam = (props: any) => {
         looking_for_mentor: false,
         tags: [],
         avatar: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
-        roles: [ ],
+        roles: [],
         members: [],
         // projects:[],
     })

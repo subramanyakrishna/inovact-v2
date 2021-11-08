@@ -1,59 +1,57 @@
-.block-account{
-  background-color: $color-white;
-  border-radius: 10px;
-  z-index: 999;
-  width: 40%;
+.block-account {
+    background-color: $color-white;
+    border-radius: 10px;
+    z-index: 999;
+    width: 40%;
     padding: 40px;
     text-align: left;
-    @include respond(md){
-      width: 60%;
+    @include respond(md) {
+        width: 60%;
     }
-    @include respond(sm){
-      width: 80%;
+    @include respond(sm) {
+        width: 80%;
     }
-    &-head{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      line-height: 1.2;
-      div{
+    &-head {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-      }
+        line-height: 1.2;
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
     }
-    &-heading{
-      font-size: larger;
-      font-weight: 600;
-      
+    &-heading {
+        font-size: larger;
+        font-weight: 600;
     }
-    &-description{
-      font-size: small;
-      color: $color-primary-green;
+    &-description {
+        font-size: small;
+        color: $color-primary-green;
     }
-    &-buttons{
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
+    &-buttons {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
     }
-    &-report-n-block{
-      font-size: small;
-      font-weight: 600;
-      color: #ba0047;
-      text-decoration: underline;
-      cursor: pointer;
+    &-report-n-block {
+        font-size: small;
+        font-weight: 600;
+        color: #ba0047;
+        text-decoration: underline;
+        cursor: pointer;
     }
-    
-  }
-  .close-modal{
+}
+.close-modal {
     width: auto;
     height: auto;
     float: right;
     font-size: 30px;
     color: $color-primary-green;
     background-color: #fff;
-    border:none;
-  }
-  .confirm-action-btn{
+    border: none;
+}
+.confirm-action-btn {
     border: 1px solid gray;
     background-color: $color-white;
     color: gray;
@@ -61,10 +59,9 @@
     border-radius: 25px;
     float: right;
     font-size: small;
-  }
-  .confirm-action-btn:hover{
+}
+.confirm-action-btn:hover {
     color: black;
     background-color: $color-primary-green;
     opacity: 0.7;
-    
-  }
+}

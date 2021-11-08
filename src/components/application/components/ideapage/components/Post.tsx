@@ -34,8 +34,8 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
             membersCount: 122,
         },
     ]
-    const userTeams = useSelector((state: any)=>state.teams.teams);
-    const peopleYouMayKnow = useSelector((state: any)=>state.peopleYouMayKnow);
+    const userTeams = useSelector((state: any) => state.teams.teams)
+    const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
     const usersData = [
         {
             img: 'https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg',
@@ -269,13 +269,15 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 </span>
                             </div>
                             <div className="post__footer__share_to-teams-and-users">
-                            {showTeams &&
+                                {showTeams &&
                                     userTeams.map((team: any) => {
                                         return (
                                             <TeamTag
                                                 img={team.avatar}
                                                 teamName={team.name}
-                                                membersCount={team.team_members.length}
+                                                membersCount={
+                                                    team.team_members.length
+                                                }
                                             />
                                         )
                                     })}

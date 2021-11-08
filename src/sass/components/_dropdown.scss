@@ -1,69 +1,65 @@
-.drop-down{
+.drop-down {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 4rem;
     background-color: $color-white;
-    padding: 10px 0px; 
+    padding: 10px 0px;
     width: 45%;
     font-size: medium;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 5px;
-    transform: translate(-10%,150%);
-    box-shadow: 1px 4px 15px -8px rgba(0,0,0,0.75);
-    &--options{
+    transform: translate(-10%, 150%);
+    box-shadow: 1px 4px 15px -8px rgba(0, 0, 0, 0.75);
+    &--options {
         position: relative;
-        
-        &--all{
 
+        &--all {
             margin: 0;
             position: absolute;
             display: flex;
             flex-direction: column;
             width: 120px;
-            transform: translate(40%,-90%);
+            transform: translate(40%, -90%);
             background-color: $color-white;
             z-index: 100;
             position: absolute;
             right: 5rem;
 
-            box-shadow: -1px 4px 10px -6px rgba(0,0,0,0.75);
-            span{
+            box-shadow: -1px 4px 10px -6px rgba(0, 0, 0, 0.75);
+            span {
                 padding: 5px;
                 width: 100%;
                 text-align: left;
                 cursor: pointer;
             }
-            span:hover{
+            span:hover {
                 background-color: rgb(221, 219, 219);
             }
         }
     }
-    div{
+    div {
         display: flex;
         flex-direction: column;
         align-items: center;
         font-size: small;
-        img{
+        img {
             width: 20px;
         }
-        button{
+        button {
             background-color: $color-white;
             border: none;
             font-size: 40px;
             text-align: center;
         }
     }
-    @include respond(md){
+    @include respond(md) {
         // width: 70%;
         width: 90vw;
         transform: translateY(70%);
     }
-    @include respond(sm){
-        
+    @include respond(sm) {
     }
-
-
 }

@@ -58,17 +58,19 @@ const TeamSettings: React.FC<teamSettings> = ({
     // const team_with_admin_access_data = useSelector(
     //     (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     // )
-    const teams = useSelector((state:any)=>{
-        return state.teams.teams;
+    const teams = useSelector((state: any) => {
+        return state.teams.teams
     })
-    const [teams_with_admin_access_data, setTWAA] =useState<any>(teams.filter((team: any)=>{
-        for(let i=0;i<team.team_members.length;i++){
-            if(team.team_members[i].admin){
-                return true;
+    const [teams_with_admin_access_data, setTWAA] = useState<any>(
+        teams.filter((team: any) => {
+            for (let i = 0; i < team.team_members.length; i++) {
+                if (team.team_members[i].admin) {
+                    return true
+                }
             }
-        }
-        return false;
-    }))
+            return false
+        })
+    )
     const handleAllowOthersToViewTeam = (event: any) => {
         handleUserInfoChange('team_public_visibility', event.target.checked)
     }
@@ -78,19 +80,21 @@ const TeamSettings: React.FC<teamSettings> = ({
     // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
     //     console.log('handleAllTeamMemberSendInvitation', checked)
     // }
-    
-    const handleDeleteTeam = async(id: number) => {
+
+    const handleDeleteTeam = async (id: number) => {
         console.log(id, teams_with_admin_access_data)
-        setTWAA(teams_with_admin_access_data.filter((team: any)=>team.id!==id));
-        console.log("filtered");
+        setTWAA(
+            teams_with_admin_access_data.filter((team: any) => team.id !== id)
+        )
+        console.log('filtered')
         await axios({
-            method: "delete",
+            method: 'delete',
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${id}`,
             headers: {
-                "Authorization": localStorage.getItem("user"),
-            } 
-        }).then((resp: any)=>{
-            console.log(resp);
+                Authorization: localStorage.getItem('user'),
+            },
+        }).then((resp: any) => {
+            console.log(resp)
         })
     }
     return (

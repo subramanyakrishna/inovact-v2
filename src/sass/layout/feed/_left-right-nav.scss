@@ -49,7 +49,7 @@
                 @include respond(lg) {
                     padding: 0.7rem;
                 }
-                &--right{
+                &--right {
                     width: 100%;
                     margin: 0 !important;
                     padding: 1rem 0.5rem;
@@ -80,7 +80,7 @@
                     @include respond(lg) {
                         padding: 0.5rem;
                     }
-                    img{
+                    img {
                         width: 35px;
                         height: 35px;
                     }

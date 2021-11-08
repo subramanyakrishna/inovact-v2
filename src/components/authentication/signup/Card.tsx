@@ -21,8 +21,6 @@ const Card = (props: any) => {
 
         userSignup(userCreds)
         console.log(userCreds.email_id, userCreds.password)
-        history.push('/login')
-        alert("Check Your Mail and Verify the account before login ;)")
     }
 
     return (

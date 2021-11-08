@@ -1,21 +1,17 @@
-import { allRolesConstants } from "redux/actionTypes/allRolesConstants";
+import { allRolesConstants } from 'redux/actionTypes/allRolesConstants'
 
-const initialState:any = [];
+const initialState: any = []
 
-const allRolesReducer = (state=initialState, action: any)=>{
-    switch(action.type){
+const allRolesReducer = (state = initialState, action: any) => {
+    switch (action.type) {
         case allRolesConstants.ROLES_UPDATE_ALL:
-            return [
-                ...action.payload,
-            ];
+            return [...action.payload]
         case allRolesConstants.ROLES_CLEAR_ALL:
-            return initialState;
+            return initialState
 
-        default: return state;
+        default:
+            return state
     }
-
-} 
-
-export {
-    allRolesReducer
 }
+
+export { allRolesReducer }

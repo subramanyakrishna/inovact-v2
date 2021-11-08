@@ -1,23 +1,17 @@
-import { allTagsConstants } from "redux/actionTypes/allTagsConstants";
+import { allTagsConstants } from 'redux/actionTypes/allTagsConstants'
 
-const initialState: any = [];
+const initialState: any = []
 
-const allTagsReducer = (state= initialState, action: any)=>{
-    console.log("update tags", action.payload);
-    switch(action.type){
-        case allTagsConstants.TAGS_UPDATE_ALL: 
-        return [
-            ...action.payload,
-        ]
+const allTagsReducer = (state = initialState, action: any) => {
+    console.log('update tags', action.payload)
+    switch (action.type) {
+        case allTagsConstants.TAGS_UPDATE_ALL:
+            return [...action.payload]
         case allTagsConstants.TAGS_CLEAR_ALL:
-            return [
-                ...initialState,
-            ]
-        default: return state;
-
+            return [...initialState]
+        default:
+            return state
     }
 }
 
-export {
-    allTagsReducer,
-}
+export { allTagsReducer }

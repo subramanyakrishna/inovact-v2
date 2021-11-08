@@ -1,4 +1,3 @@
-
 .button--green {
     &:hover {
         box-shadow: 0 2px 4px #012b16;
@@ -15,14 +14,14 @@
         width: 100%;
         background: $color-primary-green;
         position: absolute;
-		border: 0px;
-		font-size: 18px;
-		font-style: normal;
-		font-weight: 500;
+        border: 0px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
     }
 }
 .share-button {
-    margin:0.5rem;
+    margin: 0.5rem;
 }
 .form-button {
     display: block;
@@ -41,35 +40,34 @@
     line-height: 23px;
     &--center {
         align-self: center;
-    }      
+    }
     margin-left: 10px;
     &:hover {
         box-shadow: 0 2px 4px #012b16;
         cursor: pointer;
     }
     @include respond(xs) {
-      width: 100px;
-      font-size: 1rem;
-      
-     }
-    
+        width: 100px;
+        font-size: 1rem;
+    }
+
     &--green {
-      background-color: $color-primary-green;
-      color:$color-white;
-      border: none;
-      @include respond (xs){
-          margin: 0;
-      }
+        background-color: $color-primary-green;
+        color: $color-white;
+        border: none;
+        @include respond(xs) {
+            margin: 0;
+        }
     }
     &--white {
-      background-color: $color-white;
-      color:$color-black;
-      border: 1px solid black;
-     &:hover{
-        box-shadow: 0 2px 4px #999999;
-        cursor: pointer;
-        background-color: none !important;
-     }
+        background-color: $color-white;
+        color: $color-black;
+        border: 1px solid black;
+        &:hover {
+            box-shadow: 0 2px 4px #999999;
+            cursor: pointer;
+            background-color: none !important;
+        }
     }
 }
 .button {
@@ -86,138 +84,133 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 23px;      
+    line-height: 23px;
     margin-left: 10px;
     &:hover {
         box-shadow: 0 2px 4px #012b16;
         cursor: pointer;
     }
     @include respond(xs) {
-      width: 100px;
-      font-size: 1rem;
-      
-     }
-    
+        width: 100px;
+        font-size: 1rem;
+    }
+
     &--green {
-      background-color: $color-primary-green;
-      color:$color-white;
-      border: none;
-      @include respond (xs){
-          margin: 0;
-      }
+        background-color: $color-primary-green;
+        color: $color-white;
+        border: none;
+        @include respond(xs) {
+            margin: 0;
+        }
     }
     &--blue {
         background-color: $color-secondary-blue;
-        color:$color-white;
+        color: $color-white;
         padding: 0.5rem;
         border: none;
-        &--round{
+        &--round {
             border-radius: 25px;
         }
-        @include respond (xs){
+        @include respond(xs) {
             padding: 0.1rem;
-          
         }
-        @include respond (xs){
+        @include respond(xs) {
             margin: 0;
         }
-      }
+    }
     &--white {
-      background-color: $color-white;
-      color:$color-black;
-      border: 1px solid black;
-     &:hover{
-        box-shadow: 0 2px 4px #999999;
-        cursor: pointer;
-        background-color: none !important;
-     }
+        background-color: $color-white;
+        color: $color-black;
+        border: 1px solid black;
+        &:hover {
+            box-shadow: 0 2px 4px #999999;
+            cursor: pointer;
+            background-color: none !important;
+        }
     }
 }
-.connect-button{
+.connect-button {
     width: 5.5rem;
     border: none;
     border-radius: 1rem;
-   &-container{
-       display: flex;
-       align-items: center;
-       justify-content: flex-end;
-       width: 50%;
-       p{
-           margin: 0px;
-       }
-    //    @include respond(lg){
-    //        flex-direction: column;
-    //        justify-content: space-between;
-    //     }
+    &-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 50%;
+        p {
+            margin: 0px;
+        }
+        //    @include respond(lg){
+        //        flex-direction: column;
+        //        justify-content: space-between;
+        //     }
     }
-    background-color:$color-secondary-blue;
+    background-color: $color-secondary-blue;
     margin-top: 0.3rem;
-    color:white;
+    color: white;
     max-height: 26px;
-    margin-left:1rem;
-    @include respond(xs){
+    margin-left: 1rem;
+    @include respond(xs) {
         width: 5rem;
         font-size: small;
-    }  
-    &--green{
+    }
+    &--green {
         width: 5.5rem;
         border: none;
         border-radius: 1rem;
-       
-       
-       margin-top: 0.3rem;
-        color:white;
+
+        margin-top: 0.3rem;
+        color: white;
         max-height: 26px;
-        margin-left:1rem;
+        margin-left: 1rem;
         background-color: $color-primary-green;
     }
 }
-.props.member.user{
+.props.member.user {
     width: 7rem;
     border: none;
     border-radius: 1rem;
-    
-    
-   &-container{
-       display: flex;
-       align-items: center;
-       justify-content: space-around;
-       width: 60%;
-       p{
-           margin: 0px;
-       }
-       @include respond(sm){
-           flex-direction: column;
-           justify-content: space-around;
-       }
-   }
-    background-color:$color-secondary-blue;
-   margin-top: 0.3rem;
-    color:white;
+
+    &-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 60%;
+        p {
+            margin: 0px;
+        }
+        @include respond(sm) {
+            flex-direction: column;
+            justify-content: space-around;
+        }
+    }
+    background-color: $color-secondary-blue;
+    margin-top: 0.3rem;
+    color: white;
     max-height: 26px;
-    margin-left:1rem;
-    @include respond(xs){
+    margin-left: 1rem;
+    @include respond(xs) {
         font-size: small;
-    }  
-    &--green{
+    }
+    &--green {
         width: 5.5rem;
         border: none;
         border-radius: 1rem;
-       
-       
-       margin-top: 0.3rem;
-        color:white;
+
+        margin-top: 0.3rem;
+        color: white;
         max-height: 26px;
-        margin-left:1rem;
+        margin-left: 1rem;
         background-color: $color-primary-green;
     }
-    img{
+    img {
         width: 20px;
         color: white;
     }
 }
 
-.gotop-button{
+.gotop-button {
     position: fixed;
     width: 50px;
     height: 50px;
@@ -228,19 +221,19 @@
     border: none;
     z-index: 100;
     // transform: translate(40vw,60vh);
-    transform: translate(30rem,28rem);
-    box-shadow: -1px 0px 19px -2px rgba(0,0,0,0.75);
-    img{
+    transform: translate(30rem, 28rem);
+    box-shadow: -1px 0px 19px -2px rgba(0, 0, 0, 0.75);
+    img {
         width: 25px;
     }
-    @include respond(md){
-        transform: translate(79.5vw,60vh);
+    @include respond(md) {
+        transform: translate(79.5vw, 60vh);
     }
     // @include respond(sm){
     //     display: none;
     // }
 }
-.edit-complete-profile{
+.edit-complete-profile {
     background-color: $color-secondary-blue;
     border-radius: 20px;
     color: white;
@@ -248,28 +241,28 @@
     padding: 5px 10px;
     margin: 10px;
 }
-.view-team-members{
+.view-team-members {
     font-weight: 600;
     cursor: pointer;
     color: $color-secondary-blue;
     font-size: medium;
-    @include respond(lg){
+    @include respond(lg) {
         font-size: small;
     }
 }
-.remove-member-create-team{
+.remove-member-create-team {
     background-color: white;
     border: none;
     color: $color-primary-green;
     margin: 0px 10px;
 }
 
-.view-more-post{
- margin-left: 1rem;
-background-color: transparent;
-color: $color-primary-blue;
-border: none;
+.view-more-post {
+    margin-left: 1rem;
+    background-color: transparent;
+    color: $color-primary-blue;
+    border: none;
 }
-.ce-chat-form-container>div>div>{
+.ce-chat-form-container > div > div > {
     min-height: 60px !important;
 }
