@@ -13,7 +13,6 @@ const initialState = {
 const teamsReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case GET_TEAMS:
-            console.log('team', action.payload)
             return {
                 ...state,
                 teams: action.payload.data.team,
