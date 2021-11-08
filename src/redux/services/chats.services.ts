@@ -8,16 +8,16 @@ class ChatEngineService {
         user_name: string,
         userSecret: string
     ): Promise<any> {
-        console.log(chatName, user_name, userSecret)
+        console.log('service', chatName, user_name, userSecret)
         const response = await axios.post(
-            `${chatEngineBaseUrl}/chats`,
+            `${chatEngineBaseUrl}/chats/`,
             {
                 title: chatName,
                 is_direct_chat: false,
             },
             {
                 headers: {
-                    'Project-ID': process.env.REACT_APP_CHATENGINE_PROJECT_ID,
+                    'Project-ID': '02640f0a-dec7-475d-a7e5-0ee4c955a5b0',
                     'User-Name': user_name,
                     'User-Secret': userSecret,
                 },
@@ -50,12 +50,20 @@ class ChatEngineService {
         lastName: string,
         secret: string
     ): Promise<any> {
-        const response = await axios.post(`${chatEngineBaseUrl}/users`, {
-            username: user_name,
-            first_name: firstName,
-            last_name: lastName,
-            secret: secret,
-        })
+        const response = await axios.post(
+            `${chatEngineBaseUrl}/users`,
+            {
+                username: user_name,
+                first_name: firstName,
+                last_name: lastName,
+                secret: secret,
+            },
+            {
+                headers: {
+                    'PRIVATE-KEY': '129d4338-649c-4246-99f0-204469a872ad',
+                },
+            }
+        )
 
         return response.data
     }

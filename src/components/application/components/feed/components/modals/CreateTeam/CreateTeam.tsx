@@ -78,7 +78,7 @@ const CreateTeam = (props: any) => {
         //     ],
         // }
         // @ts-ignore
-        dispatch(createTeam(teamDetails))
+        dispatch(createTeam(teamDetails, props.userData))
         props.closeModal()
     }
 

@@ -573,9 +573,12 @@ function Feed() {
                             <UploadThought closeModal={closeModal} />
                         </div>
                     )}
-                    {showCreateTeam && (
+                    {showCreateTeam && userInfo && (
                         <div>
-                            <CreateTeam closeModal={closeModal} />
+                            <CreateTeam
+                                closeModal={closeModal}
+                                userData={userInfo}
+                            />
                         </div>
                     )}
                     {showTeamMembers && (

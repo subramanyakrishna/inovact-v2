@@ -5,19 +5,43 @@ import {
     UPDATE_TEAM_AVATAR,
 } from './../actionTypes/teams'
 import TeamsService from '../services/teams.services'
+import { createChatUser, createTeamChat } from './chats'
+import chatsServices from 'redux/services/chats.services'
 
-export const createTeam = (team: any) => async (dispatch: any) => {
-    try {
-        //? this data is temporary and will be replaced by the real data according to the backend
-        const res = await TeamsService.createTeam(team)
-        dispatch({
-            type: CREATE_TEAM,
-            payload: res.data,
-        })
-    } catch (error) {
-        console.log(error)
+export const createTeam =
+    (team: any, userData: any) => async (dispatch: any) => {
+        try {
+            console.log(userData)
+            //? this data is temporary and will be replaced by the real data according to the backend
+            // const res = await TeamsService.createTeam(team)
+            // const data = await dispatch({
+            //     type: CREATE_TEAM,
+            //     payload: res.data,
+            // })
+
+            // const data = await chatsServices.createChat(
+            //     team.name,
+            //     userData.username,
+            //     userData.id
+            // )
+
+            // const data = await dispatch(
+            //     createChatUser(
+            //         userData.user_name,
+            //         userData.email_id,
+            //         userData.firstName,
+            //         userData.lastName
+            //     )
+            // )
+            // console.log(data)
+            const data = await dispatch(
+                createTeamChat(team.name, 'afif_ahmed', userData.email_id)
+            )
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
 
 export const getTeams = (userId: string) => async (dispatch: any) => {
     try {

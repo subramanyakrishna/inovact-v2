@@ -9,6 +9,7 @@ import ChatEngineService from 'redux/services/chats.services'
 export const createTeamChat =
     (teamName: string, userName: string, email: string) =>
     async (dispatch: any) => {
+        console.log('teamchat', teamName, userName, email)
         const data = {
             chatName: teamName,
             user_name: userName,
@@ -19,7 +20,7 @@ export const createTeamChat =
             data.user_name,
             data.userSecret
         )
-        console.log(res)
+        console.log('chatengine', res)
         dispatch({
             type: CREATE_TEAM_CHAT,
             payload: res,
@@ -46,16 +47,17 @@ export const createChatUser =
     ) =>
     async (dispatch: any) => {
         const data = {
-            user_name: userName,
+            user_name: 'afif_ahmed',
             secret: userSecret,
             first_name: firstName,
             last_name: lastName,
         }
+        console.log('createchatuser', data)
         const res = await ChatEngineService.createUser(
             data.user_name,
-            data.secret,
             data.first_name,
-            data.last_name
+            data.last_name,
+            data.secret
         )
         dispatch({
             type: CREATE_CHAT_USER,
