@@ -13,26 +13,21 @@ export const createTeam =
         try {
             console.log(userData)
             //? this data is temporary and will be replaced by the real data according to the backend
-            // const res = await TeamsService.createTeam(team)
-            // const data = await dispatch({
-            //     type: CREATE_TEAM,
-            //     payload: res.data,
-            // })
+            const res = await TeamsService.createTeam(team)
+            await dispatch({
+                type: CREATE_TEAM,
+                payload: res.data,
+            })
 
-            // const data = await chatsServices.createChat(
-            //     team.name,
-            //     userData.username,
-            //     userData.id
-            // )
-
-            // const data = await dispatch(
-            //     createChatUser(
-            //         userData.user_name,
-            //         userData.email_id,
-            //         userData.firstName,
-            //         userData.lastName
-            //     )
-            // )
+            // a new user will be created if he has no team as an admin
+            await dispatch(
+                createChatUser(
+                    userData.user_name,
+                    userData.email_id,
+                    userData.firstName,
+                    userData.lastName
+                )
+            )
             // console.log(data)
             const data = await dispatch(
                 createTeamChat(team.name, 'afif_ahmed', userData.email_id)
