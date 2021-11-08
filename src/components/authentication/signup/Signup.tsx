@@ -3,7 +3,6 @@ import logo from 'images/logo/inovactlogo.png'
 import Card from 'components/authentication/signup/Card'
 
 const Signup = (props: any) => {
-    console.log('signup', props)
     return (
         <div className="signup">
             <div className="signup__flex-container">

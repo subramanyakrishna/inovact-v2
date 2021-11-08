@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 function LikedUser(props: any) {
-    console.log(props)
     const user_id = useSelector((state: any) => state.userInfo.id)
     return (
         <div className="post-dedicated-liked-by">
@@ -15,10 +14,6 @@ function LikedUser(props: any) {
                         <Link
                             to="/app/otherprofile"
                             onClick={() => {
-                                console.log(
-                                    'to="/app/otherprofile"',
-                                    props.user.user.id
-                                )
                                 localStorage.setItem(
                                     'other-user',
                                     props.user.user.id

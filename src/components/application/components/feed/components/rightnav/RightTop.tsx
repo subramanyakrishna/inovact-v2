@@ -22,7 +22,7 @@ const RightTop = (props: any) => {
     ).slice(0, 4)
 
     const peopleYouMayKnow = useSelector((state: any) => state.peopleYouMayKnow)
-    console.log('pymk', peopleYouMayKnow)
+
     const dispatch = useDispatch()
     const handleConnect = async (id: number) => {
         setTimeout(() => {
@@ -42,12 +42,8 @@ const RightTop = (props: any) => {
     const history = useHistory()
 
     const getTheOtherUser = async (userId: any) => {
-        console.log(' RightTop the user id is of other: ', userId)
         localStorage.setItem('other-user', userId)
-        console.log(
-            'getTheOtherUser localStorage.getItem("other-user")',
-            localStorage.getItem('other-user')
-        )
+
         setTimeout(() => {
             history.push('/app/otherprofile')
         }, 1000)

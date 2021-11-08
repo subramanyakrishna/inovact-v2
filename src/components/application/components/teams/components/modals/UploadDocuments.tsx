@@ -7,7 +7,6 @@ function UploadDocuments(props: any) {
         props.closeModal()
         if (e.target.files) {
             documentUploader(e.target.files).then(async (data: any) => {
-                console.log(data)
                 const docData = {
                     ...data[0],
                     team_id: props.team_id,
@@ -20,13 +19,8 @@ function UploadDocuments(props: any) {
                         Authorization: localStorage.getItem('user'),
                     },
                 })
-                    .then((data: any) => {
-                        console.log('The image uploaded', data)
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
-                console.log(docData)
+                    .then((data: any) => {})
+                    .catch((err) => {})
             })
         }
     }

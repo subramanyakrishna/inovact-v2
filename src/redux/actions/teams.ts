@@ -7,15 +7,17 @@ import {
 import TeamsService from '../services/teams.services'
 import { createChatUser, createTeamChat } from './chats'
 import chatsServices from 'redux/services/chats.services'
+import axios from 'axios'
+
+const baseUrl = 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev'
 
 export const createTeam =
     (team: any, userData: any) => async (dispatch: any) => {
         try {
-            console.log(userData)
             //? this data is temporary and will be replaced by the real data according to the backend
-            await TeamsService.createTeam(team).then(async () => {
+            await TeamsService.createTeam(team).then(async (teamData) => {
                 dispatch(getTeams('user'))
-                console.log('fasdf')
+
                 // const result = await dispatch(
                 //     createChatUser(
                 //         userData.user_name,
@@ -25,20 +27,35 @@ export const createTeam =
                 //     )
                 // )
                 const data = await dispatch(
-                    createTeamChat(team.name, 'afif_ahmed', userData.email_id)
+                    createTeamChat(
+                        team.name,
+                        userData.user_name,
+                        userData.email_id
+                    )
                 )
-                console.log(data)
+                console.log('teamchats', data)
+                await axios.put(
+                    `${baseUrl}/team`,
+                    {
+                        team_id: teamData.data.team.id,
+                        chat_id: data.id,
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem('user'),
+                        },
+                    }
+                )
             })
             // a new user will be created if he has no team as an admin
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
 export const getTeams = (userId: string) => async (dispatch: any) => {
     try {
         const res = await TeamsService.getTeams(userId)
-        console.log('teams redux', res.data)
+
         dispatch({
             type: GET_TEAMS,
             payload: res.data,
@@ -51,13 +68,6 @@ export const getTeams = (userId: string) => async (dispatch: any) => {
 export const updateTeamAvatar =
     (teamUpdateImg: any) => async (dispatch: any) => {
         try {
-            console.log('putreq in teams', teamUpdateImg)
-            const res = await TeamsService.updateTeamAvatar(teamUpdateImg)
-            console.log('updated the image', res.data)
-            //   dispatch({
-            //       type: UPDATE_TEAM_AVATAR,
-            //       payload: res.data
-            //   })
         } catch (error) {
             throw error
         }
@@ -66,7 +76,7 @@ export const updateTeamAvatar =
 export const inviteMembers = (bodyData: any) => async (dispatch: any) => {
     try {
         const res = await TeamsService.inviteMember(bodyData)
-        console.log(res.data.insert_team_invitations.returning[0])
+
         dispatch({
             type: INVITE_MEMBERS,
             payload: res.data.insert_team_invitations.returning[0],

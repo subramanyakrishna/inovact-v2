@@ -6,7 +6,6 @@ const RequestsTab = (props: any) => {
     const allTeams = useSelector((state: any) => state.teams.teams)
 
     const handleAcceptTeamMember = async (e: any) => {
-        console.log('accept', e)
         const response = await axios({
             method: 'post',
             url: 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/accept',
@@ -15,11 +14,9 @@ const RequestsTab = (props: any) => {
                 Authorization: localStorage.getItem('user'),
             },
         })
-        console.log(response)
     }
 
     const handleRejectTeamMember = async (e: any) => {
-        console.log('reject', e)
         const response = await axios({
             method: 'post',
             url: 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/reject',

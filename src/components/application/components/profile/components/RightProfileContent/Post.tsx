@@ -104,17 +104,13 @@ function Post({ post, openTeamMember, viewEditProject, editProject }: any) {
                 'Content-Type': 'application/json',
             },
         })
-            .then(() => {
-                console.log('The like was a success')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            .then(() => {})
+            .catch((err) => {})
     }
     useEffect(() => {
-        // console.log(post.likes);
-        // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        console.log(post.likes)
+        //
+        //
+
         if (post.likes?.some((like: any) => like.user?.id === user_id)) {
             setLikedPost(true)
         }

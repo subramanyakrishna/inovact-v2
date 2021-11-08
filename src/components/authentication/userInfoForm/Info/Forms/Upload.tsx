@@ -17,12 +17,11 @@ export default function AreaOfInterest(props: any) {
         props.handleChange('bio', e.target.value)
     }
     const loadFile = (e: any) => {
-        console.log('here image upload')
         // const imageSource = URL.createObjectURL(e.target.files[0]);
-        // console.log(imageSource);
+        //
         const imageData = new FormData()
         handleUserInfoChange('profile_completed', '')
-        console.log(e.target.files[0])
+
         imageData.append('file', e.target.files[0])
         imageData.append('upload_preset', 'inovact')
         imageData.append('cloud_name', 'khalnayak069')
@@ -37,9 +36,8 @@ export default function AreaOfInterest(props: any) {
                     type: userInfoConstants.UPDATE_AVATAR,
                     payload: data.secure_url,
                 })
-                console.log(data)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {})
     }
     return (
         <section className="upload">

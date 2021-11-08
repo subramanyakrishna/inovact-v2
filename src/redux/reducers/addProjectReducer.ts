@@ -15,7 +15,6 @@ const initialState = {
 }
 
 const updateProjectInfoReducer = (state = initialState, action: any) => {
-    console.log(action.type, action.payload)
     switch (action.type) {
         case addProjectConstants.PROJECT_UPDATE_TITLE:
             return {

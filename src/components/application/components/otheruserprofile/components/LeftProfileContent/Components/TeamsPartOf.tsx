@@ -14,7 +14,7 @@ function TeamsPartOf(props: any) {
 
     const getTheUserTeam = async () => {
         const userId = localStorage.getItem('other-user')
-        console.log('userId', userId)
+
         await axios({
             method: 'get',
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user/team?user_id=${userId}`,
@@ -23,19 +23,12 @@ function TeamsPartOf(props: any) {
             },
         })
             .then((resp: any) => {
-                console.log('TeamsPartOf other user id', userId)
-                console.log(
-                    ' TeamsPartOf result of api call',
-                    resp.data.data.team
-                )
                 setMyTeams(resp.data.data.team)
             })
             .then(() => {
                 // history.push("/app/otherteams");
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            .catch((err) => {})
     }
 
     useEffect(() => {

@@ -72,7 +72,6 @@ function PostPage(props: any) {
     let params = useParams()
     allIdeas.forEach((post: any) => {
         if (post.id === Number(id)) {
-            console.log(post)
             postData = {
                 user_id: post.user.id,
                 id: post.id,
@@ -173,7 +172,7 @@ function PostPage(props: any) {
 
 export default PostPage
 
-// console.log(props);
+//
 //     let postData: any = {
 //         id: 1,
 //         type: 1,

@@ -70,9 +70,9 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
     const toggleShowComments = () => {
         setShowComments(!showComments)
     }
-    console.log(post)
+
     const user_id = useSelector((state: any) => state.userInfo.id)
-    console.log(post.numLikes)
+
     const [likes, setLikes] = useState(0)
     const [likedPost, setLikedPost] = useState(false)
     const likedImg =
@@ -93,24 +93,19 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 'Content-Type': 'application/json',
             },
         })
-            .then(() => {
-                console.log('The like was a success')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            .then(() => {})
+            .catch((err) => {})
     }
     useEffect(() => {
-        // console.log(post.likes);
-        // console.log(post.likes.some((like: any)=>like.id!==user_id));
-        console.log(post)
+        //
+        //
+
         setLikes(post.numLikes)
         if (post.likes?.some((like: any) => like.user.id === user_id)) {
             setLikedPost(true)
         }
     }, [post])
-    console.log(user_id)
-    console.log(post.user_id)
+
     return (
         <div className="post">
             {!showComments && (
@@ -129,10 +124,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                                 <Link
                                     to="/app/otherprofile"
                                     onClick={() => {
-                                        console.log(
-                                            'post.user_id other-user',
-                                            post.user_id
-                                        )
                                         localStorage.setItem(
                                             'other-user',
                                             post.user_id

@@ -15,7 +15,7 @@ const useRequests = ({
     const doRequest = async (props = {}) => {
         try {
             setErrors(null)
-            console.log('The user id is: ' + id)
+
             const response = await axios({
                 method: method,
                 url: `${baseUrl}${route}`,
@@ -27,7 +27,7 @@ const useRequests = ({
                     Authorization: localStorage.getItem('user'),
                 },
             })
-            console.log(response.data)
+
             if (onSuccess) {
                 onSuccess(response.data)
             }
@@ -36,7 +36,7 @@ const useRequests = ({
             if (onFailure) {
                 onFailure()
             }
-            console.log(err.message)
+
             setErrors(err.message)
         }
     }

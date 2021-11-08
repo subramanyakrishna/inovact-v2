@@ -4,7 +4,6 @@ import CommentReplyTag from './CommentReplyTag'
 function CommentMainContent(props: any) {
     const [showReplies, setShowReplies] = useState(false)
     const toggleShowReplies = () => {
-        console.log('Toggles replies')
         setShowReplies(!showReplies)
     }
     const image =

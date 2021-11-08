@@ -28,7 +28,7 @@ const userAuthentication = async (
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: async function (result) {
                 // const accessToken = result.getAccessToken().getJwtToken();
-                // console.log("result from aws: ",result);
+                //
                 // store.dispatch({
                 //     type: userConstants.LOGIN_SUCCESS,
                 //     user: {
@@ -36,11 +36,11 @@ const userAuthentication = async (
                 //     }
                 // });
                 // localStorage.setItem("user", accessToken);
-                // console.log(store.getState());
+                //
                 localStorage.setItem('user', result.getIdToken().getJwtToken())
-                console.log('results', result)
+
                 const currentUser: any = UserPool
-                console.log('currentUser', currentUser)
+
                 axios
                     .get(
                         'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
@@ -51,7 +51,6 @@ const userAuthentication = async (
                         }
                     )
                     .then((resp: any) => {
-                        console.log('user api call:', resp)
                         store.dispatch({
                             type: userConstants.LOGIN_SUCCESS,
                             user: {
@@ -63,14 +62,10 @@ const userAuthentication = async (
                             type: userInfoConstants.UPDATE_WHOLE_PROFILE,
                             data: resp.data.user[0],
                         })
-                        console.log(store.getState())
                     })
-                    .catch((err) => console.log(err))
-
-                console.log('user Pool data: ', currentUser.storage.user)
+                    .catch((err) => {})
             },
             onFailure: async function (err) {
-                console.log(err)
                 setIsLoading(false)
                 setErrors(err.message)
                 store.dispatch({
@@ -82,9 +77,7 @@ const userAuthentication = async (
                 return new Error('authentication failure')
             },
         })
-    })().then(() => {
-        console.log('Done with the sign up')
-    })
+    })().then(() => {})
 }
 
 export default userAuthentication

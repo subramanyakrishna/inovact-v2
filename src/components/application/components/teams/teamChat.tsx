@@ -20,14 +20,12 @@ const TeamChat = (props: any) => {
                     }
                 )
                 .then(async (resp: any) => {
-                    console.log('user api call:', resp)
                     if (resp.status === 200) {
                         const userInfo = resp.data.data.user[0]
                         setUserInfo(userInfo)
                     }
                 })
                 .catch((err) => {
-                    console.log(err)
                     // alert(err.message)
                     // history.push('/login')
                 })
@@ -35,18 +33,18 @@ const TeamChat = (props: any) => {
             history.push('/login')
         }
     }, [])
-    console.log('userInfo:', userInfo)
+
     return (
         <div style={{ marginTop: '5rem' }}>
             {userInfo && (
                 <ChatEngine
                     // height="100vh"
-                    // renderChatList={(chatAppState: any) => (
-                    //     <ChatList {...chatAppState} />
-                    // )}
-                    renderChatFeed={(chatAppState: any) => (
-                        <ChatFeed {...chatAppState} />
+                    renderChatList={(chatAppState: any) => (
+                        <ChatList {...chatAppState} />
                     )}
+                    // renderChatFeed={(chatAppState: any) => (
+                    //     <ChatFeed {...chatAppState} />
+                    // )}
                     userName={userInfo!.user_name}
                     userSecret={userInfo!.email_id}
                     projectID="02640f0a-dec7-475d-a7e5-0ee4c955a5b0"

@@ -30,7 +30,7 @@ const TeamSettings: React.FC<teamSettings> = ({
         ;(async () => {
             const response = await makeApiCall('get', 'team')
             const teamsWhereCurrentUserIsMember = response.data.data.team
-            console.log(teamsWhereCurrentUserIsMember)
+
             const filtetredTeamsWhereCurrentUserIsMember: teamI[] = []
 
             teamsWhereCurrentUserIsMember.forEach((team: any) => {
@@ -52,7 +52,6 @@ const TeamSettings: React.FC<teamSettings> = ({
                 )
             )
             setIsLoading(false)
-            console.log(filtetredTeamsWhereCurrentUserIsMember)
         })()
     }, [])
     // const team_with_admin_access_data = useSelector(
@@ -75,27 +74,24 @@ const TeamSettings: React.FC<teamSettings> = ({
         handleUserInfoChange('team_public_visibility', event.target.checked)
     }
     // const handleAllowOthersToRequestJoin = (checked: boolean) => {
-    //     console.log('handleAllowOthersToRequestJoin', checked)
+    //
     // }
     // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
-    //     console.log('handleAllTeamMemberSendInvitation', checked)
+    //
     // }
 
     const handleDeleteTeam = async (id: number) => {
-        console.log(id, teams_with_admin_access_data)
         setTWAA(
             teams_with_admin_access_data.filter((team: any) => team.id !== id)
         )
-        console.log('filtered')
+
         await axios({
             method: 'delete',
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${id}`,
             headers: {
                 Authorization: localStorage.getItem('user'),
             },
-        }).then((resp: any) => {
-            console.log(resp)
-        })
+        }).then((resp: any) => {})
     }
     return (
         <div className={'teamset'}>

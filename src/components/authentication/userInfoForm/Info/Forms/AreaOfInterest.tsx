@@ -38,7 +38,6 @@ function AreaOfInterest(props: any) {
         handleUserInfoChange('user_interests', updatedInterests)
     }
 
-    console.log('allInterests', allInterests)
     return (
         <section className="area-of-interest">
             <div className="area-of-interest__text">

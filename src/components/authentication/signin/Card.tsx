@@ -25,15 +25,12 @@ const Card: React.FC<Props> = (props) => {
     const history = useHistory()
     const signin = async (e: any) => {
         e.preventDefault()
-        console.log(email, password)
+
         setIsLoading(true)
         dispatch({ type: userConstants.LOGIN_REQUEST })
         userAuthentication(email, password, setIsLoading, setErrors)
-            .then(() => {
-                console.log('redirecting to feed')
-            })
+            .then(() => {})
             .catch((err) => {
-                console.log(err)
                 setIsLoading(false)
                 history.push('/login')
             })

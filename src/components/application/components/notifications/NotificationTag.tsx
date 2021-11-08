@@ -14,7 +14,6 @@ function NotificationTag(props: any) {
 
     useEffect(() => {
         setState(props.notification)
-        console.log(props.notification)
     }, [])
 
     return (

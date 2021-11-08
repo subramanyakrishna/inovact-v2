@@ -6,7 +6,6 @@ import CommentReplyTag from './CommentReplyTag'
 function CommentMainContent(props: any) {
     const [showReplies, setShowReplies] = useState(false)
     const toggleShowReplies = () => {
-        console.log('Toggles replies')
         setShowReplies(!showReplies)
     }
     const image =
@@ -47,7 +46,7 @@ function CommentMainContent(props: any) {
     ]
     const commentDate = new Date(props.comment?.created_at)
     const user_id = useSelector((state: any) => state.userInfo.id)
-    console.log(props)
+
     return (
         <div className="comments-on-posts-contents">
             <div className="comments-on-posts-img-container">
@@ -57,10 +56,6 @@ function CommentMainContent(props: any) {
                     <Link
                         to="/app/otherprofile"
                         onClick={() => {
-                            console.log(
-                                'to="/app/otherprofile"',
-                                props.comment.user.id
-                            )
                             localStorage.setItem(
                                 'other-user',
                                 props.comment.user.id

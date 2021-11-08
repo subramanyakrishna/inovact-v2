@@ -26,8 +26,6 @@ const CreateTeam = (props: any) => {
     })
 
     const addRoles = ({ id, skills }: Iroles) => {
-        console.log('role', id)
-        console.log('skills', skills)
         setTeamDetails({
             ...teamDetails,
             roles: [...teamDetails.roles, { id, skills }],
@@ -45,7 +43,7 @@ const CreateTeam = (props: any) => {
 
     const dispatch = useDispatch()
     const addTeam = () => {
-        // console.log('teamDetails', teamDetails)
+        //
         // const newTeam = {
         //     name: 'New team',
         //     looking_for_members: false,
@@ -137,7 +135,7 @@ const CreateTeam = (props: any) => {
                                 <span>What roles are you looking for?</span>
                                 {teamDetails.roles.map(
                                     (ele: any, index: any) => {
-                                        console.log(teamDetails.roles)
+                                        
                                         return (
                                             <RolesLookingFor
                                                 role={ele.role}

@@ -11,7 +11,7 @@ const userSignup = ({ email_id, password, user_name }: any) => {
 
     const attributeList: any = []
     attributeList.push(attribute)
-    console.log(email_id, user_name, password)
+
     userPool.signUp(
         user_name,
         password,
@@ -19,14 +19,13 @@ const userSignup = ({ email_id, password, user_name }: any) => {
         [],
         (err: any, data: any) => {
             if (err) {
-                console.log(err)
                 alert(err.message || JSON.stringify(err))
                 return
             }
-            console.log(data)
+
             window.location.href = '/login'
             alert('Check Your Mail and Verify the account before login ;)')
-            // console.log(data.user.storage["CognitoIdentityServiceProvider.39gv12htis5sor640kodj7os34.be627e0a-2903-4537-bee3-287ce8ddcc3c.idToken"]);
+            //
 
             // localStorage.setItem("user",data.user.storage["CognitoIdentityServiceProvider.39gv12htis5sor640kodj7os34.be627e0a-2903-4537-bee3-287ce8ddcc3c.idToken"]);
         }

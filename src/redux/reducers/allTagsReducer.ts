@@ -3,7 +3,6 @@ import { allTagsConstants } from 'redux/actionTypes/allTagsConstants'
 const initialState: any = []
 
 const allTagsReducer = (state = initialState, action: any) => {
-    console.log('update tags', action.payload)
     switch (action.type) {
         case allTagsConstants.TAGS_UPDATE_ALL:
             return [...action.payload]

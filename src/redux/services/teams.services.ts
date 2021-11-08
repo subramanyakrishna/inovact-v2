@@ -25,7 +25,6 @@ class TeamsService {
         })
     }
     public async updateTeamAvatar(teamUpdateImg: any): Promise<any> {
-        console.log('before api call for avatar teams: ', teamUpdateImg)
         return await axios.put(`${baseUrl}/team`, teamUpdateImg, {
             headers: {
                 'Content-Type': 'application/json',

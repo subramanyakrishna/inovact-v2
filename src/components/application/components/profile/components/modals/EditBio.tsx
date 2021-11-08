@@ -11,9 +11,7 @@ function EditBio(props: any) {
         body: {
             ...userInfo,
         },
-        onSuccess: (data: any) => {
-            console.log('updated userinfo', data)
-        },
+        onSuccess: (data: any) => {},
     })
     const updateBio = () => {
         props.closeModal()

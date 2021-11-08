@@ -9,7 +9,6 @@ import {
 import CommentMainContent from './CommentMainContent'
 import CommentReplyTag from './CommentReplyTag'
 function CommentsOnPost(props: any) {
-    console.log('post comments', props)
     const commentInput: any = useRef()
     const userInfo = useSelector((state: any) => state.userInfo)
     const allPosts = useSelector((state: any) => state.allPosts)
@@ -43,7 +42,7 @@ function CommentsOnPost(props: any) {
             },
         }
         addCommentToState(commentData, type)
-        console.log(commentBody)
+
         commentInput.current.value = ''
         await axios({
             method: 'POST',
@@ -53,15 +52,10 @@ function CommentsOnPost(props: any) {
                 Authorization: localStorage.getItem('user'),
             },
         })
-            .then((data: any) => {
-                console.log(data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            .then((data: any) => {})
+            .catch((err) => {})
     }
     useEffect(() => {
-        console.log(props.commentsData)
         setAllPostComments(props.commentsData)
     }, [props.commentsData])
 

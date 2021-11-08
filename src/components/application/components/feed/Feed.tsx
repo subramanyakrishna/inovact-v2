@@ -45,7 +45,7 @@ import {
 import { getConnectionsAllData } from '../connections/components/connectionsUtils'
 
 function Feed() {
-    //userPool.getCurrentUser(); console log to see the idtoken
+    //userPool.getCurrentUser();
     const [posts, setPosts] = useState<postData[]>([])
     const [ideas, setIdeas] = useState<postData[]>([])
     const [peopleToKnow, setPeopleToKnow] = useState<any>([])
@@ -119,10 +119,10 @@ function Feed() {
             // await getUserIdeas();
             // await getUserProjects();
             // if (errors || errorsIdea || getPeopleErrors || userErrors) {
-            //     console.log(errors)
-            //     console.log(errorsIdea)
-            //     console.log(getPeopleErrors)
-            //     console.log(userErrors)
+            //
+            //
+            //
+            //
             //     history.push('/login')
             // }
         })()
@@ -135,8 +135,8 @@ function Feed() {
                 filteredConnectionId,
             } = await getConnectionsAllData(userInfo.id)
 
-            // console.log(filteredConnectedAccountComplete)
-            // console.log(filteredConnectionId)
+            //
+            //
             setPendingRequestLoad(false)
             setMyConnectionLoad(false)
             dispatch(updatePendingRequests(filteredPendingRequest))
@@ -147,7 +147,7 @@ function Feed() {
             )
             dispatch(updateConnectedAccountId(filteredConnectionId))
         })()
-        // console.log('The userProfile status: ', userInfo.profile_complete)
+        //
     }, [])
     // useEffect(() => {
     //     if (!userInfo.profile_complete) {
@@ -183,13 +183,13 @@ function Feed() {
                             : 'Student',
                     }))
                     .filter((ele: any) => {
-                        // console.log(ele.user_id, userInfo.id);
+                        //
                         if (connectedAccountsId.includes(ele.user_id)) {
                             return false
                         }
                         return ele.user_id !== userInfo.id
                     })
-                // console.log(ptk);
+                //
                 handlePeopleYouMayKnow('pymk_update_all', ptk)
                 setPeopleToKnow([...ptk.slice(0, 4)])
             },
@@ -200,14 +200,14 @@ function Feed() {
     )
 
     useEffect(() => {
-        // console.log(connectedAccountsId)
+        //
         const pymk = peopleYouMayKnow.filter((ppl: any) => {
             if (connectedAccountsId.includes(ppl.user_id)) {
                 return false
             }
             return ppl.user_id !== userInfo.id
         })
-        // console.log('filtering all the pymk')
+        //
         handlePeopleYouMayKnow('pymk_update_all', pymk)
     }, [connectedAccountsId])
     const { doRequest, errors } = useRequests({
@@ -215,7 +215,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            // console.log(data)
+            //
             data.data.project.reverse()
             handleAllPosts('all-posts', [...data.data.project, ...allPosts])
             setPosts([
@@ -253,7 +253,7 @@ function Feed() {
         body: null,
         onSuccess: (data: any) => {
             data.data.idea.reverse()
-            // console.log('on success of ideas')
+            //
             handleAllIdeas('all-ideas', [...data.data.idea, ...allIdeas])
             setIdeas([
                 ...data.data.idea.map((post: any) => ({
@@ -288,7 +288,7 @@ function Feed() {
             route: 'thoughts',
             body: null,
             onSuccess: (data: any) => {
-                // console.log('The thoughts fetched are: ', data.data.thoughts)
+                //
                 handleAllThoughts('all-thoughts', data.data.thoughts)
                 const finalData = data.data.thoughts.map((thought: any) => {
                     return {
@@ -317,7 +317,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            // console.log(data)
+            //
             handleTagsChange('udpate_all_tags', data.data.hashtag)
         },
     })
@@ -326,7 +326,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            // console.log(data)
+            //
             handleSkillsChange('udpate_all_skills', data.data.skills)
         },
     })
@@ -335,7 +335,7 @@ function Feed() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            // console.log(data)
+            //
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
     })
@@ -345,7 +345,7 @@ function Feed() {
             method: 'get',
             body: null,
             onSuccess: (data: any) => {
-                // console.log('The interests data received is :', data)
+                //
                 handleInterestsChange(
                     'interests_update',
                     data.data.area_of_interests
@@ -376,7 +376,7 @@ function Feed() {
             }
         )
 
-        // console.log('sorted based on date', sortedPosts)
+        //
         if (posts.length && ideas.length) {
             setFilteredPosts([...sortedPosts])
         }
@@ -454,7 +454,7 @@ function Feed() {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        // console.log(userInfo)
+        //
         dispatch(getTeams('user'))
     }, [])
 
@@ -533,7 +533,7 @@ function Feed() {
             })),
         ])
         const finalData = allThoughts?.map((thought: any) => {
-            // console.log('this is a single thought: ', thought)
+            //
             return {
                 user_id: thought.user?.id,
                 id: thought.id,
@@ -656,7 +656,7 @@ function Feed() {
                             </button>
                         }
                         {filteredPosts.map((post, idx) => {
-                            // console.log(post)
+                            //
                             return (
                                 <Post
                                     key={idx}

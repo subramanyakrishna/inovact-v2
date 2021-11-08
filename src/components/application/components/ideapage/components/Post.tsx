@@ -88,16 +88,12 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                 'Content-Type': 'application/json',
             },
         })
-            .then(() => {
-                console.log('The like was a success')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            .then(() => {})
+            .catch((err) => {})
     }
     useEffect(() => {
-        // console.log(post.likes);
-        // console.log(post.likes.some((like: any)=>like.id!==user_id));
+        //
+        //
         setLikes(post.numLikes)
         if (post.likes?.some((like: any) => like.user.id === user_id)) {
             setLikedPost(true)
@@ -120,7 +116,6 @@ function Post({ post, openTeamMember, openRequestJoin }: any) {
                             <Link
                                 to="/app/otherprofile"
                                 onClick={() => {
-                                    console.log(post.user_id)
                                     localStorage.setItem(
                                         'other-user',
                                         post.user_id

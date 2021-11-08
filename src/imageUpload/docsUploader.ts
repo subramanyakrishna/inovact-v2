@@ -1,8 +1,6 @@
 export const documentUploader = async (allFiles: any) => {
-    console.log(allFiles)
     const finalData: any = []
     for (let i = 0; i < allFiles.length; i++) {
-        console.log('it is an image')
         const docData = new FormData()
         docData.append('file', allFiles[i])
         docData.append('upload_preset', 'documents')
@@ -19,9 +17,7 @@ export const documentUploader = async (allFiles: any) => {
                     mime_type: allFiles[i].type,
                 })
             })
-            .catch((err: any) => {
-                console.log(err)
-            })
+            .catch((err: any) => {})
     }
 
     return finalData

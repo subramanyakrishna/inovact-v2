@@ -17,7 +17,6 @@ function EditProject(props: any) {
             ...addProject,
         },
         onSuccess: (data: any) => {
-            console.log('The project has been updated: ', data)
             window.location.reload()
         },
     })
@@ -36,7 +35,7 @@ function EditProject(props: any) {
                 }
             })[0]
     )
-    console.log(projectData)
+
     const editProjectData = {
         id: projectData.id,
         user_id: projectData.user_id,

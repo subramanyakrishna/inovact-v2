@@ -28,7 +28,7 @@ function PeopleYouMayKnow(props: any) {
 
     const getFilteredUsers = (people_you_may_know_from_api: any) => {
         const pattern = new RegExp(selectedFilterValue, 'i')
-        console.log(currentFilter)
+
         const filteredUsersTemp = people_you_may_know_from_api.filter(
             (user: any) =>
                 (user[currentFilter]

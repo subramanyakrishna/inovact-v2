@@ -3,7 +3,6 @@ import { allThoughtConstants } from 'redux/actionTypes/allThoughtConstants'
 const initialState: any = []
 
 const allThoughtsReducer = (state = initialState, action: any) => {
-    console.log(action.payload)
     switch (action.type) {
         case allThoughtConstants.THOUGHTS_UPDATE_ALL:
             return action.payload

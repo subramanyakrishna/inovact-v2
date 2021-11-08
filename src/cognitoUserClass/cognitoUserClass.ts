@@ -30,14 +30,10 @@ class cognitoUserClass {
     }
     static forgotPassword(userName: string): void {
         cognitoUserClass.upDateCognitoUserProperty(userName)
-        console.log(cognitoUserClass.cognitouser)
+
         cognitoUserClass.cognitouser.forgotPassword({
-            onSuccess: (data) => {
-                console.log(data)
-            },
-            onFailure: (err) => {
-                console.log('ERR:', err)
-            },
+            onSuccess: (data) => {},
+            onFailure: (err) => {},
         })
     }
 
@@ -52,26 +48,18 @@ class cognitoUserClass {
                 {
                     onFailure(err) {
                         rejects('NOT_MATCHING')
-                        console.log(err.name)
+
                         cognitoUserClass.message = err.name
                     },
                     onSuccess(data) {
                         cognitoUserClass.message = data
-                        console.log(
-                            'cognitoUserClass.message in ',
-                            cognitoUserClass.message
-                        )
+
                         resolve('SUCCESS')
                     },
                 }
             )
         })
             .then((res: string | void) => {
-                console.log(res)
-                console.log(
-                    'cognitoUserClass.message out',
-                    cognitoUserClass.message
-                )
                 return cognitoUserClass.message
             })
             .catch((e: any) => {
@@ -79,17 +67,12 @@ class cognitoUserClass {
                     'cognitoUserClass.message out',
                     cognitoUserClass.message
                 )
-                console.log(e.name)
             })
     }
     static deleteUser(userName: string): void {
         cognitoUserClass.upDateCognitoUserProperty(userName)
 
-        cognitoUserClass.cognitouser.deleteUser((err, result) => {
-            console.log('err', err)
-
-            console.log('result', result)
-        })
+        cognitoUserClass.cognitouser.deleteUser((err, result) => {})
     }
 }
 

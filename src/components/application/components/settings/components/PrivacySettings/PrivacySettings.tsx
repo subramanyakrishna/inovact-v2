@@ -86,7 +86,6 @@ const PrivacySettings: React.FC<any> = ({
     }, [])
 
     const handleForgotPassWord = () => {
-        console.log('forget password clicked')
         if (rePswd === '' || newPswd === '') {
             setErrorMsg('please enter all fields')
             setIsPswdNotMathching(true)
@@ -143,7 +142,7 @@ const PrivacySettings: React.FC<any> = ({
                 verificationCode,
                 newPswd
             )
-            console.log('res res', res)
+
             if (res !== 'SUCCESS') {
                 setVerificationCodeMessage('NOT_MATCHING')
             } else {

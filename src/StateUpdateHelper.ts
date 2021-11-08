@@ -21,7 +21,6 @@ import { allInterestsConstants } from 'redux/actionTypes/allInterestsConstants'
 import { otherUserConnectionsConstants } from 'redux/actionTypes/otherUserConnections'
 
 const handleUserCredsChange = (name: any, value: any) => {
-    console.log('all posts value: ', value)
     switch (name) {
         case 'email_id':
             store.dispatch({
@@ -42,10 +41,8 @@ const handleUserCredsChange = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleUserInfoChange = async (name: any, value: any) => {
-    console.log(name, value)
     switch (name) {
         case 'profile_completed':
             store.dispatch({
@@ -208,7 +205,6 @@ const handleUserInfoChange = async (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 
 const handleAddProjectChange = (name: any, value: any) => {
@@ -288,7 +284,6 @@ const handleAddProjectChange = (name: any, value: any) => {
                 payload: value,
             })
     }
-    console.log(store.getState())
 }
 
 const handleAddIdeaChange = (name: any, value: any) => {
@@ -341,7 +336,6 @@ const handleAddIdeaChange = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 
 const handleAddThoughtChange = (name: any, value: any) => {
@@ -358,7 +352,6 @@ const handleAddThoughtChange = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 
 const handleAddTeamChange = (name: any, value: any) => {
@@ -409,11 +402,9 @@ const handleAddTeamChange = (name: any, value: any) => {
             store.dispatch({ type: addTeamConstants.TEAM_CLEAR_DATA })
             break
     }
-    console.log(store.getState())
 }
 
 const handleAllPosts = (name: any, value: any) => {
-    console.log('all posts value: ', value)
     switch (name) {
         case 'all-posts':
             store.dispatch({
@@ -428,10 +419,8 @@ const handleAllPosts = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleAllIdeas = (name: any, value: any) => {
-    console.log('all posts value: ', value)
     switch (name) {
         case 'all-ideas':
             store.dispatch({
@@ -446,7 +435,6 @@ const handleAllIdeas = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 
 const handleOtherUserInfoChange = (name: any, value: any) => {
@@ -462,7 +450,6 @@ const handleOtherUserInfoChange = (name: any, value: any) => {
                 type: otherUserInfoConstants.OTHER_USER_CLEAR_INFO,
             })
     }
-    console.log(store.getState())
 }
 
 const handleAllUserIdeas = (name: any, value: any) => {
@@ -479,7 +466,6 @@ const handleAllUserIdeas = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleAllUserProject = (name: any, value: any) => {
     switch (name) {
@@ -495,7 +481,6 @@ const handleAllUserProject = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleAllThoughts = (name: any, value: any) => {
     switch (name) {
@@ -511,7 +496,6 @@ const handleAllThoughts = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleAllUserThoughts = (name: any, value: any) => {
     switch (name) {
@@ -527,11 +511,9 @@ const handleAllUserThoughts = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 
 const handleTagsChange = (name: any, value: any) => {
-    console.log(name, value)
     switch (name) {
         case 'udpate_all_tags':
             store.dispatch({
@@ -546,10 +528,8 @@ const handleTagsChange = (name: any, value: any) => {
             })
             break
     }
-    console.log('The tags are updated: ', store.getState())
 }
 const handleSkillsChange = (name: any, value: any) => {
-    console.log(name, value)
     switch (name) {
         case 'udpate_all_skills':
             store.dispatch({
@@ -564,10 +544,8 @@ const handleSkillsChange = (name: any, value: any) => {
             })
             break
     }
-    console.log('The tags are updated: ', store.getState())
 }
 const handleRolesChange = (name: any, value: any) => {
-    console.log(name, value)
     switch (name) {
         case 'udpate_all_roles':
             store.dispatch({
@@ -582,7 +560,6 @@ const handleRolesChange = (name: any, value: any) => {
             })
             break
     }
-    console.log('The tags are updated: ', store.getState())
 }
 const handlePeopleYouMayKnow = (name: any, value: any) => {
     switch (name) {
@@ -599,7 +576,6 @@ const handlePeopleYouMayKnow = (name: any, value: any) => {
             })
             break
     }
-    console.log('people you may know: ', store.getState())
 }
 
 const handleOtherUserTeams = (name: any, value: any) => {
@@ -617,7 +593,6 @@ const handleOtherUserTeams = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 const handleInterestsChange = (name: any, value: any) => {
     switch (name) {
@@ -634,7 +609,6 @@ const handleInterestsChange = (name: any, value: any) => {
             })
             break
     }
-    console.log('All the interests are updated', store.getState())
 }
 const handleOtherUserConnections = (name: any, value: any) => {
     switch (name) {
@@ -651,7 +625,6 @@ const handleOtherUserConnections = (name: any, value: any) => {
             })
             break
     }
-    console.log(store.getState())
 }
 export {
     handleUserCredsChange,

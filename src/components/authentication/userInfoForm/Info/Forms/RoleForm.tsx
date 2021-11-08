@@ -16,7 +16,6 @@ export default function RoleForm(props: any) {
 
     const toggleClick = (index: number) => {
         setActiveIndex(index)
-        console.log(role)
     }
     //   const state = useSelector((state: any)=>state?.userInfo);
     //   const dispatch = useDispatch();

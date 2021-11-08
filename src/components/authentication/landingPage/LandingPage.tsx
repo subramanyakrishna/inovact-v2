@@ -22,7 +22,6 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleTagsChange('udpate_all_tags', data.data.hashtag)
         },
     })
@@ -31,7 +30,6 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleSkillsChange('udpate_all_skills', data.data.skills)
         },
     })
@@ -40,7 +38,6 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
     })
@@ -50,7 +47,6 @@ function LandingPage() {
             method: 'get',
             body: null,
             onSuccess: (data: any) => {
-                console.log('The interests data received is :', data)
                 handleInterestsChange(
                     'interests_update',
                     data.data.area_of_interests

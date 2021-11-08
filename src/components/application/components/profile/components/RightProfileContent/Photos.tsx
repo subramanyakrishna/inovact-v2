@@ -29,7 +29,6 @@ function Photos(props: photoProps) {
         }
     })
 
-    console.log(photos)
     return (
         <div>
             <div className="preview-image-container">

@@ -58,7 +58,6 @@ function UserSkills() {
         })()
     }, [])
     useEffect(() => {
-        console.log('user_skills', user_skills)
         const data_model = mapApiDataToUiData(user_skills)
         setFilteredData(data_model)
     }, [])

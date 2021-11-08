@@ -224,7 +224,6 @@ function ModalContent() {
                         <div className="modal_part_two-roles-looking-for">
                             <span>What roles are you looking for?</span>
                             {allRolesNeeded.map((ele: any, index: any) => {
-                                console.log(allRolesNeeded)
                                 return (
                                     <RolesLookingFor
                                         role={ele.role}

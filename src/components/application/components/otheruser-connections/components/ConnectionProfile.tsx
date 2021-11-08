@@ -7,7 +7,6 @@ function ConnectionProfile(props: any) {
     const history = useHistory()
     const userInfo = useSelector((state: any) => state.userInfo)
     const goToProfile = () => {
-        console.log('ConnectionProfile,', props.user.id)
         localStorage.setItem('other-user', props.user.id)
         if (history.location.pathname === '/app/otherprofile') {
             window.location.reload()

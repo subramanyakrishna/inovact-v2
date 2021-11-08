@@ -74,12 +74,7 @@ function Application() {
                         }
                     })
                 })
-                .then(() => {
-                    console.log(
-                        'profile status: ',
-                        state.userInfo.profile_complete
-                    )
-                })
+                .then(() => {})
                 .catch((err) => {
                     console.log(err)
                     // alert(err.message)

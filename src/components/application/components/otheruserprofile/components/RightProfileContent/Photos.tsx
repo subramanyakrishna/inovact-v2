@@ -18,9 +18,8 @@ function Photos(props: photoProps) {
         setCurrentImage(0)
         setViewerIsOpen(false)
     }
-    console.log(props)
+
     const photos = props.images.map((img) => {
-        console.log(img)
         return {
             src: img,
             width: 1,

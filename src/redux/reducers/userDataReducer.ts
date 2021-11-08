@@ -38,7 +38,7 @@ const updateUserData = (state = inititalState, action: any) => {
         default:
             return state
     }
-    // console.log(state);
+    //
 }
 
 export { updateUserData }

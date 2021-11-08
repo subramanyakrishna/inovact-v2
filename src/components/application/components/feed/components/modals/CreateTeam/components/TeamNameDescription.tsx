@@ -10,7 +10,6 @@ type Props = {
 const TeamNameDescription = ({ setTeamDetails, teamDetails }: Props) => {
     const loadFile = async (e: any) => {
         imageUploader(e.target.files).then((data: any) => {
-            console.log(data)
             setTeamDetails({
                 ...teamDetails,
                 avatar: data[0].url,
@@ -29,7 +28,6 @@ const TeamNameDescription = ({ setTeamDetails, teamDetails }: Props) => {
                             ...teamDetails,
                             name: e.target.value,
                         })
-                        console.log(teamDetails)
                     }}
                 />
             </div>

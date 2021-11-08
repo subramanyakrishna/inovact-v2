@@ -4,8 +4,6 @@ import { useHistory } from 'react-router'
 const Auth = () => {
     const history = useHistory()
     useEffect(() => {
-        console.log('Auth')
-        console.log(window.location.href)
         const query = window.location.href.split('#')[1]
         // localStorage.setItem('user', id_token)
         let id_token = query.split('&')[0]

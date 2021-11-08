@@ -5,11 +5,11 @@ import {
     GET_TEAM_CHATS,
 } from './../actionTypes/chats'
 import ChatEngineService from 'redux/services/chats.services'
+import { async } from 'rxjs'
 
 export const createTeamChat =
     (teamName: string, userName: string, email: string) =>
     async (dispatch: any) => {
-        console.log('teamchat', teamName, userName, email)
         const data = {
             chatName: teamName,
             user_name: userName,
@@ -20,18 +20,18 @@ export const createTeamChat =
             data.user_name,
             data.userSecret
         )
-        console.log('chatengine', res)
+
         dispatch({
             type: CREATE_TEAM_CHAT,
             payload: res,
         })
+        return res
     }
 
 export const getTeamChats =
     (userName: string, userSecret: string) => async (dispatch: any) => {
-        console.log(userName, userSecret)
         const res = await ChatEngineService.getChats(userName, userSecret)
-        console.log(res)
+
         dispatch({
             type: GET_TEAM_CHATS,
             payload: res,
@@ -47,12 +47,12 @@ export const createChatUser =
     ) =>
     async (dispatch: any) => {
         const data = {
-            user_name: 'afif_ahmed',
+            user_name: userName,
             secret: userSecret,
             first_name: firstName,
             last_name: lastName,
         }
-        console.log('createchatuser', data)
+
         const res = await ChatEngineService.createUser(
             data.user_name,
             data.first_name,
@@ -64,3 +64,16 @@ export const createChatUser =
             payload: res,
         })
     }
+
+export const addChatUser = async (
+    user_name: string,
+    user_secret: string,
+    chat_id: string
+) => {
+    const res = await ChatEngineService.addChatUser(
+        user_name,
+        user_secret,
+        chat_id
+    )
+    console.log(res)
+}

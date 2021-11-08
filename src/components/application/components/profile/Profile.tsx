@@ -54,7 +54,6 @@ function Profile() {
         route: 'user/idea',
         body: null,
         onSuccess: (data: any) => {
-            console.log('This is profile ideas', data)
             data.data.idea.reverse()
             handleAllUserIdeas('all-user-ideas', data.data.idea)
             const finalData = [
@@ -98,7 +97,6 @@ function Profile() {
         route: 'user/post',
         body: null,
         onSuccess: (data: any) => {
-            console.log('This is profile projects', data)
             data.data.project.reverse()
             handleAllUserProject('all-user-projects', data.data.project)
             const finalData = data.data.project.map((post: any) => ({
@@ -126,7 +124,7 @@ function Profile() {
                 numLikes: post.project_likes.length,
                 numComments: post.project_comments.length,
             }))
-            console.log('This is the final user projects: ', finalData)
+
             setUserProjects([...finalData])
         },
     })
@@ -135,7 +133,6 @@ function Profile() {
         route: 'user/thought',
         body: null,
         onSuccess: (data: any) => {
-            console.log('This is profile thoughts', data)
             handleAllUserThoughts('all-user-thoughts', data.data.thoughts)
             data.data.thoughts.reverse()
             const finalData = data.data.thoughts.map((thought: any) => ({
@@ -153,7 +150,7 @@ function Profile() {
                 numLikes: thought.thought_likes.length,
                 numComments: thought.thought_comments.length,
             }))
-            console.log('This is the final user thoughts: ', finalData)
+
             setUserThoughts([...finalData])
         },
     })
@@ -186,7 +183,6 @@ function Profile() {
         setShowThoughts(true)
     }
     useEffect(() => {
-        console.log('page loaded')
         // (async()=>{
         //     await getUserIdeas();
         //     await getUserProjects();

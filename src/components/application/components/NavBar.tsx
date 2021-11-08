@@ -36,7 +36,7 @@ const NavBar = () => {
     const userInfo = useSelector((state: any) => state.userInfo)
     const scrollDirection = useObservable(watchScroll, 'Up')
     // const removeTheBorder = (target: any)=>{
-    //     console.log(target);
+    //
     //     const childrenHidden = target.closest(".nav-component__items").querySelectorAll(".nav-component__icons--hidden");
     //     const childrenNotHidden = target.closest(".nav-component__items").querySelectorAll(".nav-component__icons");
     //     const children = [...childrenHidden, ...childrenNotHidden];

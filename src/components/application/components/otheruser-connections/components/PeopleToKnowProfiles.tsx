@@ -4,7 +4,6 @@ import { useHistory } from 'react-router'
 function PeopleToKnowProfiles(props: any) {
     const history = useHistory()
     const goToProfile = () => {
-        console.log('PeopleToKnowProfiles', props.user.id)
         localStorage.setItem('other-user', props.user.id)
         if (history.location.pathname === '/app/otherprofile') {
             window.location.reload()

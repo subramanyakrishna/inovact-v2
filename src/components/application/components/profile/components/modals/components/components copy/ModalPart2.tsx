@@ -40,7 +40,6 @@ function ModalPart2(props: any) {
         setIsIndividualProject(!isIndividualProject)
     }
     const changeProjectStatus = (e: any) => {
-        console.log(e.target.getAttribute('data-value'))
         handleAddProjectChange(
             'project_status',
             e.target.getAttribute('data-value')
@@ -174,7 +173,6 @@ function ModalPart2(props: any) {
                         <div className="modal_part_two-roles-looking-for">
                             <span>What roles are you looking for?</span>
                             {allRolesNeeded.map((ele: any, index: any) => {
-                                console.log(allRolesNeeded)
                                 return (
                                     <RolesLookingFor
                                         role={ele.role}
