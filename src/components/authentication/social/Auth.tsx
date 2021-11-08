@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Auth = () => {
-    const query = new URLSearchParams(window.location.search)
-    const id_token = query.get('id_token')
-    console.log(id_token)
-    return <div>hello</div>
+    useEffect(() => {
+        console.log('Auth')
+        console.log(window.location.href)
+        const query = window.location.href.split('#')[1]
+        // localStorage.setItem('user', id_token)
+        console.log(query)
+    }, [])
+    return <div>redirecting....</div>
 }
 
 export default Auth
