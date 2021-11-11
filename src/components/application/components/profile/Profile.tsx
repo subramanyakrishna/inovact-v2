@@ -370,7 +370,6 @@ function Profile() {
                             {showIdeas && userIdeas.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="ideas" />
-                                    <PeopleYouMayKnow />
                                 </div>
                             )}
                             {showProjects &&
@@ -389,7 +388,6 @@ function Profile() {
                             {showProjects && userProjects.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="projects" />
-                                    <PeopleYouMayKnow />
                                 </div>
                             )}
                             {showThoughts &&
@@ -407,9 +405,9 @@ function Profile() {
                             {showThoughts && userThoughts.length === 0 && (
                                 <div className="profile--content-right">
                                     <NoPostsYet postType="thoughts" />
-                                    <PeopleYouMayKnow />
                                 </div>
                             )}
+                            <PeopleYouMayKnow />
                         </div>
                     }
                 </div>
