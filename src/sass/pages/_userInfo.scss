@@ -1,11 +1,11 @@
-.user-info{
-    height:100vh;
+.user-info {
+    height: 100vh;
     background-color: $color-primary-blue;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
-    &__card{
+    &__card {
         max-width: 70%;
         width: 60%;
         background-color: $color-white;
@@ -16,27 +16,27 @@
             max-width: 85%;
             max-height: 95%;
             width: 85%;
-           justify-self: center;
+            justify-self: center;
         }
-        @include respond(xs) { 
+        @include respond(xs) {
             max-width: 100%;
-            width:100%;
+            width: 100%;
             min-height: 100%;
-            height:  100vh;
+            height: 100vh;
             border-radius: 0;
             display: flex;
-            align-items:center;
+            align-items: center;
             justify-content: center;
         }
     }
-    form{
+    form {
         min-height: 250px;
         @include respond(sm) {
             min-height: auto;
         }
     }
 }
-.input-formComponent{
+.input-formComponent {
     border: 1px solid #bdbdbd;
     background-color: $color-white;
     margin-bottom: 1rem;
@@ -47,14 +47,14 @@
     min-height: none;
     height: auto;
 }
-.buttons{
-    margin:1.5rem 0;
+.buttons {
+    margin: 1.5rem 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    &__center{
-      justify-content: center;
-      margin: 0px;
+    &__center {
+        justify-content: center;
+        margin: 0px;
     }
 }

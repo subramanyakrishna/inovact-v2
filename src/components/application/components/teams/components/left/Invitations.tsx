@@ -9,7 +9,7 @@ const SuggestionInvitation = (props: any) => {
     const history = useHistory()
     const goToProfile = (id: string) => {
         localStorage.setItem('other-user', id)
-        console.log('ConnectionProfile', id)
+
         history.push('/app/otherprofile')
     }
     return (

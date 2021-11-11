@@ -1,16 +1,16 @@
-import { addTeamConstants } from "redux/actionTypes/addTeamConstants"
+import { addTeamConstants } from 'redux/actionTypes/addTeamConstants'
 
 const initialState = {
-    name: "", 
-    looking_for_members:false,
-    looking_for_mentor:false,
+    name: '',
+    looking_for_members: false,
+    looking_for_mentor: false,
     tags: [1, 2, 3],
-    roles:[1],
-    members:null,
+    roles: [1],
+    members: null,
 }
 
-const updateTeamInfoReducer = (state = initialState, action: any)=>{
-    switch(action.type){
+const updateTeamInfoReducer = (state = initialState, action: any) => {
+    switch (action.type) {
         case addTeamConstants.TEAM_UPDATE_TITLE:
             return {
                 ...state,
@@ -37,12 +37,11 @@ const updateTeamInfoReducer = (state = initialState, action: any)=>{
                 members: action.payload,
             }
         case addTeamConstants.TEAM_CLEAR_DATA:
-            return initialState;
-            
-        default: return state;
+            return initialState
+
+        default:
+            return state
     }
 }
 
-export {
-    updateTeamInfoReducer,
-}
+export { updateTeamInfoReducer }

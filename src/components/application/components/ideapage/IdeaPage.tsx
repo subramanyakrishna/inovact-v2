@@ -1,24 +1,24 @@
-import axios from 'axios';
-import Spinner from 'components/application/Spinner';
-import React, {  useState } from 'react'
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-import useRequests from 'useRequest/useRequest';
-import RequestToJoin from '../feed/components/modals/RequestToJoin.tsx/RequestToJoin';
-import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers';
-import LikedBy from '../postpage/components/LikedBy';
-import TeamMembers from '../postpage/components/TeamMembers';
-import CommentsOnPost from '../profile/components/RightProfileContent/CommentsOnPost';
-import CommentsContainer from './components/CommentsContainer';
-import Post from './components/Post';
+import axios from 'axios'
+import Spinner from 'components/application/Spinner'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import useRequests from 'useRequest/useRequest'
+import RequestToJoin from '../feed/components/modals/RequestToJoin.tsx/RequestToJoin'
+import ViewTeamMembers from '../feed/components/modals/ViewTeamMembers/ViewTeamMembers'
+import LikedBy from '../postpage/components/LikedBy'
+import TeamMembers from '../postpage/components/TeamMembers'
+import CommentsOnPost from '../profile/components/RightProfileContent/CommentsOnPost'
+import CommentsContainer from './components/CommentsContainer'
+import Post from './components/Post'
 
 function PostPage(props: any) {
-    let postData: any = {};
-    const {doRequest, errors} = useRequests({
-        method: "get",
-        route: "idea",
+    let postData: any = {}
+    const { doRequest, errors } = useRequests({
+        method: 'get',
+        route: 'idea',
         body: null,
-        onSuccess: (data: any)=>{
+        onSuccess: (data: any) => {
             postData = {
                 user_id: data.data.idea.user.id,
                 id: data.data.idea.id,
@@ -30,7 +30,10 @@ function PostPage(props: any) {
                 likes: data.data.idea.idea_likes,
                 avatar: data.data.idea.user.avatar,
                 comments: data.data.idea.idea_comments,
-                author: data.data.idea.user.first_name + ' ' + data.data.idea.user.last_name,
+                author:
+                    data.data.idea.user.first_name +
+                    ' ' +
+                    data.data.idea.user.last_name,
                 tags: data.data.idea.idea_tags.map((tag: any) => {
                     return tag.hashtag.name
                 }),
@@ -41,24 +44,35 @@ function PostPage(props: any) {
                 created_at: data.data.idea.created_at,
                 numLikes: data.data.idea.idea_likes.length,
                 numComments: data.data.idea.idea_comments.length,
-            };
             }
-        });
-    const allPosts = useSelector((state: any)=> state.allPosts);
-    const allIdeas = useSelector((state: any)=> state.allIdeas);
+        },
+    })
+    const allPosts = useSelector((state: any) => state.allPosts)
+    const allIdeas = useSelector((state: any) => state.allIdeas)
 
-    
-    const convertDate = (dateISO: any)=>{
-        const date = new Date(dateISO);
+    const convertDate = (dateISO: any) => {
+        const date = new Date(dateISO)
         return `${date.getDate()} ${months[date.getMonth()]}`
     }
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let { id }: any = useParams();
-    let params = useParams();
-    allIdeas.forEach((post: any)=>{
-        if(post.id===Number(id)){
-            console.log(post);
-            postData={
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
+    let { id }: any = useParams()
+    let params = useParams()
+    allIdeas.forEach((post: any) => {
+        if (post.id === Number(id)) {
+            postData = {
                 user_id: post.user.id,
                 id: post.id,
                 team_id: post.team_id,
@@ -82,82 +96,83 @@ function PostPage(props: any) {
                 numComments: post.idea_comments.length,
             }
         }
-    });
-    if(postData==={}){
-        doRequest();
+    })
+    if (postData === {}) {
+        doRequest()
     }
     // allIdeas.
-    const [showOverlay, setShowOverlay] = useState(false);
-    const [showTeamMembers, setShowTeamMembers] = useState(false);
-    const [showRequestJoin, setShowRequestJoin] = useState(false);
-    const openModal = ()=>{
-        setShowOverlay(true);
-        window.scrollTo(0,0);
-        document.body.style.overflowY="hidden";
+    const [showOverlay, setShowOverlay] = useState(false)
+    const [showTeamMembers, setShowTeamMembers] = useState(false)
+    const [showRequestJoin, setShowRequestJoin] = useState(false)
+    const openModal = () => {
+        setShowOverlay(true)
+        window.scrollTo(0, 0)
+        document.body.style.overflowY = 'hidden'
     }
-    const closeModal = ()=>{
-        setShowOverlay(false);
-        setShowTeamMembers(false);
-        setShowRequestJoin(false);
-        document.body.style.overflowY="scroll";
+    const closeModal = () => {
+        setShowOverlay(false)
+        setShowTeamMembers(false)
+        setShowRequestJoin(false)
+        document.body.style.overflowY = 'scroll'
     }
-    const viewTeamMembers = ()=>{
-        openModal();
-        setShowTeamMembers(true);
+    const viewTeamMembers = () => {
+        openModal()
+        setShowTeamMembers(true)
     }
 
-    const viewRequestJoin = ()=>{
-        openModal();
-        setShowRequestJoin(true);
+    const viewRequestJoin = () => {
+        openModal()
+        setShowRequestJoin(true)
     }
-    const handleViewTeamMembers = ()=>{
-        document.getElementById("team-members")?.scrollIntoView({behavior: "smooth"});
+    const handleViewTeamMembers = () => {
+        document
+            .getElementById('team-members')
+            ?.scrollIntoView({ behavior: 'smooth' })
     }
     return (
         <div className="post-dedicated-page">
-            {
-                showOverlay &&
+            {showOverlay && (
                 <div>
                     <div className="modal_overlay" onClick={closeModal}></div>
-                    {
-                            showTeamMembers && 
-                            <div>
-                                <ViewTeamMembers closeModal={closeModal}/>
-                            </div>
-                        }
-                        {
-                            showRequestJoin && 
-                            <div>
-                                <RequestToJoin closeModal={closeModal}/>
-                            </div>
-                        }
+                    {showTeamMembers && (
+                        <div>
+                            <ViewTeamMembers closeModal={closeModal} />
+                        </div>
+                    )}
+                    {showRequestJoin && (
+                        <div>
+                            <RequestToJoin closeModal={closeModal} />
+                        </div>
+                    )}
                 </div>
-                
-            }
+            )}
             <div className="post-dedicated-page-post">
-                {
-                    postData==={} &&
-                    <Spinner/>
-                }
+                {postData === {} && <Spinner />}
                 <div className="post-dedicated-page-post-container">
-                    <Post post={postData} openTeamMember={handleViewTeamMembers} openRequestJoin={viewRequestJoin} />
-                    <TeamMembers postData={postData}/>
+                    <Post
+                        post={postData}
+                        openTeamMember={handleViewTeamMembers}
+                        openRequestJoin={viewRequestJoin}
+                    />
+                    <TeamMembers postData={postData} />
                 </div>
             </div>
             <div className="post-dedicated-page-comments">
                 <div className="post-dedicated-page-comments-container">
-                    <CommentsOnPost postData={postData} commentsData={postData.comments}/>
-                    <LikedBy postData={postData}/>
+                    <CommentsOnPost
+                        postData={postData}
+                        commentsData={postData.comments}
+                    />
+                    <LikedBy postData={postData} />
                 </div>
             </div>
         </div>
     )
 }
 
-export default PostPage;
+export default PostPage
 
-
-// console.log(props);
+//
 //     let postData: any = {
 //         id: 1,
 //         type: 1,
@@ -192,4 +207,4 @@ export default PostPage;
 //         numComments: 250,
 //         completion: 80,
 //     };
-    // postData = allPosts.find((post: any)=>post.id===props.location.state.post_id);
+// postData = allPosts.find((post: any)=>post.id===props.location.state.post_id);

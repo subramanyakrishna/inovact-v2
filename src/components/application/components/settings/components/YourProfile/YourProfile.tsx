@@ -26,13 +26,12 @@ function YourProfile(props: any) {
                 userInfo={userInfo}
             />
             <UserSkills />
-            {
-                userInfo.role!=="student" &&
+            {userInfo.role !== 'student' && (
                 <UserExperience
                     handleUserInfoChange={props.handleUserInfoChange}
                     userInfo={userInfo}
                 />
-            }
+            )}
             <UserEducation
                 handleUserInfoChange={props.handleUserInfoChange}
                 userInfo={userInfo}

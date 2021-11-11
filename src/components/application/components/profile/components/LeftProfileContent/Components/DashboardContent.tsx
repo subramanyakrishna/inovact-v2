@@ -7,10 +7,10 @@ function DashboardContent() {
     const history = useHistory()
     const allPosts = useSelector((state: any) => state.userAllProjects)
     // const userPosts = useSelector((state: any)=>state.userAllPosts);
-    // console.log(userPosts)
+    //
     const userIdeas = useSelector((state: any) => state.userAllIdeas)
     const userThoughts = useSelector((state: any) => state.userAllThoughts)
-    console.log(allPosts)
+
     const connections = useSelector((state: any) => state.connections)
 
     return (

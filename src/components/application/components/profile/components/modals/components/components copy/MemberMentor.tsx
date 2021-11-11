@@ -1,6 +1,5 @@
-import React from 'react';
-import SwitchSlider from './SwitchSlider';
-
+import React from 'react'
+import SwitchSlider from './SwitchSlider'
 
 function MemberMentor(props: any) {
     return (
@@ -8,16 +7,15 @@ function MemberMentor(props: any) {
             <div>
                 <label>Looking for team members</label>
                 <div onClick={props.teamMemberNeeded}>
-                    <SwitchSlider/>
+                    <SwitchSlider />
                 </div>
-                
             </div>
             <div>
                 <label>Looking for a mentor</label>
-                <SwitchSlider/>
+                <SwitchSlider />
             </div>
         </div>
     )
 }
 
-export default MemberMentor;
+export default MemberMentor

@@ -1,7 +1,11 @@
 import Spinner from 'components/application/Spinner'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { addChatUser } from 'redux/actions/chats'
+import { store } from 'redux/helpers/store'
 import { makeApiCall } from './connectionsUtils'
+import { useSelector } from 'react-redux'
+import { userInfo } from 'os'
 
 const Buttons = (props: any) => {
     const [isAcceptShow, setisAcceptShow] = useState<boolean>(true)
@@ -52,20 +56,24 @@ const Buttons = (props: any) => {
 const Team_Invitations = () => {
     const [isLoad, setIsload] = useState<boolean>(true)
     const [allInvitations, setAllInvitations] = useState<any>([])
+    //@ts-ignore
+    const user = useSelector((state) => state.userInfo)
     const history = useHistory()
 
     const goToTeam = (teamid: string, userId: string) => {
-        console.log('teamid:', teamid, 'userId:', userId)
         localStorage.setItem('other-user-selected-team-id', teamid)
         localStorage.setItem('other-user', userId)
 
         history.push('/app/otherteams')
     }
     const acceptTeamInvitation = async (id: number) => {
-        const response = await makeApiCall('post', `team/invite/accept`, {
+        await makeApiCall('post', `team/invite/accept`, {
             invitation_id: id,
         })
-        console.log(response)
+        // const teamChats = JSON.parse(localStorage.getItem('teamChats'));
+        // const chat_id = teamChats.
+        // store.dispatch(addChatUser(user.user_name, user.email_id, chat_id))
+
         setTimeout(() => {
             setAllInvitations(
                 allInvitations.filter((invitation: any) => invitation.id != id)
@@ -77,7 +85,7 @@ const Team_Invitations = () => {
         const response = await makeApiCall('post', `team/invite/reject`, {
             invitation_id: id,
         })
-        console.log(response)
+
         setTimeout(() => {
             setAllInvitations(
                 allInvitations.filter((invitation: any) => invitation.id != id)
@@ -89,7 +97,7 @@ const Team_Invitations = () => {
             const res = await makeApiCall('get', 'notifications')
             const notificationDataFromAPi = res.data.data.user[0]
             const teamInvitations = notificationDataFromAPi['team_invitations']
-            console.log(teamInvitations)
+
             setIsload(false)
             setAllInvitations(teamInvitations)
         })()

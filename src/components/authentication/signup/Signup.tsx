@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import logo from 'images/logo/inovactlogo.png'
 import Card from 'components/authentication/signup/Card'
 
 const Signup = (props: any) => {
-    console.log("signup", props);
     return (
         <div className="signup">
             <div className="signup__flex-container">
@@ -15,7 +14,7 @@ const Signup = (props: any) => {
                     />
                 </div>
                 <div className="signup__flex-child">
-                    <Card handleUserCredsChange={props.handleUserCredsChange}/>
+                    <Card handleUserCredsChange={props.handleUserCredsChange} />
                 </div>
             </div>
         </div>

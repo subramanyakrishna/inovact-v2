@@ -57,7 +57,7 @@ const Settings: React.FC = () => {
         (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     )
     const userInfo = useSelector((state: any) => state.userInfo)
-    console.log(userInfo)
+
     const dispath = useDispatch()
     const history = useHistory()
 
@@ -82,8 +82,8 @@ const Settings: React.FC = () => {
                     },
                 }
             )
-            .then((resp: any) => console.log(resp))
-            .catch((err: any) => console.log(err))
+            .then((resp: any) => {})
+            .catch((err: any) => {})
     }
     useEffect(() => {
         if (width > SIZE_LIMIT) {
@@ -144,7 +144,6 @@ const Settings: React.FC = () => {
             'delete',
             `team?team_id=${selectedTeamToDelete}`
         )
-        console.log(res)
     }
     const deleteAccountClick = () => {
         openModal()

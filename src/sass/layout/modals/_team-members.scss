@@ -1,15 +1,15 @@
-.all-team-member-cards{
+.all-team-member-cards {
     display: flex;
     flex-wrap: wrap;
 }
-.modal-complete-title{
+.modal-complete-title {
     display: flex;
     flex-direction: column;
-    &-description{
-        color:#02BD63;
+    &-description {
+        color: #02bd63;
     }
 }
-.team-member-card{
+.team-member-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,31 +18,31 @@
     margin: 5px;
     padding: 10px;
     border: 0.5px solid rgb(195, 195, 195);
-    img{
+    img {
         border-radius: 50%;
         // margin: 0 auto;
         // border-radius: 50%;
         // overflow: hidden;
         // img{
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
         // }
     }
-    span{
+    span {
         padding: 0;
     }
-    &-name{
+    &-name {
         font-weight: 600;
     }
-    &-role{
+    &-role {
         font-size: small;
-        color: #02BD63;
+        color: #02bd63;
     }
-    &-designation{
+    &-designation {
         font-weight: 200;
     }
-    @include respond(lg){
+    @include respond(lg) {
         width: 30%;
     }
 }

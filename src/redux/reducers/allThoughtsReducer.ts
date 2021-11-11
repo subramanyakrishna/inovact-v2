@@ -1,18 +1,16 @@
-import { allThoughtConstants } from "redux/actionTypes/allThoughtConstants";
+import { allThoughtConstants } from 'redux/actionTypes/allThoughtConstants'
 
-const initialState : any = [];
+const initialState: any = []
 
-const allThoughtsReducer = (state=initialState, action: any)=>{
-    console.log(action.payload);
-    switch(action.type){
+const allThoughtsReducer = (state = initialState, action: any) => {
+    switch (action.type) {
         case allThoughtConstants.THOUGHTS_UPDATE_ALL:
-            return action.payload;
+            return action.payload
         case allThoughtConstants.THOUGHT_CLEAR_ALL:
-            return initialState;
-        default: return state;
+            return initialState
+        default:
+            return state
     }
 }
 
-export {
-    allThoughtsReducer,
-}
+export { allThoughtsReducer }

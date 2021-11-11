@@ -9,7 +9,12 @@ import Testimonials from 'components/authentication/landingPage/components/Testi
 import Contact from 'components/authentication/landingPage/components/Contact'
 import Footer from 'components/authentication/landingPage/components/Footer'
 import useRequests from 'useRequest/useRequest'
-import { handleInterestsChange, handleRolesChange, handleSkillsChange, handleTagsChange } from 'StateUpdateHelper'
+import {
+    handleInterestsChange,
+    handleRolesChange,
+    handleSkillsChange,
+    handleTagsChange,
+} from 'StateUpdateHelper'
 
 function LandingPage() {
     const { doRequest: getAllTags, errors: tagErrors } = useRequests({
@@ -17,7 +22,6 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleTagsChange('udpate_all_tags', data.data.hashtag)
         },
     })
@@ -26,7 +30,6 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleSkillsChange('udpate_all_skills', data.data.skills)
         },
     })
@@ -35,27 +38,30 @@ function LandingPage() {
         method: 'get',
         body: null,
         onSuccess: (data: any) => {
-            console.log(data)
             handleRolesChange('udpate_all_roles', data.data.roles)
         },
-    });
-    const {doRequest: getAllInterests, errors: interestsErrors} = useRequests({
-        route: "token/interests",
-        method: "get",
-        body: null,
-        onSuccess: (data: any)=>{
-            console.log("The interests data received is :",data);
-            handleInterestsChange("interests_update",data.data.area_of_interests);
+    })
+    const { doRequest: getAllInterests, errors: interestsErrors } = useRequests(
+        {
+            route: 'token/interests',
+            method: 'get',
+            body: null,
+            onSuccess: (data: any) => {
+                handleInterestsChange(
+                    'interests_update',
+                    data.data.area_of_interests
+                )
+            },
         }
-    });
-    useEffect(()=>{
-        (async()=>{
-            await getAllTags();
-            await getAllRoles();
-            await getAllSkills();
-            await getAllInterests();
-        })();
-    },[])
+    )
+    useEffect(() => {
+        ;(async () => {
+            await getAllTags()
+            await getAllRoles()
+            await getAllSkills()
+            await getAllInterests()
+        })()
+    }, [])
     return (
         <div className="landing-page">
             <Navbar />

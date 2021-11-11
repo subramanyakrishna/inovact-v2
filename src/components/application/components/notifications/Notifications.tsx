@@ -86,23 +86,13 @@ function Notifications() {
                         responseWihtoutRemovingCurrentUser['ideas'],
                         'ideas'
                     )
-                console.log(
-                    'responseWihtoutRemovingCurrentUser',
-                    responseWihtoutRemovingCurrentUser
-                )
+
                 setAllNotisfication(responseWihtoutRemovingCurrentUser)
                 let filteredAllNotisfications =
                     getNotificationTypePropertyAdded(
                         responseWihtoutRemovingCurrentUser
                     )
-                console.log(
-                    'responseWihtoutRemovingCurrentUser',
-                    responseWihtoutRemovingCurrentUser
-                )
-                console.log(
-                    'filteredAllNotisfications',
-                    filteredAllNotisfications
-                )
+
                 const notificationsWithoutUiMappedData = [
                     ...filteredAllNotisfications['connectionsByUser2'],
                     ...filteredAllNotisfications['ideas'],
@@ -129,20 +119,16 @@ function Notifications() {
                 )
                 setallnotification(sortedNotification)
                 setIsLoad(false)
-            } catch (err) {
-                console.log(err)
-            }
+            } catch (err) {}
         })()
     }, [])
 
     const goToProfile = (id: string) => {
         localStorage.setItem('other-user', id)
-        console.log('other-user', id)
 
         history.push('/app/otherprofile')
     }
     const goToTeam = (teamid: string, userId: string) => {
-        console.log('teamid:', teamid, 'userId:', userId)
         localStorage.setItem('other-user-selected-team-id', teamid)
         localStorage.setItem('other-user', userId)
 

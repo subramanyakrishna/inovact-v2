@@ -1,63 +1,77 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 
-const RequestsTab =(props:any)=>{
+const RequestsTab = (props: any) => {
     const allTeams = useSelector((state: any) => state.teams.teams)
 
-    const handleAcceptTeamMember  = async (e:any) =>{
-          
-        console.log("accept",e)
-        const response =  await axios( {
-            method:'post',
-            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/accept",
-            data: e ? {request_id:e}: null,
+    const handleAcceptTeamMember = async (e: any) => {
+        const response = await axios({
+            method: 'post',
+            url: 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/accept',
+            data: e ? { request_id: e } : null,
             headers: {
-                "Authorization": localStorage.getItem("user"),
-            }
+                Authorization: localStorage.getItem('user'),
+            },
         })
-        console.log(response)
     }
 
-    const handleRejectTeamMember  = async (e:any) =>{
-      
-        console.log("reject",e)
-        const response =  await axios( {
-            method:'post',
-            url:"https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/reject",
-            data: e ? {request_id:e}: null,
+    const handleRejectTeamMember = async (e: any) => {
+        const response = await axios({
+            method: 'post',
+            url: 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/request/reject',
+            data: e ? { request_id: e } : null,
             headers: {
-                "Authorization": localStorage.getItem("user"),
-            }
+                Authorization: localStorage.getItem('user'),
+            },
         })
-        
     }
 
-    return(
+    return (
         <>
-         { props.requests.length == 0 ? <div className="text-align--center">No Requests yet </div>: null }
-        {
-           props.requests.map((request:any,index:number)=>{
-                return(
+            {props.requests.length == 0 ? (
+                <div className="text-align--center">No Requests yet </div>
+            ) : null}
+            {props.requests.map((request: any, index: number) => {
+                return (
                     <div className="requests-info">
-                     <div className="requests-info__details">
-                        <img src={request.user.avatar} alt="name"/>
-                        <div className="requests-info__details__text">
-                        <h5 className="text-style--bold text-align--left text-size--big">{request.user.first_name}</h5>
-                            <p className="text-style--light text-align--left text-size--small">{request.user.role}</p>
+                        <div className="requests-info__details">
+                            <img src={request.user.avatar} alt="name" />
+                            <div className="requests-info__details__text">
+                                <h5 className="text-style--bold text-align--left text-size--big">
+                                    {request.user.first_name}
+                                </h5>
+                                <p className="text-style--light text-align--left text-size--small">
+                                    {request.user.role}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="requests-info__details__buttons">
+                            <button
+                                className="requests-info__details__buttons--accept"
+                                id="accept-request"
+                                onClick={handleAcceptTeamMember.bind(
+                                    null,
+                                    request.id
+                                )}
+                            >
+                                Accept
+                            </button>
+                            <button
+                                className="requests-info__details__buttons--white"
+                                onClick={handleRejectTeamMember.bind(
+                                    null,
+                                    request.id
+                                )}
+                            >
+                                Remove
+                            </button>
                         </div>
                     </div>
-                               
-                    <div className="requests-info__details__buttons">
-                         <button className="requests-info__details__buttons--accept" id="accept-request" onClick={handleAcceptTeamMember.bind(null,request.id)} >Accept</button>
-                         <button className="requests-info__details__buttons--white" onClick={handleRejectTeamMember.bind(null,request.id)} >Remove</button>
-                    </div>
-                    
-                </div>
-                );
+                )
             })}
         </>
-     
     )
 }
-export default RequestsTab;
+export default RequestsTab

@@ -28,7 +28,7 @@ function PeopleYouMayKnow(props: any) {
 
     const getFilteredUsers = (people_you_may_know_from_api: any) => {
         const pattern = new RegExp(selectedFilterValue, 'i')
-        console.log(currentFilter)
+
         const filteredUsersTemp = people_you_may_know_from_api.filter(
             (user: any) =>
                 (user[currentFilter]
@@ -52,7 +52,7 @@ function PeopleYouMayKnow(props: any) {
             let PYMK_from_api: any = []
             await makeApiCall('get', 'users').then((data: any) => {
                 PYMK_from_api = data
-                console.log(PYMK_from_api)
+
                 PYMK_from_api.data.data.user.reverse()
                 PYMK_from_api = PYMK_from_api.data.data.user
                 //romove this when skills is added to api

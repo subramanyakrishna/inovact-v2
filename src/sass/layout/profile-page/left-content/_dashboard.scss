@@ -1,80 +1,79 @@
 $color-primary-green: #02bd63;
 $color-primary-grey: #f9f5f5;
 $color-primary-blue: #001948;
-$color-secondary-blue:#5579BD;
-$color-primary-light-blue: #4B72BC;
-
+$color-secondary-blue: #5579bd;
+$color-primary-light-blue: #4b72bc;
 
 $color-white: #ffffff;
 $color-black: #000000;
 $color-red: red;
 
-.dashboard-main{
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  border-radius: 20px;
-  width: 100%;
-  &-title{
-    padding: 20px;
-    margin: 0px;
-    font-weight: 600;
-    text-align: left;
-    font-size: large;
-  }
-  &-content{
-    padding: 0px 20px;
+.dashboard-main {
     display: flex;
-    div{
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      margin: 10px;
-      &:hover{
-        cursor: pointer;
-      }
-    }
-    &-description{
-      color: $color-primary-green;
-      font-weight: 600;
-    }
-    &-number{
-      color: gray;
-    }
-  }
-}
-
-.percentage-growth{
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 10px;
-  &-heading{
-    font-weight: 500;
-  }
-  &-value{
-    color: $color-primary-green;
-  }
-}
-
-.connect-message{
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0px;
-  button{
-    border-radius: 15px;
-    width: 8rem;
-    border: 1px solid $color-primary-light-blue;
-    font-weight: 600;
-  }
-  &-connectbtn{
-    background-color: $color-primary-light-blue;
-    color: #ffffff;
-  }
-  &-messagebtn{
+    flex-direction: column;
     background-color: #ffffff;
-    color: $color-primary-light-blue;
-  }
+    overflow-x: hidden;
+    border-radius: 20px;
+    width: 100%;
+    &-title {
+        padding: 20px;
+        margin: 0px;
+        font-weight: 600;
+        text-align: left;
+        font-size: large;
+    }
+    &-content {
+        padding: 0px 20px;
+        display: flex;
+        div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &-description {
+            color: $color-primary-green;
+            font-weight: 600;
+        }
+        &-number {
+            color: gray;
+        }
+    }
+}
+
+.percentage-growth {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+    &-heading {
+        font-weight: 500;
+    }
+    &-value {
+        color: $color-primary-green;
+    }
+}
+
+.connect-message {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px;
+    button {
+        border-radius: 15px;
+        width: 8rem;
+        border: 1px solid $color-primary-light-blue;
+        font-weight: 600;
+    }
+    &-connectbtn {
+        background-color: $color-primary-light-blue;
+        color: #ffffff;
+    }
+    &-messagebtn {
+        background-color: #ffffff;
+        color: $color-primary-light-blue;
+    }
 }

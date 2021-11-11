@@ -4,18 +4,17 @@ import { imageUploader } from 'imageUpload/imageUploader'
 import { useHistory } from 'react-router'
 
 function ProfileImage({ handleUserInfoChange, userInfo }: any) {
-    
     const loadFile = async (e: any) => {
-        if(e.target.files){
+        if (e.target.files) {
             const data = await imageUploader(e.target.files)
             handleUserInfoChange('avatar', data[0].url)
         }
     }
-    const history = useHistory();
-    
-    const changeCompleteProfile = (e: any)=>{
-        e.preventDefault();
-        history.push("/app/userinfo");
+    const history = useHistory()
+
+    const changeCompleteProfile = (e: any) => {
+        e.preventDefault()
+        history.push('/app/userinfo')
     }
     return (
         <div className="settings-my-profile-nametag">
@@ -52,7 +51,12 @@ function ProfileImage({ handleUserInfoChange, userInfo }: any) {
                 </span>
             </div>
             <div>
-                <button className="edit-complete-profile" onClick={changeCompleteProfile}>Edit complete profile</button>
+                <button
+                    className="edit-complete-profile"
+                    onClick={changeCompleteProfile}
+                >
+                    Edit complete profile
+                </button>
             </div>
         </div>
     )

@@ -12,7 +12,6 @@ function DeleteAccountModal(props: any) {
 
     const handleDeleteAccount = () => {
         cognitoUserClass.deleteUser(props.user_name)
-        console.log('handleDeleteAccount')
     }
     return (
         <div className="settings-modal-main">

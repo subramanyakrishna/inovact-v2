@@ -1,4 +1,4 @@
- import Application from 'components/application/Application';
+import Application from 'components/application/Application'
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
@@ -8,7 +8,17 @@ const PrivateRoute: React.FC<any> = ({
     ...rest
 }) => {
     return (
-    <Route {...rest} render={()=>{return localStorage.getItem("user")?<Component/>:<Redirect to="/login"/>}}/>
-)};
+        <Route
+            {...rest}
+            render={() => {
+                return localStorage.getItem('user') ? (
+                    <Component />
+                ) : (
+                    <Redirect to="/login" />
+                )
+            }}
+        />
+    )
+}
 
-export default PrivateRoute;
+export default PrivateRoute

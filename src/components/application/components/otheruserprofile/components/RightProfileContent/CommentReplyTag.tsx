@@ -4,7 +4,7 @@ function CommentReplyTag(props: any) {
     return (
         <div className="reply-tag">
             <div className="reply-tag-img-container">
-                <img src={props.img}/>
+                <img src={props.img} />
             </div>
             <div className="reply-tag-content">
                 <div className="reply-tag-name-container">
@@ -18,11 +18,13 @@ function CommentReplyTag(props: any) {
                 </div>
                 <div>
                     <span className="reply-tag-user-tagged">@{props.tag}</span>
-                    <span className="reply-tag-user-comment">{props.comment}</span>
+                    <span className="reply-tag-user-comment">
+                        {props.comment}
+                    </span>
                 </div>
             </div>
         </div>
     )
 }
 
-export default CommentReplyTag;
+export default CommentReplyTag

@@ -20,14 +20,12 @@ const CreateTeam = (props: any) => {
         looking_for_mentor: false,
         tags: [],
         avatar: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
-        roles: [ ],
+        roles: [],
         members: [],
         // projects:[],
     })
 
     const addRoles = ({ id, skills }: Iroles) => {
-        console.log('role', id)
-        console.log('skills', skills)
         setTeamDetails({
             ...teamDetails,
             roles: [...teamDetails.roles, { id, skills }],
@@ -45,7 +43,7 @@ const CreateTeam = (props: any) => {
 
     const dispatch = useDispatch()
     const addTeam = () => {
-        // console.log('teamDetails', teamDetails)
+        //
         // const newTeam = {
         //     name: 'New team',
         //     looking_for_members: false,
@@ -78,7 +76,7 @@ const CreateTeam = (props: any) => {
         //     ],
         // }
         // @ts-ignore
-        dispatch(createTeam(teamDetails))
+        dispatch(createTeam(teamDetails, props.userData))
         props.closeModal()
     }
 
@@ -137,7 +135,7 @@ const CreateTeam = (props: any) => {
                                 <span>What roles are you looking for?</span>
                                 {teamDetails.roles.map(
                                     (ele: any, index: any) => {
-                                        console.log(teamDetails.roles)
+                                        
                                         return (
                                             <RolesLookingFor
                                                 role={ele.role}

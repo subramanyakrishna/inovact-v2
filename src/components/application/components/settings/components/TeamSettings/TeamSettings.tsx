@@ -30,7 +30,7 @@ const TeamSettings: React.FC<teamSettings> = ({
         ;(async () => {
             const response = await makeApiCall('get', 'team')
             const teamsWhereCurrentUserIsMember = response.data.data.team
-            console.log(teamsWhereCurrentUserIsMember)
+
             const filtetredTeamsWhereCurrentUserIsMember: teamI[] = []
 
             teamsWhereCurrentUserIsMember.forEach((team: any) => {
@@ -52,46 +52,46 @@ const TeamSettings: React.FC<teamSettings> = ({
                 )
             )
             setIsLoading(false)
-            console.log(filtetredTeamsWhereCurrentUserIsMember)
         })()
     }, [])
     // const team_with_admin_access_data = useSelector(
     //     (state: any) => state.teamWithAdminAccess.teamWithAdminAccess
     // )
-    const teams = useSelector((state:any)=>{
-        return state.teams.teams;
+    const teams = useSelector((state: any) => {
+        return state.teams.teams
     })
-    const [teams_with_admin_access_data, setTWAA] =useState<any>(teams.filter((team: any)=>{
-        for(let i=0;i<team.team_members.length;i++){
-            if(team.team_members[i].admin){
-                return true;
+    const [teams_with_admin_access_data, setTWAA] = useState<any>(
+        teams.filter((team: any) => {
+            for (let i = 0; i < team.team_members.length; i++) {
+                if (team.team_members[i].admin) {
+                    return true
+                }
             }
-        }
-        return false;
-    }))
+            return false
+        })
+    )
     const handleAllowOthersToViewTeam = (event: any) => {
         handleUserInfoChange('team_public_visibility', event.target.checked)
     }
     // const handleAllowOthersToRequestJoin = (checked: boolean) => {
-    //     console.log('handleAllowOthersToRequestJoin', checked)
+    //
     // }
     // const handleAllTeamMemberSendInvitation = (checked: boolean) => {
-    //     console.log('handleAllTeamMemberSendInvitation', checked)
+    //
     // }
-    
-    const handleDeleteTeam = async(id: number) => {
-        console.log(id, teams_with_admin_access_data)
-        setTWAA(teams_with_admin_access_data.filter((team: any)=>team.id!==id));
-        console.log("filtered");
+
+    const handleDeleteTeam = async (id: number) => {
+        setTWAA(
+            teams_with_admin_access_data.filter((team: any) => team.id !== id)
+        )
+
         await axios({
-            method: "delete",
+            method: 'delete',
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${id}`,
             headers: {
-                "Authorization": localStorage.getItem("user"),
-            } 
-        }).then((resp: any)=>{
-            console.log(resp);
-        })
+                Authorization: localStorage.getItem('user'),
+            },
+        }).then((resp: any) => {})
     }
     return (
         <div className={'teamset'}>

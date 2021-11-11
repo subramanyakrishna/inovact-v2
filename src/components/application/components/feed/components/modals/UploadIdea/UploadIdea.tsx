@@ -19,6 +19,7 @@ function UploadIdea(props: any) {
     const addTheIdea = async () => {
         props.closeModal()
         await doRequest()
+        // window.location.reload()
     }
     return (
         <div className="modal_main">

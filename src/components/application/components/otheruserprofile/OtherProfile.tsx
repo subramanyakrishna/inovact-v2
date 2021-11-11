@@ -57,7 +57,6 @@ function OtherProfile() {
 
     const getTheUserData = async () => {
         if (localStorage.getItem('other-user')) {
-            console.log(localStorage.getItem('other-user'))
             const userId = localStorage.getItem('other-user')
             await axios({
                 method: 'get',
@@ -67,7 +66,6 @@ function OtherProfile() {
                 },
             })
                 .then((resp: any) => {
-                    console.log('other-user-update', resp)
                     handleOtherUserInfoChange(
                         'other-user-update',
                         resp.data.data.user[0]
@@ -76,9 +74,7 @@ function OtherProfile() {
                 .then(() => {
                     history.push('/app/otherprofile')
                 })
-                .catch((err) => {
-                    console.log(err)
-                })
+                .catch((err) => {})
         }
     }
     const getTheUserConnections = async () => {
@@ -90,12 +86,10 @@ function OtherProfile() {
                 Authorization: localStorage.getItem('user'),
             },
         }).then((resp: any) => {
-            console.log(resp)
             handleOtherUserConnections(
                 'other-connections-all',
                 resp.data.data.connections
             )
-            console.log(resp.data.data.connections)
         })
     }
     const getTheUserIdeas = async () => {
@@ -109,7 +103,6 @@ function OtherProfile() {
             },
         })
             .then((resp: any) => {
-                console.log(resp)
                 // resp.data.idea.reverse();
                 setIdeas([
                     ...resp.data.data.idea.map((post: any) => ({
@@ -126,7 +119,7 @@ function OtherProfile() {
                             return tag.hashtag.name
                         }),
                         images: post.idea_documents.map((image: any) => {
-                            // console.log(image.url);
+                            //
                             return image.url
                         }),
                         time: convertDate(post.created_at),
@@ -136,9 +129,7 @@ function OtherProfile() {
                     })),
                 ])
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            .catch((err) => {})
     }
     const { doRequest: getTheUserThoughts, errors: thoughtErrors } =
         useRequests({
@@ -146,7 +137,6 @@ function OtherProfile() {
             route: `user/thought?user_id=${localStorage.getItem('other-user')}`,
             body: null,
             onSuccess: (data: any) => {
-                console.log('This is profile thoughts', data)
                 data.data.thoughts.reverse()
                 const finalData = data.data.thoughts.map((post: any) => ({
                     user_id: post.user.id,
@@ -173,7 +163,6 @@ function OtherProfile() {
             },
         })
             .then((resp: any) => {
-                console.log(resp)
                 setPosts([
                     ...resp.data.data.project.map((post: any) => ({
                         user_id: post.user.id,
@@ -198,9 +187,7 @@ function OtherProfile() {
                     })),
                 ])
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            .catch((err) => {})
     }
     const [posts, setPosts] = useState<postData[]>([])
     const [ideas, setIdeas] = useState<postData[]>([])
@@ -212,7 +199,6 @@ function OtherProfile() {
     // const leftContent = document.querySelector(".profile--content-left");
     // const rightContent = document.querySelector(".profile--content-right");
     useEffect(() => {
-        console.log('page loaded')
         if (window.innerWidth > 900) {
             setShowLeft(true)
             setShowRight(true)
@@ -225,7 +211,7 @@ function OtherProfile() {
         }
     }, [])
     // document.addEventListener("load",()=>{
-    //     console.log("page loaded");
+    //
     //     if(window.innerWidth>900){
     //         setShowLeft(true);
     //         setShowRight(true);

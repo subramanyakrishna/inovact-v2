@@ -4,7 +4,6 @@
 
 // export default uploader;
 export const imageUploader = async (allFiles: any) => {
-    console.log(allFiles)
     const finalData: any = []
 
     for (let i = 0; i < allFiles.length; i++) {
@@ -12,7 +11,6 @@ export const imageUploader = async (allFiles: any) => {
             allFiles[i].type === 'image/jpeg' ||
             allFiles[i].type === 'image/png'
         ) {
-            console.log('it is an image')
             const imageData = new FormData()
             imageData.append('file', allFiles[i])
             imageData.append('upload_preset', 'inovact_projects')

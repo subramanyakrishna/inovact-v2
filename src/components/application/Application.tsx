@@ -41,6 +41,7 @@ function Application() {
             // dispatch({type: userConstants.LOGIN_SUCCESS, user: {
             //     profile_completed: false;
             // }})
+            console.log(localStorage.getItem('user'))
             axios
                 .get(
                     'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/user',
@@ -73,12 +74,7 @@ function Application() {
                         }
                     })
                 })
-                .then(() => {
-                    console.log(
-                        'profile status: ',
-                        state.userInfo.profile_complete
-                    )
-                })
+                .then(() => {})
                 .catch((err) => {
                     console.log(err)
                     // alert(err.message)

@@ -111,7 +111,7 @@ function AddRolesLookingFor(props: any) {
     const [roleInput, setRoleInput] = useState('')
 
     // const handleRoleInputChange = (e: any) => {
-    //     // console.log(e.target.value);
+    //     //
     //     setRoleInput(e.target.value)
     // }
 
@@ -127,7 +127,7 @@ function AddRolesLookingFor(props: any) {
     //             skill.toLowerCase().includes(value.toLowerCase())
     //         )
     //         .slice(0, 5)
-    //     console.log(searchedSkills)
+    //
     //     setSearchSkills(searchedSkills)
     // }
 

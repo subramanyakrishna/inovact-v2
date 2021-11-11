@@ -22,13 +22,13 @@ function InviteMembers(props: any) {
         const userIdsWhoAreInvitedAlready = props.team.team_invitations.map(
             (team_invitation: any) => team_invitation.user.id
         )
-        console.log(userIdsWhoAreInvitedAlready)
+
         const filteredUsers = users_from_api.filter(
             (user: any) =>
                 userIdsWhoAreInvitedAlready.indexOf(user.user_id) === -1 &&
                 user.user_id !== userInfo.id
         )
-        console.log('filteredUsers', filteredUsers)
+
         setUsers(filteredUsers)
     }, [])
 
@@ -38,7 +38,7 @@ function InviteMembers(props: any) {
         setTimeout(() => {
             setUsers(users.filter((user: any) => user.user_id != userId))
         }, 2000)
-        console.log('teamid,uderid', teamId, userId)
+
         const response = await axios({
             method: 'post',
             url: 'https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team/invite',
@@ -46,9 +46,7 @@ function InviteMembers(props: any) {
             headers: {
                 Authorization: localStorage.getItem('user'),
             },
-        }).then((res: any)=>{
-            console.log(res);
-        })
+        }).then((res: any) => {})
         var resp = await axios({
             method: 'get',
             url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/team?team_id=${teamId}`,
@@ -57,7 +55,6 @@ function InviteMembers(props: any) {
             },
         })
         const changed_team = resp.data.data.team[0]
-        console.log('changed_team')
     }
 
     return (

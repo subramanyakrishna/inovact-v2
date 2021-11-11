@@ -20,9 +20,6 @@ const Card = (props: any) => {
         }
 
         userSignup(userCreds)
-        console.log(userCreds.email_id, userCreds.password)
-        history.push('/login')
-        alert("Check Your Mail and Verify the account before login ;)")
     }
 
     return (
@@ -53,7 +50,7 @@ const Card = (props: any) => {
                                     placeholder="Enter Username"
                                     onChange={(e: any) => {
                                         // handleEmailChange(e);
-                                        // console.log("hi there its working");
+                                        //
                                         // props.handleChange("email_id", email);
                                         props.handleUserCredsChange(
                                             'user-name',
@@ -75,7 +72,7 @@ const Card = (props: any) => {
                                     placeholder="Enter Email Id"
                                     onChange={(e: any) => {
                                         // handleEmailChange(e);
-                                        // console.log("hi there its working");
+                                        //
                                         // props.handleChange("email_id", email);
                                         props.handleUserCredsChange(
                                             'email_id',

@@ -29,41 +29,47 @@ function Photos(props: photoProps) {
         }
     })
 
-
     return (
         <div>
             <div className="preview-image-container">
-                {
-                    photos[0] &&
+                {photos[0] && (
                     <div>
-                        <img src={photos[0]?.src} className="preview-image" onClick={openLightbox} alt="someimage"/>
-                        {
-                            photos.length>1 &&
-                            <button className="extra-images-btn" onClick={openLightbox}>+{photos.length-1}</button>
-                        }
+                        <img
+                            src={photos[0]?.src}
+                            className="preview-image"
+                            onClick={openLightbox}
+                            alt="someimage"
+                        />
+                        {photos.length > 1 && (
+                            <button
+                                className="extra-images-btn"
+                                onClick={openLightbox}
+                            >
+                                +{photos.length - 1}
+                            </button>
+                        )}
                     </div>
-                }
+                )}
             </div>
-            
+
             {/* <Gallery photos={photos} onClick={openLightbox} /> */}
             <ModalGateway>
-                {viewerIsOpen && 
+                {viewerIsOpen && (
                     <Modal onClose={closeLightbox}>
                         <Carousel
                             currentIndex={currentImage}
-                            views={photos.map((img)=>{
-                                return {source: img.src}
+                            views={photos.map((img) => {
+                                return { source: img.src }
                             })}
                         />
                     </Modal>
-                }
+                )}
             </ModalGateway>
         </div>
     )
 }
 
 export default Photos
-
 
 /*
 views={photos.map((x) => ({

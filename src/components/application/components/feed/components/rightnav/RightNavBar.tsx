@@ -4,7 +4,7 @@ import RightBottom from 'components/application/components/feed/components/right
 const RightNavBar = (props: any) => {
     return (
         <div>
-            <RightTop peopleToKnow={props.peopleToKnow}/>
+            <RightTop peopleToKnow={props.peopleToKnow} />
             <RightBottom />
         </div>
     )

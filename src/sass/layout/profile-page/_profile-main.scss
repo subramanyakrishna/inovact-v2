@@ -1,16 +1,16 @@
-.profile{
-    &--content{
+.profile {
+    &--content {
         display: flex;
         flex-direction: column;
-        
+
         margin-top: 4rem;
-        &-bottom-container{
+        &-bottom-container {
             display: flex;
             max-width: 1200px;
             margin: 2rem auto;
             width: 80%;
             column-gap: 50px;
-            @include respond(lg){
+            @include respond(lg) {
                 column-gap: 10px;
                 width: 100%;
             }
@@ -19,52 +19,49 @@
             //     column-gap: 10px;
             // }
         }
-        &-left{
+        &-left {
             width: 30%;
-            @include respond(md){
+            @include respond(md) {
                 width: 40%;
             }
-            @include respond(sm){
+            @include respond(sm) {
                 width: 100%;
             }
         }
-        &-right{
+        &-right {
             padding: 20px;
             max-width: 700px;
             width: 100%;
-            @include respond(md){
+            @include respond(md) {
                 margin: 0 auto;
                 width: 100%;
             }
-            &-noposts{
-
+            &-noposts {
             }
         }
-        
     }
-    
+
     // &-top-content{
     //     width: 50%;
     // }
 }
-.top-profile{
-    &-content{
+.top-profile {
+    &-content {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        background-image: url("images/profile/profile_background.jpg");
+        background-image: url('images/profile/profile_background.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
         height: 200px;
-        @include respond(md){
+        @include respond(md) {
             flex-direction: column;
             justify-content: space-evenly;
         }
-
     }
-    &-user{
-        &-tag{
+    &-user {
+        &-tag {
             display: flex;
             align-items: center;
             background-color: rgba(255, 255, 255, 0.8);
@@ -72,111 +69,108 @@
             height: 70px;
             border-radius: 10px;
         }
-        &-img{
+        &-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             overflow: hidden;
             transform: translateX(-20%);
             opacity: 1;
-            img{
+            img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
         }
-        &-data{
+        &-data {
             display: flex;
             flex-direction: column;
             line-height: 1.2;
-            &-name{
+            &-name {
                 font-weight: 600;
             }
-            &-designation{
+            &-designation {
                 font-size: 14px;
             }
-            &-university{
+            &-university {
                 font-size: small;
             }
         }
     }
 
-    &-post-buttons{
+    &-post-buttons {
         display: flex;
         justify-content: space-around;
         align-items: center;
         height: 4rem;
         background-color: $color-white;
-        padding: 10px 0px; 
+        padding: 10px 0px;
         width: 50%;
         max-width: 800px;
         border-radius: 5px;
-        transform: translate(-13%,150%);
-        box-shadow: 1px 4px 15px -8px rgba(0,0,0,0.75);
-        &-options{
+        transform: translate(-13%, 150%);
+        box-shadow: 1px 4px 15px -8px rgba(0, 0, 0, 0.75);
+        &-options {
             position: relative;
-            
-            &-all{
+
+            &-all {
                 margin: 0;
                 position: absolute;
                 width: 120px;
-                transform: translate(40%,-90%);
+                transform: translate(40%, -90%);
                 background-color: $color-white;
                 z-index: 999;
                 // border: 1px solid gray;
-                box-shadow: -1px 4px 10px -6px rgba(0,0,0,0.75);
-                @include respond(md){
-                    transform: translate(-30%,-90%);
+                box-shadow: -1px 4px 10px -6px rgba(0, 0, 0, 0.75);
+                @include respond(md) {
+                    transform: translate(-30%, -90%);
                 }
-                span{
+                span {
                     padding: 5px;
                     width: 100%;
                     text-align: left;
                     cursor: pointer;
                 }
 
-                span:hover{
+                span:hover {
                     background-color: rgb(221, 219, 219);
                 }
             }
         }
-        div{
+        div {
             display: flex;
             flex-direction: column;
             align-items: center;
             font-size: small;
-            img{
+            img {
                 width: 20px;
             }
-            button{
+            button {
                 background-color: $color-white;
                 border: none;
                 font-size: 40px;
                 text-align: center;
             }
         }
-        @include respond(md){
+        @include respond(md) {
             // width: 70%;
             width: 90vw;
             transform: translateY(70%);
         }
-        @include respond(sm){
-            
+        @include respond(sm) {
         }
-
-
     }
 }
 
-.profile-hidden-component{
+.profile-hidden-component {
     display: hidden;
 }
 
-.modal-overlay-profile{
+.modal-overlay-profile {
     width: 100vw;
     height: 105vh;
     margin: 0;
-    top:-1%;
+    top: -1%;
     background-color: black;
     opacity: 0.6;
     position: fixed;
@@ -184,7 +178,7 @@
     z-index: 101;
 }
 
-.profile-modal-cover{
+.profile-modal-cover {
     display: flex;
     justify-content: center;
     top: -5%;
@@ -193,22 +187,22 @@
     height: 100%;
     align-items: center;
 }
-.user-tag{
-    &-main{
+.user-tag {
+    &-main {
         width: 100%;
         padding: 10px;
         display: flex;
         align-items: center;
     }
-    &-img{
+    &-img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        margin: 0px 20px ;
+        margin: 0px 20px;
     }
 }
 
-.user-not-posted-anything{
+.user-not-posted-anything {
     font-size: larger;
     font-weight: 600;
     height: 200px;

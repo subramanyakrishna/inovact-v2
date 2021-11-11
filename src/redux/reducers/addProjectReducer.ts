@@ -1,12 +1,12 @@
-import { addProjectConstants } from "redux/actionTypes/addProjectConstants"
+import { addProjectConstants } from 'redux/actionTypes/addProjectConstants'
 
 const initialState = {
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     project_tags: [],
     mentions: [],
     team_id: null,
-    status: "",
+    status: '',
     required_roles: [],
     documents: [],
     looking_for_members: false,
@@ -14,9 +14,8 @@ const initialState = {
     user_id: null,
 }
 
-const updateProjectInfoReducer = (state = initialState, action: any)=>{
-    console.log(action.type,action.payload);
-    switch(action.type){
+const updateProjectInfoReducer = (state = initialState, action: any) => {
+    switch (action.type) {
         case addProjectConstants.PROJECT_UPDATE_TITLE:
             return {
                 ...state,
@@ -58,7 +57,7 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
                 documents: action.payload,
             }
         case addProjectConstants.PROJECT_UPDATE_USER_ID:
-            return{
+            return {
                 ...state,
                 user_id: action.payload,
             }
@@ -80,10 +79,9 @@ const updateProjectInfoReducer = (state = initialState, action: any)=>{
                 ...state,
                 looking_for_mentor: action.payload,
             }
-        default: return state;
+        default:
+            return state
     }
 }
 
-export {
-    updateProjectInfoReducer,
-}
+export { updateProjectInfoReducer }

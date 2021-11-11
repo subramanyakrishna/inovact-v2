@@ -87,17 +87,16 @@ export default function CheckoutPage() {
                 }
             )
             .then((resp) => {
-                console.log(resp)
                 history.push('/app/feed')
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {})
     }
 
     const uploadDetails = async (e: any) => {
         e.preventDefault()
         setUploading(true)
         const currentUser: any = UserPool.getCurrentUser()
-        console.log(currentUser)
+
         setTimeout(() => {
             uploadAllDetails()
         }, 1000)

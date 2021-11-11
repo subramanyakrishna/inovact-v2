@@ -1,19 +1,16 @@
-import { allIdeasConstants } from "redux/actionTypes/allIdeasConstants";
+import { allIdeasConstants } from 'redux/actionTypes/allIdeasConstants'
 
-const initialState: any = [];
+const initialState: any = []
 
-const allIdeasReducer = (state= initialState, action: any)=>{
-    switch(action.type){
+const allIdeasReducer = (state = initialState, action: any) => {
+    switch (action.type) {
         case allIdeasConstants.IDEAS_UPDATE:
-            return [
-                ...action.payload,
-            ]
+            return [...action.payload]
         case allIdeasConstants.IDEAS_CLEAR:
-            return initialState;   
-        default: return state;
+            return initialState
+        default:
+            return state
     }
 }
 
-export {
-    allIdeasReducer,
-}
+export { allIdeasReducer }

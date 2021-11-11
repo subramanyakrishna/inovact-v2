@@ -6,21 +6,21 @@
     align-items: flex-start;
     text-align: center;
     position: relative;
-    &__document{
-        margin-right:2rem ;
-        @include respond(sm){
-            margin-right:1rem ;
+    &__document {
+        margin-right: 2rem;
+        @include respond(sm) {
+            margin-right: 1rem;
         }
     }
     & img {
         width: 5rem;
         object-fit: cover;
-        @include respond(sm){
+        @include respond(sm) {
             width: 3rem;
         }
     }
     &__text {
-        color:$color-primary-green
+        color: $color-primary-green;
     }
     &__addFile {
         border: none;
@@ -29,14 +29,14 @@
         position: absolute;
         top: -3rem;
         right: 30px;
-        @include respond(sm){
+        @include respond(sm) {
             font-size: 0.9rem;
-            top:0;
+            top: 0;
             right: 1rem;
         }
         &__icon {
-            @include respond(sm){
-            font-size: 1rem !important;
+            @include respond(sm) {
+                font-size: 1rem !important;
             }
         }
     }

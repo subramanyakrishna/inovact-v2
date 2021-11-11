@@ -34,7 +34,6 @@ const LeftTop = () => {
     )
 
     useEffect(() => {
-        console.log(myConnections)
         ;(async () => {
             const { filteredConnectedAccount } = await getConnectionsAllData(
                 user_id
@@ -42,13 +41,11 @@ const LeftTop = () => {
 
             setIsLoad(false)
             dispatch(updateMyConnections(filteredConnectedAccount))
-            console.log('myConnections', myConnections)
         })()
     }, [])
     const history = useHistory()
 
     const getTheOtherUser = async (userId: any) => {
-        console.log('LeftTop the user id is of other: ', userId)
         localStorage.setItem('other-user', userId)
         history.push('/app/otherprofile')
     }

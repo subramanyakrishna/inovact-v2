@@ -5,7 +5,7 @@ export interface Iroles {
     skills: SkillI[]
 }
 interface Imembers {
-    email: string,
+    email: string
     role: string
 }
 
@@ -15,6 +15,6 @@ export interface ICreateTeam {
     looking_for_members: boolean
     looking_for_mentor: boolean
     roles: Iroles[]
-    avatar: string,
+    avatar: string
     members: Imembers[]
 }

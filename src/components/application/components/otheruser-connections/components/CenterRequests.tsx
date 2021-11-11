@@ -30,12 +30,10 @@ function CenterRequests() {
     const dispatch = useDispatch()
     const connections = useSelector((state: any) => state.connections)
 
-    useEffect(() => {
-        console.log(connections)
-    }, [connections])
+    useEffect(() => {}, [connections])
 
     useEffect(() => {
-        (async () => {
+        ;(async () => {
             const response = await makeApiCall('get', 'user')
 
             dispatch({
@@ -89,12 +87,12 @@ function CenterRequests() {
     //         `connections/accept?user_id=${id}`
     //     )
     //     dispatch(updateMyConnections([...myConnections, user]))
-    //     console.log(response)
+    //
     // }
 
     // const rejectConnectRequest = async (id: number) => {
     //     //call api to connect
-    //     console.log(id)
+    //
     //     const filteredPendingRequest = pendingRequests.filter(
     //         (user: any) => user.id !== id
     //     )
@@ -104,7 +102,7 @@ function CenterRequests() {
     //         'post',
     //         `connections/reject?user_id=${id}`
     //     )
-    //     console.log(response)
+    //
     // }
 
     const handleRemoveConnection = async (id: number) => {

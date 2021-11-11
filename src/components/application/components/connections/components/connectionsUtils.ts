@@ -38,8 +38,6 @@ const getFilteredPendingRequestsAndConnectedAccount = (
     let filteredConnectedAccountComplete: any = []
     let filteredConnectionId: number[] = []
     allConnectionsFromApi.forEach((connection: any) => {
-        console.log('ownId', ownId)
-
         const otherUser =
             connection.user1 === ownId
                 ? connection['userByUser2']
@@ -82,8 +80,6 @@ const getFilteredPendingRequestsAndConnectedAccount = (
     }
 }
 const makeApiCall = async (method: any, route: string, data = {}) => {
-    console.log('method : ', method, ' ', 'route :', route)
-
     const response = await axios({
         method: method,
         url: `https://cg2nx999xa.execute-api.ap-south-1.amazonaws.com/dev/${route}`,
@@ -106,14 +102,12 @@ const getConnectionsAllData = async (user_id: any) => {
                 payload: response.data.data.user[0],
             })
             user_id = response.data.data.user[0].id
-        } catch (err) {
-            console.log(err)
-        }
+        } catch (err) {}
     }
 
     const ownId = user_id
     const dataFromConnectionApi = await makeApiCall('get', 'connections')
-    console.log(dataFromConnectionApi)
+
     const all_connection_data = dataFromConnectionApi.data.data.connections
 
     const {
@@ -126,7 +120,7 @@ const getConnectionsAllData = async (user_id: any) => {
         all_connection_data,
         ownId
     )
-    console.log(filteredConnectedAccountComplete)
+
     return {
         filteredPendingRequest,
         filteredConnectedAccount,

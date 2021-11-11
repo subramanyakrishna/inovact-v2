@@ -1,4 +1,4 @@
-export const allUserThoughtsConstants ={
-    USER_THOUGHTS_UPDATE: "USER_THOUGHTS_UPDATE",
-    USER_THOUGHTS_CLEAR: "USER_THOUGHTS_CLEAR",
+export const allUserThoughtsConstants = {
+    USER_THOUGHTS_UPDATE: 'USER_THOUGHTS_UPDATE',
+    USER_THOUGHTS_CLEAR: 'USER_THOUGHTS_CLEAR',
 }

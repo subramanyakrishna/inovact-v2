@@ -12,7 +12,6 @@ function UploadThought(props: any) {
             ...thoughtData,
         },
         onSuccess: (data: any) => {
-            console.log(data)
             handleAddThoughtChange('thought_clear_data', '')
         },
     })

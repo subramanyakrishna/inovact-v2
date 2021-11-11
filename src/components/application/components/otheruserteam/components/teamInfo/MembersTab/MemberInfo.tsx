@@ -12,7 +12,6 @@ const MemberInfo = (props: any) => {
         setTimeout(() => toggleShowOptions(), 1000)
     }
     const getTheOtherUser = async (userId: any) => {
-        console.log('MemberInfo other-user', userId)
         localStorage.setItem('other-user', userId)
         history.push('/app/otherprofile')
     }

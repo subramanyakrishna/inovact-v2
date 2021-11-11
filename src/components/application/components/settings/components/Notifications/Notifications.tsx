@@ -3,37 +3,19 @@ import Toggle from '../Toggle/Toggle'
 import { TeamsData } from './tempData'
 
 const Notifications: React.FC<any> = (props: any) => {
-    const handleAllNotification = (checked: boolean) => {
-        console.log('handleAllNotification', checked)
-    }
-    const handleDirectMsg = (checked: boolean) => {
-        console.log('handleDirectMsg', checked)
-    }
-    const handleLoginNotif = (checked: boolean) => {
-        console.log('handleLoginNotif', checked)
-    }
-    const handlenewVersion = (checked: boolean) => {
-        console.log('handlenewVersion', checked)
-    }
-    const offAllTeamNotif = (checked: boolean) => {
-        console.log('offAllTeamNotif', checked)
-    }
+    const handleAllNotification = (checked: boolean) => {}
+    const handleDirectMsg = (checked: boolean) => {}
+    const handleLoginNotif = (checked: boolean) => {}
+    const handlenewVersion = (checked: boolean) => {}
+    const offAllTeamNotif = (checked: boolean) => {}
     const handleEachTeamNotif = (team: {
         _id: string
         name: string
         checked: boolean
-    }) => {
-        console.log(team)
-    }
-    const handleMentionNotif = (checked: boolean) => {
-        console.log('handleMentionNotif', checked)
-    }
-    const handleLikesNotif = (checked: boolean) => {
-        console.log('handleLikesNotif', checked)
-    }
-    const handleCommentsNotif = (checked: boolean) => {
-        console.log('handleCommentsNotif', checked)
-    }
+    }) => {}
+    const handleMentionNotif = (checked: boolean) => {}
+    const handleLikesNotif = (checked: boolean) => {}
+    const handleCommentsNotif = (checked: boolean) => {}
     return (
         <div className={'notification'}>
             <div className="notification-head  paragraph-primary text-style--bold text-color--black">

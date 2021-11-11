@@ -1,10 +1,12 @@
 account_id = "9523794c310e17533cfe7878fa124025"
 compatibility_date = "2021-10-23"
 compatibility_flags = []
-name = "inovact-v2"
-route = ''
+name = "inovact"
 site = {bucket = "./build", entry-point = "workers-site"}
 type = "webpack"
 usage_model = ''
 workers_dev = true
-zone_id = ''
+[env.production]
+workers_dev = false
+route = 'https://web.inovact.in/*'
+zone_id = '4ea0367a491879d0d8d56ddc3a7bf519'

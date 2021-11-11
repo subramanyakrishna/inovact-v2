@@ -101,7 +101,7 @@ const TeamDescription = ({ team }: Props) => {
                             className="text-style--bold text-align--left text-color--green text-size--big sm-small"
                             style={{ marginLeft: '1rem' }}
                         >
-                             {team.ideas.length}{' '}
+                            {team.ideas.length}{' '}
                         </span>{' '}
                     </span>
                     <span
@@ -110,26 +110,25 @@ const TeamDescription = ({ team }: Props) => {
                     >
                         Team Tags{' '}
                     </span>
-                    {team.team_tags.length ===0 ? <div className="text-style--muted">No tags</div>: (
-showAll ? (
-    <ul className="teams-description__info__right__tags">
-        {team.team_tags?.map((tag: any, index: any) => {
-            return (
-                <li key={index}>
-                    <div>
-                        <h6 className="teams-description__info__right__tags__tag sm-small">
-                            {tag.hashtag.name}
-                        </h6>
-                    </div>
-                </li>
-            )
-        })}
-    </ul>
-) : (
-    <TeamTags team={team} />
-)
+                    {team.team_tags.length === 0 ? (
+                        <div className="text-style--muted">No tags</div>
+                    ) : showAll ? (
+                        <ul className="teams-description__info__right__tags">
+                            {team.team_tags?.map((tag: any, index: any) => {
+                                return (
+                                    <li key={index}>
+                                        <div>
+                                            <h6 className="teams-description__info__right__tags__tag sm-small">
+                                                {tag.hashtag.name}
+                                            </h6>
+                                        </div>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    ) : (
+                        <TeamTags team={team} />
                     )}
-                
                 </div>
             </div>
         </div>
